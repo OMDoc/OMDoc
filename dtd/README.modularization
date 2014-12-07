@@ -1,0 +1,78 @@
+In OMDoc 1.3 we attempt to modularize the OMDoc specification. 
+
+Here is the general plan for the structure. 
+
+file (.dtd)  top-level elements               gives
+------------------------------------------------------------------------
+omdocst      definition, assertion,       math statements
+             proof, example, theory       simple theory inheritance,
+------------------------------------------------------------------------
+omdoccth     theory-inclusion,            redundant theory structure,
+             inclusion                    parametric theories
+             axiom-inclusion              management of change
+------------------------------------------------------------------------
+omdocext     omlet, private, code         repository for system data,
+                                          service calls, applets
+------------------------------------------------------------------------
+omdocdc      Dublin Coremetadata          DC metadata
+------------------------------------------------------------------------
+omdocpres    presentation	          presentation of the content
+------------------------------------------------------------------------
+ommdocquiz   exercise, mcq,...            exercises, multiple choice 
+                                          questions
+
+
+
+Unit           elements        [1; sec]   gives 
+=========================================================================
+[basic OMDoc] $doc-struc,         3.4.1     basic document infrastructure
+              $omdocst            3.2       basic math infrastructure
+-------------------------------------------------------------------------
+              gives you a content-centered text base and allows 
+              multi-language and multi-format presentation.
+=========================================================================
+[CD-OMDoc]    [basic] + $s-theo,  3.3.1     simple theories
+-------------------------------------------------------------------------
+              generalizes OpenMath CDs
+=========================================================================
+[Sys-OMDoc]   [basic] + $omweb    3.4.{2,3} infrastructure for math systems
+-------------------------------------------------------------------------
+              this gives you the addition to connect to web services, 
+              like theorem provers. 
+=========================================================================
+[Spec-OMDoc]  [basic] + $c-theo   3.3.{2,4}  complex theory inheritance
+-------------------------------------------------------------------------
+              this gives you equivalence to specification standards like
+	      CASL (Common Algebraic Specification Language). 
+=========================================================================
+[M-Ch-OMDoc]  [Spec] + $m-change  3.3.3      management of change
+-------------------------------------------------------------------------
+              Management of Change and full development MBase support
+=========================================================================
+[Pres-OMDoc]  [basic] + $pres     3.5        modular presentation
+-------------------------------------------------------------------------
+              presentation can be specified locally instead of in a
+              general style sheet. 
+=========================================================================
+[Quiz-OMDoc]  [basic] + exercise  3.4.4      exercises and assessments 
+-------------------------------------------------------------------------
+              multiple choice questions, etc. 
+=========================================================================
+ 
+in this table I have used the following abbreviations
+
+Applications:
+
+[basic/Quiz-OMDoc]
+   this seems to be the format for simple educational uses 
+[Sys-OMDoc]
+   OMDoc can be used as theorem prover Demo language and front-end 
+   (cf. OMEGA), together with MBase as problem library. 
+[Spec-OMDoc] 
+   large-scale theory representation and re-use become possible
+[M-Ch-OMDoc] 
+   full support for theory development
+[Pres-OMDoc] 
+   large-scale educational systems, where global presentation is 
+   unfeasible 
+

@@ -1,0 +1,44 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%% Index Abbreviations %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Copyright 2005 Michael Kohlhase, released under the GPL
+% $HeadURL: svn://kwarc.faculty.iu-bremen.de/kohlhase/kwarc/projects/content/GenCS/slides.tex$ 
+% $Rev: 15772 $; last modified by $Author: kohlhase $ 
+% $Date: 2008-09-13 07:03:49 +0200 (Sat, 13 Sep 2008) $
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\NeedsTeXFormat{LaTeX2e}[1999/12/01]
+\ProvidesPackage{myindex}[2008/09/29 v.2 Fancy Indexing]
+\newif\ifindex\indextrue
+\DeclareOption{noindex}{\indexfalse}
+\ProcessOptions
+
+\def\defemph{\textbf}                      % style for definitions
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% index commands for single words %%%%%%%%%%%%%%
+\newcommand{\myindex}[2][]{\def\@test{#1}%                       % word in text and index
+\ifindex\ifx\@test\@empty\index{#2}\else\index{#1@#2}\fi\fi}  
+\newcommand{\indextoo}[2][]{{#2}\myindex[#1]{#2}}               % word in text and index
+\newcommand{\indexalt}[3][]{{#2}\myindex[#1]{#3}}               % word in text and index
+\newcommand{\defin}[2][]{\defemph{\indextoo[#1]{#2}}}           % definition and index
+\newcommand{\emin}[2][]{{\emph{\indextoo[#1]{#2}}}}             % emphasize and index
+\newcommand{\ttin}[2][]{{\texttt{#1}}\myindex[#1]{\texttt{#2}}} % typewriter and index
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% index commands for compound words %%%%%%%%%%%%%%
+%% this puts two-compound words into the index in various permutations
+
+\newcommand{\twin}[3][]{\def\@test{#1}%                           % two-compound index command
+\ifindex\ifx\@test\@empty\index{#2!#3}\else\index{#1@#2!#3}\fi\index{#3!#2}\fi}
+\newcommand{\twinalt}[4][]{#2\twin[#1]{#3}{#4}}
+\newcommand{\twintoo}[3][]{{#2 #3}\twin[#1]{#2}{#3}}             % and use the word compound too
+\newcommand{\twindef}[3][]{\defemph{#2 #3}\twin[#1]{#2}{#3}}     % with definition emphasis
+\newcommand{\twinemph}[3][]{\emph{#2 #3}\twin[#1]{#2}{#3}}       % with emphasis
+
+%%%%%%%%%%%%%%%%%%% index commands for compound words  with adjectives %%%%%%%%%%%%%%
+%% this puts adjectived two-compound words into the index in various permutations
+
+\newcommand{\atwin}[4][]{\def\@test{#1}%
+\ifindex\ifx\@test\@empty\index{#2!#3!#4}\else\index{#1@#2!#3!#4}\fi\index{#3!#2 (#1)}\fi}
+\newcommand{\atwinalt}[5][]{#2\atwin[#1]{#3}{#4}{#4}}
+\newcommand{\atwintoo}[4][]{{#2 #3 #4}\atwin[#1]{#2}{#3}{#4}}         % and use it too
+\newcommand{\atwindef}[4][]{\defemph{#2 #3 #4}\atwin[#1]{#2}{#3}{#4}} % with definition emphasis
+\newcommand{\atwinemph}[4][]{\emph{#2 #3 #4}\atwin[#1]{#2}{#3}{#4}}   % with emphasis

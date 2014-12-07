@@ -1,0 +1,14 @@
+clean:
+	rm -f *.log 
+	rm -f *.blg
+	rm -f *.idx *.ilg
+	rm -f *.bmt *.ptc* *.mtc* # the stuff for minitoc
+	rm -f *~  # backups
+	rm -f .\#* \#*\# *.out
+
+distclean: clean
+	rm -f *.dvi *.aux *.toc *.out
+	rm -f $(PS) $(PS2) $(PS4) $(PDF)
+	rm -f *.bbl
+	rm -f *.ind 
+

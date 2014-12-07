@@ -1,0 +1,489 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This file is part of the LaTeX sources of the OMDoc 1.3 specification
+% Copyright (c) 2006 Michael Kohlhase
+% This work is licensed by the Creative Commons Share-Alike license
+% see http://creativecommons.org/licenses/by-sa/2.5/ for details
+\svnInfo $Id: changes1.2.tex 8685 2010-08-23 08:55:17Z kohlhase $
+\svnKeyword $HeadURL: https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.3/doc/spec/changes1.2.tex $
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{tsection}[id=changes1.2]{Changes from 1.1 to 1.2}
+
+  Most of the changes in version 1.2 are motivated by modularization. The goal was
+  to modularize the specification so that it can be used as a DTD module, and that
+  restricted sub-languages of {\omdoc} can be identified. 
+  
+  Perhaps the most disruptive change is in the presentation/style apparatus: In version
+  1.1, {\omdoc} used the {\attributeshort{style}} attribute for all elements that have an
+  {\attributeshort{id}} attribute to specify generic style classes for the {\omdoc}
+  elements.  This was based on a misunderstanding of the {\xml} {\twintoo{cascading}{style
+      sheet}} ({\css}) mechanism~\cite{BosHak:css98}, which uses the
+  {\attributeshort{class}} attribute to specify this information and uses the
+  {\attributeshort{style}} attribute to specify {\css} directives\twin{CSS}{directive}
+  that override the class information.  This error in {\vomdoc{1.1}} so severely limits
+  the usefulness for styling that we rename the {\vomdoc{1.1}}
+  {\attributeshortcomment{style}{meaning changed in 1.2}} attribute to
+  {\attributeshort{class}}, even though it breaks 1.1-compatible
+  implementations. Concretely, the {\vomdoc{1.2}} {\attributeshort{class}} attribute takes
+  the role of the {\vomdoc{1.1}} {\attributeshortcomment{style}{meaning changed in
+      1.2}}. and the {\vomdoc{1.2}} {\attributeshortcomment{style}{new meaning
+      1.2}}\label{style/class-comment} takes {\css} directives\twin{CSS}{directive}.
+
+  Furthermore, all {\attributeshort[ns-attr=xml]{id}} on non-constitutive (see
+  {\mysecref{statements-constitutive}}) elements in {\omdoc} were made optional.
+  
+  {\vomdoc{1.1}} files can be upgraded to version 1.2 with the {\xslt} style sheet
+    \url{https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.2/xsl/omdoc1.1adapt1.2.xsl}.
+
+\begin{center}\footnotesize
+\begin{longtable}{|l|c|p{6cm}|l|}\hline
+  element & state & comments & cf.\\\hline\hline 
+{\element{alternative}} & aug
+     &  This element can now have {\attribute{theory}{alternative}},
+    {\attribute{generated-from}{alternative}}, and
+    {\attribute{generated-via}{alternative}} attributes.
+     & \pageref{eldef:alternative}\\\hline
+{\element{argument}} & cha
+     &  The {\oldattribute{sort}{argument}{1.2}} has been replaced by a {\element{type}}
+     child, so that higher-order sorts can be specified. 
+     & \pageref{eldef:argument}\\\hline
+{\element{assertion}} & aug 
+  & the {\element{assertion}} element now has an optional {\attribute{for}{assertion}}
+     attribute. Furthermore, an optional attribute {\attribute{generated-via}{assertion}}
+     has been added to allow generation via a theory morphism. Finally, two new attributes
+     {\attribute{status}{assertion}} and {\attribute{just-by}{assertion}} have been added
+     to mark up the deductive status of the assertion. 
+  & \pageref{eldef:assertion}\\\hline 
+{\element{assumption}} & cha
+     &  This element can now have an attribute {\attribute{inductive}{assumption}} for
+     inductive assumptions. The natural langauge description in the optional
+     {\element{CMP}} element  is no longer allowed, use a {\element{phrase}} element in
+     a {\element{CMP}} that is a sibling to the {\element{FMP}} instead.
+     & \pageref{eldef:alternative}\\\hline
+{\element{adt}} & aug 
+  & the {\element{adt}} loses the {\element{CMP}} and {\oldelement{commonname}{1.2}}
+  children, use the Dublin Core metadata elements {\element[ns-elt=dc]{description}} and
+  {\element[ns-elt=dc]{subject}} instead. The {\attribute{type}{adt}} attribute is now on
+  the {\element{sortdef}} element. Furthermore, an optionala
+     attribute {\attribute{generated-via}{adt}} 
+     has been added to allow generation via a theory morphism. Finally, an attribute
+     {\attribute{parameters}{adt}} has been added to allow for parametric ADTs. 
+  & \pageref{eldef:adt}\\\hline 
+{\element{answer}} & cha
+  & the {\element{answer}} element does not allow {\element{symbol}} children
+  any more, if these are needed, the exercise should have its own theory.
+  & \pageref{eldef:answer}\\\hline 
+{\element{attribute}} & aug
+  & the {\element{attribute}} element now has a optional {\attribute{ns}{attribute}}
+  attribute for the namespace URI of the generated attribute node and an attribute
+  {\attribute{select}{attribute}} for an {\xpath} expression that specifies the value of
+  the generated attribute.
+  & \pageref{eldef:attribute}\\\hline 
+{\element{axiom}} & aug 
+  & the {\element{axiom}} element now has an optional {\attribute{for}{axiom}}
+     attribute which can point to a list of symbols. Furthermore, an optional
+     attribute {\attribute{generated-via}{assertion}} 
+     has been added to allow generation via a theory morphism and an attribute
+     {\attribute{type}{axiom}} is now also allowed. 
+  & \pageref{eldef:axiom}\\\hline
+{\element{axiom-inclusion}} & lib 
+  & the {\element{axiom-inclusion}} element can now contain multiple
+    {\element{path-just}} children to record multiple justifications.  
+    Furthermore, it can now have {\attribute{theory}{axiom-inclusion}},
+    {\attribute{generated-from}{axiom-inclusion}}, and
+    {\attribute{generated-via}{axiom-inclusion}} attributes.
+    New optional attributes {\attribute{conservativity}{axiom-inclusion}} and
+    {\attribute{conservativity-just}{axiom-inclusion}} for stating and justifying
+    conservativity. 
+  & \pageref{eldef:axiom-inclusion}\\\hline
+{\oldelement{catalogue}{1.1}} & dep
+  & the catalogue mechanism has been eliminated.
+  & \\\hline 
+{\element{choice}} & cha
+  & the {\element{choice}} element does not allow {\element{symbol}} children
+  any more, if these are needed, the exercise should have its own theory
+  & \pageref{eldef:choice}\\\hline 
+{\element{code}}        & cha 
+     & Attributes {\oldattribute{classid}{code}{1.2}} and
+       {\oldattribute{codebase}{code}{1.2}} are deprecated.  The attributes
+       {\attribute{pto}{data}}  and {\attribute{pto-version}{data}} have moved to
+       the {\element{data}} element. The attribute
+       {\oldattribute{type}{code}{1.1}} has been removed and
+    optional attributes {\attribute{theory}{private}},
+    {\attribute{generated-from}{private}}, and
+    {\attribute{generated-via}{private}} have been added.     
+  & \pageref{eldef:code}\\\hline
+{\oldelement{commonname}{1.2}}        & dep
+     & This element is deprecated in favor of a
+     {\element{metadata}}/{\element[ns-elt=dc]{subject}} element.
+     & \\\hline
+{\element{conclusion}} & cha
+     & The natural langauge description in the optional
+     {\element{CMP}} element  is no longer allowed, use a {\element{phrase}} element in
+     a {\element{CMP}} that is a sibling to the {\element{FMP}} instead.
+     & \pageref{eldef:conclusion}\\\hline
+{\element{constructor}} & cha 
+  & The {\attribute{role}{constructor}} attribute is now fixed to
+    {\attval{object}{type}{constructor}}.   The
+    {\oldelement{commonname}{1.2}} child has been replaced by an initial
+    {\element{metadata}} element.
+  & \pageref{eldef:constructor} \\\hline
+{\element{data}}           & aug
+     & new optional attributes {\attribute{original}{data}} to specify whether the
+     external resource referenced by the  {\attribute{href}{data}} attribute
+     (value {\attval{external}{original}{data}}) or the 
+     {\element{data}} content is the original (value
+     {\attval{local}{original}{data}}).  The  {\element{data}} element has
+     acquired attributes {\attribute{pto}{data}}
+    and {\attribute{pto-version}{data}}  from the {\element{code}} and
+    {\element{private}} elements. 
+     & \pageref{eldef:data}\\\hline
+{\element[ns-elt=dc]{*}}                 & aug 
+     & All Dublin Core tags have been lowercased  to synchronize with the tag
+       syntax recommended by the Dublin Core Initiative. The tags were capitalized
+       in {\omdoc}1.1. Furthermore, {\element[ns-elt=dc]{contributor}}, {\element[ns-elt=dc]{creator}},
+       {\element[ns-elt=dc]{publisher}} have  
+       received an optional {\attributeshortcomment{xml:id}{on Dublin Core elements}} 
+       attribute, so that they can be cross-referenced by the new 
+       {\attribute[ns-elt=dc]{who}{date}} of the {\element[ns-elt=dc]{date}} element.
+     & \pageref{eldef:dc:title}\\\hline
+{\element{decomposition}} & aug 
+  & The {\attribute{for}{decomposition}} attribute
+    is now optional, it need not be given, if the element is a child of a
+    {\element{theory-inclusion}} element. Furthermore, it can now have a
+    {\attribute{theory}{decomposition}}, 
+    {\attribute{generated-from}{decomposition}}, and
+    {\attribute{generated-via}{decomposition}} attributes.
+  & \pageref{eldef:decomposition} \\\hline
+{\element[ns-elt=dc]{description}} & aug
+  & The {\element[ns-elt=dc]{description}} can now have the optional
+    {\attribute[ns-attr=xml]{id}{description}}, and {\css} attributes\twin{CSS}{attribute}
+  & \pageref{eldef:dc:description} \\\hline
+{\element{definition}} & aug
+  & The {\element{definition}} element can now have the type
+  {\attval{pattern}{type}{definition}} for pattern-defined functions. This is a
+  degenerate case of the type {\attval{inductive}{type}{definition}}. Furthermore, an optional
+     attribute {\attribute{generated-via}{assertion}} 
+     has been added to allow generation via a theory morphism.
+  & \pageref{eldef:definition} \\\hline
+{\element{effect}} & aug
+  & allows an optional  {\attribute[ns-attr=xml]{id}{effect}} attribute
+  & \pageref{eldef:effect}\\\hline
+{\element{example}} & aug
+  & The {\element{example}} element now has the optional {\attribute{theory}{example}}
+  attribute that specifies the home theory.
+     Furthermore, it can now have attributes {\attribute{theory}{example}},
+    {\attribute{generated-from}{example}}, and
+    {\attribute{generated-via}{example}}.
+  & \pageref{eldef:example} \\\hline
+{\element{exercise}} & cha
+  & the {\element{exercise}} element does not allow {\element{symbol}} children
+  any more, if these are needed, the exercise should have its own theory.
+   Furthermore, it can now have a {\attribute{theory}{exercise}},
+    {\attribute{generated-from}{exercise}}, and
+    {\attribute{generated-via}{exercise}} attributes.
+  & \pageref{eldef:exercise}\\\hline 
+{\oldelement{extradata}{1.2}} & cha
+  & The content of the old {\oldelement{extradata}{1.2}} element can now be directly in
+  the {\element{metadata}}/{\element[ns-elt=dc]{subject}} element.
+  & \\\hline 
+{\element{element}} & aug
+  & The {\element{element}} element now allows the {\element{map}} and
+  {\element{separator}} elements in the body. Furthermore, it carries the optional
+  attributes {\attribute{crid}{element}} for parallel markup, {\attribute{cr}{element}}
+  for cross-references, and {\attribute{ns}{element}} for specifying the namespace.
+  & \pageref{eldef:element} \\\hline
+{\element{hint}} & aug 
+  & the {\element{hint}} element can now appear on top-level and
+    has a {\attribute{for}{hint}} attribute.  It does not allow {\element{symbol}} children
+    any more, if these are needed, the exercise should have its own theory.
+    Furthermore, the {\element{exercise}} can now have a {\attribute{theory}{hint}},
+    {\attribute{generated-from}{hint}}, and {\attribute{generated-via}{hint}} attributes.
+  & \pageref{eldef:hint}\\\hline
+{\element{hypothesis}} & cha
+  & the {\oldattribute{discharged-in}{hypothesis}{1.2}} attribute has been
+  eliminated. Scoping is now specified in terms of the enclosing {\element{proof}}
+  element. Furthermore, the {\element{symbol}} child is no longer allowed inside
+  the element. A sibling {\element{symbol}} should be used. 
+  & \pageref{eldef:hypothesis}\\\hline
+{\element{inclusion}} & aug
+  & allows optional attributes {\attribute[ns-attr=xml]{id}{inclusion}}, 
+     {\attribute{conservativity}{inclusion}}, and
+    {\attribute{conservativity-just}{inclusion}} for stating and justifying
+    conservativity. 
+  & \pageref{eldef:inclusion}\\\hline
+{\element{imports}} & lib
+  & the {\attribute[ns-attr=xml]{id}{imports}} is now optional.
+    New optional attributes {\attribute{conservativity}{imports}} and
+    {\attribute{conservativity-just}{imports}} for stating and justifying
+    conservativity. 
+  & \pageref{eldef:imports}\\\hline
+{\element{input}} & aug
+  & allows an optional  {\attribute[ns-attr=xml]{id}{input}} attribute
+  & \pageref{eldef:input}\\\hline
+{\element{legacy}} & new 
+  & An element for encapsulating legacy mathematics, can
+    be used wherever {\element[ns-elt=m]{math}} and {\element[ns-elt=om]{OMOBJ}} are allowed.  
+  & \pageref{eldef:legacy}\\\hline
+{\oldelement{loc}{1.1}} & dep
+  & The catalogue mechanism has been eliminated.
+  & \\\hline
+{\element[ns-elt=m]{math}} & new 
+  & {\cmathml} is now allowed wherever {\openmath} objects were allowed before.  
+  & \pageref{eldef:m:math}\\\hline
+{\element{map}} & new 
+  & this element allows to map its style directives over a list of e.g. arguments
+  & \pageref{eldef:map}\\\hline
+{\element{mc}} & aug 
+  & the {\element{mc}} element can now have a {\attribute{for}{mc}}
+  attribute. It does not allow {\element{symbol}} children
+  any more, if these are needed, the dominating {\element{exercise}} element should have
+  its own theory. Furthermore, the {\element{mc}} element can now have a
+  {\attribute{theory}{mc}},  {\attribute{generated-from}{mc}}, and
+  {\attribute{generated-via}{mc}} attributes.
+  & \pageref{eldef:mc}\\\hline
+{\element{measure}} & aug
+  & allows an optional  {\attribute[ns-attr=xml]{id}{measure}} attribute
+  & \pageref{eldef:measure}\\\hline
+{\oldelement{metacomment}{1.2}} & dep
+  & This element is superseded by the {\element{omtext}} element. 
+  & \pageref{eldef:omtext}\\\hline
+{\element{morphism}} & aug 
+  & The {\element{morphism}}  element now carries the optional  attributes
+  {\attribute{consistency}{morphism}},  {\attribute{exhaustivity}{morphism}}, 
+  {\attribute{hiding}{morphism}}, and {\attribute{type}{morphism}}. Furthermore the  content model 
+  allows optional elements {\element{measure}} and {\element{ordering}}  after the
+  {\element{requation}}  children to specify termination information like in
+  {\element{definition}}. 
+  & \pageref{eldef:metadata}\\\hline
+{\element{obligation}} & aug
+  & allows an optional  {\attribute[ns-attr=xml]{id}{obligation}} attribute
+  & \pageref{eldef:obligation}\\\hline
+{\element{omdoc}} & aug 
+  & This element can now have a {\attribute{theory}{omdoc}},
+    {\attribute{generated-from}{omdoc}}, and
+    {\attribute{generated-via}{omdoc}} attributes.
+  & \pageref{eldef:omdoc}\\\hline
+{\element{omgroup}} & cha 
+  & The values {\oldattval{dataset}{type}{omgroup}{1.2}} and
+    {\oldattval{labeled-dataset}{type}{omgroup}{1.2}} are deprecated in {\vomdoc{1.2}},
+    since we provide tables in module {\RTmodule{spec}}; see {\mysecref{rt}} for
+    details.  Furthermore, the element can now have the attributes,
+    {\attribute{modules}{omgroup}}, {\attribute{theory}{omgroup}},
+    {\attribute{generated-from}{omgroup}}, and
+    {\attribute{generated-via}{omgroup}}.
+  & \pageref{eldef:omgroup}\\\hline
+{\element{omlet}} & cha
+  & {\element{omlet}} can no longer occur at top-level (it just does not make
+    sense).  The data model for this element has been totally reworked, inspired
+    by  the {\element[ns-elt=xhtml]{object}} element. 
+  & \pageref{eldef:omlet}\\\hline
+{\element{omstyle}} & aug 
+  & This element can now have {\attribute{generated-from}{omstyle}}, and
+    {\attribute{generated-via}{omstyle}} attributes. New attribute
+    {\attribute{xref}{omstyle, presentation}} that allows to inherit the information 
+    from another {\element{omstyle}} element. 
+  & \pageref{eldef:omstyle}\\\hline
+{\element[ns-elt=om]{*}} & aug 
+  & with {\openmath}2, the {\openmath} elements carry an optional {\attribute[ns-elt=om]{id}{*}} 
+    attribute for structure sharing via the {\element[ns-elt=om]{OMR}} element. Furthermore, in
+    {\omdoc}, they carry
+    {\attribute[ns-elt=om]{cref}{*}} attributes for parallel markup with {\indextoo{cross-reference}s}.  
+  & \pageref{eldef:om:OMA}\\\hline
+{\element[ns-elt=om]{OMFOREIGN}} & new & The {\element[ns-elt=om]{OMFOREIGN}}
+    element can be used to encapsulate arbitrary {\xml} data in {\openmath}
+    attributions.  
+  & \pageref{eldef:om:OMFOREIGN}\\\hline
+{\element[ns-elt=om]{OMR}} & new 
+  & In the {\openmath}2 standard, this element is the main
+    vehicle of the structure sharing representation.  
+  & \pageref{eldef:om:OMR}\\\hline
+  {\element{omtext}} & aug 
+  & the {\attribute{type}{omtext}} attribute can now also have the
+    values {\attval{axiom}{type}{omtext}}, {\attval{definition}{type}{omtext}},
+    {\attval{theorem}{type}{omtext}}, {\attval{proposition}{type}{omtext}},
+    {\attval{lemma}{type}{omtext}}, {\attval{corollary}{type}{omtext}},
+    {\attval{postulate}{type}{omtext}}, {\attval{conjecture}{type}{omtext}},
+    {\attval{false-conjecture}{type}{omtext}}, {\attval{obligation}{type}{omtext}},
+    {\attval{assumption}{type}{assertion}}, and {\attval{formula}{type}{omtext}}.  
+
+    Furthermore, {\element{omtext}} can now have {\attribute{theory}{omtext}},
+    {\attribute{generated-from}{omtext}}, and
+    {\attribute{generated-via}{omtext}} and {\attribute{verbalizes}{omtext}} attributes.
+  & \pageref{eldef:omtext}\\\hline
+{\element{ordering}} & aug
+  & Now allows the optional  {\attribute[ns-attr=xml]{id}{ordering}} and
+  {\attribute{terminating}{ordering}} attributes. The latter points to a termination
+  assertion. 
+  & \pageref{eldef:ordering}\\\hline
+{\element{output}} & aug
+  & allows an optional  {\attribute[ns-attr=xml]{id}{input}} attribute
+  & \pageref{eldef:output}\\\hline
+{\oldelement{pattern}{1.2}} & aug
+  & this element is no longer used, the pattern of a recursive equation is determined by
+  the position as the first child.
+  & \\\hline
+{\element{path-just}} & aug 
+  & The element can now appear as a top-level element,
+    if it does, the attribute {\attribute{for}{path-just}} must point to the
+    {\element{axiom-inclusion}} element it justifies.  It also now
+   allows an optional  {\attribute[ns-attr=xml]{id}{input}} attribute
+  & \pageref{eldef:path-just}\\\hline
+{\element{phrase}}           & new
+     & used to mark up phrases in {\element{CMP}s} and supply them with
+       identifiers and links to context that can be 
+       used for presentation and referencing.
+     & \pageref{eldef:phrase}\\\hline
+{\element{presentation}} & cha
+  & The {\oldattribute{theory}{presentation}{1.2}} is not allowed any more, to refer to a symbol
+    outside its theory use its {\attribute[ns-attr=xml]{id}{symbol}} attribute. 
+    The element now also allows a mutilingual {\element{CMP}} group,
+    so that it can be used as a notation definition element in mathematical vernacular. 
+  & \pageref{eldef:presentation} \\\hline
+{\element{private}} & cha
+  & The {\oldattribute{replaces}{private}{1.2}} attribute is now called
+    {\attribute{reformulates}{private}}. The attributes {\attribute{pto}{data}}
+    and {\attribute{pto-version}{data}} have moved to the {\element{data}}
+    element.  The attribute {\oldattribute{type}{code}{1.1}} has been removed and
+    optional attributes {\attribute{theory}{private}},
+    {\attribute{generated-from}{private}}, and
+    {\attribute{generated-via}{private}} have been added.
+  & \pageref{eldef:private} \\\hline
+{\element{proof}} & lib 
+  & The {\attribute{for}{proof}} attribute is now optional to allow for proofs as
+    objects of mathematical discourse. Furthermore, it can now have 
+    {\attribute{generated-from}{proof}} and
+    {\attribute{generated-via}{proof}} attributes.
+  & \pageref{eldef:proof} \\\hline
+{\element{proofobject}} & lib 
+  & The {\attribute{for}{proof}} attribute is now optional to allow for proofs as
+    objects of mathematical discourse.  Furthermore, it can now have
+    {\attribute{generated-from}{proofobject}} and
+    {\attribute{generated-via}{proofobject}} attributes.
+  & \pageref{eldef:proofobject} \\\hline
+{\element{recognizer}} & cha 
+  & The {\attribute{role}{recognizer}} attribute was fixed to
+    {\attval{object}{type}{recognizer}}.   The
+    {\oldelement{commonname}{1.2}} child has been replaced by an initial
+    {\element{metadata}} element.
+  & \pageref{eldef:recognizer} \\\hline
+{\element{ref}} & aug 
+  & {\element{ref}} now has an optional
+    {\attribute[ns-attr=xml]{id}{ref}} attribute that identifies it.  
+  & \pageref{eldef:ref}\\\hline
+{\element{selector}} & cha 
+  & The {\attribute{role}{selector}} attribute was fixed to
+    {\attval{object}{role}{selector}}.   The
+    {\oldelement{commonname}{1.2}} child has been replaced by an initial
+    {\element{metadata}} element.
+  & \pageref{eldef:selector} \\\hline
+{\element{solution}} & cha
+  & the {\element{solution}} element now allows arbitrary {\omdoc} top-level elements as
+  children. Furthermore, it can now have a {\attribute{theory}{solution}},
+    {\attribute{generated-from}{solution}}, and
+    {\attribute{generated-via}{solution}} attributes.
+  & \pageref{eldef:solution}\\\hline 
+{\element{sortdef}} & cha 
+  & The {\attribute{role}{sortdef}} attribute was fixed to
+    {\attval{sort}{role}{selector}}. The {\oldattribute{type}{sortdef}{1.2}} from the
+    {\element{adt}} element is now on the {\element{sortdef}} element. The
+    {\oldelement{commonname}{1.2}} child has been replaced by an initial
+    {\element{metadata}} element.
+  & \pageref{eldef:sortdef} \\\hline
+{\element[ns-elt=dc]{subject}} & aug
+  & The {\element[ns-elt=dc]{subject}} can now have the optional
+    {\attribute[ns-elt=xml,ns-attr=dc]{id}{subject}}, and {\css} attributes\twin{CSS}{attribute}
+  & \pageref{eldef:dc:subject} \\\hline
+{\element{style}} & aug
+  & The {\element{style}} element now allows a {\element{map}} element in the body
+  & \pageref{eldef:style} \\\hline
+{\element{symbol}} & cha 
+  & may no longer contain {\element{selector}},
+    since it only makes sense for constructors in data types.  The
+    {\oldattribute{kind}{symbol}{1.1}} attribute has been renamed to {\attribute{role}{symbol}} for
+    compatibility with {\openmath}2 and can have the additional values
+    {\attval{binder}{role}{symbol}}, {\attval{attribution}{role}{symbol}},
+    {\attval{semantic-attribution}{role}{symbol}}, and {\attval{error}{role}{symbol}}
+    corresponding to the {\openmath}  2 roles. Furthermore, an optional
+     attribute {\attribute{generated-via}{symbol}} 
+     has been added to allow generation via a theory morphism.
+  & \pageref{eldef:symbol}\\\hline
+{\element{term}} & new
+  & the {\element{term}} element can appear in mathematical text and contain it. It is
+  used to link technical terms to symbols defined in content dictionaries via its
+  {\attribute{cd}{term}} and {\attribute{name}{term}} attributes.
+  & \pageref{eldef:term} \\\hline
+{\element{theory}} & cha
+  & the {\element{theory}} element loses the {\element{CMP}} and {\oldelement{commonname}{1.2}}
+  children, use the Dublin Core metadata elements {\element[ns-elt=dc]{description}} and
+  {\element[ns-elt=dc]{subject}} instead. The {\element{theory}} element also gains the optional
+  {\attribute{cdbase}{theory}} attribute to specify the disambiguating string
+  prescribed for content dictionaries by the {\openmath}2 standard. The
+  {\attribute[ns-attr=xml]{id}{theory}} is now optional, it only needs to be specified, if the theory
+  has constitutive elements. Finally,  the element has gained the optional attributes 
+  {\attribute{cdurl}{theory}}, {\attribute{cdbase}{theory}}, {\attribute{cdreviewdate}{theory}},
+  {\attribute{cdversion}{theory}}, {\attribute{cdrevision}{theory}}, and
+  {\attribute{cdstatus}{theory}} attributes for encoding the management metadata of
+  {\openmath} content dictionaries.
+  & \pageref{eldef:theory} \\\hline
+{\element[ns-elt=dc]{title}} & aug
+  & The {\element[ns-elt=dc]{title}} can now have the optional
+    {\attribute[ns-elt=xml,ns-attr=dc]{id}{title}}, and {\css} attributes\twin{CSS}{attribute}.
+  & \pageref{eldef:dc:title} \\\hline
+{\element{tgroup}} & new
+  & The {\element{tgroup}} can be used to structure theories like documents.
+  & \pageref{eldef:tgroup} \\\hline
+{\element{type}} & aug 
+  & the {\element{type}} element now has the optional {\attribute{just-by}{type}}
+    and {\attribute{theory}{type}} attribute. The first one points to an assertion or
+    axiom that justifies the type judgment, the second specifies the home theory. The
+    {\attribute{system}{type}} attribute is now optional. 
+
+    Furthermore, the {\element{type}} element can have two math objects
+    as children. If it does, then it is a {\twintoo{term}{declaration}}, i.e. the
+    first element is interpreted as a mathematical object and the second one is
+    interpreted as its type.   
+
+    Finally, it can now have 
+    {\attribute{generated-from}{type}} and {\attribute{generated-via}{type}} attributes.
+
+  & \pageref{eldef:type}\\\hline
+{\element{theory-inclusion}} & aug 
+  & the {\element{theory-inclusion}} element
+    can now have {\element{obligation}} and {\element{decomposition}} children that
+    justify it. Furthermore, it can now have a {\attribute{theory}{theory-inclusion}},
+    {\attribute{generated-from}{theory-inclusion}}, and
+    {\attribute{generated-via}{theory-inclusion}} attributes.
+    New optional attributes {\attribute{conservativity}{theory-inclusion}} and
+    {\attribute{conservativity-just}{theory-inclusion}} for stating and justifying
+    conservativity. 
+  & \pageref{eldef:theory-inclusion}\\\hline
+{\element{theory}} & aug 
+  & the {\element{theory}} element can now be nested.
+  & \pageref{eldef:theory}\\\hline
+{\element{use}} & cha 
+  & can now contain {\element{element}}, {\element{text}}, {\element{recurse}},
+    {\element{map}}, and
+    {\element{value-of}} to specify {\xml} content. We have deprecated the
+    {\oldattribute{larg-group}{use}{1.2}} and {\oldattribute{rarg-group}{use}{1.2}}
+    attributes, since they were never used.  
+  & \pageref{eldef:use}\\\hline
+{\oldelement{value}{1.2}} & aug
+  & this element is no longer used, the value of a recursive equation is determined by
+  the position as the second child.
+  & \\\hline
+{\oldelement{with}{1.2}}           & ren
+     & the role of this element is now taken by the {\element{phrase}} element.
+     & \pageref{eldef:phrase}\\\hline
+{\element{xslt}}           & cha
+     & the content of this element need not be escaped any more, it is now a 
+     valid {\xslt} fragment. 
+     & \pageref{eldef:xslt}\\\hline
+\end{longtable}
+\end{center}
+\end{tsection}
+
+%%% Local Variables: 
+%%% mode: stex
+%%% TeX-master: "omdoc"
+%%% End: 

@@ -1,0 +1,143 @@
+<!--
+   An XML DTD for Open Mathematical documents (OMDoc 1.3) 
+   Module OMDOBJ (OpenMath Objects [variant])
+   $Id: omdobj.dtd 8458 2009-08-04 10:23:53Z kohlhase $
+   $HeadURL: https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.3/dtd/omdobj.dtd $
+   PUBLIC -//OMDoc//DTD OMDoc OMDOBJ V1.3//EN
+   See the documentation and examples at http://www.omdoc.org 
+   Copyright (c) 1999-2006 Michael Kohlhase, released under the GNU Public License (GPL)
+-->
+
+<!--  This DTD is a NON-STANDARD (experimental) variant of the 
+      OpenMath Object DTD omobj.dtd (see http://www.openmath.org) 
+
+      These extensions are licensed by the OpenMath Standard that 
+      says that any extension, from which valid OpenMath can be 
+      directly be generated is allowed.
+
+      Note that this makes it less restrictive for OMA, OMS and 
+      OMV than the original. Maybe this can be changed in a 
+      future version by using XML schema. -->
+
+<!-- set om.prefixed to INCLUDE to use OpenMath as a prefixed module -->
+<!ENTITY % om.prefixed "%NS.prefixed;">
+<!ENTITY % om.prefix "om">
+<!ENTITY % om.xmlns "http://www.openmath.org/OpenMath">
+
+<!-- if om.prefixed=INCLUDE, then use the prefix and delare the namespace -->
+<![%om.prefixed;[
+   <!ENTITY % om.pfx "%om.prefix;:">
+   <!ENTITY % om.nsp.decl "xmlns:%om.prefix; CDATA #FIXED '%om.xmlns;'">
+   <!ENTITY % om.xmlns.decl "">
+   ]]>
+<!ENTITY % om.pfx "">
+<!ENTITY % om.nsp.decl "">
+<!ENTITY % om.xmlns.decl "xmlns CDATA #FIXED '%om.xmlns;'">
+
+<!ENTITY % om.OMS.qname "%om.pfx;OMS">
+<!ENTITY % om.OMV.qname "%om.pfx;OMV">
+<!ENTITY % om.OMI.qname "%om.pfx;OMI">
+<!ENTITY % om.OMB.qname "%om.pfx;OMB">
+<!ENTITY % om.OMSTR.qname "%om.pfx;OMSTR">
+<!ENTITY % om.OMF.qname "%om.pfx;OMF">
+<!ENTITY % om.OMA.qname "%om.pfx;OMA">
+<!ENTITY % om.OMBIND.qname "%om.pfx;OMBIND">
+<!ENTITY % om.OMBVAR.qname "%om.pfx;OMBVAR">
+<!ENTITY % om.OME.qname "%om.pfx;OME">
+<!ENTITY % om.OMR.qname "%om.pfx;OMR">
+<!ENTITY % om.OMATTR.qname "%om.pfx;OMATTR">
+<!ENTITY % om.OMATP.qname "%om.pfx;OMATP">
+<!ENTITY % om.OMFOREIGN.qname "%om.pfx;OMFOREIGN">
+<!ENTITY % om.OMOBJ.qname "%om.pfx;OMOBJ">
+
+<!ENTITY % omel "%om.OMS.qname;
+                | %om.OMV.qname;
+                | %om.OMI.qname;
+                | %om.OMB.qname;
+                | %om.OMSTR.qname;
+                | %om.OMF.qname;
+                | %om.OMA.qname;
+                | %om.OMBIND.qname;
+                | %om.OMR.qname;
+                | %om.OME.qname;
+                | %om.OMATTR.qname;">
+
+<!ENTITY % om.common.attlist "cref CDATA #IMPLIED
+                              style CDATA #IMPLIED
+                              class NMTOKEN #IMPLIED
+                              id ID #IMPLIED">  
+
+<!ENTITY % om.cdbase.attrib "cdbase CDATA #IMPLIED">
+<!ENTITY % om.compound.attlist "%om.common.attlist; %om.cdbase.attrib;">
+
+<!-- symbol, original OM, links make no sense -->
+<!ELEMENT %om.OMS.qname; EMPTY>
+<!ATTLIST %om.OMS.qname; %om.common.attlist; 
+	  %om.cdbase.attrib;
+          name CDATA #REQUIRED 
+          cd CDATA #REQUIRED>
+
+<!-- variable original OM, links make no sense -->
+<!ELEMENT %om.OMV.qname; EMPTY>
+<!ATTLIST %om.OMV.qname; %om.common.attlist;
+          name CDATA #REQUIRED>
+
+<!-- integer; links make sense, since integers can be big -->
+<!ELEMENT %om.OMI.qname; (#PCDATA)>
+<!ATTLIST %om.OMI.qname; %om.common.attlist;>
+          
+<!-- byte array; links make sense, since byte arrays can be big -->
+<!ELEMENT %om.OMB.qname; (#PCDATA)>
+<!ATTLIST %om.OMB.qname; %om.common.attlist;>
+
+<!-- string; links make sense, since strings can be big -->
+<!ELEMENT %om.OMSTR.qname; (#PCDATA)>
+<!ATTLIST %om.OMSTR.qname; %om.common.attlist;>
+
+<!-- floating point; links make sense, since Integers can be big -->
+<!ELEMENT %om.OMF.qname; EMPTY>
+<!ATTLIST %om.OMF.qname; %om.common.attlist;
+          dec CDATA #IMPLIED
+          hex CDATA #IMPLIED>
+
+<!-- apply constructor; links make sense, no copied substructure -->
+<!ELEMENT %om.OMA.qname; (%omel;)*>
+<!ATTLIST %om.OMA.qname; %om.compound.attlist;>
+
+<!-- binding constructor & variable; links make sense, 
+     no copied substructure -->
+<!ELEMENT %om.OMBIND.qname; ((%omel;), %om.OMBVAR.qname;, (%omel;))?>
+<!ATTLIST %om.OMBIND.qname; %om.compound.attlist;>
+
+<!-- bound variables, original OM, links make no sense -->
+<!ELEMENT %om.OMBVAR.qname; (%om.OMV.qname;|%om.OMATTR.qname;)+>
+<!ATTLIST %om.OMBVAR.qname; 
+          %om.common.attlist;>
+
+<!-- error; original OM, links make no sense -->
+<!ELEMENT %om.OME.qname; (%om.OMS.qname;, (%omel;)* ) >
+<!ATTLIST %om.OME.qname; %om.compound.attlist;>
+
+<!ELEMENT %om.OMR.qname; EMPTY>
+<!ATTLIST %om.OMR.qname; %om.common.attlist;
+	  href CDATA #REQUIRED>
+	                
+<!-- attribution constructor & attribute pair constructor -->
+<!ELEMENT %om.OMATTR.qname; (%om.OMATP.qname;, (%omel;))? >
+<!ATTLIST %om.OMATTR.qname; %om.compound.attlist;>
+
+<!ELEMENT %om.OMATP.qname; (%om.OMS.qname;, (%omel;|%om.OMFOREIGN.qname;))+ >
+<!ATTLIST %om.OMATP.qname; %om.compound.attlist;>
+
+<!-- in anticipation of the upcoming OM2 standard -->
+<!ELEMENT %om.OMFOREIGN.qname; ANY>
+<!ATTLIST %om.OMFOREIGN.qname; %om.compound.attlist;
+          encoding CDATA #REQUIRED>
+
+
+<!-- OM object constructor; links make sense to avoid copying 
+     substructure -->
+<!ELEMENT %om.OMOBJ.qname; (%omel;)? >
+<!ATTLIST %om.OMOBJ.qname;  
+	  %om.compound.attlist;
+          %om.xmlns.decl;>

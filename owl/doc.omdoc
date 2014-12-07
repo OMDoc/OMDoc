@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xml:id="mtxt.omdoc" version="1.3"
+  xmlns:dct="http://purl.org/dc/terms/" 
+       xmlns:cc="http://creativecommons.org/ns" 
+       xmlns="http://omdoc.org/ns"
+       xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+       xmlns:oo="http://omdoc.org/ontology#"
+       xmlns:om="http://www.openmath.org/OpenMath"
+       xmlns:m="http://www.w3.org/1998/Math/MathML">
+
+<metadata>
+  <meta property="dct:title">OMDoc document ontology (module PF)</meta>
+  <meta property="rdfs:comment">OMDoc document ontology, document module.  See chapter 11 (Document Infrastructure) of the OMDoc1.2 specification.
+    This file is designed to be imported from the main module `omdoc'.</meta>
+  <meta property="dct:creator">Gordan Ristovski &lt;g.ristovski@jacobs-university.de></meta>
+  <meta property="dct:contributor">Christoph Lange &lt;ch.lange@jacobs-university.de></meta>
+  <meta property="dct:contributor">Nikita Zhiltsov (Никита Жильцов) &lt;nikita.zhiltsov@gmail.com></meta>
+  <!-- Contributors, please add your name here, and in the main file omdoc.omdoc –Christoph Lange -->
+  <meta property="dct:subject">Semantic Mathematical Markup, Documents</meta>
+</metadata>
+
+<theory xml:id="doc">
+  <metadata>
+    <link rel="oo:vocab" href="http://omdoc.org/ontology#"/>
+  </metadata>
+  <!-- meta-theories -->
+  <imports xml:id="owl" from="../examples/logics/owl.omdoc#owl"/>
+  <imports xml:id="pl1eq" from="../examples/logics/pl1eq.omdoc#pl1eq"/>
+  <!-- other ontologies -->
+  <imports xml:id="foaf" from="../examples/metadata/foaf.omdoc#foaf"/>
+  <!-- other modules of this ontology -->
+  <imports xml:id="st" from="st.omdoc#st"/>
+  <!-- Note: the base classes are imported by every module. -->
+
+  <symbol name="Reference">
+    <metadata>
+      <meta property="rdfs:comment">Empty elements used to reference OMDoc elements elsewhere, as described in the OMDoc 1.2 manual, chapter 11(Document Infrastructure).</meta>
+      <meta property="rdfs:label" xml:lang="ru">Ссылка</meta>
+      <meta property="rdfs:label" xml:lang="en">Reference</meta>
+      <meta property="rdfs:label" xml:lang="de">Querverweis</meta>
+    </metadata>
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMS cd="owl" name="Class"/>
+      </OMOBJ>
+    </type>
+  </symbol>
+
+  <symbol name="Citation">
+    <metadata>
+      <meta property="rdfs:comment">Some references have the cite type attribute, meaning they are proper references of some text.</meta>
+      <meta property="rdfs:label" xml:lang="ru">Цитата</meta>
+      <meta property="rdfs:label" xml:lang="en">Citation</meta>
+      <meta property="rdfs:label" xml:lang="de">Zitat</meta>
+    </metadata>
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMS cd="owl" name="Class"/>
+      </OMOBJ>
+    </type>
+  </symbol>
+
+  <axiom for="Citation">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+          <OMS cd="rdfs" name="subClassOf"/>
+          <OMS cd="doc" name="Citation"/>
+          <OMS cd="doc" name="Reference"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+
+  <symbol name="TextFragment">
+    <metadata>
+      <meta property="rdfs:comment">Some references have the include type attribute, meaning they are text fragments to be replaced in the text.</meta>
+      <meta property="rdfs:label" xml:lang="ru">Фрагмент текста</meta>
+      <meta property="rdfs:label" xml:lang="en">Text Fragment</meta>
+      <meta property="rdfs:label" xml:lang="de">Textfragment</meta>
+    </metadata>
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMS cd="owl" name="Class"/>
+      </OMOBJ>
+    </type>
+  </symbol>
+
+  <axiom for="TextFragment">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+          <OMS cd="rdfs" name="subClassOf"/>
+          <OMS cd="doc" name="TextFragment"/>
+          <OMS cd="doc" name="Reference"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+
+  <axiom for="Citation TextFragment">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+          <OMS cd="owl" name="AllDisjointClasses"/>
+          <OMS cd="doc" name="Citation"/>
+          <OMS cd="doc" name="TextFragment"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+
+  <symbol name="refersTo">
+    <metadata>
+      <meta property="rdfs:comment">Every ref node has a mandatory xref atribute pointing to some existing element.</meta>
+      <meta property="rdfs:label" xml:lang="ru">ссылается на</meta>
+      <meta property="rdfs:label" xml:lang="en">refers to</meta>
+      <meta property="rdfs:label" xml:lang="de">verweist auf</meta>
+    </metadata>
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMS cd="owl" name="ObjectProperty"/>
+      </OMOBJ>
+    </type>
+  </symbol>
+
+  <axiom for="refersTo">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+          <OMS cd="rdfs" name="domain"/>
+          <OMS cd="doc" name="refersTo"/>
+          <OMS cd="doc" name="Reference"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+
+  <symbol name="Document">
+    <metadata>
+      <meta property="rdfs:label" xml:lang="en">Document</meta>
+      <meta property="rdfs:comment">Represents an OMDoc element which  contains all other document, as described in the OMDoc 1.2 manual, chapter 11 (Document Infrastructure). </meta>
+      <meta property="rdfs:label" xml:lang="ru">Документ</meta>
+      <meta property="rdfs:label" xml:lang="de">Dokument</meta>
+    </metadata>
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMS cd="owl" name="Class"/>
+      </OMOBJ>
+    </type>
+  </symbol>
+
+  <axiom for="Document">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+          <OMS cd="rdfs" name="subClassOf"/>
+          <OMS cd="doc" name="Document"/>
+          <OMS cd="foaf" name="Document"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+
+  <symbol name="DocumentUnit">
+    <metadata>
+      <meta property="rdfs:comment">Represents omgroup element, which can be a chapter, section, paragraph ... of a matematical document, as described in the OMDoc 1.2 manual, chapter 11 (Document Infrastructure). </meta>
+      <meta property="rdfs:label" xml:lang="de">Dokumenteneinheit</meta>
+      <meta property="rdfs:label" xml:lang="ru">Часть документа</meta>
+      <meta property="rdfs:label" xml:lang="en">Document Unit</meta>
+    </metadata>
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMS cd="owl" name="Class"/>
+      </OMOBJ>
+    </type>
+  </symbol>
+
+  <axiom for="Reference Document DocumentUnit">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+          <OMS cd="owl" name="AllDisjointClasses"/>
+          <OMS cd="doc" name="Reference"/>
+          <OMS cd="doc" name="Document"/>
+          <OMS cd="doc" name="DocumentUnit"/>
+          <OMS cd="base" name="MathKnowledgeItem"/>
+          <OMS cd="base" name="FormalityDegree"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+</theory>
+</omdoc>
+
+<!-- vim:sw=2:sts=2
+-->

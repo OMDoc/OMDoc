@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <link rel="stylesheet" type="text/css" href="../../css/omdoc-default.css"/>
+      <title>Requirements for Software Engineering</title>
+   </head>
+   <body>
+      <div class="dc-titleblock">
+         <div class="dc-title">Requirements for Software Engineering</div>
+         <div class="dc-authors">MichaelKohlhase</div>
+         <div class="dc-date">2009-08-21</div>
+         <div class="dc-description"> An ontology for Requirements in Software Engineering</div>
+      </div>
+
+      <div xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:dc="http://purl.org/dc/elements/1.1/"
+           class="theory">
+         <div class="imports">imports from: <a href="../logics/owl.xhtml#owl">owl</a>
+         </div>
+         <div class="header">introduction</div>
+         <div class="omdoc-omtext salt-introduction">
+            <p>The ontology for requirements tracing is very simple: we have requirements they depend on each other</p>
+         </div>
+         <div class="omdoc-symbol" id="requirement">
+            <div class="omdoc-titlebox">
+               <span class="omdoc-titleword">Concept</span>requirement</div>
+            <div class="omdoc-type">
+               <div class="omdoc-titlebox">
+                  <span class="omdoc-titleword">Type</span>(owl)
+<span id="MCRd19e22" class="displaymath">
+                     <m:math xmlns="http://omdoc.org/ns" xmlns:v="http://omdoc.org/ontology/versioning#"
+                             xmlns:r="http://omdoc.org/ontology/requirements#"
+                             xmlns:om="http://www.openmath.org/OpenMath"
+                             xmlns:m="http://www.w3.org/1998/Math/MathML">
+                        <m:semantics>
+                           <m:mo xref="#a1cd4e366-99a8-4877-834d-b2813e056181">Class</m:mo>
+                           <m:annotation-xml>
+                              <OMS xmlns="http://www.openmath.org/OpenMath" cd="owl" name="Class"
+                                   id="a1cd4e366-99a8-4877-834d-b2813e056181"/>
+                           </m:annotation-xml>
+                        </m:semantics>
+                     </m:math>
+                  </span>
+               </div>
+            </div>
+         </div>
+         <div class="omdoc-symbol" id="dependsOn">
+            <div class="omdoc-titlebox">
+               <span class="omdoc-titleword">Concept</span>dependsOn</div>
+            <div class="omdoc-type">
+               <div class="omdoc-titlebox">
+                  <span class="omdoc-titleword">Type</span>(owl)
+<span id="MCRd19e33" class="displaymath">
+                     <m:math xmlns="http://omdoc.org/ns" xmlns:v="http://omdoc.org/ontology/versioning#"
+                             xmlns:r="http://omdoc.org/ontology/requirements#"
+                             xmlns:om="http://www.openmath.org/OpenMath"
+                             xmlns:m="http://www.w3.org/1998/Math/MathML">
+                        <m:semantics>
+                           <m:mrow xref="#a4854552b-9e73-417e-8a12-037159677022">
+                              <m:mo xref="#a4854552b-9e73-417e-8a12-037159677022-fun">ObjectProperty</m:mo>
+                              <m:mo xmlns:o="http://omdoc.org/ns" fence="true" o:egroup="fence">(</m:mo>
+                              <m:mo xref="#a4854552b-9e73-417e-8a12-037159677022-args-arg1">requirement</m:mo>
+                              <m:mo separator="true">,</m:mo>
+                              <m:mo xref="#a4854552b-9e73-417e-8a12-037159677022-args-arg2">requirement</m:mo>
+                              <m:mo xmlns:o="http://omdoc.org/ns" fence="true" o:egroup="fence">)</m:mo>
+                           </m:mrow>
+                           <m:annotation-xml>
+                              <OMA xmlns="http://www.openmath.org/OpenMath"
+                                   id="a4854552b-9e73-417e-8a12-037159677022">
+                                 <OMS cd="owl" name="ObjectProperty" id="a4854552b-9e73-417e-8a12-037159677022-fun"/>
+                                 <OMS cd="requirements" name="requirement"
+                                      id="a4854552b-9e73-417e-8a12-037159677022-args-arg1"/>
+                                 <OMS cd="requirements" name="requirement"
+                                      id="a4854552b-9e73-417e-8a12-037159677022-args-arg2"/>
+                              </OMA>
+                           </m:annotation-xml>
+                        </m:semantics>
+                     </m:math>
+                  </span>
+               </div>
+            </div>
+         </div>
+      </div>
+
+
+   </body>
+</html>

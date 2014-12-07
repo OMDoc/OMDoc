@@ -1,0 +1,95 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Macros for balanced sectioning commands and referencing them. 
+% Copyright (c) 2006 Michael Kohlhase, 
+% Released under the Gnu Public License (GPL)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\RequirePackage{keyval}[1997/11/10]
+\define@key{sectioning}{id}{\def\sect@id{#1}}
+\define@key{sectioning}{short}{\def\sect@short{#1}}
+
+\newenvironment{tpart}[2][]%title
+{\let\sect@short=\relax\let\sect@id=\relax\setkeys{sectioning}{#1}%
+\@ifundefined{sect@short}{\part{#2}}{\part[\sect@short]{#2}}%
+\@ifundefined{sect@id}{}{\label{part:\sect@id}}}
+{}
+
+\newenvironment{tchapter}[2][]%title
+{\let\sect@short=\relax\let\sect@id=\relax\setkeys{sectioning}{#1}%
+\@ifundefined{sect@short}{\chapter{#2}}{\chapter[\sect@short]{#2}}%
+\@ifundefined{sect@id}{}{\label{chap:\sect@id}}}
+{}
+
+\newenvironment{tsection}[2][]%title
+{\let\sect@short=\relax\let\sect@id=\relax\setkeys{sectioning}{#1}%
+\@ifundefined{sect@short}{\section{#2}}{\section[\sect@short]{#2}}%
+\@ifundefined{sect@id}{}{\label{sec:\sect@id}}}
+{}
+
+\newenvironment{tsubsection}[2][]%title
+{\let\sect@short=\relax\let\sect@id=\relax\setkeys{sectioning}{#1}%
+\@ifundefined{sect@short}{\subsection{#2}}{\subsection[\sect@short]{#2}}%
+\@ifundefined{sect@id}{}{\label{subsec:\sect@id}}}
+{}
+
+\def\my@ref#1#2#3{#1~\ref{#2:#3}}
+\def\my@sref#1#2#3#4{#1~\ref{#2:#3} and~\ref{#2:#4}}
+\def\my@lref#1#2#3#4{#1~\ref{#2:#3} to~\ref{#2:#4}}
+\def\My@ref#1#2#3{#1~\ref{#2:#3}}  % this one is capitalized for sentence beginnings
+
+
+\def\mypartref#1{\my@ref{Part}{part}{#1}}
+\def\mypartsref#1#2{\my@sref{Parts}{part}{#1}{#2}}
+\def\mypartlref#1#2{\my@lref{Parts}{part}{#1}{#2}}
+\def\Mypartlref#1#2{\my@lref{Parts}{part}{#1}{#2}}
+\def\Mypartref#1{\My@ref{Part}{part}{#1}}
+
+\def\mychapref#1{\my@ref{Chapter}{chap}{#1}}
+\def\mychapsref#1#2{\my@sref{Chapters}{chap}{#1}{#2}}
+\def\mychaplref#1#2{\my@lref{Chapters}{chap}{#1}{#2}}
+\def\Mychaplref#1#2{\my@lref{Chapters}{chap}{#1}{#2}}
+\def\Mychapref#1{\My@ref{Chapter}{chap}{#1}}
+
+\def\mysecref#1{\my@ref{Section}{sec}{#1}}
+\def\mysecsref#1#2{\my@sref{Sections}{sec}{#1}{#2}}
+\def\myseclref#1#2{\my@lref{Sections}{sec}{#1}{#2}}
+\def\Mysecref#1{\My@ref{Section}{sec}{#1}}
+
+\def\mysubsecref#1{\my@ref{Subsection}{subsec}{#1}}
+\def\mysubsecsref#1#2{\my@sref{Subsections}{subsec}{#1}{#2}}
+\def\mysubseclref#1#2{\my@lref{Subsections}{subsec}{#1}{#2}}
+\def\Mysubsecref#1{\My@ref{Subsection}{subsec}{#1}}
+
+\def\myappchapref#1{\my@ref{Appendix}{chap}{#1}}
+\def\myappchapsref#1#2{\my@sref{Appendices}{chap}{#1}{#2}}
+\def\myappsecref#1{\my@ref{Appendix}{sec}{#1}}
+\def\myappsecsref#1#2{\my@sref{Appendices}{sec}{#1}{#2}}
+\def\myappseclref#1#2{\my@lref{Appendices}{sec}{#1}{#2}}
+
+\def\mylstref#1{Listing~\ref{lst:#1}}
+\def\mylstsref#1#2{Listings~\ref{lst:#1} and~\ref{lst:#2}}
+\def\mylstlref#1#2{Listings~\ref{lst:#1} to~\ref{lst:#2}}
+% the next ones are capitalized for sentence beginnings
+\def\Mylstref#1{Listing~\ref{lst:#1}}  
+\def\Mylstsref#1#2{Listings~\ref{lst:#1} and~\ref{lst:#2}} 
+
+\newenvironment{myfig}[2]% label, caption
+{\begin{figure}[!htb]\def\myfiglabel{#1}\def\myfigcaption{{#2}}\begin{center}}
+{\end{center}\caption{\myfigcaption}\label{fig:\myfiglabel}\end{figure}}
+
+\newenvironment{myfig*}[2]%
+{\begin{figure*}[ht]\def\myfiglabel{#1}\def\myfigcaption{{#2}}\begin{center}}
+{\caption{\myfigcaption}\label{fig:\myfiglabel}\end{center}\vspace{-1em}\end{figure*}}
+
+\def\myfigref#1{\my@ref{Figure}{fig}{#1}}
+\def\myfigsref#1#2{\my@sref{Figures}{fig}{#1}{#2}}
+\def\myfiglref#1#2{\my@lref{Figures}{fig}{#1}{#2}}
+\def\Myfigref#1{\My@ref{Figure}{fig}{#1}}
+
+% to trick LaTeXML into doing the numbering right
+\def\mockpart{}
+\def\mockchapter{}
+
+
+
+% LocalWords:  keyval sref lref subsec sec

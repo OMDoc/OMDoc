@@ -1,0 +1,21 @@
+#!/bin/sh
+arg1="$1"
+arg2="$2"
+arg3="$3"
+arg4="$4"
+shift
+shift
+shift
+shift
+stringparams=""
+for param in "$@"; do
+ 
+ echo "$param"
+  name="`echo \"${param}\" | sed -e 's/^\([^=]\+\)=\(.*\)$/\1/'`"
+  value="`echo \"${param}\" | sed -e 's/^\([^=]\+\)=\(.*\)$/\2/'`"
+  stringparams="${stringparams} --stringparam ${name} ${value}"
+done
+echo "xsltproc ${arg1} ${arg2} ${stringparams} ${arg4} ${arg3}"
+xsltproc "${arg1}" "${arg2}" "${stringparams}" "${arg4}" "${arg3}"
+
+

@@ -1,0 +1,386 @@
+<!--*
+    * XSLT 1.0 DTD.  Mostly copied from appendix C of the XSLT spec
+    * (http://www.w3.org/TR/xslt#dtd), but with some minor changes by
+    * CMSMcQ, mostly added commentary.
+    * Revisions:
+    * 2006-05-17 : Michael Kohlhase: first stab at namespace handling
+    * 2006-04-30 : Christoph Lange : adapted for usage in OMDoc
+    * 2001-07-06 : MSM : copy to SGML/Public/W3C, add to .emacs
+    * 2001-02-01/02 : MSM : made file (Bergen) as part of schemas for specs TF
+    *-->
+<!--* PEs intended for modification by user: *-->
+
+<!ENTITY % xslt.result-elements "">
+
+<!-- Michael Kohlhase's attempt at DTD modularization with namespaces -->
+
+<!ENTITY % xslt.prefixed "INCLUDE">
+<!ENTITY % xsl.prefix "xsl">
+<!ENTITY % xslt.namespace "http://www.w3.org/1999/XSL/Transform">
+
+<![%xslt.prefixed;[
+   <!ENTITY % xsl.pfx "%xsl.prefix;:">
+   <!ENTITY % xslt.xmlns.attrib "xmlns:%xsl.prefix; CDATA #FIXED '%xslt.namespace;'">
+   <!ENTITY % xslt.xmlns.decl "">]]>
+<!ENTITY % xslt.pfx "">
+<!ENTITY % xslt.xmlns.attrib ""> 
+<!ENTITY % xslt.xmlns.decl "xmlns CDATA #FIXED '%xslt.namespace;'">
+
+<!--*
+    * From here, copied without change except for adding comments on
+    * MSM's test schema for XSLT and OMDoc integration:
+    * - prefixed entity names with xslt
+    * - added xmlns attribute
+    *-->
+
+<!--* make char-instruction an abstract element, head of a 
+    * substitution group, and member of substitution group of 'instruction'.
+    *-->
+<!ENTITY % xslt.char-instructions "
+  | xsl:apply-templates
+  | xsl:call-template
+  | xsl:apply-imports
+  | xsl:for-each
+  | xsl:value-of
+  | xsl:copy-of
+  | xsl:number
+  | xsl:choose
+  | xsl:if
+  | xsl:text
+  | xsl:copy
+  | xsl:variable
+  | xsl:message
+  | xsl:fallback
+">
+
+<!--* make instruction an abstract element, head of a 
+    * substitution group
+    *-->
+<!ENTITY % xslt.instructions "
+  %xslt.char-instructions;
+  | xsl:processing-instruction
+  | xsl:comment
+  | xsl:element
+  | xsl:attribute
+">
+
+<!--* make char-template a complex type *-->
+<!ENTITY % xslt.char-template "
+ (#PCDATA
+  %xslt.char-instructions;)*
+">
+
+<!--* make template a complex type *-->
+<!ENTITY % xslt.template "
+ (#PCDATA
+  %xslt.instructions;
+  %xslt.result-elements;)*
+">
+
+<!--* use simple type xsd:uriReference *-->
+<!-- Used for the type of an attribute value that is a URI reference.-->
+<!ENTITY % xslt.URI "CDATA">
+
+<!--* make simple type xslt:Pattern *-->
+<!-- Used for the type of an attribute value that is a pattern.-->
+<!ENTITY % xslt.pattern "CDATA">
+
+<!--* make simple type xslt:avt *-->
+<!-- Used for the type of an attribute value that is an
+     attribute value template.-->
+<!ENTITY % xslt.avt "CDATA">
+
+<!--* make simple type xslt:QName from simple type xsd:QName *-->
+<!-- Used for the type of an attribute value that is a QName; the prefix
+     gets expanded by the XSLT processor. -->
+<!ENTITY % xslt.qname "NMTOKEN">
+
+<!--* make simple type xslt:QNameList *-->
+<!-- Like qname but a whitespace-separated list of QNames. -->
+<!ENTITY % xslt.qnames "NMTOKENS">
+
+<!--* make simple type xslt:Expression from simple type XPath:Expr *-->
+<!-- Used for the type of an attribute value that is an expression.-->
+<!ENTITY % xslt.expr "CDATA">
+
+<!--* make simple type xslt:Char from simple type xsd:string *-->
+<!-- Used for the type of an attribute value that consists
+     of a single character.-->
+<!ENTITY % xslt.char "CDATA">
+
+<!--* make simple type xslt:Priority from simple type xsd:float *-->
+<!-- Used for the type of an attribute value that is a priority. -->
+<!ENTITY % xslt.priority "NMTOKEN">
+
+<!--* do nothing with this.  Just refer in appropriate places to
+    * xml:space
+    *-->
+<!ENTITY % xslt.space-att "xml:space (default|preserve) #IMPLIED">
+
+<!--* make named model group xslt:non-xsl-top-level (empty choice) *-->
+<!-- This may be overridden to customize the set of elements allowed
+at the top-level. -->
+
+<!ENTITY % xslt.non-xsl-top-level "">
+
+<!--* make complex type top-level, for stylesheet and transform *-->
+<!ENTITY % xslt.top-level "
+ (xsl:import*,
+  (xsl:include
+  | xsl:strip-space
+  | xsl:preserve-space
+  | xsl:output
+  | xsl:key
+  | xsl:decimal-format
+  | xsl:attribute-set
+  | xsl:variable
+  | xsl:param
+  | xsl:template
+  | xsl:namespace-alias
+  %xslt.non-xsl-top-level;)*)
+">
+
+<!ENTITY % xslt.top-level-atts '
+  extension-element-prefixes CDATA #IMPLIED
+  exclude-result-prefixes CDATA #IMPLIED
+  id ID #IMPLIED
+  version NMTOKEN #REQUIRED
+  xmlns:xsl CDATA #FIXED "http://www.w3.org/1999/XSL/Transform"
+  %xslt.space-att;
+'>
+
+<!--* make attribute group, for target-NS elements *-->
+<!-- This entity is defined for use in the ATTLIST declaration
+for result elements. -->
+
+<!ENTITY % xslt.result-element-atts '
+  xsl:extension-element-prefixes CDATA #IMPLIED
+  xsl:exclude-result-prefixes CDATA #IMPLIED
+  xsl:use-attribute-sets %xslt.qnames; #IMPLIED
+  xsl:version NMTOKEN #IMPLIED
+  %xslt.xmlns.attrib;
+'>
+
+<!--* make top level elements *-->
+<!ELEMENT xsl:stylesheet %xslt.top-level;>
+<!ATTLIST xsl:stylesheet %xslt.top-level-atts;>
+
+<!ELEMENT xsl:transform %xslt.top-level;>
+<!ATTLIST xsl:transform %xslt.top-level-atts;>
+
+<!ELEMENT xsl:import EMPTY>
+<!ATTLIST xsl:import href %xslt.URI; #REQUIRED>
+
+<!ELEMENT xsl:include EMPTY>
+<!ATTLIST xsl:include href %xslt.URI; #REQUIRED>
+
+<!ELEMENT xsl:strip-space EMPTY>
+<!ATTLIST xsl:strip-space elements CDATA #REQUIRED>
+
+<!ELEMENT xsl:preserve-space EMPTY>
+<!ATTLIST xsl:preserve-space elements CDATA #REQUIRED>
+
+<!ELEMENT xsl:output EMPTY>
+<!ATTLIST xsl:output
+  method %xslt.qname; #IMPLIED
+  version NMTOKEN #IMPLIED
+  encoding CDATA #IMPLIED
+  omit-xml-declaration (yes|no) #IMPLIED
+  standalone (yes|no) #IMPLIED
+  doctype-public CDATA #IMPLIED
+  doctype-system CDATA #IMPLIED
+  cdata-section-elements %xslt.qnames; #IMPLIED
+  indent (yes|no) #IMPLIED
+  media-type CDATA #IMPLIED
+>
+
+<!ELEMENT xsl:key EMPTY>
+<!ATTLIST xsl:key
+  name %xslt.qname; #REQUIRED
+  match %xslt.pattern; #REQUIRED
+  use %xslt.expr; #REQUIRED
+>
+
+<!ELEMENT xsl:decimal-format EMPTY>
+<!ATTLIST xsl:decimal-format
+  name %xslt.qname; #IMPLIED
+  decimal-separator %xslt.char; "."
+  grouping-separator %xslt.char; ","
+  infinity CDATA "Infinity"
+  minus-sign %xslt.char; "-"
+  NaN CDATA "NaN"
+  percent %xslt.char; "&#x25;"
+  per-mille %xslt.char; "&#x2030;"
+  zero-digit %xslt.char; "0"
+  digit %xslt.char; "#"
+  pattern-separator %xslt.char; ";"
+>
+<!--* default value of percent was "%", indirection added to get
+    * it past Saxon *-->
+
+<!ELEMENT xsl:namespace-alias EMPTY>
+<!ATTLIST xsl:namespace-alias
+  stylesheet-prefix CDATA #REQUIRED
+  result-prefix CDATA #REQUIRED
+>
+
+<!ELEMENT xsl:template
+ (#PCDATA
+  %xslt.instructions;
+  %xslt.result-elements;
+  | xsl:param)*
+>
+
+<!ATTLIST xsl:template
+  match %xslt.pattern; #IMPLIED
+  name %xslt.qname; #IMPLIED
+  priority %xslt.priority; #IMPLIED
+  mode %xslt.qname; #IMPLIED
+  %xslt.space-att;
+>
+
+<!ELEMENT xsl:value-of EMPTY>
+<!ATTLIST xsl:value-of
+  select %xslt.expr; #REQUIRED
+  disable-output-escaping (yes|no) "no"
+>
+
+<!ELEMENT xsl:copy-of EMPTY>
+<!ATTLIST xsl:copy-of select %xslt.expr; #REQUIRED>
+
+<!ELEMENT xsl:number EMPTY>
+<!ATTLIST xsl:number
+   level (single|multiple|any) "single"
+   count %xslt.pattern; #IMPLIED
+   from %xslt.pattern; #IMPLIED
+   value %xslt.expr; #IMPLIED
+   format %xslt.avt; '1'
+   lang %xslt.avt; #IMPLIED
+   letter-value %xslt.avt; #IMPLIED
+   grouping-separator %xslt.avt; #IMPLIED
+   grouping-size %xslt.avt; #IMPLIED
+>
+
+<!ELEMENT xsl:apply-templates (xsl:sort|xsl:with-param)*>
+<!ATTLIST xsl:apply-templates
+  select %xslt.expr; "node()"
+  mode %xslt.qname; #IMPLIED
+>
+
+<!ELEMENT xsl:apply-imports EMPTY>
+
+<!-- xsl:sort cannot occur after any other elements or
+any non-whitespace character -->
+
+<!ELEMENT xsl:for-each
+ (#PCDATA
+  %xslt.instructions;
+  %xslt.result-elements;
+  | xsl:sort)*
+>
+
+<!ATTLIST xsl:for-each
+  select %xslt.expr; #REQUIRED
+  %xslt.space-att;
+>
+
+<!ELEMENT xsl:sort EMPTY>
+<!ATTLIST xsl:sort
+  select %xslt.expr; "."
+  lang %xslt.avt; #IMPLIED
+  data-type %xslt.avt; "text"
+  order %xslt.avt; "ascending"
+  case-order %xslt.avt; #IMPLIED
+>
+
+<!ELEMENT xsl:if %xslt.template;>
+<!ATTLIST xsl:if
+  test %xslt.expr; #REQUIRED
+  %xslt.space-att;
+>
+
+<!ELEMENT xsl:choose (xsl:when+, xsl:otherwise?)>
+<!ATTLIST xsl:choose %xslt.space-att;>
+
+<!ELEMENT xsl:when %xslt.template;>
+<!ATTLIST xsl:when
+  test %xslt.expr; #REQUIRED
+  %xslt.space-att;
+>
+
+<!ELEMENT xsl:otherwise %xslt.template;>
+<!ATTLIST xsl:otherwise %xslt.space-att;>
+
+<!ELEMENT xsl:attribute-set (xsl:attribute)*>
+<!ATTLIST xsl:attribute-set
+  name %xslt.qname; #REQUIRED
+  use-attribute-sets %xslt.qnames; #IMPLIED
+>
+
+<!ELEMENT xsl:call-template (xsl:with-param)*>
+<!ATTLIST xsl:call-template
+  name %xslt.qname; #REQUIRED
+>
+
+<!ELEMENT xsl:with-param %xslt.template;>
+<!ATTLIST xsl:with-param
+  name %xslt.qname; #REQUIRED
+  select %xslt.expr; #IMPLIED
+>
+
+<!ELEMENT xsl:variable %xslt.template;>
+<!ATTLIST xsl:variable 
+  name %xslt.qname; #REQUIRED
+  select %xslt.expr; #IMPLIED
+>
+
+<!ELEMENT xsl:param %xslt.template;>
+<!ATTLIST xsl:param 
+  name %xslt.qname; #REQUIRED
+  select %xslt.expr; #IMPLIED
+>
+
+<!ELEMENT xsl:text (#PCDATA)>
+<!ATTLIST xsl:text
+  disable-output-escaping (yes|no) "no"
+>
+
+<!ELEMENT xsl:processing-instruction %xslt.char-template;>
+<!ATTLIST xsl:processing-instruction 
+  name %xslt.avt; #REQUIRED
+  %xslt.space-att;
+>
+
+<!ELEMENT xsl:element %xslt.template;>
+<!ATTLIST xsl:element 
+  name %xslt.avt; #REQUIRED
+  namespace %xslt.avt; #IMPLIED
+  use-attribute-sets %xslt.qnames; #IMPLIED
+  xmlns CDATA #IMPLIED
+  %xslt.space-att;
+>
+
+<!ELEMENT xsl:attribute %xslt.char-template;>
+<!ATTLIST xsl:attribute 
+  name %xslt.avt; #REQUIRED
+  namespace %xslt.avt; #IMPLIED
+  %xslt.space-att;
+>
+
+<!ELEMENT xsl:comment %xslt.char-template;>
+<!ATTLIST xsl:comment %xslt.space-att;>
+
+<!ELEMENT xsl:copy %xslt.template;>
+<!ATTLIST xsl:copy
+  %xslt.space-att;
+  use-attribute-sets %xslt.qnames; #IMPLIED
+>
+
+<!ELEMENT xsl:message %xslt.template;>
+<!ATTLIST xsl:message
+  %xslt.space-att;
+  terminate (yes|no) "no"
+>
+
+<!ELEMENT xsl:fallback %xslt.template;>
+<!ATTLIST xsl:fallback %xslt.space-att;>

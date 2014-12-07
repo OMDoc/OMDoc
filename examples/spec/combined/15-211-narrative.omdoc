@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE omdoc PUBLIC "-//OMDoc//DTD OMDoc V1.3//EN"
+                       "../../../dtd/omdoc.dtd" 
+  [<!ENTITY % otheromgrouptype "|slide">]>
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://omdoc.org/ns" xml:id="CMU-15-211-narrative.omdoc">
+<metadata>
+  <dc:date action="created"> 2003-02-22T16:34:49Z </dc:date>
+  <dc:title xml:lang="en"> 15-211-narrative </dc:title>
+  <dc:creator role="aut"> Michael Kohlhase </dc:creator>
+  <dc:source>Peter Lee et al. 15-211 Algorithms and  Data Structures</dc:source>
+  <dc:date action="updated"> 2003-02-23T03:39:58Z </dc:date>
+  <dc:type> Text </dc:type>
+  <dc:format> application/omdoc+xml </dc:format>
+</metadata>
+
+<omgroup xml:id="slide-847" type="slide">
+  <metadata><dc:title>Inheritance: Taxonomy metaphor</dc:title></metadata>
+  
+  <omtext xml:id="the-tax">
+    <CMP><omlet data="#tax-image" show="embed" style="width:540;height:366"/></CMP>
+  </omtext>
+</omgroup>
+
+<omgroup xml:id="slide-848" type="slide">
+  <metadata><dc:title>Classes vs. instances</dc:title></metadata>
+  <omgroup type="itemize">
+    <ref xml:id="obj" xref="ax1"/>
+    <ref xml:id="class" xref="ax2"/>
+    <ref xml:id="inh" xref="ax3"/>
+  </omgroup>
+</omgroup>
+
+<omgroup xml:id="slide-849" type="slide">
+  <metadata><dc:title>Classes vs. instances</dc:title></metadata>
+  <omgroup type="itemize">
+    <omtext xml:id="ex"><CMP>Example:</CMP></omtext>
+    <omgroup type="itemize">
+      <ref xml:id="danny" xref="danny-professor"/>
+      <ref xml:id="inst" xref="dannys-classes"/>
+      <ref xml:id="isa" xref="isa-def"/>
+    </omgroup>
+    <omtext xml:id="hasa">
+      <CMP>
+        Danny also &#x201C;<phrase style="font-style:italic;color:red">has
+        a</phrase>&#x201D; wife and son, who are also instances of the Human clas
+      </CMP>
+    </omtext>
+  </omgroup>
+</omgroup>
+
+<omgroup xml:id="slide-850" type="slide">
+  <metadata><dc:title>In Java</dc:title></metadata>
+  <omgroup type="itemize">
+    <omtext xml:id="code1" style="position:80% 10%;color:red">
+      <CMP>Implicitly extends class object</CMP>
+    </omtext>
+    <omtext xml:id="code2"  style="position:80% 20%;color:red">
+      <CMP><omlet data="cvic-code1" action="display"/></CMP>
+    </omtext>
+    <omtext xml:id="code3"  style="position:80% 30%;color:red">
+      <CMP><omlet data="cvic-code2" action="display"/></CMP>
+    </omtext>
+  </omgroup>
+</omgroup>
+
+</omdoc>

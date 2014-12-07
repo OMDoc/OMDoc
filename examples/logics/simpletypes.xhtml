@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet  type="text/xsl" href="mathml.xsl"?><html xmlns="http://www.w3.org/1999/xhtml" xmlns:pref="http://www.w3.org/2002/Math/preference" pref:renderer="mathplayer-dl">
+  <head>
+    <link rel="stylesheet" type="text/css" href="omdoc-cnx.css"/>
+    <title>Simple Types</title>
+  </head>
+  <body>
+<div class="titleblock">
+<div class="title">Simple Types</div>
+<div class="authors">Michael Kohlhase</div>
+<div class="date">2002-02-02</div>
+<div class="description">Simple ML-polymorphic types.</div></div>
+
+
+<div class="omtext" id="intro">
+<p>We define the simple type discipline. This includes the classical 
+     base types for individuals and truth values, function types, and also record-
+     and tuple types. Furthermore, it includes simple type schemata, also known as
+     ML-polymorphism. 
+    </p>
+</div>
+
+<div class="omtext" id="CDComment12">
+<p>Definition of type constructors</p>
+</div>
+
+<div class="symbol" id="funtype">
+<div class="titlebox">
+<span class="titleword">Concept</span>funtype</div>The function type constructor.</div>
+
+<div class="example" id="funtype-prop-1">
+<span class="titleword">Example</span>
+<p><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid108852"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id108856" xlink:href="#funtype"><mfenced id="id108856" open="" close="" separators=""><mo xlink:href="#ind" xlink:type="simple" id="id108864">ind</mo></mfenced><mo id="id108858" xlink:href="#funtype">→</mo><mo xlink:href="#bool" xlink:type="simple" id="id83877">bool</mo></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid108852" xlink:type="simple"><OMA xlink:href="MCRid108856" xlink:type="simple"><OMS cd="simpletypes" name="funtype" xlink:href="MCRid108858" xlink:type="simple"/><OMS cd="ind" name="ind" xlink:href="MCRid108864" xlink:type="simple"/><OMS cd="truthval" name="bool" xlink:href="MCRid83877" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math> 
+    is a type. It encodes the type of unary predicates.
+  </p>
+</div>
+
+<div class="symbol" id="all-types">
+<div class="titlebox">
+<span class="titleword">Concept</span>all-types</div> The universal type quantification operator. It is a binding
+           object that universally binds a list of type variables in a type. 
+	 </div>
+
+<div class="example" id="all-types-prop-1">
+<span class="titleword">Example</span>
+<p><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid83960"><semantics><mrow id="MCRid83963"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#forall" xlink:type="simple" id="MCRid83965">∀</mo><mrow id="MCRid83971"><mi id="MCRid83972">a</mi></mrow><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id83977" xlink:href="#funtype"><mfenced id="id83977" open="" close="" separators=""><mi id="MCRid83985">a</mi><mo xlink:href="#funtype" separator="true">,</mo><mi id="MCRid83989">a</mi></mfenced><mo id="id83979" xlink:href="#funtype">→</mo><mo xlink:href="#bool" xlink:type="simple" id="id83993">bool</mo></mrow></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid83960" xlink:type="simple"><OMBIND xlink:href="MCRid83963" xlink:type="simple"><OMS cd="simpletypes" name="all-types" xlink:href="MCRid83965" xlink:type="simple"/><OMBVAR xlink:href="MCRid83971" xlink:type="simple"><OMV name="a" xlink:href="MCRid83972" xlink:type="simple"/></OMBVAR><OMA xlink:href="MCRid83977" xlink:type="simple"><OMS cd="simpletypes" name="funtype" xlink:href="MCRid83979" xlink:type="simple"/><OMV name="a" xlink:href="MCRid83985" xlink:type="simple"/><OMV name="a" xlink:href="MCRid83989" xlink:type="simple"/><OMS cd="truthval" name="bool" xlink:href="MCRid83993" xlink:type="simple"/></OMA></OMBIND></OMOBJ></annotation-xml></semantics></math> is a well-formed type. It encodes the type of e.g. of the
+	equality relation.
+     </p>
+</div>
+
+<div class="symbol" id="type">
+<div class="titlebox">
+<span class="titleword">Concept</span>type</div>The type attribute. It relates an object to its type in an
+	 attribuition.</div>
+
+<div class="example" id="all-types-prop-2">
+<span class="titleword">Example</span>
+<p>Here is a typed variable
+    <math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid84127"><semantics><mfenced id="id84134" open="(" close=")" separators=""><msub id="MCRid84134"><mi id="MCRid113080">X</mi><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id84140" xlink:href="#funtype"><mfenced id="id84140" open="" close="" separators=""><mi id="MCRid84149">I</mi><mo xlink:href="#funtype" separator="true">,</mo><mi id="MCRid84153">I</mi></mfenced><mo id="id84142" xlink:href="#funtype">→</mo><mi id="MCRid113073">O</mi></mrow></msub></mfenced><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid84127" xlink:type="simple"><OMATTR xlink:href="MCRid84130" xlink:type="simple"><OMATP xlink:type="simple" xlink:href="MCRid84132"><OMS cd="simpletypes" name="type" xlink:href="MCRid84134" xlink:type="simple"/><OMA xlink:href="MCRid84140" xlink:type="simple"><OMS cd="simpletypes" name="funtype" xlink:href="MCRid84142" xlink:type="simple"/><OMV name="I" xlink:href="MCRid84149" xlink:type="simple"/><OMV name="I" xlink:href="MCRid84153" xlink:type="simple"/><OMV name="O" xlink:href="MCRid113073" xlink:type="simple"/></OMA></OMATP><OMV name="X" xlink:href="MCRid113080" xlink:type="simple"/></OMATTR></OMOBJ></annotation-xml></semantics></math></p>
+</div>
+
+<div class="symbol" id="recordtype">
+<div class="titlebox">
+<span class="titleword">Concept</span>recordtype</div>The record type constructor. It takes an even number of arguments. 
+    The even ones  are field names (currently they are OMS symbols in the
+  pseudo-theory 'record-field' and the odd ones their values.</div>
+
+<div class="symbol" id="tupletype">
+<div class="titlebox">
+<span class="titleword">Concept</span>tupletype</div>The tuple type constructor</div>
+
+<div class="symbol" id="cotupletype">
+<div class="titlebox">
+<span class="titleword">Concept</span>cotupletype</div>The co-tuple type constructor (useful for formalizing co-algebras).</div>
+
+
+
+</body>
+</html>

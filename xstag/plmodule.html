@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:xst  = "http://code.google.com/p/xstag/ns/2011/"
+        xst:version="0.2"
+        xmlns:omdoc = "http://omdoc.org/ns"
+        >
+  <xst:import href="omdoc.xstag"/>
+  <!-- MK: can we pass parameters to tag documents? -->
+  <xst:param name="css" as="xs:string"/>
+  <head>
+    <omdoc:title/>
+    <link rel="stylesheet" type="text/css" href="{$css}"/>
+  </head>
+  <body>
+    <omdoc:makeTitle/>
+    <omdoc:mainContent/>
+    <!-- in Planetary, end notes, references, etc are generated automatically at the book level. -->
+  </body>
+</html>

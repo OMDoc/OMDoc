@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://www.schemaTest.org/IBMd3_2_1v01" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:v01="http://www.schemaTest.org/IBMd3_2_1v01">
+
+    <simpleType name="myStringType">
+        <restriction base="string">
+            <length value="10"/>
+        </restriction>
+    </simpleType>
+
+    <element name="testLength_20">
+        <simpleType>
+            <restriction base="string">
+                <length value="20"/>
+            </restriction>
+        </simpleType>
+    </element>
+
+    <simpleType name="myStringType2">
+        <restriction base="string">
+            <minLength value="2"/>
+            <maxLength value="10"/>
+        </restriction>
+    </simpleType>
+
+    <element name="testminmaxLength_3_30">
+        <simpleType>
+            <restriction base="string">
+                <minLength value="3"/>
+                <maxLength value="30"/>
+            </restriction>
+        </simpleType>
+    </element>
+
+    <simpleType name="myStringType3">
+        <restriction base="string">
+            <pattern value="[a-z]{2}_[A-Z]{2}"/>
+        </restriction>
+    </simpleType>
+
+    <element name="testPatternAttachment">
+        <simpleType>
+            <restriction base="string">
+                <pattern value=".*\.gif|.*\.jpeg|.*\.jpg|.*\.bmp"/>
+            </restriction>
+        </simpleType>
+    </element>
+
+    <simpleType name="myStringType4">
+        <restriction base="string">
+            <enumeration value="qualified"/>
+            <enumeration value="unqualified"/>
+        </restriction>
+    </simpleType>
+
+    <element name="testEnumerationTravel">
+        <simpleType>
+            <restriction base="string">
+                <enumeration value="air"/>
+                <enumeration value="land"/>
+                <enumeration value="water"/>
+            </restriction>
+        </simpleType>
+    </element>
+
+    <element name="root">
+        <complexType mixed="false">
+            <sequence>
+                <element maxOccurs="unbounded" minOccurs="1" name="testLength_10" nillable="false" type="v01:myStringType"/>
+                <element maxOccurs="unbounded" minOccurs="1" ref="v01:testLength_20"/>
+                <element maxOccurs="unbounded" minOccurs="1" name="testminmaxLength_2_10" nillable="false" type="v01:myStringType2"/>
+                <element maxOccurs="unbounded" minOccurs="1" ref="v01:testminmaxLength_3_30"/>
+                <element maxOccurs="unbounded" minOccurs="1" name="testPattern" nillable="false" type="v01:myStringType3"/>
+                <element maxOccurs="unbounded" minOccurs="1" ref="v01:testPatternAttachment"/>
+                <element maxOccurs="unbounded" minOccurs="1" name="testEnumeration" nillable="false" type="v01:myStringType4"/>
+                <element maxOccurs="unbounded" minOccurs="1" ref="v01:testEnumerationTravel"/>
+            </sequence>
+        </complexType>
+    </element>
+
+</schema>

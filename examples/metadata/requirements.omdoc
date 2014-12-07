@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!--This OMDoc document is generated from an sTeX-encoded one via LaTeXML, you may want to reconsider editing it.-->
+<omdoc xmlns="http://omdoc.org/ns" 
+       xmlns:dc="http://purl.org/dc/elements/1.1/"
+       xmlns:v="http://omdoc.org/ontology/versioning#"
+       xmlns:r="http://omdoc.org/ontology/requirements#"
+       xmlns:om="http://www.openmath.org/OpenMath"
+       xmlns:m="http://www.w3.org/1998/Math/MathML">
+
+  <metadata>
+    <dc:title>Requirements for Software Engineering</dc:title>
+    <dc:creator>MichaelKohlhase</dc:creator>
+    <dc:date>2009-08-21</dc:date>
+    <dc:description> An ontology for Requirements in Software Engineering</dc:description>
+  </metadata>
+
+<theory xml:id="requirements"> 
+  <imports from="../logics/owl.omdoc#owl"/> 
+
+  <omtext type="introduction">
+    <CMP>The ontology for requirements tracing is very simple: we have requirements they depend on each other</CMP>
+  </omtext>
+
+  <symbol name="requirement" xml:id="requirement.sym"> 
+    <metadata> 
+      <meta property="dc:description">
+	A requirement, i.e. an assertion of what must hold for a software artefact.
+      </meta>
+    </metadata> 
+    <type system="owl"> 
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath"> 
+    <OMS cd="owl" name="Class"/></OMOBJ></type> 
+  </symbol> 
+
+  <symbol name="dependsOn" xml:id="dependsOn.sym"> 
+    <metadata> 
+      <meta property="dc:description">
+	A requirement, i.e. an assertion of what must hold for a software arteface.
+      </meta>
+    </metadata> 
+    <type system="owl"> 
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	<OMA>
+	  <OMS cd="owl" name="ObjectProperty"/>
+	  <OMS cd="requirements" name="requirement"/>
+	  <OMS cd="requirements" name="requirement"/>
+	</OMA>
+      </OMOBJ>
+    </type>
+  </symbol> 
+
+</theory>
+
+</omdoc>

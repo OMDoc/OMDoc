@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xst:taglib
+        version="0.2"
+        xmlns:xst  = "http://code.google.com/p/xstag/ns/2011/"
+        xmlns:fn   = "http://www.w3.org/2005/xpath-functions"
+        xmlns:xs   = "http://www.w3.org/2001/XMLSchema"
+	xmlns:omdoc="http://omdoc.org/ns"
+        >
+  <xst:import href="dc.xstag"/>
+  
+  <!-- this tag makes a title block -->
+  <xst:tag name="omdoc:makeTitle" as="xs:documnet-node()*">
+    <xst:content>
+      <div class="dc-titleblock">
+	<div class="dc-title">
+	  <xst:call name="omdoc:title"/>
+	</div>
+	<div class="dc-authors">
+	  <xst:call name="omdoc:title"/>
+	</div>
+	   select="//dc:title[1]/*|text()"/>
+  </xs:tag>
+
+</xst:taglib>

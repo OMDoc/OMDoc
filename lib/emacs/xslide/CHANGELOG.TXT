@@ -1,0 +1,245 @@
+xslide Change Log
+=================
+$Id: CHANGELOG.TXT 3883 2003-04-11 19:13:01Z kohlhase $
+
+Revision 0.2, 27 August 2001
+============================
+
+xslide.el
+---------
+
+Added customising of `xsl-indent-attributes' and
+`xsl-indent-element-step'.
+
+Changed name completion based on bug fix by KURODA Akira.
+
+xslide-process.el
+-----------------
+
+Finally fixed Saxon process error regexp.
+
+xslide-font.el
+--------------
+
+Changed some font-lock colours.
+
+Finally fixed bug where XSLT attributes were coloured as FO
+attributes.
+
+xslide-data.el
+--------------
+
+Updated FO element and attribute names to match XSL PR.
+
+Makefile
+--------
+
+Changed $(PRELOADS) to emulate version that works well with tdtd.
+
+README.TXT
+----------
+
+Added pronunciation note.
+
+Added note about "Xsl" Customize group.
+
+Added note that xslide should be installed on your Emacs load path.
+
+
+Revision 0.2b3, 7 April 2001
+============================
+
+xslide.el
+---------
+
+Added xsl-element-indent-step variable.
+
+Added `xsl-open-line'.
+
+Revised `xsl-electric-greater-than' to optionally insert a matching
+end-tag.
+
+Added skipping of CDATA sections in `xsl-electic-slash'.
+
+Removed match on "<!" in `xsl-electric-tab'.
+
+Modified completion mechanism in `xsl-complete'.
+
+Added `xsl-insert-template'.
+
+Added "xsl:key" and "xsl:attribute-set" submenus to "Templates" menu.
+
+Added explanations of `xsl-process' and `xsl-grep' to `xsl-mode'
+documentation string.
+
+xslide-abbrev.el
+----------------
+
+Removed abbrevs for "selectors" that haven't even been in XSL since
+the second draft.
+
+xslide-data.el
+--------------
+
+Updated copyright date and author email.
+
+xslide-font.el
+--------------
+
+Added optional whitespace to regexps used when fontifying following
+bug fix by Simon Wright.
+
+Fiddled with face colours while trying to work out why XSLT attributes
+appear with FO colours.
+
+Reordered regexps for text and for "other" tags.
+
+Revised regexp for { and } in attribute values.
+
+Fiddled with attribute regexps.
+
+xslide-process.el
+-----------------
+
+Attempted improvement of Saxon process error regexp.
+
+dot_emacs
+---------
+
+Added .fo files to auto-mode-alist.
+
+
+Revision 0.2b2, September 21, 2000
+==================================
+
+xslide.el
+---------
+
+Changed version number to 0.2b2
+
+xslide-font.el
+--------------
+
+Moved entity references regexp to later in font lock keywords
+
+Corrected error of using a number as argument to `concat'.
+
+
+Revision 0.2b1, September 12, 2000
+==================================
+
+xslide.el
+---------
+
+Added imenu as "Templates" menu
+
+Added "xsl", "xsl-font", and "xsl-process" customize groups
+
+Added initial stylesheet that is inserted in empty buffers
+
+Improvements to insertion of end tags courtesy of Moritz Maass
+
+Revised indentation calculation courtesy of Lassi Tuura
+
+xslide-abbrev.el
+----------------
+
+Merged references to xsl-fo-attribute-symbol-alist-1 and -2
+
+xslide-data.el
+--------------
+
+Updated element and attribute information courtesy of Norman Walsh and
+Lassi Tuura
+
+Merged xsl-fo-attribute-symbol-alist-1 and -2
+
+Renamed xsl-xsl-ns-prefix to xsl-xslt-ns-prefix.
+
+xslide-font.el
+--------------
+
+Replaced use of `make-regexp' with Emacs' built-in `regexp-opt'
+
+Defined light and dark colours that can be customized
+
+xslide-initial.xsl
+------------------
+
+Added as default initial stylesheet inserted into empty buffers
+
+xslide-process.el
+-----------------
+
+Added xsl-process customize group contents
+
+Added input, stylesheet, and output %-sequences to xsl-process-command
+
+Added Saxon command line templates to xsl-process-command
+
+Added regexp for Saxon error messages to xsl-process-regexps
+
+Changed `xsl-process' to populate its command history if history is
+null or if prefix argument is used.
+
+
+Revision 0.1.3, March 1, 2000
+=============================
+
+xslide.el
+---------
+
+Added control over electric tabs
+
+Changes to indentation calculation courtesy of Simon Brooke
+
+xslide-data.el
+--------------
+
+Partial updates to match XSLT Recommendation and current XSL Working
+Draft
+
+xslide-font.el
+--------------
+
+Added definition of font lock colours for light background
+
+Added "append" keyword to some regular expressions
+
+
+Revision 0.1.1, February 17, 1999
+=================================
+
+xslide.el
+---------
+
+Added xsl-electric-quote and xsl-electric-apos.
+
+Added "'" to several regular expressions.
+
+Modified a regular expression in xsl-electric-slash
+
+xslide-font.el
+--------------
+
+Replaced use of `font-lock-make-face' with code that works with Emacs
+20.
+
+Many constants moved to xslide-data.
+
+Moved comment pattern to later in list.
+
+Match on XML Declaration made more rigorous.
+
+More rigorous match on "{" and "}" in attribute values.
+
+xslide-data.el
+--------------
+
+Added "xmlns" and "macro".
+
+xslide-process.el
+-----------------
+
+Moved ":" inside set of parenthesis in error regexp
+

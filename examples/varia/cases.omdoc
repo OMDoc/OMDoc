@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<!DOCTYPE omdoc PUBLIC "-//OMDoc//DTD OMDoc V1.3//EN"
+                "../../dtd/omdoc.dtd" []>
+
+<!--  An example of a proof involving a case split.  -->
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  xmlns="http://omdoc.org/ns"
+xml:id="cases" >
+
+<metadata>
+  <dc:title>A case split proof</dc:title>
+  <dc:creator role="aut">Michael Kohlhase</dc:creator> 
+  <dc:contributor role="aut">Armin Fiedler</dc:contributor>
+  <dc:date>1999-08-30T00:00:00</dc:date>
+</metadata>
+
+<assertion type="theorem" xml:id="t1" theory="sets">
+  <CMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA id="aUV">
+	<OMS cd="set1" name="in"/>
+	<OMV name="a"/>
+	<OMA><OMS cd="set1" name="union"/><OMV name="U"/><OMV name="V"/></OMA>
+      </OMA>
+    </OMOBJ>, if
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMA id="aU"><OMS cd="set1" name="in"/><OMV name="a"/><OMV name="U"/></OMA></OMOBJ> or
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMA id="aV"><OMS cd="set1" name="in"/><OMV name="a"/><OMV name="V"/></OMA></OMOBJ>.
+  </CMP>
+  <FMP>
+    <assumption xml:id="t1-a1">
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	<OMA><OMS cd="logic1" name="or"/>
+	<OMR href="aU"/><OMR href="aV"/>
+	</OMA>
+      </OMOBJ>
+    </assumption>
+    <conclusion xml:id="t1-c"><OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="aUV"/></OMOBJ></conclusion>
+  </FMP>   
+</assertion>
+
+<proof xml:id="t1-p1" for="#t1" theory="sets">
+  <omtext xml:id="m1">
+    <CMP> We prove the assertion by a case analysis over
+      <ref xml:id="ref1" xref="t1-a1" type="cite"/>.
+    </CMP>
+  </omtext>
+  <derive xml:id="l1">
+    <CMP>If <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="aU"/></OMOBJ>, then <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="aUV"/></OMOBJ>.</CMP>
+    <FMP>
+      <assumption xml:id="l1-A"><OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="aU"/></OMOBJ></assumption>
+      <conclusion xml:id="l1-C"><OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="aUV"/></OMOBJ></conclusion>
+    </FMP>
+    <method xref="bla.omdoc#bla.Method-1">
+      <proof xml:id="l1-p" for="#l1" theory="sets">
+	<derive xml:id="l1-p-d1">
+	  <CMP><OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="aUV"/></OMOBJ> by definition of
+	    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="set1" name="union"/></OMOBJ>.
+	  </CMP>
+	</derive>
+      </proof>
+    </method>
+  </derive> 
+  <derive xml:id="l2">
+    <CMP><OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="aV"/></OMOBJ>, then <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="aUV"/></OMOBJ>.</CMP>
+    <FMP>
+      <assumption xml:id="l2-A"><OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="aV"/></OMOBJ></assumption>
+      <conclusion xml:id="l2-C"><OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="aUV"/></OMOBJ></conclusion>
+    </FMP>
+    <method xref="bla.omdoc#bla.Method-2">
+      <proof xml:id="l2-p" for="#l2" theory="sets">
+	<derive xml:id="l2-p-d1">
+	  <CMP><OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="aUV"/></OMOBJ>, by definition of
+	    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="set1" name="union"/></OMOBJ>.</CMP>
+	</derive>
+      </proof>
+    </method>
+  </derive> 
+  <derive xml:id="t1-p-c-c1">
+    <CMP> We have considered both cases from <ref xml:id="ref2" xref="t1-a1" type="cite"/>, so we have
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="aU"/></OMOBJ> or <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="aV"/></OMOBJ>.
+    </CMP>
+  </derive>
+</proof>
+</omdoc>

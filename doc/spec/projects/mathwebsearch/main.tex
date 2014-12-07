@@ -1,0 +1,227 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This file is part of the LaTeX sources of the OMDoc 1.3 specifiation
+% Copyright (c) 2006 Ioan Sucan, Michael Kohlhase
+% This work is licensed by the Creative Commons Share-Alike license
+% see http://creativecommons.org/licenses/by-sa/2.5/ for details
+\svnInfo $Id: main.tex 8453 2009-08-04 09:58:26Z kohlhase $
+\svnKeyword $HeadURL: https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.3/doc/spec/projects/mathwebsearch/main.tex $
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{A Search Engine for Mathematical Formulae}
+\begin{project}{matwebsearch}{http://search.mathweb.org/}
+\pauthors{Ioan Sucan\and Michael Kohlhase}
+\pinstitute{Computer Science, International University Bremen}
+\end{project}
+
+As the world of information technology grows, being able to quickly search data of
+interest becomes one of the most important tasks in any kind of environment, be it
+academic or not. We present a search engine for mathematical formulae. The {\mmlsearch}
+system harvests the web for content representations of formulae (currently {\mathml} and
+{\openmath}) and indexes them with substitution tree indexing, a technique originally
+developed for accessing intermediate results in automated theorem provers. For querying,
+we present a generic language extension approach that allows to construct queries by
+minimally annotating existing representations.
+
+Generally, searching for mathematical formulae is a non-trivial problem --- especially if
+we want to be able to search occurrences of the query term as sub-formulae --- for the
+following reasons:
+\begin{enumerate}
+\item {\emph{Mathematical notation is context-dependent}}. For instance, binomial
+  coefficients can come in a variety of notations depending on the context: $\left(n\atop
+    k\right)$, $_nC^k$, $C^n_k$, and $C^k_n$ all mean the same thing: $n!\over k!(n-k)!$.
+  In a formula search we would like to retrieve all forms irrespective of the notations.
+\item {\emph{Identical presentations can stand for multiple distinct mathematical
+      objects}}, e.g. an integral expression of the form $\int f(x) dx$ can mean a Riemann
+  Integral, a Lebesgue Integral, or any other of the 10 to 15 known anti-derivative
+  operators.  We would like to be able to restrict the search to the particular integral
+  type we are interested in at the moment.
+\item {\emph{Certain variations of notations are widely considered irrelevant}}, for
+  instance $\int f(x) dx$ means the same as $\int f(y) dy$ (modulo $\alpha$-equivalence),
+  so we would like to find both, even if we only query for one of them.
+\end{enumerate}
+To solve this formula search problem, we concentrate on {\emph{content representations of
+    mathematical formulae}}, since they are presentation-independent and disambiguate
+mathematical notions.
+
+\subsubsection{A Running Example: The Power of a Signal}\label{sec:runnex}
+
+A standard use case for {\mmlsearch} is that of an engineer trying to solve a mathematical
+problem such as finding the power of a given signal $s(t)$.  Of course our engineer is
+well-versed in signal processing and remembers that a signal's power has something to do
+with integrating its square, but has forgotten the details of how to compute the necessary
+integrals. He will therefore call up {\mmlsearch} to search for something that looks like
+$\int_?^?s^2(t)dt$ (for the concrete syntax of the query see {\mylstref{runningex-query}}
+in {\mysecref{query}}). {\mmlsearch} finds a document about Parseval's Theorem, more
+specifically $\frac{1}{T}\int_0^Ts^2(t)dt = \Sigma_{k=-\infty}^{\infty}\mid c_k\mid^2$
+where $c_k$ are the Fourier coefficients of the signal.  In short, our engineer found the
+exact formula he was looking for (he had missed the factor in front and the integration
+limits) and moreover a theorem he may be able to use.
+
+
+\subsubsection{Indexing Mathematical Formulae}
+
+For indexing mathematical formulae on the web, we will interpret them as first-order
+terms. This allows us to use a technique from automated reasoning called {\emph{term
+    indexing}}~\cite{Graf:ti96}. This is the process by which a set of terms is stored in
+a special purpose data structure (the {\bf{index}}) where common parts of the terms are
+potentially shared, so as to minimize access time and storage. The indexing technique we
+work with is a form of tree-based indexing called {\emph{substitution-tree indexing}}. A
+substitution tree, as the name suggests, is simply a tree where substitutions are the
+nodes. A term is constructed by successively applying substitutions along a path in the
+tree, the leaves represent the terms stored in the index. Internal nodes of the tree are
+{\bf{generic terms}} and represent similarities between terms.
+
+The main advantage of substitution tree indexing is that we only store substitutions, not
+the actual terms, and this leads to a small memory footprint.  Adding data to an existing
+index is simple and fast, querying the data structure is reduced to performing a walk down
+the tree.  Index building is done in similar fashion to~\cite{Graf:ti96}. Once the index
+is built, we keep the actual term instead of the substitution at each node, so we do not
+have to recompute it with every search. At first glance this may seem to be against the
+idea of indexing, as we would store all the terms again, not only the
+substitutions. However, due to the tree-like structure of the terms, we can in fact store
+only a pool of (sub)terms and define the terms in our index using pointers to elements of
+the pool (which are simply other terms). To each of the indexed terms, a data string is
+attached --- a string that represents the exact location of the term. We use
+XPointer~\cite{GroMal:xf03} to specify this.
+
+Unfortunately, substitution tree indexing does not support subterm search in an elegant
+fashion, so when adding a term to the index, we add all its subterms as well. This simple
+trick works well: the increase in index size remains manageable and it greatly simplifies
+the implementation.
+
+\subsubsection{A Query Language for Content Mathematics}\label{sec:query}
+
+When designing a query language for mathematical formulae, we have to satisfy a couple of
+conflicting constraints. The language should be content-oriented and familiar, but it
+should not be specialized to a given content representation format.  Our approach to this
+problem is to use a simple, generic extension mechanism for {\xml}-based representation
+formats rather than a genuine query language itself.  The query extension is very simple,
+it adds two new attributes to the respective languages:
+{\attributeshort[ns-attr=mq]{generic}} and {\attributeshort[ns-attr=mq]{anyorder}}, where
+the prefix {\tt{mq:}} abbreviates the namespace URI \url{http://mathweb.org/MathQuery/}
+for {\mmlsearch}.
+
+In this way, the user need not master a new representation language, and we can generate
+queries by copy and paste and then make parts of the formulae generic by simply adding
+suitable attributes. We will use Content {\mathml}~\cite{CarIon:MathML03} in the example,
+but {\mmlsearch} also supports {\openmath} and a shorthand notation that resembles the
+internal representation we are using for terms (prefix notation).  The
+{\attributeshort[ns-attr=mq]{generic}} attribute takes string values and can be specified
+for any element in the query, making it into a (named) query variable: its contents are
+ignored and it matches any term in the search process.  
+
+While of searching expressions of the form $A = B$, we might like to find occurrences of
+$B = A$ as well. At this point the {\attributeshort[ns-attr=mq]{anyorder}} attribute comes
+in.  Inside an {\element{apply}} tag, the first child defines the function to be applied;
+if this child has the attribute {\attributeshort[ns-attr=mq]{anyorder}} defined with the
+value ``yes'', the order of the subsequent children is ignored.  If we do not want to
+specify the function name, we can use the {\attributeshort[ns-attr=mq]{generic}} attribute
+again, but this time for the first child of an {\element{apply}} tag.  Given the above,
+the query of our running example has the form presented in
+{\mylstref{runningex-query}}. Note that we do not know the integration limits or whether
+the formula is complete or not.
+
+\begin{lstlisting}[label=lst:runningex-query,caption=Query for Signal Power,numbers=none]
+<math xmlns="http://www.w3.org/1998/Math/MathML" 
+      xmlns:mq="http://mathweb.org/MathQuery">
+  <apply><int/>
+    <domainofapplication mq:generic="domain"/> 
+    <bvar> <ci mq:generic="time"/> </bvar>
+    <apply><power/>
+      <apply><ci mq:generic="fun"></ci><ci mq:generic="time"/></apply>
+      <cn>2</cn>
+    </apply>
+  </apply>
+</math>
+\end{lstlisting}
+
+\subsubsection{Input Processing}\label{subsec:input-processing}
+
+{\mmlsearch} can process any kind of {\xml} representation for content mathematics. The
+system is modular and provides an interface which allows to add {\xml}-to-index-term
+transformers. . We will discuss input processing for {\cmathml}.
+
+\setbox0=\hbox{\footnotesize\begin{minipage}[t]{3cm}
+    \begin{itemize}\raggedright
+    \item[1)] Mathematical
+     expression:\\
+    $f(x) = y$\\[3ex]
+  \item[3)] Term
+    representation:\\
+    $eq(f(x), y)$
+  \end{itemize}
+\end{minipage} 
+\begin{minipage}[t]{3.4cm}
+    \begin{itemize}\raggedright
+    \item[2)] Content {\mathml}:\\[-1.5ex]
+\begin{lstlisting}[frame=none,numbers=none]
+<apply><eq/>
+  <apply>
+    <ci>f</ci>
+    <ci>x</ci>
+  </apply>
+  <ci>y</ci>
+</apply>
+\end{lstlisting}
+\end{itemize}
+\end{minipage}}
+\begin{wrapfigure}{r}{7cm}
+\fbox{\usebox0}
+\vspace*{-.6cm}
+\end{wrapfigure}
+Given an {\xml} document, we create an index term for each of its {\element{math}}
+elements. Consider the example on the right: We have the standard mathematical notation of
+an equation (1), its Content {\mathml} representation (2), and the term we extract for
+indexing (3). As previously stated, any mathematical construct can be represented in a
+similar fashion.
+
+Search modulo $\alpha$-renaming becomes available via a very simple input processing
+trick: during input processing, we add a {\attributeshort[ns-attr=mq]{generic}} attribute
+to every bound variable (but with distinct strings for different variables). Therefore in
+our running example the query variable $t$ ({\tt{@time}} in {\mylstref{runningex-query}})
+in the query $\int_?^?s^2(t)dt$ is made generic, therefore the query would also find the
+variant $\frac{1}{T}\int_0^Ts^2(x)dx = \Sigma_{k=-\infty}^{\infty}\mid c_k\mid^2$.
+
+\subsubsection{Result reporting}\label{subsec:result-reporting}
+
+For a search engine for mathematical formulae we need to augment the set of result items
+(usually page title, description, and page link) reported to the user for each hit. As
+typical pages contain multiple formulae, we need to report the exact occurrence of the hit
+in the page. We do this by supplying an {\sc{XPointer}} reference where possible.
+Concretely, we group all occurrences into one page item that can be expanded on demand and
+within this we order the groups by number of contained references. For any given result, a
+detailed view is available.  This view shows the exact term that was matched (using
+Presentation {\mathml}) and the used substitution (a mapping from the query variables
+specified by the {\attributeshort[ns-attr=mq]{generic}} attributes to certain subterms) to
+match that specific term.
+
+\subsubsection{Case Studies and Results}\label{sec:case-study}
+
+We have tested our implementation on the content repository of the {\connexions} Project,
+available via the OAI protocol~\cite{OAI:protocol}. This gives us a set of over 3,200
+articles with mathematical expressions to work on. The number of terms represented in
+these documents is approximately 53,000 (77,000 including subterms). The average term
+depth is 3.6 and the maximal one is 14.  Typical query execution times on this index are
+in the range of milliseconds. The search in our running example takes 14 ms for
+instance. There are, however, complex searches (e.g. using the
+{\attributeshort[ns-attr=mq]{anyorder}} attribute) that internally call the searching
+routine multiple times and take up to 200 ms but for realistic examples execution time is
+below 50 ms. We are currently building an index of the 86,000 Content {\mathml} formulae
+from \url{http://functions.wolfram.com}. Here, term depths are much larger (average term
+depth 5.7, maximally around 50) resulting in a much larger index: it is just short of 2
+million formulae. First experiments indicate that search times are largely unchanged by
+the increase in index size.
+
+In the long run, it would be interesting to interface {\mmlsearch} with a regular web
+search engine and create a powerful, specialized, full-feature application. This would
+resolve the main disadvantage our implementation has -- it cannot search for simple
+text. A simple socket-based search API allows to integrate {\mmlsearch} into other
+content-based mathematical software systems.
+%%% Local Variables: 
+%%% mode: stex
+%%% TeX-master: "../../omdoc"
+%%% End: 
+
+% LocalWords:  matwebsearch Ioan Sucan nC dx dy dt runningex XPointer ns attr
+% LocalWords:  mq anyorder xmlns domainofapplication bvar ci cn eq OAI API
+% LocalWords:  screenshots

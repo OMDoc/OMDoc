@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet  type="text/xsl" href="mathml.xsl"?><html xmlns="http://www.w3.org/1999/xhtml" xmlns:pref="http://www.w3.org/2002/Math/preference" pref:renderer="mathplayer-dl">
+  <head>
+    <link rel="stylesheet" type="text/css" href="omdoc-cnx.css"/>
+    <title>Record Calculus Types</title>
+  </head>
+  <body>
+<div class="titleblock">
+<div class="title">Record Calculus Types</div>
+<div class="authors">Michael Kohlhase</div>
+<div class="date">2002-04-16</div>
+<div class="description">Untyped Record Calculus.</div></div>
+
+
+<div class="symbol" id="record">
+<div class="titlebox">
+<span class="titleword">Concept</span>record</div>The record expression constructor. It takes an even number of
+   arguments, the ones at even position are the record fields and the ones at
+   the odd positions their values.</div>
+
+<div class="symbol" id="select">
+<div class="titlebox">
+<span class="titleword">Concept</span>select</div>The record selector constant. The first argument is a record, 
+    the second a record, from which the value for this feature is selected.</div>
+
+<div class="symbol" id="record-beta-equal">
+<div class="titlebox">
+<span class="titleword">Concept</span>record-beta-equal</div>Record beta equaltiy</div>
+
+<div class="axiom" id="record-beta-ax">
+<span class="titleword">Axiom</span>
+<p>Selecting a feature from a record gives the appropriate value:
+ <math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid82507"><semantics><mrow id="MCRid82509"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#record-beta-equal" xlink:type="simple" id="id82512">record-beta-equal</mo><mrow><mo fence="true">(</mo><mrow><mrow id="MCRid82518"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#select" xlink:type="simple" id="MCRid82520">.</mo><mrow><mo fence="true">(</mo><mrow><mrow id="MCRid106290"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#record" xlink:type="simple" id="id106292">record</mo><mrow><mo fence="true">(</mo><mrow><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#ellipsis" xlink:type="simple" id="MCRid106299">...</mo><mo separator="true">,</mo><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#ellipsis" xlink:type="simple" id="MCRid106305">...</mo><mo separator="true">,</mo><mi id="MCRid106312">F</mi><mo separator="true">,</mo><mi id="MCRid106316">V</mi><mo separator="true">,</mo><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#ellipsis" xlink:type="simple" id="MCRid106320">...</mo><mo separator="true">,</mo><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#ellipsis" xlink:type="simple" id="MCRid106327">...</mo></mrow><mo fence="true">)</mo></mrow></mrow><mo separator="true">,</mo><mi id="MCRid106335">F</mi></mrow><mo fence="true">)</mo></mrow></mrow><mo separator="true">,</mo><mi id="MCRid106340">V</mi></mrow><mo fence="true">)</mo></mrow></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid82507" xlink:type="simple"><OMA xlink:href="MCRid82509" xlink:type="simple"><OMS cd="record-calc" name="record-beta-equal" xlink:href="MCRid82512" xlink:type="simple"/><OMA xlink:href="MCRid82518" xlink:type="simple"><OMS cd="record-calc" name="select" xlink:href="MCRid82520" xlink:type="simple"/><OMA xlink:href="MCRid106290" xlink:type="simple"><OMS cd="record-calc" name="record" xlink:href="MCRid106292" xlink:type="simple"/><OMS cd="record-calc" name="ellipsis" xlink:href="MCRid106299" xlink:type="simple"/><OMS cd="record-calc" name="ellipsis" xlink:href="MCRid106305" xlink:type="simple"/><OMV name="F" xlink:href="MCRid106312" xlink:type="simple"/><OMV name="V" xlink:href="MCRid106316" xlink:type="simple"/><OMS cd="record-calc" name="ellipsis" xlink:href="MCRid106320" xlink:type="simple"/><OMS cd="record-calc" name="ellipsis" xlink:href="MCRid106327" xlink:type="simple"/></OMA><OMV name="F" xlink:href="MCRid106335" xlink:type="simple"/></OMA><OMV name="V" xlink:href="MCRid106340" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></p>
+</div>
+
+<div class="symbol" id="ellipsis">
+<div class="titlebox">
+<span class="titleword">Concept</span>ellipsis</div>This is a meta-symbol that is used for record ellipsis, it should not be
+    used in formal content.</div>
+
+<div class="symbol" id="tuple">
+<div class="titlebox">
+<span class="titleword">Concept</span>tuple</div>The tuple expression constructor.</div>
+
+<div class="symbol" id="proj">
+<div class="titlebox">
+<span class="titleword">Concept</span>proj</div>The tuple projection function. It takes a number
+   expression N and a tuple as input and returns the N-th component, if the
+   first argument evaluates to N.</div>
+
+
+
+</body>
+</html>

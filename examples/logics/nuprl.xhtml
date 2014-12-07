@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet  type="text/xsl" href="mathml.xsl"?><html xmlns="http://www.w3.org/1999/xhtml" xmlns:pref="http://www.w3.org/2002/Math/preference" pref:renderer="mathplayer-dl">
+  <head>
+    <link rel="stylesheet" type="text/css" href="omdoc-cnx.css"/>
+    <title>The Nuprl logic language</title>
+  </head>
+  <body>
+<div class="titleblock">
+<div class="title">The Nuprl logic language</div>
+<div class="authors">Michael Kohlhase, Christoph Kreitz</div>
+<div class="date">2002-09-30</div></div>
+
+
+<div class="omtext" id="intro">
+<p>This document contains and defines the constants used in the Nuprl
+    to OMDoc translation. Some of these may later have to be moved into
+    another theory.</p>
+</div>
+
+<div class="symbol" id="dependent-function-type">
+<div class="titlebox">
+<span class="titleword">Concept</span>dependent-function-type</div>
+      The dependent function type constructor is a binding operator. The source type is
+      the type of the bound variable X, the target type is represented in the body.
+ </div>
+
+<div class="example" id="ex-dependent-function-type">
+<span class="titleword">Example</span>
+<p>A dependent function type</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid103978"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#dependent-function-type"><mi id="MCRid128024">X</mi><mo xlink:href="#dependent-function-type">:</mo><mi id="MCRid128028">S</mi><mo xlink:href="#dependent-function-type">↦</mo><mi id="MCRid128032">T</mi></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid103978" xlink:type="simple"><OMA xlink:href="MCRid103981" xlink:type="simple"><OMS cd="nuprl" name="dependent-function-type" xlink:href="MCRid103983" xlink:type="simple"/><OMV name="X" xlink:href="MCRid128024" xlink:type="simple"/><OMV name="S" xlink:href="MCRid128028" xlink:type="simple"/><OMV name="T" xlink:href="MCRid128032" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="symbol" id="function-type">
+<div class="titlebox">
+<span class="titleword">Concept</span>function-type</div>The independent function type constructor. 
+    The first argument is the source type S, 
+    and the second, the target type T. 
+ </div>
+
+<div class="example" id="ex-function-type">
+<span class="titleword">Example</span>
+<p>An independent function type</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid128139"><semantics><mfenced id="id128142" open="(" close=")" separators=""><mi id="MCRid128151">S</mi><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#function-type" xlink:type="simple" id="MCRid128145">↦</mo><mi id="MCRid128155">T</mi></mfenced><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid128139" xlink:type="simple"><OMA xlink:href="MCRid128142" xlink:type="simple"><OMS cd="nuprl" name="function-type" xlink:href="MCRid128145" xlink:type="simple"/><OMV name="S" xlink:href="MCRid128151" xlink:type="simple"/><OMV name="T" xlink:href="MCRid128155" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="symbol" id="lambda">
+<div class="titlebox">
+<span class="titleword">Concept</span>lambda</div>The lambda binding operator</div>
+
+<div class="example" id="ex-lambda">
+<span class="titleword">Example</span>
+<p>The identity function represented as a lambda abstraction.</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid103556"><semantics><mfenced id="id103559" open="\" close="" separators=""><mrow id="MCRid103567"><mi id="MCRid103568">X</mi></mrow><mo separator="true">.</mo><mi id="MCRid103572">X</mi></mfenced><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid103556" xlink:type="simple"><OMBIND xlink:href="MCRid103559" xlink:type="simple"><OMS cd="nuprl" name="lambda" xlink:href="MCRid103561" xlink:type="simple"/><OMBVAR xlink:href="MCRid103567" xlink:type="simple"><OMV name="X" xlink:href="MCRid103568" xlink:type="simple"/></OMBVAR><OMV name="X" xlink:href="MCRid103572" xlink:type="simple"/></OMBIND></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="symbol" id="dependent-product">
+<div class="titlebox">
+<span class="titleword">Concept</span>dependent-product</div>The dependent product constructor. 
+  The first argument is a type <math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid103616"><semantics><mi id="MCRid103618">S</mi><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid103616" xlink:type="simple"><OMV name="S" xlink:href="MCRid103618" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math>, and the second is a
+  function whose value is a type.
+ </div>
+
+<div class="example" id="ex-dependent-product">
+<span class="titleword">Example</span>
+<p>A dependent product.</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid132567"><semantics><mrow id="MCRid132570"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#dependent-product" xlink:type="simple" id="id132572">dependent-product</mo><mrow><mo fence="true">(</mo><mrow><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#Z" xlink:type="simple" id="MCRid132578">ℤ</mo><mo separator="true">,</mo><mfenced id="id132584" open="\" close="" separators=""><mrow id="MCRid132593"><mi id="MCRid132594">N</mi></mrow><mo separator="true">.</mo><mrow id="MCRid132598"><mi id="MCRid132600">vector</mi><mrow><mo fence="true">(</mo><mrow><mi id="MCRid132605">N</mi></mrow><mo fence="true">)</mo></mrow></mrow></mfenced></mrow><mo fence="true">)</mo></mrow></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid132567" xlink:type="simple"><OMA xlink:href="MCRid132570" xlink:type="simple"><OMS cd="nuprl" name="dependent-product" xlink:href="MCRid132572" xlink:type="simple"/><OMS cd="nuprl" name="Z" xlink:href="MCRid132578" xlink:type="simple"/><OMBIND xlink:href="MCRid132584" xlink:type="simple"><OMS cd="nuprl" name="lambda" xlink:href="MCRid132586" xlink:type="simple"/><OMBVAR xlink:href="MCRid132593" xlink:type="simple"><OMV name="N" xlink:href="MCRid132594" xlink:type="simple"/></OMBVAR><OMA xlink:href="MCRid132598" xlink:type="simple"><OMV name="vector" xlink:href="MCRid132600" xlink:type="simple"/><OMV name="N" xlink:href="MCRid132605" xlink:type="simple"/></OMA></OMBIND></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="symbol" id="product">
+<div class="titlebox">
+<span class="titleword">Concept</span>product</div>The independent product constructor. 
+    The two arguments are types S and T. 
+ </div>
+
+<div class="example" id="ex-product">
+<span class="titleword">Example</span>
+<p>A Cartesian product</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid132717"><semantics><mfenced id="id132720" open="(" close=")" separators=""><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#Z" xlink:type="simple" id="MCRid132728">ℤ</mo><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#product" xlink:type="simple" id="MCRid132722">×</mo><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#Z" xlink:type="simple" id="MCRid132734">ℤ</mo></mfenced><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid132717" xlink:type="simple"><OMA xlink:href="MCRid132720" xlink:type="simple"><OMS cd="nuprl" name="product" xlink:href="MCRid132722" xlink:type="simple"/><OMS cd="nuprl" name="Z" xlink:href="MCRid132728" xlink:type="simple"/><OMS cd="nuprl" name="Z" xlink:href="MCRid132734" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="symbol" id="pair">
+<div class="titlebox">
+<span class="titleword">Concept</span>pair</div>The binary pair constructor</div>
+
+<div class="example" id="ex-pair">
+<span class="titleword">Example</span>
+<p>A pair of natural numbers</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid132849"><semantics><mrow><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#pair" xlink:type="simple" id="MCRid132853">,</mo><mfenced id="id132852" open="&lt;" close="&gt;" separators=""><mn id="MCRid132858">1</mn><mo separator="true">,</mo><mn id="MCRid132860">2</mn></mfenced></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid132849" xlink:type="simple"><OMA xlink:href="MCRid132852" xlink:type="simple"><OMS cd="nuprl" name="pair" xlink:href="MCRid132853" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid132858">1</OMI><OMI xlink:type="simple" xlink:href="MCRid132860">2</OMI></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="symbol" id="spread">
+<div class="titlebox">
+<span class="titleword">Concept</span>spread</div> The uniform projection constructor (officially "spread"). 
+    It takes two arguments; a term <math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid132897"><semantics><mi id="MCRid132898">t</mi><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid132897" xlink:type="simple"><OMV name="t" xlink:href="MCRid132898" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math>
+    and a binary function
+    <math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid132903"><semantics><mfenced id="id132905" open="\" close="" separators=""><mrow id="MCRid132913"><mi id="MCRid132914">X</mi><mo separator="true">,</mo><mi id="MCRid132918">Y</mi></mrow><mo separator="true">.</mo><mi id="MCRid132922">e</mi></mfenced><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid132903" xlink:type="simple"><OMBIND xlink:href="MCRid132905" xlink:type="simple"><OMS cd="nuprl" name="lambda" xlink:href="MCRid132907" xlink:type="simple"/><OMBVAR xlink:href="MCRid132913" xlink:type="simple"><OMV name="X" xlink:href="MCRid132914" xlink:type="simple"/><OMV name="Y" xlink:href="MCRid132918" xlink:type="simple"/></OMBVAR><OMV name="e" xlink:href="MCRid132922" xlink:type="simple"/></OMBIND></OMOBJ></annotation-xml></semantics></math>.
+  </div>
+
+<div class="example" id="ex-spread">
+<span class="titleword">Example</span>
+<p>A spread</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid133462"><semantics><mrow id="MCRid133465"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#spread" xlink:type="simple" id="id133467">spread</mo><mrow><mo fence="true">(</mo><mrow><mi id="MCRid133473">t</mi><mo separator="true">,</mo><mfenced id="id133477" open="\" close="" separators=""><mrow id="MCRid133485"><mi id="MCRid133486">X</mi><mo separator="true">,</mo><mi id="MCRid133490">Y</mi></mrow><mo separator="true">.</mo><mi id="MCRid133494">e</mi></mfenced></mrow><mo fence="true">)</mo></mrow></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid133462" xlink:type="simple"><OMA xlink:href="MCRid133465" xlink:type="simple"><OMS cd="nuprl" name="spread" xlink:href="MCRid133467" xlink:type="simple"/><OMV name="t" xlink:href="MCRid133473" xlink:type="simple"/><OMBIND xlink:href="MCRid133477" xlink:type="simple"><OMS cd="nuprl" name="lambda" xlink:href="MCRid133479" xlink:type="simple"/><OMBVAR xlink:href="MCRid133485" xlink:type="simple"><OMV name="X" xlink:href="MCRid133486" xlink:type="simple"/><OMV name="Y" xlink:href="MCRid133490" xlink:type="simple"/></OMBVAR><OMV name="e" xlink:href="MCRid133494" xlink:type="simple"/></OMBIND></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="symbol" id="disjoint-union">
+<div class="titlebox">
+<span class="titleword">Concept</span>disjoint-union</div>The disjoint union type constructor.</div>
+
+<div class="example" id="ex-disjoint-union">
+<span class="titleword">Example</span>
+<p>The disjoint union of integers contains two copies of the integers.</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid133618"><semantics><mfenced id="id133621" open="(" close=")" separators=""><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#Z" xlink:type="simple" id="MCRid133632">ℤ</mo><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#disjoint-union" xlink:type="simple" id="MCRid133625">⊎</mo><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#Z" xlink:type="simple" id="MCRid133638">ℤ</mo></mfenced><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid133618" xlink:type="simple"><OMA xlink:href="MCRid133621" xlink:type="simple"><OMS cd="nuprl" name="disjoint-union" xlink:href="MCRid133625" xlink:type="simple"/><OMS cd="nuprl" name="Z" xlink:href="MCRid133632" xlink:type="simple"/><OMS cd="nuprl" name="Z" xlink:href="MCRid133638" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="symbol" id="inl">
+<div class="titlebox">
+<span class="titleword">Concept</span>inl</div>The left injection into a disjoint union type.</div>
+
+<div class="example" id="ex-inl">
+<span class="titleword">Example</span>
+<p>The left injection of a dijoint union</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid133732"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#eq"><mrow><mo xlink:href="#inl" xlink:type="simple" id="MCRid133745">inl</mo><mfenced id="id133743" open="(" close=")" separators=""><mfenced id="id133751" open="(" close=")" separators=""><mo xlink:href="#Z" xlink:type="simple" id="MCRid133763">ℤ</mo><mo xlink:href="#disjoint-union" xlink:type="simple" id="MCRid133757">⊎</mo><mrow><mo xlink:href="#list-type" xlink:type="simple" id="MCRid133775"> list</mo><mfenced id="id133770" open="" close="" separators=""><mo xlink:href="#Z" xlink:type="simple" id="MCRid133782">ℤ</mo></mfenced></mrow></mfenced></mfenced></mrow><mo xlink:href="#eq">=</mo><mo xlink:href="#Z" xlink:type="simple" id="MCRid133792">ℤ</mo><mo xlink:href="#eq"> in </mo></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid133732" xlink:type="simple"><OMA xlink:href="MCRid133735" xlink:type="simple"><OMS cd="nuprl" name="eq" xlink:href="MCRid133737" xlink:type="simple"/><OMA xlink:href="MCRid133743" xlink:type="simple"><OMS cd="nuprl" name="inl" xlink:href="MCRid133745" xlink:type="simple"/><OMA xlink:href="MCRid133751" xlink:type="simple"><OMS cd="nuprl" name="disjoint-union" xlink:href="MCRid133757" xlink:type="simple"/><OMS cd="nuprl" name="Z" xlink:href="MCRid133763" xlink:type="simple"/><OMA xlink:href="MCRid133770" xlink:type="simple"><OMS cd="nuprl" name="list-type" xlink:href="MCRid133775" xlink:type="simple"/><OMS cd="nuprl" name="Z" xlink:href="MCRid133782" xlink:type="simple"/></OMA></OMA></OMA><OMS cd="nuprl" name="Z" xlink:href="MCRid133792" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="symbol" id="inr">
+<div class="titlebox">
+<span class="titleword">Concept</span>inr</div>The right injection into a disjoint union type.</div>
+
+<div class="example" id="ex-inr">
+<span class="titleword">Example</span>
+<p>The right injection of a dijoint union</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid133886"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#eq"><mrow><mo xlink:href="#inl" xlink:type="simple" id="MCRid133899">inl</mo><mfenced id="id133897" open="(" close=")" separators=""><mo separator="true">,</mo></mfenced></mrow><mo xlink:href="#eq">=</mo><mo xlink:href="#eq"> in </mo></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid133886" xlink:type="simple"><OMA xlink:href="MCRid133888" xlink:type="simple"><OMS cd="nuprl" name="eq" xlink:href="MCRid133891" xlink:type="simple"/><OMA xlink:href="MCRid133897" xlink:type="simple"><OMS cd="nuprl" name="inl" xlink:href="MCRid133899" xlink:type="simple"/></OMA></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="symbol" id="case">
+<div class="titlebox">
+<span class="titleword">Concept</span>case</div></div>
+
+<div class="symbol" id="universe-of-level">
+<div class="titlebox">
+<span class="titleword">Concept</span>universe-of-level</div>The Universe of a given level.</div>
+
+<div class="example" id="ex-universe-of-level">
+<span class="titleword">Example</span>
+<p>The universe of level 3 is denoted by </p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid134057"><semantics><mrow><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#universe-of-level" xlink:type="simple" id="MCRid134061">U</mo><mfenced id="id134060" open="(" close=")" separators=""><mn id="MCRid134066">3</mn></mfenced></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid134057" xlink:type="simple"><OMA xlink:href="MCRid134060" xlink:type="simple"><OMS cd="nuprl" name="universe-of-level" xlink:href="MCRid134061" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid134066">3</OMI></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="symbol" id="eq">
+<div class="titlebox">
+<span class="titleword">Concept</span>eq</div>Typed Equality.</div>
+
+<div class="example" id="ex-eq">
+<span class="titleword">Example</span>
+<p>An equality among integers</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid134287"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#eq"><mn id="MCRid134298">3</mn><mo xlink:href="#eq">=</mo><mn id="MCRid134301">3</mn><mo xlink:href="#eq"> in </mo><mo xlink:href="#Z" xlink:type="simple" id="MCRid134304">ℤ</mo></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid134287" xlink:type="simple"><OMA xlink:href="MCRid134290" xlink:type="simple"><OMS cd="nuprl" name="eq" xlink:href="MCRid134292" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid134298">3</OMI><OMI xlink:type="simple" xlink:href="MCRid134301">3</OMI><OMS cd="nuprl" name="Z" xlink:href="MCRid134304" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="symbol" id="axiom">
+<div class="titlebox">
+<span class="titleword">Concept</span>axiom</div>The axiom element</div>
+
+<div class="symbol" id="void">
+<div class="titlebox">
+<span class="titleword">Concept</span>void</div>The empty type.</div>
+
+<div class="symbol" id="atom">
+<div class="titlebox">
+<span class="titleword">Concept</span>atom</div>The atom (string) type</div>
+
+<div class="symbol" id="atom-conditional">
+<div class="titlebox">
+<span class="titleword">Concept</span>atom-conditional</div>The conditional on atoms. It takes four arguments:
+   The first two are supposed to be atoms, the last two are arbitrary terms.
+   If the first two are equal, then the value of the complex expression 
+   is that the third, else the fourth argument.</div>
+
+<div class="symbol" id="Z">
+<div class="titlebox">
+<span class="titleword">Concept</span>Z</div>The type of integers.</div>
+
+<div class="symbol" id="rec-case">
+<div class="titlebox">
+<span class="titleword">Concept</span>rec-case</div></div>
+
+<div class="symbol" id="unary-minus">
+<div class="titlebox">
+<span class="titleword">Concept</span>unary-minus</div>Negation.</div>
+
+<div class="example" id="ex-unary-minus">
+<span class="titleword">Example</span>
+<p>A negative integer</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid135011"><semantics><mrow><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#unary-minus" xlink:type="simple" id="MCRid135015">-</mo><mn id="MCRid135020">1</mn></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid135011" xlink:type="simple"><OMA xlink:href="MCRid135014" xlink:type="simple"><OMS cd="nuprl" name="unary-minus" xlink:href="MCRid135015" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid135020">1</OMI></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="symbol" id="plus">
+<div class="titlebox">
+<span class="titleword">Concept</span>plus</div>The addition operator.</div>
+
+<div class="example" id="ex-plus">
+<span class="titleword">Example</span><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid135112"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#eq"><mrow><mo xlink:href="#unary-minus" xlink:type="simple" id="MCRid135132">-</mo><mn id="MCRid135138">1</mn></mrow><mo xlink:href="#plus" xlink:type="simple" id="MCRid135125">+</mo><mn id="MCRid135141">2</mn><mo xlink:href="#eq">=</mo><mn id="MCRid135145">1</mn><mo xlink:href="#eq"> in </mo></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid135112" xlink:type="simple"><OMA xlink:href="MCRid135115" xlink:type="simple"><OMS cd="nuprl" name="eq" xlink:href="MCRid135117" xlink:type="simple"/><OMA xlink:href="MCRid135123" xlink:type="simple"><OMS cd="nuprl" name="plus" xlink:href="MCRid135125" xlink:type="simple"/><OMA xlink:href="MCRid135131" xlink:type="simple"><OMS cd="nuprl" name="unary-minus" xlink:href="MCRid135132" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid135138">1</OMI></OMA><OMI xlink:type="simple" xlink:href="MCRid135141">2</OMI></OMA><OMI xlink:type="simple" xlink:href="MCRid135145">1</OMI></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="symbol" id="minus">
+<div class="titlebox">
+<span class="titleword">Concept</span>minus</div>The subtraction operator.</div>
+
+<div class="example" id="ex-minus">
+<span class="titleword">Example</span><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid135230"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#eq"><mn id="MCRid135249">2</mn><mo xlink:href="#minus" xlink:type="simple" id="MCRid135242">-</mo><mrow><mo xlink:href="#unary-minus" xlink:type="simple" id="MCRid135253">-</mo><mfenced id="id135252" open="" close="" separators=""><mn id="MCRid135258">1</mn></mfenced></mrow><mo xlink:href="#eq">=</mo><mn id="MCRid135262">3</mn><mo xlink:href="#eq"> in </mo></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid135230" xlink:type="simple"><OMA xlink:href="MCRid135232" xlink:type="simple"><OMS cd="nuprl" name="eq" xlink:href="MCRid135234" xlink:type="simple"/><OMA xlink:href="MCRid135240" xlink:type="simple"><OMS cd="nuprl" name="minus" xlink:href="MCRid135242" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid135249">2</OMI><OMA xlink:href="MCRid135252" xlink:type="simple"><OMS cd="nuprl" name="unary-minus" xlink:href="MCRid135253" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid135258">1</OMI></OMA></OMA><OMI xlink:type="simple" xlink:href="MCRid135262">3</OMI></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="symbol" id="times">
+<div class="titlebox">
+<span class="titleword">Concept</span>times</div>The multiplication Operator</div>
+
+<div class="example" id="ex-times">
+<span class="titleword">Example</span><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid135377"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#eq"><mrow><mo id="MCRid135390">⁢</mo><mrow><mo xlink:href="#unary-minus" xlink:type="simple" id="MCRid135397">-</mo><mn id="MCRid135403">1</mn></mrow><mo separator="true">,</mo><mn id="MCRid135406">2</mn></mrow><mo xlink:href="#eq">=</mo><mrow><mo xlink:href="#unary-minus" xlink:type="simple" id="MCRid135411">-</mo><mn id="MCRid135417">2</mn></mrow><mo xlink:href="#eq"> in </mo></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid135377" xlink:type="simple"><OMA xlink:href="MCRid135380" xlink:type="simple"><OMS cd="nuprl" name="eq" xlink:href="MCRid135382" xlink:type="simple"/><OMA xlink:href="MCRid135388" xlink:type="simple"><OMS cd="nuprl" name="times" xlink:href="MCRid135390" xlink:type="simple"/><OMA xlink:href="MCRid135396" xlink:type="simple"><OMS cd="nuprl" name="unary-minus" xlink:href="MCRid135397" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid135403">1</OMI></OMA><OMI xlink:type="simple" xlink:href="MCRid135406">2</OMI></OMA><OMA xlink:href="MCRid135410" xlink:type="simple"><OMS cd="nuprl" name="unary-minus" xlink:href="MCRid135411" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid135417">2</OMI></OMA></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="symbol" id="divide">
+<div class="titlebox">
+<span class="titleword">Concept</span>divide</div>The division operator.</div>
+
+<div class="example" id="ex-divide">
+<span class="titleword">Example</span><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid135534"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#eq"><mfrac id="MCRid135544"><mn id="MCRid135553">4</mn><mrow><mo separator="true">,</mo><mn id="MCRid135556">2</mn></mrow></mfrac><mo xlink:href="#eq">=</mo><mn id="MCRid135560">2</mn><mo xlink:href="#eq"> in </mo></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid135534" xlink:type="simple"><OMA xlink:href="MCRid135536" xlink:type="simple"><OMS cd="nuprl" name="eq" xlink:href="MCRid135538" xlink:type="simple"/><OMA xlink:href="MCRid135544" xlink:type="simple"><OMS cd="nuprl" name="divide" xlink:href="MCRid135546" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid135553">4</OMI><OMI xlink:type="simple" xlink:href="MCRid135556">2</OMI></OMA><OMI xlink:type="simple" xlink:href="MCRid135560">2</OMI></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="symbol" id="rem">
+<div class="titlebox">
+<span class="titleword">Concept</span>rem</div>The operator for quotient remainder.</div>
+
+<div class="example" id="ex-rem">
+<span class="titleword">Example</span><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid135643"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#eq"><mfenced id="id135654" open="(" close=")" separators=""><mn id="MCRid135662">4</mn><mo xlink:href="#rem" xlink:type="simple" id="MCRid135656"> rem </mo><mn id="MCRid135666">2</mn></mfenced><mo xlink:href="#eq">=</mo><mn id="MCRid135670">0</mn><mo xlink:href="#eq"> in </mo></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid135643" xlink:type="simple"><OMA xlink:href="MCRid135646" xlink:type="simple"><OMS cd="nuprl" name="eq" xlink:href="MCRid135648" xlink:type="simple"/><OMA xlink:href="MCRid135654" xlink:type="simple"><OMS cd="nuprl" name="rem" xlink:href="MCRid135656" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid135662">4</OMI><OMI xlink:type="simple" xlink:href="MCRid135666">2</OMI></OMA><OMI xlink:type="simple" xlink:href="MCRid135670">0</OMI></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="symbol" id="integer-eq-conditional">
+<div class="titlebox">
+<span class="titleword">Concept</span>integer-eq-conditional</div>The conditional on integers. It takes four arguments:
+   The first two are integers, the last two are arbitrary terms. 
+   If the first two are equal, then the value of the complex expression 
+   is that the third, else the fourth argument.</div>
+
+<div class="example" id="ex-integer-eq-conditional">
+<span class="titleword">Example</span><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid135731"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#eq"><mrow id="MCRid135742"><mo xlink:href="#integer-eq-conditional" xlink:type="simple" id="id135744">integer-eq-conditional</mo><mrow><mo fence="true">(</mo><mrow><mn id="MCRid135750">1</mn><mo separator="true">,</mo><mn id="MCRid135753">2</mn><mo separator="true">,</mo><mn id="MCRid135756">3</mn><mo separator="true">,</mo><mn id="MCRid135760">4</mn></mrow><mo fence="true">)</mo></mrow></mrow><mo xlink:href="#eq">=</mo><mn id="MCRid135764">4</mn><mo xlink:href="#eq"> in </mo></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid135731" xlink:type="simple"><OMA xlink:href="MCRid135733" xlink:type="simple"><OMS cd="nuprl" name="eq" xlink:href="MCRid135736" xlink:type="simple"/><OMA xlink:href="MCRid135742" xlink:type="simple"><OMS cd="nuprl" name="integer-eq-conditional" xlink:href="MCRid135744" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid135750">1</OMI><OMI xlink:type="simple" xlink:href="MCRid135753">2</OMI><OMI xlink:type="simple" xlink:href="MCRid135756">3</OMI><OMI xlink:type="simple" xlink:href="MCRid135760">4</OMI></OMA><OMI xlink:type="simple" xlink:href="MCRid135764">4</OMI></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="symbol" id="integer-less-conditional">
+<div class="titlebox">
+<span class="titleword">Concept</span>integer-less-conditional</div>The inequality conditional on integers. It takes four arguments:
+   The first two are integers, the last two are arbitrary terms. 
+   If the first is less than the second one, then the value of the 
+   complex expression is that the third, else the fourth argument.
+  </div>
+
+<div class="example" id="ex-integer-less-conditional">
+<span class="titleword">Example</span><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid136051"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#eq"><mrow id="MCRid136062"><mo xlink:href="#integer-eq-conditional" xlink:type="simple" id="id136064">integer-eq-conditional</mo><mrow><mo fence="true">(</mo><mrow><mn id="MCRid136070">1</mn><mo separator="true">,</mo><mn id="MCRid136073">2</mn><mo separator="true">,</mo><mn id="MCRid136076">3</mn><mo separator="true">,</mo><mn id="MCRid136080">4</mn></mrow><mo fence="true">)</mo></mrow></mrow><mo xlink:href="#eq">=</mo><mn id="MCRid136084">4</mn><mo xlink:href="#eq"> in </mo></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid136051" xlink:type="simple"><OMA xlink:href="MCRid136054" xlink:type="simple"><OMS cd="nuprl" name="eq" xlink:href="MCRid136056" xlink:type="simple"/><OMA xlink:href="MCRid136062" xlink:type="simple"><OMS cd="nuprl" name="integer-eq-conditional" xlink:href="MCRid136064" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid136070">1</OMI><OMI xlink:type="simple" xlink:href="MCRid136073">2</OMI><OMI xlink:type="simple" xlink:href="MCRid136076">3</OMI><OMI xlink:type="simple" xlink:href="MCRid136080">4</OMI></OMA><OMI xlink:type="simple" xlink:href="MCRid136084">4</OMI></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="symbol" id="less">
+<div class="titlebox">
+<span class="titleword">Concept</span>less</div>The inequality type constructor for two integers, it is inhabited, iff the first is
+  less than the other.
+  </div>
+
+<div class="example" id="ex-less">
+<span class="titleword">Example</span>
+<p>The following type is not inhabited</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid136191"><semantics><mfenced id="id136194" open="(" close=")" separators=""><mn id="MCRid136202">1</mn><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#less" xlink:type="simple" id="MCRid136196">&amp;lt;</mo><mn id="MCRid136205">0</mn></mfenced><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid136191" xlink:type="simple"><OMA xlink:href="MCRid136194" xlink:type="simple"><OMS cd="nuprl" name="less" xlink:href="MCRid136196" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid136202">1</OMI><OMI xlink:type="simple" xlink:href="MCRid136205">0</OMI></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="symbol" id="list-type">
+<div class="titlebox">
+<span class="titleword">Concept</span>list-type</div>The list type constructor</div>
+
+<div class="symbol" id="nil">
+<div class="titlebox">
+<span class="titleword">Concept</span>nil</div>The empty list.</div>
+
+<div class="symbol" id="cons">
+<div class="titlebox">
+<span class="titleword">Concept</span>cons</div>The list construction operator. Its first argument is an element, 
+     and the second one a list.
+  </div>
+
+<div class="example" id="ex-cons">
+<span class="titleword">Example</span>
+<p>A construction of a sigleton list</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid136416"><semantics><mfenced id="id136419" open="(" close=")" separators=""><mi id="MCRid136427">E</mi><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cons" xlink:type="simple" id="MCRid136421">::</mo><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#nil" xlink:type="simple" id="MCRid136431">[]</mo></mfenced><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid136416" xlink:type="simple"><OMA xlink:href="MCRid136419" xlink:type="simple"><OMS cd="nuprl" name="cons" xlink:href="MCRid136421" xlink:type="simple"/><OMV name="E" xlink:href="MCRid136427" xlink:type="simple"/><OMS cd="nuprl" name="nil" xlink:href="MCRid136431" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="symbol" id="rectype">
+<div class="titlebox">
+<span class="titleword">Concept</span>rectype</div>The inductive type constructor, its first argument is a variable, 
+     its second one a type 
+  </div>
+
+<div class="symbol" id="structural-recursion">
+<div class="titlebox">
+<span class="titleword">Concept</span>structural-recursion</div></div>
+
+<div class="symbol" id="subset-type">
+<div class="titlebox">
+<span class="titleword">Concept</span>subset-type</div>The dependent subset type constructor. It takes two arguments:
+  The first one is a type <math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid136719"><semantics><mi id="MCRid136721">S</mi><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid136719" xlink:type="simple"><OMV name="S" xlink:href="MCRid136721" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math>,
+  the second one is a unary predicate <math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid136726"><semantics><mi id="MCRid136728">P</mi><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid136726" xlink:type="simple"><OMV name="P" xlink:href="MCRid136728" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math> on type <math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid136732"><semantics><mi id="MCRid136734">S</mi><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid136732" xlink:type="simple"><OMV name="S" xlink:href="MCRid136734" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math>.  The value is the type of all objects of type
+  <math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid136738"><semantics><mi id="MCRid136740">S</mi><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid136738" xlink:type="simple"><OMV name="S" xlink:href="MCRid136740" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math> that satisfy <math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid136746"><semantics><mi id="MCRid136747">P</mi><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid136746" xlink:type="simple"><OMV name="P" xlink:href="MCRid136747" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math>.</div>
+
+<div class="example" id="ex-subset-type">
+<span class="titleword">Example</span>
+<p>The type of singleton lists of integers containing 1.</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid137065"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#subset-type"><mo xlink:href="#subset-type">{</mo><mi id="MCRid137091">x</mi><mo xlink:href="#subset-type">:</mo><mo xlink:href="#Z" xlink:type="simple" id="MCRid137075">ℤ</mo><mo xlink:href="#subset-type">|</mo><mrow xlink:href="#eq"><mi id="MCRid137104">x</mi><mo xlink:href="#eq">=</mo><mn id="MCRid137108">1</mn><mo xlink:href="#eq"> in </mo><mo xlink:href="#Z" xlink:type="simple" id="MCRid137111">ℤ</mo></mrow><mo xlink:href="#subset-type">}</mo></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid137065" xlink:type="simple"><OMA xlink:href="MCRid137067" xlink:type="simple"><OMS cd="nuprl" name="subset-type" xlink:href="MCRid137069" xlink:type="simple"/><OMS cd="nuprl" name="Z" xlink:href="MCRid137075" xlink:type="simple"/><OMBIND xlink:href="MCRid137082" xlink:type="simple"><OMS cd="nuprl" name="lambda" xlink:href="MCRid137084" xlink:type="simple"/><OMBVAR xlink:href="MCRid137090" xlink:type="simple"><OMV name="x" xlink:href="MCRid137091" xlink:type="simple"/></OMBVAR><OMA xlink:href="MCRid137096" xlink:type="simple"><OMS cd="nuprl" name="eq" xlink:href="MCRid137098" xlink:type="simple"/><OMV name="x" xlink:href="MCRid137104" xlink:type="simple"/><OMI xlink:type="simple" xlink:href="MCRid137108">1</OMI><OMS cd="nuprl" name="Z" xlink:href="MCRid137111" xlink:type="simple"/></OMA></OMBIND></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="symbol" id="independent-subset-type">
+<div class="titlebox">
+<span class="titleword">Concept</span>independent-subset-type</div>The independent subset type constructor.</div>
+
+<div class="symbol" id="quotient-type">
+<div class="titlebox">
+<span class="titleword">Concept</span>quotient-type</div>The quotient type constructor. 
+   It takes two arguments, the first is a type <math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid137247"><semantics><mi id="MCRid137248">S</mi><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid137247" xlink:type="simple"><OMV name="S" xlink:href="MCRid137248" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math>, 
+   the second is a binary relation <math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid137253"><semantics><mi id="MCRid137254">R</mi><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid137253" xlink:type="simple"><OMV name="R" xlink:href="MCRid137254" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math> on 
+   <math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid137259"><semantics><mi id="MCRid137261">S</mi><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid137259" xlink:type="simple"><OMV name="S" xlink:href="MCRid137261" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math>. The value is the type of equivalence classes of
+   <math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid137265"><semantics><mi id="MCRid137267">S</mi><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid137265" xlink:type="simple"><OMV name="S" xlink:href="MCRid137267" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math>.
+  </div>
+
+<div class="example" id="ex-quotient-type">
+<span class="titleword">Example</span>
+<p>The following is a quotient type of <math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid137508"><semantics><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#Z" xlink:type="simple" id="MCRid137510">ℤ</mo><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid137508" xlink:type="simple"><OMS cd="nuprl" name="Z" xlink:href="MCRid137510" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math> by
+  ****</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid137518"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#quotient-type"><mi id="MCRid137545">x</mi><mo xlink:href="#quotient-type">,</mo><mi id="MCRid137548">y</mi><mo xlink:href="#quotient-type">:</mo><mo xlink:href="#Z" xlink:type="simple" id="MCRid137529">ℤ</mo><mo xlink:href="#quotient-type">//</mo><mrow xlink:href="#eq"><mi id="MCRid137561">x</mi><mo xlink:href="#eq">=</mo><mi id="MCRid137565">y</mi><mo xlink:href="#eq"> in </mo><mo xlink:href="#Z" xlink:type="simple" id="MCRid137569">ℤ</mo></mrow></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid137518" xlink:type="simple"><OMA xlink:href="MCRid137521" xlink:type="simple"><OMS cd="nuprl" name="quotient-type" xlink:href="MCRid137523" xlink:type="simple"/><OMS cd="nuprl" name="Z" xlink:href="MCRid137529" xlink:type="simple"/><OMBIND xlink:href="MCRid137535" xlink:type="simple"><OMS cd="nuprl" name="lambda" xlink:href="MCRid137537" xlink:type="simple"/><OMBVAR xlink:href="MCRid137544" xlink:type="simple"><OMV name="x" xlink:href="MCRid137545" xlink:type="simple"/><OMV name="y" xlink:href="MCRid137548" xlink:type="simple"/></OMBVAR><OMA xlink:href="MCRid137552" xlink:type="simple"><OMS cd="nuprl" name="eq" xlink:href="MCRid137554" xlink:type="simple"/><OMV name="x" xlink:href="MCRid137561" xlink:type="simple"/><OMV name="y" xlink:href="MCRid137565" xlink:type="simple"/><OMS cd="nuprl" name="Z" xlink:href="MCRid137569" xlink:type="simple"/></OMA></OMBIND></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="symbol" id="type-intersection">
+<div class="titlebox">
+<span class="titleword">Concept</span>type-intersection</div>The type intersection constructor.  
+  The first argument is a type <math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid137612"><semantics><mi id="MCRid137613">S</mi><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid137612" xlink:type="simple"><OMV name="S" xlink:href="MCRid137613" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math>, and the second is a
+  function whose value is a type.
+ </div>
+
+<div class="example" id="ex-type-intersection">
+<span class="titleword">Example</span>
+<p>The intersection of all values of the type constructor 
+  <math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid137830"><semantics><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid137830" xlink:type="simple"/></annotation-xml></semantics></math> on the integers is 
+  </p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid137838"><semantics><mrow id="MCRid137840"><mrow xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#type-intersection"><mo xlink:href="#type-intersection">{\isect}</mo><mo xlink:href="#type-intersection">:</mo><mo xlink:href="#type-intersection">.</mo></mrow><mrow><mo fence="true">(</mo><mrow><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#Z" xlink:type="simple" id="MCRid137849">ℤ</mo><mo separator="true">,</mo><mfenced id="id137855" open="\" close="" separators=""><mrow id="MCRid137867"><mi id="MCRid137868">x</mi></mrow><mo separator="true">.</mo><mrow id="MCRid137872"><mi id="MCRid137873">vec</mi><mrow><mo fence="true">(</mo><mrow><mi id="MCRid137876">x</mi></mrow><mo fence="true">)</mo></mrow></mrow></mfenced></mrow><mo fence="true">)</mo></mrow></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid137838" xlink:type="simple"><OMA xlink:href="MCRid137840" xlink:type="simple"><OMS cd="nuprl" name="type-intersection" xlink:href="MCRid137842" xlink:type="simple"/><OMS cd="nuprl" name="Z" xlink:href="MCRid137849" xlink:type="simple"/><OMBIND xlink:href="MCRid137855" xlink:type="simple"><OMS cd="nuprl" name="lambda" xlink:href="MCRid137860" xlink:type="simple"/><OMBVAR xlink:href="MCRid137867" xlink:type="simple"><OMV name="x" xlink:href="MCRid137868" xlink:type="simple"/></OMBVAR><OMA xlink:href="MCRid137872" xlink:type="simple"><OMV name="vec" xlink:href="MCRid137873" xlink:type="simple"/><OMV name="x" xlink:href="MCRid137876" xlink:type="simple"/></OMA></OMBIND></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+
+
+</body>
+</html>

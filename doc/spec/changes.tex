@@ -1,0 +1,66 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This file is part of the LaTeX sources of the OMDoc 1.3 specification
+% Copyright (c) 2006 Michael Kohlhase
+% This work is licensed by the Creative Commons Share-Alike license
+% see http://creativecommons.org/licenses/by-sa/2.5/ for details
+\svnInfo $Id: changes.tex 8685 2010-08-23 08:55:17Z kohlhase $
+\svnKeyword $HeadURL: https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.3/doc/spec/changes.tex $
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{tchapter}[id=changelog]{Changes to the specification}
+
+After about 18 Months of development, Version 1.0 of the {\omdoc} format was released on
+November $1^{st}$ 2000 to give users a stable interface to base their documents and
+systems on. It was adopted by various projects in {\twintoo{automated}{deduction}},
+{\twintoo{algebraic}{specification}}, and {\twintoo{computer-supported}{education}}. The
+experience from these projects uncovered a multitude of small deficiencies and extension
+possibilities of the format, that have been subsequently discussed in the {\omdoc}
+{\indextoo{community}}.
+
+{\omdocv{1.1}} was released on December $29^{th}$ 2001 as an attempt to roll the
+uncontroversial and non-disruptive part of the extensions and corrections into a
+consistent language format. The changes to version 1.0 were largely conservative,
+adding optional attributes or child elements. Nevertheless, some non-conservative
+changes were introduced, but only to less used parts of the format or in order to
+remedy design flaws and inconsistencies of version 1.0.
+
+{\omdocv{1.3}} is the mature version in the {\omdocv{1}} series of specifications. It
+contains almost no large-scale changes to the document format, except that {\cmathml} is
+now allowed as a representation for mathematical objects. But many of the representational
+features have been fine-tuned and brought up to date with the maturing {\xml} technology
+(e.g. {\snippet{ID}}\twin{type}{ID} attributes now follow the XML ID
+specification~\cite{XML:id05}, and the Dublin Core elements follow the official
+syntax~\cite{DCMI:dmt03}). The main development is that the {\omdoc} specification, the
+DTD, and schema are split into a system of interdependent modules that support independent
+development of certain language aspects and simpler specification and deployment of
+sub-languages.  {\vomdoc{1.3}} freezes the development so that version 2 can be started
+off on the modules.
+
+In the following, we will keep a log on the changes that have occurred in the
+released versions of the {\omdoc} format.  We will briefly tabulate the changes by
+element name. For the state of an element we will use the shorthands ``dep'' for
+{\indextoo{deprecated}} (i.e. the element is no longer in use in the new {\omdoc}
+version), ``cha'' for {\indextoo{changed}}, if the element is re-structured (i.e.
+some additions and losses), ``new'' if did not exist in the old {\omdoc} version,
+``lib'', if it was liberalized (e.g. an attribute was made optional) and finally
+``aug'' for {\indextoo{augmented}}, i.e. if it has obtained additional children or
+attributes in the new {\omdoc} version.
+
+All changes will be relative to the previous version, starting out with OMDoc 1.0.
+
+\input{changes1.3}
+\input{changes1.2}
+\input{changes1.1}
+\end{tchapter}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "omdoc"
+%%% End: 
+
+% LocalWords:  dep cha aug omlet OMFOREIGN ref sortdef def adt IDREF dc attr th
+% LocalWords:  classid codebase href trl OMSTR xref URIref omstyle proofobject
+% LocalWords:  xslt changelog lib commonname pto crid cr ns mc metacomment rt
+% LocalWords:  requation cref OMR cd cdbase larg rarg elt extradata DTD CMP FMP
+% LocalWords:  metadata omgroup OMOBJ omtext omdoc dataset cdurl cdreviewdate
+% LocalWords:  cdversion cdrevision cdstatus recurse timestamp ren loc dmt03

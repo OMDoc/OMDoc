@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE omdoc PUBLIC "-//OMDoc//DTD OMDoc V1.3//EN"
+                       "../../../dtd/omdoc.dtd" []>
+
+<omdoc xml:id="pcmml.omdoc"
+  xmlns="http://omdoc.org/ns"
+  xmlns:cc="http://creativecommons.org/ns"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  version="1.3">
+
+<metadata>
+  <dc:date action="created"> 2004-10-05T11:47:07Z </dc:date>
+  <dc:title xml:lang="en"> pcmml </dc:title>
+  <dc:creator role="aut"> Michael Kohlhase </dc:creator>
+  <dc:source>  </dc:source>
+  <dc:date action="updated"> 2004-10-05T11:47:07Z </dc:date>
+  <dc:type> Text </dc:type>
+  <dc:format> application/omdoc+xml </dc:format>
+  <dc:rights>Copyright (c) 2004 Michael Kohlhase</dc:rights>
+  <cc:license>
+    <cc:permissions reproduction="permitted" distribution="permitted" derivative_works="permitted"/>
+    <cc:prohibitions commercial_use="permitted"/>
+    <cc:requirements notice="required" copyleft="required" attribution="required"/>
+  </cc:license>
+</metadata>
+
+<omtext xml:id="test">
+  <CMP>
+<m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+  <m:semantics>
+    <m:mrow id="t">               <!-- the expression (a+b)(c+d) -->
+      <m:mrow id="t2">
+        <m:mo fence="true">(</m:mo>
+        <m:mi id="t22">a</m:mi> 
+        <m:mo id="t21">+</m:mo> 
+        <m:mi id="t23">b</m:mi>
+        <m:mo fence="true">)</m:mo>
+      </m:mrow>
+      <m:mo id="t1">&InvisibleTimes;</m:mo>
+      <m:mrow id="t3">
+        <m:mo fence="true">(</m:mo>
+        <m:mi id="t32">c</m:mi> 
+        <m:mo id="t31">+</m:mo> 
+        <m:mi id="t33">d</m:mi>
+        <m:mo fence="true">)</m:mo>
+      </m:mrow>
+    </m:mrow>
+    <m:annotation-xml encoding="MathML-Content">
+      <m:apply xref="t">
+        <m:times xref="t1"/>
+        <m:apply xref="t2">
+          <m:plus xref="t21"/>
+          <m:ci xref="t22">a</m:ci>
+          <m:ci xref="t23">b</m:ci>
+        </m:apply>
+        <m:apply xref="t3">
+          <m:plus xref="t31"/>
+          <m:ci xref="t32">c</m:ci>
+          <m:ci xref="t33">d</m:ci>
+        </m:apply>
+      </m:apply>
+    </m:annotation-xml>
+  </m:semantics>
+</m:math>
+</CMP>
+</omtext>
+
+
+</omdoc>

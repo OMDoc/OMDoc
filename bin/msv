@@ -1,0 +1,20 @@
+#!/bin/tcsh -f
+
+# find the path of here
+set command=`which $0`
+if ( $command == "" ) then
+	set command="$0"
+endif
+set pathToBin="`dirname $command`"
+set jarpath="$pathToBin/../thirdParty/msv"
+# echo $pathToBin
+# set absPathToBin=`$pathToBin/getActiveMathHome`
+# echo absPathToBin=$absPathToBin
+
+
+#setenv CLASSPATH $jarpath/xerces.jar:$jarpath/xsdlib.jar:$jarpath/isorelax.jar:$jarpath/relaxngDatatype.jar
+#echo $CLASSPATH  
+
+# echo invoking java com.icl.saxon.StyleSheet $argv[*]
+
+java -jar $jarpath/complete-msv.jar $argv[*]

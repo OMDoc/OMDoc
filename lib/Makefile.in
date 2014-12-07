@@ -1,0 +1,7 @@
+xhtml:		$(DEPFILES:%.omdoc=%.xhtml)
+
+include $(OMDOCDIR)/lib/Makefile.clean.in
+
+$(XHTMLFILES): %.xhtml: %.omdoc $(PXSL) 
+	$(JOMDOC) $(JOMDOCPARAMS) -o $@ render $<  
+

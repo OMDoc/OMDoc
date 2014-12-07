@@ -1,0 +1,994 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html id="rdf.omdoc" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <link rel="stylesheet" type="text/css" href="omdoc-default.css"/>
+    <title>A Content Dictionary for the RDF Vocabulary Description Language (RDFS)</title>
+  </head>
+  <body>
+    <div class="dc-titleblock">
+      <div class="dc-title">A Content Dictionary for the RDF Vocabulary Description Language (RDFS)</div>
+      <div class="dc-authors">Christoph Lange</div>
+      <div class="dc-date">2008-09-12</div>
+      <div class="dc-description">This CD defines the RDFS language.</div>
+    </div>
+    <div class="theory" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="http://purl.org/dc/elements/1.1/">
+      <h1 id="rdfs">1. No Title Specified</h1>
+      <div class="imports">imports from: 
+        <a href="../omstd/quant1.xhtml#quant1">quant1</a>, 
+        <a href="../omstd/logic1.xhtml#logic1">logic1</a>, 
+        <a href="rdf.xhtml#rdf">rdf</a>
+      </div>
+      <div class="omdoc-symbol" id="type" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#rdfs"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>type
+        </div>
+        <div class="omdoc-type" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>() 
+            <span id="MCRd20e152" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+                <m:mrow>
+                  <m:mo>Property</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mo>Resource</m:mo>
+                  <m:mo separator="true">,</m:mo>
+                  <m:mo>Class</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-symbol" id="Property" role="Symbol" about="#Property.symbol" xml:id="Property.symbol">
+        <a class="omdoc" rel="oso:homeTheory" href="#rdfs"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>Property
+        </div>
+        <div class="omdoc-type" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>() 
+            <span id="MCRd20e175" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+                <m:mo>Class</m:mo>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-axiom" role="Axiom" about="#Property.symbol" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#Property.symbol"/>
+        <span class="omdoc-titleword">Axiom</span>
+        <span class="omdoc-FMP">
+          <span id="MCRd20e180" class="displaymath">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+              <m:mrow>
+                <m:mo>Property</m:mo>
+                <m:mo>⊑</m:mo>
+                <m:mo>Resource</m:mo>
+              </m:mrow>
+            </m:math>
+          </span>
+        </span>
+      </div>
+      <div class="omdoc-symbol" id="Statement" role="Symbol" about="#Statement.symbol" xml:id="Statement.symbol">
+        <a class="omdoc" rel="oso:homeTheory" href="#rdfs"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>Statement
+        </div>
+        <div class="omdoc-type" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>() 
+            <span id="MCRd20e197" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+                <m:mo>Class</m:mo>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-axiom" role="Axiom" about="#Statement.symbol" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#Statement.symbol"/>
+        <span class="omdoc-titleword">Axiom</span>
+        <span class="omdoc-FMP">
+          <span id="MCRd20e202" class="displaymath">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+              <m:mrow>
+                <m:mo>Statement</m:mo>
+                <m:mo>⊑</m:mo>
+                <m:mo>Resource</m:mo>
+              </m:mrow>
+            </m:math>
+          </span>
+        </span>
+      </div>
+      <div class="omdoc-symbol" id="subject" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#rdfs"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>subject
+        </div>
+        <div class="omdoc-type" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>() 
+            <span id="MCRd20e219" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+                <m:mrow>
+                  <m:mo>Property</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mo>Statement</m:mo>
+                  <m:mo separator="true">,</m:mo>
+                  <m:mo>Resource</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-symbol" id="predicate" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#rdfs"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>predicate
+        </div>
+        <div class="omdoc-type" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>() 
+            <span id="MCRd20e243" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+                <m:mrow>
+                  <m:mo>Property</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mo>Statement</m:mo>
+                  <m:mo separator="true">,</m:mo>
+                  <m:mo>Resource</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-symbol" id="object" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#rdfs"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>object
+        </div>
+        <div class="omdoc-type" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>() 
+            <span id="MCRd20e266" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+                <m:mrow>
+                  <m:mo>Property</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mo>Statement</m:mo>
+                  <m:mo separator="true">,</m:mo>
+                  <m:mo>Resource</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-symbol" id="Bag" role="Symbol" about="#Bag.symbol" xml:id="Bag.symbol">
+        <a class="omdoc" rel="oso:homeTheory" href="#rdfs"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>Bag
+        </div>
+        <div class="omdoc-type" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>() 
+            <span id="MCRd20e289" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+                <m:mo>Class</m:mo>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-axiom" role="Axiom" about="#Bag.symbol" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#Bag.symbol"/>
+        <span class="omdoc-titleword">Axiom</span>
+        <span class="omdoc-FMP">
+          <span id="MCRd20e294" class="displaymath">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+              <m:mrow>
+                <m:mo>Bag</m:mo>
+                <m:mo>⊑</m:mo>
+                <m:mo>Container</m:mo>
+              </m:mrow>
+            </m:math>
+          </span>
+        </span>
+      </div>
+      <div class="omdoc-symbol" id="Seq" role="Symbol" about="#Seq.symbol" xml:id="Seq.symbol">
+        <a class="omdoc" rel="oso:homeTheory" href="#rdfs"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>Seq
+        </div>
+        <div class="omdoc-type" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>() 
+            <span id="MCRd20e311" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+                <m:mo>Class</m:mo>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-axiom" role="Axiom" about="#Seq.symbol" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#Seq.symbol"/>
+        <span class="omdoc-titleword">Axiom</span>
+        <span class="omdoc-FMP">
+          <span id="MCRd20e316" class="displaymath">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+              <m:mrow>
+                <m:mo>Seq</m:mo>
+                <m:mo>⊑</m:mo>
+                <m:mo>Container</m:mo>
+              </m:mrow>
+            </m:math>
+          </span>
+        </span>
+      </div>
+      <div class="omdoc-symbol" id="Alt" role="Symbol" about="#Alt.symbol" xml:id="Alt.symbol">
+        <a class="omdoc" rel="oso:homeTheory" href="#rdfs"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>Alt
+        </div>
+        <div class="omdoc-type" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>() 
+            <span id="MCRd20e333" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+                <m:mo>Class</m:mo>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-axiom" role="Axiom" about="#Alt.symbol" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#Alt.symbol"/>
+        <span class="omdoc-titleword">Axiom</span>
+        <span class="omdoc-FMP">
+          <span id="MCRd20e338" class="displaymath">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+              <m:mrow>
+                <m:mo>Alt</m:mo>
+                <m:mo>⊑</m:mo>
+                <m:mo>Container</m:mo>
+              </m:mrow>
+            </m:math>
+          </span>
+        </span>
+      </div>
+      <div class="omdoc-symbol" id="value" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#rdfs"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>value
+        </div>
+        <div class="omdoc-type" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>() 
+            <span id="MCRd20e355" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+                <m:mrow>
+                  <m:mo>Property</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mo>Resource</m:mo>
+                  <m:mo separator="true">,</m:mo>
+                  <m:mo>Resource</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-symbol" id="List" role="Symbol" about="#List.symbol" xml:id="List.symbol">
+        <a class="omdoc" rel="oso:homeTheory" href="#rdfs"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>List
+        </div>
+        <div class="omdoc-type" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>() 
+            <span id="MCRd20e378" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+                <m:mo>Class</m:mo>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-axiom" role="Axiom" about="#List.symbol" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#List.symbol"/>
+        <span class="omdoc-titleword">Axiom</span>
+        <span class="omdoc-FMP">
+          <span id="MCRd20e383" class="displaymath">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+              <m:mrow>
+                <m:mo>List</m:mo>
+                <m:mo>⊑</m:mo>
+                <m:mo>Resource</m:mo>
+              </m:mrow>
+            </m:math>
+          </span>
+        </span>
+      </div>
+      <div class="omdoc-symbol" id="nil" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#rdfs"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>nil
+        </div>
+        <div class="omdoc-type" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>() 
+            <span id="MCRd20e401" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+                <m:mo>List</m:mo>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-symbol" id="first" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#rdfs"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>first
+        </div>
+        <div class="omdoc-type" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>() 
+            <span id="MCRd20e413" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+                <m:mrow>
+                  <m:mo>Property</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mo>List</m:mo>
+                  <m:mo separator="true">,</m:mo>
+                  <m:mo>Resource</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-symbol" id="rest" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#rdfs"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>rest
+        </div>
+        <div class="omdoc-type" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>() 
+            <span id="MCRd20e436" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+                <m:mrow>
+                  <m:mo>Property</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mo>List</m:mo>
+                  <m:mo separator="true">,</m:mo>
+                  <m:mo>List</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-symbol" id="XMLLiteral" role="Symbol" about="#XMLLiteral.symbol" xml:id="XMLLiteral.symbol">
+        <a class="omdoc" rel="oso:homeTheory" href="#rdfs"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>XMLLiteral
+        </div>
+        <div class="omdoc-type" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>() 
+            <span id="MCRd20e459" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+                <m:mo>Datatype</m:mo>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-axiom" role="Axiom" about="#XMLLiteral.symbol" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#XMLLiteral.symbol"/>
+        <span class="omdoc-titleword">Axiom</span>
+        <span class="omdoc-FMP">
+          <span id="MCRd20e464" class="displaymath">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+              <m:mrow>
+                <m:mo>XMLLiteral</m:mo>
+                <m:mo>⊑</m:mo>
+                <m:mo>Literal</m:mo>
+              </m:mrow>
+            </m:math>
+          </span>
+        </span>
+      </div>
+      <div class="omdoc-axiom" id="proptype-type" role="Axiom" about="#proptype-type" xml:id="proptype-type">
+        <a class="omdoc" rel="oso:homeTheory" href="#rdfs"/>
+        <span class="omdoc-titleword">Axiom</span>
+        <span id="MCRd20e474" class="displaymath">
+          <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+            <m:mrow>
+              <m:mo mcd:cr="quant" xmlns:mcd="http://www.w3.org/ns/mathml-cd">∀</m:mo>
+              <m:mrow>
+                <m:mi>p</m:mi>
+                <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">,</m:mo>
+                <m:mrow>
+                  <m:mi>property</m:mi>
+                  <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">:</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mo>type</m:mo>
+                  <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">,</m:mo>
+                  <m:mrow>
+                    <m:mi>p</m:mi>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                    <m:mi>d</m:mi>
+                    <m:mo separator="true">,</m:mo>
+                    <m:mi>r</m:mi>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                  </m:mrow>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+              </m:mrow>
+              <m:mo separator="true">.</m:mo>
+              <m:mrow>
+                <m:mo mcd:egroup="fence" fence="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                <m:mrow>
+                  <m:mi>p</m:mi>
+                  <m:mo>⊑</m:mo>
+                  <m:mo>Property</m:mo>
+                </m:mrow>
+                <m:mo mcd:cr="fun" xmlns:mcd="http://www.w3.org/ns/mathml-cd">⇒</m:mo>
+                <m:mrow>
+                  <m:mi>property</m:mi>
+                  <m:msub>
+                    <m:mo>:</m:mo>
+                    <m:mi>type</m:mi>
+                  </m:msub>
+                  <m:mi>p</m:mi>
+                </m:mrow>
+                <m:mo mcd:egroup="fence" fence="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+              </m:mrow>
+            </m:mrow>
+          </m:math>
+        </span>
+      </div>
+      <div class="omdoc-axiom" id="proptype-domain" role="Axiom" about="#proptype-domain" xml:id="proptype-domain">
+        <a class="omdoc" rel="oso:homeTheory" href="#rdfs"/>
+        <span class="omdoc-titleword">Axiom</span>
+        <span id="MCRd20e536" class="displaymath">
+          <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+            <m:mrow>
+              <m:mo mcd:cr="quant" xmlns:mcd="http://www.w3.org/ns/mathml-cd">∀</m:mo>
+              <m:mrow>
+                <m:mi>p</m:mi>
+                <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">,</m:mo>
+                <m:mi>d</m:mi>
+                <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">,</m:mo>
+                <m:mrow>
+                  <m:mi>property</m:mi>
+                  <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">:</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mo>type</m:mo>
+                  <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">,</m:mo>
+                  <m:mrow>
+                    <m:mi>p</m:mi>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                    <m:mi>d</m:mi>
+                    <m:mo separator="true">,</m:mo>
+                    <m:mi>r</m:mi>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                  </m:mrow>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+              </m:mrow>
+              <m:mo separator="true">.</m:mo>
+              <m:mrow>
+                <m:mo mcd:egroup="fence" fence="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                <m:mrow>
+                  <m:mi>p</m:mi>
+                  <m:mo>⊑</m:mo>
+                  <m:mo>Property</m:mo>
+                </m:mrow>
+                <m:mo mcd:cr="fun" xmlns:mcd="http://www.w3.org/ns/mathml-cd">⇒</m:mo>
+                <m:mrow>
+                  <m:mo>domain</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mi>property</m:mi>
+                  <m:mo separator="true">,</m:mo>
+                  <m:mi>d</m:mi>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+                <m:mo mcd:egroup="fence" fence="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+              </m:mrow>
+            </m:mrow>
+          </m:math>
+        </span>
+      </div>
+      <div class="omdoc-axiom" id="proptype-range" role="Axiom" about="#proptype-range" xml:id="proptype-range">
+        <a class="omdoc" rel="oso:homeTheory" href="#rdfs"/>
+        <span class="omdoc-titleword">Axiom</span>
+        <span id="MCRd20e605" class="displaymath">
+          <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+            <m:mrow>
+              <m:mo mcd:cr="quant" xmlns:mcd="http://www.w3.org/ns/mathml-cd">∀</m:mo>
+              <m:mrow>
+                <m:mi>p</m:mi>
+                <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">,</m:mo>
+                <m:mi>r</m:mi>
+                <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">,</m:mo>
+                <m:mrow>
+                  <m:mi>property</m:mi>
+                  <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">:</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mo>type</m:mo>
+                  <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">,</m:mo>
+                  <m:mrow>
+                    <m:mi>p</m:mi>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                    <m:mi>d</m:mi>
+                    <m:mo separator="true">,</m:mo>
+                    <m:mi>r</m:mi>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                  </m:mrow>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+              </m:mrow>
+              <m:mo separator="true">.</m:mo>
+              <m:mrow>
+                <m:mo mcd:egroup="fence" fence="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                <m:mrow>
+                  <m:mi>p</m:mi>
+                  <m:mo>⊑</m:mo>
+                  <m:mo>Property</m:mo>
+                </m:mrow>
+                <m:mo mcd:cr="fun" xmlns:mcd="http://www.w3.org/ns/mathml-cd">⇒</m:mo>
+                <m:mrow>
+                  <m:mo>range</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mi>property</m:mi>
+                  <m:mo separator="true">,</m:mo>
+                  <m:mi>r</m:mi>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+                <m:mo mcd:egroup="fence" fence="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+              </m:mrow>
+            </m:mrow>
+          </m:math>
+        </span>
+      </div>
+      <div class="omdoc-symbol" id="Resource" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#rdfs"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>Resource
+        </div>
+        <div class="omdoc-type" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>() 
+            <span id="MCRd20e683" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+                <m:mo>Class</m:mo>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-symbol" id="Class" role="Symbol" about="#Class.symbol" xml:id="Class.symbol">
+        <a class="omdoc" rel="oso:homeTheory" href="#rdfs"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>Class
+        </div>
+        <div class="omdoc-type" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>() 
+            <span id="MCRd20e697" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+                <m:mo>Class</m:mo>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-axiom" role="Axiom" about="#Class.symbol" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#Class.symbol"/>
+        <span class="omdoc-titleword">Axiom</span>
+        <span class="omdoc-FMP">
+          <span id="MCRd20e702" class="displaymath">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+              <m:mrow>
+                <m:mo>Class</m:mo>
+                <m:mo>⊑</m:mo>
+                <m:mo>Resource</m:mo>
+              </m:mrow>
+            </m:math>
+          </span>
+        </span>
+      </div>
+      <div class="omdoc-symbol" id="subClassOf" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#rdfs"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>subClassOf
+        </div>
+        <div class="omdoc-type" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>() 
+            <span id="MCRd20e719" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+                <m:mrow>
+                  <m:mo>Property</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mo>Class</m:mo>
+                  <m:mo separator="true">,</m:mo>
+                  <m:mo>Class</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-symbol" id="subPropertyOf" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#rdfs"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>subPropertyOf
+        </div>
+        <div class="omdoc-type" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>() 
+            <span id="MCRd20e754" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+                <m:mrow>
+                  <m:mo>Property</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mo>Property</m:mo>
+                  <m:mo separator="true">,</m:mo>
+                  <m:mo>Property</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-symbol" id="comment" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#rdfs"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>comment
+        </div>
+        <div class="omdoc-type" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>() 
+            <span id="MCRd20e789" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+                <m:mrow>
+                  <m:mo>Property</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mo>Resource</m:mo>
+                  <m:mo separator="true">,</m:mo>
+                  <m:mo>Resource</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-symbol" id="label" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#rdfs"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>label
+        </div>
+        <div class="omdoc-type" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>() 
+            <span id="MCRd20e812" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+                <m:mrow>
+                  <m:mo>Property</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mo>Resource</m:mo>
+                  <m:mo separator="true">,</m:mo>
+                  <m:mo>Literal</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-symbol" id="domain" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#rdfs"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>domain
+        </div>
+        <div class="omdoc-type" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>() 
+            <span id="MCRd20e835" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+                <m:mrow>
+                  <m:mo>Property</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mo>Property</m:mo>
+                  <m:mo separator="true">,</m:mo>
+                  <m:mo>Class</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-symbol" id="range" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#rdfs"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>range
+        </div>
+        <div class="omdoc-type" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>() 
+            <span id="MCRd20e858" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+                <m:mrow>
+                  <m:mo>Property</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mo>Property</m:mo>
+                  <m:mo separator="true">,</m:mo>
+                  <m:mo>Class</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-symbol" id="seeAlso" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#rdfs"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>seeAlso
+        </div>
+        <div class="omdoc-type" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>() 
+            <span id="MCRd20e881" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+                <m:mrow>
+                  <m:mo>Property</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mo>Resource</m:mo>
+                  <m:mo separator="true">,</m:mo>
+                  <m:mo>Resource</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-symbol" id="isDefinedBy" role="Symbol" about="#isDefinedBy.symbol" xml:id="isDefinedBy.symbol">
+        <a class="omdoc" rel="oso:homeTheory" href="#rdfs"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>isDefinedBy
+        </div>
+        <div class="omdoc-type" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>() 
+            <span id="MCRd20e905" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+                <m:mrow>
+                  <m:mo>Property</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mo>Resource</m:mo>
+                  <m:mo separator="true">,</m:mo>
+                  <m:mo>Resource</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-axiom" role="Axiom" about="#isDefinedBy.symbol" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#isDefinedBy.symbol"/>
+        <span class="omdoc-titleword">Axiom</span>
+        <span class="omdoc-FMP">
+          <span id="MCRd20e921" class="displaymath">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+              <m:mrow>
+                <m:mo>isDefinedBy</m:mo>
+                <m:mo>⊑</m:mo>
+                <m:mo>seeAlso</m:mo>
+              </m:mrow>
+            </m:math>
+          </span>
+        </span>
+      </div>
+      <div class="omdoc-symbol" id="Literal" role="Symbol" about="#Literal.symbol" xml:id="Literal.symbol">
+        <a class="omdoc" rel="oso:homeTheory" href="#rdfs"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>Literal
+        </div>
+        <div class="omdoc-type" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>() 
+            <span id="MCRd20e938" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+                <m:mo>Class</m:mo>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-axiom" role="Axiom" about="#Literal.symbol" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#Literal.symbol"/>
+        <span class="omdoc-titleword">Axiom</span>
+        <span class="omdoc-FMP">
+          <span id="MCRd20e943" class="displaymath">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+              <m:mrow>
+                <m:mo>Literal</m:mo>
+                <m:mo>⊑</m:mo>
+                <m:mo>Resource</m:mo>
+              </m:mrow>
+            </m:math>
+          </span>
+        </span>
+      </div>
+      <div class="omdoc-symbol" id="Container" role="Symbol" about="#Container.symbol" xml:id="Container.symbol">
+        <a class="omdoc" rel="oso:homeTheory" href="#rdfs"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>Container
+        </div>
+        <div class="omdoc-type" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>() 
+            <span id="MCRd20e960" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+                <m:mo>Class</m:mo>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-axiom" role="Axiom" about="#Container.symbol" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#Container.symbol"/>
+        <span class="omdoc-titleword">Axiom</span>
+        <span class="omdoc-FMP">
+          <span id="MCRd20e965" class="displaymath">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+              <m:mrow>
+                <m:mo>Container</m:mo>
+                <m:mo>⊑</m:mo>
+                <m:mo>Resource</m:mo>
+              </m:mrow>
+            </m:math>
+          </span>
+        </span>
+      </div>
+      <div class="omdoc-symbol" id="ContainerMembershipProperty" role="Symbol" about="#ContainerMembershipProperty.symbol" xml:id="ContainerMembershipProperty.symbol">
+        <a class="omdoc" rel="oso:homeTheory" href="#rdfs"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>ContainerMembershipProperty
+        </div>
+        <div class="omdoc-type" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>() 
+            <span id="MCRd20e982" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+                <m:mo>Class</m:mo>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-axiom" role="Axiom" about="#Container.symbol" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#Container.symbol"/>
+        <span class="omdoc-titleword">Axiom</span>
+        <span class="omdoc-FMP">
+          <span id="MCRd20e987" class="displaymath">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+              <m:mrow>
+                <m:mo>Container</m:mo>
+                <m:mo>⊑</m:mo>
+                <m:mo>Property</m:mo>
+              </m:mrow>
+            </m:math>
+          </span>
+        </span>
+      </div>
+      <div class="omdoc-symbol" id="member" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#rdfs"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>member
+        </div>
+        <div class="omdoc-type" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>() 
+            <span id="MCRd20e1004" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+                <m:mrow>
+                  <m:mo>Property</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mo>Resource</m:mo>
+                  <m:mo separator="true">,</m:mo>
+                  <m:mo>Resource</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-symbol" id="Datatype" role="Symbol" about="#Datatype.symbol" xml:id="Datatype.symbol">
+        <a class="omdoc" rel="oso:homeTheory" href="#rdfs"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>Datatype
+        </div>
+        <div class="omdoc-type" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>() 
+            <span id="MCRd20e1027" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+                <m:mo>Class</m:mo>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-axiom" role="Axiom" about="#Datatype.symbol" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#Datatype.symbol"/>
+        <span class="omdoc-titleword">Axiom</span>
+        <span class="omdoc-FMP">
+          <span id="MCRd20e1032" class="displaymath">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+              <m:mrow>
+                <m:mo>Container</m:mo>
+                <m:mo>⊑</m:mo>
+                <m:mo>Class</m:mo>
+              </m:mrow>
+            </m:math>
+          </span>
+        </span>
+      </div>
+    </div>
+  </body>
+</html>

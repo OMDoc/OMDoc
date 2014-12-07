@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE omdoc PUBLIC "-//OMDoc//DTD OMDoc V1.3//EN"
+                "../../dtd/omdoc.dtd" []>
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  xmlns="http://omdoc.org/ns"
+       xml:id="ind-omdoc">
+
+ <metadata>
+  <dc:title>Individuals</dc:title>
+  <dc:creator role="aut">Michael Kohlhase</dc:creator>
+  <dc:date>2002-02-27T00:00:00</dc:date>
+  <dc:description>
+   This theory provides the set of individuals as needed in first-order logic.
+  </dc:description>
+ </metadata>
+
+ <theory xml:id="ind">
+  
+   <symbol name="ind" role="type" scope="global">
+    <metadata>
+      <dc:subject>ind</dc:subject>
+      <dc:description>The type of Individuals</dc:description>
+    </metadata>
+   </symbol>
+   <presentation for="#ind">
+     <use format="default">i</use>
+     <use format="html|pmml">&#x003B9;</use>
+     <use format="TeX">\iota</use>
+   </presentation>
+
+ <symbol name="eq">
+<metadata>
+<dc:description>Equality on individuals.</dc:description>
+</metadata>
+</symbol>
+
+
+<presentation xml:id="pr-eq" for="#eq" role="applied" fixity="infix" precedence="700">
+ <use  format="default">=</use>
+ <use  format="verifun">?eq</use>
+ <use  format="pmml">=</use>
+</presentation>
+
+<presentation for="#eq">
+  <use  format="default">equal</use>
+</presentation>
+
+ <symbol name="neq">
+<metadata>
+<dc:description>Inequality on truth values</dc:description>
+</metadata>
+</symbol>
+
+
+  <presentation xml:id="pr-neq" for="#neq" role="applied" fixity="infix" lbrack="" rbrack="" precedence="700">
+   <use  format="default">!=</use>
+   <use  format="TeX">{\ne}</use>
+   <use  format="html|pmml">{&#x02260;}</use>
+  </presentation>
+
+ </theory>
+</omdoc>

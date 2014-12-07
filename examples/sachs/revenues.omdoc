@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE omdoc PUBLIC "-//OMDoc//DTD OMDoc V1.3//EN"
+                "../../dtd/omdoc.dtd" []>
+
+<omdoc xml:id="revenues.omdoc" 
+       xmlns:dc="http://purl.org/dc/elements/1.1/"
+       xmlns="http://omdoc.org/ns">
+
+ <metadata>
+  <dc:title>A basic Theory of SACHS accounting (revenues)</dc:title>
+  <dc:creator role="aut">Andrea Kohlhase</dc:creator>
+  <dc:creator role="aut">Michael Kohlhase</dc:creator>
+  <dc:creator role="aut">Achim Mahnke</dc:creator>
+  <dc:date>2008-08-26T00:00:00</dc:date>
+  <dc:description>
+    This is the basis of ....
+  </dc:description>
+ </metadata>
+
+ <theory xml:id="revenues">
+   <metadata>
+     <dc:title>Revenues</dc:title>
+   </metadata>
+
+   <imports from="time.omdoc#time"/>
+   <imports from="money.omdoc#money"/>
+
+   <symbol name="revenuesperti">
+     <metadata>
+       <dc:title>Revenues per year</dc:title>
+     </metadata>
+     <type system="sts">
+       <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	 <OMA id="titomoney">
+	   <OMS cd="sts" name="mapsto"/>
+	   <OMS cd="time" name="timeinterval"/>
+	   <OMS cd="money" name="monetaryquantity"/>
+	 </OMA>
+       </OMOBJ>
+     </type>
+   </symbol>
+
+ </theory>
+
+</omdoc>
+
+
+

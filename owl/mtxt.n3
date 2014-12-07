@@ -1,0 +1,166 @@
+@prefix dct:      <http://purl.org/dc/elements/1.1/> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix oo:      <http://omdoc.org/ontology#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix sdoc:	 <http://salt.semanticauthoring.org/onto/abstract-document-ontology#> .
+
+# Declare them as OWL property types, as DCMI Terms is RDFS only (see http://bloody-byte.net/rdf/dc_owl2dl/)
+dct:creator
+	a	owl:AnnotationProperty .
+dct:contributor
+	a	owl:AnnotationProperty .
+dct:subject
+	a	owl:AnnotationProperty .
+dct:title
+	a	owl:AnnotationProperty .
+
+<>
+	a	 owl:Ontology ;
+	dct:title "OMDoc document ontology (module MTXT)" ;
+	rdfs:comment """OMDoc document ontology in OWL-DL, mathematical text module.  See chapter 14.3 (Text Fragments and their Rhetoric/Mathematical Roles) of the OMDoc1.2 specification.
+This file is designed to be imported from the main module `omdoc'.""" ;
+	dct:creator "Gordan Ristovski <g.ristovski@jacobs-university.de>" ;
+	dct:contributor "Christoph Lange <ch.lange@jacobs-university.de>", "Nikita Zhiltsov (Никита Жильцов) <nikita.zhiltsov@gmail.com>" ;
+	dct:subject "Semantic Mathematical Markup, Mathematical Text" ;
+	owl:imports <file:st.n3> .
+
+#TODO As soon as phrase is introduced, make it an InformationChunk
+
+oo:verbalizes
+	a	owl:TransitiveProperty ;
+	rdfs:domain oo:MathKnowledgeItem ;
+	rdfs:range oo:MathKnowledgeItem ;
+	rdfs:comment """An informal knowledge item is supposed to represent its formal counterpart.""" ;
+	rdfs:label "verbalisiert"@de ,
+                "verbalizes"@en ,
+                "вербализует"@ru ;
+	rdfs:isDefinedBy oo: .
+# TODO This is incorrect, since in this format eg Axiom can verbalize Definition,
+# but as the scale of formality degrees is open, we can't model it more exactly
+
+oo:formalizes
+	a	owl:ObjectProperty ;
+	owl:inverseOf		   oo:verbalizes ;
+	rdfs:label "formalisiert"@de ,
+                "formalizes"@en ,
+                "формализует"@ru ;
+	rdfs:isDefinedBy oo: .
+
+oo:Property
+	a	owl:Class ;
+	rdfs:subClassOf oo:MathKnowledgeItem , sdoc:InformationChunk ;
+	rdfs:comment """Represents a property, which can be either formal (FMP) or informal (CMP)""" ;
+	rdfs:label "Eigenschaft"@de ,
+                "Property"@en ,
+                "Свойство"@ru ;
+	owl:disjointWith oo:Statement , oo:Theory , oo:Type ;
+	rdfs:isDefinedBy oo: .
+	
+oo:hasProperty
+	a	owl:ObjectProperty ;
+	rdfs:subPropertyOf oo:hasDirectPart ;
+	rdfs:domain oo:Statement ;
+	rdfs:range oo:Property ;
+	rdfs:comment """Represents relation between nodes and its CMP/FMP children nodes""" ;
+	rdfs:label "hat Eigenschaft"@de ,
+                "has Property"@en ,
+                "обладает свойством"@ru ;
+	rdfs:isDefinedBy oo: .
+
+oo:hasText
+        a       owl:DatatypeProperty ;
+        rdfs:domain oo:Property, oo:InformalKnowledgeItem ;
+        rdfs:range rdfs:Literal ;
+        rdfs:comment """The text of an informal property (CMP in OMDoc)""" ;
+        # Note: one doesn't always have to say 'has …' – I guess here it's pretty much clear without the 'has'. --Christoph, 2010/05/05
+        rdfs:label "Text"@de ,
+                "Text"@en ;
+        rdfs:isDefinedBy oo: .
+
+oo:SequentPart
+	a	owl:Class ;
+	rdfs:subClassOf oo:Statement ;
+	rdfs:comment """A part (either assumption or conclusion) of a sequent structure that a formal property may have""" ;
+	rdfs:label "Sequenzabschnitt"@de ,
+                "Sequent Part"@en ,
+                "Следующая часть"@ru ;
+	owl:disjointWith oo:StatementInTheory ;
+	rdfs:isDefinedBy oo: .
+
+oo:Assumption
+	a	owl:Class ;
+	rdfs:subClassOf oo:SequentPart ;
+	rdfs:comment """Represents any assumption that may occur in a formal property.""" ;
+	rdfs:label "Vermutung"@de ,
+                "Assumption"@en ,
+                "Предположение"@ru ;
+	rdfs:isDefinedBy oo: .
+	
+oo:Conclusion
+	a	owl:Class ;
+	rdfs:subClassOf oo:SequentPart ;
+	rdfs:comment """Represents any conclusion that may occur in a formal property.""" ;
+	rdfs:label "Schlussfolgerung"@de ,
+                "Conclusion"@en ,
+                "Заключение"@ru ;
+	owl:disjointWith oo:Assumption ;
+	rdfs:isDefinedBy oo: .
+	
+oo:assumes
+	a	owl:ObjectProperty ;
+	rdfs:subPropertyOf oo:hasDirectPart ;
+	rdfs:domain oo:Property ;
+	rdfs:range oo:Assumption ;
+	rdfs:label "setzt voraus"@de ,
+                "assumes"@en ,
+                "предполагает"@ru ;
+	rdfs:isDefinedBy oo: .
+	
+oo:concludesWith
+	a	owl:ObjectProperty ;
+	rdfs:subPropertyOf oo:hasDirectPart ;
+	rdfs:domain oo:Property ;
+	rdfs:range oo:Conclusion ;
+        owl:propertyDisjointWith oo:assumes ;
+	rdfs:label "schlussfolgert"@de ,
+                "concludes with"@en ,
+                "заключается посредством"@ru ;
+	rdfs:isDefinedBy oo: .
+	
+oo:usesSymbol
+	a	owl:ObjectProperty ;
+        # TODO maybe we need more domain types for the inductive/pattern definition types,
+        # as they don't have an FMP either, but requation children
+        # same for AssertedType, which has _two_ MOBJ children, which should be distinguished
+	rdfs:domain
+	[ owl:unionOf (
+            oo:SimpleDefinition oo:DeclaredType # these directly contain MOBJs, without a property level in between
+            oo:Property oo:SequentPart)
+	] ;
+	rdfs:range oo:GeneralSymbol ; # as a formula in a proof can use a symbol locally defined within that proof
+	rdfs:comment """FMP can refer to several symbols in its body.""" ;
+	rdfs:label "verwendet Symbol"@de ,
+                "uses symbol"@en ,
+                "использует символ"@ru ;
+	rdfs:isDefinedBy oo: .
+
+oo:occursIn
+	a	owl:ObjectProperty ;
+	owl:inverseOf		   oo:usesSymbol ;
+	rdfs:label "kommt vor in"@de ,
+                "occurs in"@en ,
+                "встречается в"@ru ;
+	rdfs:isDefinedBy oo: .
+
+# deprecated: https://trac.omdoc.org/OMDoc/ticket/1410
+oo:logic
+	a	owl:DatatypeProperty ;
+	rdfs:domain oo:Property ;
+	rdfs:comment """A Formal Mathematical Property is formally represented in some logic. This property helps us create a relation between the property and the logic. This is as defined in the OMDoc 1.2 specification, chapter 1 (Mathematical Text (Modules MTXT and RT)""" ;
+        rdfs:label "Logik"@de ,
+                "Logic"@en .
+	rdfs:isDefinedBy oo: .
+
+#Gordan: TODO Later, I may add a property oflanguage so in case an omtext has only one CMP child, we may make a tripple stating that the omtext has only one language.
+
+#Gordan: TODO Also, a potential problem would be if sibling CMP's have the same language, but this could be easily checked after extracting the tripples ... discuss it with Christoph

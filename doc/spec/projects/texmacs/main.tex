@@ -1,0 +1,177 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This file is part of the LaTeX sources of the OMDoc 1.3 specifiation
+% Copyright (c) 2006 Serge Autexier, Christoph Benzm\"uller, Armin Fiedler, and Henri Lesourd
+% This work is licensed by the Creative Commons Share-Alike license
+% see http://creativecommons.org/licenses/by-sa/2.5/ for details
+\svnInfo $Id: main.tex 8453 2009-08-04 09:58:26Z kohlhase $
+\svnKeyword $HeadURL: https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.3/doc/spec/projects/texmacs/main.tex $
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section[Proof Assistants in Scientific Editors]{Integrating Proof Assistants as Plugins
+  in a Scientific Editor}
+\begin{project}{texmacs-omega}{http://www.ags.uni-sb.de/~omega/projects/verimathdoc}
+  \pauthors{Serge Autexier, Christoph Benzm\"uller, Armin Fiedler, and Henri Lesourd}
+  \pinstitute{Computer Science, Saarland University, Saarbr\"ucken, Germany}
+\end{project}
+
+\twin{proof}{assistant}\twin{scientific}{editor}
+\index{texmacs@\texmacs}\index{OMEGA@\OMEGA}
+
+In contrast to computer algebra systems (CASs), mathematical {\twintoo{proof
+    assistance}{system}s} have not yet achieved considerable recognition and relevance in
+{\twintoo{mathematical}{practice}}.  One significant shortcoming of the current systems is
+that they are not fully integrated or accessible from within standard
+{\twintoo{mathematical}{text-editors}} and that therefore a duplication of the
+representation effort is typically required. For purposes such as {\indextoo{tutoring}},
+{\indextoo{communication}}, or {\indextoo{publication}}, the mathematical content is in
+practice usually encoded using common mathematical representation languages by employing
+standard mathematical editors (e.g., {\LaTeX} and {\emacs}). Proof assistants, in
+contrast, require fully formal representations and they are not yet sufficiently linked
+with these standard mathematical text editors.  Therefore, we have decided to extend the
+mathematical text editor {\texmacs}~\cite{VdH01} in order to provide direct access from it
+to the mathematics assistance system {\OMEGA}~\cite{OMEGA02,SBA-05-a}. Generally, we aim
+at an approach that is not dependent on the particular proof assistant system to be
+integrated~\cite{ABFL-05-a}.
+
+{\texmacs}~\cite{VdH01} is a scientific {\indextoo{WYSIWYG}} text editor that provides
+professional typesetting and supports authoring with powerful macro definition facilities
+like in {\LaTeX}. The internal document format of {\texmacs} is a {\scsys{Scheme}}
+S-expression composed of {\texmacs} specific markup enriched by definable macros.  The
+full access to the document format together with the possibility to define arbitrary
+{\scsys{Scheme}} functions over the S-expressions makes {\texmacs} an appropriate text
+editor for an integration with a mathematical assistance system.
+
+The mathematical proof assistance system {\OMEGA} \cite{OMEGA02,SBA-05-a} provides proof
+development at a high level of abstraction using knowledge-based proof planning and the
+proofs developed in {\OMEGA} can be verbalized in natural language via the proof
+explanation system {\prex}~\cite{Fiedler-01-a}.  As the base calculus of {\OMEGA} we use
+the {\CORE} calculus~\cite{Aut03,Aut-05-a}, which supports proof development directly at
+the {\emph{\twintoo{assertion}{level}}}~\cite{Hu-96-a}, where proof steps are justified in
+terms of applications of definitions, lemmas, theorems, or hypotheses (collectively called
+{\emph{assertions}}).\index{core@{\CORE}}\index{calculus}\twin{mathematical}{document}
+
+Now, consider a teacher, student, engineer, or mathematician who is about to write a new
+mathematical document in {\texmacs}. A first crucial step in our approach is to link this
+new document to one or more mathematical theories provided in a
+{\atwintoo{mathematical}{knowledge}{repository}}.  By providing such a link the document
+is initialized and {\texmacs} macros for the relevant {\twintoo{mathematical}{symbol}s}
+are automatically imported; these macros overload the pure syntactical symbols and link
+them to {\twintoo{formal}{semantics}}. In a {\texmacs} display mode, where this additional
+semantic information is hidden, the user may then proceed in editing
+{\twintoo{mathematical}{text}} as usual.  The definitions, lemmas, theorems and especially
+their proofs give rise to extensions of the original theory and the writing of some proof
+goes along with an interactive proof construction in {\OMEGA}. The semantic annotations
+are used to {\emph{automatically}} build up a corresponding
+{\twintoo{formal}{representation}} in {\OMEGA}, thus avoiding a duplicated encoding effort
+of the mathematical content.  Altogether this allows for the development of mathematical
+documents in professional type-setting quality which in addition can be formally validated
+by {\OMEGA}, hence obtaining {\emph{\atwintoo{verified}{mathematical}{document}s}}.
+
+Using {\texmacs}'s macro definition features, we encode theory-specific knowledge such as
+types, constants, definitions and lemmas in macros.  This allows us to translate new
+textual definitions and lemmas into the formal representation, as well as to translate
+(partial) textbook proofs into formal (partial) proof plans.
+
+Rather than developing a new user interface for the mathematical assistance system
+{\OMEGA}, we adapt {\OMEGA} to serve as a mathematical service provider for {\texmacs}.
+The main difference is that instead of providing a user interface only for the existing
+interaction means of {\OMEGA}, we extend {\OMEGA} to support requirements that arise in
+the preparation of a semi-formal mathematical document. In the following we present some
+requirements that we identified to guide our
+developments.\atwin{formal}{mathematical}{document}
+
+The mathematical document should be prepared directly in interaction with {\OMEGA}. This
+requires that (1) the {\twintoo{semantic}{content}} of the document is accessible for a
+{\twintoo{formal}{analysis}} and (2) the interactions in either direction should be
+localized and aware of the surrounding context.
+
+To make the document accessible for formal analysis requires the extraction of the
+semantic content and its encoding in some semi-formal representation suitable for further
+formal processing.  Since current {\twintoo{natural language}{analysis}} technology cannot
+yet provide us with the support required for this purpose, we use semantic annotations in
+the {\texmacs} document instead. Since these semantic annotations must be provided by the
+author, one requirement is to keep the burden of providing the annotations as low as
+possible.
+
+Due to their formal nature the representations of mathematical objects, for instance,
+definitions or proofs, in existing mathematical assistance systems are very detailed,
+whereas mathematicians omit many obvious or easily inferable details in their documents:
+there is a big gap between common mathematical language and formal, machine-oriented
+representations.  Thus another requirement to interfacing {\texmacs} to {\OMEGA} is to
+limit the details that must be provided by the user in the {\texmacs} document to an
+acceptable amount.
+
+
+In order to allow both the user and the proof assistance system to manipulate the
+mathematical content of the document we need a common representation format for this pure
+mathematical content implemented both in {\texmacs} and in {\OMEGA}. To this end we define
+a language $S$, which includes many standard notions known from other specification
+languages, such as terms, formulas, symbol declarations, definitions, lemmas and theorems.
+The difference to standard specification languages is that our language~$S$ (i) includes a
+language for proofs, (ii) provides means to indicate the logical context of different
+parts of a document by fitting the narrative structure of documents rather than imposing a
+strictly incremental description of theories as used in specification languages, and (iii)
+accommodates various aspects of underspecification, that is, formal details that the
+writer purposely omitted.  Given the language $S$, we augment the document format of
+{\texmacs} by the language $S$.  Thus, if we denote the document format of {\texmacs} by
+$T$, we define a {\atwindef{semantic}{document}{format}} $T+S$ as a document format still
+accepted by {\texmacs}.
+
+Ideally this format of the documents and especially the {\twintoo{semantic}{annotation}s}
+should not be specific to {\OMEGA} in order to enable the combination of the {\texmacs}
+extension with other proof assistance systems as well as the development of independent
+proof checking tools. However, an abstract language for proofs that is suitable for our
+purposes and that allows for underspecification is not yet completely fixed. So far we
+support the assertion-level proof construction rules provided by
+{\CORE}~\cite{Aut03,Aut-05-a}. Thus, instead of defining a fixed language $S$, we define a
+language $S(P)$ parametrized over a language $P$ for proofs and define the document
+format based on $S(C)$, where $C$ denotes the proof language of {\CORE}. This format
+supports the {\emph{\twintoo{static}{representation}}} of
+{\atwintoo{semantically}{annotated}{documents}}, which can be professionally typeset with
+{\texmacs}.
+
+The {\texmacs} document $T+S(C)$ and the pure semantic representation $S(C)$ in the proof
+assistant must be synchronized. The basic idea here is to synchronize via a diff/patch
+mechanism tailored to the tree structure of the {\texmacs} documents. The differences
+between two versions $ts_i$ and $ts_{i+1}$ of the document in $T+S(C)$ are compiled into a
+patch description $p$ of the corresponding document $s_i$ in $S(C)$ for $ts_i$, such that
+the application of $p$ to $s_i$ results in $s_{i+1}$ which corresponds to $ts_{i+1}$. An
+analogous diff/patch technique is used to propagate changes performed by the proof
+assistant tool to documents in $S(C)$ towards the {\texmacs} document in $T+S(C)$. In
+order to enable the translation of the patch descriptions, a key-based protocol is used to
+identify the corresponding parts in $T+S(C)$ and $S(C)$.
+
+Beyond this basic synchronization mechanism, we define a language that allows for the
+description of specific interactions between {\texmacs} and the proof assistant.  This
+language $M$ is a language for structured menus and actions with an
+{\twintoo{evaluation}{semantics}} which allows to flexibly compute the necessary
+parameters for the commands and directives employed in interaction with the proof
+assistants. The {\texmacs} document format $T+S(C)$ is finally extended to $T+S(C)+M$,
+where the menus can be attached to arbitrary parts of a document and the changes of the
+documents performed either by the author or by the proof assistants are propagated between
+$T+S(C)+M$ and $S(C)+M$ via the diff/patch mechanism. Note that this includes also the
+adaptation of the menus, which is a necessary prerequisite to support context-sensitive
+menus and actions contained therein.
+
+The goal of the proposed integration is to use {\OMEGA} as a context-sensitive reasoning
+and verification service accessible from within the first-class mathematical text editor
+{\texmacs}, where the proof assistant adapts to the style an author would like to write
+his {\twintoo{mathematical}{publication}}, and to hide any irrelevant system peculiarities
+from the user.  The communication between {\texmacs} and {\OMEGA} is realized by an
+{\omdoc}-based interface language.
+
+Although so far the proofs are tailored to the rules of the {\CORE} system, the
+representation language in principle is parametrized over a specific language for proofs.
+We currently replace the {\CORE} specific proof languages by some generic notion of
+proofs, in order to obtain a generic format for formalized mathematical documents.
+Thereby we started from a language for assertion-level proofs with
+underspecification~\cite{mkmlanguage,AF-05-a}, which we developed from previous
+experiences with tutorial dialogs about mathematical proofs between a computer and
+students~\cite{dialog}.  \twin{assertion-level proof}{underspecification}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../../omdoc"
+%%% End: 
+
+% LocalWords:  texmacs Autexier Benzm uller Fiedler Lesourd Saarbr ucken CASs

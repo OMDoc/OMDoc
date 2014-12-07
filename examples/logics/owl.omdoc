@@ -1,0 +1,1126 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xml:id="owl.omdoc" version="1.3"
+       xmlns:dc="http://purl.org/dc/elements/1.1/" 
+       xmlns:cc="http://creativecommons.org/ns" 
+       xmlns:om="http://www.openmath.org/OpenMath"
+       xmlns:oo="http://omdoc.org/ontology#"
+       xmlns:m="http://www.w3.org/1998/Math/MathML"
+       xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+       xmlns="http://omdoc.org/ns">
+
+<metadata>
+  <dc:title>A Content Dictionary for OWL, the Web Ontology Langage</dc:title>
+  <dc:creator>Michael Kohlhase</dc:creator>
+  <dc:creator>Christoph Lange</dc:creator>
+  <dc:date>2008-09-12</dc:date>
+  <dc:format>application/omdoc+xml</dc:format>
+  <dc:rights>Copyright (c) 2008 KWARC</dc:rights>
+  <dc:description>This CD defines the OWL ontology language.</dc:description>
+</metadata>
+
+<theory xml:id="owl"
+  cdbase="http://www.openmath.org/cd"
+  cdstatus="experimental"
+  cdurl="https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.3/examples/logics/owl.omdoc"
+  cdversion="0"
+  cdrevision="1">
+  <metadata>
+    <link rel="oo:vocab" href="http://www.w3.org/2002/07/owl#"/>
+  </metadata>
+  
+  <imports from="rdfs.omdoc#rdfs"/>
+  <imports from="xsd.omdoc#xsd"/>  
+
+  <symbol name="Class" xml:id="Class.symbol">
+    <metadata>
+      <meta property="rdfs:label">Class</meta>
+    </metadata>  
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMS cd="rdfs" name="Class"/>
+      </OMOBJ>
+    </type>
+  </symbol>
+  
+  <axiom for="Class">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+          <OMS cd="rdfs" name="subClassOf"/>
+          <OMS cd="owl" name="Class"/>
+          <OMS cd="rdfs" name="Class"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>  
+
+  <symbol name="Thing" xml:id="Thing.symbol">
+    <metadata>
+      <meta property="rdfs:label">Thing</meta>
+    </metadata>    
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMS cd="owl" name="Class"/>
+      </OMOBJ>
+    </type>
+  </symbol>
+  
+  <notation>
+    <prototype>
+      <om:OMS cd="owl" name="Thing"/>
+    </prototype>
+    <rendering>
+      <m:mo>⊤</m:mo>
+    </rendering>
+  </notation>
+
+  <definition for="Thing" type="simple">
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+          <OMS cd="owl" name="unionOf"/>
+          <OMS cd="owl" name="Nothing"/>
+          <OMA>
+            <OMS cd="owl" name="complementOf"/>
+            <OMS cd="owl" name="Nothing"/>
+          </OMA>
+        </OMA>        
+      </OMOBJ>
+  </definition>  
+  
+  <symbol name="Nothing" xml:id="Nothing.symbol">
+    <metadata>
+      <meta property="rdfs:label">Nothing</meta>
+      <dc:description>The empty set, also called “bottom concept”</dc:description>
+    </metadata>    
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMS cd="owl" name="Class"/>
+      </OMOBJ>
+    </type>
+  </symbol>
+  
+  <notation>
+    <prototype>
+      <om:OMS cd="owl" name="Nothing"/>
+    </prototype>
+    <rendering>
+      <m:mo>⊥</m:mo>
+    </rendering>
+  </notation>
+  
+  <definition for="Nothing" type="simple">
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+          <OMS cd="owl" name="complementOf"/>
+          <OMS cd="owl" name="Thing"/>
+        </OMA>        
+      </OMOBJ>
+  </definition>  
+  
+  <symbol name="equivalentClass" xml:id="equivalentClass.symbol">
+    <metadata>
+      <meta property="rdfs:label">equivalentClass</meta>
+    </metadata>    
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	<OMA>
+	  <OMS cd="rdf" name="Property"/>
+	  <OMS cd="owl" name="Class"/>
+	  <OMS cd="owl" name="Class"/>          
+	</OMA>
+      </OMOBJ>
+    </type>
+  </symbol>
+  
+  <notation>
+    <prototype>
+      <om:OMA><om:OMS cd="owl" name="equivalentClass"/><expr name="arg1"/><expr name="arg2"/></om:OMA>
+    </prototype>
+    <rendering>
+      <m:mrow>
+        <render name="arg1"/>
+        <m:mo>=</m:mo>
+        <render name="arg2"/>
+      </m:mrow>
+    </rendering>
+  </notation>
+
+  <axiom for="equivalentClass">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+          <OMS cd="rdfs" name="subPropertyOf"/>
+          <OMS cd="owl" name="equivalentClass"/>
+          <OMS cd="rdfs" name="subClassOf"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>    
+
+  <symbol name="disjointWith">
+    <metadata>
+      <meta property="rdfs:label">disjointWith</meta>
+      <dc:description>This constructor guarantees that an individual that is a
+	member of one class cannot simultaneously be an instance of a specified
+	other class.  An axiom 
+	<OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	  <OMA>
+	    <OMS cd="owl" name="disjointWith"/>
+	    <OMV name="A"/>
+	    <OMV name="B"/>
+	  </OMA>
+	</OMOBJ>
+	is equivalent to the following axiom:
+	<OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	  <OMA>
+	    <OMS cd="rdfs" name="subClassOf"/>
+	    <OMV name="A"/>
+	    <OMA>
+	      <OMS cd="owl" name="complementOf"/>
+	      <OMV name="B"/>
+	    </OMA>
+	  </OMA>
+	</OMOBJ>
+      </dc:description>
+    </metadata>  
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	<OMA>
+	  <OMS cd="rdf" name="Property"/>
+	  <OMS cd="owl" name="Class"/>
+	  <OMS cd="owl" name="Class"/>      
+	</OMA>
+      </OMOBJ>
+    </type>
+  </symbol>
+  
+  <notation>
+    <prototype>
+      <om:OMA><om:OMS cd="owl" name="disjointWith"/><expr name="arg1"/><expr name="arg2"/></om:OMA>
+    </prototype>
+    <rendering>
+      <m:mrow>
+        <render name="arg1"/>
+        <m:mo>⊓</m:mo>
+        <render name="arg2"/>
+        <m:mo>=</m:mo>
+        <m:mo>⊥</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+
+  <symbol name="equivalentProperty" xml:id="equivalentProperty.symbol">
+    <metadata>
+      <meta property="rdfs:label">equivalentProperty</meta>
+    </metadata>    
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMS cd="rdf" name="Property"/>
+      </OMOBJ>
+    </type>
+  </symbol>
+  
+  <notation>
+    <!-- same notation as equivalentProperty -->
+    <prototype>
+      <om:OMA><om:OMS cd="owl" name="equivalentProperty"/><expr name="arg1"/><expr name="arg2"/></om:OMA>
+    </prototype>
+    <rendering>
+      <m:mrow>
+        <render name="arg1"/>
+        <m:mo>=</m:mo>
+        <render name="arg2"/>
+      </m:mrow>
+    </rendering>
+  </notation>
+
+  <axiom for="equivalentProperty">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+          <OMS cd="rdfs" name="subPropertyOf"/>
+          <OMS cd="owl" name="equivalentProperty"/>
+          <OMS cd="rdfs" name="subClassOf"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+  
+  <symbol name="sameAs">
+    <metadata>
+      <meta property="rdfs:label">sameAs</meta>
+    </metadata>    
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	<OMA>
+	  <OMS cd="rdf" name="Property"/>
+	  <OMS cd="owl" name="Thing"/>
+	  <OMS cd="owl" name="Thing"/>
+	</OMA>
+      </OMOBJ>
+    </type>
+  </symbol>
+  
+  <notation>
+    <!-- same notation as equivalentClass -->
+    <prototype>
+      <om:OMA><om:OMS cd="owl" name="sameAs"/><expr name="arg1"/><expr name="arg2"/></om:OMA>
+    </prototype>
+    <rendering>
+      <m:mrow>
+        <render name="arg1"/>
+        <m:mo>=</m:mo>
+        <render name="arg2"/>
+      </m:mrow>
+    </rendering>
+  </notation>
+ 
+   
+  <symbol name="differentFrom">
+    <metadata>
+      <meta property="rdfs:label">differentFrom</meta>
+    </metadata>    
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	<OMA>
+	  <OMS cd="rdf" name="Property"/>
+	  <OMS cd="owl" name="Thing"/>
+	  <OMS cd="owl" name="Thing"/>        
+	</OMA>
+      </OMOBJ>
+    </type>
+  </symbol>
+  
+  <notation>
+    <prototype>
+      <om:OMA><om:OMS cd="owl" name="differentFrom"/><expr name="arg1"/><expr name="arg2"/></om:OMA>
+    </prototype>
+    <rendering>
+      <m:mrow>
+        <render name="arg1"/>
+        <m:mo>≠</m:mo>
+        <render name="arg2"/>
+      </m:mrow>
+    </rendering>
+  </notation>
+
+  <symbol name="AllDifferent">
+    <metadata>
+      <meta property="rdfs:label">AllDifferent</meta>
+    </metadata>    
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMS cd="rdfs" name="Class"/>
+      </OMOBJ>
+    </type>
+  </symbol>
+    
+  <symbol name="distinctMembers">
+    <metadata>
+      <meta property="rdfs:label">distinctMembers</meta>
+    </metadata>   
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	<OMA>
+	  <OMS cd="rdf" name="Property"/>
+	  <OMS cd="owl" name="AllDifferent"/>
+	  <OMS cd="rdf" name="List"/>       
+	</OMA>
+      </OMOBJ>
+    </type>
+  </symbol>
+  
+  <symbol name="unionOf">
+      <metadata>
+        <meta property="rdfs:label">unionOf</meta>
+      </metadata>  
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	<OMA>
+	  <OMS cd="rdf" name="Property"/>
+	  <OMS cd="owl" name="Class"/>
+	  <OMS cd="rdf" name="List"/>
+	</OMA>
+      </OMOBJ>
+    </type>
+  </symbol>
+  
+  <notation>
+    <prototype>
+      <om:OMA><om:OMS cd="owl" name="unionOf"/><expr name="arg1"/><expr name="arg2"/></om:OMA>
+    </prototype>
+    <rendering>
+      <m:mrow>
+        <render name="arg1"/>
+        <m:mo>⊔</m:mo>
+        <render name="arg2"/>
+      </m:mrow>
+    </rendering>
+  </notation>
+  
+  <symbol name="intersectionOf">
+    <metadata>
+      <meta property="rdfs:label">intersectionOf</meta>
+    </metadata>  
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	<OMA>
+	  <OMS cd="rdf" name="Property"/>
+	  <OMS cd="owl" name="Class"/>
+	  <OMS cd="rdf" name="List"/>        
+	</OMA>
+      </OMOBJ>
+    </type>
+  </symbol>
+  
+  <notation>
+    <prototype>
+      <om:OMA><om:OMS cd="owl" name="intersectionOf"/><expr name="arg1"/><expr name="arg2"/></om:OMA>
+    </prototype>
+    <rendering>
+      <m:mrow>
+        <render name="arg1"/>
+        <m:mo>⊓</m:mo>
+        <render name="arg2"/>
+      </m:mrow>
+    </rendering>
+  </notation>
+  
+  <symbol name="complementOf">
+    <metadata>
+      <meta property="rdfs:label">complementOf</meta>
+    </metadata>  
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	<OMA>
+	  <OMS cd="rdf" name="Property"/>
+	  <OMS cd="owl" name="Class"/>
+	  <OMS cd="owl" name="Class"/>       
+	</OMA>
+      </OMOBJ>
+    </type>
+  </symbol>
+  
+  <notation>
+    <prototype>
+      <om:OMA><om:OMS cd="owl" name="complementOf"/><expr name="arg"/></om:OMA>
+    </prototype>
+    <rendering>
+      <m:mrow>
+        <m:mo>¬</m:mo>
+        <render name="arg"/>
+      </m:mrow>
+    </rendering>
+  </notation>
+  
+  <symbol name="oneOf">
+    <metadata>
+      <meta property="rdfs:label">oneOf</meta>
+    </metadata>  
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	<OMA>
+	  <OMS cd="rdf" name="Property"/>
+	  <OMS cd="owl" name="Class"/>
+	  <OMS cd="rdf" name="List"/>        
+	</OMA>
+      </OMOBJ>
+    </type>
+  </symbol>
+
+  <symbol name="Restriction" xml:id="Restriction.symbol">
+    <metadata>
+      <meta property="rdfs:label">Restriction</meta>
+    </metadata>  
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMS cd="rdfs" name="Class"/>
+      </OMOBJ>
+    </type>
+  </symbol>
+
+  <axiom for="Restriction">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+          <OMS cd="rdfs" name="subClassOf"/>
+          <OMS cd="owl" name="Restriction"/>
+          <OMS cd="rdfs" name="Class"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+  
+  <!-- cardinality restrictions -->
+  <notation>
+    <prototype>
+      <om:OMA>
+	<om:OMS cd="owl" name="Restriction"/>
+	<expr name="property"/>
+	<om:OMA>
+	  <!-- the following is assumed to be one of
+	       minCardinality
+	       maxCardinality
+	       cardinality
+	  -->
+	  <expr name="relation"/>
+	  <element ns="http://www.openmath.org/OpenMath" name="OMI">
+	    <tvar name="cardinality"/>
+	  </element>
+	</om:OMA>
+      </om:OMA>
+    </prototype>
+    <rendering>
+      <m:mrow>
+        <render name="relation"/>
+	<m:mn><render name="cardinality"/></m:mn>
+        <render name="property"/>
+      </m:mrow>
+    </rendering>
+  </notation>
+  
+  <!-- qualified cardinality restrictions (OWL 2) -->
+  <notation>
+    <prototype>
+      <om:OMA>
+	<om:OMS cd="owl" name="Restriction"/>
+	<expr name="property"/>
+	<om:OMA>
+	  <!-- the following is assumed to be one of
+	       minQualifiedCardinality
+	       maxQualifiedCardinality
+	       qualifiedCardinality
+	  -->
+	  <expr name="relation"/>
+	  <element ns="http://www.openmath.org/OpenMath" name="OMI">
+	    <tvar name="cardinality"/>
+	  </element>
+	  <expr name="class"/>
+	</om:OMA>
+      </om:OMA>
+    </prototype>
+    <rendering>
+      <m:mrow>
+        <render name="relation"/>
+	<m:mn><render name="cardinality"/></m:mn>
+        <render name="property"/>
+	<m:mo>.</m:mo>
+        <render name="class"/>
+      </m:mrow>
+    </rendering>
+  </notation>
+  
+  <!-- existential/universal restrictions
+       uncomment the following three hard-coded ones for testing
+  <notation>
+    <prototype>
+      <om:OMA>
+	<om:OMS cd="owl" name="Restriction"/>
+	<expr name="property"/>
+	<om:OMA>
+	  <!- the following is assumed to be one of
+	       allValuesFrom
+	       someValuesFrom
+	       hasValue
+	  ->
+	  <expr name="relation"/>
+	  <expr name="class"/>
+	</om:OMA>
+      </om:OMA>
+    </prototype>
+    <rendering>
+      <m:mrow>
+        <render name="relation"/>
+        <render name="property"/>
+	<m:mo>.</m:mo>
+        <render name="class"/>
+      </m:mrow>
+    </rendering>
+  </notation>
+  -->
+
+  <!-- general matching (see above) does not work, is not 
+       distinguished from cardinality restriction -->
+  <notation>
+    <prototype>
+      <om:OMA>
+	<om:OMS cd="owl" name="Restriction"/>
+	<expr name="property"/>
+	<om:OMA>
+	  <om:OMS cd="owl" name="allValuesFrom"/>
+	  <expr name="class"/>
+	</om:OMA>
+      </om:OMA>
+    </prototype>
+    <rendering>
+      <m:mrow>
+        <m:mo>∀</m:mo>
+        <render name="property"/>
+	<m:mo>.</m:mo>
+        <render name="class"/>
+      </m:mrow>
+    </rendering>
+  </notation>
+
+  <!-- general matching (see above) does not work, is not 
+       distinguished from cardinality restriction -->
+  <notation>
+    <prototype>
+      <om:OMA>
+	<om:OMS cd="owl" name="Restriction"/>
+	<expr name="property"/>
+	<om:OMA>
+	  <om:OMS cd="owl" name="hasValue"/>
+	  <expr name="class"/>
+	</om:OMA>
+      </om:OMA>
+    </prototype>
+    <rendering>
+      <m:mrow>
+        <m:mo>∃</m:mo>
+        <render name="property"/>
+	<m:mo>.</m:mo>
+        <render name="class"/>
+      </m:mrow>
+    </rendering>
+  </notation>
+
+  <!-- general matching (see above) does not work, is not 
+       distinguished from cardinality restriction -->
+  <notation>
+    <prototype>
+      <om:OMA>
+	<om:OMS cd="owl" name="Restriction"/>
+	<expr name="property"/>
+	<om:OMA>
+	  <om:OMS cd="owl" name="someValuesFrom"/>
+	  <expr name="class"/>
+	</om:OMA>
+      </om:OMA>
+    </prototype>
+    <rendering>
+      <m:mrow>
+        <m:mo>∃</m:mo>
+        <render name="property"/>
+	<m:mo>.</m:mo>
+        <render name="class"/>
+      </m:mrow>
+    </rendering>
+  </notation>
+
+  <!-- Actually, this symbol is not needed, as we don't use it thanks to
+       syntactic sugar.  It's only here for the sake of completeness.
+       Or maybe the translation from our syntactic sugar should be documented 
+       by an axiom?
+       Discussion: https://trac.kwarc.info/krextor/ticket/27
+  -->
+  <symbol name="onProperty">
+    <metadata>
+      <meta property="rdfs:label">onProperty</meta>
+    </metadata> 
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	<OMA>
+	  <OMS cd="rdf" name="Property"/>        
+	  <OMS cd="owl" name="Restriction"/>
+	  <OMS cd="rdf" name="Property"/>
+	</OMA>
+      </OMOBJ>
+    </type>
+  </symbol>
+
+  <symbol name="allValuesFrom">
+    <metadata>
+      <meta property="rdfs:label">allValuesFrom</meta>
+    </metadata> 
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	<OMA>
+	  <OMS cd="rdf" name="Property"/>
+	  <OMS cd="owl" name="Restriction"/>
+	  <OMS cd="rdfs" name="Class"/>       
+	</OMA>
+      </OMOBJ>
+    </type>
+  </symbol>
+
+  <notation>
+    <prototype>
+      <om:OMS cd="owl" name="allValuesFrom"/>
+    </prototype>
+    <rendering>
+      <m:mo>∀</m:mo>
+    </rendering>
+  </notation>
+
+  <symbol name="hasValue" xml:id="hasValue.symbol">
+    <metadata>
+      <meta property="rdfs:label">hasValue</meta>
+    </metadata>  
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMS cd="rdf" name="Property"/>
+      </OMOBJ>
+    </type>
+  </symbol>
+
+  <axiom for="hasValue">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	<OMA>
+	  <OMS cd="rdfs" name="domain"/>
+	  <OMS cd="owl" name="hasValue"/>
+	  <OMS cd="owl" name="Restriction"/>      
+	</OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+
+  <notation>
+    <prototype>
+      <om:OMS cd="owl" name="hasValue"/>
+    </prototype>
+    <rendering>
+      <m:mo>∃</m:mo>
+    </rendering>
+  </notation>
+
+  <symbol name="someValuesFrom">
+    <metadata>
+      <meta property="rdfs:label">someValuesFrom</meta>
+    </metadata>  
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	<OMA>
+	  <OMS cd="rdf" name="Property"/>
+	  <OMS cd="owl" name="Restriction"/>
+	  <OMS cd="rdfs" name="Class"/>        
+	</OMA>
+      </OMOBJ>
+    </type>
+  </symbol>
+
+  <notation>
+    <prototype>
+      <om:OMS cd="owl" name="someValuesFrom"/>
+    </prototype>
+    <rendering>
+      <m:mo>∃</m:mo>
+    </rendering>
+  </notation>
+
+  <symbol name="minCardinality">
+    <metadata>
+      <meta property="rdfs:label">minCardinality</meta>
+    </metadata>  
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	<OMA>
+	  <OMS cd="rdf" name="Property"/>
+	  <OMS cd="owl" name="Restriction"/>
+	  <OMS cd="xsd" name="nonNegativeInteger"/>        
+	</OMA>
+      </OMOBJ>
+    </type>
+  </symbol>
+
+  <notation>
+    <prototype>
+      <om:OMS cd="owl" name="minCardinality"/>
+    </prototype>
+    <rendering>
+      <m:mo>≥</m:mo>
+    </rendering>
+  </notation>
+
+  <symbol name="maxCardinality">
+    <metadata>
+      <meta property="rdfs:label">maxCardinality</meta>
+    </metadata>  
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	<OMA>
+	  <OMS cd="rdf" name="Property"/>
+	  <OMS cd="owl" name="Restriction"/>
+	  <OMS cd="xsd" name="nonNegativeInteger"/>
+	</OMA>
+      </OMOBJ>
+    </type>
+  </symbol>
+
+  <notation>
+    <prototype>
+      <om:OMS cd="owl" name="maxCardinality"/>
+    </prototype>
+    <rendering>
+      <m:mo>≤</m:mo>
+    </rendering>
+  </notation>
+
+  <symbol name="cardinality">
+    <metadata>
+      <meta property="rdfs:label">cardinality</meta>
+    </metadata>  
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	<OMA>
+	  <OMS cd="rdf" name="Property"/>
+	  <OMS cd="owl" name="Restriction"/>
+	  <OMS cd="xsd" name="nonNegativeInteger"/>        
+	</OMA>
+      </OMOBJ>
+    </type>
+  </symbol>
+
+  <notation>
+    <prototype>
+      <om:OMS cd="owl" name="cardinality"/>
+    </prototype>
+    <rendering>
+      <m:mo>=</m:mo>
+    </rendering>
+  </notation>
+
+  <symbol name="ObjectProperty" xml:id="ObjectProperty.symbol">
+    <metadata>
+      <meta property="rdfs:label">ObjectProperty</meta>
+    </metadata>  
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMS cd="rdfs" name="Class"/>
+      </OMOBJ>
+    </type>
+  </symbol>
+  
+  <axiom for="ObjectProperty">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+          <OMS cd="rdfs" name="subClassOf"/>
+          <OMS cd="owl" name="ObjectProperty"/>
+          <OMS cd="rdf" name="Property"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+
+  <symbol name="DatatypeProperty" xml:id="DatatypeProperty.symbol">
+    <metadata>
+      <meta property="rdfs:label">DatatypeProperty</meta>
+    </metadata>  
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMS cd="rdfs" name="Class"/>
+      </OMOBJ>
+    </type>
+  </symbol>
+
+  <axiom for="DatatypeProperty">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+          <OMS cd="rdfs" name="subClassOf"/>
+          <OMS cd="owl" name="DatatypeProperty"/>
+          <OMS cd="rdf" name="Property"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+  
+  <symbol name="inverseOf">
+    <metadata>
+      <meta property="rdfs:label">inverseOf</meta>
+    </metadata>  
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	<OMA>
+	  <OMS cd="rdf" name="Property"/>
+	  <OMS cd="owl" name="ObjectProperty"/>
+	  <OMS cd="owl" name="ObjectProperty"/>
+	</OMA>
+      </OMOBJ>
+    </type>
+  </symbol>
+  
+  <notation>
+    <prototype>
+      <om:OMA><om:OMS cd="owl" name="inverseOf"/><expr name="arg1"/><expr name="arg2"/></om:OMA>
+    </prototype>
+    <rendering>
+      <m:mrow>
+        <render name="arg1"/>
+        <m:mo>=</m:mo>
+        <m:msup><m:mrow><render name="arg2"/></m:mrow><m:mo>−</m:mo></m:msup>
+      </m:mrow>
+    </rendering>
+  </notation>
+
+  <symbol name="TransitiveProperty" xml:id="TransitiveProperty.symbol">
+    <metadata>
+      <meta property="rdfs:label">TransitiveProperty</meta>
+    </metadata>  
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMS cd="rdfs" name="Class"/>
+      </OMOBJ>
+    </type>
+  </symbol>
+
+  <axiom for="TransitiveProperty">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+          <OMS cd="rdfs" name="subClassOf"/>
+          <OMS cd="owl" name="TransitiveProperty"/>
+          <OMS cd="rdf" name="Property"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+  
+  <symbol name="SymmetricProperty" xml:id="SymmetricProperty.symbol">
+    <metadata>
+      <meta property="rdfs:label">SymmetricProperty</meta>
+    </metadata>  
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMS cd="rdfs" name="Class"/>
+      </OMOBJ>
+    </type>
+  </symbol>
+  
+  <axiom for="SymmetricProperty">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+          <OMS cd="rdfs" name="subClassOf"/>
+          <OMS cd="owl" name="SymmetricProperty"/>
+          <OMS cd="owl" name="ObjectProperty"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom> 
+  
+  <symbol name="FunctionalProperty" xml:id="FunctionalProperty.symbol">
+    <metadata>
+      <meta property="rdfs:label">FunctionalProperty</meta>
+    </metadata>  
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMS cd="rdfs" name="Class"/>
+      </OMOBJ>
+    </type>
+  </symbol>
+
+  <axiom for="FunctionalProperty">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+          <OMS cd="rdfs" name="subClassOf"/>
+          <OMS cd="owl" name="FunctionalProperty"/>
+          <OMS cd="rdf" name="Property"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>  
+  
+  <symbol name="InverseFunctionalProperty" xml:id="InverseFunctionalProperty.symbol">
+    <metadata>
+      <meta property="rdfs:label">InverseFunctionalProperty</meta>
+    </metadata>  
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMS cd="rdfs" name="Class"/>
+      </OMOBJ>
+    </type>
+  </symbol>
+
+  <axiom for="InverseFunctionalProperty">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+          <OMS cd="rdfs" name="subClassOf"/>
+          <OMS cd="owl" name="InverseFunctionalProperty"/>
+          <OMS cd="owl" name="ObjectProperty"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>  
+  
+  <symbol name="AnnotationProperty" xml:id="AnnotationProperty.symbol">
+    <metadata>
+      <meta property="rdfs:label">AnnotationProperty</meta>
+    </metadata>  
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMS cd="rdfs" name="Class"/>
+      </OMOBJ>
+    </type>
+  </symbol>
+  
+  <axiom for="AnnotationProperty">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+          <OMS cd="rdfs" name="subClassOf"/>
+          <OMS cd="owl" name="AnnotationProperty"/>
+          <OMS cd="rdf" name="Property"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>  
+
+  <symbol name="Ontology">
+    <metadata>
+      <meta property="rdfs:label">Ontology</meta>
+    </metadata>  
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMS cd="rdfs" name="Class"/>
+      </OMOBJ>
+    </type>
+  </symbol>
+
+  <symbol name="OntologyProperty" xml:id="OntologyProperty.symbol">
+    <metadata>
+      <meta property="rdfs:label">OntologyProperty</meta>
+    </metadata>  
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMS cd="rdfs" name="Class"/>
+      </OMOBJ>
+    </type>
+  </symbol>
+    
+  <axiom for="OntologyProperty">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+          <OMS cd="rdfs" name="subClassOf"/>
+          <OMS cd="owl" name="OntologyProperty"/>
+          <OMS cd="rdf" name="Property"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+  
+  <symbol name="imports">
+    <metadata>
+      <meta property="rdfs:label">imports</meta>
+    </metadata>  
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	<OMA>
+	  <OMS cd="owl" name="OntologyProperty"/>
+	  <OMS cd="owl" name="Ontology"/>
+	  <OMS cd="owl" name="Ontology"/>        
+	</OMA>
+      </OMOBJ>
+    </type>
+  </symbol>
+  
+  <symbol name="versionInfo">
+    <metadata>
+      <meta property="rdfs:label">versionInfo</meta>
+    </metadata>  
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMS cd="owl" name="AnnotationProperty"/>
+      </OMOBJ>
+    </type>
+  </symbol>
+
+  <symbol name="priorVersion">
+    <metadata>
+      <meta property="rdfs:label">priorVersion</meta>
+    </metadata>  
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	<OMA>
+	  <OMS cd="owl" name="OntologyProperty"/>
+	  <OMS cd="owl" name="Ontology"/>
+	  <OMS cd="owl" name="Ontology"/>
+	</OMA>
+      </OMOBJ>
+    </type>
+  </symbol>
+
+  <symbol name="backwardCompatibleWith">
+    <metadata>
+      <meta property="rdfs:label">backwardCompatibleWith</meta>
+    </metadata>  
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	<OMA>
+	  <OMS cd="owl" name="OntologyProperty"/>
+	  <OMS cd="owl" name="Ontology"/>
+	  <OMS cd="owl" name="Ontology"/>
+	</OMA>
+      </OMOBJ>
+    </type>
+  </symbol>
+
+  <symbol name="incompatibleWith">
+    <metadata>
+      <meta property="rdfs:label">incompatibleWith</meta>
+    </metadata>  
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	<OMA>
+	  <OMS cd="owl" name="OntologyProperty"/>
+	  <OMS cd="owl" name="Ontology"/>
+	  <OMS cd="owl" name="Ontology"/>       
+	</OMA>
+      </OMOBJ>
+    </type>
+  </symbol>  
+  
+  <symbol name="DeprecatedClass">
+    <metadata>
+      <meta property="rdfs:label">DeprecatedClass</meta>
+    </metadata>  
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMS cd="rdfs" name="Class"/>
+      </OMOBJ>
+    </type>
+  </symbol>
+
+  <symbol name="DeprecatedProperty" xml:id="DeprecatedProperty.symbol">
+    <metadata>
+      <meta property="rdfs:label">DeprecatedProperty</meta>
+    </metadata>  
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMS cd="rdfs" name="Class"/>
+      </OMOBJ>
+    </type>
+  </symbol>
+  
+  <axiom for="DeprecatedProperty">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+          <OMS cd="rdfs" name="subClassOf"/>
+          <OMS cd="owl" name="DeprecatedProperty"/>
+          <OMS cd="rdf" name="Property"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>  
+
+  <symbol name="DataRange">
+    <metadata>
+      <meta property="rdfs:label">DataRange</meta>
+    </metadata>  
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMS cd="rdfs" name="Class"/>
+      </OMOBJ>
+    </type>
+  </symbol>
+</theory>
+</omdoc>
+<!-- vim:sw=2:sts=2
+-->

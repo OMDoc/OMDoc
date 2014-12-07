@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet  type="text/xsl" href="mathml.xsl"?><html xmlns="http://www.w3.org/1999/xhtml" xmlns:pref="http://www.w3.org/2002/Math/preference" pref:renderer="mathplayer-dl">
+  <head>
+    <link rel="stylesheet" type="text/css" href="omdoc-cnx.css"/>
+    <title>Inference Rules.</title>
+  </head>
+  <body>
+<div class="titleblock">
+<div class="title">Inference Rules.</div>
+<div class="authors">Michael Kohlhase</div>
+<div class="date">2002-06-24</div>
+<div class="description">
+   This theory introduces content markup for inference rules.
+  </div></div>
+
+
+<div class="omtext" id="inference-rules-intro">
+<p>An inference rule is a relation on (sets of) judgements, read with the
+    intuition that</p>
+</div>
+
+<div class="symbol" id="schema">
+<div class="titlebox">
+<span class="titleword">Concept</span>schema</div>This is the binding symbols for schematic inference rules. All the bound
+    variables may be freely instantiated.</div>
+
+<div class="symbol" id="rule">
+<div class="titlebox">
+<span class="titleword">Concept</span>rule</div> 
+  An inference rule is an n+1-ary relation on judgments. The first n
+  arguments are called the antecedents, and the last one the consequent. We read
+  an inference rule with the intuition that if the antecedents have been
+  derived, then the consequent can be.
+</div>
+
+<div class="example" id="exmp">
+<span class="titleword">Example</span>
+<p>Modus Ponens is an inference rule</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid80869"><semantics><mtable xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#rule" rowlines="solid"><mtr xlink:href="#rule"><mtd xlink:href="#rule"><mfenced id="id80890" open="" close="" separators=""><mrow id="MCRid80899"><mo xlink:href="#implies" xlink:type="simple" id="id80901">implies</mo><mrow><mo fence="true">(</mo><mrow><mi id="MCRid80908">A</mi><mo separator="true">,</mo><mi id="MCRid80912">B</mi></mrow><mo fence="true">)</mo></mrow></mrow><mspace xlink:href="#rule" width="2em"/><mi id="MCRid80917">A</mi></mfenced></mtd></mtr><mtr xlink:href="#rule"><mtd xlink:href="#rule"><mi id="MCRid80922">B</mi></mtd></mtr></mtable><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid80869" xlink:type="simple"><OMBIND xlink:href="MCRid80874" xlink:type="simple"><OMS cd="inference-rules" name="schema" xlink:href="MCRid80876" xlink:type="simple"/><OMBVAR xlink:href="MCRid80882" xlink:type="simple"><OMV name="A" xlink:href="MCRid80883" xlink:type="simple"/><OMV name="B" xlink:href="MCRid80886" xlink:type="simple"/></OMBVAR><OMA xlink:href="MCRid80890" xlink:type="simple"><OMS cd="inference-rules" name="rule" xlink:href="MCRid80893" xlink:type="simple"/><OMA xlink:href="MCRid80899" xlink:type="simple"><OMS cd="pl0" name="implies" xlink:href="MCRid80901" xlink:type="simple"/><OMV name="A" xlink:href="MCRid80908" xlink:type="simple"/><OMV name="B" xlink:href="MCRid80912" xlink:type="simple"/></OMA><OMV name="A" xlink:href="MCRid80917" xlink:type="simple"/><OMV name="B" xlink:href="MCRid80922" xlink:type="simple"/></OMA></OMBIND></OMOBJ></annotation-xml></semantics></math></div>
+
+
+
+</body>
+</html>

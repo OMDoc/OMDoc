@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE omdoc PUBLIC "-//OMDoc//DTD OMDoc V1.3//EN"
+                       "../../../dtd/omdoc.dtd" []>
+
+<omdoc xml:id="
+cvi-code.omdoc"
+  xmlns="http://omdoc.org/ns"
+  xmlns:cc="http://creativecommons.org/ns"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  version="1.3">
+<metadata>
+  <dc:date action="created"> 2004-10-05T11:06:29Z </dc:date>
+  <dc:title xml:lang="en"> cvi-code </dc:title>
+  <dc:creator role="aut"> Michael Kohlhase </dc:creator>
+  <dc:source>  </dc:source>
+  <dc:date action="updated"> 2004-10-05T11:06:29Z </dc:date>
+  <dc:type> Text </dc:type>
+  <dc:format> application/omdoc+xml </dc:format>
+  <dc:rights>Copyright (c) 2004 Michael Kohlhase</dc:rights>
+  <cc:license>
+    <cc:permissions reproduction="permitted" distribution="permitted" derivative_works="permitted"/>
+    <cc:prohibitions commercial_use="permitted"/>
+    <cc:requirements notice="required" copyleft="required" attribution="required"/>
+  </cc:license>
+</metadata>
+
+<code xml:id="cvic-code1">
+  <data format="Java"><![CDATA[public class Animal { ... }]]></data>
+  <effect><CMP>class declaration</CMP></effect>
+</code>
+
+<code xml:id="cvic-code2" requires="cvic-code1" >
+  <data format="Java"><![CDATA[public class Mammal extends Animal { ... }]]></data>
+  <effect><CMP>class extension</CMP></effect>
+</code>
+
+</omdoc>

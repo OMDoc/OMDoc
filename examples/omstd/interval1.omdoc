@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  
+       xmlns="http://omdoc.org/ns"
+       xmlns:om="http://www.openmath.org/OpenMath"
+       xmlns:m="http://www.w3.org/1998/Math/MathML"
+       xmlns:o="http://omdoc.org/ns"
+       xml:id="interval1-omdoc">
+
+<metadata>
+  <dc:title>The OpenMath Content Dictionary interval1.ocd  in OMDoc form</dc:title>
+  <dc:creator role="trl">Michael Kohlhase</dc:creator>
+  <dc:creator role="ant">The OpenMath Society</dc:creator>
+  <dc:date> 2001-03-12T00:00:00</dc:date>
+  <dc:source>Derived from the OpenMath CD http://www.openmath.org/cd/interval1.ocd.</dc:source>
+  <dc:type>Text</dc:type>
+  <dc:format>application/omdoc+xml</dc:format>
+  <dc:rights>Copyright (c) 2000-2002 Michael Kohlhase;
+    This OMDoc content dictionary is released under the OpenMath license:
+    http://monet.nag.co.uk/openmath/cdfiles/license.html
+  </dc:rights>
+  <dc:description>
+    This CD holds symbols which describe both discrete and continuous
+    1-dimensional intervals (with open/closed end points).
+  </dc:description>
+</metadata>
+
+<theory xml:id="interval1">
+  <imports from="sts.omdoc#sts"/>
+  <imports from="setname1.omdoc#setname1"/>
+
+<symbol name="integer_interval" xml:id="integer_interval">
+<metadata>
+<dc:description> 
+    A symbol to denote a discrete 1 dimensional interval from the first
+    argument to the second (inclusive), where the discretisation occurs at unit 
+    intervals. The arguments are the start and the end points of the interval
+    in that order.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMS name="Z" cd="setname1"/>
+	<OMS name="Z" cd="setname1"/>
+	<OMV name="IntegerInterval"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="interval1" name="integer_interval" o:cr="fun"/>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="interval1" o:cr="fun">integer_interval</m:csymbol>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <m:mrow>
+        <m:mo o:cr="fun" fence="true">(</m:mo>
+        <render name="arg1"/>
+        <m:mo o:cr="fun">,…,</m:mo>
+        <render name="arg2"/>
+        <m:mo o:cr="fun" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+
+<example xml:id="integer_interval-ex-1" type="for" for="#integer_interval">
+  <CMP>The integer interval 1, 2, ..., 10.</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="interval1" name="integer_interval"/>
+      <OMI> 1 </OMI>
+      <OMI> 10 </OMI>
+    </OMA>
+  </OMOBJ>
+</example>
+
+<symbol name="interval" xml:id="interval">
+<metadata>
+<dc:description> 
+    A symbol to denote a continuous 1-dimensional interval without any
+    information about the character of the end points (e.g. used in definite 
+    integration). The arguments are the start and the end points of the interval
+    in that order.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMS name="R" cd="setname1"/>
+	<OMS name="R" cd="setname1"/>
+	<OMV name="RealInterval"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="interval1" name="interval" o:cr="fun"/>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="interval1" o:cr="fun">interval</m:csymbol>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <m:mrow>
+        <m:mo o:cr="fun" fence="true">(</m:mo>
+        <render name="arg1"/>
+        <m:mo o:cr="fun" separator="true">,</m:mo>
+        <render name="arg2"/>
+        <m:mo o:cr="fun" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+
+<example xml:id="interval-ex-1" type="for" for="#interval">
+  <CMP>The interval 1.0, ..., 10.0.</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="interval1" name="interval"/>
+      <OMF dec="1.0"/>
+      <OMF dec="10.0"/>
+    </OMA>
+  </OMOBJ>
+</example>
+<symbol name="interval_oo" xml:id="interval_oo">
+<metadata>
+<dc:description> 
+    A symbol to denote a continuous 1-dimensional interval with both end
+    points excluded from the interval. The arguments are the start and the end 
+    points of the interval in that order.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMS name="R" cd="setname1"/>
+	<OMS name="R" cd="setname1"/>
+	<OMV name="RealInterval"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="interval1" name="interval_oo"/>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="interval1" o:cr="fun">interval_oo</m:csymbol>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <m:mrow>
+        <m:mo fence="true" o:cr="fun">]</m:mo>
+        <render name="arg1"/>
+        <m:mo o:cr="fun" separator="true">,</m:mo>
+        <render name="arg2"/>
+        <m:mo fence="true" o:cr="fun">[</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+
+<example xml:id="interval_oo-ex-1" type="for" for="#interval_oo">
+  <CMP>The continuous open interval (1,10).</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="interval1" name="interval_oo"/>
+      <OMI> 1 </OMI>
+      <OMI> 10 </OMI>
+    </OMA>
+  </OMOBJ>
+</example>
+<symbol name="interval_cc" xml:id="interval_cc">
+<metadata>
+<dc:description> 
+    A symbol to denote a continuous 1-dimensional interval with both end
+    points included in the interval. The arguments are the start and the
+    end points of the interval in that order.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMS name="R" cd="setname1"/>
+	<OMS name="R" cd="setname1"/>
+	<OMV name="RealInterval"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="interval1" name="interval_cc" o:cr="fun"/>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="interval1" o:cr="fun">interval_cc</m:csymbol>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <m:mrow>
+        <m:mo fence="true" o:cr="fun">[</m:mo>
+        <render name="arg1"/>
+        <m:mo separator="true" o:cr="fun">,</m:mo>
+        <render name="arg2"/>
+        <m:mo fence="true" o:cr="fun">]</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+
+<example xml:id="interval_cc-ex-1" type="for" for="#interval_cc">
+  <CMP>The continuous closed interval [1,10].</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="interval1" name="interval_cc"/>
+      <OMI> 1 </OMI>
+      <OMI> 10 </OMI>
+    </OMA>
+  </OMOBJ>
+</example>
+<symbol name="interval_oc" xml:id="interval_oc">
+<metadata>
+<dc:description> 
+    A symbol to denote a continuous 1-dimensional interval with the first
+    point excluded from the interval, but the last included. The arguments
+    are the start and the end points of the interval in that order.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMS name="R" cd="setname1"/>
+	<OMS name="R" cd="setname1"/>
+	<OMV name="RealInterval"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="interval1" name="interval_oc" o:cr="fun"/>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="interval1" o:cr="fun">interval_oc</m:csymbol>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <m:mrow>
+        <m:mo fence="true" o:cr="fun">]</m:mo>
+        <render name="arg1"/>
+        <m:mo separator="true">,</m:mo>
+        <render name="arg2"/>
+        <m:mo fence="true" o:cr="fun">]</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+
+<example xml:id="interval_oc-ex-1" type="for" for="#interval_oc">
+  <CMP>
+    The continuous interval open at the lower bound and closed at the higher 
+    bound (1,10].</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="interval1" name="interval_oc"/>
+      <OMI> 1 </OMI>
+      <OMI> 10 </OMI>
+    </OMA>
+  </OMOBJ>
+</example>
+<symbol name="interval_co" xml:id="interval_co">
+<metadata>
+<dc:description> 
+    A symbol to denote a continuous 1-dimensional interval with the first
+    point included in the interval, but the last excluded. The arguments
+    are the start and the end points of the interval in that order.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMS name="R" cd="setname1"/>
+	<OMS name="R" cd="setname1"/>
+	<OMV name="RealInterval"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="interval1" name="interval_co" o:cr="fun"/>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="interval1" o:cr="fun">interval_co</m:csymbol>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <m:mrow>
+        <m:mo fence="true" o:cr="fun">[</m:mo>
+        <render name="arg1"/>
+        <m:mo separator="true">,</m:mo>
+        <render name="arg2"/>
+        <m:mo fence="true" o:cr="fun">[</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+
+<example xml:id="interval_co-ex-1" type="for" for="#interval_co">
+  <CMP>The continuous interval closed at the lower bound and open at the higher 
+    bound [1,10).</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="interval1" name="interval_co"/>
+      <OMI> 1 </OMI>
+      <OMI> 10 </OMI>
+    </OMA>
+  </OMOBJ>
+</example>
+</theory>
+</omdoc>
+

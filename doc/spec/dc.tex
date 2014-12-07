@@ -1,0 +1,832 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This file is part of the LaTeX sources of the OMDoc 1.3 specification
+% Copyright (c) 2006 Michael Kohlhase
+% This work is licensed by the Creative Commons Share-Alike license
+% see http://creativecommons.org/licenses/by-sa/2.5/ for details
+\svnInfo $Id: dc.tex 9330 2014-05-03 14:38:25Z kohlhase $
+\svnKeyword $HeadURL: https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.3/doc/spec/dc.tex $
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{tchapter}[id=metadata,short=Metadata]{Metadata (Modules {\DCmodule{spec}} and  {\CCmodule{spec}})}
+
+  Metadata\index{metadata} is ``{\twintoo{data}{about data}}'' --- in the case of {\omdoc}
+  data about documents, such as titles, authorship, language usage, or administrative
+  aspects like modification dates, distribution rights, and identifiers. To accommodate
+  such data, {\omdoc} offers the {\element{metadata}} element in many places. The most
+  commonly used metadata standard is the Dublin Core vocabulary, which is supported in
+  some form by most formats. {\omdoc} uses this vocabulary for compatibility with other
+  metadata applications and extends it for {\twintoo{document}{management}} purposes in
+  {\omdoc}.  Most importantly {\omdoc} extends the use of metadata from documents to other
+  (even mathematical) elements and {\twintoo{document}{fragment}s} to ensure a
+  fine-grained authorship and {\twintoo{rights}{management}}.
+
+\begin{tsection}{General Metadata}\label{sec:genmeta}
+  \begin{oldpart}{CL: maybe delete or rephrase}
+    {\omdocv{1.3}} already integrates the metadata framework for
+    {\omdocv{2}} based on the recently stabilized
+    RDFa~\cite{AdidaEtAl08:RDFa} a standard for flexibly embedding
+    metadata into X(HT)ML documents. This design decision allows us to
+    separate the {\emph{syntax}} (which is standardized in RDFa) from
+    the {\emph{semantics}}, which we externalize in metadata
+    ontologies, which can be encoded in {\omdoc}.
+  \end{oldpart}
+
+  \ednote{CL@MK: Do we want/need some motivation for the RDFa syntax
+    here, e.\,g.\ some criticism of the \omdocv{1.2} metadata syntax?}
+
+% Some ad-hoc macro definitions to make my LaTeX work here
+% CL@MK: You may want to copy some of them to generic style files
+\newcommand{\xcmd}[1]{#1\xspace }
+\newcommand{\ncmd}[1]{\mbox{#1}}
+\newcommand{\xncmd}[1]{\xcmd{\ncmd{#1}}}
+\newcommand{\ccrel}{\xncmd{ccREL}}
+\newcommand{\curie}{\xncmd{CURIE}}
+\newcommand{\curies}{\xncmd{CURIEs}}
+\newcommand{\dcmi}{\xncmd{DCMI}}
+\newcommand{\mmt}{\xncmd{MMT}}
+\newcommand{\rdfs}{\xncmd{RDFS}}
+%\newcommand{\uri}{\xncmd{URI}}
+\newcommand{\uris}{\xncmd{URIs}}
+% linguistics
+\newcommand{\cf}[1][\ ]{cf.#1}
+\newcommand{\eg}[1][\ ]{e.\,g.#1}
+\newcommand{\ie}[1][\ ]{i.\,e.#1}
+\newcommand{\wrt}[1][\ ]{w.\,r.\,t.#1}
+% semantics
+\newcommand{\identifier}[1]{\ifmmode\mathit{#1}\else\textit{#1\/}\fi}
+\newcommand{\person}[1]{\textsc{#1}}
+
+Given the need to incorporate additional metadata into \omdoc, and considering the deficiencies of the metadata support in \omdoc 1.2, we developed a new framework.  The requirements were as follows:
+
+\begin{enumerate}
+\item Stay backwards-compatible with \omdoc 1.2 concerning expressivity.  That is,   continue supporting Dublin Core and Creative Commons, and the custom extensions.
+\item Expose the formal semantics of metadata vocabularies to \omdoc-based applications; additionally be compatible to semantic web applications.
+\item Incorporate a vocabulary for versioning -- particularly aiming at technical   specifications.
+\item Do not hard-code a fixed set of vocabularies into the language but stay flexible   and extensible for many applications, including future and unknown ones.
+\end{enumerate}
+
+Given the fact that many existing metadata vocabularies, including
+Dublin Core and Creative Commons, have an \rdf semantics\ednote{CL:
+  ref somewhere where these vocabularies in general are explained},
+and that with \rdfa\ednote{CL: maybe a bit more background on that} a standard for flexibly embedding metadata into \xml had recently stabilized, we chose to incorporate \rdfa into \omdoc, and to look for metadata vocabularies with \rdf-based implementations to satisfy our further requirements.
+
+So far, \rdfa has only been specified for the \enquote{host languages} \xhtml~\cite{AdidaEtAl08:RDFa}.  The specification is generally biased towards \xhtml but nevertheless foresees a future adoption of \rdfa as an annotation sublanguage by other \xml languages.  The vector graphics format \svg Tiny already includes \rdfa in the same way as \xhtml, referring to the \xhtml+\rdfa specification but making a few minor deviations from it.  Other languages are starting to adopt \rdfa as well~\cite{RDFaHostLanguages}.
+
+\paragraph{Full \rdfa in \omdoc}
+\label{sec:new-metadata-rdfa}
+
+After initial discussions on how much of \rdfa to incorporate into \omdoc, we decided to give authors who want to model complex annotations freedom to use the full expressivity of \rdfa, but to particularly recommend a metadata syntax that resembles the one of \omdoc 1.2 and allows for expressing most metadata that could also be expressed there. The other reason for fully integrating \rdfa is compatibility to \rdfa tools.  When publishing the sources of \omdoc documents on the web, linked data crawlers like Sindice~\cite{TumDelOre:Sindice07} may find them.  While they would not be able to make any sense of \omdoc's own \xml vocabulary (\eg understanding that a \identifier{proof} element denotes an instance of the \identifier{oo:Proof} class), they would at least be able to understand the annotations made in \rdfa, and thus enable users to search for,  \eg[,] \omdoc resources having the \identifier{dc:creator} \person{Michael Kohlhase}.
+
+A full integration of \rdfa means that the following attribute have to be added to \omdoc, with the same semantics as specified for \xhtml+\rdfa (quoted from~\cite{AdidaEtAl08:RDFa}; technical terms explained below):
+
+\begin{description}
+\item[\attribute{rel}] a whitespace-separated list of \curies, used for expressing relationships between two resources (\enquote*{predicates} in \rdf terminology);
+\item[\attribute{rev}] a whitespace separated list of \curies, used for expressing reverse relationships between two resources (also \enquote*{predicates});
+\item[\attribute{content}] a string, for supplying machine-readable content for a literal (a \enquote*{plain literal object}, in \rdf terminology);
+\item[\textmd{[\xhtml-specific attributes omitted]}]
+\item[\attribute{about}] a \uri or safe \curie, used for stating what the data is about (a \enquote*{subject} in \rdf terminology);
+\item[\attribute{property}] a whitespace separated list of \curies, used for expressing relationships between a subject and some literal text (also a \enquote*{predicate});
+\item[\attribute{resource}] a \uri or safe \curie for expressing the partner resource of a relationship that is not intended to be \enquote*{clickable} (also an \enquote*{object});
+\item[\attribute{datatype}] a \curie representing a datatype, to express the datatype of a literal;
+\item[\attribute{typeof}] a whitespace separated list of \curies that indicate the \rdf   type(s) to associate with a subject.
+\end{description}
+
+A \curie (Compact \uri, specified as a part of \rdfa, but also in a
+specification of its own~\cite{W3C09:CURIE}) is a way of abbreviating
+a \uri as \identifier{namespace:localname}, but in contrast to \xml
+local names, the local name definition of
+\sparql~\cite{PruSea08:sparql} is used, which is more liberal, \eg
+permitting leading digits.  As in \sparql, the underscore prefix is
+reserved for blank nodes, such as \identifier{\_:bnode-id}, and names
+in the default namespace are written with an empty prefix, \ie as
+\identifier{:localname}.  However, the latter namespace is \emph{not}
+intended to be the default namespace declared in the surrounding \xml,
+but a fixed namespace specified for the language.  In addition to
+that, \curies also allow for completely unprefixed names, such as
+\identifier{localname}, which can be reserved words whose mapping to
+\uris is specified as a part of the language specification.  The
+mappings to \uris for the default namespace and for unprefixed names
+have been specified for \rdfa in \xhtml, but as there is currently no
+standard way of declaring these mappings for a different host
+language, \eg in its \xml schema, we do not anticipate that any
+\rdfa-aware software\ednote{CL: except our own, maybe mention Krextor
+  somewhere.\\ @MK: would it be worth to add a variant of the 6-page
+  2009 paper on Krextor to the ``applications'' chapter?} would be able to interpret such \curies.  Therefore, we leave the specification of how \omdoc should handle such \curies as future work.  Some \rdfa attributes allow \uris and \curies, which are generally hard to distinguish.\footnote{The incoherent use of \uris vs.\ \curies in the \rdfa attributes is likely to change in future versions~\cite{Birbeck:ProposalForURIsEverywhere2009}.}  Therefore, a \curie in such an attribute has to be surrounded by square brackets.  This syntax is called \enquote{safe \curie}.
+
+Also note that full \rdfa compatibility leads to a syntactical redundancy in all \omdoc elements that carry metadata.  In \omdoc 1.2, it was clear (by the human-readable specification, not necessarily for machines!) that metadata contained in an \xml element $E$ referred to the concept denoted by $E$, \eg[,] that the \identifier{dc:title} in listing~\ref{fig:fermat-omdoc1.2} is the title of the proof with the \uri \url{#fermat-proof}.  \rdfa requires the subject of annotations to be set explicitly, using the \attribute{about} attribute:
+
+\begin{lstlisting}[language={[1.2]OMDoc}]
+<proof xml:id="fermat-proof" about="#fermat-proof">
+  <metadata>
+     ...
+  </metadata>
+</proof>
+\end{lstlisting}
+
+Otherwise the parent subject would be reused, which is initially the
+base \uri, \ie, unless specified otherwise, the \uri of the whole
+document -- which may, of course, contain many other metadata records.
+\rdfa in \xhtml is often used for talking about different things than
+the elements of the \xhtml document itself, such as the book described
+in a paragraph of the document, except for annotations on the top
+level for expressing, \eg[,] the document's author and license.  In
+contrast, metadata in \omdoc are always intended to be annotations for
+the things modeled in the document, such as theories or statements.
+It is recommended for all of these things to have a \uri, which is
+defined by the \attribute{xml:id} attribute.\footnote{The \mmt \uris
+  of \omdoc   1.6 will enable additional ways of giving \uris to
+  \omdoc concepts, but from an \rdfa   point of view the principle
+  remains the same.}\ednote{CL@MK: In this spec, will we have some
+  outlook to the things that will definitely come in OMDoc 1.6?}
+
+It would be tempting to specify that, for elements that have metadata
+and an \attribute{xml:id}, the \rdfa subject of the metadata
+annotations implicitly gets set to the \uri of the respective
+element\ednote{CL: TODO HTML5 itemscope}.  One could even specify
+that, if an element carrying metadata does not have an
+\attribute{xml:id}, a blank node will be generated for it. However,
+\xhtml is -- and will always be -- much more widespread than \omdoc,
+\rdfa has first been designed for annotating \xhtml and is still
+currently biased towards \xhtml, and \rdfa-aware software will
+probably not be able to handle custom reinterpretations of the \rdfa
+syntax and semantics soon, at least not as long as there is no way of
+specifying them in a machine-understandable way\footnote{}.  Now
+suppose we had an \omdoc document at an \uri $U$ containing a proof
+with \rdfa metadata but without an explicit \attribute{about}
+attribute.  Suppose the relation of the proof to the theorem it proves
+were, for some reason, not modeled in \omdoc syntax, but in \rdfa,
+using the \omdoc ontology\ednote{CL: either omit this aspect, as it's
+  not relevant for ``metadata''.  Or describe the OMDoc ontology
+  somewhere.  I think it deserves a (sub)section of its own.}, \ie as \texttt{<\textbf{link}   rel="oo:proves" resource="\#fermats-last-theorem">}, which is perfectly legal.  An \rdfa crawler not knowing \omdoc would extract the triple \texttt{<U> oo:proves   <\#fermats-last-theorem>} from that annotation.  From the domain of the \identifier{oo:proves} property, any \rdfs reasoner would then infer that $U$ is an instance of \identifier{oo:Proof}, which is clearly not the case; actually, this would even lead to a contradiction for an \owl reasoner, as \identifier{oo:Proof} is disjoint with \identifier{oo:Document}, of which $U$ actually is an instance.
+
+Realizing that the web should not be polluted with such invalid \rdf
+triples\footnote{See also the \enquote{Pedantic Web}
+  initiative~\cite{PedanticWeb:FOP09}.}, we therefore specify that
+\rdfa metadata in \omdoc must only be used together with correctly
+placed \attribute{about} attributes.  A relaxation of this policy is
+subject to future additions to the \rdfa specification that might
+allow for defining parsing rules specific to particular host
+languages\ednote{CL: TODO cite mail thread}.
+
+\paragraph{Recommended Syntax for \rdfa Metadata}
+\label{sec:new-metadata-recommended}
+
+I will not cover full \rdfa in further detail here; for an
+introduction, see~\cite{w3c:rdfa-primer,HHA:RDFaTutorial08}.  Instead,
+I will continue with the recommended syntax for using metadata: We
+introduce the elements \identifier{meta} and \identifier{link} as
+children of any \identifier{metadata} block.\footnote{Actually, the
+  \identifier{link} element has existed before, as a part of \omdoc's
+  rich text (RT)   module~\cite[section~14.6]{Kohlhase:OMDoc1.2}.
+  However, this usage does not conflict   with its usage as a
+  \identifier{metadata} child.}\footnote{Note that the
+  \identifier{metadata} element does not exist for \rdfa processors,
+  as it does not   carry any \rdfa attributes.  It is merely a means
+  of structuring the \omdoc syntax.} Their semantics is roughly
+inspired by the namesake elements that can occur in the
+\identifier{head} of an \xhtml document: \identifier{meta} is a
+literal-valued metadata field, whereas \identifier{link} points to
+another resource by referring to its \uri. Resources with
+document-local identifiers only, i.\,e.\ \emph{blank nodes}, can be
+created using the \identifier{resource} element.  The elements are
+shown in table~\ref{tab:rdfa-metadata}; an example for using them is
+given in listing~\ref{fig:fermat-omdoc-md}.\ednote{CL: TODO metadata element now optional}
+
+\begin{table}
+\begin{tabularx}{\linewidth}{|l|l|X|}
+  \hline
+  Element & Attributes & Children \\
+  \hline \identifier{meta} & \attribute{property}, \attribute{content},   \attribute{datatype} &   literal text or XML (optional) \\
+  \identifier{link} & \attribute{rel}, \attribute{rev}, \attribute{resource} &   (\identifier{resource}|\identifier{meta}|\identifier{link})\textsuperscript{*} \\
+  \identifier{resource} & \attribute{about}, \attribute{typeof} &   (\identifier{meta}|\identifier{link})\textsuperscript{*} \\
+  \hline
+\end{tabularx}
+  \caption{Elements of the recommended \rdfa syntax for \omdoc metadata}
+  \label{tab:rdfa-metadata}
+\end{table}
+
+\paragraph{Relevant Metadata Vocabularies}
+\label{sec:new-metadata-vocab}
+
+Due to the inherent flexibility of \rdfa, any metadata vocabulary can
+be used.  However, we give particular recommendations for metadata in
+the above-mentioned domains of special interest.  Using Dublin Core
+and Creative Commons metadata with the new \rdfa syntax for \omdoc is
+largely trivial.  Concerning Dublin Core, we recommend using the more
+modern DCMI terms vocabulary instead of the DCMES, which is now
+possible by way of a simple namespace declaration.  While the MARC
+roles had been used as annotations of triples with the
+\identifier{dc:contributor} property in {\omdoc} 1.2, there is a
+specification of how to use them in RDF, defining them as
+sub-properties of
+\identifier{dc:contributor}~\cite{Johnston:MARC-DC05}.  Most Creative
+Commons license declarations will become much easier than in \omdoc
+1.2, as we will follow the more recently recommended practice of not
+always constructing licenses from scratch, but directly linking
+resources to \emph{existing} Creative Commons licenses using the
+\identifier{xhv:license} property\footnote{This property from the
+  \xhtml vocabulary   supersedes the former \identifier{cc:license}
+  property~\cite{AALY08:ccREL}.  By the   implementation of the \ccrel
+  ontology, this property is also a subproperty of
+  \identifier{dc:license}, which in turn is a subproperty of
+  \identifier{dc:rights}.}\ednote{CL: refer to some section where DC
+  is described}; for example
+\texttt{<\textbf{link}   rel="xhv:license"
+  resource="http://creativecommons.org/licenses/by/3.0/de/">}.  It
+should also be noted that the \omdoc 1.2 syntax allowed for
+constructing licenses that contradicted the \ccrel ontology.  For
+example, it was possible to say \texttt{<\textbf{cc:permission}
+  derivative\_works="prohibited">}, although
+\identifier{cc:DerivativeWorks} is not in the range of the property
+\identifier{cc:prohibits}.\footnote{Given that semantic web reasoning
+  usually assumes an   open world, one cannot easily conclude from the
+  \emph{absence} of the   \emph{permission} to create derivative works
+  that it is   prohibited~\cite{W3C:ccREL-comment}.  Therefore, it is
+  unclear whether one can   effectively prohibit derivative works
+  using the \ccrel vocabulary.  This Orwellian   approach to
+  restricting thinking about illiberal licenses by restricting
+  language (\cf   \cite{Orwell:1984}) may be debatable, but the \ccrel
+  ontology currently specifies it   like this, so we have to accept it
+  for the sake of compatibility, or -- eventually --   model our own
+  licensing ontology that extends \ccrel.}\ednote{CL: TODO other licensing ontology (CC list mail)}
+
+The \omdoc 1.2 Dublin Core extensions for revision logs were not
+immediately \rdf-compatible\ednote{CL: Is that review of the past
+  necessary here?}.  We were able to partly replace them by the
+revisioning vocabulary of \dcmi terms\ednote{CL: TODO need to describe
+DCMI terms (compared to the good old DCMES) somewhere}.  Listing~\ref{fig:fermat-omdoc-md} shows the proof of Fermat's last theorem once more, now redone using \rdfa metadata, and using \dcmi terms for the revision history.  Comparing this to listing~\ref{fig:fermat-omdoc1.2}, particularly note the following features:
+
+\begin{itemize}
+\item We are able to link to resources, such as \foaf
+  profiles\ednote{CL: explain somewhere}, that describe people (creators, contributors, etc.) in   further detail.
+\item More than one predicate can be given per subject and objects.  This makes it   convenient to say that a person is both an editor and a publisher of a   document.\footnote{\identifier{marcrel:AUT} is only a subproperty of     \identifier{dc:contributor}.}
+\item The complete revision history can be embedded into the document.
+\item Versions (or persons, or licenses) can also be described (as blank nodes) if they   are only known in this document, \ie are not globally identifiable by a \uri.
+\item The \dcmi Terms vocabulary allows for modeling the history of revisions more   faithfully than the Dublin Core extensions of \omdoc 1.2.  We can use more specific   subproperties of \identifier{dct:date}, such as \identifier{dct:created} or   \identifier{dct:issued}.  Date can be made really explicit to automated parsers by   declaring a datatype for them; otherwise the parser would have to know that   \identifier{dct:date} and its subproperties usually have an ISO 8601 date   value~\cite{BirMal:XMLSchema:Datatypes}, or it would have to apply heuristics.   Successive revisions can be modeled as a linked list via   \identifier{dct:replaces}, in addition to referring to them by   \identifier{dct:hasVersion}.  We did not model \person{Michael Kohlhase}'s   digitalization of Wiles's proof as such a replacement, but as a resource that is based   on Wiles's proof via the \identifier{dct:requires} and \identifier{dct:source}   properties.
+\item The license of this document is a ready-to-use Creative Commons license that can   simply be referenced by its \uri.  Alternatively, we can construct it in place.
+\end{itemize}
+
+\begin{lstlisting}[float,caption={Proof of Fermat's last theorem, with \omdoc's new \rdfa metadata},label={fig:fermat-omdoc-md},language={[1.6]OMDoc},escapeinside={\{\}}]
+<proof xml:id="fermat-proof" about="#fermat-proof" for="#fermats-last-theorem"
+ xmlns:dct="http://purl.org/dc/terms/"
+ xmlns:marcrel="http://www.loc.gov/loc.terms/relators/"
+ xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+ xmlns:xhv="http://www.w3.org/1999/xhtml/vocab#"
+ xmlns:cc="http://creativecommons.org/ns#">
+  <metadata>
+    <meta property="dct:title">Proof of Fermat{'}s Last Theorem</meta>
+    <link rel="dct:creator" {resource}="http://dbpedia.org/resource/Pierre_de_Fermat"/>
+    <link rel="marcrel:AUT" {resource}="http://math.princeton.edu/~awiles/foaf.rdf#me"/>
+    <link rel="marcrel:EDT dct:publisher"
+     resource="http://kwarc.info/kohlhase/"/>
+    <link rel="dct:hasVersion">
+      <resource about="[_:initial]">
+        <!-- Anonymous {resource} (bnode).  We could also point to a URI by which
+             the previous {version} can actually be retrieved from a repository -->
+        <link rel="dct:creator"
+         {resource}="http://dbpedia.org/resource/Pierre_de_Fermat"/>
+        <meta property="dct:created" datatype="xsd:date">1637-06-13T00:00:00</meta>
+      </resource>
+      <resource about="[_:correct]">
+        <link rel="dct:replaces" {resource}="[_:initial]"/>
+        <link rel="dct:creator"
+         {resource}="http://math.princeton.edu/~awiles/foaf.rdf#me"/>
+        <meta property="dct:date" datatype="xsd:date">1995-05-01T00:00:00</meta>
+      </resource>
+      <resource about="[_:digitalized]">
+        <link rel="dct:requires dct:source"
+         {resource}="[_:correct]"/>
+        <link rel="dct:creator"
+         {resource}="http://kwarc.info/kohlhase/"/>
+        <meta property="dct:issued" datatype="xsd:date">2006-08-28T00:00:00</meta>
+      </resource>
+    </link>
+    <link rel="xhv:license"><!-- actually recommended: directly using
+     the pre-defined license http://creativecommons.org/licenses/by/3.0/de/,
+     which is the same as what we are constructing here -->
+      <meta property="cc:jurisdiction" {content}="de"/>
+      <link rel="cc:permits">
+        <resource about="[cc:Reproduction]"/>
+        <resource about="[cc:Distribution]"/>
+        <resource about="[cc:DerivativeWorks]"/>
+      </link>
+      <link rel="cc:requires">
+        <resource about="[cc:Notice]"/>
+        <resource about="[cc:Attribution]"/>
+      </link>
+    </link>
+  </metadata>
+  <!-- The actual body of the {proof} -->
+</proof>
+\end{lstlisting}
+
+Compared to \omdoc 1.2, one aspect cannot be expressed with \dcmi
+Terms: the actions that lead to new revisions.  One state-of-the-art
+ontology that offers the desired expressivity is the Ontology Metadata
+Vocabulary~\cite{OMV:on,PHCG:ChangeReprOWL2Onto09} for describing
+ontologies\ednote{CL: refer somewhere where we say that by the MOLE
+  approach OMDoc documents are basically the same as ontologies}. Instances of \identifier{omv:Ontology} can be
+arranged into a list linked via \identifier{omv:hasPriorVersion}.  As
+an overlay list to the mere sequence of revisions, a sequence of
+changes can be given.  An \identifier{omv:ChangeSpecification}
+connects two ontology versions by its properties
+\identifier{omv:changeFromVersion} and
+\identifier{omv:changeToVersion} and consists of a set of one or more
+\identifier{omv:Change}s chained together by
+\identifier{omv:hasPreviousChange}.  A change has an author (an
+\identifier{omv:Person}), a date, and a few more properties.  OMV
+offers a lot of change subclasses specific to \rdfs and \owl
+ontologies; we could easily add change types for mathematical
+documents, theories, or statements, \eg a change type for adding a
+type declaration to a symbol.\ednote{CL: TODO morphism dct$\leftrightarrow$OMV}
+
+\ednote{CL: TODO Also there is potential for interaction rules between DC and CC, \eg if BY(D) and dc:creator(D,A) then ....) -- Interesting. Yes, why not. But then I vote for the following plan     1. first do this as a part of the OMDoc spec to learn how it works    2. but then don't keep it within the OMDoc standard, but try to convince the CC developers    3. only if they don't like our approach, keep it in the OMDoc standard, otherwise contribute it to CC and refer to it from OMDoc. }
+
+\begin{lstlisting}[language={[1.6]OMDoc},escapeinside={\{\}}]
+    <!-- TODO: THIS IS OBSOLETE; I WILL REWORK IT INTO AN EXAMPLE USING OMV -->
+    <link rel="rev:created_by_act" href="[_:creation]"/>
+    <link rel="rev:current_version" href="[_:current]"/>
+    <link rel="rev:has_version">
+      <resource about="[_:v1]" typeof="rev:Revision">
+        <link rel="rev:content" href="fermats-last-theorem?rev=1"/>
+        <link rel="rev:created_by_act">
+          <resource about="[_:creation]" typeof="chg:Creation">
+            <link rel="event:agent" href="http://dbpedia.org/page/Pierre_de_Fermat"/>
+            <dc:date>1637-06-13T00:00:00</dc:date>
+          </resource>
+        </link>
+      </resource>
+    </link>
+    <!-- revision 2 (Wiles{'}s proof) left out to save space -->
+    <link rel="rev:has_version">
+      <resource about="[_:current]" typeof="rev:Revision">
+        <link rel="rev:content" href="fermats-last-theorem?rev=3"/>
+        <link rel="rev:created_by_act">
+          <resource typeof="chg:Import">
+            <link rel="event:agent" href="http://kwarc.info/kohlhase/foaf.rdf#me"/>
+            <dc:date>2006-08-28T00:00:00</dc:date>
+            <link rel="rev:prior_version" href="[_:v2]"/>
+          </resource>
+        </link>
+      </resource>
+    </link>
+\end{lstlisting}
+
+\paragraph{Pragmatic Metadata}
+\label{sec:new-metadata-pragmatic}
+
+\ednote{CL: I suppose we will keep the old sections on metadata mostly
+unchanged from 1.2, so this has to be restructured.}
+
+\begin{oldpart}{integrate}
+  As the listing in Sect.~\ref{sec:new-metadata} shows, the new
+  \rdfa-based metadata   syntax is much more verbose than the old one
+  of {\omdoc} 1.2.  Therefore, we suggest   two ways of facilitating
+  the annotation: For manual authoring, one can keep the old,
+  \enquote{pragmatic} {\omdoc} 1.2 syntax and specify a transformation
+  of such annotations to   the new, \enquote{strict} \rdfa syntax --
+  implementable, e.\,g., in XSLT\ednote{CL: TODO align     with~\ref{sec:new-metadata}}.
+\end{oldpart}
+
+also consider {\sTeX} as an even more pragmatic metadata syntax .
+
+\paragraph{Respecifying Metadata Inheritance}
+\label{sec:new-metadata-inherit}
+
+As I modeled our metadata ontologies in \omdoc, I am now able to extend it by a formal
+specification of certain rules that had only informally been stated in the \omdoc 1.2
+specification: for example, that most DC metadata propagate from document sections down
+into subsections unless subsections specify different values, or that any
+\identifier{dc:creator} of a subsection of a document becomes a \identifier{dc:contributor} to the
+whole document.
+
+\ednote{CL: TODO model formally in DL (give example): $insection \circ creator \sqsubseteq contributor$}
+
+\ednote{CL: TODO @inherits, compare \activemath}
+
+\ednote{CL: TODO new contribution: can also add metadata from RDF ontologies to OM terms (as attributions)}
+
+\ednote{CL: TODO require importing ontologies when used as \curies?}
+
+\end{tsection}
+
+
+\begin{tsection}[id=dc-elements]{The Dublin Core Elements (Module {\DCmodule{spec}})}
+
+In the following we will describe the variant of Dublin Core metadata elements used in
+{\omdoc}\footnote{Note that {\omdocv{1.2}} systematically changes the Dublin Core {\xml}
+  tags to synchronize with the tag syntax recommended by the Dublin Core Initiative. The
+  tags were capitalized in {\omdoc}1.1}.  Here, the {\element{metadata}} element can
+contain any number of instances of any Dublin Core elements described below in any
+order. In fact, multiple instances of the same element type (multiple
+{\element[ns-elt=dc]{creator}} elements for example) can be interspersed with other
+elements without change of meaning.  {\omdoc} extends the Dublin Core framework with a set
+of roles (from the MARC relator set~\cite{Marc:relators03}) on the authorship elements and
+with a rights management system based on the Creative Commons Initiative.
+
+\begin{myfig}{qtmetadata}{Dublin Core Metadata in {\omdoc}}
+  \begin{scriptsize}
+\begin{tabular}{|>{\tt}l|>{\tt}l|>{\tt}l|>{\tt}l|}\hline
+{\rm Element}& \multicolumn{2}{l|}{Attributes\hspace*{2.25cm}} & Content  \\\hline
+             & {\rm Req.}  & {\rm Optional}     &           \\\hline\hline
+ dc:creator     &  & xml:id, class, style, role    &  text \\\hline
+ dc:contributor &  & xml:id, class, style, role    &  text \\hline
+ dc:title       &  & xml:lang    &  \llquote{math vernacular}  \\\hline
+ dc:subject     &  & xml:lang    &  \llquote{math vernacular}  \\\hline
+ dc:description &  & xml:lang    &  \llquote{math vernacular}  \\\hline
+ dc:publisher   &  & xml:id, class, style          &  ANY  \\\hline
+ dc:date        &  & action, who &  {\twintoo{ISO}{8601}}  \\\hline
+ dc:type        &  &             &  {\rm fixed:} "Dataset" {\rm or\ } "Text" \\\hline
+ dc:format      &  &             &  {\rm fixed:} "application/omdoc+xml"  \\\hline
+ dc:identifier  &  & scheme      &  ANY  \\\hline
+ dc:source      &  &             &  ANY  \\\hline
+ dc:language    &  &             &  {\twintoo{ISO}{639}} \\\hline
+ dc:relation    &  &             &  ANY  \\\hline
+ dc:rights      &  &             &  ANY  \\\hline\hline
+ \multicolumn{4}{|l|}{for \llquote{math vernacular} see {\mysecref{mtext}}}\\\hline
+\end{tabular}
+\end{scriptsize}
+\end{myfig}
+
+
+  The descriptions in this section are adapted from~\cite{DCMI:dmt03}, and augmented for
+  the application in {\omdoc} where necessary. All these elements live in the
+  {\twintoo{Dublin Core}{namespace}} \url{http://purl.org/dc/elements/1.1/}, for which we
+  traditionally use the {\twintoo{namespace}{prefix}} {\snippetin{dc:}}.\atwin{Dublin
+    Core}{namespace}{URI}
+
+\begin{description}
+\item[{\element[ns-elt=dc]{title}}] The title of the element --- note that {\omdoc}
+  metadata can be specified at multiple levels, not only at the document level, in
+  particular, the Dublin Core {\eldef[ns-elt=dc]{title}} element can be given to assign a
+  title to a theorem, e.g. the ``Substitution Value Theorem''.
+  
+  The {\element[ns-elt=dc]{title}} element can contain
+  {\twintoo{mathematical}{vernacular}}, i.e. the same content as the {\element{CMP}}
+  defined in {\mysecref{mtext}}. Also like the {\element{CMP}} element, the
+  {\element[ns-elt=dc]{title}} element has an
+  {\attribute[ns-elt=xml,ns-attr=dc]{lang}{title}} attribute that specifies the language
+  of the content. Multiple {\element[ns-elt=dc]{title}} elements inside a
+  {\element{metadata}} element are assumed to be translations of each other.
+\item[{\element[ns-elt=dc]{creator}}] A primary creator or author of the publication.
+  Additional contributors whose contributions are secondary to those listed in
+  {\eldef[ns-elt=dc]{creator}} elements should be named in
+  {\element[ns-elt=dc]{contributor}} elements.  Documents with multiple co-authors should
+  provide multiple {\element[ns-elt=dc]{creator}} elements, each containing one author.
+  The order of {\element[ns-elt=dc]{creator}} elements is presumed to define the order in
+  which the creators' names should be presented.
+  
+  As markup for names across cultures is still un-standardized, {\omdoc} recommends that
+  the content of a {\element[ns-elt=dc]{creator}} element consists in a single name (as it
+  would be presented to the user). The {\element[ns-elt=dc]{creator}} element has an
+  optional attribute {\attribute[ns-elt=xml,ns-attr=dc]{id}{creator}} so that it can be
+  {\indextoo{cross-reference}d} and a {\attributeshort{role}} attribute to further
+  classify the concrete contribution to the element. We will discuss its values in
+  {\mysecref{dc-roles}}.
+\item[{\element[ns-elt=dc]{contributor}}] A party whose contribution to the publication is
+  secondary to those named in {\element[ns-elt=dc]{creator}} elements.  Apart from the
+  significance of contribution, the semantics of the {\eldef[ns-elt=dc]{contributor}} is
+  identical to that of {\element[ns-elt=dc]{creator}}, it has the same restriction content
+  and carries the same attributes plus a
+  {\attribute[ns-elt=xml,ns-attr=dc]{lang}{contributor}} attribute that specifies the
+  target language in case the contribution is a translation.
+\item[{\element[ns-elt=dc]{subject}}] This element contains an arbitrary phrase or keyword,
+  the attribute {\attribute[ns-elt=xml,ns-attr=dc]{lang}{subject}} is used for the
+  language. Multiple instances of the {\eldef[ns-elt=dc]{subject}} element are supported
+  per {\attribute[ns-elt=xml,ns-attr=dc]{lang}{subject}} for multiple keywords.
+\item[{\element[ns-elt=dc]{description}}] A text describing the containing element's
+  content; the attribute {\attribute[ns-elt=xml,ns-attr=dc]{lang}{description}} is used
+  for the language. As description of mathematical objects or {\omdoc} fragments may
+  contain formulae, the content of this element is of the form
+  ``{\twintoo{mathematical}{text}}'' described in {\mychapref{mtxt}}.  The
+  {\eldef[ns-elt=dc]{description}} element is only recommended for {\element{omdoc}}
+  elements that do not have a {\element{CMP}} group (see {\mysecref{mtext}}), or if the
+  description is significantly shorter than the one in the {\element{CMP}s} (then it can
+  be used as an {\indextoo{abstract}}).
+\item[{\element[ns-elt=dc]{publisher}}] The entity for making the document available in
+  its present form, such as a publishing house, a university department, or a corporate
+  entity. The {\eldef[ns-elt=dc]{publisher}} element only applies if the
+  {\element{metadata}} is a direct child of the root element ({\element{omdoc}}) of a
+  document\twin{document}{root}.
+\item[{\element[ns-elt=dc]{date}}] The date and time a certain action was performed on the
+  element that contains this. The content is in the format defined by {\xml} Schema data
+  type {\snippetin{date\-Time}} (see~\cite{BirMal:XMLSchema:Datatypes} for a discussion),
+  which is based on the {\atwintoo{ISO}{8601}{norm}} for dates and times.
+
+  Concretely, the format is
+  {\snippet{\llquote{YYYY}-\llquote{MM}-\llquote{DD}T\llquote{hh}:\llquote{mm}:\llquote{ss}}}
+  where {\llquote{YYYY}} represents the year, {\llquote{MM}} the month, and {\llquote{DD}}
+  the day, preceded by an optional leading ``{\snippet{-}}'' sign to indicate a negative
+  number. If the sign is omitted, ``{\snippet{+}}'' is assumed.  The letter
+  ``{\snippet{T}}'' is the date/time separator and {\llquote{hh}}, {\llquote{mm}},
+  {\llquote{ss}} represent hour, minutes, and seconds respectively.  Additional digits can
+  be used to increase the precision of fractional seconds if desired, i.e the format
+  {\snippet{\llquote{ss}.\llquote{sss\ldots}}} with any number of digits after the decimal
+  point is supported.  The {\eldef[ns-elt=dc]{date}} element has the attributes
+  {\attribute[ns-elt=dc]{action}{date}} and {\attribute[ns-elt=dc]{who}{date}} to specify
+  who did what: The value of {\attribute[ns-elt=dc]{who}{date}} is a reference to a
+  {\element[ns-elt=dc]{creator}} or {\element[ns-elt=dc]{contributor}} element and
+  {\attribute[ns-elt=dc]{action}{date}} is a keyword for the action
+  undertaken. Recommended values include the short forms
+  {\attval[ns-elt=dc]{updated}{action}{date}},
+  {\attval[ns-elt=dc]{created}{action}{date}},
+  {\attval[ns-elt=dc]{imported}{action}{date}},
+  {\attval[ns-elt=dc]{frozen}{action}{date}},
+  {\attval[ns-elt=dc]{review-on}{action}{date}},
+  {\attval[ns-elt=dc]{normed}{action}{date}} with the obvious meanings. Other actions may
+  be specified by {\indextoo{URI}s} pointing to documents that explain the action.
+\item[{\element[ns-elt=dc]{type}}] Dublin Core defines a vocabulary for the document types
+  in {\cite{DCMI:dtv03}}. The best fit values for {\omdoc} are
+  \begin{description}
+  \item[{\snippetin{Dataset}}]\index{Dataset@{\snippet{Dataset}} as Dublin Core Type}
+    defined as ``{\emph{information encoded in a defined structure (for example lists,
+      tables, and databases), intended to be useful for direct machine processing}}.''
+  \item[{\snippetin{Text}}]\index{Text@{\snippet{Text}} as Dublin Core Type} defined as
+    ``{\emph{a resource whose content is primarily words for reading. For example -- books,
+      letters, dissertations, poems, newspapers, articles, archives of mailing lists. Note
+      that facsimiles or images of texts are still of the genre text.}}''
+  \item[{\snippetin{Collection}}]\index{Collection@{\snippet{Collection} as Dublin Core
+        Type}} defined as ``{\emph{an aggregation of items. The term collection means that
+      the resource is described as a group; its parts may be separately described and
+      navigated}}''.
+  \end{description}
+  The more appropriate should be selected for the element that contains the
+  {\eldef[ns-elt=dc]{type}}. If it consists mainly of formal mathematical formulae, then
+  {\snippetin{Dataset}} is better, if it is mainly given as text, then {\snippetin{Text}}
+  should be used. More specifically, in {\omdoc} the value {\snippetin{Dataset}} signals
+  that the order of children in the parent of the {\element{metadata}} is not relevant to
+  the meaning. This is the case for instance in formal developments of mathematical
+  theories, such as the specifications in {\mychapref{complex-theories}}.
+\item[{\element[ns-elt=dc]{format}}] The physical or digital manifestation of the
+  resource.  Dublin Core suggests using {\twintoo{MIME}{type}s}~\cite{FreBor:MIME96}.
+  Following~\cite{MurLau:xmt01} we fix the content of the {\eldef[ns-elt=dc]{format}}
+  element to be the string {\snippet{application/omdoc+xml}} as the {\twintoo{MIME}{type}}
+  for {\omdoc}.
+\item[{\element[ns-elt=dc]{identifier}}] A string or number used to uniquely identify the
+  element.  The {\eldef[ns-elt=dc]{identifier}} element should only be used
+  for public identifiers like {\indextoo{ISBN}} or {\indextoo{ISSN}} numbers. The
+  numbering scheme can be specified in the {\attribute[ns-elt=dc]{scheme}{identifier}}
+  attribute.
+\item[{\element[ns-elt=dc]{source}}] Information regarding a prior resource from which the
+  publication was derived. We recommend using either a {\indextoo{URI}} or a scientific
+  reference including identifiers like ISBN numbers for the content of the
+  {\eldef[ns-elt=dc]{source}} element.
+\item[{\element[ns-elt=dc]{relation}}] Relation of this document to others.  The content
+  model of the {\eldef[ns-elt=dc]{relation}} element is not specified in the {\omdoc}
+  format.
+\item[{\element[ns-elt=dc]{language}}] If there is a primary language of the document or
+  element, this can be specified here. The content of the {\eldef[ns-elt=dc]{language}}
+  element must be an {\atwintoo{ISO}{639}{norm}} two-letter language specifier, like
+  {\snippetin{en}}$\;\widehat=\;$English, {\snippetin{de}}$\;\widehat=\;$German,
+  {\snippetin{fr}}$\;\widehat=\;$French, {\snippetin{nl}}$\;\widehat=\;$Dutch, \ldots.
+\item[{\element[ns-elt=dc]{rights}}] Information about rights held in and over the
+  document or element content or a reference to such a statement. Typically, a
+  {\eldef[ns-elt=dc]{rights}} element will contain a rights management statement, or
+  reference a service providing such information. {\element[ns-elt=dc]{rights}}
+  information often encompasses Intellectual Property rights (IPR), Copyright, and various
+  other property rights. If the {\element[ns-elt=dc]{rights}} element is absent (and no
+  {\element[ns-elt=dc]{rights}} information is inherited), no assumptions can be made
+  about the status of these and other rights with respect to the document or element.
+  
+  {\omdoc} supplies specialized elements for the Creative Commons licenses to support the
+  sharing of mathematical content. We will discuss them in {\mysecref{creativecommons}}.
+\end{description}
+Note that Dublin Core also defines a {\oldelement{Coverage}{1.1}} element that
+specifies the place or time which the publication's contents addresses. This does
+not seem appropriate for the mathematical content of {\omdoc}, which is largely
+independent of time and geography.
+\end{tsection}
+
+\begin{tsection}[id=dc-roles]{Roles in Dublin Core Elements}
+
+Because the Dublin Core metadata fields for {\element[ns-elt=dc]{creator}} and
+{\element[ns-elt=dc]{contributor}} do not distinguish roles of specific parties (such as
+author, editor, and illustrator), we will follow the {\indextoo{Open eBook}}
+specification~\cite{OpenEBook:oeps99} and use an optional
+{\attribute[ns-elt=dc]{role}{*}} attribute for this purpose, which is
+adapted for {\omdoc} from the MARC relator code list~\cite{Marc:relators03}.
+\begin{description}
+\item[{\attval[ns-elt=dc]{aut}{role}{*}}] ({\indextoo{author}}) Use for a
+  person or corporate body chiefly responsible for the intellectual
+  content of an element. This term may also be used when more than one person or body
+  bears such responsibility.
+\item[{\attval[ns-elt=dc]{ant}{role}{*}}] (scientific/bibliographic
+  antecedent\twin{bibliographic}{antecedent}\twin{scientific}{antecedent}) Use
+for the author responsible for a work upon which the element is based.
+\item[{\attval[ns-elt=dc]{clb}{role}{*}}] ({\indextoo{collaborator}}) Use
+  for a person or corporate body that takes a limited part in the elaboration of a
+  work of another author or that brings complements (e.g., appendices, notes) to
+  the work of another author.
+\item[{\attval[ns-elt=dc]{edt}{role}{*}}] ({\indextoo{editor}}) Use for a
+  person who prepares a document not primarily his/her own for publication, such
+  as by elucidating text, adding introductory or other critical matter, or
+  technically directing an editorial staff.
+\item[{\attval[ns-elt=dc]{ths}{role}{*}}] ({\twintoo{thesis}{advisor}}) Use for the person under
+  whose supervision a degree candidate develops and presents a thesis, memoir, or text of
+  a dissertation.
+\item[{\attval[ns-elt=dc]{trc}{role}{*}}] ({\indextoo{transcriber}}) Use
+  for a person who prepares a handwritten or typewritten copy from original
+  material, including from dictated or orally recorded material. This is also the
+  role (on the {\element[ns-elt=dc]{creator}} element) for someone who prepares the {\omdoc}
+  version of some mathematical content.
+\item[{\attval[ns-elt=dc]{trl}{role}{*}}] ({\indextoo{translator}}) Use
+  for a person who renders a text from one language into another, or from an older
+  form of a language into the modern form. The target language can be specified by
+  {\attribute[ns-elt=xml,ns-attr=dc]{lang}{*}}.
+\end{description}
+As {\omdoc} documents are often used to formalize existing mathematical texts for use in
+mechanized reasoning and computation systems, it is sometimes subtle to specify
+authorship.  We will discuss some typical examples to give a guiding intuition.
+{\mylstref{sec-edt}} shows metadata for a situation where editor $R$ gives the sources
+(e.g. in {\LaTeX}) of an element written by author $A$ to secretary $S$ for conversion
+into {\omdoc} format.
+\begin{lstlisting}[label=lst:sec-edt,mathescape,
+  caption={A Document with Editor ({\snippet{edt}}) and  Transcriber ({\snippet{trc}})},
+  index={metadata,dc:title,dc:creator,dc:contributor}]
+<metadata>
+  <dc:title>The Joy of Jordan $C\sp{*}$ Triples</dc:title>
+  <dc:creator role="aut">$A$</dc:creator>
+  <dc:contributor role="edt">$R$</dc:contributor>
+  <dc:contributor role="trc">$S$</dc:contributor>
+</metadata>
+\end{lstlisting}
+
+In {\mylstref{formalize}} researcher $R$ formalizes the theory of natural numbers
+following the standard textbook $B$ (written by author $A$). In this case we
+recommend the first declaration for the whole document and the second one for
+specific math elements, e.g. a definition inspired by or adapted from one in book
+$B$.
+
+\begin{lstlisting}[label=lst:formalize,mathescape,
+  caption={A Formalization with Scientific Antecedent ({\snippet{ant}})},
+  index={metadata,dc:title,dc:creator}]
+<omdoc xml:id="NNat" version="1.3" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <metadata><dc:title>Natural Numbers</dc:title></metadata>                              
+  $\ldots$
+  <theory xml:id="NNat.thy">
+    <metadata>
+      <dc:title>Natural Numbers</dc:title>
+      <dc:creator role="aut">$R$</dc:creator>
+      <dc:contributor role="ant">$A$</dc:contributor>
+      <dc:source>$B$</dc:source>
+    </metadata>
+    $\ldots$
+  </theory>
+  $\ldots$
+</omdoc>
+\end{lstlisting}
+\end{tsection}
+
+\begin{tsection}[id=creativecommons,short=Managing Rights]{Managing Rights by Creative
+    Commons Licenses (Module {\CCmodule{spec}})}
+
+  The Dublin Core vocabulary provides the {\element[ns-elt=dc]{rights}} element for
+  information about rights held in and over the document or element content, but leaves
+  the content model unspecified. While it is legally sufficient to describe this
+  information in natural language, a content markup format like {\omdoc} should support a
+  machine-understandable format. As one of the purposes of the {\omdoc} format is to
+  support the sharing and re-use of mathematical content, {\omdoc} provides markup for
+  rights management via the {Creative Commons\twin{Creative Commons}{license}}
+  (CC{\twin{CC}{license}}) licenses.  Digital rights
+  management\atwin{Digital}{rights}{management} (\indextoo{DRM}) and licensing of
+  {\twintoo{intellectual}{property}} has become a hotly debated topic in the last
+  years. We feel that the {\twintoo{Creative Commons}{license}s} that encourage sharing of
+  content and enhance the (scientific) public domain while giving authors some control
+  over their intellectual property establish a good middle ground. Specifying rights is
+  important, since in the absence of an explicit or implicit (via inheritance)
+  {\element[ns-elt=dc]{rights}} element no assumptions can be made about the status of the
+  document or fragment.  Therefore {\omdoc} adds another child to the {\element{metadata}}
+  element.  This {\eldef[ns-elt=cc]{license}} element is a symbolic representation of the
+  Creative Commons legal framework, adapted to the {\omdoc} setting: The Creative Commons
+  Metadata Initiative specifies various ways of embedding {\twintoo{CC}{metadata}} into
+  documents and {\twintoo{electronic}{artefacts}} like {\indextoo{picture}s} or
+  {\twintoo{MP3}{recording}s}. As {\omdoc} is a source format, from which various
+  presentation formats are generated, we need a content representation of the CC metadata
+  from which the end-user representations for the respective formats can be generated.
+
+\begin{myfig}{cctable}{The {\omdoc} Elements for Creative Commons Metadata}
+\begin{scriptsize}
+\begin{tabular}{|>{\tt}l|>{\tt}l|>{\tt}p{2.2truecm}|>{\tt}l|}\hline
+{\rm Element}& \multicolumn{2}{l|}{Attributes\hspace*{2.25cm}} & Content  \\\hline
+             & {\rm Req.}  & {\rm Optional}    &          \\\hline\hline
+ cc:license      & & jurisdiction    &  permissions, prohibitions, requirements  \\\hline
+ cc:permissions  & & reproduction, distribution, derivative\_works & EMPTY\\\hline
+ cc:prohibitions & & commercial\_use & EMPTY \\\hline
+ cc:requirements & & notice, copyleft,  attribution & EMPTY \\\hline
+\end{tabular}
+\end{scriptsize}
+\end{myfig}
+
+The Creative Commons Metadata Initiative~\cite{creative-commons:on} divides the license
+characteristics in three types: {\defin{permissions}}, {\defin{prohibitions}} and
+{\defin{requirements}}, which are represented by the three elements, which can occur as
+children of the {\element[ns-elt=cc]{license}} element. The {\element[ns-elt=cc]{license}}
+element has two optional argument:
+\begin{description}
+\item[{\attribute[ns-elt=cc]{jurisdiction}{license}}] which allows to specify the country
+  in whose jurisdiction the license will be enforced\footnote{The {\twintoo{Creative
+        Commons}{Initiative}} is currently in the process of adapting their licenses to
+    jurisdictions other than the USA, where the licenses
+    originated. See~\cite{URL:creativecommonsWorldwide} for details and to check for
+    progress.}. It's value is one of the {\twintoo{top-level}{domain}} codes of the
+  ``Internet Assigned Names Authority (IANA)''~\cite{IANA:TLD}. If this attribute is
+  absent, then the original US version of the license is assumed.
+\item[{\attribute[ns-elt=cc]{version}{license}}] which allows to specify the version of the
+  license. If the attribute is not present, then the newest released version is assumed
+  (version 2.0 at the time of writing this {\report})
+\end{description}
+
+The following three empty elements can occur as children of the
+{\element[ns-elt=cc]{license}} element; their attribute specify the rights bestowed on the
+user by the license.  All these elements have the {\twin{Creative Commons}{namespace}}
+namespace \url{http://creativecommons.org/ns}\atwin{Creative Commons}{namespace}{URI},
+for which we traditionally use the {\twintoo{namespace}{prefix}} {\snippetin{cc:}}.
+
+\begin{itemize}
+\item {\eldef[ns-elt=cc]{permissions}} are the rights granted by the license, to model
+  them the element has three attributes, which can have the values
+  {\attvalveryshort{permitted}} (the permission is granted by the license) and
+  {\attvalveryshort{prohibited}} (the permission isn't):
+  \begin{center}\scriptsize
+    \begin{tabular}{|l|p{6truecm}|>{\tt}l|}\hline
+      Attribute & Permission & Default\\\hline\hline
+      {\attribute[ns-elt=cc]{reproduction}{permissions}} 
+      & the work may be reproduced & permitted\\\hline
+      {\attribute[ns-elt=cc]{distribution}{permissions}}  
+      & the work may be distributed, publicly displayed, and
+      publicly performed & permitted \\\hline
+      {\attribute[ns-elt=cc]{derivative\_works}{permissions}}  
+      & derivative works may be created and reproduced & permitted \\\hline
+    \end{tabular}
+  \end{center}
+\item {\eldef[ns-elt=cc]{prohibitions}} are the things the license prohibits.
+  \begin{center}\scriptsize
+    \begin{tabular}{|l|p{6truecm}|>{\tt}l|}\hline
+      Attribute & Prohibition & Default\\\hline\hline
+      {\attribute[ns-elt=cc]{commercial\_use}{permission}} 
+      &  stating that rights may be exercised for commercial purposes.
+      & permitted \\\hline
+    \end{tabular}
+  \end{center}
+\item {\eldef[ns-elt=cc]{requirements}} are restrictions imposed by the license.
+    \begin{center}\scriptsize
+      \begin{tabular}{|l|p{6.5truecm}|>{\tt}l|}\hline
+      Attribute & Requirement & Default\\\hline\hline
+      {\attribute[ns-elt=cc]{notice}{requirements}}  
+      & copyright and license notices must be kept intact & required \\\hline
+      {\attribute[ns-elt=cc]{attribution}{requirements}}  
+      & credit must be given to copyright holder and/or author & required\\\hline
+      {\attribute[ns-elt=cc]{copyleft}{requirements}}  
+      & derivative works, if authorized, must be licensed under the same terms as
+      the work & required \\\hline
+    \end{tabular}
+  \end{center}
+\end{itemize}
+
+This vocabulary is directly modeled after the Creative Commons
+Metadata~\cite{URL:creativecommonsMetadata} which defines the meaning, and provides an
+{\rdf}~\cite{LasSwi:rdf99} based implementation. As we have discussed in
+{\mysecref{metadata}}, {\omdoc} follows an approach that specifies metadata in the
+document itself; thus we have provided the elements described here. In contrast to many
+other situations in {\omdoc}, the rights model is not extensible, since only the current
+model is backed by legal licenses provided by the creative commons initiative.
+
+{\Mylstref{ccc-copyleft}} specifies a license grant using the Creative Commons
+``share-alike'' license: The copyright is retained by the author, who licenses the content
+to the world, allowing others to reproduce and distribute it without restrictions as long
+as the copyright notice is kept intact. Furthermore, it allows others to create derivative
+works based on the content as long as it attributes the original work of the author and
+licenses the derived work under the identical license (i.e. the Creative Commons
+``share-alike'' as well).
+\begin{lstlisting}[label=lst:ccc-copyleft,caption={A Creative Commons License},
+  index={metadata,dc:rights,license,permissions,reproduction,distribution,
+         derivative_works,prohibitions,commercial_use,requirements,
+         notice,copyleft,attribution}]
+<metadata>
+  <dc:rights>Copyright (c) 2004 Michael Kohlhase</dc:rights>
+  <license jurisdiction="de" xmlns="http://creativecommons.org/ns">
+    <permissions reproduction="permitted" distribution="permitted" 
+                 derivative_works="permitted"/>
+    <prohibitions commercial_use="permitted"/>
+    <requirements notice="required" copyleft="required" attribution="required"/>
+  </license>
+</metadata>
+\end{lstlisting}
+\end{tsection}
+
+\end{tchapter}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "omdoc"
+%%% End: 
+
+% LocalWords:  DCperson trl dateTime CC YY DD hh ss sss ISBN ISSN isbn IPR dc
+% LocalWords:  MiKo aut clb edt ths trc lst sec qtmetadata lang mathescape Req
+% LocalWords:  mtext camelcase natlist en fr nl creativecommons DRM genmeta mmt
+% LocalWords:  cctable comercial RDF CNX NNat mtxt ref xmlns inheritancea ns un
+% LocalWords:  inheritanceb elt attr CMP Dataset omdoc metadata YYYY de eBook
+% LocalWords:  creativecommons dc CC DRM cc cctable Req IANA RDF ccc lst xmlns
+% LocalWords:  th mbox xncmd ccrel rdfs wrt ifmmode mathit textit rdfa rdfa svg
+% LocalWords:  enquote xhtml xhtml xhtml TumDelOre Sindice07 oo localname
+% LocalWords:  PruSea08 sparql bnode-id

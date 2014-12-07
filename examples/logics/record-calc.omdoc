@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!DOCTYPE omdoc PUBLIC "-//OMDoc//DTD OMDoc V1.3//EN"
+                "../../dtd/omdoc.dtd">
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  xmlns="http://omdoc.org/ns"
+xml:id="record-calc-omdoc" >
+
+ <metadata>
+  <dc:title>Record Calculus Types</dc:title>
+   <dc:creator role="aut">Michael Kohlhase</dc:creator>
+   <dc:date>2002-04-16T00:00:00</dc:date>
+   <dc:description>Untyped Record Calculus.</dc:description>
+  </metadata>
+
+ <theory xml:id="record-calc">
+
+ <symbol name="record" role="object" scope="global">
+<metadata>
+<dc:description>The record expression constructor. It takes an even number of
+   arguments, the ones at even position are the record fields and the ones at
+   the odd positions their values.</dc:description>
+</metadata>
+</symbol>
+
+ <presentation xml:id="pr-record" for="#record" role="applied">
+  <xslt format="pvs" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+    <xsl:text>(# </xsl:text>
+     <xsl:for-each select="*">
+       <xsl:if test="(position() mod 2) = 0">
+        <xsl:variable name="next" select="position()+1"/>
+        <xsl:value-of select="."/>
+        <xsl:text>:= </xsl:text>
+        <xsl:apply-templates select="../*[$next]"/>
+        <xsl:if test="position()!=last()-1"><xsl:text>, </xsl:text></xsl:if>
+      </xsl:if>
+     </xsl:for-each>
+    <xsl:text> #)</xsl:text>
+  </xslt>
+ </presentation>
+
+ <symbol name="select">
+<metadata>
+<dc:description>The record selector constant. The first argument is a record, 
+    the second a record, from which the value for this feature is selected.</dc:description>
+</metadata>
+</symbol>
+
+ <presentation for="#select"  fixity="infix">
+  <use format="default">.</use>
+ </presentation>
+
+<symbol name="record-beta-equal">
+<metadata>
+<dc:description>Record beta equaltiy</dc:description>
+</metadata>
+</symbol>
+
+
+<axiom xml:id="record-beta-ax">
+ <CMP>Selecting a feature from a record gives the appropriate value:
+ <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+  <OMA>
+   <OMS cd="record-calc" name="record-beta-equal"/>
+    <OMA>   
+     <OMS cd="record-calc" name="select"/>
+     <OMA>
+      <OMS cd="record-calc" name="record"/>
+      <OMS cd="record-calc" name="ellipsis"/>
+      <OMS cd="record-calc" name="ellipsis"/>
+      <OMV name="F"/>
+      <OMV name="V"/>
+      <OMS cd="record-calc" name="ellipsis"/>
+      <OMS cd="record-calc" name="ellipsis"/>
+     </OMA>
+     <OMV name="F"/>
+    </OMA>
+    <OMV name="V"/>
+   </OMA>
+  </OMOBJ>
+ </CMP>
+</axiom>
+
+<symbol name="ellipsis">
+<metadata>
+<dc:description>This is a meta-symbol that is used for record ellipsis, it should not be
+    used in formal content.</dc:description>
+</metadata>
+</symbol>
+
+
+<presentation for="#ellipsis">
+  <use format="default">...</use>
+  <use format="TeX">{\ldots}</use>
+</presentation>
+    
+ <symbol name="tuple">
+<metadata>
+<dc:description>The tuple expression constructor.</dc:description>
+</metadata>
+</symbol>
+
+ <presentation xml:id="pr-tuple" for="#tuple" role="applied">
+  <use format="pvs" lbrack="( " rbrack=" )"/>
+ </presentation>
+
+
+ <symbol name="proj" role="object" scope="global">
+<metadata>
+<dc:description>The tuple projection function. It takes a number
+   expression N and a tuple as input and returns the N-th component, if the
+   first argument evaluates to N.</dc:description>
+</metadata>
+</symbol>
+
+ <presentation xml:id="pr-proj" for="#proj" role="applied" fixity="infix">
+  <use format="pvs" lbrack="" rbrack="">`</use>
+ </presentation>
+
+</theory>
+
+
+</omdoc>

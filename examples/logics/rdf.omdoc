@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xml:id="rdf.omdoc" version="1.3"
+       xmlns:dc="http://purl.org/dc/elements/1.1/" 
+       xmlns:cc="http://creativecommons.org/ns" 
+       xmlns:om="http://www.openmath.org/OpenMath"
+       xmlns:oo="http://omdoc.org/ontology#"
+       xmlns:m="http://www.w3.org/1998/Math/MathML"
+       xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+       xmlns="http://omdoc.org/ns">
+
+<metadata>
+  <dc:title>A Content Dictionary for the RDF</dc:title>
+  <dc:creator>Christoph Lange</dc:creator>
+  <dc:contributor>Michael Kohlhase</dc:contributor>
+  <dc:contributor>Siarhei Kuryla</dc:contributor>
+  <dc:date>2009-07-26</dc:date>
+  <dc:format>application/omdoc+xml</dc:format>
+  <dc:rights>Copyright (c) 2008 KWARC</dc:rights>
+  <dc:description>This CD defines the RDF language.</dc:description>
+</metadata>
+
+<theory 
+  xml:id="rdf"
+  cdbase="http://www.openmath.org/cd"
+  cdstatus="experimental"
+  cdurl="https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.3/examples/logics/rdf.omdoc"
+  cdversion="0"
+  cdrevision="1">
+  <metadata>
+    <link rel="oo:vocab" href="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+    <!-- this might require a (circular) import of RDFS, but we merely use it
+    as a syntactic annotation here, which corresponds to OpenMath's CDComment
+    -->
+    <meta property="rdfs:comment">Mostly modelled after the original RDF source at http://www.w3.org/1999/02/22-rdf-syntax-ns# and the RDF/XML specification (http://www.w3.org/TR/2004/REC-rdf-syntax-grammar-20040210/)</meta>
+    <dc:title>The RDF Vocabulary (RDF)</dc:title>
+    <dc:description>This is the RDF Schema for the RDF vocabulary defined in the RDF namespace.</dc:description>
+  </metadata>
+
+    
+<symbol name="type">
+  <metadata>
+    <!-- We give the descriptions, which are given as rdfs:comment metadata in
+    the original, as dc:descriptions here, for compatibility with OpenMath's
+    Description element -->
+    <dc:description>The subject is an instance of a class.</dc:description>
+  </metadata>
+  <type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMS cd="rdf" name="Property"/>
+    </OMOBJ>
+  </type>
+</symbol>  
+    
+<symbol name="Property">
+  <metadata>
+    <dc:description>The class of RDF properties.</dc:description>
+  </metadata>
+</symbol>
+
+<symbol name="Statement">
+  <metadata>
+    <dc:description>The class of RDF statements.</dc:description>
+  </metadata>
+</symbol>
+
+<symbol name="subject">
+  <metadata>
+    <dc:description>The subject of the subject RDF statement.</dc:description>
+  </metadata>
+  <type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMS cd="rdf" name="Property"/>
+    </OMOBJ>
+  </type>  
+</symbol>
+
+<symbol name="predicate">
+  <metadata>
+    <dc:description>The predicate of the subject RDF statement.</dc:description>
+  </metadata>
+  <type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMS cd="rdf" name="Property"/>
+    </OMOBJ>
+  </type>  
+</symbol>
+  
+<symbol name="object">
+  <metadata>
+    <dc:description>The object of the subject RDF statement.</dc:description>
+  </metadata>
+  <type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMS cd="rdf" name="Property"/>
+    </OMOBJ>
+  </type>  
+</symbol>
+  
+<symbol name="Bag">
+  <metadata>
+    <dc:description>The class of unordered containers.</dc:description>
+  </metadata>
+</symbol>
+
+<symbol name="Seq">
+  <metadata>
+    <dc:description>The class of ordered containers.</dc:description>
+  </metadata>
+</symbol>
+
+<symbol name="Alt">
+  <metadata>
+    <dc:description>The class of containers of alternatives.</dc:description>
+  </metadata>
+</symbol>
+
+<symbol name="value">
+  <metadata>
+    <dc:description>Idiomatic property used for structured values.</dc:description>
+  </metadata>
+  <type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMS cd="rdf" name="Property"/>
+    </OMOBJ>
+  </type>  
+</symbol>
+    
+<symbol name="List">
+  <metadata>
+    <dc:description>The class of RDF Lists.</dc:description>
+  </metadata>
+</symbol>
+
+<symbol name="nil">
+  <metadata>
+    <dc:description>The empty list, with no items in it. If the rest of a list is nil then the list has no more items in it.</dc:description>
+  </metadata>
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMS cd="rdf" name="List"/>
+      </OMOBJ>
+    </type>  
+</symbol>
+
+<symbol name="first">
+  <metadata>
+    <dc:description>The first item in the subject RDF list.</dc:description>
+  </metadata>
+  <type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMS cd="rdf" name="Property"/>
+    </OMOBJ>
+  </type>  
+</symbol>
+  
+<symbol name="rest">
+  <metadata>
+    <dc:description>The rest of the subject RDF list after the first item.</dc:description>
+  </metadata>
+  <type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMS cd="rdf" name="Property"/>
+    </OMOBJ>
+  </type>  
+</symbol>
+  
+<symbol name="XMLLiteral">
+  <metadata>
+    <dc:description>The class of XML literal values.</dc:description>
+  </metadata>
+</symbol>
+
+<notation>
+  <prototype>
+    <om:OMA><om:OMS cd="rdf" name="type"/><expr name="arg1"/><expr name="arg2"/></om:OMA>
+  </prototype>
+  <rendering>
+    <m:mrow>
+      <render name="arg1"/>
+      <m:msub><m:mo>:</m:mo><m:mi>type</m:mi></m:msub>
+      <render name="arg2"/>
+    </m:mrow>
+  </rendering>
+</notation>
+
+</theory>
+</omdoc>
+
+<!-- vim:sw=2:sts=2
+-->

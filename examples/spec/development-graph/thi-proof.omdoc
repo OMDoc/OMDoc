@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE omdoc PUBLIC "-//OMDoc//DTD OMDoc V1.3//EN"
+                       "../../../dtd/omdoc.dtd" []>
+
+<omdoc xml:id="thi-proof.omdoc"
+  xmlns="http://omdoc.org/ns"
+  xmlns:cc="http://creativecommons.org/ns"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  version="1.3">
+<metadata>
+  <dc:date action="created"> 2004-10-05T10:55:24Z </dc:date>
+  <dc:title xml:lang="en"> hti-proof </dc:title>
+  <dc:creator role="aut"> Michael Kohlhase </dc:creator>
+  <dc:source>  </dc:source>
+  <dc:date action="updated"> 2004-10-05T10:55:24Z </dc:date>
+  <dc:type> Text </dc:type>
+  <dc:format> application/omdoc+xml </dc:format>
+  <dc:rights>Copyright (c) 2004 Michael Kohlhase</dc:rights>
+  <cc:license>
+    <cc:permissions reproduction="permitted" distribution="permitted" derivative_works="permitted"/>
+    <cc:prohibitions commercial_use="permitted"/>
+    <cc:requirements notice="required" copyleft="required" attribution="required"/>
+  </cc:license>
+</metadata>
+
+<theory xml:id="t1"></theory>
+<theory xml:id="t2"></theory> 
+
+<theory xml:id="a1">                  
+  <imports xml:id="ima1" from="#th1"/>  
+  <axiom xml:id="axa11"><CMP>...</CMP></axiom>     
+  <axiom xml:id="axa12"><CMP>...</CMP></axiom>
+</theory>
+
+<theory xml:id="b1">
+  <imports xml:id="imb1" from="#th2"/>
+  <axiom xml:id="axb11"><CMP>...</CMP></axiom>
+</theory>
+
+<theory xml:id="a2">                    
+  <imports xml:id="im1a2" from="#th1"/> 
+  <imports xml:id="im2a2" from="#th2"/> 
+  <axiom xml:id="axa21"> <CMP>...</CMP> </axiom>       
+</theory>
+
+<theory xml:id="b2">
+  <imports xml:id="imb2" from="#th2"/>
+  <axiom xml:id="axb21"> <CMP>...</CMP> </axiom>
+</theory>
+
+<theory xml:id="c1">                   
+  <imports xml:id="im1c1" from="#a1"/>     
+  <imports xml:id="im2c1" from="#b1"/>      
+  <axiom xml:id="axc11"> <CMP>...</CMP> </axiom>        
+</theory>                           
+
+<theory xml:id="c2">
+  <imports xml:id="im1c2" from="#a2"/>
+  <imports xml:id="im2c2" from="#b2"/>
+  <axiom xml:id="axc111"><CMP>...</CMP> </axiom>
+</theory>
+  
+<axiom-inclusion xml:id="aia" from="#a1" to="#a2">
+  <obligation induced-by="#axa11" assertion="#th-axa11"/>
+  <obligation induced-by="#axa12" assertion="#th-axa12"/>
+</axiom-inclusion>
+
+<axiom-inclusion xml:id="bib" from="#b1" to="#b2"> 
+  <obligation induced-by="#axb11" assertion="#th-axb1"/>
+</axiom-inclusion>
+
+<axiom-inclusion xml:id="cic" from="#c1" to="#c2">
+  <obligation induced-by="#axc11" assertion="#th-axc1"/>
+</axiom-inclusion>
+
+<axiom-inclusion xml:id="t1ic" from="#t1" to="#c2">
+ <path-just local="#im1a2" globals="#im1c2"/>
+</axiom-inclusion>
+
+<axiom-inclusion xml:id="t2ic" from="#t2" to="#c2">
+ <path-just local="#imb2" globals="#im2c2"/>
+</axiom-inclusion>
+
+<axiom-inclusion xml:id="aic" from="#a1" to="#c2">
+ <path-just local="#aia" globals="#im1c2"/>
+</axiom-inclusion>
+
+<axiom-inclusion xml:id="bic" from="#b1" to="#c2">
+ <path-just local="#bib" globals="#im2c2"/>
+</axiom-inclusion>
+
+<theory-inclusion xml:id="tcic" from="#c1" to="#c2">
+  <decomposition links="#t1ic #t2ic #aic #bic #cic"/>
+</theory-inclusion>
+
+<theory-inclusion from="#c1" to="#c2"><decomposition links=""/></theory-inclusion>
+<theory-inclusion from="#c1" to="#c2"><decomposition links=""/></theory-inclusion>
+</omdoc>

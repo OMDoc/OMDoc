@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  
+       xmlns="http://omdoc.org/ns"
+       xmlns:om="http://www.openmath.org/OpenMath"
+       xmlns:m="http://www.w3.org/1998/Math/MathML"
+       xmlns:o="http://omdoc.org/ns"
+       xml:id="bigfloat1-omdoc">
+
+<metadata>
+  <dc:title>The OpenMath Content Dictionary bigfloat1.ocd  in OMDoc form</dc:title>
+  <dc:creator role="trl">Michael Kohlhase</dc:creator>
+  <dc:creator role="ant">James Davenport</dc:creator>
+  <dc:date> 1999-07-13T00:00:00</dc:date>
+  <dc:source>Derived from the OpenMath CD http://www.openmath.org/cd/bigfloat.ocd.</dc:source>
+  <dc:type>Text</dc:type>
+  <dc:format>application/omdoc+xml</dc:format>
+  <dc:rights>Copyright (c) 2000-2002 Michael Kohlhase;
+    This OMDoc content dictionary is released under the OpenMath license:
+    http://monet.nag.co.uk/openmath/cdfiles/license.html
+  </dc:rights>
+  <dc:description>
+    This CD provides a common representation of "bigfloats" in a mantissa/
+    radix/exponent format.
+    There is a further version, which provides an opportunity to state a
+    precision (only required in a different radix).
+    No operations are defined here -- see arith and alg.
+  </dc:description>
+</metadata>
+
+<theory xml:id="bigfloat1">
+
+<imports xml:id="bigfloat1-imports-sts" from="sts.omdoc#sts"/>
+<imports xml:id="bigfloat1-imports-setname1" from="setname1.omdoc#setname1"/>
+<imports xml:id="bigfloat1-imports-relation1" from="relation1.omdoc#relation1"/>
+<imports xml:id="bigfloat1-imports-arith1" from="arith1.omdoc#arith1"/>
+<imports xml:id="bigfloat1-imports-rounding1" from="rounding1.omdoc#rounding1"/>
+<imports xml:id="bigfloat1-imports-transc1" from="transc1.omdoc#transc1"/>
+
+<omtext xml:id="CDComment-10" type="introduction">
+  <CMP>
+
+bigfloatprec added 1999-07-21.
+</CMP>
+</omtext>
+<symbol name="bigfloat" xml:id="bigfloat">
+<metadata>
+<dc:description> 
+    The bigfloat constructor takes three arguments, a mantissa, a base and the
+    exponent.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMS name="Z" cd="setname1"/>
+	<OMS name="Z" cd="setname1"/>
+	<OMS name="Z" cd="setname1"/>
+	<OMV name="BigFloat"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+<assertion xml:id="bigfloat-prop-1" type="lemma">
+  <CMP><legacy format="mocktex">bigfloat(m,r,e)=m*r^e</legacy></CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="relation1" name="eq"/>
+	<OMA>
+	  <OMS cd="bigfloat1" name="bigfloat"/>
+	  <OMV name="m"/>
+	  <OMV name="r"/>
+	  <OMV name="e"/>
+	</OMA>
+	<OMA>
+	  <OMS cd="arith1" name="times"/>
+	  <OMV name="m"/>
+	  <OMA>
+	    <OMS cd="arith1" name="power"/>
+	    <OMV name="r"/>
+	    <OMV name="e"/>
+	  </OMA>
+	</OMA>
+      </OMA>
+    </OMOBJ>
+  </FMP>
+</assertion>
+<symbol name="bigfloatprec" xml:id="bigfloatprec">
+<metadata>
+<dc:description> 
+    The bigfloat "with precision specified in (another) radix" constructor. Takes 
+    3 arguments, the first argument is a floating point number constructed with the
+    bigfloat constructor, the second is the new radix, whilst the third specifies 
+    how many digits are significant.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMV name="BigFloat"/>
+	<OMS name="Z" cd="setname1"/>
+	<OMS name="Z" cd="setname1"/>
+	<OMV name="BigFloat"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+<assertion xml:id="bigfloatprec-prop-1" type="lemma">
+  <CMP> bigfloatprec(f,r,p)=f 
+    However, if converted to radix r, only p digits in that radix are significant.
+    This usually means that it originated in radix r, and has since
+    (e.g. for display purposes) been converted into its current radix. For 
+    exposition, <legacy format="mocktex">f = m*r^e</legacy>.
+  </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="relation1" name="eq"/>
+	<OMA>
+	  <OMS cd="bigfloat1" name="bigfloatprec"/>
+	  <OMA>
+	    <OMS cd="bigfloat1" name="bigfloat"/>
+	    <OMV name="m"/>
+	    <OMV name="r"/>
+	    <OMV name="e"/>
+	  </OMA>
+	  <OMV name="r"/>
+	  <OMA>
+	    <OMS cd="rounding1" name="ceiling"/>
+	    <OMA>
+	      <OMS cd="transc1" name="log"/>
+	      <OMV name="r"/>
+	      <OMV name="m"/>
+	    </OMA>
+	  </OMA>
+	</OMA>
+	<OMA>
+	  <OMS cd="bigfloat1" name="bigfloat"/>
+	  <OMV name="m"/>
+	  <OMV name="r"/>
+	  <OMV name="e"/>
+	</OMA>
+      </OMA>
+    </OMOBJ>
+  </FMP>
+</assertion>
+</theory>
+</omdoc>
+

@@ -1,0 +1,5 @@
+In this file, I will note some of the problems I still see (have no access to bugzilla
+while offline). 
+
+1) the function omdoc-default-insert-timestamp is defined twice in omdoc-timestammp and in
+   omdoc-mode. In both instances it is wrong, it should add leading zeroes to teh day!. 

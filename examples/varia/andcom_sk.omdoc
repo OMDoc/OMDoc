@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+<!DOCTYPE omdoc PUBLIC "-//OMDoc//DTD OMDoc V1.3//EN"
+                "../../dtd/omdoc.dtd" []>
+
+<!--  An example of a simple fully formal proof.  -->
+
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  xmlns="http://omdoc.org/ns"
+xml:id="andcom" >
+
+<metadata>
+  <dc:title>A proof of the commutativity of conjunction</dc:title>
+  <dc:creator role="aut">Michael Kohlhase</dc:creator> 
+  <dc:date>1999-09-01T00:00:00</dc:date>
+</metadata>
+
+<omtext xml:id="intro" type="introduction">
+  <CMP> This document shows a simple formal proof in Gentzens natural deduction
+    calculus, as an example for the communication of theorems and proofs between
+    deduction systems. 
+  </CMP>
+</omtext>
+
+<assertion type="theorem" xml:id="t1" theory="base">
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMBIND>
+	<OMS cd="quant1" name="forall"/>
+	<OMBVAR>
+	  <OMV name="X"/>
+	  <OMV name="Y"/>
+	</OMBVAR>
+	<OMA id="imp">
+	  <OMS cd="logic1" name="implies"/>
+	  <OMA id="xay">
+	    <OMS cd="logic1" name="and"/>
+	    <OMV name="X"/>
+	    <OMV name="Y"/>
+	  </OMA>
+	  <OMA id="yax">
+	    <OMS cd="logic1" name="and"/>
+	    <OMV name="Y"/>
+	    <OMV name="X"/>
+	  </OMA>
+	</OMA>
+      </OMBIND>
+    </OMOBJ>
+  </FMP>
+</assertion>
+
+<proof for="#t1" xml:id="p1" theory="base">
+  <derive xml:id="D1">
+    <FMP>
+      <assumption xml:id="A11"><OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="X"/></OMOBJ></assumption>
+      <assumption xml:id="A12"><OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="Y"/></OMOBJ></assumption>
+      <conclusion xml:id="C11"><OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="Y"/></OMOBJ></conclusion>
+    </FMP>
+    <method xref="sk.omdoc#SK.ax"/>
+  </derive>
+  <derive xml:id="D2">
+    <FMP>
+      <assumption xml:id="A21"><OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="X"/></OMOBJ></assumption>
+      <assumption xml:id="A22"><OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="Y"/></OMOBJ></assumption>
+      <conclusion xml:id="C2"><OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="X"/></OMOBJ></conclusion>
+    </FMP>
+    <method xref="sk.odmoc#SK.ax"/>
+  </derive>
+  <derive xml:id="D3">
+    <FMP>
+      <assumption xml:id="A31"><OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="X"/></OMOBJ></assumption>
+      <assumption xml:id="A32"><OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="Y"/></OMOBJ></assumption>
+      <conclusion xml:id="C3"><OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="yax"/></OMOBJ></conclusion>
+    </FMP>
+    <method xref="sk.omdoc#SK.andil"><premise xref="D1"/><premise xref="D2"/></method>
+  </derive>
+  <derive xml:id="D4">
+    <FMP>
+      <assumption xml:id="A41"><OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="xay"/></OMOBJ></assumption>
+      <conclusion xml:id="C1"><OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="C3.1"/></OMOBJ></conclusion>
+    </FMP>
+    <method xref="sk.omdomc#SK.andil"><premise xref="D3"/></method>
+  </derive>
+  <derive xml:id="D5">
+    <FMP><OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="imp"/></OMOBJ></FMP>
+    <method xref="sk.omdoc#SK.impir"><premise xref="D4"/></method>
+  </derive>
+  <derive xml:id="C">
+    <method xref="sk.omdoc#SK.foralli-star">
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="X"/></OMOBJ>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="Y"/></OMOBJ>
+      <premise xref="D2"/>
+    </method>
+  </derive>
+</proof>
+
+<omtext xml:id="concl" type="conclusion">
+  <CMP>The examples shows, that even though the OMDoc format is rather verbose, the
+    structure of proofs is equivalent to other proof representations. In particular,
+    the explicit management of proof structure by premise links allows to encode the
+    proof as a directed acyclic graph rather than a tree.
+
+    Note that the restriction to SK calculus is arbitrary for this example, the
+    method slots could contain arbitrary tactics.
+  </CMP>
+</omtext>
+
+</omdoc>

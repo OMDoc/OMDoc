@@ -1,0 +1,38 @@
+OMDoc mode -- manifest.txt			 September 2002.
+
+The current contents of the OMDoc mode package are as given below.
+Please read the README.TXT first, for overview and context.
+Read the instructions file to for how to install and use the mode.
+A better description of the basic functionality (now listed in
+functionality.txt) will be as HTML in the next release.
+But documentation is available in the mode description and as
+documentation with the emacs functions and variables.
+
+1) Code: (omdocmode/src)
+
+omdoc-mode.el	    Defines the mode and functionality for navigation,
+                    indentation, and some other operations.
+omdoc-config.el	    Contains variables, parameters, and other
+		    configuration settings.
+omdoc-font.el       Contains color definitions and font-lock patterns.
+omdoc-process.el    Contains code for internal and external validation.
+omdoc-templates.el  Contains code, variables, templates, and patterns
+                    for insertion of constructs for each of the OMDoc
+                    tags as described in the OMDoc 1.1 DTD.
+omdoc-timestamp.el  Contains code for generating and updating
+		    timestamps (for use in certain metadata fields).
+
+2) Documentation: (omdocmode/doc)
+
+README.TXT	    The release note, and basic overview and description.
+manifest.txt	    Overview of package contents (this file).
+instructions.txt    How to install and use the mode.
+prefixes_note.txt   Some of the rationale for choosing the keybindings
+		    for the template insertion commands.
+functionality.txt   List of commands and keybindings with description.
+buglist.txt	    Bugs and problems we know about, and a wishlist
+                    for things to come
+
+
+
+

@@ -1,0 +1,86 @@
+@prefix dct:      <http://purl.org/dc/terms/> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix oo:      <http://omdoc.org/ontology#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix sdoc:	 <http://salt.semanticauthoring.org/onto/abstract-document-ontology#> .
+
+# Declare them as OWL property types, as DCMI Terms is RDFS only (see http://bloody-byte.net/rdf/dc_owl2dl/)
+dct:creator
+	a	owl:AnnotationProperty .
+dct:contributor
+	a	owl:AnnotationProperty .
+dct:subject
+	a	owl:AnnotationProperty .
+dct:title
+	a	owl:AnnotationProperty .
+	
+<>
+	a	 owl:Ontology ;
+	dct:title "OWL Document Infrastructure ontology, DOC" ;
+	rdfs:comment """OMDoc document ontology in OWL-DL about Document Infrastructure.  See chapter 11 (Document Infrastructure (Module DOC)) of the OMDoc1.2 specification.
+This file is designed to be imported from the main module `omdoc'.""" ;
+	dct:creator "Gordan Ristovski <g.ristovski@jacobs-university.de>" ;
+	dct:contributor "Christoph Lange <ch.lange@jacobs-university.de>", "Nikita Zhiltsov (Никита Жильцов) <nikita.zhiltsov@gmail.com>" ;
+	dct:subject "Semantic Mathematical Markup, Mathematical Statements" ;
+	owl:imports <file:st.n3> .
+	
+oo:Reference
+	a	owl:Class ;
+	rdfs:comment """Empty elements used to reference OMDoc elements elsewhere, as described in the OMDoc 1.2 manual, chapter 11(Document Infrastructure).""" ;
+	rdfs:label "Querverweis"@de ,
+                "Reference"@en ,
+                "Ссылка"@ru ;
+	owl:disjointWith oo:MathKnowledgeItem ;
+	rdfs:isDefinedBy oo: .
+	
+oo:Citation
+	a	owl:Class ;
+	rdfs:subClassOf oo:Reference ;
+	rdfs:comment """Some references have the cite type attribute, meaning they are proper references of some text.""" ;
+	rdfs:label "Zitat"@de ,
+                "Citation"@en ,
+                "Цитата"@ru ;
+	rdfs:isDefinedBy oo: .
+	
+oo:TextFragment
+	a	owl:Class ;
+	rdfs:subClassOf oo:Reference ;
+	owl:disjointWith oo:Citation ;
+	rdfs:comment """Some references hace the include type attribute, meaning they are text fragments to be replaced in the text.""" ;
+	rdfs:label "Textfragment"@de ,
+                "Text Fragment"@en ,
+                "Фрагмент текста"@ru ;
+	rdfs:isDefinedBy oo: .
+	
+oo:refersTo
+	a	owl:ObjectProperty ;
+	rdfs:domain oo:Reference ;
+	rdfs:comment """Every ref node has a mandatory xref atribute pointing to some existing element. This is later extracted as RDF tripple connected with refersTo property""" ;
+	rdfs:label "verweist auf"@de ,
+                "refers to"@en ,
+                "ссылается на"@ru ;
+	rdfs:isDefinedBy oo: .
+
+oo:Document
+	a	owl:Class ;
+	rdfs:subClassOf sdoc:Document ;
+	owl:disjointWith oo:MathKnowledgeItem , oo:FormalityDegree , oo:Reference ;
+	rdfs:comment """Represents an OMDoc element which  contains all other document, as described in the OMDoc 1.2 manual, chapter 11 (Document Infrastructure). """ ;
+	rdfs:label "Dokument"@de ,
+                "Document"@en ,
+                "Документ"@ru ;
+	rdfs:isDefinedBy oo: .
+
+oo:DocumentUnit
+	a	owl:Class ;
+	rdfs:subClassOf sdoc:Composite ;
+	owl:disjointWith oo:Document , oo:MathKnowledgeItem , oo:FormalityDegree , oo:Reference ;
+	rdfs:comment """Represents omgroup element, which can be a chapter, section, paragraph ... of a matematical document, as described in the OMDoc 1.2 manual, chapter 11 (Document Infrastructure). """ ;
+	rdfs:label "Dokumenteneinheit"@de ,
+                "Document Unit"@en ,
+                "Часть документа"@ru ;
+	rdfs:isDefinedBy oo: .
+
+
+
+

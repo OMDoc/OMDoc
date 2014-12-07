@@ -1,0 +1,400 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This file is part of the LaTeX sources of the OMDoc 1.3 specification
+% Copyright (c) 2006 Michael Kohlhase
+% This work is licensed by the Creative Commons Share-Alike license
+% see http://creativecommons.org/licenses/by-sa/2.5/ for details
+\svnInfo $Id: quickref-attributes.tex 8754 2010-10-13 11:36:16Z kohlhase $
+\svnKeyword $HeadURL: https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.3/doc/spec/quickref-attributes.tex $
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{tchapter}[id=att-table,short=Table of Attributes]{Quick-Reference Table to the {\omdoc} Attributes}
+\def\atabelt#1#2#3#4{\hline{}{#1}&{#2}&{#3}\\\hline&\multicolumn{2}{|p{9cm}|}{#4}\\\hline}
+{\footnotesize\begin{longtable}{|>{\tt}p{2.5cm}|>{\tt}p{4cm}|>{\tt}p{5cm}|}\hline
+{\rm Attribute} & {\emph{element}} & Values \\\hline
+\atabelt{action}{dc:date}{unspecified}{specifies the action taken on the document on this date.}
+
+\atabelt{action}{omlet}{execute, display, other}
+ {specifies the action to be taken when executing the {\element{omlet}}, the value is
+     application-defined.}
+
+\atabelt{actuate}{omlet}{onPresent, onLoad, onRequest, other}{specifies the timing of the
+  action specified in the {\attribute{action}{omlet}} attribute}
+
+\atabelt{assertion}{example}{}
+ {specifies the assertion that states that the objects given in the example really have
+   the expected properties.}
+
+\atabelt{assertion}{obligation}{}
+ {specifies the assertion that states that the translation of the statement in the
+  source theory specified by the {\attributeshort{induced-by}} attribute is valid in the
+  target theory.}
+
+\atabelt{attributes}{use}{}
+ {the attribute string for the start tag of the {\xml} element  substituted for
+ the brackets (this is specified in the {\element{element}} attribute).}
+\atabelt{attribution}{cc:requirements}{required, not\_required}
+{Specifies whether the copyright holder/author must be given credit in derivative works}
+
+\atabelt{base}{morphism}{}
+ {specifies another morphism that should be used as a base for expansion in the
+  definition of this morphism}
+
+\atabelt{bracket-style}{presentation, use}{lisp, math}
+ {specifies whether a function application is of the form $f(a,b)$ or $(f a b)$}
+
+\atabelt{cd}{om:OMS}{}
+ {specifies the content dictionary of an {\openmath} symbol}
+
+\atabelt{cd}{term}{}
+ {specifies the content dictionary of a technical term}
+
+\atabelt{cdbase}{om:*}{}
+ {specifies the base URI of the content dictionaries used in an {\openmath} object}
+
+\atabelt{cdreviewdate}{theory}{}
+  {specifies the date until which the content dictionary will remain unchanged}
+
+\atabelt{cdrevision}{theory}{}
+  {specifies the minor version number of the content dictionary}
+
+\atabelt{cdstatus}{theory}{official, experimental, private, obsolete}
+  {specifies the content dictionary status}
+
+\atabelt{cdurl}{theory}{}
+ {the main URL, where the newest version of the content dictionary can be found}
+
+\atabelt{cdversion}{theory}{}
+  {specifies the major version number of the content dictionary}
+
+\atabelt{comment}{ignore}{}
+ {specifies a reason why we want to ignore the contents}
+
+\atabelt{crossref-symbol}{presentation, use}
+ {all, brackets, lbrack, no, rbrack, separator, yes}
+ {specifies whether {\indextoo{cross-reference}s} to
+  the symbol definition should be generated in the output format.}
+
+\atabelt{class}{*}{}{specifies the {\css} class}
+\atabelt{commercial\_use}{cc:permissions}{permitted, prohibited}{specifies, whether commercial use of the
+  document with this license is permitted}
+\atabelt{consistency}{morphism, definition}{OMDoc reference}{points to an {\element{assertion}}
+  stating that the cases are consistent, i.e. that they give the same values, where they
+  overlap}
+\atabelt{copyleft}{cc:restrictions}{required, not\_required}{specifies whether derived works must be licensed
+  with the same license as the current document.}
+\atabelt{cr}{element}{yes/no}{specifies whether an {\attributeshort{xlink:href}}
+  cross-reference should be set on the result element.}
+\atabelt{cref}{om:*}{URI reference}{extra attribute for cross-references in parallel markup}
+\atabelt{crid}{element}{{\xpath} expression}{the path to the sub-element that corresponds
+  to the result element.}
+\atabelt{crossref-symbol}{presentation, use}{no, yes, brackets, separator, lbrack, rbrack, all}
+{specifies which generated presentation elements should carry cross-references to the definition.}
+\atabelt{data}{omlet}{}
+ {points to a {\element{private}} element that contains the data for this {\element{omlet}}}
+\atabelt{definitionURL}{m:*}{URI}{points to the definition of a mathematical concept}
+\atabelt{derivative\_works}{cc:permissions}{permitted, not\_permitted}{specifies whether
+  the document may be used for making derivative works.}
+\atabelt{distribution}{cc:permissions}{permitted,not\_permitted}{specifies whether
+  distribution of the current document fragment is permitted.}
+\atabelt{element}{use}{}
+ {the {\xml} element tags to be substituted for the brackets.}
+\atabelt{element}{omstyle}{}
+ {the {\xml} element, the presentation information contained in the {\element{omstyle}}
+   element should be applied to.}
+\atabelt{encoding}{m:annotation,om:OMFOREIGN}{MIME type of the content}{specifies the
+  format of the content}
+\atabelt{entails, entailed-by}{alternative}{}
+ {specifies the equivalent formulations of a definition or axiom}
+
+\atabelt{entails-thm, entailed-by-thm}{alternative}{}
+ {specifies the entailment statements for equivalent formulations of a 
+  definition or axiom}
+\atabelt{exhaustivity}{morphism, definition}{OMDoc reference}{points to an assertion that
+ states that the cases are exhaustive.}
+
+\atabelt{existence}{definition}{OMDoc reference}{points to an assertion that
+ states that the symbol described in an implicit definition exists}
+
+\atabelt{fixity}{presentation}{assoc, infix, postfix, prefix}
+  {specifies where the function symbol-of a function application should be 
+   displayed in the output format}
+
+\atabelt{function}{omlet}{}
+ {specifies the function to be called when this {\element{omlet}} is activated.}
+ 
+ \atabelt{format}{data}{} {specifies the format of the data specified by a {\element{data}}
+   element. The value should e.g. be a {\twintoo{MIME}{type}}~\cite{FreBor:MIME96}.}
+
+\atabelt{for}{*}{}
+ {can be used to reference an element by its unique identifier given in its 
+  {\attributeshort[ns-attr=xml]{id}} attribute.}
+
+\atabelt{formalism}{legacy}{URI reference}
+ {specifies the formalism in which the content is expressed}
+
+\atabelt{format}{legacy}{URI reference}
+ {specifies the encoding format of the content}
+
+\atabelt{format}{use}{cmml, default, html, mathematica, pmml, TeX,\ldots}
+ {specifies the output format for which the notation is specified}
+
+\atabelt{from}{imports, theory-inclusion, axiom-inclusion}{URI reference}{pointer to source
+  {\element{theory}} of a theory morphism}
+\atabelt{from}{omtext}{URI reference}{points to the source of a relation given by a text type}
+
+\atabelt{generated-from}{top-level elements}{URI reference}
+ {points to a higher-level syntax element, that generates this statement.}
+
+\atabelt{generated-via}{top-level elements,\ldots}{URI reference}
+ {points to a theory-morphism, via which it is translated from the element pointed to by
+ the {\attributeshort{generated-from}} attribute.}
+
+\atabelt{globals}{path-just}{}
+  {points to the {\element{axiom-inclusion}s} or {\element{theory-inclusion}s} that is the rest of the inclusion path.}
+
+\atabelt{hiding}{morphism}{}
+ {specifies the names of symbols that are in the domain of the morphism}
+
+\atabelt{href}{data, link, om:OMR}{URI reference}
+ {a URI to an external file containing the data.}
+
+\atabelt{xml:id}{}{}
+ {associates a unique identifier to an element, which can thus be referenced 
+  by an {\attributeshort{for}}  or {\attributeshort{xref}} attribute.}
+
+\atabelt{xml:base}{}{}
+ {specifies a base URL for a resource fragment}
+
+\atabelt{index}{on {\RTmodule{spec}} elements}{}{A path identifier to establish multilingual
+  correspondence}
+
+\atabelt{induced-by}{obligation}{}
+ {points to the statement in the source theory that induces this proof obligation}
+
+\atabelt{inductive}{assumption, hypothesis}{yes, no}
+ {Marks an assumption or hypothesis inductive.}
+
+\atabelt{jurisdiction}{cc:license}{IANA Top level Domain designator}{specifies the country
+  of jurisdiction for a Creative Commons license}
+
+\atabelt{just-by}{type}{}
+ {points to an assertion that states the type property in question.}
+
+\atabelt{role}{symbol, constructor, recognizer, selector, sortdef}{object, type, sort, binder,
+ attribution, semantic-attribution, error}
+ {specifies the role (possible syntactic roles) of the symbol  in this declaration.}
+
+\atabelt{role}{dc:creator,dc:contributor}{MARC relators}
+ {specifies the role of a person who has contributed to the document}
+
+\atabelt{role}{presentation}{applied, binding, key}{specifies which role of the symbol is
+  annotated with notation information}
+
+\atabelt{lbrack}{presentation, use}{}
+ {the left bracket to use in the notation of a function symbol}
+
+\atabelt{links}{decomposition}{}
+ {specifies a list of theory-  or axiom-inclusions that justify (by decomposition)
+ the {\element{theory-inclusion}} specified  in the {\attributeshort{for}} attribute.}
+
+\atabelt{local}{path-just}{}
+ {points to the {\element{axiom-inclusion}} that is the first element in the path.}
+
+\atabelt{logic}{FMP}{{\rm token}}
+ {specifies the logical system used to encode the property.} 
+
+\atabelt{modules}{omdoc, omgroup}{module and sub-language shorthands, URI
+ reference}{specifies the modules or {\omdoc} sub-language used in this document fragment}
+
+\atabelt{name}{om:OMS, om:OMV, symbol, term}{}
+ {the name of a concept referenced by a symbol, variable, or technical term.}
+
+\atabelt{name}{attribute, element}{}
+ {the local name of generated element.}
+
+\atabelt{name}{param}{}
+ {the name of a parameter for an external object.}
+
+\atabelt{notice}{cc:requirements}{required, not\_required}{specifies whether copyright and
+  license notices must be kept intact in distributed copies of this document}
+
+\atabelt{ns}{element, attribute}{URI}{specifies the namespace URI of the generated element
+or attribute node}
+
+\atabelt{original}{data}{local, external}{specifies whether the local copy in the
+  {\element{data}} element is the original or the external resource pointed to by the
+  {\attribute{href}{data}} attribute.}
+
+\atabelt{parameters}{adt}{}
+  {The list of formal parameters of a higher-order abstract data type}
+
+\atabelt{precedence}{presentation}{}
+ {the precedence of a function symbol (for elision of brackets)}
+ 
+ \atabelt{just-by}{assertion}{} {specifies a list of URIs to proofs or other
+   justifications for the proof status given in the {\attribute{status}{assertion}}
+   attribute.}
+
+\atabelt{pto, pto-version}{private, code}{}
+ {specifies the system and its version this data or code is private to}
+
+\atabelt{rank}{premise}{}{specifies the rank (importance) of a premise}
+
+\atabelt{rbrack}{presentation, use}{}
+ {the right bracket  to use in the notation of a function symbol}
+
+\atabelt{reformulates}{private}{}
+ {points to a set of  elements whose content is reformulated by the content 
+  of the {\element{private}} element for the system.}
+
+\atabelt{reproduction}{cc:permissions}{permitted,not\_permitted}{specifies whether
+  reproduction of the current document fragment is permitted by the licensor}
+
+\atabelt{requires}{private, code, use, xslt, style}{URI reference}
+ {points to a {\element{code}} element that is needed for the execution of this data by
+  the system.}
+
+\atabelt{role}{dc:creator, dc:collaborator}
+ {aft, ant, aqt, aui, aut, clb, edt, ths, trc, trl}
+ {the MARC relator code for the contribution of the individual.}
+
+\atabelt{role}{phrase, term}{}{the role of the phrase annotation}
+
+\atabelt{role}{presentation}{applied, binding, key}
+  {specifies for which role (as the head of a function application, as a binding
+ symbol, or as a key in a attribution, or as a stand-alone symbol (the default)) of
+ the symbol presentation is intended}
+
+\atabelt{scheme}{dc:identifier}{scheme name}{specifies the identification scheme
+  (e.g. ISBN) of a resource}
+
+\atabelt{scope}{symbol}{global, local}
+ {specifies the visibility of the symbol declared. This is a very crude
+  specification, it is better to use theories  and importing to specify symbol 
+  accessibility.}
+
+\atabelt{select}{map, recurse, value-of}{{\xpath} expression}{specifies the path to the
+  sub-expression to act on}
+
+\atabelt{separator}{presentation, use}{}
+ {the separator for the arguments to use in the notation of a function symbol}
+
+\atabelt{show}{omlet}{new, replace, embed, other}{specifies the desired presentation of the
+  external object.}
+
+\atabelt{size}{data}{}
+ {specifies the size the data specified by a {\element{data}} element. The value should
+  be number of kilobytes}
+
+\atabelt{sort}{argument}{}
+ {specifies the argument sort of the constructor}
+
+\atabelt{style}{*}{}
+ {specifies a token for a presentation style to be picked up in a
+ {\element{presentation}} element.}
+
+\atabelt{system}{type}{}
+ {A token that specifies the logical type system that governs the type specified
+ in the type element.}
+
+\atabelt{theory}{*}{}
+ {specifies the home theory of an {\omdoc} statement.}
+
+\atabelt{to}{theory-inclusion, axiom-inclusion}{}
+ {specifies the target theory}
+
+\atabelt{total}{selector}{no, yes}
+ {specifies whether the symbol declared here is a total or partial function.}
+
+\atabelt{type}{adt}{free, generated, loose}
+ {defines the semantics of an abstract data type {\snippet{free}} = no junk, no confusion,
+ {\snippet{generated}} = no junk, {\snippet{loose}} is the general case.}
+
+\atabelt{type}{assertion} 
+ {theorem, lemma, corollary, conjecture, false-conjecture,
+  obligation, postulate, formula, assumption, proposition}
+ {tells you more about the intention of the assertion}
+
+\atabelt{type}{definition}{implicit, inductive, obj, recursive, simple}
+ {specifies the definition principle}
+
+\atabelt{type}{derive}{conclusion, gap}
+ {singles out special proof steps: conclusions and gaps (unjustified proof steps)}
+
+\atabelt{type}{example}{against, for}
+ {specifies whether the objects in this example support or falsify some conjecture}
+
+\atabelt{type}{ignore}{}{specifies the type of error, if ignore is used for in-place error
+markup}
+
+\atabelt{type}{imports}{global, local}
+ {{\snippet{local}} imports only concern the assumptions directly stated in the
+   theory. {\snippet{global}} imports also concern the ones the source theory inherits.}
+
+\atabelt{type}{morphism}{}{specifies whether the morphism is recursive or merely pattern-defined}
+
+\atabelt{type}{omgroup, omdoc}
+ {enumeration, sequence, itemize}
+ {the first three give the text category, the second three are used for generalized tables}
+
+\atabelt{type}{omtext}
+ {abstract, antithesis, comment, conclusion, elaboration, evidence, 
+  introduction,  motivation, thesis}
+ {a specification of the intention of the text fragment, in reference to context.}
+
+\atabelt{type}{phrase}{}{the linguistic or mathematical type of the phrase}
+
+\atabelt{uniqueness}{definition}{URI reference}{points to an {\element{assertion}} that
+  states the uniqueness of the concept described in an implicit definition}
+
+\atabelt{value}{param}{}{specifies the value of the parameter}
+
+\atabelt{valuetype}{param}{}{specifies the type of the value of the parameter}
+
+\atabelt{verbalizes}{on {\RTmodule{spec}} elements}{URI references}{contains a
+  whitespace-separated list of pointers to {\omdoc} elements that are verbalized}
+
+\atabelt{verdict}{answer}{}
+ {specifies the truth or falsity of the answer. This can be used e.g. 
+  by a grading application.} 
+
+\atabelt{version}{omdoc}{1.2}
+ {specifies the version of the document, so that the right DTD is used}
+
+\atabelt{version}{cc:license}{}
+ {specifies the version of the Creative Commons license that applies, if not present, the
+ newest one is assumed}
+
+\atabelt{via}{inclusion}{}
+ {points to a theory-inclusion that is required for an actualization}
+
+\atabelt{who}{dc:date}{}{specifies who acted on the document fragment}
+
+\atabelt{xml:lang}{CMP, dc:*}{ISO 639 code}
+ {the language the text in the element is expressed in.}
+
+\atabelt{xml:lang}{use, xslt, style}{whitespace-separated list of ISO 639 codes}
+ {specifies for which language the notation is meant}
+
+\atabelt{xlink:*}{om:OMR, m:*}{URI reference}{specify the link behavior on the elements}
+
+ \atabelt{xref}{ref, method, premise}{URI reference}
+ {Identifies the resource in question}
+
+ \atabelt{xref}{presentation, omstyle}{URI reference}
+ {The element, this URI points to should be in
+   the place of the object containing this attribute.}
+\end{longtable}}
+\end{tchapter}
+
+%%% Local Variables: 
+%%% mode: stex
+%%% TeX-master: "omdoc"
+%%% End: 
+
+% LocalWords:  omlet onPresent onLoad onRequest omdoc omgroup cd loc cdbase cr
+% LocalWords:  cdreviewdate cdrevision cdstatus cdurl cdversion crossref lbrack
+% LocalWords:  rbrack xlink href cref crid definitionURL omstyle OMFOREIGN thm
+% LocalWords:  ns attr cmml html mathematica pmml omtext globals OMR metadata
+% LocalWords:  IANA sortdef relators FMP OMV param adt pto licensor xslt aqt
+% LocalWords:  aui aut clb edt ths trc trl recurse valuetype lang CMP

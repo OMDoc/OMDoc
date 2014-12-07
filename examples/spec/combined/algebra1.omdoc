@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE omdoc PUBLIC "-//OMDoc//DTD OMDoc Basic V1.3//EN"
+                "../../../dtd/omdoc-basic.dtd" []>
+
+<omdoc xml:id="algebra1.omdoc" version="1.3" 
+       xmlns="http://omdoc.org/ns"
+       xmlns:dc="http://purl.org/dc/elements/1.1/">
+
+  <metadata>
+    <dc:title>Laws of Composition</dc:title>
+    <dc:creator role="trl">Michael Kohlhase</dc:creator> 
+    <dc:date action="created">2002-01-03T07:03:00</dc:date>
+    <dc:date action="updated">2002-11-23T18:17:00</dc:date>
+    <dc:description>
+      A first migration step for a fragment of Bourbaki's Algebra
+    </dc:description>
+    <dc:source>
+      Nicolas Bourbaki, Algebra, Springer Verlag 1989, ISBN 0-387-19373-1
+    </dc:source>
+    <dc:type>Text</dc:type>
+    <dc:format>application/omdoc+xml</dc:format>
+  </metadata>
+
+<omtext type="definition" xml:id="magma.def">
+  <CMP> 
+    Let <legacy format="TeX">$E$</legacy> be a set. A mapping of
+    <legacy format="TeX">$E\times E$</legacy> is called a
+    law of composition on <legacy format="TeX">$E$</legacy>. The value
+    <legacy format="TeX">$f(x,y)$</legacy> of <legacy format="TeX">$f$</legacy>
+    for an ordered pair <legacy format="TeX">$(x,y)\in E\times E$</legacy>
+    is called the composition of <legacy format="TeX">$x$</legacy> and
+    <legacy format="TeX">$y$</legacy> under this law. A set with a law of
+    composition is called a magma. 
+  </CMP>
+</omtext>
+
+<omtext xml:id="t1">
+  <CMP>
+    The composition of <legacy format="TeX">$x$</legacy> and
+    <legacy format="TeX">$y$</legacy> is usually denoted by writing
+    <legacy format="TeX">$x$</legacy> and <legacy format="TeX">$y$</legacy>
+    in a definite order and separating them by a characteristic symbol of the 
+    law in question (a symbol which it may be agreed to omit). Among the 
+    symbols most often used are <legacy format="TeX">$+$</legacy> and
+    <legacy format="TeX">$.$</legacy>, the usual convention being to omit the 
+    latter if desired; with these symbols the composition of
+    <legacy format="TeX">$x$</legacy> and <legacy format="TeX">$y$</legacy> is 
+    written respectively as <legacy format="TeX">$x+y$</legacy>,
+    <legacy format="TeX">$x.y$</legacy> or <legacy format="TeX">$xy$</legacy>.
+    A law denoted by the symbol <legacy format="TeX">$+$</legacy> is usually
+    called {\em addition} (the composition <legacy format="TeX">$x+y$</legacy>
+    being called the {\em sum} of <legacy format="TeX">$x$</legacy> and
+    <legacy format="TeX">$y$</legacy>) and we say that it is {\em written additively}; 
+    a law denoted by the symbol <legacy format="TeX">.</legacy>
+    is usually called {\em multiplication} (the 
+    composition <legacy format="TeX">$x.y=xy$</legacy> being called the
+    {\em product} for <legacy format="TeX">$x$</legacy> and
+    <legacy format="TeX">$y$</legacy>) and we say that it is
+    {\em written multiplicatively}. 
+  </CMP>
+</omtext>
+
+<omtext xml:id="t2">
+  <CMP>
+    In the general arguments of paragraphs 1 to 3 of this chapter we shall 
+    generally use the symbols <legacy format="TeX">$\top$</legacy> and
+    <legacy format="TeX">$\bot$</legacy> to denote arbitrary laws of 
+    composition.
+  </CMP>
+</omtext>
+
+<omtext xml:id="t3">
+  <CMP>
+    By an abuse of language, a mapping of a {\em subset} of
+    <legacy format="TeX">$E\times E$</legacy> into <legacy format="TeX">$E$</legacy> 
+    is sometimes called a law of composition {\em not everywhere defined} on
+    <legacy format="TeX">$E$</legacy>.
+  </CMP>
+</omtext> 
+
+<omgroup xml:id="magma-ex" type="enumeration">
+   <metadata><dc:title>Examples</dc:title></metadata>
+   
+   <omtext type="example" xml:id="e1.magma">
+     <CMP>
+       The mappings <legacy format="TeX">$(X,Y)\mapsto X\cup Y$</legacy> and
+       <legacy format="TeX">$(X,Y)\mapsto X\cap Y$</legacy> are
+       laws of composition on the set of subsets of a set 
+       <legacy format="TeX">$E$</legacy>.
+     </CMP>
+   </omtext>
+   
+   <omtext xml:id="e2.magma" type="example">
+     <CMP>
+       On the set <legacy format="TeX">$\bf N$</legacy> of natural numbers,
+       addition, multiplication, and  exponentiation are laws of composition
+       (the compositions of <legacy format="TeX">$x\in{\bf N}$</legacy> and 
+       <legacy format="TeX">$y\in{\bf N}$</legacy> under these laws being
+       denoted respectively by <legacy format="TeX">$x+y$</legacy>,
+       <legacy format="TeX">$xy$</legacy>, or <legacy	format="TeX">$x.y$</legacy> and
+       <legacy format="TeX">$x^y$</legacy>)  ({\em Set Theory}, III,
+       <legacy format="TeX">$\P3$</legacy>, no. 4). 
+     </CMP>
+   </omtext>
+
+   <omtext xml:id="e3.magma" type="example">
+     <CMP>
+       Let <legacy format="TeX">$E$</legacy> be a set; the mapping
+       <legacy format="TeX">$(X,Y)\mapsto X\circ Y$</legacy> is a law
+       of composition on the set of subsets of
+       <legacy format="TeX">$E\times E$</legacy> ({\em Set Theory}, II,
+       <legacy format="TeX">$\P3$</legacy>, no. 3, Definition 6); the mapping
+       <legacy format="TeX">$(f,g)\mapsto f\circ g$</legacy> is a law of
+       composition on the set of mappings from
+       <legacy format="TeX">$E$</legacy> into
+       <legacy format="TeX">$E$</legacy> ({\em Set Theory}, II,
+       <legacy format="TeX">$\P5$</legacy>, no. 2).
+     </CMP>
+   </omtext>
+</omgroup>
+</omdoc>

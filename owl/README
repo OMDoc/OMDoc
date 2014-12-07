@@ -1,0 +1,14 @@
+== OMDoc document ontology ==
+
+Note: 
+As of 2010-01-08, the *.omdoc files (OMDoc) are the authoritative source.  The
+*.n3 files (Turtle) are left for validating the OMDoc→OWL translation of the
+ontology, which remains to be set up here.
+
+The ontology is designed in a modular way.  For exchange, it is more convenient
+to have it in one file.  This file is available in www/omdoc.owl (RDF/XML) and
+generated via make (currently from the *.n3 files, soon from the *.omdoc files).
+
+Please see http://mathweb.org/wiki/OMDoc/document_ontology for further
+documentation.
+

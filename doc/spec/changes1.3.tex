@@ -1,0 +1,64 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This file is part of the LaTeX sources of the OMDoc 1.3 specification
+% Copyright (c) 2006 Michael Kohlhase
+% This work is licensed by the Creative Commons Share-Alike license
+% see http://creativecommons.org/licenses/by-sa/2.5/ for details
+\svnInfo $Id: changes1.3.tex 9253 2012-07-23 11:47:32Z kohlhase $
+\svnKeyword $HeadURL: https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.3/doc/spec/changes1.3.tex $
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{tsection}[id=changes1.3]{Changes from 1.2 to 1.3}
+
+  The main change from {\omdocv{1.2}} to {\omdocv{1.3}} is the use of the new notation
+  framework described in {\mychapref{pres}}. It completely replaces the presentation
+  archicture of {\omdocv{1.2}}.
+
+  The other large change is to use the new namespace \url{http://omdoc.org/ns} that will
+  also be used in {\omdocv{1.2}}
+
+\begin{center}\footnotesize
+\begin{longtable}{|l|c|p{6cm}|l|}\hline
+  element & state & comments & cf.\\\hline\hline 
+{\element{dd}}           & cha
+     & description items now allow block content as in XHTML
+     & \mysecref{mtxt} \\\hline
+{\element{bibliography}}           & new
+     & generates the references
+     & \mysecref{frontbackmatter} \\\hline
+{\element{citation}}           & new
+     & marks up a citation
+     & \mysecref{mtxt} \\\hline
+{\element{index}}           & new
+     & generates the index
+     & \mysecref{frontbackmatter} \\\hline
+{\element{li}}           & cha
+     & list items now allow block content as in XHTML
+     & \mysecref{mtxt} \\\hline
+{\element{metadata}}        & cha
+     & the optional attribute {\oldattribute{inherits}{metadata}{1.2}} dropped, it was never
+     sufficiently defined.
+     & \mysecref{metadata}\\\hline
+{\oldelement{presentation}{1.2}}           & del
+     & replaced by the {\element{notation}} element. 
+     & \mychapref{pres} \\\hline
+{\oldelement{style}{1.2}}           & del
+     & obsolete, since it was never used.
+     & \\\hline
+{\element{tableofcontents}}           & new
+     & generates the tableofcontents
+     & \mysecref{frontbackmatter} \\\hline
+{\oldelement{tgroup}{1.2}}           & del
+     & replaced by the {\element{omgroup}} element, it turns out that with RelaxNG we can
+     do the necessary validation of theory content after all. 
+     & \mychapref{statements} \\\hline
+{\element{uses}}           & new
+     & opens a CD catalog.
+     & \mychapref{mtext} \\\hline
+\end{longtable}
+\end{center}
+\end{tsection}
+
+%%% Local Variables: 
+%%% mode: stex
+%%% TeX-master: "omdoc"
+%%% End: 

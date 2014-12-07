@@ -1,0 +1,17 @@
+
+About the Jakarta RegExp third party libray
+============================================
+
+The Jakarta RegExp library is copyrighted by the Apache foundation. 
+It is distributed under the Apache license.
+Using this software implies you are bound by this license.
+
+The complete distribution of the Regexp package has not been included, 
+please find it at the project's hoe page:
+     http://jakarta.apache.org/regexp/index.html
+
+Any trouble with the runnable capabilities of this installation should be
+addressed to paul@mathweb.org and not to the authors of the library.
+
+Paul Libbrecht, July 8th, 2001
+paul@mathweb.org

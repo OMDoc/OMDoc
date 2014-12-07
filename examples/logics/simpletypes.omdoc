@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!DOCTYPE omdoc PUBLIC "-//OMDoc//DTD OMDoc V1.3//EN" "../../dtd/omdoc.dtd">
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  xmlns="http://omdoc.org/ns"
+       xml:id="simpletypes-omdoc" >
+
+ <metadata>
+  <dc:title>Simple Types</dc:title>
+   <dc:creator role="aut">Michael Kohlhase</dc:creator>
+   <dc:date>2002-02-02T00:00:00</dc:date>
+   <dc:description>Simple ML-polymorphic types.</dc:description>
+  </metadata>
+  
+  <omtext xml:id="intro" type="introduction">
+   <CMP>We define the simple type discipline. This includes the classical 
+     base types for individuals and truth values, function types, and also record-
+     and tuple types. Furthermore, it includes simple type schemata, also known as
+     ML-polymorphism. 
+    </CMP>
+  </omtext>
+
+ <theory xml:id="simpletypes">
+
+    <omtext xml:id="CDComment12" type="introduction">
+     <CMP>Definition of type constructors</CMP>
+    </omtext>
+
+    <symbol name="funtype" xml:id="simpletypes.funtype" role="object" scope="global">
+      <metadata>
+	<dc:subject>funtype</dc:subject>
+	<dc:description>The function type constructor.</dc:description>
+      </metadata>
+    </symbol>
+
+   <presentation xml:id="pr-funtype" for="#funtype" role="applied">
+     <style format="html">
+       <element name="span" ns="http://www.w3.org/1999/xhtml">
+	 <attribute name="id">
+	   <value-of select="concat('MCR',$prefix,generate-id())"/>
+	 </attribute>
+	 <map select="*[position()!=last() and position() &gt; 1]">
+	   <separator><text>,</text></separator>
+	   <recurse select="."/>
+	 </map>
+	 <element name="mo" crid="*[1]"><text>&#x02192;</text></element>
+	 <recurse select="*[last()]"/>
+       </element>
+     </style>
+   <style format="pmml">
+     <element name="mrow" crid="." ns="http://www.w3.org/1998/Math/MathML">
+       <map select="*[position()!=last() and position() &gt; 1]">
+	 <separator>
+	   <element name="mo" cr="yes">
+	     <attribute name="separator"><text>true</text></attribute>
+	     <text>,</text>
+	   </element>
+	 </separator>
+	 <recurse select="."/>
+       </map>
+       <element name="mo" crid="*[1]" cr="yes"><text>&#x02192;</text></element>
+       <recurse select="*[last()]"/>
+     </element>
+   </style>
+ <style format="TeX">
+   <map select="*[position()!=last() and position() &gt; 1]">
+     <separator><text>,</text></separator>
+     <recurse select="."/>
+   </map>
+   <text>\rightarrow</text>
+   <text>{</text>
+   <recurse select="*[last()]"/>
+   <text>}</text>
+ </style>
+</presentation>
+
+<example for="#simpletypes.funtype" xml:id="funtype-prop-1">
+  <CMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="simpletypes" name="funtype"/>
+	<OMS cd="ind" name="ind"/>
+	<OMS cd="truthval" name="bool"/>
+      </OMA>
+    </OMOBJ> 
+    is a type. It encodes the type of unary predicates.
+  </CMP>
+</example>
+
+      <symbol name="all-types" xml:id="simpletypes.all-types" role="object" scope="global">
+         <metadata><dc:subject>all-types</dc:subject>
+        <dc:description> The universal type quantification operator. It is a binding
+           object that universally binds a list of type variables in a type. 
+	 </dc:description>
+       </metadata>
+       </symbol>
+ 
+    <presentation for="#all-types" xref="pl1.omdoc#pr-forall"/>
+
+     <example for="#simpletypes.all-types" xml:id="all-types-prop-1">
+       <CMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+          <OMBIND>
+	    <OMS cd="simpletypes" name="all-types"/>
+	    <OMBVAR><OMV name="a"/></OMBVAR>
+	    <OMA>
+	      <OMS cd="simpletypes" name="funtype"/>
+	      <OMV name="a"/>
+	      <OMV name="a"/>
+	      <OMS cd="truthval" name="bool"/>
+	    </OMA>
+	  </OMBIND>
+	</OMOBJ> is a well-formed type. It encodes the type of e.g. of the
+	equality relation.
+     </CMP>
+    </example>
+
+   <symbol name="type" role="semantic-attribution" scope="global">
+     <metadata>
+       <dc:subject>type</dc:subject>
+       <dc:description>The type attribute. It relates an object to its type in an
+	 attribuition.</dc:description>
+     </metadata>
+    </symbol>
+
+   <presentation for="#type" role="key" fixity="postfix"> 
+     <use format="html" element="sub"/>
+     <use format="pmml" element="msub" bracket-style="lisp"/>
+     <use format="TeX" lbrack="" rbrack="" fixity="infix">_</use>
+   </presentation>
+
+<example for="#simpletypes.all-types" xml:id="all-types-prop-2">
+  <CMP>Here is a typed variable
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+     <OMATTR>
+      <OMATP>
+       <OMS cd="simpletypes" name="type"/>
+        <OMA>
+         <OMS cd="simpletypes" name="funtype"/>
+          <OMV name="I"/>
+          <OMV name="I"/>
+          <OMV name="O"/>
+        </OMA>
+       </OMATP>
+       <OMV name="X"/>
+      </OMATTR>
+     </OMOBJ>
+   </CMP>
+</example>
+
+<symbol name="recordtype">
+<metadata>
+<dc:description>The record type constructor. It takes an even number of arguments. 
+    The even ones  are field names (currently they are OMS symbols in the
+  pseudo-theory 'record-field' and the odd ones their values.</dc:description>
+</metadata>
+</symbol>
+
+<presentation xml:id="pr-recordtype" for="#recordtype" role="applied">
+  <use format="pvs" lbrack="[# " rbrack=" #]"/>
+</presentation>
+
+
+<symbol name="tupletype">
+<metadata>
+<dc:description>The tuple type constructor</dc:description>
+</metadata>
+</symbol>
+
+<presentation xml:id="pr-tupletype" for="#tupletype" role="applied">
+  <use format="pvs" lbrack="[" rbrack="]"/>
+</presentation>
+
+<symbol name="cotupletype">
+<metadata>
+<dc:description>The co-tuple type constructor (useful for formalizing co-algebras).</dc:description>
+</metadata>
+</symbol>
+
+<presentation xml:id="pr-cotupletype" for="#cotupletype" role="applied">
+  <use format="pvs" lbrack="[ " rbrack=" ]" separator="+"/>
+</presentation>
+
+</theory>
+
+
+</omdoc>

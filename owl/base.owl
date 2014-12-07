@@ -1,0 +1,51 @@
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:odo="http://www.omdoc.org/ontology#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" > 
+  <rdf:Description rdf:about="http://purl.org/dc/elements/1.1/creator">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.omdoc.org/ontology#OMDocConcept">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <dc:description>Any OMDoc concept (statement or theory, or probably something else).  This base class neither has a counterpart in the OMDoc specification nor in its XML schema.</dc:description>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.omdoc.org/ontology#dependsOn">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="http://www.omdoc.org/ontology#OMDocConcept"/>
+    <rdfs:range rdf:resource="http://www.omdoc.org/ontology#OMDocConcept"/>
+    <dc:description>This relation denotes that one concept A logically depends on another concept B. If the semantics of A changes, B might become invalid.  (So far for my naïve understanding of dependency; Christoph Lange, 2007/04/03.)  A generic dependency relation is needed for many applications, but it is not defined in the OMDoc specification.
+Note that dependency is transitive, but its sub-properties are not necessarily transitive!</dc:description>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.org/dc/elements/1.1/description">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.org/dc/elements/1.1/subject">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="file:///home/clange/svn/omdoc.org/branches/omdoc-1.2/owl/base.n3">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
+    <dc:title>OMDoc document ontology (base classes)</dc:title>
+    <dc:description>Base classes of the OMDoc document ontology in OWL-DL</dc:description>
+    <dc:creator>Christoph Lange &lt;ch.lange@jacobs-university.de&gt;</dc:creator>
+    <dc:contributor>Normen Müller &lt;n.mueller@jacobs-university.de&gt;</dc:contributor>
+    <dc:subject>Semantic Mathematical Markup</dc:subject>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.omdoc.org/ontology#contains">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="http://www.omdoc.org/ontology#OMDocConcept"/>
+    <rdfs:range rdf:resource="http://www.omdoc.org/ontology#OMDocConcept"/>
+    <dc:description>This relation denotes that one concept A contains another concept B.  This is orthogonal to dependency.
+Note that containment is transitive, but its sub-properties are not necessarily transitive!
+Actually, this should not only be declared transitive, but also inverse functional, but both properties together are not allowed in OWL-DL 1.1</dc:description>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.org/dc/elements/1.1/contributor">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.org/dc/elements/1.1/title">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+  </rdf:Description>
+</rdf:RDF>

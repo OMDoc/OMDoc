@@ -1,0 +1,297 @@
+\documentclass{article}
+\usepackage[show]{ed}
+\usepackage{url,draftstamp,letterwide}
+\def\constlist{\enumerate}
+\def\endconstlist{\endenumerate}
+\def\openmath{{\sc OpenMath}}
+\def\omdoc{{\sc OMDoc}}
+\def\mathml{{\sc MathML}}
+\title{An Overview and Todo-List for the Logic CDs}
+\author{Michael Kohlhase\\ 
+Computer Science, Carnegie Mellon University\\
+\url{http://www.cs.cmul.edu/~kohlhase}}
+\begin{document}
+\maketitle
+
+\section{Introduction}
+In this note we give an overview over the logic CDs, a set of {\omdoc} documents that
+supply the vocabularies for a variety of logics, used in computational logic and for
+formalizing mathematics.  Currently, the logic CDs can be found at
+{\url{http://omdoc.org/examples/logics}}, they will move to a more conspicuous resting
+place when they are released.
+
+The main use of these vocabularies is in the {\openmath} and content {\mathml}
+languages as symbols. In {\openmath} the symbol for falsity would be notated as 
+{\tt{<OMS cd="truthval" name="false"/>}}, and in content {\mathml} as
+{\tt{<csymbol DefinitionURL="\url{http://omdoc.org/examples/logics/truthval.omdoc#true}"}}.
+
+\begin{todolist}{}
+\item add inference rules everywhere. 
+\item do we want $n$-ary connectives and quantifiers here?
+\item add dynamic logics lik DRT, DPL,... for the computational linguists.
+\item we should probably add non-classical logics like modal logics here?
+\end{todolist}
+
+ \section{Propositional Logics}
+ In this section we will define some theories for and analyze some common
+ propositional logics.
+
+\subsection{{\tt{truthval}}: Truth Values}
+This theory supplies the type of truth values and the object symbols for truth and
+falsity. 
+
+\begin{constlist}
+  \item[bool] the type of truth values
+  \item[true] the constant for truth
+  \item[false] the constant for truth
+  \item[eq] the equality of truth values
+  \item[neq] the inequality of truth values
+  \item[true-intro] the ND inference rule for truth introduction
+  \item[true-intro] the ND inference rule for truth introduction
+  \item[false-elim] the ND inference rule for false elimination.
+\end{constlist}
+  
+\subsection{{\tt{pl0}}: Classical Propositional Connectives}
+This theory provides all classical two-valued propositional connectives, it is
+largely identical to the {\openmath} content dictionary {\tt{logic1}}. We have a
+separate theory here, since we want to make the semantics more restrictive than
+the inclusive treatment in {\tt{logic1}}. In particular, we insist that the
+connectives are two-valued.
+
+{\bf{Inclusions}}: {\tt{truthval}} for truth values
+\begin{constlist}
+  \item[not] classical negation
+  \item[and] classical conjunction
+  \item[or] classical disjunction
+  \item[implies] classical implication
+  \item[equivalent] biconditional
+  \item[xor] exclusive or
+  \item[forall] universal quantification over boolean values
+  \item[exists] existential quantification over boolean values
+\end{constlist}
+
+\begin{todolist}{}
+  \item include the truth tables
+  \item find all other binary connectives and give them names. 
+\end{todolist}
+
+
+\subsection{{\tt{skl0}}: Strong Kleene Logic (Propositional)}
+This theory provides the three-valued propositional connectives for strong Kleene
+logic, which is often used as a basis for partial-function logics. 
+
+{\bf Inclusions}: {\tt{truthval}} for the truth values.
+\begin{constlist}
+  \item[undefined] The undefined truth value.
+  \item[not] strong Kleene negation
+  \item[and] strong Kleene conjunction
+  \item[or] strong Kleene disjunction
+  \item[implies] strong Kleene implication
+  \item[equivalent] strong Kleene biconditional
+  \item[xor] strong Kleene exclusive or
+  \item[tf] the definedness connective; it is true, if it's argument is true or
+    false, it is false on undefined.
+\end{constlist}
+
+\begin{todolist}{Ask Manfred for help}
+  \item include the truth tables.
+  \item find other binary connectives and give them names, are all of the
+    propositional ones meaningful?. 
+  \item do all of the copied examples and lemmata make sense?
+  \item Maybe read the Articles by Jones.
+\end{todolist}
+
+\section{First-Order Logics}
+In this section we define constants for first-order logics, i.e. logics that
+include quantifiers that range over individuals.
+
+\subsection{{\tt{ind}}}: Individuals
+This theory provides a type for individuals and equality on it. 
+
+\begin{constlist}
+  \item[ind] the type of individuals
+  \item[eq] the equality on individuals
+  \item[neq] inequality on individuals
+\end{constlist}
+
+\subsection{{\tt{pl1}}: Classical First-Order Logic}
+This theory provides all classical two-valued first-order quantifiers, it is
+largely identical to the {\openmath} content dictionary {\tt{quant1}}. We have a
+separate theory here, since we want to make the semantics more restrictive than
+the inclusive treatment in {\tt{quant1}}. In particular, we insist that the
+connectives are two-valued.
+
+{\bf Inclusions}: {\tt{pl0}} for the truth values and connectives. {\tt{ind}} for individuals.
+\begin{constlist}
+  \item[forall] classical universal quantification
+  \item[exists] classical existential quantification
+  \item[unique] uniqueness, 
+  \item[exists-unique] unique existence
+  \item[atmost] this quantifier takes a natural number $n$ as an argument, and
+    postulates that there are at most $n$ distinct elements with a certain property.
+  \item[atleast] this quantifier takes a natural number $n$ as an argument, and
+    postulates that there are at least $n$ distinct elements with a certain property.
+  \item[exactly] this quantifier takes a natural number $n$ as an argument, and
+    postulates that there are exactly $n$ distinct elements with a certain property.
+\end{constlist}
+Note that we do not include generalized quantifiers like most, finitely many,
+\ldots here, since they are not fist-order definable. 
+\begin{todolist}{}
+  \item copy and extend {\tt{quant1}}, include the truth tables.
+  \item are there any other common first-order quantifiers?
+\end{todolist}
+
+\subsection{{\tt{ude1}}: Undefined Elements in First-Order Logic}
+This theory introduces constants for  undefined individuals and a two-valued
+definedness predicate.
+
+{\bf Inclusions}: none
+\begin{constlist}
+  \item[undefined] The undefined individual
+  \item[defined] the two-valued definedness predicate, it is true, when the
+    argument is defined, and false else.
+  \item[strongeq] strong equality
+  \item[weakeq] weak equality
+\end{constlist}
+These new constants are enough to express a two-valued treatment of partial
+functions, when added to first-order logic\ednote{cite Bill Farmer, and the other
+  crowd here.}
+\begin{todolist}{}
+  \item look the equality notions up with Bill Farmer
+  \item maybe call one of them (the more commonly used one) only {\tt{eq}}
+\end{todolist}
+
+\subsection{{\tt{skl1}}: Strong First-Order Kleene Logic}
+
+Strong first-order Kleene logic, this is often used as a partial-function logic.
+
+{\bf Inclusions}: {\tt{skl0}} for the truth values and connectives, {\tt{ude1}}
+for undefined individuals.
+\begin{constlist}
+  \item[forall] strong Kleene universal quantification
+  \item[exists] strong Kleene existential quantification
+  \item[unique] uniqueness, 
+  \item[exists-unique] unique existence
+  \item[atmost] this quantifier takes a natural number $n$ as an argument, and
+    postulates that there are at most $n$ distinct elements with a certain property.
+  \item[atleast] this quantifier takes a natural number $n$ as an argument, and
+    postulates that there are at least $n$ distinct elements with a certain property.
+  \item[exactly] this quantifier takes a natural number $n$ as an argument, and
+    postulates that there are exactly $n$ distinct elements with a certain property.
+\end{constlist}
+
+\begin{todolist}{Ask Manfred for Help}
+  \item do all of these quantifiers make sense in the three-valued setting? Can we
+    use the same definitions?
+  \item what about equality here, do we need three-valued ones? Maybe the
+    three-valued one should be called {\tt{eq}}.
+\end{todolist}
+
+\subsection{{\tt{spl1}}: Sorted First-Order Logic}
+
+{\bf Inclusions}: {\tt{simpletypes}} for type constructors, {\tt{pl0}} for connectives.
+\begin{constlist}
+\item[forall] sorted universal quantifier. This $n$-ary quantifiers takes $n$
+  sorts as argument\ednote{continue}
+\item[exists] sorted existential quantifier. This $n$-ary quantifiers takes $n$
+  sorts as argument\ednote{continue}
+\end{constlist}
+\begin{todolist}{}
+  \item all the other quantifiers as well, what are their sorts.
+  \item Can we do Bill Farmer's S2PPL1 with these?
+  \item Can we do Kerber/Kohlhase's S3PPL1 with these?\ednote{don't think so.}
+\end{todolist}
+
+
+\section{Types}
+In this section, we will define the basic infrastructure for type systems. These
+include the sort systems known from first-order logic, and the type systems in
+type theories.
+
+\subsection{{\tt{simpletypes}}: Simple Types}
+Simple types are characterized by the lack of dependence between the arguments of
+the type constructors.
+
+{\bf Inclusions}: none
+\begin{constlist}
+  \item[ind] base type of individuals, this is often used as the top sort in
+    first-order logics
+  \item[empty] the empty type, this is often called the ``unit'' type. It is
+    sometimes used as the least sort in first-order logics.
+  \item[funtype] function type constructor
+  \item[pfuntype] partial function type constructor.
+  \item[pair] pair type constructor
+  \item[dunion] disjoint union type constructor.
+  \item[union] union type constructor
+  \item[intersection] intersection type constructor
+  \item[complement] complement type constructor
+  \item[tuple] the tuple type costructor
+  \item[record] the record type constructor
+\end{constlist}
+
+\begin{todolist}{}
+  \item are there more type constructors?
+  \item do we really want all these type constructors in simpletypes, or would it
+    be better to separate them out into a theory of simple type constructors.
+  \item Should we have relations between types in this theory too? {\tt{subtype}},
+  {\tt{supertype}}, {\tt{disjoint}}, \ldots?
+\end{todolist}
+
+\subsection{{\tt{deptypes}}: Dependent Types}
+Dependent types allow dependencies between the arguments of the type constructors.
+
+{\bf Inclusions}: {\tt{simpletypes}} for the base types. 
+\begin{constlist}
+  \item[funtype] function type constructor
+  \item[pfuntype] partial function type constructor.
+  \item[tuple] the tuple type costructor
+  \item[record] the record type constructor
+\end{constlist}
+
+\begin{todolist}{}
+  \item are there dependent versions of the other type constructors from
+  \item[record] the record type constructor{\tt{simpletypes}}, does anybody use them?
+\end{todolist}
+
+\section{Type Theories}
+Type theories are logics that use types as structurally governing principles. They
+usually introduce term constructors for all type constructors and elaborate
+equality theories that take into account the meaning of the objects in each type.\ednote{continue}
+
+\section{Conclusion}
+We have given an overview over the Logic CDs, a set of {\omdoc} documents
+supplying standardized vocabularies for logics. 
+
+\begin{appendix}
+  \section{Translations of the OMEGA symbols}
+  \begin{tabular}{|c|c||c|c||l|}\hline
+    generic & o & bool & truthval & \\\hline
+    generic & i & ind & ind & \\\hline
+    generic & list & ???? & ???? & \\\hline\hline
+    base & false & false & truthval & \\\hline
+    base & true & true & truthval & \\\hline
+    base & and & and & pl0 & \\\hline
+    base & or  & or & pl0  & \\\hline
+    base & implies & implies & pl0 & \\\hline
+    base & equiv & equivalent & pl0 & \\\hline 
+    base & not & not & pl0  & \\\hline
+    base & = & eq & truthval & for type $o$ in untyped context\\\hline
+    base & = & eq & ind & for type $i$ in untyped context\\\hline
+    base & = & eq & hol & in typed context\\\hline
+    base & exists & forall & pl1 & \\\hline
+    base & forall & forall & pl1 & \\\hline 
+    base & atmost-one & atmost @ 1 & pl1 & \\\hline
+    base & exists-unique & exists-unique & pl1 & \\\hline
+    base & that & ??? & ???& \\\hline 
+    base & choose-from & ??? & ??? & \\\hline 
+  \end{tabular}
+  
+  {\tt{void}} and {\tt{focus}} are defined in base.thy, but never used as far as I
+  can tell. {\tt{focus}} is also defined in various other theories, but not used.
+
+\end{appendix}
+\end{document}
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 

@@ -1,0 +1,43 @@
+#!/bin/tcsh -f
+
+if ( $1 == "--help" || $1 == "" || $2 == "") then
+    echo "Usage: presentationDigest targetXSLfile.xsl omdoc1 omdoc2 [omdoc3...]"
+    exit 1
+endif
+
+# for the grep on one file only
+if ( $3 == "" ) then
+	setenv oneOmdoc `echo $2 | sed 's|\/|\\/|g' `
+endif
+
+
+
+# find the path of here
+set command=`which $0`
+if ( $command == "" ) then
+	set command="$0"
+endif
+set pathToBin="`dirname $command`"
+setenv omdocHome `cd $pathToBin; cd ..; pwd`
+setenv escapedOmdocHome `echo $omdocHome | sed 's|\/|\\/|g'`
+# echo $pathToBin
+# set absPathToBin=`$pathToBin/getActiveMathHome`
+# echo absPathToBin=$absPathToBin
+
+
+setenv CLASSPATH `cat $omdocHome'/util/classPathList' | sed 's/^\(.*\)$/'$escapedOmdocHome'\/\1/' | tr "\n" ":"`
+setenv CLASSPATH $omdocHome/util/omdoc_util.jar:$CLASSPATH
+# echo $CLASSPATH
+
+set targetXsl=$argv[1]
+shift
+if ( oneOmdoc != "" ) then
+	( grep -n "<presentation\|</presentation\|<theory\|</theory" $argv[*] | sed 's/^\(.*\)$/'$oneOmdoc':\1/'  \
+		  && echo " ===== :00: ===== finished") | \
+	java PresentationDigest |\
+	java SaxonFromStdin file://$omdocHome/xsl/expresIt.xsl > $targetXsl
+else
+	grep -n "<presentation\|</presentation\|<theory\|</theory" $argv[*] && echo " ===== :00: ===== finished" | \
+	java PresentationDigest |\
+	java SaxonFromStdin file://$omdocHome/xsl/expresIt.xsl > $targetXsl
+endif 

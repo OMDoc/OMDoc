@@ -1,0 +1,13 @@
+#!/bin/sh 
+# takes two or three arguments 
+# - $1 is the format-specific style file 
+# - $2 is the include file
+# - $3 is the XSLT version
+
+echo "<?xml version='1.0'?>"
+echo "<xsl:stylesheet xmlns:xsl='http://www.w3.org/1999/XSL/Transform' version='${3:-1.0}'>" 
+echo "<!-- we specialize -->"
+echo "<xsl:include href='$1'/>"
+echo "<!-- by the specialized templates contained in this style sheet -->"
+echo "<xsl:include href='$2'/>"
+echo "</xsl:stylesheet>"

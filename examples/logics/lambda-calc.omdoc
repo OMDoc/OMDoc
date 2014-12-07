@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!DOCTYPE omdoc PUBLIC "-//OMDoc//DTD OMDoc V1.3//EN"
+                "../../dtd/omdoc.dtd">
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  xmlns="http://omdoc.org/ns"
+xml:id="lambda-calc-omdoc" >
+
+ <metadata>
+  <dc:title>Lambda Calculus</dc:title>
+   <dc:creator role="aut">Michael Kohlhase</dc:creator>
+   <dc:date>2002-04-16T00:00:00</dc:date>
+   <dc:description>The Theory of untyped Lambda Calculus.</dc:description>
+  </metadata>
+
+ <theory xml:id="lambda-calc">
+ <imports from="substitution.omdoc#substitution"/>
+ 
+ <symbol name="lambda" xml:id="lambda-calc.lambda" role="object" scope="global">
+  <metadata>
+    <dc:subject>lambda</dc:subject>
+    <dc:description>
+      This symbol is used to represent anonymous functions as lambda expansions. 
+      It is used in a binder that takes two further arguments, the first of which
+      is a list of variables, and the second of which is an expression, and it
+      forms the function which is the lambda extraction of the expression
+    </dc:description>
+  </metadata>
+</symbol>
+
+ <presentation xml:id="pr-lambda" for="#lambda">
+  <use format="TeX">{\lambda}</use>
+  <use format="pmml|html">&#x003BB;</use>
+  <use format="pvs">LAMBDA</use>
+  <use format="post">lam</use>
+ </presentation>
+
+<example xml:id="lambda-id-ex" for="#lambda-calc.lambda">
+ <CMP>The following is a representation of the identity function:
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+   <OMBIND>
+    <OMS cd="lambda-calc" name="lambda"/>
+    <OMBVAR><OMV name="X"/></OMBVAR>
+    <OMV name="X"/>
+   </OMBIND>
+  </OMOBJ>
+</CMP>
+</example>
+
+<symbol name="alpha-equal">
+<metadata>
+<dc:description>The relation of alphabetic equality</dc:description>
+</metadata>
+</symbol>
+
+<presentation for="#alpha-equal" fixity="infix" role="applied" precedence="700">
+ <use format="TeX">=_\alpha</use>
+ <use format="html">
+   <text>=</text><element name="sub"><text>&#x003B1;</text></element>
+ </use>
+ <use format="pmml">
+   <element name="msub" cr="yes">
+     <element name="mo"><text>=</text></element>
+     <element name="mo"><text>&#x003B1;</text></element>
+   </element>
+ </use>
+</presentation>
+
+<axiom xml:id="alpha-ax">
+ <CMP>Bound Variables can be renamed, i.e. 
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+   <OMA>
+    <OMS cd="lambda-calc" name="alpha-equal"/>
+    <OMBIND>
+     <OMS cd="lambda-calc" name="lambda"/>
+     <OMBVAR><OMV name="X"/></OMBVAR>
+     <OMV name="X"/>
+    </OMBIND>
+    <OMBIND>
+     <OMS cd="lambda-calc" name="lambda"/>
+     <OMBVAR><OMV name="Y"/></OMBVAR>
+     <OMV name="Y"/>
+    </OMBIND>
+   </OMA>
+  </OMOBJ>.
+ </CMP> 
+ </axiom>
+
+<symbol name="beta-equal">
+<metadata>
+<dc:description>The relation of beta equality</dc:description>
+</metadata>
+</symbol>
+
+
+<presentation for="#beta-equal" fixity="infix" role="applied" precedence="700">
+ <use format="TeX">=_\beta</use>
+ <use format="html">=<element name="sub"><text>&#x003B2;</text></element></use>
+ <use format="pmml">
+   <element name="msub" cr="yes">
+     <element name="mo"><text>=</text></element>
+     <element name="mo"><text>&#x003B2;</text></element>
+   </element>
+ </use>
+</presentation>
+
+<axiom xml:id="beta-axiom">
+ <CMP>For all lambda-terms <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="A"/></OMOBJ> and
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="B"/></OMOBJ> we have
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+   <OMA>
+    <OMS cd="lambda-calc" name="beta-equal"/>
+    <OMA>
+     <OMBIND>
+      <OMS cd="lambda-calc" name="lambda"/>
+      <OMBVAR><OMV name="X"/></OMBVAR>
+      <OMV name="B"/>
+     </OMBIND>
+     <OMV name="A"/>
+    </OMA>
+    <OMA>
+      <OMS cd="substitution" name="apply"/>
+      <OMA>
+	<OMS cd="substitution" name="substitute"/>
+	<OMV name="A"/>
+	<OMV name="X"/>
+      </OMA>
+      <OMV name="B"/>
+    </OMA>
+   </OMA>
+  </OMOBJ>.
+ </CMP> 
+ </axiom>
+
+<example xml:id="beta-axiom-ex" for="#beta-axiom">
+ <CMP>  
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+   <OMBIND>
+    <OMS cd="lambda-calc" name="lambda"/>
+    <OMBVAR><OMV name="X"/></OMBVAR>
+    <OMV name="X"/>
+   </OMBIND>
+  </OMOBJ>
+   acts as the identity function:
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+   <OMA>
+    <OMS cd="lambda-calc" name="beta-equal"/>
+    <OMA>
+     <OMBIND>
+      <OMS cd="lambda-calc" name="lambda"/>
+      <OMBVAR><OMV name="X"/></OMBVAR>
+      <OMV name="X"/>
+     </OMBIND>
+     <OMV name="Y"/>
+    </OMA>
+    <OMV name="Y"/>
+   </OMA>
+  </OMOBJ>
+ </CMP>
+</example>
+
+<symbol name="beta-reduces">
+<metadata>
+<dc:description>The relation of beta reduction</dc:description>
+</metadata>
+</symbol>
+
+<presentation for="#beta-reduces" fixity="infix" role="applied" precedence="700">
+ <use format="TeX">\rightarrow_\beta</use>
+ <use format="html">&#x02192;<element name="sub"><text>&#x003B2;</text></element></use>
+ <use format="pmml">
+   <element name="msub" cr="yes">
+     <element name="mo"><text>&#x02192;</text></element>
+     <element name="mo"><text>&#x003B2;</text></element>
+   </element>
+ </use>
+</presentation>
+<axiom xml:id="beta-reduction-axiom">
+ <CMP>For all lambda-terms <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="A"/></OMOBJ> and
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="B"/></OMOBJ> we have
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+   <OMA>
+    <OMS cd="lambda-calc" name="beta-reduces"/>
+    <OMA>
+     <OMBIND>
+      <OMS cd="lambda-calc" name="lambda"/>
+      <OMBVAR><OMV name="X"/></OMBVAR>
+      <OMV name="B"/>
+     </OMBIND>
+     <OMV name="A"/>
+    </OMA>
+    <OMA>
+     <OMS cd="substitution" name="substitute"/>
+     <OMA>
+       <OMS cd="substitution" name="substitute"/>
+       <OMV name="A"/>
+       <OMV name="X"/>
+     </OMA>
+     <OMV name="B"/>
+    </OMA>
+   </OMA>
+ </OMOBJ>.
+ </CMP> 
+ </axiom>
+
+<example xml:id="beta-reduces-id" for="#beta-reduces">
+ <CMP>Beta equality need not be terminating in general:
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+   <OMA>
+    <OMS cd="lambda-calc" name="beta-reduces"/>
+    <OMA>
+     <OMBIND>
+      <OMS cd="lambda-calc" name="lambda"/>
+      <OMBVAR><OMV name="X"/></OMBVAR>
+      <OMA><OMV name="X"/><OMV name="X"/></OMA>
+     </OMBIND>
+     <OMBIND>
+      <OMS cd="lambda-calc" name="lambda"/>
+      <OMBVAR><OMV name="X"/></OMBVAR>
+      <OMA><OMV name="X"/><OMV name="X"/></OMA>
+     </OMBIND>
+    </OMA>
+    <OMA>
+     <OMBIND>
+      <OMS cd="lambda-calc" name="lambda"/>
+      <OMBVAR><OMV name="X"/></OMBVAR>
+      <OMA><OMV name="X"/><OMV name="X"/></OMA>
+     </OMBIND>
+     <OMBIND>
+      <OMS cd="lambda-calc" name="lambda"/>
+      <OMBVAR><OMV name="X"/></OMBVAR>
+      <OMA><OMV name="X"/><OMV name="X"/></OMA>
+     </OMBIND>
+    </OMA>
+   </OMA>
+  </OMOBJ>
+ </CMP>
+</example>
+
+<symbol name="eta-equal">
+<metadata>
+<dc:description>The relation of eta equality, this is a restricted form of extensionality</dc:description>
+</metadata>
+</symbol>
+
+<presentation for="#eta-equal" fixity="infix" role="applied" precedence="700">
+ <use format="TeX">=_\eta</use>
+ <use format="html">=<element name="sub"><text>&#x003B7;</text></element></use>
+ <use format="pmml">
+   <element name="msub" cr="yes">
+     <element name="mo"><text>=</text></element>
+     <element name="mo"><text>&#x003B7;</text></element>
+   </element>
+ </use>
+</presentation>
+<axiom xml:id="eta-axiom">
+ <CMP>For all lambda-terms <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="B"/></OMOBJ> such that 
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="X"/></OMOBJ> is not free in <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="B"/></OMOBJ> we have
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+   <OMA>
+    <OMS cd="lambda-calc" name="beta-equal"/>
+    <OMBIND>
+     <OMS cd="lambda-calc" name="lambda"/>
+     <OMBVAR><OMV name="X"/></OMBVAR>
+     <OMA><OMV name="B"/><OMV name="X"/></OMA>
+    </OMBIND>
+    <OMV name="B"/>
+   </OMA>
+  </OMOBJ>.
+ </CMP> 
+ </axiom>
+
+<symbol name="eta-reduces">
+<metadata>
+<dc:description>The relation of eta reduction</dc:description>
+</metadata>
+</symbol>
+
+<presentation for="#eta-reduces" fixity="infix" role="applied" precedence="700">
+ <use format="TeX">\rightarrow_\eta</use>
+ <use format="html">&#x02192;<element name="sub"><text>&#x003B7;</text></element></use>
+ <use format="pmml">
+   <element name="msub" cr="yes">
+     <element name="mo"><text>&#x02192;</text></element>
+     <element name="mo"><text>&#x003B7;</text></element>
+   </element>
+ </use>
+</presentation>
+<axiom xml:id="eta-reduction-axiom">
+ <CMP>For all lambda-terms <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="B"/></OMOBJ> such that 
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="X"/></OMOBJ> is not free in <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="B"/></OMOBJ> we have
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+   <OMA>
+    <OMS cd="lambda-calc" name="eta-reduces"/>
+    <OMBIND>
+     <OMS cd="lambda-calc" name="lambda"/>
+     <OMBVAR><OMV name="X"/></OMBVAR>
+     <OMA><OMV name="B"/><OMV name="X"/></OMA>
+    </OMBIND>
+    <OMV name="B"/>
+   </OMA>
+  </OMOBJ>.
+ </CMP> 
+ </axiom>
+
+</theory>
+</omdoc>

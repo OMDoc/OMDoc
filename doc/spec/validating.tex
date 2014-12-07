@@ -1,0 +1,340 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This file is part of the LaTeX sources of the OMDoc 1.3 specification
+% Copyright (c) 2006 Michael Kohlhase
+% This work is licensed by the Creative Commons Share-Alike license
+% see http://creativecommons.org/licenses/by-sa/2.5/ for details
+\svnInfo $Id: validating.tex 8685 2010-08-23 08:55:17Z kohlhase $
+\svnKeyword $HeadURL: https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.3/doc/spec/validating.tex $
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{tchapter}[id=validating]{Validating OMDoc Documents}
+
+In {\mychapref{markup-web}} we have briefly discussed the basics of validating {\xml}
+documents by {\twintoo{document type}{definition}s} (DTDs) and {\indextoo{schema}ta}. In
+this chapter, we will instantiate this discussion with the particulars of
+validating\index{validation} {\omdoc} documents.
+
+Generally, DTDs and schemata are {\twintoo{context-free}{grammar}s} for
+trees\footnote{Actually, a recent extension of the {\xml} standard ({\xlink}) also allows
+  to express graph structures, but the admissibility of graphs is not covered by DTD or
+  current schema formalisms.}, that can be used by a {\twindef{validating}{parser}} to
+reject {\xml} documents that do not conform to the constraints expressed in the {\omdoc}
+DTD or schemata discussed here.
+
+Note that none of these grammars can enforce all constraints that the {\omdoc}
+specification in {\mypartref{specification}} of this {\report} imposes on documents.
+Therefore grammar-based validation is only a necessary condition for
+{\omdoc}-{\defin{validity}}. Still, {\omdoc} documents should be validated to ensure
+proper function of {\omdoc} tools, such as the ones discussed in
+{\mychapsref{transform-xsl}{projects}}.  Validation against multiple grammars gives the
+best results. With the current state of validation technology, there is no clear
+recommendation, which of the validation approaches to prefer for {\omdoc}. DTD validation
+is currently best supported by standard {\xml} applications and supports default values
+for attributes. This allows the author who writes {\omdoc} documents by hand to elide
+implicit attributes and make the marked-up text more readable.  {\xml}- and {\relaxng}
+schema validation have the advantage that they are namespace-aware and support more
+syntactic constraints.  Neither of these support mnemonic {\xml}
+entities\twin{XML}{entity}, such as the ones used for {\unicode} characters in {\pmathml},
+so that these have to be encoded as {\unicode} code points. Finally {\relaxng} schemata do
+not fully support default values for attributes, so that {\omdoc} documents have to be
+normalized\footnote{An {\omdoc} document is called {\defin{normalized}}, iff all required
+  attributes are present. Given a {\indextoo{DTD}} or {\xml} schema\twin{XML}{schema} that
+  specifies default values, there are standard {\xml} tools for {\xml}-normalization that
+  can be pipelined to allow {\relaxng} validation, so this is not a grave restriction.} to
+be {\relaxng}-valid.
+
+We will now discuss the particulars of the respective validation formats. As the
+{\relaxng} schema is the most expressive and readable for humans we consider it as the
+{\atwintoo{normative}{grammar}{formalism}} for {\omdoc}, and have included it in
+{\myappchapref{rnc}} for reference.
+
+\begin{tsection}[id=validate-dtd]{Validation with Document Type Definitions}
+  
+  The {\omdoc} document type definition~\cite{OMDocDTD:URL} can be referenced by the
+  {\twintoo{public}{identifier}} {\snippet{"-//OMDoc//DTD OMDoc V1.3//EN"}}
+  (see~\mysecref{catalog}). The DTD driver file is \url{omdoc.dtd}, which calls various
+  {\indextoo{DTD module}s}.
+  
+  DTD-validating {\xml} parsers are included in almost all {\xml} processors. The author
+  uses the open-source {\rxp}~\cite{Tobin:RXP} and
+  {\scsys{xmllint}}~\cite{Veillard:libxml2} as stand-alone tools. If required, one may
+  validate {\omdoc} documents using an {\sgml} parser such as {\nsgmls}, rather than a
+  validating {\xml} parser. In this case an {\sgml} declaration defining the constraints
+  of {\xml} applicable to an {\sgml} parser must be used (see~\cite{Clark:csx97} for
+  details).
+
+  To allow DTD-validation, {\omdoc} documents should contain a {\indextoo{document
+% There's a space missing between ``type'' and ``declaration'', but I don't know
+% how to specify it. --Christoph Lange
+      type}{declaration}} of the following form:
+\begin{center}
+\begin{lstlisting}[language=XML,index={DOCTYPE,omdoc}]
+<!DOCTYPE omdoc PUBLIC "-//OMDoc//DTD OMDoc V1.3//EN"
+                       "http://omdoc.org/dtd/omdoc.dtd">
+\end{lstlisting}
+\end{center}
+The {\indextoo{URI}} may be changed to that of a local copy of the DTD if required, or it
+can be dropped altogether if the processing application has access to an {\xml}
+catalog\twin{XML}{catalog} (see~\mysecref{catalog}).  Whether it is useful to include
+document type declarations in documents in a production environment depends on the
+application. If a document is known to be DTD- or even {\omdoc}-valid, then the validation
+overhead a {\snippetin{DOCTYPE}} declaration would incur from a validating
+parser\footnote{The {\xml} specification requires a validating parser to perform
+  validation if a {\snippetin{DOCTYPE}} declaration is present} may be conserved by
+dropping it.
+
+
+\begin{tsubsection}[id=parameter-entities]{Parametrizing the DTD}
+
+  The {\omdoc} DTD makes heavy use of parameter entities\twin{parameter}{entity},
+  so we will briefly discuss them to make the discussion self-contained. Parameter
+  entity declarations are declarations of the form
+\begin{center}
+\begin{lstlisting}[language=XML,index={ENTITY}]
+<!ENTITY % assertiontype "theorem|proposition|lemma|%otherassertiontype;">
+\end{lstlisting}
+\end{center}
+in the DTD. This one makes the abbreviation {\snippet{\%assertiontype;}} available for the
+string ``\snippet{theorem|proposition|lemma|observation}'' (in the DTD of the document in
+{\mylstref{internal}}). Note that parameter entities must be fully defined before they can
+be referenced\twin{reference}{parameter entity}, so recursion is not possible. If there
+are multiple parameter entity declarations, the first one is relevant for the computation
+of the replacement text; all later ones are discarded. The {\twintoo{internal}{subset}} of
+{\twintoo{document type}{declaration}} is pre-pended to the external {\indextoo{DTD}}, so
+that parameter entity declarations in the {\twintoo{internal}{subset}} overwrite the ones
+in the {\twintoo{external}{subset}}.
+
+The (external) DTD specified in the {\snippetin{DOCTYPE}} declaration can be enhanced or
+modified by adding declarations in square brackets after the {\indextoo{DTD}}
+{\indextoo{URI}}. This part of the DTD is called the
+{\twintoo{internal}{subset}}\atwin{internal}{subset}{DTD} of the {\snippetin{DOCTYPE}}
+declaration, see {\mylstref{internal}} for an example, which modifies the
+{\twintoo{parameter}{entity}} {\snippet{\%other\-assertiontype;}} supplied by the {\omdoc}
+DTD to extend the possible values of the {\attribute{type}{assertion}} attribute in the
+{\element{assertion}} element for this document. As a consequence, the
+{\element{assertion}} element with the non-standard value for the
+{\attribute{type}{assertion}} attribute is DTD-valid with the modified internal DTD
+subset.
+
+\begin{lstlisting}[label=lst:internal,language=XML,morekeywords={omdoc},mathescape,
+  caption={A Document Type Declaration with Internal Subset},
+  index={DOCTYPE,ENTITY,ELEMENT,ATTLIST,omdoc,PUBLIC}]
+<!DOCTYPE omdoc PUBLIC "-//OMDoc//DTD OMDoc V1.3//EN"
+                       "http://omdoc.org/omdoc.dtd" 
+  [<!ENTITY % otherassertiontype "observation">]>
+$\ldots$
+<assertion type="observation">$\ldots$</assertion>
+$\ldots$
+\end{lstlisting}
+\end{tsubsection}
+
+\begin{tsubsection}[id=dtd-normalization]{DTD-based Normalization}
+  
+  Note that if a {\omdoc} fragment is parsed without a DTD, i.e. as a
+  {\indextoo{well-formed}} {\xml} {\indextoo{fragment}}, then the default attribute
+  values\twin{default value}{attribute} will not be added to the {\xml}
+  {\twintoo{information}{set}}. So simply dropping the {\twintoo{DOCTYPE}{declaration}}
+  may change the semantics of the document, and {\omdoc} documents should be
+  normalized\footnote{The process of DTD-normalization expands all parsed {\xml} entities,
+    and adds all default attribute values}\twin{DTD}{normalization} first.  Normalized
+  {\omdoc} documents should carry the {\attribute{standalone}{?xml}} attribute in the
+  {\xml} processing instruction, so that a normalized {\omdoc} document has the form given
+  in {\mylstref{normalized}}.
+
+\begin{lstlisting}[label=lst:normalized,language=XML,morekeywords={omdoc},mathescape,
+  caption={A normalized {\omdoc} document without DTD},index={xml,omdoc}]
+<?xml version="1.0" standalone="yes"?>
+<omdoc xml:id="something" version="1.3" xmlns="http://omdoc.org/ns">
+ $\ldots$
+</omdoc>
+\end{lstlisting}
+
+The attribute {\attribute{version}{omdoc}} and the namespace declaration
+{\snippetin{xmlns}} are fixed by the DTD, and need not be explicitly provided if the
+document has a {\snippetin{DOCTYPE}} declaration.
+\end{tsubsection}
+
+
+\begin{tsubsection}[id=modularization]{Modularization}
+
+  In {\omdocv{1.3}} the DTD has been modularized according to the W3C conventions
+  for DTD {\indextoo{modularization}}~\cite{AltBou:mox01}. This partitions the DTD
+  into  {\twindef{DTD}{module}s} that correspond to the {\omdoc} modules
+  discussed in {\mypartref{specification}} of this {\report}. 
+
+  These DTD modules can be deselected from the {\omdoc} DTD by changing the
+  {\defemph{module inclusion entities}}\twin{module inclusion}{entity} in the
+  local subset of the document type declaration. In the following declaration, the
+  module {\PFmodule{DTD}} (see {\mychapref{proofs}}) has been deselected,
+  presumably, as the document does not contain proofs.
+
+\begin{lstlisting}[index={omdoc,DOCTYPE,ENTITY,INGNORE}]
+<!DOCTYPE omdoc PUBLIC "-//OMDoc//DTD OMDoc V1.3//EN"
+                             "http://omdoc.org/dtd/omdoc.dtd"
+  [<!ENTITY % omdoc.pf.module "IGNORE">]>
+\end{lstlisting}
+
+Module inclusion entities have the form {\snippet{\%omdoc.\llquote{ModId}.module;}}, where
+{\llquote{ModId}} stands for the lower-cased module identifier. The {\omdoc} DTD
+repository contains DTD driver files for all the sub-languages discussed in
+{\mysecref{sub-languages}}, which contain the relevant module inclusion entity
+settings. These are contained in the files {\snippet{omdoc-\llquote{SlId}.dtd}}, where
+{\snippet{\llquote{SlId}}} stands for the sub-language identifier.
+
+Except for their use in making the {\omdoc} DTD more manageable, DTD modules also allow to
+include {\omdoc} functionality into other document types, extending {\omdoc} with new
+functionality encapsulated into modules or upgrading selected {\omdoc} modules
+individually. To aid this process, we will briefly describe the module structure.
+Following~\cite{AltBou:mox01}, DTD modules come in two parts, since we have inter-module
+recursion. The problem is for instance that the {\element{omlet}} element can occur in
+{\twintoo{mathematical}{text}s} ({\snippet{mtext}}), but also contains {\snippet{mtext}},
+which is also needed in other modules. Thus the modules cannot trivially be linearized.
+Therefore the DTD driver includes an entity file {\snippet{\llquote{ModId}.ent}} for each
+module {\snippet{\llquote{ModId}}}, before it includes the grammar rules in the
+{\twindef{element}{module}s} {\snippet{\llquote{ModId}.mod}} themselves. The entity files
+set up parameter entities for the qualified names and content models that are needed in
+the grammar rules of other modules.
+\end{tsubsection}
+
+\begin{tsubsection}[id=namespace-magic]{Namespace Prefixes for {\omdoc} elements}
+  
+  Document type definitions\twin{document type}{definition} do not natively support {\xml}
+  namespaces\twin{XML}{namespace}. However, clever coding tricks allow them to simulate
+  namespaces to a certain extent. The {\omdoc} DTD follows the approach
+  of~\cite{AltBou:mox01} that parametrizes namespace prefixes in element names to deal
+  gracefully with syntactic effects of namespaced documents like we have in {\omdoc}.
+  
+  Recall that element names are  {\twindef{qualified}{name}s}, i.e. pairs
+  consisting of a {\twintoo{namespace}{URI}} and a {\twintoo{local}{name}}. To save typing
+  effort, {\xml} allows to abbreviate qualified names by namespace declarations via
+  {\snippetin{xmlns}} pseudo-attribute: the element and all its descendants are in this
+  namespace, unless they have a namespace attribute of their own or there is a namespace
+  declaration in a closer ancestor that overwrites it.  Similarly, a
+  {\twintoo{namespace}{abbreviation}} can be declared on any element by an attribute of
+  the form {\snippet{xmlns:nsa="nsURI"}}, where {\snippet{nsa}} is a name space
+  abbreviation, i.e. a simple name, and {\snippet{nsURI}} is the URI of the namespace.  In
+  the scope of this declaration (in all descendants, where it is not overwritten) a
+  qualified name {\snippet{nsa:n}} denotes the qualified name {\snippet{nsURI:n}}.
+
+  The mechanisms described in~\cite{AltBou:mox01} provide a way to allow for namespace
+  declarations even in the (namespace-agnostic) DTD setting simply by setting a
+  {\indextoo{parameter entity}}. If {\snippetin{NS.prefixed}} is declared to be
+  {\snippetin{INCLUDE}}, using a declaration such as {\snippet{<!ENTITY \% NS.prefixed
+      "INCLUDE">}} either in the local subset of the {\snippetin{DOCTYPE}} declaration, or
+  in the DTD file that is including the {\omdoc} DTD, or the DTD modules presented in this
+  appendix, then all {\omdoc} elements should be used with a prefix, for example
+  {\snippet{<omdoc:definition>}}, {\snippet{<omdoc:CMP>}}, etc. The prefix defaults to
+  {\snippetin{omdoc:}} but another prefix may be declared by declaring in addition the
+  parameter entity {\snippetin{omdoc.prefix}}. For example, {\snippet{<!ENTITY \%
+      omdoc.prefix "o">}} would set the prefix for the {\omdoc} namespace to
+  {\snippetin{o:}}.
+
+Note that while the Namespaces Recommendation~\cite{BraHol:xmlns99} provides
+mechanisms to change the prefix at arbitrary points in the document, this
+flexibility is not provided in this DTD (and is probably not possible to specify
+in any DTD).  Thus, if a namespace prefix is being used for {\omdoc} elements, so
+that for example the root element is:
+\begin{lstlisting}[index={omdoc:omdoc},mathescape]
+<omdoc:omdoc xmlns:omdoc="http://omdoc.org/ns">
+$\ldots$
+</omdoc:omdoc>
+\end{lstlisting}
+then the prefix must be declared in the local subset of the DTD, as follows:
+\begin{lstlisting}[index={omdoc:omdoc,DOCTYPE,ENTITY,NS.prefixed,INCLUDE}]
+<!DOCTYPE omdoc:omdoc PUBLIC "-//OMDoc//DTD OMDoc V1.3//EN"
+                             "http://omdoc.org/dtd/omdoc.dtd"
+  [<!ENTITY % NS.prefixed "INCLUDE"><!ENTITY % omdoc.prefix "omdoc">]>
+\end{lstlisting}
+
+The {\omdoc} DTD references six namespaces:
+  \begin{center}
+    \begin{tabular}{|l|l|l|}\hline
+      language         & namespace                                & prefix \\\hline\hline
+      {\mathml}        & \url{http://www.w3.org/1998/Math/MathML} & {\snippet{m:}}\\\hline
+      {\openmath}      & \url{http://www.openmath.org/OpenMath}   & {\snippet{om:}}\\\hline
+      {\xslt}          & \url{http://www.w3.org/1999/XSL/Transform}   & {\snippet{xsl:}}\\\hline
+      Dublin Core      & \url{http://purl.org/dc/elements/1.1/}   & {\snippet{dc:}}\\\hline
+      Creative Commons & \url{http://creativecommons.org/ns}      & {\snippet{cc:}}\\\hline
+      {\omdoc}         & \url{http://omdoc.org/ns}       & {\snippet{omdoc:}}\\\hline
+    \end{tabular}
+  \end{center}
+These prefixes can be changed just like the {\omdoc} prefix above. 
+\end{tsubsection}
+\end{tsection}
+
+\begin{tsection}[id=validate-rnc]{Validation with RelaxNG Schemata}
+
+  {\relaxng}~\cite{Vlist:rng03} is a relatively young approach to validation developed
+  outside the {\indextoo{W3C}}, whose {\xml} schema paradigm was deemed overburdened. As a
+  consequence, {\relaxng} only concerns itself with validation, and leaves out typing,
+  normalization, and entities. {\relaxng} schemata come in two forms, in {\xml} syntax
+  (file name extension {\snippetin{.rng}}) and in compact syntax (file name extension
+  {\snippetin{.rnc}}). We provide the {\relaxng} schema~\cite{OMDocRNC:URL} as the
+  normative validation schema for {\omdoc}. As compact syntax is more readily
+  understandable by humans, we have reprinted it as the normative grammar for {\omdoc}
+  documents in {\myappchapref{rnc}}. Just as in the case for the {\omdoc} DTD, we provide
+  schemata for the {\omdoc} sub-languages discussed in {\mysecref{sub-languages}}. These are
+  contained in the driver files {\snippet{omdoc-\llquote{SlId}.rnc}}, where
+  {\snippet{\llquote{SlId}}} stands for the sub-language identifier.
+  
+  There is currently no standard way to associate a {\relaxng} schema with an {\xml}
+  document\footnote{In fact this is not an omission, but a conscious design decision on
+    the part of the {\relaxng} developers.}; thus validation tools (see
+  \url{http://relaxng.org} for an overview) have to be given a grammar as an explicit
+  argument. One consequence of this is that the information that an {\omdoc} document is
+  intended for an {\omdoc} sub-languages must be managed outside the document separately
+  from the document.
+
+  There are various validators for {\relaxng} schemata, the author uses the open-source
+  {\scsys{xmllint}}~\cite{Veillard:libxml2} as a stand-alone tool, and the
+  {\twintoo{nXML}{mode}}~\cite{nxml-mode:URL} for the {\emacs} editor~\cite{Stallman:em02}
+  for editing {\xml} files, as it provides powerful {\relaxng}-based editing support
+  (validation, completion, etc.).
+\end{tsection}
+
+\begin{tsection}[id=xsd:validation]{Validation with XML Schema}
+  
+  For validation\footnote{There are many schema-validating {\xml}
+    parsers\atwin{validating}{XML}{parser}, the author uses the open-source
+    {\scsys{xmllint}}~\cite{Veillard:libxml2}.} with respect to {\xml}
+  {\indextoo{schema}ta} (see~\cite{XML:Schema}) we provide an {\xml} schema for
+  {\omdoc}~\cite{OMDocXSD:URL}, which is generated from the {\relaxng} schema in
+  {\myappchapref{rnc}} via the {\scsys{trang}} system described above. Again,
+  {\indextoo{schema}ta} for the sub-languages discussed in {\mysecref{sub-languages}} are
+  provided as {\snippet{omdoc-\llquote{SlId}.rnc}}, where {\snippet{\llquote{SlId}}}
+  stands for the sub-language identifier.
+
+  To associate an {\xml} schema with an element, we need to decorate it with an
+  {\attribute[ns-attr=xsi]{schemaLocation}{omdoc}} attribute and the namespace declaration
+  for {\xml} {\twintoo{schema}{instance}s}. In {\mylstref{xml-schema}} we have done this
+  for the top-level {\element{omdoc}} element, and thus for the whole document. Note that
+  this mechanism makes mixing {\xml} vocabularies much simpler than with DTDs, that can
+  only be associated with whole documents.
+
+\begin{lstlisting}[label=lst:xml-schema,mathescape,
+  caption={An \protect{\xml} document with an {\xml} Schema.},
+  index={omdoc,xmlns,xsi,schemaLocation}]
+<?xml version="1.0"?>
+<omdoc xml:id="example.with.schema"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xsi:schemaLocation="http://omdoc.org/ns
+                           http://omdoc.org/xsd/omdoc.xsd">
+ $\ldots$
+</omdoc>
+\end{lstlisting}
+\end{tsection}
+
+\end{tchapter}
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "omdoc"
+%%% End: 
+
+% LocalWords:  DTD dtd omdoc nsgmls DOCTYPE standalone xml xmlns lst ATTLIST NS
+% LocalWords:  morekeywords otherassertiontype omlet mtext ent OM dtd dtd ns
+% LocalWords:  reorg assertiontype Namespaces DC om xsd XSDs xsi schemaLocation
+% LocalWords:  appinfo emph xs mdiff emphstyle complexType omtextType CMP FMP
+% LocalWords:  maxOccurs minOccurs dag xref OMOBJ attributeGroup attrib anyURI
+% LocalWords:  rnc xsl xmllint deselected INGNORE xxx dc cc rng nsa nsURI ns ta
+% LocalWords:  mathescape attr ModId SlId nXML trang dtd dtd ns dtd dtd ns dtd
+% LocalWords:  dtd ns dtd dtd ns dtd dtd dtd dtd ns

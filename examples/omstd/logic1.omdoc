@@ -1,0 +1,658 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  
+       xmlns="http://omdoc.org/ns"
+       xmlns:om="http://www.openmath.org/OpenMath"
+       xmlns:m="http://www.w3.org/1998/Math/MathML"
+       xmlns:o="http://omdoc.org/ns"
+       xml:id="logic1-omdoc">
+
+<metadata>
+  <dc:title>The OpenMath Content Dictionary logic1.ocd  in OMDoc form</dc:title>
+  <dc:creator role="trl">Michael Kohlhase</dc:creator>
+  <dc:creator role="ant">The OpenMath Society</dc:creator>
+  <dc:date> 2001-03-12T00:00:00</dc:date>
+  <dc:source>Derived from the OpenMath CD http://www.openmath.org/cd/logic1.ocd.</dc:source>
+  <dc:type>Text</dc:type>
+  <dc:format>application/omdoc+xml</dc:format>
+  <dc:rights>Copyright (c) 2000-2002 Michael Kohlhase;
+    This OMDoc content dictionary is released under the OpenMath license:
+    http://monet.nag.co.uk/openmath/cdfiles/license.html
+  </dc:rights>
+  <dc:description>
+    This CD holds the basic logic functions.
+  </dc:description>
+</metadata>
+
+<theory xml:id="logic1">
+
+<imports from="sts.omdoc#sts"/>
+<imports from="setname2.omdoc#setname2"/>
+
+<symbol name="equivalent" xml:id="equivalent">
+<metadata>
+<dc:description> 
+    This symbol is used to show that two boolean expressions are logically 
+    equivalent, that is have the same boolean value for any inputs.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMS cd="setname2" name="Boolean"/>
+	<OMS cd="setname2" name="Boolean"/>
+	<OMS cd="setname2" name="Boolean"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="logic1" name="equivalent" o:cr="fun"/>
+        <exprlist name="args"><expr name="arg"/></exprlist>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="logic1" o:cr="fun">equivalent</m:csymbol>
+        <exprlist name="args"><expr name="arg"/></exprlist>
+      </m:apply>
+    </prototype>
+    <rendering precedence="300">
+      <m:mrow>
+        <m:mo o:egroup="fence" fence="true">(</m:mo>
+        <iterate name="args" precedence="300">
+          <separator><m:mo o:cr="fun">≡</m:mo></separator>
+          <render name="arg"/>
+        </iterate>
+        <m:mo o:egroup="fence" fence="true">(</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+  <notation>
+    <prototype>
+      <om:OMS cd="logic1" name="equivalent"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="logic1">equivalent</m:csymbol>
+    </prototype>
+    <rendering>
+      <!--IMPROVEME: the following is just a fallback-->
+      <m:mo>equivalent</m:mo>
+    </rendering>
+  </notation>
+
+<symbol name="not" xml:id="not">
+<metadata>
+<dc:description> 
+    This symbol represents the logical not function which takes one boolean
+    argument, and returns the opposite boolean value.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMS cd="setname2" name="Boolean"/>
+	<OMS cd="setname2" name="Boolean"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="logic1" name="not" o:cr="fun"/>
+        <expr name="arg"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="logic1" o:cr="fun">not</m:csymbol>
+        <expr name="arg"/>
+      </m:apply>
+    </prototype>
+    <rendering precedence="800">
+      <m:mrow>
+        <m:mo o:cr="fun">¬</m:mo>
+        <m:mo o:egroup="fence" fence="true">(</m:mo>
+        <render name="arg" precedence="800"/>
+        <m:mo o:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+
+  <notation>
+    <prototype>
+      <om:OMS cd="logic1" name="not"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="logic1">not</m:csymbol>
+    </prototype>
+    <rendering>
+      <!--IMPROVEME: the following is just a fallback-->
+      <m:mo>not</m:mo>
+    </rendering>
+  </notation>
+
+<symbol name="and" xml:id="and">
+<metadata>
+<dc:description> 
+    This symbol represents the logical and function which is an n-ary
+    function taking boolean arguments and returning a boolean value. It
+    is true if all arguments are true or false otherwise.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMA>
+	  <OMS name="nassoc" cd="sts"/>
+	  <OMS cd="setname2" name="Boolean"/>
+	</OMA>
+	<OMS cd="setname2" name="Boolean"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="logic1" name="and" o:cr="fun"/>
+        <exprlist name="args"><expr name="arg"/></exprlist>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="logic1" o:cr="fun">and</m:csymbol>
+        <exprlist name="args"><expr name="arg"/></exprlist>
+      </m:apply>
+    </prototype>
+    <rendering precedence="500">
+      <m:mrow>
+        <m:mo o:egroup="fence" fence="true">(</m:mo>
+        <iterate name="args" precedence="500">
+          <separator><m:mo o:cr="fun">∧</m:mo></separator>
+          <render name="arg"/>
+        </iterate>
+        <m:mo o:egroup="fence" fence="true">(</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+  
+  <notation>
+    <prototype>
+      <om:OMS cd="logic1" name="and"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="logic1">and</m:csymbol>
+    </prototype>
+    <rendering>
+      <!--IMPROVEME: the following is just a fallback-->
+      <m:mo>and</m:mo>
+    </rendering>
+  </notation>
+
+<symbol name="xor" xml:id="xor">
+<metadata>
+<dc:description> 
+    This symbol represents the logical xor function which is an n-ary
+    function taking boolean arguments and returning a boolean
+    value. It is true if there are an odd number of true arguments or
+    false otherwise.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/> 
+	<OMA>
+	  <OMS name="nassoc" cd="sts"/>
+	  <OMS cd="setname2" name="Boolean"/>
+	</OMA>
+	<OMS cd="setname2" name="Boolean"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="logic1" name="xor" o:cr="fun"/>
+        <exprlist name="args"><expr name="arg"/></exprlist>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="logic1" o:cr="fun">xor</m:csymbol>
+        <exprlist name="args"><expr name="arg"/></exprlist>
+      </m:apply>
+    </prototype>
+    <rendering precedence="500">
+      <m:mrow>
+        <m:mo o:egroup="fence" fence="true">(</m:mo>
+        <iterate name="args" precedence="500">
+          <separator><m:mo o:cr="fun">!</m:mo></separator>
+          <render name="arg"/>
+        </iterate>
+        <m:mo o:egroup="fence" fence="true">(</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+
+  <notation>
+    <prototype>
+      <om:OMS cd="logic1" name="xor"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="logic1">xor</m:csymbol>
+    </prototype>
+    <rendering>
+      <!--IMPROVEME: the following is just a fallback-->
+      <m:mo>xor</m:mo>
+    </rendering>
+  </notation>
+
+<symbol name="or" xml:id="or">
+<metadata>
+<dc:description> 
+    This symbol represents the logical or function which is an n-ary
+    function taking boolean arguments and returning a boolean value. It
+    is true if any of the arguments are true or false otherwise.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMA>
+	  <OMS name="nassoc" cd="sts"/>
+	  <OMS cd="setname2" name="Boolean"/>
+	</OMA>
+	<OMS cd="setname2" name="Boolean"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="logic1" name="or" o:cr="fun"/>
+        <exprlist name="args"><expr name="arg"/></exprlist>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="logic1" o:cr="fun">or</m:csymbol>
+        <exprlist name="args"><expr name="arg"/></exprlist>
+      </m:apply>
+    </prototype>
+    <rendering precedence="500">
+      <m:mrow>
+        <m:mo o:egroup="fence" fence="true">(</m:mo>
+        <iterate name="args" precedence="500">
+          <separator><m:mo o:cr="fun">∨</m:mo></separator>
+          <render name="arg"/>
+        </iterate>
+        <m:mo o:egroup="fence" fence="true">(</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+
+  <notation>
+    <prototype>
+      <om:OMS cd="logic1" name="or"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="logic1">or</m:csymbol>
+    </prototype>
+    <rendering>
+      <!--IMPROVEME: the following is just a fallback-->
+      <m:mo>or</m:mo>
+    </rendering>
+  </notation>
+
+<symbol name="implies" xml:id="implies">
+<metadata>
+<dc:description> 
+    This symbol represents the logical implies function which takes two
+    boolean expressions as arguments. It evaluates to false if the first
+    argument is true and the second argument is false, otherwise it
+    evaluates to true.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMS cd="setname2" name="Boolean"/>
+	<OMS cd="setname2" name="Boolean"/>
+	<OMS cd="setname2" name="Boolean"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="logic1" name="implies" o:cr="fun"/>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="logic1" o:cr="fun">implies</m:csymbol>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <m:mrow>
+        <m:mo o:egroup="fence" fence="true">(</m:mo>
+        <render name="arg1"/>
+        <m:mo o:cr="fun">⇒</m:mo>
+        <render name="arg2"/>
+        <m:mo o:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+
+  <notation>
+    <prototype>
+      <om:OMS cd="logic1" name="implies"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="logic1">implies</m:csymbol>
+    </prototype>
+    <rendering>
+      <m:mo>⇒</m:mo>
+    </rendering>
+  </notation>
+
+<symbol name="true" xml:id="true">
+  <metadata>
+  <dc:description>This symbol represents the boolean value true.</dc:description><dc:subject>true</dc:subject></metadata>
+  <type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="setname2" name="Boolean"/></OMOBJ>
+  </type>
+</symbol>
+  <notation>
+    <prototype>
+      <om:OMS cd="logic1" name="true"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="logic1">true</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en">
+      <m:mo>T</m:mo>
+    </rendering>
+  </notation>
+
+<symbol name="false" xml:id="false">
+  <metadata>
+  <dc:description>This symbol represents the boolean value false.</dc:description><dc:subject>false</dc:subject></metadata>
+  <type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMS cd="setname2" name="Boolean"/>
+    </OMOBJ>
+  </type>
+</symbol>
+  <notation>
+    <prototype>
+      <om:OMS cd="logic1" name="false"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="logic1">false</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en">
+      <m:mo>F</m:mo>
+    </rendering>
+  </notation>
+
+<theory xml:id="logic1-nonconstitutive">
+<imports from="quant1.omdoc#quant1"/>
+<imports  from="relation1.omdoc#relation1"/>
+
+<assertion xml:id="false-prop-1" type="lemma">
+  <CMP><OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="#false-prop-1.1"/></OMOBJ>.</CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA id="false-prop-1.1">
+	<OMS cd="relation1" name="eq"/>
+	<OMA>
+	  <OMS cd="logic1" name="not"/>
+	  <OMS cd="logic1" name="false"/>
+	</OMA>
+	<OMS cd="logic1" name="true"/>
+      </OMA>
+    </OMOBJ>
+  </FMP>
+</assertion>
+<assertion xml:id="true-prop-1" type="lemma">
+  <CMP><OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="#true-prop-1.1"/></OMOBJ>.</CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA id="true-prop-1.1">
+	<OMS cd="relation1" name="eq"/>
+	<OMA>
+	  <OMS cd="logic1" name="not"/>
+	  <OMS cd="logic1" name="true"/>
+	</OMA>
+	<OMS cd="logic1" name="false"/>
+      </OMA>
+    </OMOBJ>
+  </FMP>
+</assertion>
+<assertion xml:id="implies-prop-1" type="lemma">
+  <CMP><OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="#implies-prop-1.1"/></OMOBJ> for all <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="X"/></OMOBJ>.</CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMBIND>
+	<OMS cd="quant1" name="forall"/>
+	<OMBVAR><OMV name="x"/></OMBVAR>
+	<OMA id="implies-prop-1.1">
+	  <OMS cd="logic1" name="implies"/>
+	  <OMS cd="logic1" name="false"/>
+	  <OMV name="x"/>
+	</OMA>
+      </OMBIND>
+    </OMOBJ>
+  </FMP>
+</assertion>
+<assertion xml:id="or-prop-1" type="lemma">
+  <CMP><OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="#or-prop-1.1"/></OMOBJ> for all <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="X"/></OMOBJ>.</CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMBIND>
+	<OMS cd="quant1" name="forall"/>
+	<OMBVAR><OMV name="x"/></OMBVAR>
+	<OMA id="or-prop-1.1">
+	  <OMS cd="relation1" name="eq"/>
+	  <OMA>
+	    <OMS cd="logic1" name="or"/>
+	    <OMV name="x"/>
+	    <OMA>
+	      <OMS cd="logic1" name="not"/>
+	      <OMV name="x"/>
+	    </OMA>
+	  </OMA>
+	  <OMS cd="logic1" name="true"/>
+	</OMA>
+      </OMBIND>
+    </OMOBJ>
+  </FMP>
+</assertion>
+<assertion xml:id="or-prop-3" type="lemma">
+  <CMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="#or-prop-3.1"/></OMOBJ> for all 
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="a"/></OMOBJ> and <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="b"/></OMOBJ>.
+  </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMBIND>
+	<OMS cd="quant1" name="forall"/>
+	<OMBVAR>
+	  <OMV name="a"/>
+	  <OMV name="b"/>
+	</OMBVAR>
+	<OMA id="or-prop-3.1">
+	  <OMS cd="relation1" name="eq"/>
+	  <OMA>
+	    <OMS cd="logic1" name="not"/>
+	    <OMA>
+	      <OMS cd="logic1" name="and"/>
+	      <OMV name="a"/>
+	      <OMV name="b"/>
+	    </OMA>
+	  </OMA>
+	  <OMA>
+	    <OMS cd="logic1" name="or"/>
+	    <OMA>
+	      <OMS cd="logic1" name="not"/>
+	      <OMV name="a"/>
+	    </OMA>
+	    <OMA>
+	      <OMS cd="logic1" name="not"/>
+	      <OMV name="b"/>
+	    </OMA>
+	  </OMA>
+	</OMA>
+      </OMBIND>
+    </OMOBJ>
+  </FMP>
+</assertion>
+<assertion xml:id="xor-prop-1" type="lemma">
+  <CMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="#xor-prop-1.1"/></OMOBJ> for all <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="X"/></OMOBJ>.
+  </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMBIND>
+	<OMS cd="quant1" name="forall"/>
+	<OMBVAR>
+	  <OMV name="x"/>
+	</OMBVAR>
+	<OMA id="xor-prop-1.1">
+	  <OMS cd="relation1" name="eq"/>
+	  <OMA>
+	    <OMS cd="logic1" name="xor"/>
+	    <OMV name="x"/>
+	    <OMV name="x"/>
+	  </OMA>
+	  <OMS cd="logic1" name="false"/>
+	</OMA>
+      </OMBIND>
+    </OMOBJ>
+  </FMP>
+</assertion>
+<assertion xml:id="xor-prop-3" type="lemma">
+  <CMP><OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="#xor-prop-3.1"/></OMOBJ> for all <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="X"/></OMOBJ>.</CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMBIND>
+	<OMS cd="quant1" name="forall"/>
+	<OMBVAR><OMV name="x"/></OMBVAR>
+	<OMA id="xor-prop-3.1">
+	  <OMS cd="relation1" name="eq"/>
+	  <OMA>
+	    <OMS cd="logic1" name="xor"/>
+	    <OMV name="x"/>
+	    <OMA>
+	      <OMS cd="logic1" name="not"/>
+	      <OMV name="x"/>
+	    </OMA>
+	  </OMA>
+	  <OMS cd="logic1" name="true"/>
+	</OMA>
+      </OMBIND>
+    </OMOBJ>
+  </FMP>
+</assertion>
+<assertion xml:id="and-prop-1" type="lemma">
+  <CMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="#and-prop-1.1"/></OMOBJ> for all <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="X"/></OMOBJ>.
+  </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMBIND>
+	<OMS cd="quant1" name="forall"/>
+	<OMBVAR>
+	  <OMV name="x"/>
+	</OMBVAR>
+	<OMA id="and-prop-1.1">
+	  <OMS cd="relation1" name="eq"/>
+	  <OMA>
+	    <OMS cd="logic1" name="and"/>
+	    <OMV name="x"/>
+	    <OMA>
+	      <OMS cd="logic1" name="not"/>
+	      <OMV name="x"/>
+	    </OMA>
+	  </OMA>
+	  <OMS cd="logic1" name="false"/>
+	</OMA>
+      </OMBIND>
+    </OMOBJ>
+  </FMP>
+</assertion>
+<assertion xml:id="not-prop-1" type="lemma">
+  <CMP><OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="#not-prop-1.1"/></OMOBJ> for all <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="X"/></OMOBJ>.</CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMBIND>
+	<OMS cd="quant1" name="forall"/>
+	<OMBVAR><OMV name="x"/></OMBVAR>
+	<OMA id="not-prop-1.1">
+	  <OMS cd="relation1" name="eq"/>
+	  <OMA>
+	    <OMS cd="logic1" name="not"/>
+	    <OMA>
+	      <OMS cd="logic1" name="not"/>
+	      <OMV name="x"/>
+	    </OMA>
+	  </OMA>
+	  <OMV name="x"/>
+	</OMA>
+      </OMBIND>
+    </OMOBJ>
+  </FMP>
+</assertion>
+<assertion xml:id="equivalent-prop-1" type="lemma">
+  <CMP> The condition (A is equivalent to B) is equivalent to the
+    condition that (A implies B and B implies A).
+  </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="logic1" name="equivalent"/>
+	<OMA>
+	  <OMS cd="logic1" name="equivalent"/>
+	  <OMV name="A"/>
+	  <OMV name="B"/>
+	</OMA>
+	<OMA>
+	  <OMS cd="logic1" name="and"/>
+	  <OMA>
+	    <OMS cd="logic1" name="implies"/>
+	    <OMV name="A"/>
+	    <OMV name="B"/>
+	  </OMA>
+	  <OMA>
+	    <OMS cd="logic1" name="implies"/>
+	    <OMV name="B"/>
+	    <OMV name="A"/>
+	  </OMA>
+	</OMA>
+      </OMA>
+    </OMOBJ>
+  </FMP>
+</assertion>
+</theory>
+</theory>
+</omdoc>
+

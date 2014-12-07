@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE omdoc PUBLIC "-//OMDoc//DTD OMDoc V1.3//EN"
+                "../../dtd/omdoc.dtd" []>
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  xmlns="http://omdoc.org/ns"
+xml:id="truthval-omdoc" >
+
+ <metadata>
+  <dc:title>Classical Truth Values</dc:title>
+  <dc:creator role="aut">Michael Kohlhase</dc:creator>
+  <dc:date>2002-02-27T00:00:00</dc:date>
+  <dc:description>
+This theory provides all classical two-valued propositional connectives, it shares
+the symbol names with the OpenMath content dictionary logic1 for consistency. We have a
+separate theory here, since we want to make the semantics more restrictive than
+the inclusive treatment in logic1. In particular, we insist that the
+connectives are two-valued.
+  </dc:description>
+ </metadata>
+
+ <theory xml:id="truthval">
+  
+  <symbol name="bool" role="type">
+   <metadata><dc:subject>bool</dc:subject>
+     <dc:description>The type of truth values.</dc:description>
+   </metadata>
+  </symbol>
+  <presentation for="#bool">
+   <use format="default">o</use>
+  </presentation>
+
+  <symbol name="true">
+   <metadata>
+     <dc:subject>true</dc:subject>
+     <dc:description>This symbol represents the boolean value
+       true.</dc:description>
+   </metadata>
+   <type system="simpletypes.omdoc#simpletypes">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="truthval" name="bool"/></OMOBJ>
+   </type>
+  </symbol>
+
+  <presentation xml:id="pr-true" for="#true">
+   <use  format="default">T</use>
+  </presentation>
+
+  <symbol name="false">
+   <metadata><dc:subject>false</dc:subject>
+     <dc:description>This symbol represents the boolean value
+       false.</dc:description>
+   </metadata>
+   <type system="simpletypes.omdoc#simpletypes">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="truthval" name="bool"/></OMOBJ>
+   </type>
+  </symbol>
+
+  <presentation xml:id="pr-false" for="#false">
+   <use format="default">F</use>
+  </presentation>
+
+ <symbol name="eq">
+   <metadata><dc:description>Equality on truth values</dc:description>
+</metadata>
+</symbol>
+
+<presentation xml:id="pr-eq" for="#eq" role="applied" fixity="infix" precedence="700">
+ <use  format="default">=</use>
+ <use  format="pmml">=</use>
+</presentation>
+
+<presentation for="#eq">
+  <use format="tptp">equal</use>
+</presentation>
+
+ <symbol name="neq">
+   <metadata><dc:description>Inequality on truth values</dc:description>
+</metadata>
+</symbol>
+
+  <presentation xml:id="pr-neq" for="#neq" role="applied" fixity="infix" lbrack="" rbrack="" precedence="700">
+   <use  format="default">!=</use>
+   <use  format="TeX">\ne</use>
+   <use  format="html|pmml">&#x02260;</use>
+  </presentation>
+
+  <axiom xml:id="tf-distinct">
+   <CMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="truthval" name="true"/></OMOBJ> and 
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="truthval" name="false"/></OMOBJ> are distinct.
+   </CMP>
+   <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+     <OMA>
+      <OMS cd="truthval" name="neq"/>
+      <OMS cd="truthval" name="true"/>
+      <OMS cd="truthval" name="false"/>
+     </OMA>
+    </OMOBJ>
+   </FMP>
+  </axiom>
+
+</theory>
+
+<theory xml:id="truthval-nd">
+  <imports xml:id="truthval-imports" from="truthval.omdoc#truthval"/>
+  <imports xml:id="truthval-imports-inference-rules" from="inference-rules.omdoc#inference-rules"/>
+<symbol name="false-elim"/>
+
+<definition xml:id="false-elim-def" for="#false-elim" type="informal">
+ <CMP>The inference rule known as 'ex falso quotlibet' or
+ 'falsity-elimination':
+  <OMOBJ  xmlns="http://www.openmath.org/OpenMath" style="display:block;some:else">
+    <OMBIND>
+      <OMS cd="inference-rules" name="schema"/>
+      <OMBVAR><OMV name="A"/></OMBVAR>
+      <OMA>
+	<OMS cd="inference-rules" name="rule"/>
+	<OMS cd="truthval" name="false"/>
+	<OMV name="A"/>
+      </OMA>
+    </OMBIND>
+  </OMOBJ>
+  It allows to derive an arbitrary formula from 
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="truthval" name="false"/></OMOBJ>. 
+</CMP>
+</definition>
+
+<symbol name="true-intro"/>
+
+<definition xml:id="true-info-def" for="#true-info" type="informal">
+ <CMP>This is the inference rule for 'truth-introduction'
+  <OMOBJ  xmlns="http://www.openmath.org/OpenMath" class="displaymath">
+    <OMA>
+      <OMS cd="inference-rules" name="rule"/>
+      <OMS cd="truthval" name="true"/>
+    </OMA>
+  </OMOBJ>. It allows to introduce 
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="truthval" name="true"/></OMOBJ> anywhere.
+ </CMP>
+</definition>
+ </theory>
+</omdoc>

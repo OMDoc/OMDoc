@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xst:taglib
+        version="0.2"
+        xmlns:xst  = "http://code.google.com/p/xstag/ns/2011/"
+        xmlns:fn   = "http://www.w3.org/2005/xpath-functions"
+        xmlns:xs   = "http://www.w3.org/2001/XMLSchema"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+        >
+  <!-- this tag gives the title content without any decorations--> 
+  <xst:tag name="omdoc:title" as="xs:documnet-node()*">
+    <xst:content select="//dc:title[1]"/>
+  </xst:tag>
+
+  <!-- this tag gives the title content without any decorations--> 
+  <xst:tag name="omdoc:creator" as="xs:documnet-node()*">
+    <xst:content select="//dc:creator[1]"/>
+  </xst:tag>
+  
+</xst:taglib>

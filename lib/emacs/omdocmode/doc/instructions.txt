@@ -1,0 +1,60 @@
+OMDoc mode -- instructions.txt			 September 2002.
+
+Instructions for setting up a major mode for editing .omdoc files.
+==================================================================
+pjj@cs.cmu.edu, 1 September 2002.
+
+1) Make sure that the omdoc-mode.el file (and its subsidiaries) are on
+   your emacs's load-path (e.g. in the site-lisp directory). 
+   If you have unpacked this distribution into /<somepath>/omdocmode, this
+   can be accomplished with the following line in your .emacs(.el) file:
+      (nconc (list "/<somepath>/omdocmode/src") load-path)
+
+2) Make sure tempo.el is on your path as well
+   (For the latest emacs versions, this should already be the case).
+
+3) If you want to load omdoc-mode automatically when editing .omdoc
+   files, put the following lines in your .emacs (or .emacs.el) file:
+    (autoload 'omdoc-mode "omdoc-mode" "omdoc" t)
+    (setq auto-mode-alist (cons '("\\.omdoc$" . omdoc-mode) auto-mode-alist))
+
+4) If you are planning to use an external validation engine to
+   validate your OMDoc files (as XML), put something like the following in your
+   .emacs file (assuming you do have rxp in your path).
+
+     (add-hook 'omdoc-mode-hook
+        (function (lambda () 
+  	    (setq omdoc-validate-program "rxp")
+	    (setq omdoc-validate-params "-VNxs"))))
+
+   other possiblities are 
+
+     (add-hook 'omdoc-mode-hook
+        (function (lambda () 
+	    (setq omdoc-validate-program "xmllint")
+	    (setq omdoc-validate-params "--valid"))))
+
+     (add-hook 'omdoc-mode-hook
+         (function (lambda ()
+	    (setq omdoc-validate-program "nsgmls")
+	    (setq omdoc-validate-params "-vw xml"))))
+
+5) If this is not already done by default, you need to turn on font-lock
+   in your .emacs(.el) file. Here is how that looks in mine (including
+   how to set the colors of some relevant typefaces, should you want
+   to change them).
+       (global-font-lock-mode t)
+       (setq font-lock-maximum-decoration t)
+       (add-hook 'font-lock-mode-hook
+            '(lambda ()
+               (set-face-foreground font-lock-comment-face "DarkGreen")
+               (set-face-foreground font-lock-string-face  "Sienna")
+               (set-face-foreground font-lock-type-face    "Magenta1")))
+
+6) Byte-compilation of the .el files is at the user's discretion.
+   (The uncompiled version will probably be fast enough).
+
+Note: 
+The mode requires tempo.el which should have been included with your
+emacs distribution. If this is not the case, you can download it from
+ftp://ftp.lysator.liu.se/pub/emacs/tempo.el.

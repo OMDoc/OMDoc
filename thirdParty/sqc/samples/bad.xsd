@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+	<xsd:annotation>
+		<xsd:documentation>
+			minLength value of an ancestor type should be Less than or equal 
+                  to the minLength value in the derived data type, and less than or equal
+                  to the maxLength value.
+		</xsd:documentation>
+	</xsd:annotation>
+
+	<xsd:simpleType id="simpleType_A" name="A">
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="10" fixed="true"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType id="simpleType_B" name="B">
+		<xsd:restriction base="A">
+			<xsd:minLength value="7"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType id="simpleType_C" name="C">
+		<xsd:restriction base="xsd:IDREFS">
+			<xsd:maxLength value="20"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType id="simpleType_D" name="D">
+		<xsd:restriction base="C">
+			<xsd:minLength value="10"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType id="simpleType_E" name="E">
+		<xsd:restriction base="D">
+			<xsd:minLength value="30"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+</xsd:schema>

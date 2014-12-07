@@ -1,0 +1,28 @@
+<?xml version='1.0'?>
+
+<env:Envelope xmlns:env="http://www.w3.org/2003/05/soap-envelope">
+  <env:Body>
+    <ws:prover env:encodingStyle="http://www.w3.org/2003/05/soap-encoding"
+        xmlns:ws="http://www.mathweb.org/ws-fictional">
+      <ws:name>SPASS</ws:name>
+      <ws:version>2.1</ws:version>
+      <ws:URL>http://spass.mpi-sb.mpg.de/webspass/soap</ws:URL>
+      <ws:uptime>P3D5H6M45S</ws:uptime>
+      <ws:sysinfo>
+        <ws:ostype>SunOS 5.6</ws:ostype>
+        <ws:mips>3825</ws:mips>
+      </ws:sysinfo>
+    </ws:prover>
+    <ws:prover env:encodingStyle="http://www.w3.org/2003/05/soap-encoding"
+        xmlns:ws="http://www.mathweb.org/ws-fictional">
+      <ws:name>SPASS</ws:name>
+      <ws:version>2.0</ws:version>
+      <ws:URL>http://asuka.mt.cs.cmu.edu/atp/spass/soap</ws:URL>
+      <ws:uptime>P5M2D15H56M5S</ws:uptime>
+      <ws:sysinfo>
+        <ws:ostype>linux-2.4.20</ws:ostype>
+        <ws:mips>1468</ws:mips>
+      </ws:sysinfo>
+    </ws:prover>
+  </env:Body>
+</env:Envelope>

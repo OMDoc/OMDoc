@@ -1,0 +1,907 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xml:id="mtxt.omdoc" version="1.3"
+  xmlns:dct="http://purl.org/dc/terms/" 
+       xmlns:cc="http://creativecommons.org/ns" 
+       xmlns="http://omdoc.org/ns"
+       xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+       xmlns:oo="http://omdoc.org/ontology#"
+       xmlns:om="http://www.openmath.org/OpenMath"
+       xmlns:m="http://www.w3.org/1998/Math/MathML">
+
+<metadata>
+  <meta property="dct:title">OMDoc document ontology (module PF)</meta>
+  <meta property="rdfs:comment">OMDoc document ontology, proof module.  See chapter 17 (Representing Proofs) of the OMDoc1.2 specification.
+    This file is designed to be imported from the main module `omdoc'.</meta>
+  <meta property="dct:creator">Gordan Ristovski &lt;g.ristovski@jacobs-university.de></meta>
+  <meta property="dct:creator">Christoph Lange &lt;ch.lange@jacobs-university.de></meta>
+  <meta property="dct:contributor">Krzysztof Retel &lt;retel@macs.hw.ac.uk></meta>
+  <meta property="dct:contributor">Nikita Zhiltsov (Никита Жильцов) &lt;nikita.zhiltsov@gmail.com></meta>
+  <!-- Contributors, please add your name here, and in the main file omdoc.omdoc –Christoph Lange -->
+  <meta property="dct:subject">Semantic Mathematical Markup, Mathematical Proofs</meta>
+</metadata>
+
+<theory xml:id="pf">
+  <metadata>
+    <link rel="oo:vocab" href="http://omdoc.org/ontology#"/>
+  </metadata>
+  <!-- meta-theories -->
+  <imports xml:id="owl" from="../examples/logics/owl.omdoc#owl"/>
+  <imports xml:id="pl1eq" from="../examples/logics/pl1eq.omdoc#pl1eq"/>
+  <!-- other modules of this ontology -->
+  <imports xml:id="st" from="st.omdoc#st"/>
+  <!-- Note: the base classes are imported by every module. -->
+
+  <symbol name="ProofStep">
+    <metadata>
+      <meta property="rdfs:comment">A placeholder for all proofsteps, designed according to the specifications in the OMDoc 1.2 manual, chapter 17 (Representing Proofs).</meta>
+      <meta property="rdfs:label" xml:lang="ru">Шаг доказательства</meta>
+      <meta property="rdfs:label" xml:lang="en">Proof Step</meta>
+      <meta property="rdfs:label" xml:lang="de">Beweisschritt</meta>
+    </metadata>
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMS cd="owl" name="Class"/>
+      </OMOBJ>
+    </type>
+  </symbol>
+
+  <axiom for="ProofStep">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+            <OMS cd="rdfs" name="subClassOf"/>
+            <OMS cd="pf" name="ProofStep"/>
+            <OMS cd="base" name="MathKnowledgeItem"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+
+  <symbol name="ProofLocalStatement">
+    <metadata>
+      <meta property="rdfs:label" xml:lang="ru">Локальное предложение</meta>
+      <meta property="rdfs:label" xml:lang="en">Proof-local Statement</meta>
+      <meta property="rdfs:comment">A statement that is local to a proof and given as a proof step</meta>
+      <meta property="rdfs:label" xml:lang="de">Beweis-lokale Aussage</meta>
+    </metadata>
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMS cd="owl" name="Class"/>
+      </OMOBJ>
+    </type>
+  </symbol>
+
+  <axiom for="ProofLocalStatement">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+          <OMS cd="rdfs" name="subClassOf"/>
+          <OMS cd="pf" name="ProofLocalStatement"/>
+          <OMS cd="pf" name="ProofStep"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+
+  <axiom for="ProofLocalStatement">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+          <OMS cd="rdfs" name="subClassOf"/>
+          <OMS cd="pf" name="ProofLocalStatement"/>
+          <OMS cd="st" name="Statement"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+
+  <symbol name="DerivationStep">
+    <metadata>
+      <meta property="rdfs:label" xml:lang="ru">Шаг вывода</meta>
+      <meta property="rdfs:label" xml:lang="en">Derivation Step</meta>
+      <meta property="rdfs:label" xml:lang="de">Ableitungsschritt</meta>
+      <meta property="rdfs:comment">A derivation step inside a proof, as defined in the OMDoc 1.2 manual, chapter 17 (Representing Proofs).</meta>
+    </metadata>
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMS cd="owl" name="Class"/>
+      </OMOBJ>
+    </type>
+  </symbol>
+
+  <axiom for="DerivationStep">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+            <OMS cd="rdfs" name="subClassOf"/>
+            <OMS cd="pf" name="DerivationStep"/>
+            <OMS cd="pf" name="ProofLocalStatement"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+
+  <axiom for="DerivationStep">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+            <OMS cd="rdfs" name="subClassOf"/>
+            <OMS cd="pf" name="DerivationStep"/>
+            <OMS cd="base" name="RigorousKnowledgeItem"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+
+  <symbol name="DerivedConclusion">
+    <metadata>
+      <meta property="rdfs:comment">Concluding step of the proof, the one that derives the assertion made in the corresponding theorem, as defined in the OMDoc 1.2 manual, chapter 17 (Representing Proofs).</meta>
+      <meta property="rdfs:label" xml:lang="ru">Выводимое заключение</meta>
+      <meta property="rdfs:label" xml:lang="en">Conclusion</meta>
+      <meta property="rdfs:label" xml:lang="de">Schlussfolgerung</meta>
+    </metadata>
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMS cd="owl" name="Class"/>
+      </OMOBJ>
+    </type>
+  </symbol>
+
+  <axiom for="DerivedConclusion">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+            <OMS cd="rdfs" name="subClassOf"/>
+            <OMS cd="pf" name="DerivedConclusion"/>
+            <OMS cd="pf" name="DerivationStep"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+
+  <symbol name="Gap">
+    <metadata>
+      <meta property="rdfs:comment">Proof steps that are not justifed yet, as defined in the OMDoc 1.2 manual, chapter 17 (Representing Proofs). The presence of gaps allows OMDoc to specify incomplete proofs as proofs with gap steps.</meta>
+      <meta property="rdfs:label" xml:lang="ru">Пропуск</meta>
+      <meta property="rdfs:label" xml:lang="en">Gap</meta>
+      <meta property="rdfs:label" xml:lang="de">Lücke</meta>
+    </metadata>
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMS cd="owl" name="Class"/>
+      </OMOBJ>
+    </type>
+  </symbol>
+
+  <axiom for="Gap">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+          <OMS cd="rdfs" name="subClassOf"/>
+          <OMS cd="pf" name="Gap"/>
+          <OMS cd="pf" name="DerivationStep"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+
+  <axiom for="Gap DerivedConclusion">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+          <OMS cd="owl" name="AllDisjointClasses"/>
+          <OMS cd="pf" name="Gap"/>
+          <OMS cd="pf" name="DerivedConclusion"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+
+  <symbol name="GeneralProof">
+    <metadata>
+      <meta property="rdfs:comment">A proof, both as statement within a theory and as a nested proof (within one step of another proof)</meta>
+      <meta property="rdfs:label" xml:lang="ru">Общее доказательство</meta>
+      <meta property="rdfs:label" xml:lang="en">Proof (general)</meta>
+      <meta property="rdfs:label" xml:lang="de">Beweis (allgemein)</meta>
+    </metadata>
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMS cd="owl" name="Class"/>
+      </OMOBJ>
+    </type>
+  </symbol>
+
+  <axiom for="GeneralProof">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+            <OMS cd="rdfs" name="subClassOf"/>
+            <OMS cd="pf" name="GeneralProof"/>
+            <OMS cd="st" name="AnyLevelStatement"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+
+  <axiom for="GeneralProof">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+          <OMS cd="owl" name="AllDisjointClasses"/>
+          <OMS cd="pf" name="GeneralProof"/>
+          <OMS cd="st" name="GeneralSymbol"/>
+          <OMS cd="st" name="GeneralDefinition"/>
+          <OMS cd="st" name="GeneralAxiom"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+
+  <symbol name="Proof">
+    <metadata>
+      <meta property="rdfs:comment">A proof, as defined in the OMDoc 1.2 manual, chapter 17 (Representing Proofs).  This comprises both the proof and proofobject elements.</meta>
+      <meta property="rdfs:label" xml:lang="ru">Доказательство</meta>
+      <meta property="rdfs:label" xml:lang="en">Proof</meta>
+      <meta property="rdfs:label" xml:lang="de">Beweis</meta>
+    </metadata>
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMS cd="owl" name="Class"/>
+      </OMOBJ>
+    </type>
+  </symbol>
+
+  <axiom for="Proof">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+          <OMS cd="rdfs" name="subClassOf"/>
+          <OMS cd="pf" name="Proof"/>
+          <OMS cd="st" name="NonConstitutiveStatement"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+
+  <axiom for="Proof">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+          <OMS cd="rdfs" name="subClassOf"/>
+          <OMS cd="pf" name="Proof"/>
+          <OMS cd="pf" name="GeneralProof"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+
+  <axiom for="Proof">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+          <OMS cd="owl" name="AllDisjointClasses"/>
+          <OMS cd="pf" name="Proof"/>
+          <OMS cd="st" name="Assertion"/>
+          <OMS cd="st" name="Axiom"/>
+          <OMS cd="st" name="Definition"/>
+          <OMS cd="st" name="Assertion"/>
+          <OMS cd="st" name="Example"/>
+          <OMS cd="st" name="AlternativeDefinition"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+
+  <symbol name="NestedProof">
+    <metadata>
+      <meta property="rdfs:label" xml:lang="ru">Поддоказательство</meta>
+      <meta property="rdfs:comment">A proof nested into a proof step (in order to realize substeps), often without an explicit pointer to an assertion</meta>
+      <meta property="rdfs:label" xml:lang="en">Nested Proof</meta>
+      <meta property="rdfs:label" xml:lang="de">Unterbeweis</meta>
+    </metadata>
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMS cd="owl" name="Class"/>
+      </OMOBJ>
+    </type>
+  </symbol>
+
+  <axiom for="NestedProof">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+            <OMS cd="rdfs" name="subClassOf"/>
+            <OMS cd="pf" name="NestedProof"/>
+            <OMS cd="pf" name="GeneralProof"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+
+  <!-- TODO adjust relation to assertion and maybe revise whole class according to
+       http://trac.omdoc.org/OMDoc/ticket/1580 -->
+  <axiom for="ProofLocalStatement NestedProof ProofText">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+          <OMS cd="owl" name="AllDisjointClasses"/>
+          <OMS cd="pf" name="ProofLocalStatement"/>
+          <OMS cd="pf" name="NestedProof"/>
+          <OMS cd="pf" name="ProofText"/>
+          <OMS cd="st" name="StatementInTheory"/>
+          <OMS cd="mtxt" name="SequentPart"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+
+  <symbol name="Hypothesis">
+    <metadata>
+      <meta property="rdfs:comment">Local assumptions that allow hypothetical reasoning, as defined in the OMDoc 1.2 manual, chapter 17 (Representing Proofs).</meta>
+      <meta property="rdfs:label" xml:lang="en">Hypothesis</meta>
+      <meta property="rdfs:label" xml:lang="de">Hypothese</meta>
+      <meta property="rdfs:label" xml:lang="ru">Гипотеза</meta>
+    </metadata>
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMS cd="owl" name="Class"/>
+      </OMOBJ>
+    </type>
+  </symbol>
+
+  <axiom for="Hypothesis">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+            <OMS cd="rdfs" name="subClassOf"/>
+            <OMS cd="pf" name="Hypothesis"/>
+            <OMS cd="st" name="GeneralAxiom"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+
+  <axiom for="Hypothesis">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+            <OMS cd="rdfs" name="subClassOf"/>
+            <OMS cd="pf" name="Hypothesis"/>
+            <OMS cd="base" name="RigorousKnowledgeItem"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+
+  <axiom for="Hypothesis">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+            <OMS cd="rdfs" name="subClassOf"/>
+            <OMS cd="pf" name="Hypothesis"/>
+            <OMS cd="pf" name="ProofLocalStatement"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+
+  <symbol name="ProofLocalSymbol">
+    <metadata>
+      <meta property="rdfs:comment">Proof-local symbol, as defined in the OMDoc 1.2 manual, chapter 17 (Representing Proofs).</meta>
+      <meta property="rdfs:label" xml:lang="en">Proof-local Symbol</meta>
+      <meta property="rdfs:label" xml:lang="de">Beweis-lokales Symbol</meta>
+    </metadata>
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMS cd="owl" name="Class"/>
+      </OMOBJ>
+    </type>
+  </symbol>
+
+  <axiom for="ProofLocalSymbol">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+            <OMS cd="rdfs" name="subClassOf"/>
+            <OMS cd="pf" name="ProofLocalSymbol"/>
+            <OMS cd="pf" name="ProofLocalStatement"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+
+  <axiom for="ProofLocalSymbol">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+            <OMS cd="rdfs" name="subClassOf"/>
+            <OMS cd="pf" name="ProofLocalSymbol"/>
+            <OMS cd="st" name="GeneralSymbol"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+
+  <symbol name="ProofLocalDefinition">
+    <metadata>
+      <meta property="rdfs:comment">Proof-local definition, as defined in the OMDoc 1.2 manual, chapter 17 (Representing Proofs).</meta>
+      <meta property="rdfs:label" xml:lang="en">Proof-local Definition</meta>
+      <meta property="rdfs:label" xml:lang="de">Beweis-lokale Definition</meta>
+    </metadata>
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMS cd="owl" name="Class"/>
+      </OMOBJ>
+    </type>
+  </symbol>
+
+  <axiom for="ProofLocalDefinition">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+            <OMS cd="rdfs" name="subClassOf"/>
+            <OMS cd="pf" name="ProofLocalDefinition"/>
+            <OMS cd="pf" name="ProofLocalStatement"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+
+  <axiom for="ProofLocalDefinition">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+            <OMS cd="rdfs" name="subClassOf"/>
+            <OMS cd="pf" name="ProofLocalDefinition"/>
+            <OMS cd="st" name="GeneralDefinition"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+
+  <axiom for="DerivationStep ProofLocalSymbol ProofLocalDefinition Hypothesis">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+          <OMS cd="owl" name="AllDisjointClasses"/>
+          <OMS cd="pf" name="DerivationStep"/>
+          <OMS cd="pf" name="ProofLocalSymbol"/>
+          <OMS cd="pf" name="ProofLocalDefinition"/>
+          <OMS cd="pf" name="Hypothesis"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+
+  <symbol name="ProofText">
+    <metadata>
+      <meta property="rdfs:comment">Intermediate text in proofs that does not have to have a logical correspondence to a proof step, but guides the reader through the proof.</meta>
+      <meta property="rdfs:label" xml:lang="ru">Текст доказательства</meta>
+      <meta property="rdfs:label" xml:lang="en">Proof Text</meta>
+      <meta property="rdfs:label" xml:lang="de">Beweistext</meta>
+    </metadata>
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMS cd="owl" name="Class"/>
+      </OMOBJ>
+    </type>
+  </symbol>
+
+  <axiom for="ProofText">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+            <OMS cd="rdfs" name="subClassOf"/>
+            <OMS cd="pf" name="ProofText"/>
+            <OMS cd="pf" name="ProofStep"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+
+  <axiom for="ProofText">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+            <OMS cd="rdfs" name="subClassOf"/>
+            <OMS cd="pf" name="ProofText"/>
+            <OMS cd="base" name="InformalKnowledgeItem"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+
+  <symbol name="proves">
+    <metadata>
+      <meta property="rdfs:comment">The statement (assertion or derivation; at most one) that is proven by this proof; see chapter 17.1 (Proof Structure) of the OMDoc1.2 specification.
+In OMDoc/XML, this is represented by the omdoc:proof/@for attribute.</meta>
+      <meta property="rdfs:label" xml:lang="ru">доказывает</meta>
+      <meta property="rdfs:label" xml:lang="en">proves</meta>
+      <meta property="rdfs:label" xml:lang="de">beweist</meta>
+    </metadata>
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+          <OMS cd="owl" name="ObjectProperty"/>
+          <!-- TODO depending on http://trac.omdoc.org/OMDoc/ticket/1580, make the domain
+               GeneralProof -->
+          <OMS cd="pf" name="Proof"/>
+          <OMS cd="pf" name="ProvenAssertion"/>
+          <!-- TODO Note that omdoc:proof/omdoc:derive elements can also be proved, but we already have stepJustifiedBySubProof for that; not sure if we also need proves for that. –Christoph Lange -->
+        </OMA>
+      </OMOBJ>
+    </type>
+    <type>
+      <!-- TODO clarify if this is functional, cf. http://trac.omdoc.org/OMDoc/ticket/1573 -->
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMS cd="owl" name="FunctionalProperty"/>
+      </OMOBJ>
+    </type>
+  </symbol>
+  <!-- Is this a kind of dependency? Please see the discussion on http://mathweb.org/wiki/Talk:OMDoc/document_ontology –Christoph Lange -->
+
+  <symbol name="provedBy">
+    <metadata>
+      <meta property="rdfs:label" xml:lang="ru">доказывается посредством</meta>
+      <meta property="rdfs:label" xml:lang="en">proved by</meta>
+      <meta property="rdfs:label" xml:lang="de">bewiesen durch</meta>
+    </metadata>
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMS cd="owl" name="ObjectProperty"/>
+      </OMOBJ>
+    </type>
+  </symbol>
+
+  <axiom for="provedBy">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+          <OMS cd="owl" name="inverseOf"/>
+          <OMS cd="pf" name="provedBy"/>
+          <OMS cd="pf" name="proves"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+
+  <symbol name="hasStep">
+    <metadata>
+      <meta property="rdfs:label" xml:lang="ru">имеет шаг</meta>
+      <meta property="rdfs:comment">hasStep is a more concrete subproperty of hasDirectPart which is only valid within Proofs.</meta>
+      <meta property="rdfs:label" xml:lang="de">hat Schritt</meta>
+      <meta property="rdfs:label" xml:lang="en">has step</meta>
+    </metadata>
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMS cd="owl" name="InverseFunctionalProperty"/>
+      </OMOBJ>
+    </type>
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+          <OMS cd="owl" name="ObjectProperty"/>
+          <OMS cd="pf" name="Proof"/>
+          <OMS cd="pf" name="ProofStep"/>
+        </OMA>
+      </OMOBJ>
+    </type>
+  </symbol>
+
+  <axiom for="hasStep">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+            <OMS cd="rdfs" name="subPropertyOf"/>
+            <OMS cd="pf" name="hasStep"/>
+            <OMS cd="base" name="hasDirectPart"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+
+  <symbol name="hasConclusion">
+    <metadata>
+      <meta property="rdfs:comment">A proof can have at most one conclusion step.</meta>
+      <meta property="rdfs:label" xml:lang="ru">имеет заключение</meta>
+      <meta property="rdfs:label" xml:lang="en">has step</meta>
+      <meta property="rdfs:label" xml:lang="de">hat Schlussfolgerung</meta>
+    </metadata>
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMS cd="owl" name="FunctionalProperty"/>
+      </OMOBJ>
+    </type>
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMS cd="owl" name="ObjectProperty"/>
+      </OMOBJ>
+    </type>
+  </symbol>
+
+  <axiom for="hasConclusion">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+          <OMS cd="rdfs" name="subPropertyOf"/>
+          <OMS cd="pf" name="hasConclusion"/>
+          <OMS cd="pf" name="hasStep"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+
+  <axiom for="hasConclusion">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+          <OMS cd="rdfs" name="range"/>
+          <OMS cd="pf" name="hasConclusion"/>
+          <OMS cd="pf" name="DerivedConclusion"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+
+  <!-- TODO method/@xref (= inference rule) is not yet covered -->
+
+  <symbol name="stepJustifiedBy">
+    <metadata>
+      <meta property="rdfs:comment">Points from a derivation step in a proof to its justification(s).</meta>
+      <meta property="rdfs:label" xml:lang="ru">обоснован посредством</meta>
+      <meta property="rdfs:label" xml:lang="en">justified by</meta>
+      <meta property="rdfs:label" xml:lang="de">begründet durch</meta>
+    </metadata>
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMS cd="owl" name="ObjectProperty"/>
+      </OMOBJ>
+    </type>
+  </symbol>
+
+  <axiom for="stepJustifiedBy">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+            <OMS cd="rdfs" name="subPropertyOf"/>
+            <OMS cd="pf" name="stepJustifiedBy"/>
+            <OMS cd="st" name="justifiedBy"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+
+  <axiom for="stepJustifiedBy">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+          <OMS cd="rdfs" name="domain"/>
+          <OMS cd="pf" name="stepJustifiedBy"/>
+          <OMS cd="pf" name="DerivationStep"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+
+  <symbol name="stepLocallyJustifiedBy">
+    <metadata>
+      <meta property="rdfs:comment">Points from a derivation step in a proof to (an)other local proof step(s) or to a nested proof (i.e. to substeps) giving its justification</meta>
+      <meta property="rdfs:label" xml:lang="en">justified by</meta>
+      <meta property="rdfs:label" xml:lang="de">begründet durch</meta>
+    </metadata>
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMS cd="owl" name="ObjectProperty"/>
+      </OMOBJ>
+    </type>
+  </symbol>
+
+  <axiom for="stepLocallyJustifiedBy">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+          <OMS cd="rdfs" name="subPropertyOf"/>
+          <OMS cd="pf" name="stepLocallyJustifiedBy"/>
+          <OMS cd="pf" name="stepJustifiedBy"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+
+  <axiom for="stepLocallyJustifiedBy">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+          <OMS cd="rdfs" name="range"/>
+          <OMA>
+            <OMS cd="owl" name="unionOf"/>
+            <OMS cd="pf" name="NestedProof"/>
+            <OMS cd="pf" name="ProofLocalStatement"/>
+          </OMA>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+
+  <symbol name="stepJustifiedByPrecedingStep">
+    <metadata>
+      <meta property="rdfs:comment">Points from a derivation step in a proof to a preceding derivation step giving its justification</meta>
+      <meta property="rdfs:label" xml:lang="en">justified by preceding step</meta>
+      <meta property="rdfs:label" xml:lang="de">begründet durch vorherigen Schritt</meta>
+    </metadata>
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMS cd="owl" name="ObjectProperty"/>
+      </OMOBJ>
+    </type>
+  </symbol>
+
+  <axiom for="stepJustifiedByPrecedingStep">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+            <OMS cd="rdfs" name="subPropertyOf"/>
+            <OMS cd="pf" name="stepJustifiedByPrecedingStep"/>
+            <OMS cd="pf" name="stepLocallyJustifiedBy"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+
+  <axiom for="stepJustifiedByPrecedingStep">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+            <OMS cd="rdfs" name="range"/>
+            <OMS cd="pf" name="stepJustifiedByPrecedingStep"/>
+            <OMS cd="pf" name="ProofLocalStatement"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+
+  <symbol name="stepJustifiedBySubProof">
+    <metadata>
+      <meta property="rdfs:comment">Points from a derivation step to a subproof nested into this step, which gives the justification for this step</meta>
+      <meta property="rdfs:label" xml:lang="en">justified by subproof</meta>
+      <meta property="rdfs:label" xml:lang="de">begründet durch Unterbeweis</meta>
+    </metadata>
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMS cd="owl" name="ObjectProperty"/>
+      </OMOBJ>
+    </type>
+  </symbol>
+
+  <axiom for="stepJustifiedBySubProof">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+            <OMS cd="rdfs" name="subPropertyOf"/>
+            <OMS cd="pf" name="stepJustifiedBySubProof"/>
+            <OMS cd="pf" name="stepLocallyJustifiedBy"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+
+  <axiom for="stepJustifiedBySubProof">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+            <OMS cd="rdfs" name="range"/>
+            <OMS cd="pf" name="stepJustifiedBySubProof"/>
+            <OMS cd="pf" name="NestedProof"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+
+  <axiom for="stepJustifiedByPrecedingStep stepJustifiedBySubProof">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+          <OMS cd="owl" name="AllDisjointProperties"/>
+          <OMS cd="pf" name="stepJustifiedByPrecedingStep"/>
+          <OMS cd="pf" name="stepJustifiedBySubProof"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+
+  <symbol name="stepExternallyJustifiedBy">
+    <metadata>
+      <meta property="rdfs:comment">Points from a derivation step in a proof to an external statement giving its justification</meta>
+      <meta property="rdfs:label" xml:lang="en">justified by external statement</meta>
+      <meta property="rdfs:label" xml:lang="de">begründet durch externe Aussage</meta>
+    </metadata>
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMS cd="owl" name="ObjectProperty"/>
+      </OMOBJ>
+    </type>
+  </symbol>
+
+  <axiom for="stepExternallyJustifiedBy">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+            <OMS cd="rdfs" name="subPropertyOf"/>
+            <OMS cd="pf" name="stepExternallyJustifiedBy"/>
+            <OMS cd="pf" name="stepJustifiedBy"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+
+  <axiom for="stepExternallyJustifiedBy">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+          <OMS cd="rdfs" name="range"/>
+          <OMA>
+            <OMS cd="owl" name="unionOf"/>
+            <OMS cd="st" name="Definition"/>
+            <OMS cd="st" name="Axiom"/>
+            <OMS cd="st" name="Assertion"/>
+          </OMA>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+
+  <axiom for="stepExternallyJustifiedBy">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+          <OMS cd="owl" name="AllDisjointProperties"/>
+          <OMS cd="pf" name="stepLocallyJustifiedBy"/>
+          <OMS cd="pf" name="stepExternallyJustifiedBy"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+
+  <symbol name="validityDependsOn">
+    <metadata>
+      <meta property="rdfs:comment">Currently: the validity of a proof depends on a statement provided externally or on a local subproof or step; may be extended to other truth-related dependencies</meta>
+      <meta property="rdfs:label" xml:lang="en">validity depends on</meta>
+      <meta property="rdfs:label" xml:lang="de">Gültigkeit hängt ab von</meta>
+    </metadata>
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMS cd="owl" name="ObjectProperty"/>
+      </OMOBJ>
+    </type>
+  </symbol>
+
+  <axiom for="validityDependsOn">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+            <OMS cd="rdfs" name="subPropertyOf"/>
+            <OMS cd="pf" name="validityDependsOn"/>
+            <OMS cd="base" name="dependsOn"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+
+  <axiom for="validityDependsOn">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+          <OMS cd="owl" name="propertyChainAxiom"/>
+          <OMS cd="pf" name="validityDependsOn"/>
+          <OMS cd="pf" name="hasStep"/>
+          <OMS cd="pf" name="stepJustifiedBy"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+</theory>
+</omdoc>
+
+<!-- vim:sw=2:sts=2
+-->

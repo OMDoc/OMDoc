@@ -1,0 +1,210 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This file is part of the LaTeX sources of the OMDoc 1.3 specifiation
+% Copyright (c) 2006 Michael Kohlhase
+% This work is licensed by the Creative Commons Share-Alike license
+% see http://creativecommons.org/licenses/by-sa/2.5/ for details
+\svnInfo $Id: main.tex 8453 2009-08-04 09:58:26Z kohlhase $
+\svnKeyword $HeadURL: https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.3/doc/spec/projects/stex/main.tex $
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{\protect\stex: A {\LaTeX}-Based Workflow for OMDoc}
+\begin{erratum}[reported-by=Christoph Lange,date=2006-12-12]{The domain is \texttt{kwarc.eecs.iu-bremen.de}}
+\begin{project}{stex}{http://kwarc.iu-bremen.de/projects/stex/}
+\pauthors{Michael Kohlhase}
+\pinstitute{Computer Science, International University Bremen}
+\end{project}
+\end{erratum}
+
+One of the reasons why {\omdoc} has not been widely employed for representing mathematics
+on the web and in scientific publications, may be that the technical communities that need
+high-quality methods for publishing mathematics already have an established method which
+yields excellent results --- the {\TeX/\LaTeX} system. A large part of mathematical
+knowledge is prepared in the form of {\TeX}/{\LaTeX} documents.
+
+We present {\stex} (Semantic {\TeX}) a collection of macro packages for {\TeX/\LaTeX}
+together with a transformation engine that transforms {\stex} documents to the {\omdoc}
+format. {\stex} extends the familiar and time-tried {\LaTeX} workflow until the last step
+of Internet publication of the material: documents can be authored and maintained in
+{\stex} using a simple text editor, a process most technical authors are well familiar
+with. Only the last (publishing) step (which is fully automatic) transforms the document
+into the unfamiliar {\xml} world. Thus, {\stex} can serve as a conceptual interface
+between the document author and {\omdoc}-based systems: Technically, {\stex} documents are
+transformed into {\omdoc}, but conceptually, the ability to semantically annotate the
+source document is sufficient.
+
+\begin{tsubsection}{Recap of the {\TeX/\LaTeX} System}
+{\TeX}~\cite{Knuth:ttb84} is a document presentation format that combines complex
+page-description primitives with a powerful macro-expansion facility, which is utilized in
+{\LaTeX} (essentially a set of {\TeX} macro packages, see~\cite{Lamport:ladps94}) to
+achieve more content-oriented markup that can be adapted to particular tastes via
+specialized document styles. It is safe to say that {\LaTeX} largely restricts content
+markup to the document structure\footnote{supplying macros e.g. for sections, paragraphs,
+  theorems, definitions, etc.}, and graphics, leaving the user with the presentational
+{\TeX} primitives for mathematical formulae. Therefore, even though {\LaTeX} goes a great
+step into the direction of a content/context markup format, it lacks infrastructure for
+marking up the functional structure of formulae and mathematical statements, and their
+dependence on and contribution to the mathematical context.
+ 
+But the adaptable syntax of {\TeX/\LaTeX} and their tightly integrated programming
+features have distinct advantages on the authoring side:
+\begin{itemize}
+\item The {\TeX/\LaTeX} syntax is much more compact than {\omdoc}, and if needed, the
+  community develops {\LaTeX} packages that supply new functionality with a succinct and
+  intuitive syntax.
+\item The user can define ad-hoc abbreviations and bind them to new control sequences to
+  structure the source code.
+\item The {\TeX/\LaTeX} community has a vast collection of language extensions and best
+  practice examples for every conceivable publication purpose. Additionally, there is an
+  established and very active developer community that maintains these.
+\item A host of software systems are centered around the {\TeX/\LaTeX} language that make
+  authoring content easier: many editors have special modes for {\LaTeX}, there are
+  spelling/style/grammar checkers, transformers to other markup formats, etc.
+\end{itemize}
+ 
+In other words, the technical community is heavily invested in the whole
+{\indextoo{workflow}}, and technical know-how about the format permeates the
+community. Since all of this would need to be re-established for an {\omdoc}-based
+workflow, the community is slow to take up {\omdoc} over {\TeX/\LaTeX}, even in light of
+the advantages detailed in this book.
+\end{tsubsection} 
+
+\begin{tsubsection}{A {\LaTeX}-based Workflow for {\xml}-based Mathematical Documents}
+ 
+  An elegant way of sidestepping most of the problems inherent in transitioning from a
+  {\LaTeX}-based to an {\xml}-based workflow is to combine both and take advantage of the
+  respective values.
+ 
+  The key ingredient in this approach is a system that can transform {\TeX/\LaTeX}
+  documents to their corresponding {\xml}-based counterparts. That way, {\xml}-documents
+  can be authored and prototyped in the {\LaTeX} workflow, and transformed to {\xml} for
+  publication and added-value services.
+ 
+  There are various attempts to solve the {\TeX/\LaTeX} to {\xml} transformation problem;
+  the most mature is probably Bruce Miller's {\latexml} system~\cite{Miller:latexml}. It
+  consists of two parts: a re-implementation of the {\TeX} {\indextoo{analyzer}} with all
+  of its intricacies, and an extensible {\xml} {\indextoo{emitter}} (the component that
+  assembles the output of the parser). Since {\LaTeX} style files are (ultimately)
+  programmed in {\TeX}, the {\TeX} analyzer can handle all {\TeX}
+  extensions\footnote{i.e. all macros, environments, and syntax extensions used int the
+    source document}, including all of {\LaTeX}. Thus the {\latexml} parser can handle all
+  of {\TeX/\LaTeX}, if the emitter is extensible, which is guaranteed by the {\latexml}
+  binding language: To transform a {\TeX/\LaTeX} document to a given {\xml} format, all
+  {\TeX} extensions must have ``{\latexml} bindings''\twin{LaTeXML}{binding},
+  i.e. directives to the {\latexml} emitter that specify the target representation in
+  {\xml}.
+
+  The {\stex} system that we present here supplies a set of {\TeX/\LaTeX} packages and the
+  respective {\latexml} bindings that allow to add enough structural information in the
+  {\TeX/\LaTeX} sources, so that the {\latexml} system can transform them into documents
+  in {\omdoc} format.
+\end{tsubsection}
+
+\begin{tsubsection}{Content Markup of Mathematical Formulae in {\TeX/\LaTeX}}
+
+  The main problem here is that run-of-the-mill {\TeX/\LaTeX} only specifies the
+  presentation (i.e. what formulae look like) and not their content (their functional
+  structure). Unfortunately, there are no universal methods (yet) to infer the latter from
+  the former.  Consider for instance the following ``standard notations''\footnote{The
+    first one is standard e.g. in Germany and the US, the third one in France, and the
+    last one in Russia} for binomial coefficients: $\left(n\atop k\right)$, $_nC^k$,
+  ${\cal C}^n_k$, and ${\cal C}^k_n$ all mean the same thing: $n!\over k!(n-k)!$. This
+  shows that we cannot hope to reliably recover the functional structure (in our case the
+  fact that the expression is constructed by applying the binomial function to the
+  arguments $n$ and $k$) from the presentation alone short of understanding the underlying
+  mathematics.
+ 
+  The apparent solution to this problem is to dump the extra work on the author (after all
+  she knows what she is talking about) and give her the chance to specify the intended
+  structure. The markup infrastructure supplied by the {\stex} collection lets the author
+  do this without changing the visual appearance, so that the {\LaTeX} workflow is not
+  disrupted. We speak of {\twindef{semantic}{preloading}} for this process. For instance,
+  we can now write
+\begin{equation}\label{cmathml-sum}\footnotesize
+  \verb|\CSum{k}1\infty{\Cexp{x}k}| \quad\hbox{\normalsize instead of}\quad
+  \verb|\sum_{k=1}^\infty x^k|
+\end{equation}
+for the mathematical expression $\sum_{k=1}^\infty x^k$. In the first form, we specify
+that we are applying a function (\verb|CSumLimits| $\hat=$ sum with limits) to four
+arguments: ({\sl{i}}) the bound variable $k$ ({\sl{ii}}) the number 1 ({\sl{iii}})
+$\infty$ ({\sl{iv}}) \verb|\Cexp{x}k| (i.e. $x$ to the power $k$).  In the second form, we
+merely specify hat {\LaTeX} should draw a capital sigma character ($\Sigma$) whose
+subscript is the equation $k=1$ and whose superscript is $\infty$. Then it should place
+next to it an $x$ with an upper index $k$.
+
+Of course human readers (who understand the math) can infer the content structure from the
+expression $\sum_{k=1}^\infty x^k$ of the right-hand representation in
+(\ref{cmathml-sum}), but a computer program (who does not understand the math or know the
+context in which it was encountered) cannot. However, a converter like {\latexml} can
+infer this from the left-hand {\LaTeX} structure with the help of the curly braces that
+indicate the argument structure. This technique is nothing new in the {\TeX/\LaTeX} world,
+we use the term ``{\twindef{semantic}{macro}}'' for a macro whose expansion stands for a
+mathematical object. The {\stex} collection provides semantic macros for all {\cmathml}
+elements together with {\latexml} bindings that allow to convert {\stex} formulae into
+{\mathml}.
+\end{tsubsection}
+
+\begin{tsubsection}{Theories and Inheritance of Semantic Macros}
+  Semantic macros are traditionally used to make {\TeX/\LaTeX} code more
+  portable. However, the {\TeX/\LaTeX} scoping model (macro definitions are scoped either
+  in the local group or to the end of the document), does not mirror mathematical
+  practice, where notations are scoped by mathematical environments like statements,
+  theories, or such (see~\cite{Kohlhase:smtl05} for a discussion and examples). Therefore
+  the {\stex} collection provides an infrastructure to define, scope, and inherit semantic
+  macros.
+
+  In a nutshell, the {\stex} {\verb|symdef|} macro is a variant of the usual
+  {\verb|newcommand|}, only that it is scoped differently: The visibility of the defined
+  macros is explicitly specified by the {\snippet{module}} environment that corresponds to
+  the {\omdoc} {\element{theory}} element.  For this the {\snippet{module}} environment
+  takes the optional {\snippet{KeyVal}} arguments {\snippet{id}} for specifying the theory
+  name and {\snippet{uses}} for the {\atwintoo{semantic}{inheritance}{relation}}. For
+  instance a {\snippet{module}} that begins with
+\begin{lstlisting}
+  \begin{module}[id=foo,uses={bar,baz}]
+\end{lstlisting}
+restricts the scope of the semantic macros defined by the {\verb|\symdef|} form to the end of
+this module given by the corresponding {\verb|\end{module}|}, and to any other
+{\snippet{module}} environment that has {\snippet{[uses=\{\ldots,foo,\ldots\}]}} in its
+declaration. In our example the semantic macros from the modules {\snippet{bar}}
+and {\snippet{baz}} are inherited as well as the ones that are inherited by these modules.
+
+We will use a simple module for natural number arithmetics as an example. It
+declares a new semantic macro for summation while drawing on the basic
+operations like $+$ and $-$ from {\LaTeX}.  {\verb|\Sumfromto|} allows us to
+express an expression like \erratumReplace[reported-by=Christoph
+Lange,date=2006-12-12]{correct example given}{$\sum_{i=1}^nx^i$}{$\sum_{i=1}^n
+  2i-1$} as {\verb|\Sumfromto{i}1n{2i-1}|}. In this example we have also made
+use of a local semantic symbol for $n$, which is treated as an arbitrary (but
+fixed) symbol (compare with the use of {\verb|\arbitraryn|} below, which is a
+new --- semantically different --- symbol).
+\begin{lstlisting}
+ \begin{module}[id=arith]
+   \symdef{Sumfromto}[4]{\sum_{#1=#2}^{#3}{#4}}
+   \symdef[local]{arbitraryn}{n}
+   What is the sum of the first $\arbitraryn$ odd numbers, i.e.
+   $\Sumfromto{i}1\arbitraryn{2i-1}?$
+ \end{module}
+\end{lstlisting}
+is formatted by {\sTeX} to
+\begin{quote}\hrule
+  What is the sum of the first $n$ odd numbers, i.e.  $\sum_{i=1}^n{2i-1}$?\hrule
+\end{quote}
+Moreover, the semantic macro {\verb|Sumfromto|} can be used in all {\snippet{module}}
+environments that import it via its {\snippet{uses}} keyword. Thus {\stex} provides
+sufficient functionality to mark up {\omdoc} theories with their scoping rules in a very
+direct and natural manner. The rest of the {\omdoc} elements can be modeled by {\LaTeX}
+environments and macros in a straightforward manner.
+
+The {\stex} macro packages have been validated together with a case
+study~\cite{Kohlhase:smtl05}, where we semantically preloaded the course materials for a
+two-semester course ``General Computer Science I\&II'' at International University Bremen
+and transform them to the {\omdoc}, so that they can be used in the {\activemath} system
+(see {\mysecref{activemath}}).
+\end{tsubsection}
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../../omdoc"
+%%% End: 
+
+% LocalWords:  stex LaTeXML hoc nC CSumLimits DVI symdef newcommand KeyVal baz
+% LocalWords:  nx Sumfromto arbitraryn artih activemath

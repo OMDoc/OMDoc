@@ -1,0 +1,844 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<omdoc xmlns="http://omdoc.org/ns" xml:id="List_Rev">
+  <theory xml:id="List_Rev_P">
+    <presentation for="#List_Rev_P">
+ <use format="Hets">[List_Rev,P,0]</use>
+    </presentation>
+    <imports from="Logic/casl.omdoc" type="global"/>
+    <symbol role="sort" name="elem" generated-from="List_Rev_P-elem-adt"/>
+    <presentation for="#elem">
+      <use format="Hets">[elem]</use>
+    </presentation>
+  </theory>
+  <theory xml:id="List_Rev_E1">
+    <presentation for="#List_Rev_E1">
+      <use format="Hets">[List_Rev,E,1]</use>
+    </presentation>
+    <imports from="Logic/casl.omdoc" type="global"/>
+    <imports from="#List_Rev_P" type="global"/>
+    <symbol role="sort" name="listSBrackOpenelemSBrackClose" generated-from="List_Rev_E1-listSBrackOpenelemSBrackClose-adt"/>
+    <presentation for="#listSBrackOpenelemSBrackClose">
+      <use format="Hets">[list[elem]]</use>
+    </presentation>
+    <symbol role="object" name="reverse">
+      <type system="casl">
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+          <OMA>
+            <OMS cd="casl" name="function"/>
+            <OMS cd="List_Rev_E1" name="listSBrackOpenelemSBrackClose"/>
+            <OMS cd="List_Rev_E1" name="listSBrackOpenelemSBrackClose"/>
+          </OMA>
+        </OMOBJ>
+      </type>
+    </symbol>
+    <presentation for="#reverse">
+      <use format="Hets">[reverse]</use>
+    </presentation>
+    <symbol role="object" name="empty">
+      <type system="casl">
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+          <OMA>
+            <OMS cd="casl" name="function"/>
+            <OMS cd="List_Rev_E1" name="listSBrackOpenelemSBrackClose"/>
+          </OMA>
+        </OMOBJ>
+      </type>
+    </symbol>
+    <presentation for="#empty">
+      <use format="Hets">[empty]</use>
+    </presentation>
+    <symbol role="object" name="cons">
+      <type system="casl">
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+          <OMA>
+            <OMS cd="casl" name="function"/>
+            <OMS cd="List_Rev_P" name="elem"/>
+            <OMS cd="List_Rev_E1" name="listSBrackOpenelemSBrackClose"/>
+            <OMS cd="List_Rev_E1" name="listSBrackOpenelemSBrackClose"/>
+          </OMA>
+        </OMOBJ>
+      </type>
+    </symbol>
+    <presentation for="#cons">
+      <use format="Hets">[cons]</use>
+    </presentation>
+    <symbol role="object" name="app">
+      <type system="casl">
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+          <OMA>
+            <OMS cd="casl" name="function"/>
+            <OMS cd="List_Rev_E1" name="listSBrackOpenelemSBrackClose"/>
+            <OMS cd="List_Rev_E1" name="listSBrackOpenelemSBrackClose"/>
+            <OMS cd="List_Rev_E1" name="listSBrackOpenelemSBrackClose"/>
+          </OMA>
+        </OMOBJ>
+      </type>
+    </symbol>
+    <presentation for="#app">
+      <use format="Hets">[app]</use>
+    </presentation>
+    <symbol role="object" name="gn_P_listSBrackOpenelemSBrackClose">
+      <type system="casl">
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+          <OMA>
+            <OMS cd="casl" name="predication"/>
+            <OMS cd="List_Rev_E1" name="listSBrackOpenelemSBrackClose"/>
+          </OMA>
+        </OMOBJ>
+      </type>
+    </symbol>
+    <presentation for="#gn_P_listSBrackOpenelemSBrackClose">
+      <use format="Hets">[gn_P_list[elem]]</use>
+    </presentation>
+    <adt xml:id="List_Rev_E1-listSBrackOpenelemSBrackClose-adt">
+      <sortdef name="listSBrackOpenelemSBrackClose" role="sort" type="free">
+        <constructor name="cons" role="object">
+          <argument>
+            <type>
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+                <OMS cd="List_Rev_P" name="elem"/>
+              </OMOBJ>
+            </type>
+          </argument>
+          <argument>
+            <type>
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+                <OMS cd="List_Rev_E1" name="listSBrackOpenelemSBrackClose"/>
+              </OMOBJ>
+            </type>
+          </argument>
+        </constructor>
+        <constructor name="empty" role="object"/>
+      </sortdef>
+    </adt>
+    <axiom xml:id="ga_injective_cons">
+      <CMP>
+    free type list[elem] ::= empty | cons(elem; list[elem])
+</CMP>
+      <FMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+          <OMBIND>
+            <OMS cd="casl" name="universal"/>
+            <OMBVAR>
+              <OMATTR>
+                <OMATP>
+                  <OMS cd="casl" name="type"/>
+                  <OMS cd="List_Rev_P" name="elem"/>
+                </OMATP>
+                <OMV name="X1"/>
+              </OMATTR>
+              <OMATTR>
+                <OMATP>
+                  <OMS cd="casl" name="type"/>
+                  <OMS cd="List_Rev_E1" name="listSBrackOpenelemSBrackClose"/>
+                </OMATP>
+                <OMV name="X2"/>
+              </OMATTR>
+              <OMATTR>
+                <OMATP>
+                  <OMS cd="casl" name="type"/>
+                  <OMS cd="List_Rev_P" name="elem"/>
+                </OMATP>
+                <OMV name="Y1"/>
+              </OMATTR>
+              <OMATTR>
+                <OMATP>
+                  <OMS cd="casl" name="type"/>
+                  <OMS cd="List_Rev_E1" name="listSBrackOpenelemSBrackClose"/>
+                </OMATP>
+                <OMV name="Y2"/>
+              </OMATTR>
+            </OMBVAR>
+            <OMA>
+              <OMS cd="casl" name="equivalence"/>
+              <OMA>
+                <OMS cd="casl" name="strong-equation"/>
+                <OMA>
+                  <OMS cd="List_Rev_E1" name="cons"/>
+                  <!--X1 is qualified for elem-->
+                  <OMV name="X1"/>
+                  <!--X2 is qualified for listSBrackOpenelemSBrackClose-->
+                  <OMV name="X2"/>
+                </OMA>
+                <OMA>
+                  <OMS cd="List_Rev_E1" name="cons"/>
+                  <!--Y1 is qualified for elem-->
+                  <OMV name="Y1"/>
+                  <!--Y2 is qualified for listSBrackOpenelemSBrackClose-->
+                  <OMV name="Y2"/>
+                </OMA>
+              </OMA>
+              <OMA>
+                <OMS cd="casl" name="conjunction"/>
+                <OMA>
+                  <OMS cd="casl" name="strong-equation"/>
+                  <!--X1 is qualified for elem-->
+                  <OMV name="X1"/>
+                  <!--Y1 is qualified for elem-->
+                  <OMV name="Y1"/>
+                </OMA>
+                <OMA>
+                  <OMS cd="casl" name="strong-equation"/>
+                  <!--X2 is qualified for listSBrackOpenelemSBrackClose-->
+                  <OMV name="X2"/>
+                  <!--Y2 is qualified for listSBrackOpenelemSBrackClose-->
+                  <OMV name="Y2"/>
+                </OMA>
+              </OMA>
+            </OMA>
+          </OMBIND>
+        </OMOBJ>
+      </FMP>
+    </axiom>
+    <presentation for="#ga_injective_cons">
+      <use format="Hets">ga_injective_cons</use>
+    </presentation>
+    <axiom xml:id="ga_disjoint_empty_cons">
+      <CMP>
+    free type list[elem] ::= empty | cons(elem; list[elem])
+    free type list[elem] ::= empty | cons(elem; list[elem])
+</CMP>
+      <FMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+          <OMBIND>
+            <OMS cd="casl" name="universal"/>
+            <OMBVAR>
+              <OMATTR>
+                <OMATP>
+                  <OMS cd="casl" name="type"/>
+                  <OMS cd="List_Rev_P" name="elem"/>
+                </OMATP>
+                <OMV name="Y1"/>
+              </OMATTR>
+              <OMATTR>
+                <OMATP>
+                  <OMS cd="casl" name="type"/>
+                  <OMS cd="List_Rev_E1" name="listSBrackOpenelemSBrackClose"/>
+                </OMATP>
+                <OMV name="Y2"/>
+              </OMATTR>
+            </OMBVAR>
+            <OMA>
+              <OMS cd="casl" name="neg"/>
+              <OMA>
+                <OMS cd="casl" name="strong-equation"/>
+                <OMS cd="List_Rev_E1" name="empty"/>
+                <OMA>
+                  <OMS cd="List_Rev_E1" name="cons"/>
+                  <!--Y1 is qualified for elem-->
+                  <OMV name="Y1"/>
+                  <!--Y2 is qualified for listSBrackOpenelemSBrackClose-->
+                  <OMV name="Y2"/>
+                </OMA>
+              </OMA>
+            </OMA>
+          </OMBIND>
+        </OMOBJ>
+      </FMP>
+    </axiom>
+    <presentation for="#ga_disjoint_empty_cons">
+      <use format="Hets">ga_disjoint_empty_cons</use>
+    </presentation>
+    <axiom xml:id="ga_generated_listSBrackOpenelemSBrackClose">
+      <FMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+          <OMA>
+            <OMS cd="casl" name="sort-gen-ax"/>
+            <OMA>
+              <OMS cd="casl" name="constraint-definitions"/>
+              <OMA>
+                <OMS cd="casl" name="constraint-context"/>
+                <OMS cd="List_Rev_E1" name="listSBrackOpenelemSBrackClose"/>
+                <OMS cd="List_Rev_E1" name="listSBrackOpenelemSBrackClose"/>
+                <OMA>
+                  <OMS cd="casl" name="constraint-list"/>
+                  <OMA>
+                    <OMS cd="casl" name="constraint"/>
+                    <OMA>
+                      <OMS cd="casl" name="constraint-indices"/>
+                      <OMI>-1</OMI>
+                      <OMI>0</OMI>
+                    </OMA>
+                    <OMS cd="List_Rev_E1" name="cons"/>
+                  </OMA>
+                  <OMA>
+                    <OMS cd="casl" name="constraint"/>
+                    <OMA>
+                      <OMS cd="casl" name="constraint-indices"/>
+                    </OMA>
+                    <OMS cd="List_Rev_E1" name="empty"/>
+                  </OMA>
+                </OMA>
+              </OMA>
+            </OMA>
+            <OMA>
+              <OMS cd="casl" name="implication"/>
+              <OMA>
+                <OMS cd="casl" name="conjunction"/>
+                <OMBIND>
+                  <OMS cd="casl" name="universal"/>
+                  <OMBVAR>
+                    <OMATTR>
+                      <OMATP>
+                        <OMS cd="casl" name="type"/>
+                        <OMS cd="List_Rev_P" name="elem"/>
+                      </OMATP>
+                      <OMV name="y_1"/>
+                    </OMATTR>
+                    <OMATTR>
+                      <OMATP>
+                        <OMS cd="casl" name="type"/>
+                        <OMS cd="List_Rev_E1" name="listSBrackOpenelemSBrackClose"/>
+                      </OMATP>
+                      <OMV name="y_2"/>
+                    </OMATTR>
+                  </OMBVAR>
+                  <OMA>
+                    <OMS cd="casl" name="implication"/>
+                    <OMA>
+                      <OMS cd="casl" name="predication"/>
+                      <OMS cd="List_Rev_E1" name="gn_P_listSBrackOpenelemSBrackClose"/>
+                      <!--y_2 is qualified for listSBrackOpenelemSBrackClose-->
+                      <OMV name="y_2"/>
+                    </OMA>
+                    <OMA>
+                      <OMS cd="casl" name="predication"/>
+                      <OMS cd="List_Rev_E1" name="gn_P_listSBrackOpenelemSBrackClose"/>
+                      <OMA>
+                        <OMS cd="List_Rev_E1" name="cons"/>
+                        <!--y_1 is qualified for elem-->
+                        <OMV name="y_1"/>
+                        <!--y_2 is qualified for listSBrackOpenelemSBrackClose-->
+                        <OMV name="y_2"/>
+                      </OMA>
+                    </OMA>
+                    <OMS cd="casl" name="true"/>
+                  </OMA>
+                </OMBIND>
+                <OMA>
+                  <OMS cd="casl" name="predication"/>
+                  <OMS cd="List_Rev_E1" name="gn_P_listSBrackOpenelemSBrackClose"/>
+                  <OMS cd="List_Rev_E1" name="empty"/>
+                </OMA>
+              </OMA>
+              <OMBIND>
+                <OMS cd="casl" name="universal"/>
+                <OMBVAR>
+                  <OMATTR>
+                    <OMATP>
+                      <OMS cd="casl" name="type"/>
+                      <OMS cd="List_Rev_E1" name="listSBrackOpenelemSBrackClose"/>
+                    </OMATP>
+                    <OMV name="x_1"/>
+                  </OMATTR>
+                </OMBVAR>
+                <OMA>
+                  <OMS cd="casl" name="predication"/>
+                  <OMS cd="List_Rev_E1" name="gn_P_listSBrackOpenelemSBrackClose"/>
+                  <!--x_1 is qualified for listSBrackOpenelemSBrackClose-->
+                  <OMV name="x_1"/>
+                </OMA>
+              </OMBIND>
+              <OMS cd="casl" name="true"/>
+            </OMA>
+            <OMS cd="casl" name="true"/>
+          </OMA>
+        </OMOBJ>
+      </FMP>
+    </axiom>
+    <presentation for="#ga_generated_listSBrackOpenelemSBrackClose">
+      <use format="Hets">ga_generated_list[elem]</use>
+    </presentation>
+    <axiom xml:id="ga_assoc_app">
+      <CMP>
+    ops app : list[elem] * list[elem] -> list[elem],
+</CMP>
+      <FMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+          <OMBIND>
+            <OMS cd="casl" name="universal"/>
+            <OMBVAR>
+              <OMATTR>
+                <OMATP>
+                  <OMS cd="casl" name="type"/>
+                  <OMS cd="List_Rev_E1" name="listSBrackOpenelemSBrackClose"/>
+                </OMATP>
+                <OMV name="x"/>
+              </OMATTR>
+              <OMATTR>
+                <OMATP>
+                  <OMS cd="casl" name="type"/>
+                  <OMS cd="List_Rev_E1" name="listSBrackOpenelemSBrackClose"/>
+                </OMATP>
+                <OMV name="y"/>
+              </OMATTR>
+              <OMATTR>
+                <OMATP>
+                  <OMS cd="casl" name="type"/>
+                  <OMS cd="List_Rev_E1" name="listSBrackOpenelemSBrackClose"/>
+                </OMATP>
+                <OMV name="z"/>
+              </OMATTR>
+            </OMBVAR>
+            <OMA>
+              <OMS cd="casl" name="strong-equation"/>
+              <OMA>
+                <OMS cd="List_Rev_E1" name="app"/>
+                <OMA>
+                  <OMS cd="List_Rev_E1" name="app"/>
+                  <!--x is qualified for listSBrackOpenelemSBrackClose-->
+                  <OMV name="x"/>
+                  <!--y is qualified for listSBrackOpenelemSBrackClose-->
+                  <OMV name="y"/>
+                </OMA>
+                <!--z is qualified for listSBrackOpenelemSBrackClose-->
+                <OMV name="z"/>
+              </OMA>
+              <OMA>
+                <OMS cd="List_Rev_E1" name="app"/>
+                <!--x is qualified for listSBrackOpenelemSBrackClose-->
+                <OMV name="x"/>
+                <OMA>
+                  <OMS cd="List_Rev_E1" name="app"/>
+                  <!--y is qualified for listSBrackOpenelemSBrackClose-->
+                  <OMV name="y"/>
+                  <!--z is qualified for listSBrackOpenelemSBrackClose-->
+                  <OMV name="z"/>
+                </OMA>
+              </OMA>
+            </OMA>
+          </OMBIND>
+        </OMOBJ>
+      </FMP>
+    </axiom>
+    <presentation for="#ga_assoc_app">
+      <use format="Hets">ga_assoc_app</use>
+    </presentation>
+    <axiom xml:id="ga_right_unit_app">
+      <CMP>
+    ops app : list[elem] * list[elem] -> list[elem],
+</CMP>
+      <FMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+          <OMBIND>
+            <OMS cd="casl" name="universal"/>
+            <OMBVAR>
+              <OMATTR>
+                <OMATP>
+                  <OMS cd="casl" name="type"/>
+                  <OMS cd="List_Rev_E1" name="listSBrackOpenelemSBrackClose"/>
+                </OMATP>
+                <OMV name="x"/>
+              </OMATTR>
+            </OMBVAR>
+            <OMA>
+              <OMS cd="casl" name="strong-equation"/>
+              <OMA>
+                <OMS cd="List_Rev_E1" name="app"/>
+                <!--x is qualified for listSBrackOpenelemSBrackClose-->
+                <OMV name="x"/>
+                <OMS cd="List_Rev_E1" name="empty"/>
+              </OMA>
+              <!--x is qualified for listSBrackOpenelemSBrackClose-->
+              <OMV name="x"/>
+            </OMA>
+          </OMBIND>
+        </OMOBJ>
+      </FMP>
+    </axiom>
+    <presentation for="#ga_right_unit_app">
+      <use format="Hets">ga_right_unit_app</use>
+    </presentation>
+    <axiom xml:id="ga_left_unit_app">
+      <CMP>
+    ops app : list[elem] * list[elem] -> list[elem],
+</CMP>
+      <FMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+          <OMBIND>
+            <OMS cd="casl" name="universal"/>
+            <OMBVAR>
+              <OMATTR>
+                <OMATP>
+                  <OMS cd="casl" name="type"/>
+                  <OMS cd="List_Rev_E1" name="listSBrackOpenelemSBrackClose"/>
+                </OMATP>
+                <OMV name="x"/>
+              </OMATTR>
+            </OMBVAR>
+            <OMA>
+              <OMS cd="casl" name="strong-equation"/>
+              <OMA>
+                <OMS cd="List_Rev_E1" name="app"/>
+                <OMS cd="List_Rev_E1" name="empty"/>
+                <!--x is qualified for listSBrackOpenelemSBrackClose-->
+                <OMV name="x"/>
+              </OMA>
+              <!--x is qualified for listSBrackOpenelemSBrackClose-->
+              <OMV name="x"/>
+            </OMA>
+          </OMBIND>
+        </OMOBJ>
+      </FMP>
+    </axiom>
+    <presentation for="#ga_left_unit_app">
+      <use format="Hets">ga_left_unit_app</use>
+    </presentation>
+    <axiom xml:id="Ax7">
+      <CMP>
+    forall e:elem; l, l1, l2:list[elem]
+    forall e:elem; l, l1, l2:list[elem]
+    . app(empty, l) = l 
+    . app(cons(e, l1), l2) = cons(e, app(l1, l2))
+    . reverse(empty) = empty
+    . reverse(cons(e, l)) = app(reverse(l), cons(e, empty))
+</CMP>
+      <FMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+          <OMBIND>
+            <OMS cd="casl" name="universal"/>
+            <OMBVAR>
+              <OMATTR>
+                <OMATP>
+                  <OMS cd="casl" name="type"/>
+                  <OMS cd="List_Rev_E1" name="listSBrackOpenelemSBrackClose"/>
+                </OMATP>
+                <OMV name="l"/>
+              </OMATTR>
+            </OMBVAR>
+            <OMA>
+              <OMS cd="casl" name="strong-equation"/>
+              <OMA>
+                <OMS cd="List_Rev_E1" name="app"/>
+                <OMS cd="List_Rev_E1" name="empty"/>
+                <!--l is qualified for listSBrackOpenelemSBrackClose-->
+                <OMV name="l"/>
+              </OMA>
+              <!--l is qualified for listSBrackOpenelemSBrackClose-->
+              <OMV name="l"/>
+            </OMA>
+          </OMBIND>
+        </OMOBJ>
+      </FMP>
+    </axiom>
+    <presentation for="#Ax7">
+      <use format="Hets">Ax7</use>
+    </presentation>
+    <axiom xml:id="Ax8">
+      <CMP>
+    forall e:elem; l, l1, l2:list[elem]
+    forall e:elem; l, l1, l2:list[elem]
+    . app(empty, l) = l 
+    . app(cons(e, l1), l2) = cons(e, app(l1, l2))
+    . reverse(empty) = empty
+    . reverse(cons(e, l)) = app(reverse(l), cons(e, empty))
+</CMP>
+      <FMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+          <OMBIND>
+            <OMS cd="casl" name="universal"/>
+            <OMBVAR>
+              <OMATTR>
+                <OMATP>
+                  <OMS cd="casl" name="type"/>
+                  <OMS cd="List_Rev_P" name="elem"/>
+                </OMATP>
+                <OMV name="e"/>
+              </OMATTR>
+              <OMATTR>
+                <OMATP>
+                  <OMS cd="casl" name="type"/>
+                  <OMS cd="List_Rev_E1" name="listSBrackOpenelemSBrackClose"/>
+                </OMATP>
+                <OMV name="l1"/>
+              </OMATTR>
+              <OMATTR>
+                <OMATP>
+                  <OMS cd="casl" name="type"/>
+                  <OMS cd="List_Rev_E1" name="listSBrackOpenelemSBrackClose"/>
+                </OMATP>
+                <OMV name="l2"/>
+              </OMATTR>
+            </OMBVAR>
+            <OMA>
+              <OMS cd="casl" name="strong-equation"/>
+              <OMA>
+                <OMS cd="List_Rev_E1" name="app"/>
+                <OMA>
+                  <OMS cd="List_Rev_E1" name="cons"/>
+                  <!--e is qualified for elem-->
+                  <OMV name="e"/>
+                  <!--l1 is qualified for listSBrackOpenelemSBrackClose-->
+                  <OMV name="l1"/>
+                </OMA>
+                <!--l2 is qualified for listSBrackOpenelemSBrackClose-->
+                <OMV name="l2"/>
+              </OMA>
+              <OMA>
+                <OMS cd="List_Rev_E1" name="cons"/>
+                <!--e is qualified for elem-->
+                <OMV name="e"/>
+                <OMA>
+                  <OMS cd="List_Rev_E1" name="app"/>
+                  <!--l1 is qualified for listSBrackOpenelemSBrackClose-->
+                  <OMV name="l1"/>
+                  <!--l2 is qualified for listSBrackOpenelemSBrackClose-->
+                  <OMV name="l2"/>
+                </OMA>
+              </OMA>
+            </OMA>
+          </OMBIND>
+        </OMOBJ>
+      </FMP>
+    </axiom>
+    <presentation for="#Ax8">
+      <use format="Hets">Ax8</use>
+    </presentation>
+    <axiom xml:id="Ax9">
+      <CMP>
+    . reverse(empty) = empty
+</CMP>
+      <FMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+          <OMA>
+            <OMS cd="casl" name="strong-equation"/>
+            <OMA>
+              <OMS cd="List_Rev_E1" name="reverse"/>
+              <OMS cd="List_Rev_E1" name="empty"/>
+            </OMA>
+            <OMS cd="List_Rev_E1" name="empty"/>
+          </OMA>
+        </OMOBJ>
+      </FMP>
+    </axiom>
+    <presentation for="#Ax9">
+      <use format="Hets">Ax9</use>
+    </presentation>
+    <axiom xml:id="Ax10">
+      <CMP>
+    forall e:elem; l, l1, l2:list[elem]
+    forall e:elem; l, l1, l2:list[elem]
+    . app(empty, l) = l 
+    . app(cons(e, l1), l2) = cons(e, app(l1, l2))
+    . reverse(empty) = empty
+    . reverse(cons(e, l)) = app(reverse(l), cons(e, empty))
+</CMP>
+      <FMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+          <OMBIND>
+            <OMS cd="casl" name="universal"/>
+            <OMBVAR>
+              <OMATTR>
+                <OMATP>
+                  <OMS cd="casl" name="type"/>
+                  <OMS cd="List_Rev_P" name="elem"/>
+                </OMATP>
+                <OMV name="e"/>
+              </OMATTR>
+              <OMATTR>
+                <OMATP>
+                  <OMS cd="casl" name="type"/>
+                  <OMS cd="List_Rev_E1" name="listSBrackOpenelemSBrackClose"/>
+                </OMATP>
+                <OMV name="l"/>
+              </OMATTR>
+            </OMBVAR>
+            <OMA>
+              <OMS cd="casl" name="strong-equation"/>
+              <OMA>
+                <OMS cd="List_Rev_E1" name="reverse"/>
+                <OMA>
+                  <OMS cd="List_Rev_E1" name="cons"/>
+                  <!--e is qualified for elem-->
+                  <OMV name="e"/>
+                  <!--l is qualified for listSBrackOpenelemSBrackClose-->
+                  <OMV name="l"/>
+                </OMA>
+              </OMA>
+              <OMA>
+                <OMS cd="List_Rev_E1" name="app"/>
+                <OMA>
+                  <OMS cd="List_Rev_E1" name="reverse"/>
+                  <!--l is qualified for listSBrackOpenelemSBrackClose-->
+                  <OMV name="l"/>
+                </OMA>
+                <OMA>
+                  <OMS cd="List_Rev_E1" name="cons"/>
+                  <!--e is qualified for elem-->
+                  <OMV name="e"/>
+                  <OMS cd="List_Rev_E1" name="empty"/>
+                </OMA>
+              </OMA>
+            </OMA>
+          </OMBIND>
+        </OMOBJ>
+      </FMP>
+    </axiom>
+    <presentation for="#Ax10">
+      <use format="Hets">Ax10</use>
+    </presentation>
+  </theory>
+  <theory xml:id="List_Rev">
+    <presentation for="#List_Rev">
+      <use format="Hets">[List_Rev,,0]</use>
+    </presentation>
+    <imports from="Logic/casl.omdoc" type="global"/>
+    <imports from="#List_Rev_E1" type="global"/>
+    <symbol role="object" name="reverse">
+      <type system="casl">
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+          <OMA>
+            <OMS cd="casl" name="function"/>
+            <OMS cd="List_Rev_E1" name="listSBrackOpenelemSBrackClose"/>
+            <OMS cd="List_Rev_E1" name="listSBrackOpenelemSBrackClose"/>
+          </OMA>
+        </OMOBJ>
+      </type>
+    </symbol>
+    <presentation for="#reverse">
+      <use format="Hets">[reverse]</use>
+    </presentation>
+    <symbol role="object" name="empty">
+      <type system="casl">
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+          <OMA>
+            <OMS cd="casl" name="function"/>
+            <OMS cd="List_Rev_E1" name="listSBrackOpenelemSBrackClose"/>
+          </OMA>
+        </OMOBJ>
+      </type>
+    </symbol>
+    <presentation for="#empty">
+      <use format="Hets">[empty]</use>
+    </presentation>
+    <symbol role="object" name="cons">
+      <type system="casl">
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+          <OMA>
+            <OMS cd="casl" name="function"/>
+            <OMS cd="List_Rev_P" name="elem"/>
+            <OMS cd="List_Rev_E1" name="listSBrackOpenelemSBrackClose"/>
+            <OMS cd="List_Rev_E1" name="listSBrackOpenelemSBrackClose"/>
+          </OMA>
+        </OMOBJ>
+      </type>
+    </symbol>
+    <presentation for="#cons">
+      <use format="Hets">[cons]</use>
+    </presentation>
+    <symbol role="object" name="app">
+      <type system="casl">
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+          <OMA>
+            <OMS cd="casl" name="function"/>
+            <OMS cd="List_Rev_E1" name="listSBrackOpenelemSBrackClose"/>
+            <OMS cd="List_Rev_E1" name="listSBrackOpenelemSBrackClose"/>
+            <OMS cd="List_Rev_E1" name="listSBrackOpenelemSBrackClose"/>
+          </OMA>
+        </OMOBJ>
+      </type>
+    </symbol>
+    <presentation for="#app">
+      <use format="Hets">[app]</use>
+    </presentation>
+    <axiom xml:id="Ax1">
+      <CMP>
+forall l, l1, l2:list[elem]
+    . reverse(app(l1, l2)) = app(reverse(l2), reverse(l1))
+    . reverse(reverse(l)) = l
+</CMP>
+      <FMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+          <OMBIND>
+            <OMS cd="casl" name="universal"/>
+            <OMBVAR>
+              <OMATTR>
+                <OMATP>
+                  <OMS cd="casl" name="type"/>
+                  <OMS cd="List_Rev_E1" name="listSBrackOpenelemSBrackClose"/>
+                </OMATP>
+                <OMV name="l1"/>
+              </OMATTR>
+              <OMATTR>
+                <OMATP>
+                  <OMS cd="casl" name="type"/>
+                  <OMS cd="List_Rev_E1" name="listSBrackOpenelemSBrackClose"/>
+                </OMATP>
+                <OMV name="l2"/>
+              </OMATTR>
+            </OMBVAR>
+            <OMA>
+              <OMS cd="casl" name="strong-equation"/>
+              <OMA>
+                <OMS cd="List_Rev_E1" name="reverse"/>
+                <OMA>
+                  <OMS cd="List_Rev_E1" name="app"/>
+                  <!--l1 is qualified for listSBrackOpenelemSBrackClose-->
+                  <OMV name="l1"/>
+                  <!--l2 is qualified for listSBrackOpenelemSBrackClose-->
+                  <OMV name="l2"/>
+                </OMA>
+              </OMA>
+              <OMA>
+                <OMS cd="List_Rev_E1" name="app"/>
+                <OMA>
+                  <OMS cd="List_Rev_E1" name="reverse"/>
+                  <!--l2 is qualified for listSBrackOpenelemSBrackClose-->
+                  <OMV name="l2"/>
+                </OMA>
+                <OMA>
+                  <OMS cd="List_Rev_E1" name="reverse"/>
+                  <!--l1 is qualified for listSBrackOpenelemSBrackClose-->
+                  <OMV name="l1"/>
+                </OMA>
+              </OMA>
+            </OMA>
+          </OMBIND>
+        </OMOBJ>
+      </FMP>
+    </axiom>
+    <presentation for="#Ax1">
+      <use format="Hets">Ax1</use>
+    </presentation>
+    <axiom xml:id="Ax2">
+      <CMP>
+forall l, l1, l2:list[elem]
+    . reverse(app(l1, l2)) = app(reverse(l2), reverse(l1))
+    . reverse(reverse(l)) = l
+</CMP>
+      <FMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+          <OMBIND>
+            <OMS cd="casl" name="universal"/>
+            <OMBVAR>
+              <OMATTR>
+                <OMATP>
+                  <OMS cd="casl" name="type"/>
+                  <OMS cd="List_Rev_E1" name="listSBrackOpenelemSBrackClose"/>
+                </OMATP>
+                <OMV name="l"/>
+              </OMATTR>
+            </OMBVAR>
+            <OMA>
+              <OMS cd="casl" name="strong-equation"/>
+              <OMA>
+                <OMS cd="List_Rev_E1" name="reverse"/>
+                <OMA>
+                  <OMS cd="List_Rev_E1" name="reverse"/>
+                  <!--l is qualified for listSBrackOpenelemSBrackClose-->
+                  <OMV name="l"/>
+                </OMA>
+              </OMA>
+              <!--l is qualified for listSBrackOpenelemSBrackClose-->
+              <OMV name="l"/>
+            </OMA>
+          </OMBIND>
+        </OMOBJ>
+      </FMP>
+    </axiom>
+    <presentation for="#Ax2">
+      <use format="Hets">Ax2</use>
+    </presentation>
+  </theory>
+  <theory-inclusion from="#List_Rev" to="#List_Rev_E1" xml:id="ti.List_Rev_E1.List_Rev_1"/>
+</omdoc>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="ErrorReport.xsl"?>
+<schemaAnalysis SchemaQualityCheckerVersion="1.2.004" cost="10"
+    haltAtFirstError="false" requireEachDocumentValid="false" schemaLanguageVersion="2001-05-02">
+    <file fileNameWithoutPath="bad.xsd" filename="samples\bad.xsd">
+        <startdatetime>2001-08-15T19:26:44</startdatetime>
+        <error severity="1" type="2">
+            <source column="30" line="20"
+                location="file:C:/SQC-REC/samples/bad.xsd" locationWithoutPath="bad.xsd"/>
+            <message>In the definition of simpleType B,
+                &lt;xsd:minLength value=&quot;7&quot;/&gt;   is not
+                compatible with the following facets defined in one of
+                the ancestors of simpleType B, specifically simpleType A
+                [ located at file:/C:/SQC-REC/samples/bad.xsd ] :
+                &lt;xsd:minLength fixed=&quot;true&quot;
+                value=&quot;10&quot;/&gt;      The basetype facet is
+                declared fixed. Therefore, the value of
+                &lt;xsd:minLength value=&quot;7&quot;/&gt;   must be 10. </message>
+        </error>
+        <error severity="1" type="2">
+            <source column="31" line="38"
+                location="file:C:/SQC-REC/samples/bad.xsd" locationWithoutPath="bad.xsd"/>
+            <message>In the definition of simpleType E,
+                &lt;xsd:minLength value=&quot;30&quot;/&gt;   is not
+                compatible with the following facets defined in one of
+                the ancestors of simpleType E, specifically simpleType C
+                [ located at file:/C:/SQC-REC/samples/bad.xsd ] :
+                &lt;xsd:maxLength value=&quot;20&quot;/&gt;     </message>
+        </error>
+        <enddatetime>2001-08-15T19:26:49</enddatetime>
+    </file>
+</schemaAnalysis>

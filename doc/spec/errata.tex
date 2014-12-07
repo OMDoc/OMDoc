@@ -1,0 +1,130 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This file is part of the LaTeX sources of the OMDoc 1.3 specification
+% Copyright (c) 2006 Michael Kohlhase
+% This work is licensed by the Creative Commons Share-Alike license
+% see http://creativecommons.org/licenses/by-sa/2.5/ for details
+% $Id: errata.tex 8685 2010-08-23 08:55:17Z kohlhase $
+% $HeadURL: https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.3/doc/spec/errata.tex $
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass{article}
+\usepackage{url,xmlindex}
+\usepackage[hide]{errata}
+\usepackage[show]{ed}
+\usepackage[a4paper=true,  bookmarks=true, linkcolor=black,
+            citecolor=black,urlcolor=black,colorlinks=true,pagecolor=black,
+            breaklinks=true, bookmarksopen=true]{hyperref}
+\usepackage[today]{svninfo}
+\def\omdoc{OMDoc}
+\def\mathml{\scshape{MathML}}
+\def\openmath{\scshape{OpenMath}}
+\def\snippet#1{\texttt{#1}}
+\title{Errata to the OMDoc 1.3 Specification}
+\author{Michael Kohlhase\\
+  Computer Science\\
+  Jacobs University Bremen\\
+  \url{http://kwarc.info/kohlhase}}
+
+\begin{document}
+\maketitle
+\svnInfo $Id: errata.tex 8685 2010-08-23 08:55:17Z kohlhase $
+\svnKeyword $HeadURL: https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.3/doc/spec/errata.tex $
+\begin{abstract}
+  This document tracks the errata in the OMDoc 1.3 specification. We
+  will keep a corrected version available at
+  \url{https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.3/doc/spec/spec.pdf}.
+\end{abstract}
+
+\section{Introduction}
+The {\omdoc} (Open Mathematical Documents) format is a content markup scheme for
+(collections of) mathematical documents including articles, textbooks, interactive books,
+and courses.  {\omdoc} also serves as the content language for agent communication of
+mathematical services on a mathematical software bus.  The format features a modularized
+language design, {\openmath} and {\mathml} for representing mathematical objects, and has
+been employed and validated in various applications.
+
+\begin{oldpart}{adapt}The {\omdoc} 1.2 specification has been released as volume 4180 in the Springer Lecture
+Notes on Artificial Intelligence (LNAI) series. As with any release, the release of the
+specification has brought wider use and this flushes out bugs that went unnoticed before.
+These bugs (called errata for paper documents) are tracked in this document, whose newest
+version can be found at
+\url{https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.2/doc/spec/errata.pdf}. A
+version of the OMDoc specification that contains all errata corrections (and markup of
+what changed) can be found at
+\url{https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.2/doc/spec/spec.pdf}.
+
+In the following we will tabulate the errata in document order. Their location will be
+referenced by the section they appear in rather than the page number, since we do not
+expect the former to change in the errata correction process.
+\end{oldpart}
+\newpage
+\section{The Errata}
+\printerrata{spec}
+
+\newpage
+\section{Clarifications}
+
+\subsection{The {\attributeshort{cdbase}} Attribute in {\openmath} and {\omdoc}}
+
+In section {\textbf{13.1.1}} we recap the usage of the {\attributeshort{cdbase}} attribute
+on {\openmath} objects as a device to ``disambiguate content dictionaries''. In
+particular, {\attribute[ns-elt=om]{cdbase}{OMS}} attributes on {\element[ns-elt=om]{OMS}}
+elements can be elided when they can be inherited from parent elements.
+
+In section {\textbf{15.6.2}} we very briefly discuss another space-saving inheritance rule
+for {\attribute[ns-elt=om]{cdbse}{OMS}} attributes: {\attribute[ns-elt=om]{cdbse}{OMS}}
+attributes can be inherited from {\element{imports}} elements. 
+
+As recent misunderstandings in an implementation show, this inheritance mechanism needs
+clarification. 
+
+The general background of this is that on the one hand an {\openmath} symbol (encoded as
+an {\element[ns-elt=om]{OMS}} element) is fully identified by a triple: the content
+dictionary base, the content dictionary, and the name of the symbol. On the other hand,
+{\omdoc} specifies that the visibility of symbols in {\omdoc} documents is governed by
+theories (the {\omdoc} counterparts of content dictionaries): a symbol can only be used in
+a context that imports the symbol's home theory. Thus we can use the theory context to
+disambiguate theories of symbols and no {\element[ns-elt=om]{OMS}} element in an {\omdoc}
+document needs to carry an explicit {\attribute[ns-elt=om]{cdbase}{OMS}} attribute.
+
+To compute the content dictionary base of a symbol, we must fist compute its theory
+context, which is a partial function from theory names to URIs given by the following set
+of rules:
+\begin{enumerate}
+\item The {\texttt{immediate theory context}} of a theory consists of the theory name (given in the
+  {\attribute[ns-attr=xml]{id}{theory}} attribute on the {\element{theory}} element) its
+  base URI (as defined in~\cite[section 5.1]{BerFieMas:05}).
+\item Let $T$ be a theory that imports theories $S_1,\ldots,S_n$. Furthermore let
+  $\sigma_i$ be the theory context of the theories $S_i$, $\iota$ the immediate theory
+  context of $T$ and $\pi$ the theory context the parent theory of $T$ if it exists, else
+  $\emptyset$. Then the {\texttt{theory context}} $\theta$ of $T$ is defined by
+  $\theta\colon=\pi\cup\iota\cup\sigma_1\cup\ldots\cup\sigma_n$, where $\cup$ is the union
+  of partial functions. Note that we take $\cup$ to be commutative by making it undefined,
+  if its arguments contradict each other.
+\end{enumerate}
+With this we can define content dictionary base of a symbol $s$ with name $n$
+\begin{enumerate}
+\item If $T$ is the nearest {\element{theory}} ancestor of $s$ and $T$ has theory context
+  $\theta$, then the content dictionary base of $s$ is $\theta(n)$.
+\item If $s$ is not contained in a theory and $T$ is the theory referenced by the nearest
+  ancestor element of $s$ with a {\attributeshort{theory}} attribute and $\theta$ is the
+  theory context of that, then the content dictionary base of $s$ is $\theta(n)$ --- which
+  may be undefined if $\theta$ does not supply a content dictionary base for $n$.
+\item Otherwise the content dictionary base of $s$ is undefined.
+\end{enumerate}
+We call an {\omdoc} document $o$ {\textbf{well-scoped}}, iff for any symbol $s$ in $o$,
+the content dictionary base is defined. We require that any {\omdoc} document is
+well-scoped. In particular, an {\omdoc} application should issue an error, if it reads a
+document that is not well-scoped. 
+
+\bibliographystyle{alphahurl}
+\bibliography{kwarc}
+\end{document}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% fill-column: 90
+%%% TeX-master: t
+%%% End: 
+
+% LocalWords:  ps pdf tex LNAI cdbase ns elt cdbse attr xml kwarc

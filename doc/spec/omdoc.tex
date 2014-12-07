@@ -1,0 +1,153 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This file is part of the LaTeX sources of the OMDoc 1.3 specification
+% Copyright (c) 2006 Michael Kohlhase
+% This work is licensed by the Creative Commons Share-Alike license
+% see http://creativecommons.org/licenses/by-sa/2.5/ for details
+% $Id: omdoc.tex 9330 2014-05-03 14:38:25Z kohlhase $
+% $HeadURL: https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.3/doc/spec/omdoc.tex $
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[envcountsame,envcountchap]{svmono}
+\usepackage{makeidx}         % allows index generation
+\usepackage{graphicx}        % standard LaTeX graphics tool
+                             % when including figure files
+\usepackage{multicol}        % used for the two-column index
+\usepackage[bottom]{footmisc}% places footnotes at page bottom
+% end Springer recommendation
+\usepackage{array,longtable,moreverb,amssymb,url,wrapfig,makeidx,wasysym,textcomp} %standard
+\usepackage[eso-foot,today]{svninfo}
+\usepackage[hide]{ed}     %../macros set to [hide] when publishing
+\usepackage[show,record]{errata}
+\usepackage[hyper]{../macros/acronyms}
+\usepackage{ded,myref,myindex,../macros/xmlindex} % ../macros
+\usepackage{tikz}\usetikzlibrary{arrows} % new portable graphics package
+\usepackage{tabularx}
+\usepackage{macros}   %local
+\usepackage[backref=true,hyperref=auto,style=alphabetic]{biblatex}
+\addbibresource{../bibs/kwarcpubs.bib}
+\addbibresource{../bibs/extpubs.bib}
+\addbibresource{../bibs/kwarccrossrefs.bib}
+\addbibresource{../bibs/extcrossrefs.bib}
+
+\makeindex
+
+\usepackage[linkcolor=black, bookmarks=true, bookmarksopen=true, a4paper=true,  
+citecolor=black,urlcolor=black,colorlinks=true,breaklinks=true]{hyperref}
+
+%%%%%%%%%%% Document Parts %%%%%%%%%%% 
+\def\PRE{abstract,foreword,preface,acknowledgements}
+\def\PartI{partintro,web-markup,math-markup,omdoc-markup}
+\def\PartII{partprimer,algebra,cd,natlist,elalg,courseware,xmlrpc}
+\def\PartIII{partomdoc,spec-intro,document,dc,mobj,mtext,statements,adt,proofs,complex-theories,pres,ext,quiz,sublanguages,document-model}
+\def\PartIV{partresources,resources,validating,processing,projects}
+\def\PartV{partappendix,changes,quickref,quickref-attributes,rnc,mobj-rnc}
+\def\specParts{\PartI,\PartII,\PartIII,\PartIV,post}
+
+%\includeonly{\PartI}%,\PartII,\PartIII,post}
+%\includeonly{changes,quickref,quickref-attributes}
+%\includeonly{changes,document,mtext}
+%\includeonly{complex-theories}
+%\includeonly{natlist,elalg,complex-theories}  
+%\includeonly{pres,quiz,sublanguage,documepnt-model}
+%\includeonly{\PartI,\PartII,\PartIII,\PartIV,post}
+%\includeonly{mtext}
+\title{An Open Markup Format\\[1ex]
+ for Mathematical Documents} \subtitle{{\omdoc} [Version 1.3]}
+\author{Michael Kohlhase\\
+  Computer Science\\
+ Jacobs University Bremen\\
+  {\url{m.kohlhase@jacobs-university.de}}}
+\date{\today\\[1cm]\small
+ This Document is the OMDoc 1.3 Specification.\\
+\begin{center}
+  \begin{tabular}{|l|l|}\hline
+    {\bf{Source Information}} & 
+    revision \svnInfoMaxRevision, last change {\svnInfoLongDate} 
+    \def\empty{}\ifx\svnInfoOwner\empty\else by {\svnInfoOwner}\fi\\\hline
+    \multicolumn{2}{|l|}{{\scriptsize\tt{\svnInfoHeadURL}}}\\\hline
+  \end{tabular}
+\end{center} \vspace*{.5cm}
+ This work is licensed by the Creative Commons Share-Alike license
+  \url{http://creativecommons.org/licenses/by-sa/2.5/}: the contents of this specification
+  or fragments thereof may be copied and distributed freely, as long as they are
+  attributed to the original author and source, derivative works (i.e. modified versions
+  of the material) may be published as long as they are also licenced under the Creative
+  Commons Share-Alike license.}
+\begin{document}
+\svnInfo $Id: omdoc.tex 9330 2014-05-03 14:38:25Z kohlhase $
+\svnKeyword $HeadURL: https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.3/doc/spec/omdoc.tex $
+
+\frontmatter
+\maketitle
+\include{dedication}
+\include{abstract}
+\include{foreword}
+\include{preface}
+\include{acknowledgements}
+\setcounter{tocdepth}{1}\tableofcontents\newpage
+
+\mainmatter
+\include{partintro}%%%% the intro part
+\include{web-markup}
+\include{math-markup}
+\include{omdoc-markup}
+
+\include{partprimer}%%%%% The primer part
+\include{algebra}
+\include{cd}
+\include{natlist}
+\include{elalg}
+\include{courseware}
+\include{xmlrpc}
+
+\include{partomdoc}%%% the specification part
+\include{spec-intro}
+\include{document}
+\include{dc}
+\include{mobj}
+\include{mtext}
+\include{statements}
+\include{adt}
+\include{proofs}
+\include{complex-theories}
+\include{pres}
+\include{ext}
+\include{quiz}
+\include{document-model}
+
+% \include{partresources}%%%% the projects/processing part
+% \include{resources}
+% \include{validating}
+% \include{processing}
+% \include{projects}
+
+\include{partappendix}%%%% the appendix part
+\begin{appendix}
+\include{changes}
+\include{quickref}
+\include{quickref-attributes}
+\include{rnc}
+\include{mobj-rnc}
+%\include{adapt}
+%\include{examples}
+% \newpage\chapter{The Errata}\label{chap:errata}
+
+% In the following we will tabulate the errata in document order. Their location will be
+% referenced by the section they appear in rather than the page number, since we do not
+% expect the former to change in the errata correction process.
+
+% \PrintErrata
+\end{appendix}
+\backmatter
+\printbibliography
+{\small\printindex}
+
+\ednotemessage
+\end{document}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 
+
+% LocalWords:  rnc

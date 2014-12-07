@@ -1,0 +1,70 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-16">
+<title>Schema Quality Checker version 1.2.004</title>
+<style type="text/css">
+					body { font-family: courier;
+						     font-size: 8pt; }
+					table { font-family: courier;
+						     font-size: 8pt; }
+				</style>
+</head>
+<body bgcolor="#FFFFFF">
+<h1>IBM XML Schema Quality Checker Results</h1><i>Schema Quality Checker Version 1.2.004 Cost 10</i><br><p><font size="-1">For more information, see the XML_Schema_Quality_Checker_Readme.html file.</font></p>
+<h2> Error report summary</h2>
+<table border="2">
+<tr>
+<th>file location</th>
+<th>number of errors</th>
+</tr>
+<tr>
+<td><a href="#samples\bad.xsd">samples\bad.xsd</a></td>
+<td><center>2</center></td>
+</tr>
+</table><br><h2> Details </h2><a name="samples\bad.xsd"></a><table border="1">
+<tr BGCOLOR="#CCCCFF">
+<th colspan="5"><a href="samples\bad.xsd">samples\bad.xsd</a></th>
+</tr>
+<tr>
+<th width="10%"><center><font size="-1">line</font></center></th>
+<th width="10%"><center><font size="-1">column</font></center></th>
+<th width="10%"><center><font size="-1">severity</font></center></th>
+<th width="10%"><center><font size="-1">error type</font></center></th>
+<th width="60%"><center><font size="-1">location</font></center></th>
+</tr>
+<tr>
+<td><center>20</center></td>
+<td><center>30</center></td>
+<td><center> ERROR </center></td>
+<td><center> Constraint </center></td>
+<td><a href="file:C:/SQC-REC/samples/bad.xsd">file:C:/SQC-REC/samples/bad.xsd</a></td>
+</tr>
+<tr>
+<td colspan="5">In the definition of simpleType B,
+                &lt;xsd:minLength value="7"/&gt;   is not
+                compatible with the following facets defined in one of
+                the ancestors of simpleType B, specifically simpleType A
+                [ located at file:/C:/SQC-REC/samples/bad.xsd ] :
+                &lt;xsd:minLength fixed="true"
+                value="10"/&gt;      The basetype facet is
+                declared fixed. Therefore, the value of
+                &lt;xsd:minLength value="7"/&gt;   must be 10. </td>
+</tr>
+<tr>
+<td><center>38</center></td>
+<td><center>31</center></td>
+<td><center> ERROR </center></td>
+<td><center> Constraint </center></td>
+<td><a href="file:C:/SQC-REC/samples/bad.xsd">file:C:/SQC-REC/samples/bad.xsd</a></td>
+</tr>
+<tr>
+<td colspan="5">In the definition of simpleType E,
+                &lt;xsd:minLength value="30"/&gt;   is not
+                compatible with the following facets defined in one of
+                the ancestors of simpleType E, specifically simpleType C
+                [ located at file:/C:/SQC-REC/samples/bad.xsd ] :
+                &lt;xsd:maxLength value="20"/&gt;     </td>
+</tr>
+</table>
+</body>
+</html>

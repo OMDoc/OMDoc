@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet  type="text/xsl" href="mathml.xsl"?><html xmlns="http://www.w3.org/1999/xhtml" xmlns:pref="http://www.w3.org/2002/Math/preference" pref:renderer="mathplayer-dl">
+  <head>
+    <link rel="stylesheet" type="text/css" href="omdoc-cnx.css"/>
+    <title>Classical Truth Values</title>
+  </head>
+  <body>
+<div class="titleblock">
+<div class="title">Classical Truth Values</div>
+<div class="authors">Michael Kohlhase</div>
+<div class="date">2002-02-27</div>
+<div class="description">
+This theory provides all classical two-valued propositional connectives, it shares
+the symbol names with the OpenMath content dictionary logic1 for consistency. We have a
+separate theory here, since we want to make the semantics more restrictive than
+the inclusive treatment in logic1. In particular, we insist that the
+connectives are two-valued.
+  </div></div>
+
+
+<div class="symbol" id="bool">
+<div class="titlebox">
+<span class="titleword">Concept</span>bool</div>The type of truth values.</div>
+
+<div class="symbol" id="true">
+<div class="titlebox">
+<span class="titleword">Concept</span>true</div>This symbol represents the boolean value
+       true.
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(simpletypes.omdoc#simpletypes)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid113288"><semantics><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#bool" xlink:type="simple" id="MCRid113289">o</mo><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid113288" xlink:type="simple"><OMS cd="truthval" name="bool" xlink:href="MCRid113289" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="symbol" id="false">
+<div class="titlebox">
+<span class="titleword">Concept</span>false</div>This symbol represents the boolean value
+       false.
+<div class="type">
+<div class="titlebox">
+<span class="titleword">Type</span>(simpletypes.omdoc#simpletypes)</div><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid85366"><semantics><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#bool" xlink:type="simple" id="MCRid85367">o</mo><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid85366" xlink:type="simple"><OMS cd="truthval" name="bool" xlink:href="MCRid85367" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math></div>
+</div>
+
+<div class="symbol" id="eq">
+<div class="titlebox">
+<span class="titleword">Concept</span>eq</div>Equality on truth values</div>
+
+<div class="symbol" id="neq">
+<div class="titlebox">
+<span class="titleword">Concept</span>neq</div>Inequality on truth values</div>
+
+<div class="axiom" id="tf-distinct">
+<span class="titleword">Axiom</span>
+<p><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid85212"><semantics><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#true" xlink:type="simple" id="MCRid85214">T</mo><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid85212" xlink:type="simple"><OMS cd="truthval" name="true" xlink:href="MCRid85214" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math> and 
+    <math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid85221"><semantics><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#false" xlink:type="simple" id="MCRid85223">F</mo><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid85221" xlink:type="simple"><OMS cd="truthval" name="false" xlink:href="MCRid85223" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math> are distinct.
+   </p>
+
+<span class="FMP"><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid85238"><semantics><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#true" xlink:type="simple" id="MCRid85249">T</mo><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#neq" xlink:type="simple" id="MCRid85243">≠</mo><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#false" xlink:type="simple" id="MCRid84245">F</mo><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid85238" xlink:type="simple"><OMA xlink:href="MCRid85241" xlink:type="simple"><OMS cd="truthval" name="neq" xlink:href="MCRid85243" xlink:type="simple"/><OMS cd="truthval" name="true" xlink:href="MCRid85249" xlink:type="simple"/><OMS cd="truthval" name="false" xlink:href="MCRid84245" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math></span></div>
+
+<div class="symbol" id="false-elim">
+<div class="titlebox">
+<span class="titleword">Concept</span>false-elim</div></div>
+
+<div class="definition" id="false-elim-def">
+<span class="titleword">Definition</span>
+<p>The inference rule known as 'ex falso quotlibet' or
+ 'falsity-elimination':
+  </p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid84333"><semantics><mtable xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="inference-rules.xml#rule" rowlines="solid"><mtr xlink:href="inference-rules.xml#rule"><mtd xlink:href="inference-rules.xml#rule"><mfenced id="id84352" open="" close="" separators=""><mo xlink:href="truthval.xml#false" xlink:type="simple" id="MCRid84360">F</mo></mfenced></mtd></mtr><mtr xlink:href="inference-rules.xml#rule"><mtd xlink:href="inference-rules.xml#rule"><mi id="MCRid84367">A</mi></mtd></mtr></mtable><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid84333" xlink:type="simple"><OMBIND xlink:href="MCRid84338" xlink:type="simple"><OMS cd="inference-rules" name="schema" xlink:href="MCRid84340" xlink:type="simple"/><OMBVAR xlink:href="MCRid84346" xlink:type="simple"><OMV name="A" xlink:href="MCRid84348" xlink:type="simple"/></OMBVAR><OMA xlink:href="MCRid84352" xlink:type="simple"><OMS cd="inference-rules" name="rule" xlink:href="MCRid84354" xlink:type="simple"/><OMS cd="truthval" name="false" xlink:href="MCRid84360" xlink:type="simple"/><OMV name="A" xlink:href="MCRid84367" xlink:type="simple"/></OMA></OMBIND></OMOBJ></annotation-xml></semantics></math>
+<p>
+  It allows to derive an arbitrary formula from 
+  <math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid84376"><semantics><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="truthval.xml#false" xlink:type="simple" id="MCRid84378">F</mo><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid84376" xlink:type="simple"><OMS cd="truthval" name="false" xlink:href="MCRid84378" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math>. 
+</p>
+</div>
+
+<div class="symbol" id="true-intro">
+<div class="titlebox">
+<span class="titleword">Concept</span>true-intro</div></div>
+
+<div class="definition" id="true-info-def">
+<span class="titleword">Definition</span>
+<p>This is the inference rule for 'truth-introduction'
+  </p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid84423"><semantics><mtable xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="inference-rules.xml#rule" rowlines="solid"><mtr xlink:href="inference-rules.xml#rule"><mtd xlink:href="inference-rules.xml#rule"><mfenced id="id84428" open="" close="" separators=""/></mtd></mtr><mtr xlink:href="inference-rules.xml#rule"><mtd xlink:href="inference-rules.xml#rule"><mo xlink:href="truthval.xml#true" xlink:type="simple" id="MCRid84436">T</mo></mtd></mtr></mtable><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid84423" xlink:type="simple"><OMA xlink:href="MCRid84428" xlink:type="simple"><OMS cd="inference-rules" name="rule" xlink:href="MCRid84430" xlink:type="simple"/><OMS cd="truthval" name="true" xlink:href="MCRid84436" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math>
+<p>. It allows to introduce 
+  <math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid84446"><semantics><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="truthval.xml#true" xlink:type="simple" id="MCRid84448">T</mo><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid84446" xlink:type="simple"><OMS cd="truthval" name="true" xlink:href="MCRid84448" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math> anywhere.
+ </p>
+</div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  
+       xmlns="http://omdoc.org/ns"
+       xmlns:om="http://www.openmath.org/OpenMath"
+       xmlns:m="http://www.w3.org/1998/Math/MathML"
+       xmlns:o="http://omdoc.org/ns"
+       xml:id="limit1-omdoc">
+
+<metadata>
+  <dc:title>The OpenMath Content Dictionary limit1.ocd  in OMDoc form</dc:title>
+  <dc:creator role="trl">Michael Kohlhase</dc:creator>
+  <dc:creator role="ant">The OpenMath Society</dc:creator>
+  <dc:date> 2001-03-12T00:00:00</dc:date>
+  <dc:source>Derived from the OpenMath CD http://www.openmath.org/cd/limit1.ocd.</dc:source>
+  <dc:type>Text</dc:type>
+  <dc:format>application/omdoc+xml</dc:format>
+  <dc:rights>Copyright (c) 2000-2002 Michael Kohlhase;
+    This OMDoc content dictionary is released under the OpenMath license:
+    http://monet.nag.co.uk/openmath/cdfiles/license.html
+  </dc:rights>
+  <dc:description>
+    This CD holds the basic notion of the limits of unary functions
+    whilst its variable tend (either from above, below or both
+    sides) to a particular value.
+  </dc:description>
+</metadata>
+
+<theory xml:id="limit1">
+<imports from="sts.omdoc#sts"/>
+
+<symbol name="limit" xml:id="limit">
+<metadata>
+<dc:description>
+    This symbol is used to denote the limit of a unary function. It
+    takes 3 arguments: the limiting value of the argument, the method of
+    approach (either null, above, below or both-sides) and the function.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMS name="NumericalValue" cd="sts"/>
+	<OMV name="TendsTo"/>
+	<OMA>
+	  <OMS name="mapsto" cd="sts"/>
+	  <OMS name="NumericalValue" cd="sts"/>
+	  <OMS name="NumericalValue" cd="sts"/>
+	</OMA>
+	<OMS name="NumericalValue" cd="sts"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="limit1" name="limit" o:cr="fun"/>
+        <expr name="target"/>
+        <om:OMS cd="limit1" name="both_sides" o:cr="bs"/>
+	<om:OMBIND>
+	  <om:OMS cd="fns1" name="lambda"/>
+	  <om:OMBVAR><expr name="bvar"/></om:OMBVAR>
+	  <expr name="scope"/>
+	</om:OMBIND>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="limit1" o:cr="fun">limit</m:csymbol>
+        <expr name="target"/>
+        <m:csymbol cd="limit1" o:cr="bs">both_sides</m:csymbol>
+	<m:bind>
+	  <m:csymbol cd="fns1">lambda</m:csymbol>
+	  <m:bvar><expr name="bvar"/></m:bvar>
+	  <expr name="scope"/>
+	</m:bind>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <m:mrow>
+	<m:munder>
+	  <m:mo o:cr="fun">lim</m:mo>
+	  <m:mrow><render name="bvar"/><m:mo o:cr="bs">→</m:mo><render name="target"/></m:mrow>
+	</m:munder>
+	<render name="scope"/>
+      </m:mrow>
+    </rendering>
+  </notation>
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="limit1" name="limit" o:cr="fun"/>
+        <expr name="target"/>
+        <om:OMS cd="limit1" name="above" o:cr="ab"/>
+	<om:OMBIND>
+	  <om:OMS cd="fns1" name="lambda"/>
+	  <om:OMBVAR><expr name="bvar"/></om:OMBVAR>
+	  <expr name="scope"/>
+	</om:OMBIND>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="limit1" o:cr="fun">limit</m:csymbol>
+        <expr name="target"/>
+        <m:csymbol cd="limit1" o:cr="ab">above</m:csymbol>
+	<m:bind>
+	  <m:csymbol cd="fns1">lambda</m:csymbol>
+	  <m:bvar><expr name="bvar"/></m:bvar>
+	  <expr name="scope"/>
+	</m:bind>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <m:mrow>
+	<m:munder>
+	  <m:mo o:cr="fun">lim</m:mo>
+	  <m:mrow><render name="bvar"/><m:mo o:cr="ab">↓</m:mo><render name="target"/></m:mrow>
+	</m:munder>
+	<render name="scope"/>
+      </m:mrow>
+    </rendering>
+  </notation>
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="limit1" name="limit" o:cr="fun"/>
+        <expr name="target"/>
+        <om:OMS cd="limit1" name="below" o:cr="be"/>
+	<om:OMBIND>
+	  <om:OMS cd="fns1" name="lambda"/>
+	  <om:OMBVAR><expr name="bvar"/></om:OMBVAR>
+	  <expr name="scope"/>
+	</om:OMBIND>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="limit1" o:cr="fun">limit</m:csymbol>
+        <expr name="target"/>
+        <m:csymbol cd="limit1" o:cr="be">below</m:csymbol>
+	<m:bind>
+	  <m:csymbol cd="fns1">lambda</m:csymbol>
+	  <m:bvar><expr name="bvar"/></m:bvar>
+	  <expr name="scope"/>
+	</m:bind>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <m:mrow>
+      <m:munder>
+	<m:mo o:cr="fun">lim</m:mo>
+	<m:mrow><render name="bvar"/><m:mo o:cr="be">↑</m:mo><render name="target"/></m:mrow>
+      </m:munder>
+      <render name="scope"/>
+    </m:mrow>
+    </rendering>
+  </notation>
+  <notation>
+    <prototype>
+      <om:OMS cd="limit1" name="limit"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="limit1">limit</m:csymbol>
+    </prototype>
+    <rendering>
+      <m:mo>lim</m:mo>
+    </rendering>
+  </notation>
+
+<theory xml:id="limit1-limit">
+<imports from="fns1.omdoc#fns1"/>
+<imports from="transc1.omdoc#transc1"/>
+
+<example xml:id="limit-ex-1" type="for" for="#limit">
+  <CMP>The limit of sin(x) as x tends to 0</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="limit1" name="limit"/>
+      <OMI> 0 </OMI>
+      <OMS cd="limit1" name="both_sides"/>
+      <OMBIND>
+	<OMS cd="fns1" name="lambda"/>
+	<OMBVAR> <OMV name="x"/> </OMBVAR>
+	<OMA>
+	  <OMS cd="transc1" name="sin"/>
+	  <OMV name="x"/>
+	</OMA>
+      </OMBIND>
+    </OMA>
+  </OMOBJ>
+</example>
+</theory>
+
+<symbol name="both_sides" xml:id="both_sides">
+<metadata>
+<dc:description> 
+    This symbol is used within a limit construct to show the limit is
+    being approached from both sides. It takes no arguments.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMV name="TendsTo"/>
+    </OMOBJ>
+  </type>
+</symbol>
+
+<theory xml:id="limit1-both">
+<imports from="fns1.omdoc#fns1"/>
+<imports from="transc1.omdoc#transc1"/>
+
+<example xml:id="both_sides-ex-1" type="for" for="#both_sides">
+  <CMP>The limit of sin(x) as x tends to 0 from either direction</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="limit1" name="limit"/>
+      <OMI> 0 </OMI>
+      <OMS cd="limit1" name="both_sides"/>
+      <OMBIND>
+	<OMS cd="fns1" name="lambda"/>
+	<OMBVAR>
+	  <OMV name="x"/>
+	</OMBVAR>
+	<OMA>
+	  <OMS cd="transc1" name="sin"/>
+	  <OMV name="x"/>
+	</OMA>
+      </OMBIND>
+    </OMA>
+  </OMOBJ>
+</example>
+</theory>
+
+<symbol name="above" xml:id="above">
+<metadata>
+<dc:description> 
+    This symbol is used within a limit construct to show the limit is
+    being approached from above. It takes no arguments.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="TendsTo"/></OMOBJ>
+  </type>
+</symbol>
+
+<theory xml:id="limit1-above">
+<imports from="fns1.omdoc#fns1"/>
+<imports from="transc1.omdoc#transc1"/>
+
+<example xml:id="above-ex-1" type="for" for="#above">
+  <CMP>The limit of sin(x) as x tends to 0 from above</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="limit1" name="limit"/>
+      <OMI> 0 </OMI>
+      <OMS cd="limit1" name="above"/>
+      <OMBIND>
+	<OMS cd="fns1" name="lambda"/>
+	<OMBVAR>
+	  <OMV name="x"/>
+	</OMBVAR>
+	<OMA>
+	  <OMS cd="transc1" name="sin"/>
+	  <OMV name="x"/>
+	</OMA>
+      </OMBIND>
+    </OMA>
+  </OMOBJ>
+</example>
+</theory>
+
+
+<symbol name="below" xml:id="below">
+<metadata>
+<dc:description>
+    This symbol is used within a limit construct to show the limit is
+    being approached from below. It takes no arguments.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMV name="TendsTo"/>
+    </OMOBJ>
+  </type>
+</symbol>
+
+<theory xml:id="limit1-below">
+<imports from="fns1.omdoc#fns1"/>
+<imports from="transc1.omdoc#transc1"/>
+
+<example xml:id="below-ex-1" type="for" for="#below">
+  <CMP>The limit of sin(x) as x tends to 0 from below</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="limit1" name="limit"/>
+      <OMI> 0 </OMI>
+      <OMS cd="limit1" name="below"/>
+      <OMBIND>
+	<OMS cd="fns1" name="lambda"/>
+	<OMBVAR>
+	  <OMV name="x"/>
+	</OMBVAR>
+	<OMA>
+	  <OMS cd="transc1" name="sin"/>
+	  <OMV name="x"/>
+	</OMA>
+      </OMBIND>
+    </OMA>
+  </OMOBJ>
+</example>
+</theory>
+
+<symbol name="null" xml:id="null">
+<metadata>
+<dc:description>
+    This symbol is used within a limit construct to avoid specifying the method of
+    approach to the limit. It takes no arguments.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMV name="TendsTo"/>
+    </OMOBJ>
+  </type>
+</symbol>
+
+<theory xml:id="limit1-null">
+<imports from="fns1.omdoc#fns1"/>
+<imports from="transc1.omdoc#transc1"/>
+
+<example xml:id="null-ex-1" type="for" for="#null">
+  <CMP>The limit of sin(x) as x tends to 0</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="limit1" name="limit"/>
+      <OMI> 0 </OMI>
+      <OMS cd="limit1" name="null"/>
+      <OMBIND>
+	<OMS cd="fns1" name="lambda"/>
+	<OMBVAR>
+	  <OMV name="x"/>
+	</OMBVAR>
+	<OMA>
+	  <OMS cd="transc1" name="sin"/>
+	  <OMV name="x"/>
+	</OMA>
+      </OMBIND>
+    </OMA>
+  </OMOBJ>
+</example>
+</theory>
+</theory>
+
+</omdoc>
+

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE omdoc PUBLIC "-//OMDoc//DTD OMDoc V1.3//EN"
+                "../../dtd/omdoc.dtd" []>
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://omdoc.org/ns" xml:id="nuprl-defined.omdoc">
+<metadata>
+  <dc:date action="created">2002-09-30T21:05:11Z </dc:date>
+  <dc:title xml:lang="en"> nuprl-defined </dc:title>
+  <dc:creator role="aut"> Michael Kohlhase </dc:creator>
+  <dc:source>  </dc:source>
+  <dc:date action="updated"> 2003-06-10T12:42:10Z </dc:date>
+  <dc:type> Text </dc:type>
+  <dc:format> application/omdoc+xml </dc:format>
+</metadata>
+
+<theory xml:id="nuprl-defined">
+<!-- dc:source: P {\andd} Q  -->
+<symbol name="and">
+<metadata>
+<dc:description>Conjunction</dc:description>
+</metadata>
+</symbol>
+
+
+<presentation for="#and">
+  <use format="nuprl"></use>
+</presentation>
+
+<!-- dc:source: P {\orr} Q  -->
+<symbol name="or">
+<metadata>
+<dc:description>Disjunction</dc:description>
+</metadata>
+</symbol>
+
+
+<presentation for="#or">
+  <use format="nuprl"></use>
+</presentation>
+
+<!-- dc:source: P {\imp} Q  -->
+<symbol name="implies">
+<metadata>
+<dc:description>Implication</dc:description>
+</metadata>
+</symbol>
+
+
+<presentation for="#implies">
+  <use format="nuprl"></use>
+</presentation>
+
+<!-- dc:source: {\nott} P  -->
+<symbol name="not">
+<metadata>
+<dc:description>Negation.</dc:description>
+</metadata>
+</symbol>
+
+
+<presentation for="#not">
+  <use format="nuprl"></use>
+</presentation>
+
+<!-- dc:source: {\ex}x:T.P                                              x bound in P  -->
+<symbol name="exists">
+<metadata>
+<dc:description></dc:description>
+</metadata>
+</symbol>
+
+
+<presentation for="#exists">
+  <use format="nuprl"></use>
+</presentation>
+
+<!-- dc:source: {all}x:T.P                                              x bound in P  -->
+<symbol name="all">
+<metadata>
+<dc:description></dc:description>
+</metadata>
+</symbol>
+
+<!-- dc:source:         There is a lot of other predefined standard stuff  -->
+<!-- dc:source: natural numbers, booleans, Y combinator, records ....  -->
+
+</theory>
+</omdoc>

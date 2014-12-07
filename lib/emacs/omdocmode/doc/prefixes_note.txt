@@ -1,0 +1,37 @@
+OMDoc mode -- prefixes_note.txt			September 2002.
+
+This note contains the answer to a question for a clarification
+of the choice of keybindings for the template insertion functions.
+(Excerpted/edited from an e-mail exchange).
+
+Question:
+
+> could you give me some rule of thumb, how the prefix for the
+> tempo-... templates are chosen, so that I can better remember them?
+
+Answer:
+
+Sure...
+1. All prefixes start with C-c  (as per major-mode convention).
+
+2. For the second key, I used a control character corresponding to
+   the main section letter for the tag type, so
+   C-c C-s for (document) Structure elements
+   C-c C-m for Math elements  (unfortunately, emacs turns this into <RET>).
+   C-c C-t for Theories elements
+   C-c C-a for Auxiliary elements
+   C-c C-p for Presentation elements
+   C-c C-o for OpenMath elements, and
+   C-c C-o for Dublin Core elements.
+
+3. Finally, I tried to follow a similar strategy for the third keystroke
+   (this one not a control character).
+  - I used the first letter of the tag whenever possible.
+  - In the case of a tie, I guessed which construct would be the more frequent
+    one, and assigned the first letter to that tag, choosing a later character
+    or another symbol for the other tags, trying to make some mnemonic
+    connection when I could think of one. For example, C-c C-m# for <pattern>.
+
+The choices are currently hardwired in the code (omdoc-templates.el).
+
+Comments and further questions are welcome at pjj@cs.cmu.edu.

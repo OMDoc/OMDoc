@@ -1,0 +1,626 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  
+       xmlns="http://omdoc.org/ns"
+       xmlns:om="http://www.openmath.org/OpenMath"
+       xmlns:m="http://www.w3.org/1998/Math/MathML"
+       xmlns:o="http://omdoc.org/ns"
+       xml:id="setname1-omdoc">
+
+<metadata>
+  <dc:title>The OpenMath Content Dictionary setname1.ocd  in OMDoc form</dc:title>
+  <dc:creator role="trl">Michael Kohlhase</dc:creator>
+  <dc:creator role="ant">J.H. Davenport</dc:creator>
+  <dc:date> 1999-04-18T00:00:00</dc:date>
+  <dc:source>Derived from the OpenMath CD http://www.openmath.org/cd/setname1.ocd.</dc:source>
+  <dc:type>Text</dc:type>
+  <dc:format>application/omdoc+xml</dc:format>
+  <dc:rights>Copyright (c) 2000-2002 Michael Kohlhase;
+    This OMDoc content dictionary is released under the OpenMath license:
+    http://monet.nag.co.uk/openmath/cdfiles/license.html
+  </dc:rights>
+  <dc:description>This CD defines common sets of mathematics</dc:description>
+</metadata>
+
+<theory xml:id="setname1">
+
+
+<symbol name="P" xml:id="P">
+  <metadata>
+  <dc:description> This symbol represents the set of positive prime numbers.</dc:description><dc:subject>P</dc:subject></metadata>
+  <type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMV name="Set"/>
+    </OMOBJ>
+  </type>
+</symbol>
+  <notation>
+    <prototype>
+      <om:OMS cd="setname1" name="P"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="setname1">P</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en">
+      <m:mo>Primes</m:mo>
+    </rendering>
+  </notation>
+
+<symbol name="N" xml:id="N">
+<metadata>
+<dc:description> 
+    This symbol represents the set of natural numbers (including zero).
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMV name="Set"/>
+    </OMOBJ>
+  </type>
+</symbol>
+  <notation>
+    <prototype>
+      <om:OMS cd="setname1" name="N"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="setname1">N</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en"><m:mo>ℕ</m:mo></rendering>
+  </notation>
+
+<symbol name="Z" xml:id="Z">
+<metadata>
+<dc:description> 
+    This symbol represents the set of integers, positive, negative and zero.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMV name="EuclideanRing"/>
+    </OMOBJ>
+  </type>
+</symbol>
+  <notation>
+    <prototype>
+      <om:OMS cd="setname1" name="Z"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="setname1">Z</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en"><m:mo>ℤ</m:mo></rendering>
+  </notation>
+
+<symbol name="Q" xml:id="Q">
+<metadata>
+<dc:description> 
+    This  symbol represents the set of rational numbers.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMV name="Field"/>
+    </OMOBJ>
+  </type>
+</symbol>
+  <notation>
+    <prototype>
+      <om:OMS cd="setname1" name="Q"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="setname1">Q</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en"><m:mo>ℚ</m:mo></rendering>
+  </notation>
+
+<symbol name="R" xml:id="R">
+  <metadata>
+  <dc:description> This symbol represents the set of real numbers.</dc:description><dc:subject>R</dc:subject></metadata>
+  <type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMV name="Field"/>
+    </OMOBJ>
+  </type>
+</symbol>
+  <notation>
+    <prototype>
+      <om:OMS cd="setname1" name="R"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="setname1">R</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en"><m:mo>ℝ</m:mo></rendering>
+  </notation>
+
+<symbol name="C" xml:id="C">
+  <metadata>
+  <dc:description>This  symbol represents the set of complex numbers.</dc:description><dc:subject>C</dc:subject></metadata>
+  <type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMV name="Field"/>
+    </OMOBJ>
+  </type>
+</symbol>
+  <notation>
+    <prototype>
+      <om:OMS cd="setname1" name="C"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="setname1">C</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en"><m:mo>ℂ</m:mo></rendering>
+  </notation>
+
+<!-- rolled out to avoid circular imports -->
+<theory xml:id="setname1-nonconstitutive">
+<imports from="alg1.omdoc#alg1"/>
+<imports from="arith1.omdoc#arith1"/>
+<imports from="logic1.omdoc#logic1"/>
+<imports from="nums1.omdoc#nums1"/>
+<imports from="quant1.omdoc#quant1"/>
+<imports from="relation1.omdoc#relation1"/>
+<imports from="set1.omdoc#set1"/>
+
+<assertion xml:id="P-prop-1" type="lemma">
+  <CMP>
+    for all n |
+    n is a positive prime number is equivalent to:
+    n is a natural number and n &gt; 1 and
+    ((n=a*b and a and b are natural numbers) implies ((a=1 and b=n) or
+    (b=1 and a=n)))
+  </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMBIND>
+	<OMS name="forall" cd="quant1"/>
+	<OMBVAR>
+	  <OMV name="n"/>
+	</OMBVAR>
+	<OMA>
+	  <OMS name="equivalent" cd="logic1"/>
+	  <OMA>
+	    <OMS name="in" cd="set1"/>
+	    <OMV name="n"/>
+	    <OMS name="P" cd="setname1"/>
+	  </OMA>
+	  <OMA>
+	    <OMS name="and" cd="logic1"/>
+	    <OMA>
+	      <OMS name="in" cd="set1"/>
+	      <OMV name="n"/>
+	      <OMS name="N" cd="setname1"/>
+	    </OMA>
+	    <OMA>
+	      <OMS name="gt" cd="relation1"/>
+	      <OMV name="n"/>
+	      <OMS name="one" cd="alg1"/>
+	    </OMA>
+	    <OMA>
+	      <OMS name="implies" cd="logic1"/>
+	      <OMA>
+		<OMS name="and" cd="logic1"/>
+		<OMA>
+		  <OMS name="eq" cd="relation1"/>
+		  <OMV name="n"/>
+		  <OMA>
+		    <OMS name="times" cd="arith1"/>
+		    <OMV name="a"/>
+		    <OMV name="b"/>
+		  </OMA>
+		</OMA>
+		<OMA>
+		  <OMS name="in" cd="set1"/>
+		  <OMV name="a"/>
+		  <OMS name="N" cd="setname1"/>
+		</OMA>
+		<OMA>
+		  <OMS name="in" cd="set1"/>
+		  <OMV name="b"/>
+		  <OMS name="N" cd="setname1"/>
+		</OMA>
+	      </OMA>
+	      <OMA>
+		<OMS name="or" cd="logic1"/>
+		<OMA>
+		  <OMS name="and" cd="logic1"/>
+		  <OMA>
+		    <OMS name="eq" cd="relation1"/>
+		    <OMV name="a"/>
+		    <OMS name="one" cd="alg1"/>
+		  </OMA>
+		  <OMA>
+		    <OMS name="eq" cd="relation1"/>
+		    <OMV name="b"/>
+		    <OMV name="n"/>
+		  </OMA>
+		</OMA>
+		<OMA>
+		  <OMS name="and" cd="logic1"/>
+		  <OMA>
+		    <OMS name="eq" cd="relation1"/>
+		    <OMV name="b"/>
+		    <OMS name="one" cd="alg1"/>
+		  </OMA>
+		  <OMA>
+		    <OMS name="eq" cd="relation1"/>
+		    <OMV name="a"/>
+		    <OMV name="n"/>
+		  </OMA>
+		</OMA>
+	      </OMA>
+	    </OMA>
+	  </OMA>
+	</OMA>
+      </OMBIND>
+    </OMOBJ>
+  </FMP>
+</assertion>
+<assertion xml:id="N-prop-1" type="lemma">
+  <CMP> for all n | n in the natural numbers is equivalent to saying 
+    n=0 or n-1 is a natural number </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMBIND>
+	<OMS name="forall" cd="quant1"/>
+	<OMBVAR>
+	  <OMV name="n"/>
+	</OMBVAR>
+	<OMA>
+	  <OMS name="implies" cd="logic1"/>
+	  <OMA>
+	    <OMS name="in" cd="set1"/>
+	    <OMV name="n"/>
+	    <OMS name="N" cd="setname1"/>
+	  </OMA>
+	  <OMA>
+	    <OMS name="or" cd="logic1"/>
+	    <OMA>
+	      <OMS name="eq" cd="relation1"/>
+	      <OMV name="n"/>
+	      <OMS name="zero" cd="alg1"/>
+	    </OMA>
+	    <OMA>
+	      <OMS name="in" cd="set1"/>
+	      <OMA>
+		<OMS name="minus" cd="arith1"/>
+		<OMV name="n"/>
+		<OMS name="one" cd="alg1"/>
+	      </OMA>
+	      <OMS name="N" cd="setname1"/>
+	    </OMA>
+	  </OMA>
+	</OMA>
+      </OMBIND>
+    </OMOBJ>
+  </FMP>
+</assertion>
+<assertion xml:id="Z-prop-1" type="lemma">
+  <CMP> 
+    for all z | the statements z is an integer and z is a natural number
+    or -z is a natural number are equivalent
+  </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMBIND>
+	<OMS name="forall" cd="quant1"/>
+	<OMBVAR>
+	  <OMV name="z"/>
+	</OMBVAR>
+	<OMA>
+	  <OMS name="implies" cd="logic1"/>
+	  <OMA>
+	    <OMS name="in" cd="set1"/>
+	    <OMV name="z"/>
+	    <OMS name="Z" cd="setname1"/>
+	  </OMA>
+	  <OMA>
+	    <OMS name="or" cd="logic1"/>
+	    <OMA>
+	      <OMS name="in" cd="set1"/>
+	      <OMV name="z"/>
+	      <OMS name="N" cd="setname1"/>
+	    </OMA>
+	    <OMA>
+	      <OMS name="in" cd="set1"/>
+	      <OMA>
+		<OMS name="unary_minus" cd="arith1"/>
+		<OMV name="z"/>
+	      </OMA>
+	      <OMS name="N" cd="setname1"/>
+	    </OMA>
+	  </OMA>
+	</OMA>
+      </OMBIND>
+    </OMOBJ>
+  </FMP>
+</assertion>
+<assertion xml:id="Q-prop-1" type="lemma">
+  <CMP>
+    for all z where z is a rational, there exists integers p and q with
+    q &gt; 1 and p/q = z 
+  </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMBIND>
+	<OMS name="forall" cd="quant1"/>
+	<OMBVAR>
+	  <OMV name="z"/>
+	</OMBVAR>
+	<OMA>
+	  <OMS name="implies" cd="logic1"/>
+	  <OMA>
+	    <OMS name="in" cd="set1"/>
+	    <OMV name="z"/>
+	    <OMS name="Q" cd="setname1"/>
+	  </OMA>
+	  <OMBIND>
+	    <OMS name="exists" cd="quant1"/>
+	    <OMBVAR>
+	      <OMV name="p"/>
+	      <OMV name="q"/>
+	    </OMBVAR>
+	    <OMA>
+	      <OMS name="and" cd="logic1"/>
+	      <OMA>
+		<OMS name="in" cd="set1"/>
+		<OMV name="p"/>
+		<OMS name="Z" cd="setname1"/>
+	      </OMA>
+	      <OMA>
+		<OMS name="in" cd="set1"/>
+		<OMV name="q"/>
+		<OMS name="Z" cd="setname1"/>
+	      </OMA>
+	      <OMA>
+		<OMS name="geq" cd="relation1"/>
+		<OMV name="q"/>
+		<OMS name="one" cd="alg1"/>
+	      </OMA>
+	      <OMA>
+		<OMS name="eq" cd="relation1"/>
+		<OMV name="z"/>
+		<OMA>
+		  <OMS name="divide" cd="arith1"/>
+		  <OMV name="p"/>
+		  <OMV name="q"/>
+		</OMA>
+	      </OMA>
+	    </OMA>
+	  </OMBIND>
+	</OMA>
+      </OMBIND>
+    </OMOBJ>
+  </FMP>
+</assertion>
+<assertion xml:id="Q-prop-3" type="lemma">
+  <CMP> 
+    for all a,b | a,b rational with a&lt;b implies there exists rational a,c
+    s.t. a&lt;c and c&lt;b
+  </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMBIND>
+	<OMS cd="quant1" name="forall"/>
+	<OMBVAR>
+	  <OMV name="a"/>
+	  <OMV name="b"/>
+	</OMBVAR>
+	<OMA>
+	  <OMS cd="logic1" name="implies"/>
+	  <OMA>
+	    <OMS cd="logic1" name="and"/>
+	    <OMA>
+	      <OMS cd="set1" name="in"/>
+	      <OMV name="a"/>
+	      <OMS cd="setname1" name="Q"/>
+	    </OMA>
+	    <OMA>
+	      <OMS cd="set1" name="in"/>
+	      <OMV name="b"/>
+	      <OMS cd="setname1" name="Q"/>
+	    </OMA>
+	    <OMA>
+	      <OMS cd="relation1" name="lt"/>
+	      <OMV name="a"/>
+	      <OMV name="b"/>
+	    </OMA>
+	  </OMA>
+	  <OMBIND>
+	    <OMS cd="quant1" name="exists"/>
+	    <OMBVAR>
+	      <OMV name="c"/>
+	    </OMBVAR>
+	    <OMA>
+	      <OMS cd="logic1" name="and"/>
+	      <OMA>
+		<OMS cd="set1" name="in"/>
+		<OMV name="c"/>
+		<OMS cd="setname1" name="Q"/>
+	      </OMA>
+	      <OMA>
+		<OMS cd="relation1" name="lt"/>
+		<OMV name="a"/>
+		<OMV name="c"/>
+	      </OMA>
+	      <OMA>
+		<OMS cd="relation1" name="lt"/>
+		<OMV name="c"/>
+		<OMV name="b"/>
+	      </OMA>
+	    </OMA>
+	  </OMBIND>
+	</OMA>
+      </OMBIND>
+    </OMOBJ>
+  </FMP>
+</assertion>
+<assertion xml:id="R-prop-1" type="lemma">
+  <CMP> If <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="#R-prop-1.1"/></OMOBJ> and there is a
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="#R-prop-1.2"/></OMOBJ> such that
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="#R-prop-1.3"/></OMOBJ>, then there is a
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="#R-prop-1.4"/></OMOBJ> such that 
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="#R-prop-1.5"/></OMOBJ> and
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="#R-prop-1.6"/></OMOBJ>.
+
+    exists z in R such that
+    (( forall x in S x &lt;= z) and
+    ((forall x in S x &lt;= w)  implies z &lt;= w)
+  </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="logic1" name="implies"/>
+	<OMA>
+	  <OMS cd="logic1" name="and"/>
+	  <OMA id="R-prop-1.1">
+	    <OMS cd="set1" name="subset"/>
+	    <OMV name="S"/>
+	    <OMS cd="setname1" name="R"/>
+	  </OMA>
+	  <OMBIND>
+	    <OMS cd="quant1" name="exists"/>
+	    <OMBVAR><OMV name="y"/></OMBVAR>
+	    <OMA>
+	      <OMS cd="logic1" name="and"/>
+	      <OMA id="R-prop-1.2">
+		<OMS cd="set1" name="in"/>
+		<OMV name="y"/>
+		<OMS cd="setname1" name="R"/>
+	      </OMA>
+	      <OMBIND id="R-prop-1.3">
+		<OMS cd="quant1" name="forall"/>
+		<OMBVAR><OMV name="x"/></OMBVAR>
+		<OMA>
+		  <OMS cd="logic1" name="and"/>
+		  <OMA>
+		    <OMS cd="set1" name="in"/>
+		    <OMV name="x"/>
+		    <OMV name="S"/>
+		  </OMA>
+		  <OMA>
+		    <OMS cd="relation1" name="leq"/>
+		    <OMV name="x"/>
+		    <OMV name="y"/>
+		  </OMA>
+		</OMA>
+	      </OMBIND>
+	    </OMA>
+	  </OMBIND>
+	</OMA>
+	<OMBIND>
+	  <OMS cd="quant1" name="exists"/>
+	  <OMBVAR><OMV name="z"/></OMBVAR>
+	  <OMA>
+	    <OMS cd="logic1" name="and"/>
+	    <OMA id="R-prop-1.4">
+	      <OMS cd="set1" name="in"/>
+	      <OMV name="z"/>
+	      <OMS cd="setname1" name="R"/>
+	    </OMA>
+	    <OMBIND id="R-prop-1.5">
+	      <OMS cd="quant1" name="forall"/>
+	      <OMBVAR><OMV name="x"/></OMBVAR>
+	      <OMA>
+		<OMS cd="logic1" name="implies"/>
+		<OMA>
+		  <OMS cd="set1" name="in"/>
+		  <OMV name="x"/>
+		  <OMV name="S"/>
+		</OMA>
+		<OMA>
+		  <OMS cd="relation1" name="leq"/>
+		  <OMV name="x"/>
+		  <OMV name="z"/>
+		</OMA>
+	      </OMA>
+	    </OMBIND>
+	    <OMA id="R-prop-1.6">
+	      <OMS cd="logic1" name="implies"/>
+	      <OMBIND>
+		<OMS cd="quant1" name="forall"/>
+		<OMBVAR>
+		  <OMV name="x"/>
+		</OMBVAR>
+		<OMA>
+		  <OMS cd="logic1" name="implies"/>
+		  <OMA>
+		    <OMS cd="set1" name="in"/>
+		    <OMV name="x"/>
+		    <OMV name="S"/>
+		  </OMA>
+		  <OMA>
+		    <OMS cd="relation1" name="leq"/>
+		    <OMV name="x"/>
+		    <OMV name="w"/>
+		  </OMA>
+		</OMA>
+	      </OMBIND>
+	      <OMA>
+		<OMS cd="relation1" name="leq"/>
+		<OMV name="z"/>
+		<OMV name="w"/>
+	      </OMA>
+	    </OMA>
+	  </OMA>
+	</OMBIND>
+      </OMA>
+    </OMOBJ>
+  </FMP>
+</assertion>
+<assertion xml:id="C-prop-1" type="lemma">
+  <CMP> for all z | if z is complex then there exist reals x,y s.t. z = x + i * y </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMBIND>
+	<OMS cd="quant1" name="forall"/>
+	<OMBVAR>
+	  <OMV name="z"/>
+	</OMBVAR>
+	<OMA>
+	  <OMS cd="logic1" name="implies"/>
+	  <OMA>
+	    <OMS cd="set1" name="in"/>
+	    <OMV name="z"/>
+	    <OMS cd="setname1" name="C"/>
+	  </OMA>
+	  <OMBIND>
+	    <OMS cd="quant1" name="exists"/>
+	    <OMBVAR>
+	      <OMV name="x"/>
+	      <OMV name="y"/>
+	    </OMBVAR>
+	    <OMA>
+	      <OMS cd="logic1" name="and"/>
+	      <OMA>
+		<OMS cd="set1" name="in"/>
+		<OMV name="x"/>
+		<OMS cd="setname1" name="R"/>
+	      </OMA>
+	      <OMA>
+		<OMS cd="set1" name="in"/>
+		<OMV name="y"/>
+		<OMS cd="setname1" name="R"/>
+	      </OMA>
+	      <OMA>
+		<OMS cd="relation1" name="eq"/>
+		<OMV name="z"/>
+		<OMA>
+		  <OMS cd="arith1" name="plus"/>
+		  <OMV name="x"/>
+		  <OMA>
+		    <OMS cd="arith1" name="times"/>
+		    <OMS cd="nums1" name="i"/>
+		    <OMV name="y"/>
+		  </OMA>
+		</OMA>
+	      </OMA>
+	    </OMA>
+	  </OMBIND>
+	</OMA>
+      </OMBIND>
+    </OMOBJ>
+  </FMP>
+</assertion>
+</theory>
+</theory>
+</omdoc>
+

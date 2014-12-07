@@ -1,0 +1,120 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This file is part of the LaTeX sources of the OMDoc 1.3 specifiation
+% Copyright (c) 2006 Paul Libbrecht
+% This work is licensed by the Creative Commons Share-Alike license
+% see http://creativecommons.org/licenses/by-sa/2.5/ for details
+\svnInfo $Id: authoring.tex 8453 2009-08-04 09:58:26Z kohlhase $
+\svnKeyword $HeadURL: https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.3/doc/spec/projects/activemath/authoring.tex $
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Authoring Tools for {\activemath}}
+\begin{project}{jeditoqmath}{http://www.activemath.org/projects/jEditOQMath}
+  \pauthors{Paul Libbrecht} 
+  \pinstitute{DFKI GmbH and Universit{\"a}t des Saarlandes}
+\end{project}
+
+
+The {\omdoc} content to be delivered by {\activemath} are {\omdoc} documents with
+{\openmath} formulae. Experience has shown that writing the {\xml}-source by hand is
+feasible and even preferred if the author wants to follow the evolution of content's
+structure.  It is similar to {\html} editing.  However, the complexity of {\xml} makes it
+hard to keep an overview when writing mathematical expressions. Therefore, the
+{\scsys{OQMath}} processor has been implemented: it uses {\scsys{QMath}} for formulae and
+leaves the rest of the {\omdoc} written as usual {\xml}.
+
+{\scsys{OQMath}} has been integrated in a supporting {\xml}-editor, jEdit. This editor
+provides structural support at writing {\xml}-documents. Authors, even with no
+{\xml}-knowledge, can easily write valid document {\scsys{jEditOQMath}}.  This package
+includes, in a one-click installer, {\qmath}, {\scsys{OQMath}}, {\scsys{jEdit}}, and
+Ant-scripts for publication of the content in {\activemath} knowledge bases.  These
+scripts validate the references in the content.  These scripts also provide authors with
+short cycles edit-in-{\scsys{jEditOQMath}}-and-test-in-{\activemath}.  More about
+{\scsys{jEditOQMath}} can be seen from
+{\url{http://www.activemath.org/projects/jEditOQMath}} at~\cite{AM-authoring-from-dev-on}
+
+%Explorations of knowledge navigation and edition using the Protege%
+%\footnote{See \url{http://protege.semanticweb.org/}.}
+%ontology editor
+%have been made but limitations of the visualization library have plagued this first visual
+%editor attempts.
+
+%Access to the other {\omdoc} content in order for them to be referenced, used, or inspected
+%has turned out to be an essential requirement of authoring tools: 
+{\scsys{jEditOQMath}} provides search facilities as well as contextual drops from items
+presented in an {\activemath} window.  This way the testing of content in the target
+environment and the authoring experience are bound tighter together,
+% binds even tighter the test-running of content in the environment where it will be
+%delivered to the authoring experience, 
+thus making {\scsys{jEditOQMath}} closer to the WYSIWYG paradigm without being limited to
+its simple visual incarnation.
+
+%exercise authoring tool for 'authoring by demonstration'
+%---- Ian or George here ----
+% George: I can not write anything yet, there is no version of a tool releazed
+
+% abundant  experience with authors
+To date, more than $10'000$ {\emph{items}} of {\omdoc} content has been written using
+these authoring tools in Algebra and Calculus. This experience with authors considerably
+improved our understanding of what today's authors need and what different classes of
+authors can cope with.
+
+% has allowed us to
+% gear features of the authoring tools towards users and has shown gaps still to be filled.
+
+Among the greatest difficulties of authoring content for {\activemath} was the art of
+properly choosing mathematical semantic encoding: the mathematical discourse is made of
+very fine notation rules along with subtle digressions to these rules...  formalizing
+them, as is needed when writing {\openmath} or the {\qmath} formulae for them, turns out
+to often be overwhelming.  The usage of the ellipsis in such a formula as $1, \dots, k,
+\dots, n$ is a simple example of semantic encoding challenge. The knowledge organization
+of {\omdoc} that makes it possible to define one's own {\openmath} symbols has been a key
+ingredient to facing this challenge.
+
+Among the features most requested by authors, which we have tried to answer 
+as much as possible,  are a short edit-and-test cycle and validation facilities 
+taking in account the overall content.
+
+\subsubsection{Validation Tools}
+
+Automated validation of {\omdoc} content has many facets.
+% can be done in many respects but little has been done with {\omdoc} documents.
+{\xml}-validation with a DTD and Schema is a first step.  However there are still many
+structure rules mentioned only as human readable forms in the {\omdoc} specifications.
+References between {\omdoc} items is another important facet which has been answered by
+{\activemath} knowledge bases and publishing scripts.  Experience has proved that ignoring
+such errors has lead repeatedly to authors complaining about the weirdest behaviours of
+the overall learning environment.  Many other simple validations could be done in order to
+support the author, for example the validation of a picture embedding, or of fine grained
+typing of relations (for example, that a definition should only be {\emph{for}} a symbol).
+
+Further validation tools are being investigated, for example, those tuned to particular
+pedagogical scenarios.
+
+
+\subsubsection{Further Authoring Tools for {\activemath}} {\scsys{jEditOQMath}} clearly
+remains for users who feel comfortable with source editing. Experience has shown that
+authors having written {\html} or {\TeX} earlier did not find this paradigm problematic.
+It is, however, a steep learning slope for beginner authors.  A more visual component is
+being worked upon, able to display and edit visually the children of a \element{CMP},
+including formulae.\footnote{More about the component for {\omdoc} micro-structure can be
+  read from \url{http://www.activemath.org/projects/OmdocJdomAuthoring/}.}  This
+component, along with forms and summaries for metadata, should provide a visual
+environment to edit {\omdoc} content for {\activemath} in a relatively accessible way.
+
+Another area where source editing has shown difficulties is in the process of authoring
+exercises with many steps... the rich structure of the exercises, along with the non-neglect able
+space taken by the display of {\xml}-source has challenged several authors, having
+difficulties to overview such sources as 600 Kb of {\scsys{OQMath}} source for a single
+exercise. 
+A web-based visual authoring environment is under work within the {\activemath} group.
+
+%%% Local Variables: 
+%%% mode: stex
+%%% TeX-master: "../../omdoc"
+%%% End: 
+
+% LocalWords:  jeditoqmath Libbrecht GmbH Universit des Saarlandes OQMath QMath
+% LocalWords:  jEdit jEditOQMath jEditOQMath jEditOQMath jEditOQMath one's
+% LocalWords:  jEditOQMath jEditOQMath jEditOQMath jEditOQMath jEditOQMath
+% LocalWords:  jEditOQMath jEditOQMath jEditOQMath metadata jEditOQMath
+% LocalWords:  jEditOQMath jEditOQMath jEditOQMath jEditOQMath jEditOQMath

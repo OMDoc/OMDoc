@@ -1,0 +1,26 @@
+<!--
+   An XML Document Type Definition for Open Mathematical documents (OMDoc 1.3)
+   DTD Driver for OMDoc Basic
+   $Id: omdoc-basic.dtd 8458 2009-08-04 10:23:53Z kohlhase $
+   $HeadURL: https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.3/dtd/omdoc-basic.dtd $
+   PUBLIC -//OMDoc//DTD OMDoc Basic V1.3//EN
+   See the documentation and examples at http://www.omdoc.org 
+   Copyright (c) 1999-2006 Michael Kohlhase, released under the GNU Public License (GPL)
+-->
+
+<!-- The default configuration for loading DTD modules -->
+<!ENTITY % omdoc.mathml.module "INCLUDE">   <!-- MathML -->
+<!ENTITY % omdoc.openmath.module "INCLUDE"> <!-- OpenMath -->
+<!ENTITY % omdoc.rt.module "INCLUDE">       <!-- Rich Text Structure-->
+<!ENTITY % omdoc.pres.module "IGNORE">     <!-- presentation -->
+<!ENTITY % omdoc.ext.module "IGNORE">      <!-- web extensions -->
+<!ENTITY % omdoc.pf.module "IGNORE">       <!-- proofs --> 
+<!ENTITY % omdoc.st.module "IGNORE">       <!-- math statements -->
+<!ENTITY % omdoc.adt.module "IGNORE">      <!-- Abstract Data Types -->
+<!ENTITY % omdoc.cth.module "IGNORE">      <!-- complex theories -->
+<!ENTITY % omdoc.dg.module "IGNORE">      <!-- development graphs -->
+<!ENTITY % omdoc.quiz.module "IGNORE">     <!-- simple exercises --> 
+
+<!-- after setting the switches, we load the general DTD -->
+<!ENTITY % omdoc.dtd PUBLIC "-//OMDoc//DTD OMDoc V1.3//EN"
+                            "omdoc.dtd">%omdoc.dtd;

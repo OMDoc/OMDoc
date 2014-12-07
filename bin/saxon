@@ -1,0 +1,74 @@
+#!/bin/bash --norc
+#
+# This script calls the saxon XSLT processor. It accepts its arguments in
+# xsltproc's argument syntax. Only one parameter to the transformation is
+# currently supported.
+#
+# (c) Christoph Lange 2006
+
+COMMAND=`which $0`
+if [[ -z $COMMAND ]]
+then
+    COMMAND="$0"
+fi
+PATHTOBIN="`dirname $COMMAND`"
+
+# create an array for command-line parameters
+declare -a params
+
+while [[ $# -gt 0 ]]
+do
+    # java net.sf.saxon.Transform -o units_metric1-incl-2.0.xsl --stringparam self units_metric1-tmpl-2.0.xsl ../../xsl/exincl-2.0.xsl units_metric1.omdoc
+    if [[ $1 == "-o" ]]
+    then
+	OUTFILE="$2"
+	shift 2
+    elif [[ $1 == "--stringparam" ]]
+    then
+	params=( "${params[@]}" "$2=$3" )
+	shift 3
+    else
+   	STYLESHEET=$1
+	INFILE=$2
+	break
+    fi
+done
+
+export CLASSPATH="$PATHTOBIN/../thirdParty/saxon/saxon8.jar"
+
+# build the Saxon command line
+CMDLINE="java net.sf.saxon.Transform"
+if [[ -n $OUTFILE ]]
+then
+    CMDLINE="$CMDLINE -o $OUTFILE"
+fi
+CMDLINE="$CMDLINE $INFILE $STYLESHEET"
+if [[ -n $params ]]
+then
+    CMDLINE="$CMDLINE ${params[@]}"
+fi
+
+# execute Saxon
+echo "invoking $CMDLINE"
+$CMDLINE
+
+# ORIGINAL TCSH VERSION BY ActiveMath Team STARTS HERE
+# 
+# #!/bin/tcsh -f
+# 
+# # find the path of here
+# set command=`which $0`
+# if ( $command == "" ) then
+# 	set command="$0"
+# endif
+# set pathToBin="`dirname $command`"
+# # echo $pathToBin
+# # set absPathToBin=`$pathToBin/getActiveMathHome`
+# # echo absPathToBin=$absPathToBin
+# 
+# 
+# setenv CLASSPATH $pathToBin/../thirdParty/saxon/saxon.jar
+# # echo $CLASSPATH
+# # echo invoking java com.icl.saxon.StyleSheet $argv[*]
+# 
+# java com.icl.saxon.StyleSheet $argv[*]

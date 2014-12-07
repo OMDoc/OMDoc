@@ -1,0 +1,5 @@
+<!ELEMENT CDReviewDate (#PCDATA)>
+<!ELEMENT CDStatus (#PCDATA)>
+<!ELEMENT CDDate (#PCDATA)>
+<!ELEMENT CDVersion (#PCDATA)>
+<!ELEMENT CDRevision (#PCDATA)>

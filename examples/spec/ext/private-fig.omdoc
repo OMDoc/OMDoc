@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE omdoc PUBLIC "-//OMDoc//DTD OMDoc V1.3//EN"
+                       "../../../dtd/omdoc.dtd" []>
+
+<omdoc xml:id="private-fig.omdoc"
+  xmlns="http://omdoc.org/ns"
+  xmlns:cc="http://creativecommons.org/ns"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  version="1.3">
+<metadata>
+  <dc:date action="created"> 2004-10-05T11:41:16Z </dc:date>
+  <dc:title xml:lang="en"> private-fig </dc:title>
+  <dc:creator role="aut"> Michael Kohlhase </dc:creator>
+  <dc:source>  </dc:source>
+  <dc:date action="updated"> 2004-10-05T11:41:16Z </dc:date>
+  <dc:type> Text </dc:type>
+  <dc:format> application/omdoc+xml </dc:format>
+  <dc:rights>Copyright (c) 2004 Michael Kohlhase</dc:rights>
+  <cc:license>
+    <cc:permissions reproduction="permitted" distribution="permitted" derivative_works="permitted"/>
+    <cc:prohibitions commercial_use="permitted"/>
+    <cc:requirements notice="required" copyleft="required" attribution="required"/>
+  </cc:license>
+</metadata>
+
+<private xml:id="legacy">
+  <metadata>
+    <dc:title>A fragment of Bourbaki's Algebra</dc:title>
+    <dc:creator role="trl">Michael Kohlhase</dc:creator> 
+    <dc:date action="created">2002-01-03T07:03:00</dc:date>
+    <dc:description>A fragment of Bourbaki's Algebra</dc:description>
+    <dc:source>Nicolas Bourbaki, Algebra, Springer Verlag 1974</dc:source>
+    <dc:type>Text</dc:type>
+  </metadata>
+  <data format="application/LaTeX" href="legacy.tex"/>
+  <data format="image/jpg" href="legacy.jpeg"/>
+  <data format="application/postscript" href="legacy.ps"/>
+  <data format="application/pdf" href="legacy.pdf"/>
+</private>
+
+</omdoc>

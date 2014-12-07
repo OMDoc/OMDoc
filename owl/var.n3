@@ -1,0 +1,29 @@
+# Note that namespace URIs must end with / or #
+@prefix dc:      <http://purl.org/dc/elements/1.1/> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix odo:     <http://www.omdoc.org/ontology#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+# These must be declared explicitly for OWL-DL conformity --Christoph Lange
+dc:creator
+	a	owl:AnnotationProperty .
+dc:description
+	a	owl:AnnotationProperty .
+dc:subject
+	a	owl:AnnotationProperty .
+dc:contributor
+	a	owl:AnnotationProperty .
+dc:title
+	a	owl:AnnotationProperty .
+
+<>
+      a       owl:Ontology ;
+      dc:title "OMDoc document ontology, module VAR" ;
+      dc:description """OMDoc document ontology in OWL-DL, proof-of-concept support for variants
+This file is designed to be imported from the main module `omdoc'.""" ;
+      dc:creator "Achim Mahnke <achim.mahnke@dfki.de>" , "Christoph Lange <ch.lange@jacobs-university.de>" ;
+      # Contributors, please add your name as dc:contributor here, and in the main file omdoc.n3. --Christoph Lange
+      dc:subject "Semantic Mathematical Markup, Variants" ;
+      owl:imports <file:base.n3> .
+

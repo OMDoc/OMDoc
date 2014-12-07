@@ -1,0 +1,683 @@
+# Note that namespace URIs must end with / or #
+@prefix dct:      <http://purl.org/dc/terms/> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix oo:     <http://omdoc.org/ontology#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix sdoc:	 <http://salt.semanticauthoring.org/onto/abstract-document-ontology#> .
+
+# Declare them as OWL property types, as DCMI Terms is RDFS only (see http://bloody-byte.net/rdf/dc_owl2dl/)
+dct:creator
+	a	owl:AnnotationProperty .
+dct:contributor
+	a	owl:AnnotationProperty .
+dct:subject
+	a	owl:AnnotationProperty .
+dct:title
+	a	owl:AnnotationProperty .
+
+<>
+	a	 owl:Ontology ;
+	dct:title "OMDoc document ontology, module ST" ;
+	rdfs:comment """OMDoc document ontology in OWL-DL, statement module.  See chapter 15 (Mathematical Statements) of the OMDoc1.2 specification.
+This file is designed to be imported from the main module `omdoc'.""" ;
+	dct:creator "Christoph Lange <ch.lange@jacobs-university.de>" ;
+	dct:contributor "Normen Müller <n.mueller@jacobs-university.de>" , "Krzysztof Retel <retel@macs.hw.ac.uk>" , "Gordan Ristovski <g.ristovski@jacobs-university.de>", "Andrei Ioniţă <a.ionita@jacobs-university.de>", "Nikita Zhiltsov (Никита Жильцов) <nikita.zhiltsov@gmail.com>" ;
+	# Contributors, please add your name here, and in the main file omdoc.n3. —Christoph Lange
+	dct:subject "Semantic Mathematical Markup, Mathematical Statements" ;
+	owl:imports <file:base.n3> , <file:mtxt.n3> .
+
+#
+# BASE CLASSES 
+#
+
+oo:Statement
+	a	owl:Class ;
+	rdfs:subClassOf oo:MathKnowledgeItem , sdoc:Composite ;
+	rdfs:comment """A very general type of statement, comprising not only “proper” statements occurring in theories, but also statements made local to a proof, or other substatements.""" ;
+	rdfs:label "Aussage"@de ,
+                "Statement"@en ,
+                "Предложение"@ru ;
+	rdfs:isDefinedBy oo: .
+
+oo:StatementInTheory
+	a	 owl:Class ;
+	rdfs:subClassOf	   oo:Statement ;
+	rdfs:comment """Any OMDoc statement, as defined in the OMDoc1.2 specification, chapters 14.3 (Text Fragments and their Rhetoric/Mathematical Roles) and 15 (Mathematical Statements). A statement can only belong to one theory.""" ;
+        rdfs:label "Aussage"@de ,
+                "Statement"@en ;
+	rdfs:isDefinedBy oo: .
+
+oo:AnyLevelStatement
+	a	owl:Class ;
+	rdfs:subClassOf	  oo:Statement ;
+	rdfs:comment """Generic superclass of statements that can not only occur as children of theories but also elsewhere.""" ;
+        rdfs:label "Aussage"@de ,
+                "Statement"@en ;
+	rdfs:isDefinedBy oo: .
+
+#
+# THEORIES
+#
+
+oo:Theory
+	a	 owl:Class ;
+	rdfs:subClassOf oo:MathKnowledgeItem , sdoc:Composite ;
+	rdfs:comment """An OMDoc theory, as defined in chapter 15.6 (Theories as Structured Contexts) of the OMDoc1.2 specification.
+In OMDoc/XML, this is represented by the omdoc:theory element.
+Note that theories are no proper statements, although the basic infrastructure for theories is part of the statement module of OMDoc.""" ;
+	owl:disjointWith oo:Statement ;
+	rdfs:label "Theorie"@de ,
+                "Theory"@en ,
+                "Теория"@ru ;
+	rdfs:isDefinedBy oo: .
+
+oo:imports
+	a	 owl:TransitiveProperty ;
+	rdfs:domain oo:Theory ;
+	rdfs:range oo:Theory ;
+	rdfs:subPropertyOf oo:wellFormedNessDependsOn ;
+	owl:propertyChainAxiom ( oo:hasImport oo:importsFrom ) ;
+	rdfs:comment """An import relation between two theories, which is not further specified (e.g. by morphisms), as defined in chapter 15.6.1 (Simple Inheritance) of the OMDoc1.2 specification.
+In OMDoc/XML, this is represented by the omdoc:theory/@import attribute""" ;
+	rdfs:label "importiert"@de ,
+                "imports"@en ,
+                "включает"@ru ;
+	rdfs:isDefinedBy oo: .
+
+oo:importedBy
+	a	 owl:TransitiveProperty ;
+	owl:inverseOf oo:imports ;
+	rdfs:label "wird importiert von"@de ,
+                "imported by"@en ,
+                "включена"@ru ;
+	rdfs:isDefinedBy oo: .
+
+oo:metaTheory
+	a	owl:ObjectProperty, owl:FunctionalProperty ;
+	# TODO is that correct?  Otherwise need to declare domain, range, and 
+	# subPropertyOf wellFormedNessDepends explicitly
+	rdfs:subPropertyOf oo:imports ;
+        rdfs:label "Metatheorie"@de ,
+                "Meta Theory"@en ;
+	rdfs:isDefinedBy oo: .
+	# TODO document
+
+oo:Import
+	a	owl:Class ;
+	rdfs:subClassOf oo:ConstitutiveStatement ;
+	rdfs:comment """An import from one theory into another one, modeled as a first-class object""" ;
+        rdfs:label "Import"@de ,
+                "Import"@en ;
+	rdfs:isDefinedBy oo: .
+
+oo:hasImport
+	a	owl:ObjectProperty ;
+	rdfs:domain oo:Theory ;
+	rdfs:range  oo:Import ;
+	rdfs:subPropertyOf oo:homeTheoryOf ;
+	rdfs:comment """The relationship between a theory and an import statement it contains""" ;
+	rdfs:label "hat Import"@de ,
+                "has import"@en ,
+                "имеет включение"@ru ;
+	rdfs:isDefinedBy oo: .
+
+oo:importsFrom
+	a	owl:FunctionalProperty, owl:ObjectProperty ;
+	rdfs:domain oo:Import ;
+	rdfs:range oo:Theory ;
+	rdfs:comment """The relationship between an import and the theory it imports""" ;
+	rdfs:label "importiert aus"@de ,
+                "imports from"@en ,
+                "включает из"@ru ;
+	rdfs:isDefinedBy oo: .
+
+# TODO add morphisms to imports
+# property: symbol occurs in morphism of import (cf. MMT)
+
+#
+# STATEMENTS
+#
+
+#
+# GENERAL STATEMENT RELATIONS
+#
+
+oo:homeTheoryOf
+	a	 owl:InverseFunctionalProperty , owl:ObjectProperty ;
+	rdfs:domain oo:Theory ;
+	rdfs:range
+		  [ owl:unionOf (oo:StatementInTheory oo:Theory oo:Document oo:DocumentUnit)
+		  ] ;
+	rdfs:subPropertyOf oo:hasDirectPart ;
+	owl:inverseOf oo:homeTheory ;
+	rdfs:comment """Expresses that a theory is the home of a statement or another (nested) theory (and thereby also provides a context for the statement or the theory, but not the only one, as importing theories elsewhere embeds them into new contexts as well).  Each statement or nested theory has at most one home theory.  See chapter 15.1 (Types of Statements in Mathematics) of the OMDoc1.2 specification for a definition.""" ;
+        rdfs:label "Heimattheorie von"@de ,
+                "home theory of"@en ;
+	rdfs:isDefinedBy oo: .
+
+oo:homeTheory
+	a	 owl:FunctionalProperty , owl:ObjectProperty ;
+	owl:inverseOf oo:homeTheoryOf ;
+	rdfs:comment """Expresses that a statement or a nested theory has another theory as its home theory, which provides the context for the statement or the theory.  Each statement or nested theory has at most one home theory.  See chapter 15.1 (Types of Statements in Mathematics) of the OMDoc1.2 specification for a definition.
+In OMDoc/XML, this is represented by the omdoc:*/@theory attribute (at least for non-constitutive statements) or by containment within an omdoc:theory element.
+Probably, this relation should be refactored into two ones.  A statement has exactly one home theory, but a theory need not have a home theory, if it's at top level. —Christoph Lange""" ;
+        rdfs:label "Heimattheorie"@de ,
+                "Home theory"@en ;
+	rdfs:isDefinedBy oo: .
+
+#
+# CONSTITUTIVE STATEMENTS
+#
+
+oo:ConstitutiveStatement
+	a	 owl:Class ;
+	rdfs:subClassOf oo:StatementInTheory ;
+	rdfs:comment """An OMDoc statement, which is theory-constitutive, as defined in the OMDoc1.2 specification, chapter 15.1 (Types of Statements in Mathematics) and 15.2 (Theory-Constitutive Statements in OMDoc).""" ;
+	rdfs:label "Konstitutive Aussage"@de ,
+                "Constitutive Statement"@en ,
+                "Конструктивное предложение"@ru ;
+	rdfs:isDefinedBy oo: .
+
+oo:GeneralSymbol
+	a	owl:Class ;
+	rdfs:subClassOf	  oo:AnyLevelStatement, oo:RigorousKnowledgeItem ;
+	rdfs:comment """A symbol, both as a constitutive element of a theory and as a proof-local declaration""" ;
+        rdfs:label "Symbol (allgemein)"@de ,
+                "Symbol (general)"@en ;
+	rdfs:isDefinedBy oo: .
+
+oo:GeneralDefinition
+	a	owl:Class ;
+	rdfs:subClassOf	  oo:AnyLevelStatement ;
+	rdfs:comment """A definition, both as a constitutive element of a theory and as a proof-local definition""" ;
+	owl:disjointWith oo:GeneralSymbol ;
+	rdfs:label "Definition (allgemein)"@de ,
+                "Definition (general)"@en ,
+                "Общее определение"@ru ;
+	rdfs:isDefinedBy oo: .
+
+oo:GeneralAxiom
+	a	owl:Class ;
+	rdfs:subClassOf	  oo:AnyLevelStatement ;
+	rdfs:comment """An axiom, both as a constitutive element of a theory and as a proof-local hypothesis""" ;
+	owl:disjointWith oo:GeneralSymbol, oo:GeneralDefinition ;
+	rdfs:label "Axiom (allgemein)"@de ,
+                "Axiom (general)"@en ,
+                "Общая аксиома"@ru ;
+	rdfs:isDefinedBy oo: .
+
+oo:Symbol
+	a	 owl:Class ;
+	rdfs:subClassOf oo:ConstitutiveStatement , oo:GeneralSymbol ;
+	rdfs:comment """An OMDoc symbol, as defined in the OMDoc1.2 specification, chapter 15.2.1 (Symbol Declarations).
+In OMDoc/XML, this is represented by the omdoc:symbol element.""" ;
+	owl:disjointWith oo:Import ;
+	rdfs:label "Symbol"@de ,
+                "Symbol"@en ,
+                "Символ"@ru ;
+	rdfs:isDefinedBy oo: .
+
+oo:Type
+	a	owl:Class ;
+	rdfs:subClassOf oo:RigorousKnowledgeItem ;
+	rdfs:comment """The type of a symbol (declared or asserted), as defined in the OMDoc1.2 specification, chapter 15.2.3 (Type Declarations) and 15.3.2 (Type Assertions).
+In OMDoc/XML, this is represented by the omdoc:type element.""";
+   	owl:disjointWith oo:Theory ;
+	rdfs:label "Typ"@de ,
+                "Type"@en ,
+                "Тип"@ru ;
+	rdfs:isDefinedBy oo: .
+
+oo:DeclaredType
+	a	owl:Class ;
+	rdfs:subClassOf	  oo:Type ;
+   	owl:disjointWith oo:Statement ;
+	rdfs:comment """The declared type of a symbol, as defined in the OMDoc1.2 specification, chapter 15.2.3 (Type Declarations).
+In OMDoc/XML, this is represented by the omdoc:type element being a child of omdoc:symbol.""" ;
+	rdfs:label "Deklarierter Typ"@de ,
+                "Declared Type"@en ,
+                "Объявленный тип"@ru ;
+	rdfs:isDefinedBy oo: .
+
+oo:AssertedType
+	a	owl:Class ;
+	rdfs:subClassOf	  oo:Type , oo:NonConstitutiveStatement ;
+	rdfs:comment """The asserted type of a symbol, as defined in the OMDoc1.2 specification, chapter 15.3.2 (Type Assertions).
+In OMDoc/XML, this is represented by the omdoc:type element on statement level.""" ;
+        owl:disjointWith oo:DeclaredType ;
+	rdfs:label "Behaupteter Typ"@de ,
+                "Asserted Type"@en ,
+                "Утвержденный тип"@ru ;
+	rdfs:isDefinedBy oo: .
+
+oo:type
+	a	owl:ObjectProperty ;
+	rdfs:domain		   oo:Symbol ;
+	rdfs:range		   oo:Type ;
+        # TODO note that we do not yet cover asserted types of complex MOBJs
+	rdfs:comment """The relation between a symbol and its (declared or asserted-and-proved) type, as defined in the OMDoc1.2 specification, chapter 15.2.3 (Type Declarations) and 15.3.2 (Type Assertions).""" ;
+	rdfs:label "hat Typ"@de ,
+                "has type"@en ,
+                "имеет тип"@ru ;
+	rdfs:isDefinedBy oo: .
+
+oo:declaredType
+	a	owl:ObjectProperty ;
+	rdfs:subPropertyOf	   oo:type ;
+	rdfs:range		   oo:DeclaredType ;
+	rdfs:comment """The relation between a symbol and its declared type, as defined in the OMDoc1.2 specification, chapter 15.2.3 (Type Declarations).""" ;
+	rdfs:label "hat deklarierten Typ"@de ,
+                "has declared type"@en ,
+                "имеет объявленный тип"@ru ;
+	rdfs:isDefinedBy oo: .
+
+oo:assertedType
+	a	owl:ObjectProperty ;
+	rdfs:range		   oo:AssertedType ;
+	rdfs:comment """The relation between a symbol and its asserted type, as defined in the OMDoc1.2 specification, chapter 15.3.2 (Type Assertions).""" ;
+	rdfs:label "hat behaupteten Typ"@de ,
+                "has asserted type"@en ,
+                "имеет утвержденный тип"@ru ;
+	rdfs:isDefinedBy oo: .
+
+oo:justifiedBy
+	a	owl:ObjectProperty ;
+	rdfs:domain		    oo:MathKnowledgeItem ;
+	rdfs:range		    oo:AnyLevelStatement ;
+	rdfs:comment """Generic superproperty for justifications of knowledge items made by pointing to other statements.""" ;
+	rdfs:label "begründet durch"@de ,
+                "justified by"@en ,
+                "обоснован посредством"@ru ;
+	rdfs:isDefinedBy oo: .
+
+oo:typeJustifiedBy
+	a	owl:ObjectProperty, owl:FunctionalProperty ;
+	rdfs:subPropertyOf oo:justifiedBy ;
+	rdfs:domain oo:AssertedType ;
+	rdfs:range  oo:Assertion ;
+	rdfs:comment """Points from a type assertion to the corresponding assertion that justifies it.""" ;
+	rdfs:label "begründet durch"@de ,
+                "justified by"@en ,
+                "обоснован посредством"@ru ;
+	rdfs:isDefinedBy oo: .
+
+oo:hasOccurrenceOfInType
+	a	owl:ObjectProperty ;
+	rdfs:subPropertyOf	   oo:wellFormedNessDependsOn ;
+	rdfs:domain		   oo:Symbol ;
+	rdfs:range		   oo:Symbol ;
+	owl:propertyChainAxiom	   (oo:type oo:usesSymbol) ;
+	rdfs:comment """Another symbol occurs in the type declaration of this symbol (MMT/OMDoc1.6)""" ;
+	rdfs:label "enthält im Typen"@de ,
+                "has occurrence of in type"@en ,
+                "встречается в"@ru ;
+	rdfs:isDefinedBy oo: .
+
+oo:occursInTypeOf
+	a	owl:ObjectProperty ;
+	owl:inverseOf oo:hasOccurrenceOfInType ;
+	rdfs:label "kommt vor im Typ von"@de ,
+                "occurs in type of"@en ,
+                "встречается в типе"@ru ;
+	rdfs:isDefinedBy oo: .
+
+oo:hasOccurrenceOfInDefinition
+	a	owl:ObjectProperty ;
+	rdfs:subPropertyOf	   oo:wellFormedNessDependsOn ;
+	rdfs:domain		   oo:Symbol ;
+	rdfs:range		   oo:Symbol ;
+	owl:propertyChainAxiom	   (oo:hasDefinition oo:usesSymbol) ;
+        rdfs:label "enthält in der Definition"@de ,
+                "has occurrence of in definition"@en ;
+	rdfs:comment """Another symbol occurs in the definition of this symbol (MMT/OMDoc1.6)""" ;
+	rdfs:isDefinedBy oo: .
+
+oo:occursInDefinitionOf
+	a	owl:ObjectProperty ;
+	owl:inverseOf oo:hasOccurrenceOfInDefinition ;
+	rdfs:label "kommt vor in der Definition von"@de ,
+                "occurs in definition of"@en ,
+                "встречается в определении"@ru ;
+	rdfs:isDefinedBy oo: .
+
+oo:Axiom
+	a	 owl:Class ;
+	rdfs:subClassOf oo:ConstitutiveStatement , oo:GeneralAxiom ;
+	rdfs:comment """An OMDoc axiom, as defined in the OMDoc1.2 specification, chapter 15.2.2 (Axioms).
+In OMDoc/XML, this is represented by the omdoc:axiom element. It can also be informal, as a type in an omtext element, linked with a Informal Formality Degree.""" ;
+	rdfs:label "Axiom"@de ,
+                "Axiom"@en ,
+                "Аксиома"@ru ;
+	owl:disjointWith oo:Import, oo:Symbol ;
+	rdfs:isDefinedBy oo: .
+
+oo:Definition
+	a	 owl:Class ;
+	rdfs:subClassOf oo:ConstitutiveStatement , oo:GeneralDefinition ;
+	rdfs:comment """An OMDoc definition, as defined in the OMDoc1.2 specification, chapter 15.2.4 (Definitions).
+In OMDoc/XML, this is represented by the omdoc:definition element. It can also be informal, as a type in an omtext element, linked with a Informal Formality Degree.""" ;
+        rdfs:label "Definition"@de ,
+                "Definition"@en ,
+                "Определение"@ru ;
+	owl:disjointWith oo:Import, oo:Symbol, oo:Axiom ;
+	rdfs:isDefinedBy oo: .
+
+oo:SimpleDefinition
+        a       owl:Class ;
+        rdfs:subClassOf oo:GeneralDefinition ; # these types can hold whether a definition is proof-local or not
+        rdfs:comment """A simple OMDoc definition, as defined in the OMDoc1.2 specification, chapter 15.2.4 (Definitions).  In OMDoc/XML, this is represented by the omdoc:definition[@type='simple'] element.""" ;
+        rdfs:label "Einfache Definition"@de ,
+                "Simple Definition"@en ;
+	rdfs:isDefinedBy oo: .
+
+oo:ImplicitDefinition
+        a       owl:Class ;
+        rdfs:subClassOf oo:GeneralDefinition ;
+	rdfs:comment """An implicit OMDoc definition, as defined in the OMDoc1.2 specification, chapter 15.2.4 (Definitions).  In OMDoc/XML, this is represented by the omdoc:definition[@type='implicit'] element.""" ;
+        rdfs:label "Implizite Definition"@de ,
+                "Implicit Definition"@en ;
+        owl:disjointWith oo:SimpleDefinition ;
+	rdfs:isDefinedBy oo: .
+
+oo:RecursiveDefinition
+        a       owl:Class ;
+        rdfs:subClassOf oo:GeneralDefinition ;
+	rdfs:comment """A recursive OMDoc definition, common superclass of inductive and pattern-based definitions.""" ;
+        rdfs:label "Rekursive Definition"@de ,
+                "Recursive Definition"@en ;
+        owl:disjointWith oo:SimpleDefinition, oo:ImplicitDefinition ;
+	rdfs:isDefinedBy oo: .
+
+oo:InductiveDefinition
+        a       owl:Class ;
+        rdfs:subClassOf oo:RecursiveDefinition ;
+	rdfs:comment """An inductive OMDoc definition, as defined in the OMDoc1.2 specification, chapter 15.2.4 (Definitions).  In OMDoc/XML, this is represented by the omdoc:definition[@type='inductive'] element.""" ;
+        rdfs:label "Induktive Definition"@de ,
+                "Inductive Definition"@en ;
+	rdfs:isDefinedBy oo: .
+
+oo:PatternBasedDefinition
+        a       owl:Class ;
+        rdfs:subClassOf oo:RecursiveDefinition ;
+	rdfs:comment """An OMDoc definition by pattern-based case distinction, as defined in the OMDoc1.2 specification, chapter 15.2.4 (Definitions).  In OMDoc/XML, this is represented by the omdoc:definition[@type='pattern'] element.""" ;
+        rdfs:label "Fallweise Definition"@de ,
+                "Pattern-based Definition"@en ;
+        owl:disjointWith oo:InductiveDefinition ;
+	rdfs:isDefinedBy oo: .
+
+oo:hasDefinition
+	a	 owl:FunctionalProperty , owl:ObjectProperty ;
+	rdfs:domain oo:Symbol ;
+	rdfs:range [ owl:unionOf(
+			oo:Definition
+			# for now, as we can have CMP-defines-term
+			[ owl:intersectionOf(
+				oo:Property oo:InformalKnowledgeItem ) ] ) ];
+	owl:inverseOf oo:defines ;
+	rdfs:comment """Expresses that a definition defines a symbol; see chapter 15.2.4 (Definitions) of the OMDoc1.2 specification.  A symbol can have at most one definition.  A definition defines at least one symbol.""" ;
+	rdfs:label "hat Definition"@de ,
+                "has definition"@en ,
+                "имеет определение"@ru ;
+	rdfs:isDefinedBy oo: .
+
+oo:defines
+	a	 owl:InverseFunctionalProperty , owl:ObjectProperty ;
+	owl:inverseOf oo:hasDefinition ;
+	rdfs:comment """Expresses that a definition defines a symbol; see chapter 15.2.4 (Definitions) of the OMDoc1.2 specification.  A symbol can have at most one definition.  A definition defines at least one symbol.
+In OMDoc/XML, this is represented by the omdoc:definition/@for attribute.""" ;
+	rdfs:label "definiert"@de ,
+                "defines"@en ,
+                "определяет"@ru ;
+	rdfs:isDefinedBy oo: .
+
+#
+# NON-CONSTITUTIVE STATEMENTS
+#
+
+oo:NonConstitutiveStatement
+	a	 owl:Class ;
+	rdfs:subClassOf oo:StatementInTheory ;
+	rdfs:comment """An OMDoc statement, which is not theory-constitutive, as defined in the OMDoc1.2 specification, chapter 15.1 (Types of Statements in Mathematics).""" ;
+	owl:disjointWith oo:ConstitutiveStatement ;
+	rdfs:label "Nicht-konstitutive Aussage"@de ,
+                "Non-constitutive Statement"@en ,
+                "Неконструктивное предложение"@ru ;
+	rdfs:isDefinedBy oo: .
+
+oo:Assertion
+	a	 owl:Class ;
+	rdfs:subClassOf oo:NonConstitutiveStatement ;
+	rdfs:comment """An OMDoc assertion, as defined in the OMDoc1.2 specification, chapter 15.3.1 (Assertions).
+In OMDoc/XML, this is represented by the omdoc:assertion element.
+Note: This class has lots of subclasses.  Their semantics needs to be clarified, as not everything is clearly documented in the OMDoc specification; see the discussion on
+http://mathweb.org/wiki/Talk:OMDoc/document_ontology —Christoph Lange""" ;
+        rdfs:label "Behauptung"@de ,
+                "Assertion"@en ;
+	rdfs:isDefinedBy oo: .
+
+oo:ProvenAssertion
+	a	 owl:Class ;
+	rdfs:subClassOf oo:Assertion,
+            [ a owl:Restriction ; owl:onProperty oo:provedBy ; owl:someValuesFrom oo:Proof ] ;
+        # note that we don't need allValuesFrom, as the range of oo:provedBy is oo:Proof anyway
+        # alternatively we could set a minCardinality of 1 for oo:provedBy
+	rdfs:comment """An OMDoc assertion that has a proof, as defined in the OMDoc1.2 specification, chapter 15.3.1 (Assertions).""" ;
+        rdfs:label "Bewiesene Behauptung"@de ,
+                "Proven Assertion"@en ;
+	rdfs:isDefinedBy oo: .
+
+oo:UnProvenAssertion
+	a	 owl:Class ;
+	rdfs:subClassOf oo:Assertion ;
+	rdfs:comment """An OMDoc assertion that does not [have to] have a proof, as defined in the OMDoc1.2 specification, chapter 15.3.1 (Assertions).""" ;
+        rdfs:label "Unbewiesene Behauptung"@de ,
+                "Unproven Assertion"@en ;
+	rdfs:isDefinedBy oo: .
+
+oo:RefutedAssertion
+	a	 owl:Class ;
+	rdfs:subClassOf oo:Assertion , 
+            [ a owl:Restriction ; owl:onProperty oo:refutedBy ; owl:someValuesFrom oo:Example ] ;
+	rdfs:comment """An OMDoc assertion that has a counter-example, as defined in the OMDoc1.2 specification, chapter 15.3.1 (Assertions).""" ;
+        rdfs:label "Widerlegte Behauptung"@de ,
+                "Refuted Assertion"@en ;
+	rdfs:isDefinedBy oo: .
+
+oo:Theorem
+	a	 owl:Class ;
+	rdfs:subClassOf oo:ProvenAssertion ;
+	rdfs:comment """An OMDoc assertion, which is a theorem; see figure 15.5 (Types of Mathematical Assertions) in the OMDoc1.2 specification.  In OMDoc/XML, this is represented by the omdoc:assertion[@type='theorem'] attribute. It can also be informal, as a type in an omtext element, linked with a Informal Formality Degree.""" ;
+	rdfs:label "Satz/Theorem"@de ,
+                "Theorem"@en ,
+                "Утверждение"@ru ;
+	owl:disjointWith oo:Proposition , oo:Corollary , oo:Lemma ;
+	rdfs:isDefinedBy oo: .
+
+oo:Lemma
+	a	 owl:Class ;
+	rdfs:subClassOf oo:ProvenAssertion ;
+	rdfs:comment """An OMDoc assertion, which is a lemma; see figure 15.5 (Types of Mathematical Assertions) in the OMDoc1.2 specification.
+In OMDoc/XML, this is represented by the omdoc:assertion[@type='lemma'] attribute. It can also be informal, as a type in an omtext element, linked with a Informal Formality Degree.""" ;
+	rdfs:label "Lemma"@de ,
+                "Lemma"@en ,
+                "Лемма"@ru ;
+	owl:disjointWith oo:Proposition , oo:Corollary ;
+	rdfs:isDefinedBy oo: .
+
+oo:Corollary
+	a	 owl:Class ;
+	rdfs:subClassOf oo:ProvenAssertion ;
+	rdfs:comment """An OMDoc assertion, which is a corollary; see figure 15.5 (Types of Mathematical Assertions) in the OMDoc1.2 specification.
+In OMDoc/XML, this is represented by the omdoc:assertion[@type='corollary'] attribute. It can also be informal, as a type in an omtext element, linked with a Informal Formality Degree.""" ;
+	rdfs:label "Korollar"@de ,
+                "Corollary"@en ,
+                "Следствие"@ru ;
+	owl:disjointWith oo:Proposition ;
+	rdfs:isDefinedBy oo: .
+
+oo:Proposition
+	a	 owl:Class ;
+	rdfs:subClassOf oo:ProvenAssertion ;
+	rdfs:comment """An OMDoc assertion, which is a proposition; see figure 15.5 (Types of Mathematical Assertions) in the OMDoc1.2 specification.  For a proposition, a proof exists, but not necessarily in our knowledge base.  Thanks to the Open World Assumption of OWL, it is no problem to demand a proof, though.
+In OMDoc/XML, this is represented by the omdoc:assertion[@type='proposition'] attribute. It can also be informal, as a type in an omtext element, linked with a Informal Formality Degree.""" ;
+	rdfs:label "Proposition"@de ,
+                "Proposition"@en , 
+                "Предложение"@ru ;
+	rdfs:isDefinedBy oo: .
+
+oo:Conjecture
+	a	 owl:Class ;
+	rdfs:subClassOf oo:UnProvenAssertion ;
+	rdfs:comment """An OMDoc assertion, which is a conjecture; see figure 15.5 (Types of Mathematical Assertions) in the OMDoc1.2 specification.
+In OMDoc/XML, this is represented by the omdoc:assertion[@type='conjecture'] attribute. It can also be informal, as a type in an omtext element, linked with a Informal Formality Degree.""" ;
+	rdfs:label "Konjektur"@de ,
+                "Conjecture"@en ,
+                "Гипотетическое утверждение"@ru ;
+   	owl:disjointWith oo:Obligation , oo:AssumptionAssertion , oo:Postulate , oo:Rule , oo:Formula ;
+	rdfs:isDefinedBy oo: .
+
+oo:Obligation
+	a	 owl:Class ;
+	rdfs:subClassOf oo:UnProvenAssertion ;
+	rdfs:comment """An OMDoc assertion, which is an obligation; see figure 15.5 (Types of Mathematical Assertions) in the OMDoc1.2 specification.
+In OMDoc/XML, this is represented by the omdoc:assertion[@type='obligation'] attribute. It can also be informal, as a type in an omtext element, linked with a Informal Formality Degree.""" ;
+	rdfs:label "Verpflichtung"@de ,
+                "Obligation"@en ,
+                "Требование"@ru ;
+   	owl:disjointWith oo:AssumptionAssertion , oo:Postulate , oo:Rule , oo:Formula ;
+	rdfs:isDefinedBy oo: .
+
+oo:AssumptionAssertion
+	a	 owl:Class ;
+	rdfs:subClassOf oo:UnProvenAssertion ;
+	rdfs:comment """An OMDoc assertion, which is an assumption; see figure 15.5 (Types of Mathematical Assertions) in the OMDoc1.2 specification.
+In OMDoc/XML, this is represented by omdoc:assertion[@type='assumption'] attribute. It can also be informal, as a type in an omtext element, linked with a Informal Formality Degree.""" ;
+	rdfs:label "Vermutung"@de ,
+                "Assumption"@en ,
+                "Предположение"@ru ;
+   	owl:disjointWith oo:Postulate , oo:Rule , oo:Formula ;
+	rdfs:isDefinedBy oo: .
+
+oo:Postulate
+	a	 owl:Class ;
+	rdfs:subClassOf oo:UnProvenAssertion ;
+	rdfs:comment """An OMDoc assertion, which is a postulate; see figure 15.5 (Types of Mathematical Assertions) in the OMDoc1.2 specification.
+In OMDoc/XML, this is represented by the omdoc:assertion[@type='postulate'] attribute. It can also be informal, as a type in an omtext element, linked with a Informal Formality Degree.""" ;
+	rdfs:label "Postulat"@de ,
+                "Postulate"@en ,
+                "Постулат"@ru ;
+   	owl:disjointWith oo:Rule , oo:Formula ;
+	rdfs:isDefinedBy oo: .
+
+oo:Formula
+	a	 owl:Class ;
+	rdfs:subClassOf oo:UnProvenAssertion ;
+	rdfs:comment """An OMDoc assertion, which is a formula; see figure 15.5 (Types of Mathematical Assertions) in the OMDoc1.2 specification.
+In OMDoc/XML, this is represented by omdoc:assertion[@type='formula'] attribute. It can also be informal, as a type in an omtext element, linked with a Informal Formality Degree.""" ;
+	rdfs:label "Formel"@de ,
+                "Formel"@en ,
+                "Формула"@ru ;
+   	owl:disjointWith oo:Rule ;
+	rdfs:isDefinedBy oo: .
+
+oo:Rule
+	a	 owl:Class ;
+	rdfs:subClassOf oo:UnProvenAssertion ; # TODO not sure if “rule” should really be unproven
+	rdfs:comment """An OMDoc assertion, which is a rule.  This type of assertion is missing from figure 15.5 (Types of Mathematical Assertions) in the OMDoc1.2 specification, but it occurs in the XML schema nevertheless (Appendix D.4, enumeration ``assertiontype'').
+In OMDoc/XML, this is represented by the omdoc:assertion[@type='rule'] attribute. It can also be informal, as a type in an omtext element, linked with a Informal Formality Degree.""" ;
+	rdfs:label "Regel"@de ,
+                "Rule"@en ,
+                "Правило"@ru ;
+	rdfs:isDefinedBy oo: .
+
+oo:FalseConjecture
+	a	 owl:Class ;
+	rdfs:subClassOf oo:RefutedAssertion ;
+	rdfs:comment """An OMDoc assertion, which is a conjecture that has proven to be false; see figure 15.5 (Types of Mathematical Assertions) in the OMDoc1.2 specification.
+In OMDoc/XML, this is represented by the omdoc:assertion[@type='false-conjecture'] attribute. It can also be informal, as a type in an omtext element, linked with a Informal Formality Degree.""" ;
+	rdfs:label "Falsche Behauptung"@de ,
+                "False Conjecture"@en ,
+                "Ложное утверждение"@ru ;
+	rdfs:isDefinedBy oo: .
+
+oo:Example
+	a	 owl:Class ;
+	rdfs:subClassOf oo:NonConstitutiveStatement ;
+	rdfs:comment """An OMDoc example, as defined in the OMDoc specification, chapter 15.4 (Mathematical Examples in OMDoc).
+In OMDoc/XML, this is represented by the omdoc:example element. It can also be informal, as a type in an omtext element, linked with a Informal Formality Degree.""" ;
+	rdfs:label "Beispiel"@de ,
+                "Example"@en ,
+                "Пример"@ru ;
+	owl:disjointWith oo:Assertion ;
+	rdfs:isDefinedBy oo: .
+
+oo:exemplifies
+	a	 owl:ObjectProperty ;
+	rdfs:domain oo:Example ;
+	rdfs:range
+		  [ owl:unionOf (oo:Symbol oo:Definition oo:AlternativeDefinition oo:Axiom oo:Assertion)
+		  ] ;
+	rdfs:comment """The statement that is exemplified by this example; see the OMDoc specification, chapter 15.4 (Mathematical Examples in OMDoc).
+In OMDoc/XML, this is represented by the omdoc:example/@for attribute.""" ;
+	rdfs:label "erläutert"@de ,
+                "exemplifies"@en ,
+                "является примером для"@ru ;
+	rdfs:isDefinedBy oo: .
+
+oo:exemplifiedBy
+	a	owl:ObjectProperty ;
+	owl:inverseOf		   oo:exemplifies ;
+        rdfs:label "erläutert durch"@de ,
+                "exemplified by"@en ;
+	rdfs:isDefinedBy oo: .
+
+oo:corroborates
+	a	 owl:ObjectProperty ;
+	rdfs:range oo:Assertion ;
+	rdfs:subPropertyOf oo:exemplifies ;
+	# Note: rdfs:domain is inherited from the super property (see the comment at the end of this file).
+	rdfs:comment """The assertion that is corroborated by this example; see the OMDoc specification, chapter 15.4 (Mathematical Examples in OMDoc). Although not explicitly stated in the OMDoc book, I guess that only assertions can be corroborated by an example; for a symbol or definition, it wouldn't make sense.
+In OMDoc/XML, this is represented by the omdoc:example/@for attribute, together with omdoc:example[@type='for'].""" ;
+	rdfs:label "bestätigt"@de ,
+                "corroborates"@en ,
+                "подтверждает"@ru ;
+	rdfs:isDefinedBy oo: .
+
+oo:corroboratedBy
+	a	owl:ObjectProperty ;
+	owl:inverseOf		   oo:corroborates ;
+	rdfs:label "bestätigt durch"@de ,
+                "corroborated by"@en ,
+                "подтвержден посредством"@ru ;
+	rdfs:isDefinedBy oo: .
+	
+oo:refutes
+	a	 owl:ObjectProperty ;
+	rdfs:range oo:Assertion ;
+	rdfs:subPropertyOf oo:exemplifies ;
+        owl:propertyDisjointWith oo:corroborates ;
+	rdfs:comment """The assertion that is refuted by this example; see the OMDoc specification, chapter 15.4 (Mathematical Examples in OMDoc).  Although not explicitly stated in the OMDoc book, I guess that only assertions can be corroborated by an example; for a symbol or definition, it wouldn't make sense.
+In OMDoc/XML, this is represented by the omdoc:example/@for attribute, together with omdoc:example[@type='against'].""" ;
+	rdfs:label "widerlegt"@de ,
+                "refutes"@en ,
+                "опровергает"@ru ;
+	rdfs:isDefinedBy oo: .
+
+oo:refutedBy
+	a	owl:ObjectProperty ;
+	owl:inverseOf		   oo:refutes ;
+	rdfs:label "widerlegt durch"@de ,
+                "refuted by"@en ,
+                "опровергается посредством"@ru ;
+	rdfs:isDefinedBy oo: .
+
+oo:AlternativeDefinition
+	a	 owl:Class ;
+	rdfs:subClassOf oo:NonConstitutiveStatement ;
+	rdfs:comment """An OMDoc alternative definition, as defined in the OMDoc specification, chapter 15.3.3 (Alternative Definitions).
+In OMDoc/XML, this is represented by the omdoc:AlternativeDefinition element.""" ;
+	rdfs:label "Alternative Definition"@de ,
+                "Alternative Definition"@en ,
+                "Альтернативное определение"@ru ;
+	owl:disjointWith oo:Assertion, oo:Example ;
+	rdfs:isDefinedBy oo: .

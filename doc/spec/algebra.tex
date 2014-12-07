@@ -1,0 +1,875 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This file is part of the LaTeX sources of the OMDoc 1.3 specification
+% Copyright (c) 2006 Michael Kohlhase
+% This work is licensed by the Creative Commons Share-Alike license
+% see http://creativecommons.org/licenses/by-sa/2.5/ for details
+\svnInfo $Id: algebra.tex 9251 2012-07-23 10:29:02Z kohlhase $
+\svnKeyword $HeadURL: https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.3/doc/spec/algebra.tex $
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{tchapter}[id=algebra,short=Textbooks and Articles]{Mathematical Textbooks and Articles}
+
+  In this chapter we will work an example of a stepwise formalization of mathematical
+  knowledge. This is the task of e.g. an editor of a mathematical textbook preparing it
+  for web-based publication.  We will use an informal, but rigorous text: a fragment of
+  Bourbaki's Algebra~\cite{Bourbaki:a74}, which we show in {\myfigref{bourbaki}}. We will
+  mark it up in four stages, discussing the relevant {\omdoc} elements and the design
+  decisions in the {\omdoc} format as we go along.  Even though the text was actually
+  written prior to the availability of the {\TeX/\LaTeX} system, we will take a {\LaTeX}
+  representation as the starting point of our markup experiment, since this is the
+  prevalent source markup format in mathematics nowadays.
+\setbox1=\hbox{\cite{Bourbaki:a74}}
+\begin{myfig}{bourbaki}{A fragment from Bourbaki's algebra~\usebox1}
+\hspace*{-12pt}\fbox{\begin{minipage}{11cm}\small
+      \noindent{\bf 1. LAWS OF COMPOSITION}\vspace{1em}\par\noindent
+      {\sc Definition 1.} {\emph{Let $E$ be a set. A mapping of $E\times E$ is
+        called a law of composition on $E$. The value $f(x,y)$ of $f$ for an
+        ordered pair $(x,y)\in E\times E$ is called the composition of $x$ and $y$
+        under this law. A set with a law of composition is called a magma.}}
+      \vspace{1em}
+
+      The composition of $x$ and $y$ is usually denoted by writing $x$ and $y$ in a
+      definite order and separating them by a characteristic symbol of the law in question
+      (a symbol which it may be agreed to omit). Among the symbols most often used are $+$
+      and $\cdot$, the usual convention being to omit the latter if desired; with these
+      symbols the composition of $x$ and $y$ is written respectively as $x+y$, $x.y$ or
+      $xy$. A law denoted by the symbol $+$ is usually called {\emph{addition}} (the
+      composition $x+y$ being called the {\emph{sum}} of $x$ and $y$) and we say that it
+      is {\emph{written additively}}; a law denoted by the symbol $.$ is usually called
+      {\emph{multiplication}} (the composition $x.y=xy$ being called the {\emph{product}}
+      for $x$ and $y$) and we say that it is {\emph{written multiplicatively}}.
+      
+      In the general arguments of paragraphs 1 to 3 of this chapter we shall generally use
+      the symbols $\top$ and $\bot$ to denote arbitrary laws of composition.
+      
+      By an abuse of language, a mapping of a {\emph{subset}} of $E\times E$ into $E$ is
+      sometimes called a law of composition {\emph{not everywhere defined}} on $E$.
+      \vspace{1em}
+
+      \strut\hfill
+      \begin{minipage}{11cm}\parindent=1.5em
+        {\emph{Examples}}. (1) The mappings $(X,Y)\mapsto X\cup Y$ and $(X,Y)\mapsto
+        X\cap Y$ are laws of composition on the set of subsets of a set $E$.
+        
+        (2) On the set $\bf N$ of natural numbers addition, multiplication, and
+        exponentiation are laws of composition (the compositions of $x\in{\bf N}$
+        and $y\in{\bf N}$ under these laws being denoted respectively by $x+y$,
+        $xy$, or $x.y$ and $x^y$) ({\em{Set Theory}}, III, $\S3$, no. 4).
+  
+        (3) Let $E$ be a set; the mapping $(X,Y)\mapsto X\circ Y$ is a law of
+        composition on the set of subsets of $E\times E$ ({\emph{Set Theory}}, II,
+        $\S3$, no. 3, Definition 6); the mapping $(f,g)\mapsto f\circ g$ is a law
+        of composition on the set of mappings from $E$ into $E$ ({\emph{Set Theory}},
+        II, $\S5$, no. 2).
+      \end{minipage}
+    \end{minipage}}
+\end{myfig}
+
+{\Mysecref{minimal-omdoc}} discusses the minimal markup that is needed to turn an
+arbitrary document into a valid {\omdoc} document --- albeit one, where the markup is
+worthless of course. It discusses the necessary {\xml} infrastructure and adds some
+meta-data to be used e.g. for {\twintoo{document}{retrieval}} or
+archiving\twin{document}{archiving} purposes.
+
+In {\mysecref{top-level}} we mark up the top-level structure of the text and
+classify the paragraphs by their category as mathematical statements.  This level
+of markup already allows us to annotate and extract some meta-data and would allow
+applications to slice the text into individual units, store it in databases like
+{\mbase} (see {\mysecref{mbase}}), or the In2Math knowledge
+base~\cite{Dahn:sbt01,BauBlo:adtmpd01}, or assemble the text slices into
+individualized books e.g. covering only a sub-topic of the original work.
+However, all of the text itself, still contains the {\LaTeX} markup for formulae,
+which is readable only by experienced humans, and is fixed in notation.  Based on
+the segmentation and meta-data, suitable systems like the {\activemath} system
+described in {\mysecref{activemath}} can re-assemble the text in different orders.
+   
+In {\mysecref{formulae}}, we will map all mathematical objects in the text into
+{\openmath} or {\cmathml} objects. To do this, we have to decide which
+symbols we want to use for marking up the formulae, and how to structure the
+theories involved. This will not only give us the ability to generate specialized
+and user-adaptive notation for them (see {\mychapref{transform-xsl}}), but also to
+copy and paste them to symbolic math software systems. Furthermore, an assembly
+into texts can now be guided by the semantic theory structure, not only by the
+mathematical text categories or meta-data.
+   
+Finally, in {\mysecref{formalization}} we will fully formalize the mathematical
+knowledge. This involves a transformation of the
+{\twintoo{mathematical}{vernacular}} in the statements into some logical
+formalism. The main benefit of this is that we can verify the mathematical
+contents in theorem proving environments like {\nuprl}~\cite{Constable86},
+{\hol}~\cite{GoMe93}, {\mizar}~\cite{Rudnicki:aomp92} and
+OMEGA~\cite{BenzmuellerEtAl:otama97}.
+
+\begin{tsection}[id=minimal-omdoc]{Minimal OMDoc Markup}
+
+  It actually takes very little change to an existing document to make it a valid {\omdoc}
+  document. We only need to wrap the text into the appropriate {\xml} document tags. In
+  {\mylstref{outerpart}}, we have done this and also added
+  {\indextoo{meta-data}}. Actually, since the {\element{metadata}} and the document type
+  declaration are optional in {\omdoc}, just wrapping the original text with lines 1, 4,
+  7, 31, 32, and 36 to 38 is the simplest way to create an {\omdoc}
+  document.\medskip
+\begin{lstlisting}[label=lst:outerpart,mathescape,
+    caption={The outer part of the document},
+    index={DOCTYPE,omdoc,metadata,dc:title,dc:creator,dc:date,dc:description,dc:source,
+           dc:type,dc:format,theory,omtext,CMP}]
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE omdoc PUBLIC "-//OMDoc//DTD OMDoc Basic V1.3//EN"
+                "http://omdoc.org/dtd/omdoc-basic.dtd" []>
+
+<omdoc xml:id="algebra1.omdoc" version="1.3" modules="@basic"
+       xmlns:dc="http://purl.org/dc/elements/1.1/" 
+       xmlns:cc="http://creativecommons.org/ns"
+       xmlns="http://omdoc.org/ns">
+  <metadata>
+    <dc:title>Laws of Composition</dc:title>
+    <dc:creator role="trl">Michael Kohlhase</dc:creator> 
+    <dc:date action="created">2002-01-03T07:03:00</dc:date>
+    <dc:date action="updated">2002-11-23T18:17:00</dc:date>
+    <dc:description>
+      A first migration step for a fragment of Bourbaki's Algebra
+    </dc:description>
+    <dc:source>
+      Nicolas Bourbaki, Algebra, Springer Verlag 1989, ISBN 0-387-19373-1
+    </dc:source>
+    <dc:type>Text</dc:type>
+    <dc:format>application/omdoc+xml</dc:format>
+    <dc:rights>Copyright (c) 2005 Michael Kohlhase</dc:rights>
+    <cc:license>
+      <cc:permissions reproduction="permitted" distribution="permitted" 
+                      derivative_works="permitted"/>
+      <cc:prohibitions commercial_use="permitted"/>
+      <cc:requirements notice="required" copyleft="required" attribution="required"/>
+    </cc:license>
+  </metadata>
+
+  <omtext xml:id="all">
+    <CMP xml:lang="en">
+      <xhtml:p>
+        {\sc Definition 1.} Let $E$ be a set. A mapping $E\times E$ is called a law of
+        $\ldots$
+        mappings from $E$ into $E$ ({\emph{Set Theory}}, II, $\S5$, no. 2).
+      </xhtml:p>
+    </CMP>
+  </omtext>
+</omdoc>
+\end{lstlisting}\medskip
+
+\noindent \renewcommand{\baselinestretch}{.97}We will now explain
+the general features of the {\omdoc} representation in detail by
+line numbers. The references point to the relevant sections in the
+{\omdoc} specification; details and normative rules for using the
+elements in questions can be found there.%\pagebreak
+
+We will now explain the general features of the {\omdoc} representation in detail
+by line numbers. The references point to the relevant sections in the {\omdoc}
+specification; details and normative rules for using the elements in questions can
+be found there.
+\begin{small}
+\begin{longtable}{|l|p{8.6cm}|p{.8cm}|}\hline
+  line & Description & ref.\\\hline\hline
+1 & This document is an {\xml} 1.0 file
+  that is encoded in the {\twintoo{UTF-8}{encoding}}. 
+  & \\\hline
+2,3 & The parser is told to use a document type
+       definition for validation. The string {\snippet{omdoc}} specifies the name of
+       the root element, the identifier {\snippet{PUBLIC}} specifies that the DTD (we use
+      the ``{\omdoc} basic'' DTD; see {\mysubsecref{sub-languages:basic}}),
+      which can be identified by the {\twintoo{public}{identifier}} in the first string
+      and looked up in an {\xml} catalog\twin{XML}{catalog} or (if that fails) can be 
+      found at the URL specified in the second string. 
+
+      A DTD declaration is not strictly needed for an {\omdoc} document, but is
+      recommended, since the DTD supplies default values  for some attributes. 
+  & {\ref{sec:validate-dtd}}  p.~\pageref{sec:validate-dtd}\\\hline
+4 & In general, {\xml} files can contain as much whitespace as they want between elements,
+    here we have used it for structuring the document. & \\\hline
+5 & Start tag\twin{start}{tag} of the root element
+    of the document. It declares the version ({\omdocv{1.3}}) via the
+    {\attribute{version}{omdoc}}, and an identifier of the document using the
+    {\attribute[ns-attr=xml]{id}{omdoc}} attribute. The optional {\attribute{modules}{omdoc}}
+    specifies the sub-language used in this document. This is used when no DTD is present
+    (see {\mysubsecref{sub-languages:basic}}).
+  & {\ref{eldef:omdoc}}  p.~\pageref{eldef:omdoc}\\\hline
+6,7 & the {\atwintoo{namespace}{prefix}{declaration}s} for the Dublin Core\twin{Dublin
+    Core}{namespace}, Creative Commons\twin{Creative Commons}{namespace}, and
+    {\openmath}\twin{OpenMath}{namespace} namespaces. They declare the prefixes
+    {\snippetin{dc:}}, {\snippetin{cc:}}, and {\snippetin{om:}}, and bind them to the
+    specified {\indextoo{URI}s}. We will need the {\openmath} namespace only in the
+    third markup step described in {\mysecref{formulae}}, but spurious namespace prefix
+    declarations are not a problem in  the {\xml} world. 
+  & {\ref{chap:spec-intro}}  p.~\pageref{chap:spec-intro}\\\hline
+8 & the {\twintoo{namespace}{declaration}} for the document; if not prefixed, all
+    elements live in the {\omdoc} namespace\twin{OMDoc}{namespace}.
+  & {\ref{sec:omdoc-ns}}  p.~\pageref{sec:omdoc-ns}\\\hline
+9--29 & The {\indextoo{metadata}} for the whole document in Dublin Core
+  format 
+  & {\ref{eldef:metadata}}  p.~\pageref{eldef:metadata}\\\hline
+10 & The title of the  document &\ref{eldef:dc:title} p.~\pageref{eldef:dc:title} \\\hline
+11 & The document creator, here in the role of a {\indextoo{translator}}
+  & {\ref{sec:dc-roles}}  p.~\pageref{sec:dc-roles}\\\hline
+12 & The date and time of first creation of the document in {\atwintoo{ISO}{8601}{norm}}
+    format.  & {\ref{eldef:dc:date}} p.~\pageref{eldef:dc:date} \\\hline
+13 & The date and time of the last update to the document in {\atwintoo{ISO}{8601}{norm}}
+    format. & {\ref{eldef:dc:date}} p.~\pageref{eldef:dc:date} \\\hline
+14--16 & A short description of the contents of the document
+   & {\ref{eldef:dc:description}} p.~\pageref{eldef:dc:description} \\\hline
+17--19 & Here we acknowledge that the {\omdoc} document is just a translation from an
+     earlier work. & {\ref{eldef:dc:source}} p.~\pageref{eldef:dc:source} \\\hline
+20 & The type of the document, this can be {\snippetin{Dataset}} (un-ordered 
+     mathematical knowledge) or {\snippetin{Text}} (arranged for human consumption). 
+     & {\ref{eldef:dc:type}} p.~\pageref{eldef:dc:type} \\\hline
+21 & The format/{\twintoo{MIME}{type}}~\cite{FreBor:MIME96} of the document, for {\omdoc}, this is
+     {\snippetin{application/omdoc+xml}}. 
+     & {\ref{eldef:dc:format}} p.~\pageref{eldef:dc:format} \\\hline
+22 & The copyright resides with the creator of the {\omdoc} document
+     & {\ref{eldef:dc:rights}} p.~\pageref{eldef:dc:rights} \\\hline
+23--28 & The creator licenses the document to the world under certain conditions
+     as specified in the {\twintoo{Creative Commons}{license}} specified in this element.
+     & {\ref{eldef:cc:license}} p.~\pageref{eldef:cc:license} \\\hline
+24,25 & The {\element[ns-elt=cc]{permissions}} element gives the world the {\indextoo{permission}} to
+     reproduce\index{reproduction} and distribute\index{distribution} it
+     freely. Furthermore the license grants the public the right to make derivative works
+     under certain conditions.
+     & {\ref{eldef:cc:permissions}} p.~\pageref{eldef:cc:permissions} \\\hline
+26 & The {\element[ns-elt=cc]{prohibitions}} can be used to prohibit certain uses of the document,
+     but this one is unencumbered.
+     & {\ref{eldef:cc:prohibitions}} p.~\pageref{eldef:cc:prohibitions} \\\hline
+27 & The {\element[ns-elt=cc]{requirements}} states conditions under which the license is
+     granted. In our case the licensee is required to keep the copyright notice and
+     license notices intact during distribution, to give credit to the copyright holder,
+     and that any derivative works derived from this document must be licensed under the
+     same terms as this document (the {\twintoo{copyleft}{clause}}).
+     & {\ref{eldef:cc:requirements}} p.~\pageref{eldef:cc:requirements} \\\hline
+31-37 & The {\element{omtext}} element  is used to mark up text fragments. Here, we
+     have simply used a single {\element{omtext}} to classify the  whole text in the
+     fragment as unspecific ``text''. 
+   & {\ref{eldef:omtext}} p.~\pageref{eldef:omtext} \\\hline
+32-36 & The {\element{CMP}} element holds the actual text in a
+     {\twintoo{multilingual}{group}}. Its {\attribute[ns-attr=xml]{lang}{CMP}} specifies the language. 
+     If the document is used with a {\indextoo{DTD}} or an {\xml} schema\twin{XML}{schema} (as we are)
+     this attribute is redundant, since the default value given by the DTD or schema
+     is {\attvalshort[ns-attr=xml]{en}{lang}}. More keywords in other languages can be given
+     by adding more {\element{CMP}} elements.  
+    & {\ref{eldef:CMP}} p.~\pageref{eldef:CMP} \\\hline
+33--35 & The text of the {\LaTeX} fragment we are migrating. For simplicity we do
+    not change the text, and leave that to later stages of the migration. & \\\hline
+38 & The {\twintoo{closing}{tag}} of the root {\element{omdoc}}
+     element. There may not be text after this in the file. 
+   & {\ref{eldef:omdoc}} p.~\pageref{eldef:omdoc} \\\hline
+\end{longtable}
+\end{small}
+\end{tsection}
+
+\begin{tsection}[id=top-level,short=Structure and Statements]{Marking up the text
+    structure and statements}
+  
+  In the next step, we analyze and mark up the structure of the text of the further, and
+  embed the paragraphs into markup for mathematical statements or text segments.  Instead
+  of lines 32--36 in {\mylstref{outerpart}}, we will now have the representation in
+  {\mylstref{segmented-text}}.
+
+\begin{lstlisting}[label=lst:segmented-text,mathescape,frame=topline,
+    caption={The segmented text},
+    index={theory,symbol,definition,omtext,CMP,omgroup,metadata,dc:title,example}]
+<omtext xml:id="magma.def" type="definition">
+  <CMP>
+    <xhtml:p>Let <legacy format="TeX">$E$</legacy> be a set $\ldots$ called a magma.</xhtml:p>
+  </CMP>
+</omtext>
+
+<omtext xml:id="t1">
+  <CMP>
+    <xhtml:p>The composition of <legacy format="TeX">$x$</legacy> $\ldots$
+    multiplicatively.<xhtml:p>
+   </CMP>
+</omtext>
+<omtext xml:id="t2">
+  <CMP><xhtml:p>In the general $\ldots$ composition.<xhtml:p></CMP>
+</omtext>
+<omtext xml:id="t3">
+  <CMP><xhtml:p>By an abuse $\ldots$ on <legacy format="TeX">$E$.</legacy></xhtml:p></CMP>
+</omtext> 
+
+<omgroup xml:id="magma-ex" type="enumeration">
+   <metadata><dc:title>Examples</dc:title></metadata>
+
+   <omtext type="example" xml:id="e1.magma">
+     <CMP>
+       <xhtml:p>
+         The mappings <legacy format="TeX">$(X,Y)$</legacy> 
+         $\ldots$ subsets of a set <legacy format="TeX">$E$</legacy>.
+       </xhtml:p>
+     </CMP>
+   </omtext>
+   <omtext type="example" xml:id="e2.magma">
+     <CMP>
+       <xhtml:p>
+        On the set <legacy format="TeX">$\bf N$</legacy> $\ldots$ III, $\S3$, no. 4).
+       </xhtml:p>
+     </CMP>
+   </omtext>
+   <omtext type="example" xml:id="e3.magma">
+     <CMP>
+       <xhtml:p>Let <legacy format="TeX">$E$</legacy> be a set; $\ldots$ II, $\S5$, no. 2).</xhtml:p>
+     </CMP>
+   </omtext>
+</omgroup>
+\end{lstlisting}
+
+In summary, we have sliced\index{slicing} the text into {\element{omtext}} fragments and
+individually classified them by their mathematical role. The formulae inside have been
+encapsulated into {\element{legacy}} elements that specify their format for further
+processing. The {\twintoo{higher-level}{structure}} has been captured in {\omdoc} grouping
+elements and the document as well as some of the slices have been annotated by metadata.
+\begin{small}
+\begin{longtable}{|l|p{8.6cm}|p{.8cm}|}\hline
+  line & Description & ref.\\\hline\hline
+1 & The {\element{omtext}} element classifies the text fragment as  a
+    {\attval{definition}{type}{omtext}}, other types for mathematical statements include 
+    {\attval{axiom}{type}{omtext}}, {\attval{example}{type}{omtext}},
+    {\attval{theorem}{type}{omtext}}, and {\attval{lemma}{type}{omtext}}. Note that the
+    numbering of the original text is lost, but can be re-created in the text presentation
+    process. The optional {\attribute[ns-attr=xml]{id}{omtext}} attribute specifies a
+    document-unique identifier that can be used for reference later. 
+    &\ref{eldef:omtext} p.~\pageref{eldef:omtext}\\\hline
+2 & A {\twintoo{multilingual}{group}} of {\element{CMP}} elements that hold the  text (in our
+    case, there is only the English default). Here
+    the {\TeX} formulae have been marked up with {\element{legacy}} elements
+    characterizing them as such. This might simplify a later
+    automatic transformation to {\openmath} or {\cmathml}.
+  & {\ref{eldef:legacy}} p.~\pageref{eldef:legacy} \\\hline
+4--13 & We have classified every paragraph in the original as a separate
+   {\element{omtext}} element, which does not carry a {\attribute{type}{omtext}} since it
+   does not fit any other mathematical category at the moment. 
+   & {\ref{eldef:omtext}} p.~\pageref{eldef:omtext} \\\hline
+15 & The three examples in the original in {\myfigref{bourbaki}} are grouped into
+   an enumeration. We use the {\omdoc}  {\element{omgroup}} element for this. The
+   optional attribute {\attribute[ns-attr=xml]{id}{omgroup}} can be used for referencing later. We have chosen
+   {\attval{enumeration}{type}{omgroup}} for the {\attribute{type}{omgroup}}
+   attribute to specify the numbering of the examples in the original.
+   & {\ref{eldef:omgroup}}  p.~\pageref{eldef:omgroup} \\\hline
+16 & We can use the {\element{metadata}} of the {\element{omgroup}} element to
+   accommodate the title ``Examples'' in the original. We could enter more metadata
+   at this level.   & {\ref{eldef:dc:title}} p.~\pageref{eldef:dc:title} \\\hline
+18 & The {\attribute{type}{omtext}} attribute of this {\element{omtext}} element
+     classifies this text fragment as an example.
+   & {\ref{eldef:omtext}} p.~\pageref{eldef:omtext} \\\hline
+ \end{longtable}
+\end{small}
+\end{tsection}
+
+\begin{tsection}[id=formulae]{Marking up the Formulae}
+ 
+  After we have marked up the top-level structure of the text to expose the content, the
+  next step will be to mark up the formulae in the text to content mathematical form. Up
+  to now, the formulae were still in {\TeX} notation, which can be read by {\TeX}/{\LaTeX}
+  for presentation to the human user, but not used by symbolic mathematics software. For
+  this purpose, we will re-represent the formulae as {\openmath} objects or {\cmathml},
+  making their functional structure\twin{abstract}{syntax}\twin{structure}{abstract}
+  explicit.
+
+  So let us start turning the {\TeX} formulae in the text into {\openmath} objects. Here
+  we use the hypothetical {\url{mbc.mathweb.org}} as repository for theory collections.
+
+\begin{lstlisting}[label=lst:formulae-definition,mathescape,
+    caption={The definition of a magma with {\openmath} objects},
+    index={definition,CMP,om:OMOBJ,om:OMS,om:OMA,om:OMV}]
+<!DOCTYPE omdoc PUBLIC "-//OMDoc//DTD OMDoc CD V1.3//EN" 
+                       "http://omdoc.org/dtd/omdoc-cd.dtd" 
+          [<!ENTITY % om.prefixed "INCLUDE">]>
+
+<theory xml:id="magmas">
+  <imports from="background.omdoc#products"/>
+  <imports from="http://mbc.mathweb.org/omstd/relation1.omdoc#relation1"/>
+
+  <symbol name="magma">
+    <metadata><dc:description>Magma</dc:description></metadata>
+  </symbol>
+  <symbol name="law_of_composition"/>
+
+  <definition xml:id="magma.def" for="magma law_of_composition">
+    <CMP> 
+     <xhtml:p>
+      Let <om:OMOBJ><om:OMV name="E"/></om:OMOBJ> be a set. A mapping of 
+      <om:OMOBJ>
+        <om:OMA><om:OMS cd="products" name="Cartesian-product"/>
+          <om:OMV name="E"/><om:OMV name="E"/>
+        </om:OMA>
+      </om:OMOBJ> is called a 
+      <term cd="magmas" name="magma" role="definiendum">law of composition</term>
+      on <om:OMOBJ><om:OMV name="E"/></om:OMOBJ>.  The value 
+      <om:OMOBJ>
+        <om:OMA><om:OMV name="f"/>
+          <om:OMV name="x"/><om:OMV name="y"/>
+        </om:OMA>
+      </om:OMOBJ>
+      of <om:OMOBJ><om:OMV  name="f"/></om:OMOBJ> for an ordered pair
+      <om:OMOBJ>
+        <om:OMA><om:OMS cd="sets" name="in"/>
+          <om:OMA><om:OMS cd="products" name="pair"/>
+            <om:OMV name="x"/><om:OMV name="y"/>
+          </om:OMA>
+          <om:OMA><om:OMS cd="products" name="Cartesian-product"/>
+            <om:OMV name="E"/><om:OMV name="E"/>
+          </om:OMA>
+        </om:OMA>
+      </om:OMOBJ> is called the 
+      <term cd="magmas" name="law_of_composition" 
+                        role="definiendum-applied">composition</term>
+       of <om:OMOBJ><om:OMV name="x"/></om:OMOBJ> and 
+      <om:OMOBJ><om:OMV name="y"/></om:OMOBJ> under this law. 
+      A set with a law of composition is called a 
+      <term cd="magmas" name="magma" role="definiendum">magma</term>.
+      </xhtml:p>
+    </CMP>
+  </definition>
+$\ldots$
+</theory>
+$\ldots$
+\end{lstlisting}
+
+Of course all the other mathematical statements in the documents have to be treated in the
+same way.
+\begin{small}
+\begin{longtable}{|l|p{8.6cm}|p{.8cm}|}\hline
+  line & Description & ref.\\\hline\hline 
+  1--4 & The {\snippetin{omdoc-basic}} {\twintoo{document type}{definition}} is no longer
+      sufficient for our purposes, since we introduce new symbols that can be used in
+      other documents. The  {\indextoo{DTD}} for {\omdoc} content
+      dictionaries\twin{content dictionary}{OMDoc} (see {\mychapref{omcds}}),
+      which allows this. Correspondingly, we would specify the value
+      {\attval{cd}{module}{omdoc}} for the attribute {\attribute{module}{omdoc}}.
+
+      The part in line 4 is the {\twintoo{internal}{subset}} of the {\indextoo{DTD}},
+      which sets a {\twintoo{parameter}{entity}} for the modularized DTD to instruct it to
+      accept {\openmath} elements in their {\twintoo{namespace}{prefixed}} form. Of course
+      a suitable {\twintoo{namespace prefix}{declaration}} is needed as well. 
+     & {\ref{subsec:sub-languages:cd}} p.~\pageref{subsec:sub-languages:cd} \\\hline
+  5   & The {\twintoo{start}{tag}} of a theory. We need this, since symbols and
+       definitions  can only appear inside {\element{theory}} elements.  
+       & {\ref{sec:theories}} p.~\pageref{sec:theories}\\\hline 
+  6,7 & We need to import the theory {\snippet{products}} to  be able to use symbols
+          from it in the definition below. The  value of the {\attribute{from}{imports}}
+          is a relative {\twintoo{URI}{reference}} to a {\element{theory}} element much
+          like the one in line  5. The other
+          {\element{imports}} element imports the theory {\snippet{relation1}} from the
+          {\openmath} standard content dictionaries\index{content dictionary}\footnote{The
+            originals are available at 
+            \url{http://www.openmath.org/cd}; see {\mychapref{omcds}} for a discussion
+            of the differences of the original {\openmath} format and the {\omdoc}
+            format used here.}.  Note that we do not need to import the theory
+          {\snippet{sets}} here, since this is already imported by
+      the theory {\snippet{products}}. 
+    & {\ref{eldef:imports}} p.~\pageref{eldef:imports}\\\hline 
+9--11 & A symbol declaration: For every definition, {\omdoc} requires the declaration of
+        one or more {\element{symbol}} elements for the concept that is to be defined. The
+        {\attribute{name}{symbol}} attribute is used to identify 
+        it.  The {\element[ns-elt=dc]{description}} element allows to supply a multilingual (via the
+        {\attribute[ns-attr=xml]{lang}{description}} attribute) group of keywords for the
+        declared symbol 
+     & {\ref{eldef:symbol}} p.~\pageref{eldef:symbol}\\\hline 
+  12 & Upon closer inspection it turns out that the definition in
+       {\mylstref{formulae-definition}} actually defines three concepts: ``law of
+       composition'', ``composition'', and ``magma''. Note that ``composition'' is just
+       another name for the value under the law of composition, therefore we do not need
+       to declare a symbol for this. Thus we only declare one for ``law of composition''.
+     & {\ref{eldef:symbol}} p.~\pageref{eldef:symbol}\\\hline 
+  14 & A definition: the {\element{definition}} element carries a
+       {\attribute{name}{definition}} attribute for reference within the theory. We need
+       to reference the two symbols defined here in the {\attribute{for}{definition}} attribute 
+       of the  {\element{definition}} element; it takes a whitespace-separated list of
+      {\attribute{name}{symbol}} attributes of {\element{symbol}} elements in the same 
+      theory as values.  
+    & {\ref{eldef:definition}} p.\pageref{eldef:definition} \\\hline 
+  16 & We use an {\openmath} object for the set $E$. It is an
+      {\element[ns-elt=om]{OMOBJ}} element with an {\element[ns-elt=om]{OMV}} daughter, whose
+      {\attribute{name}{OMV}} attribute specifies the object to be a variable with
+      name $E$. We have chosen to represent the set $E$ as a variable instead of a
+      constant (via an {\element[ns-elt=om]{OMS}} element) in the theory, since it seems to be
+      local to the definition. We will discuss this further in the next section, where
+      we talk about formalization.  
+    & {\ref{eldef:om:OMOBJ}} p.~\pageref{eldef:om:OMOBJ} \\\hline 
+  17--21 & This {\element[ns-elt=om]{OMOBJ}} represents the {\twintoo{Cartesian}{product}}
+          $E\times E$ of the set $E$ with itself.
+      It is an application (via an {\element[ns-elt=om]{OMA}} element) of the symbol for the
+      binary Cartesian product {\indextoo{relation}} to $E$.  
+    & {\ref{eldef:om:OMA}} p.~\pageref{eldef:om:OMA} \\\hline 
+  18 & The symbol for the Cartesian product
+       {\indextoo{constructor}} is represented as an {\element[ns-elt=om]{OMS}} element. The
+       {\attribute{cd}{OMS}} attribute specifies the theory that defines the symbol,
+       and the {\attribute{name}{OMS}} points to the {\element{symbol}} element in it
+       that declares this symbol. The value of the {\attribute{cd}{OMS}} attribute is a
+       theory identifier. Note that this theory has to be imported into the
+       current theory, to be legally used.
+     & {\ref{eldef:om:OMS}} p.~\pageref{eldef:om:OMS}\\\hline 
+   22 & We use the {\element{term}} element to characterize the defined terms in the text
+        of the definition.  Its {\attribute{role}{term}} attribute can used to mark the
+        text fragment as a {\attval{definiens}{role}{term}}, i.e. a concept that is under
+        definition.   
+      & {\ref{eldef:term}} p.~\pageref{eldef:term}\\\hline 
+24--28 & This object stands   for $f(x,y)$ &  \\\hline 
+30--39 & This object represents $(x,y)\in E\times E$.
+         Note that we make use of the symbol for the elementhood relation from the
+         {\openmath} core {\indextoo{content dictionary}} {\snippet{set1}} and of the
+         {\indextoo{pair}{constructor}} from the theory of
+         products from the Bourbaki collection there.  & \\\hline
+\end{longtable}
+\end{small}
+\noindent The rest of the representation in
+{\mylstref{formulae-definition}} is analogous. Thus we have treated
+the first definition in {\myfigref{bourbaki}}. The next two
+paragraphs contain notation conventions that help the human reader
+to understand the text. They are annotated as {\element{omtext}}
+elements. The third paragraph is really a definition (even if the
+wording is a bit bashful), so we mark it up as one in the style of
+{\mylstref{formulae-definition}} above.
+
+Finally, we come to the examples at the end of our fragment. In the markup shown
+in {\mylstref{example-formulae}} we have decided to construct a new theory for
+these examples since the examples use concepts and symbols that are independent of
+the theory of magmas. Otherwise, we would have to add the {\element{imports}}
+element to the theory in {\mylstref{formulae-definition}}, which would have
+mis-represented the actual dependencies. Note that the new theory has to import
+the theory {\snippet{magmas}} together with the theories from which examples are taken,
+so their symbols can be used in the examples. 
+\begin{lstlisting}[label=lst:example-formulae,mathescape,
+    caption={Examples for magmas with {\openmath} objects},
+    index={example,CMP,OMOBJ,OMBIND,OMS,OMA,OMV}]
+<theory xml:id="magmas-examples">
+  <metadata><dc:title>Examples</dc:title></metadata>
+
+   <imports from="http://mbc.mathweb.org/omstd/fns1.omdoc##fns1"/>
+   <imports from="background.omdoc#nat"/>
+   <imports from="background.omdoc#functions"/>
+   <imports from="#magmas"/>
+   
+  <omgroup xml:id="magma-ex" type="enumeration">
+    <metadata><dc:title>Examples</dc:title></metadata>
+
+    <example xml:id="e1.magma" for="#law_of_composition" type="for">
+      <CMP>The mappings 
+        <xhtml:p>
+        <om:OMOBJ>
+          <om:OMBIND><om:OMS cd="fns1" name="lambda"/>
+            <om:OMBVAR>
+              <om:OMV name="X"/><om:OMV name="Y"/>
+            </om:OMBVAR>
+            <om:OMA><om:OMS cd="functions" name="pattern-defined"/>
+              <om:OMA><om:OMS cd="products" name="pair"/>
+                <om:OMV name="X"/>
+                <om:OMV name="Y"/>
+              </om:OMA>
+              <om:OMA><om:OMS cd="sets" name="union"/>
+                <om:OMV name="X"/>
+                <om:OMV name="Y"/>
+              </om:OMA>
+            </om:OMA>
+          </om:OMBIND>
+        </om:OMOBJ> and 
+        <om:OMOBJ>
+          <om:OMBIND><om:OMS cd="fns1" name="lambda"/>
+            <om:OMBVAR>
+              <om:OMV name="X"/><om:OMV name="Y"/>
+            </om:OMBVAR>  
+            <om:OMA><om:OMS cd="functions" name="pattern-defined"/>
+              <om:OMA><om:OMS cd="products" name="pair"/>
+                <om:OMV name="X"/>
+                <om:OMV name="Y"/>
+              </om:OMA>
+              <om:OMA><om:OMS cd="sets" name="intersection"/>
+                <om:OMV name="X"/>
+                <om:OMV name="Y"/>
+              </om:OMA>
+            </om:OMA>
+          </om:OMBIND>
+        </om:OMOBJ>
+        are <term cd="magmas" name="law_of_composition>laws of composition</term>
+        on the set of subsets of a set 
+        <om:OMOBJ><om:OMS cd="magmas" name="E"/></om:OMOBJ>.
+        </xhtml:p>
+      </CMP>
+    </example>
+    
+    <example xml:id="e2.magma" for="#law_of_composition" type="for">
+      <CMP>
+       <xhtml:p>
+        On the set <om:OMOBJ><om:OMS cd="nat" name="Nat"/></om:OMOBJ> 
+        of <term cd="nats" name="nats">natural numbers</term>, 
+        <term cd="nats" name="plus">addition</term>, 
+        <term cd="nats" name="times">multiplication</term>, and 
+        <term cd="nats" name="power">exponentiation</term> are $\ldots$
+       </xhtml:p>
+      </CMP>
+    </example>
+  </omgroup>
+</theory>
+\end{lstlisting}
+
+\noindent The {\element{example}} element in line 13 is used for
+mathematical examples of a special form in {\omdoc}: objects that
+have or fail to have a specific property. In our case, the two given
+mappings have the property of being a law of composition. This
+structural property is made explicit by the
+{\attribute{for}{example}} attribute that points to the concept that
+these examples illustrate, in this case, the symbol
+{\snippet{law\_of\_composition}}. The {\attribute{type}{example}}
+attribute has the values {\attval{for}{type}{example}} and
+{\attval{against}{type}{example}}.  In our case
+{\attval{for}{type}{example}} applies,
+{\attval{against}{type}{example}} would for counterexamples. The
+content of an {\element{example}} is a multilingual {\element{CMP}}
+group. For examples of other kinds --- e.g. usage examples, {\omdoc}
+does not supply specific markup, so we have to fall back to using an
+{\element{omtext}} element with type
+{\attval{example}{type}{omtext}} as above.
+
+In our text fragment, where the examples are at the end of the section that deals
+with magmas, creating an independent theory for the examples (or even multiple
+theories, if examples from different fields are involved) seems appropriate. In
+other cases, where examples are integrated into the text, we can equivalently embed
+theories into other theories. Then we would have the following structure:
+
+\begin{lstlisting}[label=lst:example-embedded,mathescape,
+    caption={Examples embedded into a theory},
+    index={theory,imports}]
+<theory xml:id="magmas">
+  <imports xml:id="imp3" from="background.omdoc#products"/>
+  <imports from="http://mbc.mathweb.org/omstd/relation1.omdoc#relation1"/>
+  $\ldots$
+  <theory xml:id="magmas-examples"
+    <imports xml:id="imp4" 
+       from="http://omdoc.org/examples/omstd/fns1.omdoc#fns1"/>
+    <imports xml:id="imp5" from="background.omdoc#nat"/>
+    <imports xml:id="imp6" from="background.omdoc#functions"/>
+    $\ldots$
+  </theory>
+  $\ldots$
+</theory>
+\end{lstlisting}
+Note that the embedded theory ({\snippet{magmas-examples}}) has access to all the
+symbols in the embedding theory ({\snippet{magmas}}), so it does not have to import it.
+However, the symbols imported into the embedded theory are only visible in it, and do
+not get imported into the embedding theory.
+\end{tsection}
+
+\begin{tsection}[id=formalization]{Full Formalization}
+      
+  The final step in the migration of the text fragment involves a transformation of the
+  {\twintoo{mathematical}{vernacular}} in the statements into some logical formalism. The
+  main benefit of this is that we can verify the mathematical contents in theorem proving
+  environments.  We will start out by dividing the first definition into two parts. The
+  first one defines the symbol {\snippet{law\_of\_composition}}
+  (see~\mylstref{law_of_composition-formal}), and the second one {\snippet{magma}}
+  (see~\mylstref{magma:formal}).
+
+\begin{lstlisting}[label=lst:law_of_composition-formal,
+    caption={The formal definition of a law of composition},
+    index={definition,CMP,OMOBJ,OMBIND,OMBVAR,OMS,OMA,OMV}]
+<symbol name="law_of_composition">
+  <metadata><dc:description>A law of composition on a set.</dc:description></metadata>
+</symbol>
+<definition xml:id="magma.def" for="law_of_composition" type="simple">
+  <CMP> 
+    <xhtml:p>
+      Let <om:OMOBJ><om:OMV name="E"/></om:OMOBJ> be a set. A mapping of 
+     <om:OMOBJ><om:OMR href="#comp.1"/></om:OMOBJ> 
+     is called a <term cd="magmas" name="law_of_composition" 
+                               role="definiens">law of composition</term>
+     on <om:OMOBJ><om:OMV name="E"/></om:OMOBJ>.
+   </xhtml:p>
+  </CMP>
+  <om:OMOBJ>
+    <om:OMBIND>
+      <om:OMS cd="fns1" name="lambda"/>
+      <om:OMBVAR>
+        <om:OMV name="E"/><om:OMV name="F"/>
+      </om:OMBVAR>
+      <om:OMA><om:OMS cd="pl0" name="and"/>
+       <om:OMA><om:OMS cd="sets" name="set"/>
+          <om:OMV name="E"/>
+       </om:OMA>
+       <om:OMA>
+         <om:OMS cd="functions" name="function"/>
+         <om:OMA id="comp.1">
+           <om:OMS cd="products" name="Cartesian-product"/>
+           <om:OMV name="E"/>
+           <om:OMV name="E"/>
+         </om:OMA>
+         <om:OMV name="E"/>
+       </om:OMA>
+     </om:OMA>
+   </om:OMBIND>
+ </om:OMOBJ>
+</definition>
+\end{lstlisting}
+
+\noindent The main difference of this definition to the one in the
+section above is the {\element[ns-elt=om]{OMOBJ}} element, which now
+accompanies the {\element{CMP}} element. It contains a formal
+definition of the property of being a law of composition in the form
+of a $\lambda$-term $\lambda{E,F}.set(E)\wedge F:E\times E\to
+E$\footnote{We actually need to
+  import the theories {\snippet{pl1}} for {\twintoo{first-order}{logic}} (it imports
+  the theory {\snippet{pl0}}) to legally use the logical symbols here. Since we did not
+  show the theory element, we assume it to contain the relevant {\element{imports}}
+  elements.}. The value {\attval{simple}{type}{definition}} of the
+{\attribute{type}{definition}} attribute in the {\element{definition}} element signifies
+that the content of the {\element[ns-elt=om]{OMOBJ}} element can be substituted for the symbol
+{\snippet{law\_of\_composition}}, wherever it occurs. So if we have
+$\snippet{law\_of\_composition}(A,B)$ somewhere this can be reduced to
+$(\lambda{E,F}.set(E)\wedge F:E\times E\to E)(A,B)$ which in turn reduces\footnote{We use
+  the $\lambda$-calculus as a formalization framework here: If we
+  apply a $\lambda$-term of the form $\lambda{X}.A$ to an argument $B$, then the result is
+  obtained by binding all the formal parameters $X$ to the actual parameter $B$, i.e. the
+  result is the value of $A$, where all the occurrences of $X$ have been replaced by $B$.
+  See~\cite{Barendregt80,Andrews02} for an introduction.} to $set(A)\wedge B:A\times A\to
+A$ or in other words $\snippet{law\_of\_composition}(A,B)$ is true, iff $A$ is a set and
+$B$ is a function from $A\times A$ to $A$. This definition is directly used in the second
+formal definition, which we depict in {\mylstref{magma:formal}}.
+
+\begin{lstlisting}[label=lst:magma:formal,
+    caption={The formal definition of a magma},
+    index={definition,CMP,FMP,OMOBJ,OMS,OMA,OMV}]
+ <definition xml:id="magma.def" for="magma" type="implicit">
+  <CMP>
+    <xhtml:p>
+      A set with a law of composition is called a 
+      <term cd="magmas" name="magma" role="definiendum">magma</term>.
+    </xhtml:p>
+  </CMP>
+  <FMP>
+    <om:OMOBJ>
+      <om:OMBIND><om:OMS cd="pl1" name="forall"/>
+        <om:OMBVAR><om:OMV name="M"/></om:OMBVAR>
+        <om:OMA><om:OMS cd="pl0" name="iff"/>
+          <om:OMA><om:OMS cd="magmas" name="magma"/>
+            <om:OMV name="M"/>
+          </om:OMA>
+          <om:OMBIND>
+            <om:OMS cd="pl1" name="exists"/>
+            <om:OMBVAR>
+              <om:OMV name="E"/><om:OMV name="C"/>
+            </om:OMBVAR>
+            <om:OMA><om:OMS cd="pl0" name="and"/>
+              <om:OMA><om:OMS cd="relation1" name="eq"/>
+                <om:OMV name="M"/>
+                <om:OMA><om:OMS cd="products" name="Cartesian-product"/>
+                  <om:OMV name="E"/>
+                  <om:OMV name="C"/>
+                </om:OMA>
+              </om:OMA>
+              <om:OMA><om:OMS cd="magmas" name="law_of_composition"/>
+                <om:OMV name="E"/>
+                <om:OMV name="F"/>
+              </om:OMA>
+            </om:OMA>
+          </om:OMBIND>
+        </om:OMA>
+      </om:OMBIND>
+    </om:OMOBJ>
+  </FMP>
+</definition>
+\end{lstlisting}
+
+\noindent Here, the {\attribute{type}{definition}} attribute on the
+{\element{definition}} element has the value
+{\attval{implicit}{type}{definition}}, which signifies that the
+content of the {\element{FMP}} element should be understood as a
+logical formula that is made true by exactly one object: the
+property of being a {\indextoo{magma}}. This formula can be written
+as
+\[\allcdot{M}{magma(M)\Leftrightarrow\excdot{E,F}{M=(E,F)\land law\_of\_composition(E,F)}}\]
+in other words: $M$ is a magma, iff it is a pair $(E,F)$, where $F$ is a law of
+composition over $E$.
+
+Finally, the examples get a formal part as well. This mainly consists of formally
+representing the object that serves as the example, and making the way it does
+explicit. The first is done simply by adding the object to the example as a
+sibling node to the CMP. Note that we are making use of the {\openmath} reference
+mechanism here that allows to copy subformulae by linking them with an
+{\element[ns-elt=om]{OMR}} element that stands for a copy of the object pointed to by the
+{\attribute{href}{OMR}} attribute (see {\mysecref{openmath}}), which makes
+this very simple. Also note that we had to split the example into two, since
+{\omdoc} only allows one example per {\element{example}} element. However, the
+{\element{example}} contains two {\element[ns-elt=om]{OMOBJ}} elements, since the property of
+being a law of composition is binary. 
+
+The way this object is an example is made explicit by adding an assertion that makes the
+claim of the example formal (in our case that for every set $E$, the function
+$(X,Y)\mapsto X\cup Y$ is a law of composition on the set of subsets of $E$). The
+assertion is referenced by the {\attribute{assertion}{example}} attribute in the
+{\element{example}} element.
+
+\begin{lstlisting}[label=lst:magma-formal-examples,frame=topline,
+    caption={A  formalized magma example},
+    index={example,assertion,CMP,FMP,OMOBJ,OMS,OMA,OMV}]
+<example xml:id="e11.magma" for="#law_of_composition" 
+         type="for" assertion="e11.magma.ass">
+  <CMP>
+    <xhtml:p>
+      The mapping <om:OMOBJ><om:OMR href="#e11.magma.1"/></om:OMOBJ> is 
+      a law of composition on the set of subsets of a set 
+      <om:OMOBJ><om:OMS cd="magmas" name="E"/></om:OMOBJ>.
+    </xhtml:p>
+  </CMP>
+  <om:OMOBJ>
+    <om:OMA id="e11.magma.2"><om:OMS cd="sets" name="subset"/>
+      <om:OMV name="E"/>
+    </om:OMA>
+  </om:OMOBJ>
+  <om:OMOBJ>
+    <om:OMBIND id="e11.magma.1">
+      <om:OMS cd="fns1" name="lambda"/>
+      <om:OMBVAR><om:OMV name="X"/><om:OMV name="Y"/></om:OMBVAR>
+      <om:OMA>
+        <om:OMS cd="functions" name="pattern-defined"/>
+        <om:OMA><om:OMS cd="products" name="pair"/>
+          <om:OMV name="X"/>
+          <om:OMV name="Y"/>
+        </om:OMA>
+        <om:OMA><om:OMS cd="sets" name="union"/>
+          <om:OMV name="X"/>
+          <om:OMV name="Y"/>
+        </om:OMA>
+      </om:OMA>
+    </om:OMBIND>
+  </om:OMOBJ>
+</example>
+
+<assertion xml:id="e11.magma.ass">
+  <FMP>
+    <om:OMOBJ>
+      <om:OMBIND>
+        <om:OMS cd="pl1" name="forall"/>
+        <om:OMBVAR><om:OMV name="E"/></om:OMBVAR>
+        <om:OMA>
+          <om:OMS cd="magmas" name="law_of_composition"/>
+          <om:OMR href="#e11.magma.2"/>
+          <om:OMR href="#e11.magma.1"/>
+        </om:OMA>
+      </om:OMBIND>
+    </om:OMOBJ>
+  </FMP>
+</assertion>
+\end{lstlisting}          
+\end{tsection}
+\end{tchapter} 
+n%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "omdoc" 
+%%% End:
+
+
+% LocalWords:  bourbaki em xsl outerpart Dataset lang  lst utf trl cd dc ref cc
+% LocalWords:  def xmlns omstd omcd en nat fns comp pl eq activemath omcds dtd
+% LocalWords:  Nicolas setname om dag OMR href openmath mathescape kohlhase sc
+% LocalWords:  ns attr elt loc nats xy omdoc mbase metadata DOCTYPE omtext CMP
+% LocalWords:  Verlag un omgroup OMOBJ OMA OMV mis OMBIND OMBVAR FMP forall
+% LocalWords:  tchapter myfigref hbox myfig usebox1 hspace fbox noindent vspace
+% LocalWords:  noindent emph cdot hfill parindent mapsto mapsto circ Mysecref
+% LocalWords:  twintoo Dahn sbt01 BauBlo adtmpd01 cmathml mychapref nuprl ldots
+% LocalWords:  Rudnicki aomp92 BenzmuellerEtAl otama97 tsection mylstref hline
+% LocalWords:  indextoo medskip lstlisting renewcommand baselinestretch pageref
+% LocalWords:  longtable mysubsecref omdocv eldef eldef atwintoo snippetin
+% LocalWords:  snippetin snippetin attvalshort topline attval

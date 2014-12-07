@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE omdoc PUBLIC "-//OMDoc//DTD OMDoc V1.3//EN"
+                "../../dtd/omdoc.dtd" []>
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  xmlns="http://omdoc.org/ns"
+xml:id="undefined-omdoc">
+
+ <metadata>
+  <dc:title>Undefined Elements</dc:title>
+  <dc:creator role="aut">Michael Kohlhase</dc:creator>
+  <dc:date>2002-02-27T00:00:00</dc:date>
+  <dc:description>
+This theory provides an undefined element for partial-function partial-function
+first-order logics.
+  </dc:description>
+ </metadata>
+
+ <theory xml:id="undefined">
+
+  <symbol name="indstar" role="type">
+   <metadata><dc:subject>three-valued booleans</dc:subject>
+     <dc:description>The type of individuals with an undefined
+       element.</dc:description>
+   </metadata>
+  </symbol>
+  <presentation for="#indstar">
+   <use format="default">i*</use>
+  </presentation>
+
+  <symbol name="undefined">
+   <metadata><dc:subject>undefined</dc:subject>
+     <dc:description>This symbol represents the undefined
+       element.</dc:description>
+   </metadata>
+   <type system="simpletypes.omdoc#simpletypes">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="undefined" name="indstar"/></OMOBJ>
+   </type>
+  </symbol>
+
+  <presentation for="#undefined">
+   <use  format="TeX">\bot</use>
+  </presentation>
+
+
+ </theory>
+</omdoc>

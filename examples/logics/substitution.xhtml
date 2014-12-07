@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet  type="text/xsl" href="mathml.xsl"?><html xmlns="http://www.w3.org/1999/xhtml" xmlns:pref="http://www.w3.org/2002/Math/preference" pref:renderer="mathplayer-dl">
+  <head>
+    <link rel="stylesheet" type="text/css" href="omdoc-cnx.css"/>
+    <title>Substitution</title>
+  </head>
+  <body>
+<div class="titleblock">
+<div class="title">Substitution</div>
+<div class="authors">Michael Kohlhase</div>
+<div class="date">2002-04-16</div>
+<div class="description">The Theory of Substitutions.</div></div>
+
+
+<div class="symbol" id="substitute">
+<div class="titlebox">
+<span class="titleword">Concept</span>substitute</div>The elementary substitution constructor, it takes two arguments: 
+    the replacement term, the variable.</div>
+
+<div class="symbol" id="apply">
+<div class="titlebox">
+<span class="titleword">Concept</span>apply</div>
+    The applicatio operator for  substitutions, it takes two arguments: 
+    a substitution and a term.
+  </div>
+
+<div class="example" id="substitute-ex">
+<span class="titleword">Example</span>
+<p>
+  The expression
+   <math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid109850"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id109853" xlink:href="#substitute"><mo xlink:href="#substitute" fence="true">[</mo><mi id="MCRid109861">B</mi><mo xlink:href="#substitute">/</mo><mi id="MCRid109865">X</mi><mo xlink:href="#substitute" fence="true">]</mo></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid109850" xlink:type="simple"><OMA xlink:href="MCRid109853" xlink:type="simple"><OMS cd="substitution" name="substitute" xlink:href="MCRid109855" xlink:type="simple"/><OMV name="B" xlink:href="MCRid109861" xlink:type="simple"/><OMV name="X" xlink:href="MCRid109865" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math>
+   is the substitution operator that substitutes the term <math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid109872"><semantics><mi id="MCRid109874">B</mi><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid109872" xlink:type="simple"><OMV name="B" xlink:href="MCRid109874" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math> for the variable
+   <math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid109878"><semantics><mi id="MCRid109880">X</mi><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid109878" xlink:type="simple"><OMV name="X" xlink:href="MCRid109880" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math>. It can be
+   applied to a term by the substitution application operator.
+   <math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid109884"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" id="id109894" xlink:href="#substitute"><mo xlink:href="#substitute" fence="true">[</mo><mi id="MCRid81898">B</mi><mo xlink:href="#substitute">/</mo><mi id="MCRid81902">X</mi><mo xlink:href="#substitute" fence="true">]</mo></mrow><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#apply" fence="true">(</mo><mi id="MCRid81907">A</mi><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#apply" fence="true">)</mo><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid109884" xlink:type="simple"><OMA xlink:href="MCRid109887" xlink:type="simple"><OMS cd="substitution" name="apply" xlink:href="MCRid109888" xlink:type="simple"/><OMA xlink:href="MCRid109894" xlink:type="simple"><OMS cd="substitution" name="substitute" xlink:href="MCRid109896" xlink:type="simple"/><OMV name="B" xlink:href="MCRid81898" xlink:type="simple"/><OMV name="X" xlink:href="MCRid81902" xlink:type="simple"/></OMA><OMV name="A" xlink:href="MCRid81907" xlink:type="simple"/></OMA></OMOBJ></annotation-xml></semantics></math>
+  this denotes the term that is obtained by replacing all free occurrences of the
+  variable <math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid81916"><semantics><mi id="MCRid81918">X</mi><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid81916" xlink:type="simple"><OMV name="X" xlink:href="MCRid81918" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math> with 
+  <math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid81922"><semantics><mi id="MCRid81924">B</mi><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid81922" xlink:type="simple"><OMV name="B" xlink:href="MCRid81924" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math> 
+  in <math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid81928"><semantics><mi id="MCRid81930">A</mi><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid81928" xlink:type="simple"><OMV name="A" xlink:href="MCRid81930" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math>.
+</p>
+</div>
+
+<div class="symbol" id="substlist">
+<div class="titlebox">
+<span class="titleword">Concept</span>substlist</div>The constructor for complex substitutions: it takes n 
+  arguments that are elementary substitutions.</div>
+
+
+
+</body>
+</html>

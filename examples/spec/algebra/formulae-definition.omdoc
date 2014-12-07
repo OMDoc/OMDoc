@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE omdoc PUBLIC "-//OMDoc//DTD OMDoc V1.3//EN"
+                       "../../../dtd/omdoc.dtd"
+                       [<!ENTITY % om.prefixed "INCLUDE">]>
+
+<omdoc xml:id="formulae-definition.omdoc"
+  xmlns="http://omdoc.org/ns"
+  xmlns:cc="http://creativecommons.org/ns"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xmlns:om="http://www.openmath.org/OpenMath"
+  version="1.3">
+<metadata>
+  <dc:date action="created"> 2004-10-04T17:46:32Z </dc:date>
+  <dc:title xml:lang="en"> formulae-definition </dc:title>
+  <dc:creator role="aut"> Michael Kohlhase </dc:creator>
+  <dc:source>  </dc:source>
+  <dc:date action="updated"> 2004-10-04T17:46:32Z </dc:date>
+  <dc:type> Text </dc:type>
+  <dc:format> application/omdoc+xml </dc:format>
+  <dc:rights>Copyright (c) 2004 Michael Kohlhase</dc:rights>
+  <cc:license>
+    <cc:permissions reproduction="permitted" distribution="permitted" derivative_works="permitted"/>
+    <cc:prohibitions commercial_use="permitted"/>
+    <cc:requirements notice="required" copyleft="required" attribution="required"/>
+  </cc:license>
+</metadata>
+<theory xml:id="magmas">
+  <imports xml:id="imp3" from="background.omdoc#products"/>
+  <imports xml:id="imp2" 
+     from="http://omdoc.org/examples/omstd/relation1.omdoc#relation1"/>
+
+  <symbol name="magma">
+    <metadata><dc:description>Magma</dc:description></metadata></symbol>
+  <symbol name="law_of_composition"/>
+
+  <definition xml:id="magma.def" for="#magma #law_of_composition">
+    <CMP> 
+      Let <om:OMOBJ><om:OMV name="E"/></om:OMOBJ> be a set. A mapping of 
+      <om:OMOBJ>
+        <om:OMA><om:OMS cd="products" name="cartesian-product"/>
+          <om:OMV name="E"/>
+          <om:OMV name="E"/>
+        </om:OMA>
+      </om:OMOBJ> is called a 
+      <term cd="magmas" name="magma" role="definiens">law of composition</term>
+      on <om:OMOBJ><om:OMV name="E"/></om:OMOBJ>.  The value 
+      <om:OMOBJ>
+        <om:OMA><om:OMV name="f"/><om:OMV name="x"/><om:OMV name="y"/></om:OMA>
+      </om:OMOBJ>
+      of <om:OMOBJ><om:OMV  name="f"/></om:OMOBJ> for an ordered pair
+      <om:OMOBJ>
+        <om:OMA><om:OMS cd="sets" name="in"/>
+          <om:OMA><om:OMS cd="products" name="pair"/>
+            <om:OMV name="x"/>
+            <om:OMV name="y"/>
+          </om:OMA>
+          <om:OMA><om:OMS cd="products" name="cartesian-product"/>
+            <om:OMV name="E"/>
+            <om:OMV name="E"/>
+          </om:OMA>
+        </om:OMA>
+      </om:OMOBJ> is called the 
+      <term cd="magmas" name="law_of_composition" 
+                        role="definiens-applied">composition</term>
+       of <om:OMOBJ><om:OMV name="x"/></om:OMOBJ> and 
+      <om:OMOBJ><om:OMV name="y"/></om:OMOBJ> under this law. A set with a law 
+      of composition is called a 
+      <term cd="magmas" name="magma" role="definiens">magma</term>.
+    </CMP>
+  </definition>
+</theory>
+
+</omdoc>

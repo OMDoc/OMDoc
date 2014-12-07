@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xml:id="omdoc.omdoc" version="1.3"
+  xmlns:dct="http://purl.org/dc/terms/" 
+       xmlns:cc="http://creativecommons.org/ns" 
+       xmlns="http://omdoc.org/ns"
+       xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+       xmlns:oo="http://omdoc.org/ontology#"
+       xmlns:om="http://www.openmath.org/OpenMath"
+       xmlns:m="http://www.w3.org/1998/Math/MathML">
+
+<metadata>
+  <meta property="dct:title">OMDoc document ontology</meta>
+  <meta property="rdfs:comment">OMDoc document ontology.
+    The homepage of this project can be found at http://mathweb.org/wiki/OMDoc/document_ontology.</meta>
+  <meta property="dct:format">application/omdoc+xml</meta>
+  <meta property="dct:creator">Christoph Lange &lt;ch.lange@jacobs-university.de></meta>
+  <meta property="dct:contributor">Normen Müller &lt;n.mueller@jacobs-university.de></meta>
+  <meta property="dct:contributor">Krzysztof Retel &lt;retel@macs.hw.ac.uk></meta>
+  <meta property="dct:contributor">Gordan Ristovski &lt;g.ristovski@jacobs-university.de></meta>
+  <meta property="dct:contributor">Andrei Ioniţă &lt;a.ionita@jacobs-university.de></meta>
+  <meta property="dct:contributor">Nikita Zhiltsov (Никита Жильцов) &lt;nikita.zhiltsov@gmail.com></meta>
+  <!-- Contributors (to this file or to any other), please add your name here. –Christoph Lange -->
+  <meta property="dct:subject">Semantic Mathematical Markup</meta>
+  <meta property="owl:versionInfo">0.5.14</meta>
+  <!-- As with other software projects:
+       * leave version as is for very small changes (typo corrections) that do not change the semantics
+       * increase minor version number for small changes and contributions that change or extend the semantics
+       * increase major version number for really big changes. This should be discussed beforehand!
+       Thanks! –Christoph Lange -->
+</metadata>
+
+<!-- TODO For the OWL export, should we declare the DCMI Terms properties as OWL Annotation Properties?
+Turtle code:
+# Declare them as OWL property types, as DCMI Terms is RDFS only (see http://bloody-byte.net/rdf/dc_owl2dl/)
+dct:creator
+	a	owl:AnnotationProperty .
+dct:contributor
+	a	owl:AnnotationProperty .
+dct:subject
+	a	owl:AnnotationProperty .
+dct:title
+	a	owl:AnnotationProperty .
+-->
+<theory name="oo" xml:id="oo">
+  <metadata>
+    <link rel="oo:vocab" href="http://omdoc.org/ontology#"/>
+  </metadata>
+  <!-- meta-theories -->
+  <imports xml:id="owl" from="../examples/logics/owl.omdoc#owl"/>
+  <!-- modules of this ontology -->
+  <imports xml:id="doc" from="doc.omdoc#doc"/>
+  <imports xml:id="mtxt" from="mtxt.omdoc#mtxt"/>
+  <imports xml:id="pf" from="pf.omdoc#pf"/>
+  <imports xml:id="pres" from="pres.omdoc#pres"/>
+  <imports xml:id="st" from="st.omdoc#st"/>
+  <!-- Note: the base classes are imported by every module. -->
+  <omtext type="introduction">
+    <CMP>Most of <phrase verbalizes="#oo">the OMDoc ontology</phrase> can be
+      <phrase verbalizes="#owl">formalized in the logic of OWL</phrase>,
+      but <phrase verbalizes="#pl1eq">we also need FOL with
+        <term cd="indeq" name="eq">equality of individuals</term></phrase>.</CMP>
+  </omtext>
+</theory>
+</omdoc>
+
+<!-- vim:sw=2:sts=2
+-->

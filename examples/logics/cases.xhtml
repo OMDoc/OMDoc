@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet  type="text/xsl" href="mathml.xsl"?><html xmlns="http://www.w3.org/1999/xhtml" xmlns:pref="http://www.w3.org/2002/Math/preference" pref:renderer="mathplayer-dl">
+  <head>
+    <link rel="stylesheet" type="text/css" href="omdoc-cnx.css"/>
+    <title> cases </title>
+  </head>
+  <body>
+<div class="titleblock">
+<div class="title"> cases </div>
+<div class="authors"> Michael Kohlhase </div>
+<div class="date"/></div>
+
+
+<div class="symbol" id="cases">
+<div class="titlebox">
+<span class="titleword">Concept</span>cases</div>The cases operator takes arguments
+      E,C_1,... C_n,[E']. The first argument E is an expression on which the case
+      analysis is performed. The remaining arguments are either 
+      <math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid81170"><semantics><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#case" xlink:type="simple" id="id109666">case</mo><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid81170" xlink:type="simple"><OMS cd="cases" name="case" xlink:href="MCRid109666" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math> 
+      expressions C_i or (optionally, if they are the last
+      argument) and expression for the else case. The value of the case expression is
+      the unique value of the matching case or (if none matches and one is given) the
+      value of the else-expression, orelse undefined.
+      </div>
+
+<div class="symbol" id="case">
+<div class="titlebox">
+<span class="titleword">Concept</span>case</div>The case operator takes two arguments C (a constructor) and F (a
+      form) that perform a case analysis in a <math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid105619"><semantics><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cases" xlink:type="simple" id="id105621">cases</mo><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid105619" xlink:type="simple"><OMS cd="cases" name="cases" xlink:href="MCRid105621" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math>
+      expression.  If F is a binding expression with symbol <math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid105628"><semantics><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#case-lambda" xlink:type="simple" id="id105630">case-lambda</mo><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid105628" xlink:type="simple"><OMS cd="cases" name="case-lambda" xlink:href="MCRid105630" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math>, then the bound varibles A1,...,An of F are called the
+      arguments of C. The case expression succeeds, iff the expression in the
+      superordinate <math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid105638"><semantics><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cases" xlink:type="simple" id="id105640">cases</mo><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid105638" xlink:type="simple"><OMS cd="cases" name="cases" xlink:href="MCRid105640" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math> expression matches the term C(A_1,...,A_n) with substitution
+      sigma. In this case the value of the case expression is sigma applied to the body of
+      F.</div>
+
+<div class="symbol" id="case-other">
+<div class="titlebox">
+<span class="titleword">Concept</span>case-other</div>The "other case" constructor takes one arguments:
+      a form F. This case alowys succeeds in a case expression, if no other does. In this case the value of the
+      case expression is F.</div>
+
+<div class="example">
+<span class="titleword">Example</span>
+<p>The following is an object defined by a case statement</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid80672"><semantics><mrow xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cases"><mo xlink:href="#cases">case</mo><mi id="MCRid80683">tree</mi><mo xlink:href="#cases">of</mo><mrow xlink:href="#case"><mi id="MCRid80696">nil</mi><mo xlink:href="#case">: </mo><mrow id="MCRid80700"><mi id="MCRid80702">node</mi><mrow><mo fence="true">(</mo><mrow><mi id="MCRid80707">value</mi></mrow><mo fence="true">)</mo></mrow></mrow></mrow><mrow xlink:href="#case-other"><mo xlink:href="#case-other">other: </mo><mi id="MCRid80722">nil</mi></mrow><mo xlink:href="#cases"> esac</mo></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid80672" xlink:type="simple"><OMA xlink:href="MCRid80675" xlink:type="simple"><OMS cd="cases" name="cases" xlink:href="MCRid80677" xlink:type="simple"/><OMV name="tree" xlink:href="MCRid80683" xlink:type="simple"/><OMA xlink:href="MCRid80687" xlink:type="simple"><OMS cd="cases" name="case" xlink:href="MCRid80689" xlink:type="simple"/><OMV name="nil" xlink:href="MCRid80696" xlink:type="simple"/><OMA xlink:href="MCRid80700" xlink:type="simple"><OMV name="node" xlink:href="MCRid80702" xlink:type="simple"/><OMV name="value" xlink:href="MCRid80707" xlink:type="simple"/></OMA></OMA><OMA xlink:href="MCRid80713" xlink:type="simple"><OMS cd="cases" name="case-other" xlink:href="MCRid80716" xlink:type="simple"/><OMV name="nil" xlink:href="MCRid80722" xlink:type="simple"/></OMA></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="symbol" id="case-lambda">
+<div class="titlebox">
+<span class="titleword">Concept</span>case-lambda</div>
+      The symbol for binding objects in case statements, see <math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid80866"><semantics><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#case" xlink:type="simple" id="id80868">case</mo><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid80866" xlink:type="simple"><OMS cd="cases" name="case" xlink:href="MCRid80868" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math>.</div>
+
+
+
+</body>
+</html>

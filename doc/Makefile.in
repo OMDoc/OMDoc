@@ -1,0 +1,43 @@
+# so it exists the first time
+%.ind:	
+	touch $@
+
+$(PS):	%.ps: %.dvi
+	dvips $< -o
+
+$(DVI): %.dvi: %.tex $(SOURCES) $(IMG) $(IND)
+	latex $(firstword $<)
+	@echo
+	@if (grep "Writing glossary file" $(patsubst %.tex, %.log, $(firstword $<)) > /dev/null);\
+	   then makeindex -s gglo.ist\
+		-o $(patsubst %.tex, %.gls, $(firstword $<))\
+		$(patsubst %.tex, %.glo, $(firstword $<)); fi
+	@if (grep "Writing index file" $(patsubst %.tex, %.log, $(firstword $<)) > /dev/null);\
+	   then makeindex -o $(patsubst %.tex, %.ind, $(firstword $<))\
+		$(patsubst %.tex, %.idx, $(firstword $<)); fi
+	@if (grep Citation $(patsubst %.tex, %.log, $(firstword $<)) > /dev/null);\
+	    then biber $(patsubst %.tex, %, $(firstword $<));fi
+	@if (grep Rerun $(patsubst %.tex, %.log, $(firstword $<)) > /dev/null);\
+	   then latex $(firstword $<); fi
+	@if (grep Rerun $(patsubst %.tex, %.log, $(firstword $<)) > /dev/null);\
+	    then latex $(firstword $<); fi
+
+
+ $(PDF): %.pdf: %.tex $(SOURCES) $(IMG) $(IND)
+	pdflatex $(firstword $<)
+	@echo
+	@if (grep "Writing glossary file" $(patsubst %.tex, %.log, $(firstword $<)) > /dev/null);\
+	   then makeindex -s gglo.ist\
+		-o $(patsubst %.tex, %.gls, $(firstword $<))\
+		$(patsubst %.tex, %.glo, $(firstword $<)); fi
+	@if (grep "Writing index file" $(patsubst %.tex, %.log, $(firstword $<)) > /dev/null);\
+	   then makeindex -o $(patsubst %.tex, %.ind, $(firstword $<))\
+		$(patsubst %.tex, %.idx, $(firstword $<)); fi
+	@if (grep Citation $(patsubst %.tex, %.log, $(firstword $<)) > /dev/null);\
+	    then biber $(patsubst %.tex, %, $(firstword $<));fi
+	pdflatex $(firstword $<)
+	@if (grep Rerun $(patsubst %.tex, %.log, $(firstword $<)) > /dev/null);\
+	   then pdflatex $(firstword $<); fi
+	@if (grep Rerun $(patsubst %.tex, %.log, $(firstword $<)) > /dev/null);\
+	    then pdflatex $(firstword $<); fi
+

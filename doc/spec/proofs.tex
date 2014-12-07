@@ -1,0 +1,742 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This file is part of the LaTeX sources of the OMDoc 1.3 specification
+% Copyright (c) 2006 Michael Kohlhase
+% This work is licensed by the Creative Commons Share-Alike license
+% see http://creativecommons.org/licenses/by-sa/2.5/ for details
+\svnInfo $Id: proofs.tex 9251 2012-07-23 10:29:02Z kohlhase $
+\svnKeyword $HeadURL: https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.3/doc/spec/proofs.tex $
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{tchapter}[id=proofs,short=Representing Proofs]{Representing Proofs (Module {\PFmodule{spec}})}
+
+  Proofs form an essential part of mathematics and modern sciences.  Conceptually, a
+  {\defin{proof}} is a representation of uncontroversial evidence for the truth of an
+  {\indextoo{assertion}}.
+  
+  The question of what exactly constitutes a proof has been controversially discussed (see
+  e.g.~\cite{BarCoh:ecm01}). The clearest (and most radical) definition is given by
+  theoretical logic, where a proof is a sequence, or {\indextoo{tree}}, or
+  {\atwintoo{directed}{acyclic}{graph}} ({\indextoo{DAG}})\atwin{directed}{acyclic}{graph}
+  of applications of inference rules from a formally defined logical calculus, that meets
+  a certain set of well-formedness conditions.  There is a whole zoo of logical
+  calculi\twin{logical}{calculus} that are optimized for various applications. They have
+  in common that they are extremely explicit and verbose, and that the proofs even for
+  simple theorems can become very large. The advantage of having formal and fully explicit
+  proofs is that they can be very easily verified, even by simple computer programs.  We
+  will come back to this notion of {\indextoo{proof}} in {\mysecref{proofobjects}}.
+
+  In mathematical practice the notion of a proof is more flexible, and more geared for
+  consumption by humans: any line of argumentation is considered a proof, if it convinces
+  its readers that it could in principle be expanded to a formal proof in the sense given
+  above. As the expansion process is extremely tedious, this option is very seldom carried
+  out explicitly. Moreover, as proofs are geared towards communication among humans, they
+  are given at vastly differing levels of abstraction. From a very informal proof idea for
+  the initiated specialist of the field, who can fill in the details herself, down to a
+  very detailed account for skeptics or novices which will normally be still well above
+  the formal level. Furthermore, proofs will usually be tailored to the specific
+  characteristics of the audience, who may be specialists in one part of a proof while
+  unfamiliar to the material in others. Typically such proofs have a
+  sequence/tree/DAG-like structure, where the leaves are natural language sentences
+  interspersed with mathematical formulae (or {\twintoo{mathematical}{vernacular}}).
+
+  Let us consider a proof and its context (\myfigref{pf-example1-math}) as it could be
+  found in a typical elementary math. textbook, only that we have numbered the proof steps
+  for referencing convenience. {\Myfigref{pf-example1-math}} will be used as a running
+  example throughout this chapter.
+
+\begin{myfig}{pf-example1-math}{A Theorem with a Proof.}
+\def\kasten{\hfil\null\nobreak\hfill
+            \hbox{\vrule\vbox{\hrule width 6 pt\vskip 6pt\hrule}\vrule}
+            \par\smallskip}
+\fbox{\begin{minipage}{10cm}
+    {\bf Theorem}: {\emph{There are infinitely many prime numbers.}}\\
+    {\bf Proof}: We need to prove that the set $P$ of all prime numbers is not
+    finite.
+    \begin{center}
+      \begin{tabular}{rp{8cm}}
+        1. & We proceed by assuming that $P$ is finite and reaching a contradiction.\\
+        2. & Let $P$ be finite.\\
+        3. & Then $P=\{p_1,\ldots,p_n\}$ for some $p_i$.\\
+        4. & Let $q \stackrel{def}{=} p_1 \cdots p_n + 1$.\\
+        5. & Since for each $p_i \in P$ we have $q > p_i$, we conclude $q \notin P$.\\
+        6. & We prove the absurdity by showing that $q$ is prime:\\
+        7. & For each $p_i \in P$ we have $q = p_i k + 1$ for some
+             natural number $k$, so $p_i$ can not divide $q$;\\
+        8. & $q$ must be prime as $P$ is the set of all prime numbers. \\
+        9. & Thus we have contradicted our assumption (2) \\
+        10. & and proven the assertion.  \kasten
+      \end{tabular}
+    \end{center}
+  \end{minipage}}
+\end{myfig}
+
+Since proofs can be marked up on several levels, we will introduce the {\omdoc}
+markup for proofs in stages: We will first concentrate on proofs as structured
+texts, marking up the discourse structure in example
+{\myfigref{pf-example1-math}}. Then we will concentrate on the justifications of
+proof steps, and finally we will discuss the scoping and hierarchical structure of
+proofs.
+
+The development of the representational infrastructure in {\omdoc} has a long history:
+From the beginning the format strived to allow structural semantic markup for textbook
+proofs as well as accommodate a wide range of formal proof systems without over-committing
+to a particular system. However, the proof representation infrastructure from
+{\vomdoc{1.1}} turned out not to be expressive enough to represent the proofs in the
+{\sc{Helm}} library~\cite{AspPad:hsmw01}. As a consequence, the {\PFmodule{spec}} module
+has been redesigned~\cite{AspKohSac:dtdop03} as part of the {\scsys{MoWGLI}}
+project~\cite{AspKoht:mimp02}.  The current version of the {\PFmodule{spec}} module is an
+adaptation of this proposal to be as compatible as possible with earlier versions of
+{\omdoc}. It has been validated by interpreting it as an implementation of the
+{\twintoo{$\overline\lambda\mu\tilde\mu$}{calculus}}~\cite{SacerdotiCoen:enlt05} proof
+representation calculus.
+
+\begin{tsection}[id=proof-text]{Proof Structure}
+  In this section, we will concentrate on the structure of proofs apparent in the proof
+  text and introduce the {\omdoc} infrastructure needed for marking up this aspect. Even
+  if the proof in {\myfigref{pf-example1-math}} is very short and simple, we can observe
+  several characteristics of a typical mathematical proof.  The proof starts with the
+  thesis that is followed by nine main ``steps'' (numbered from 1 to 10). A very direct
+  representation of the content of {\myfigref{pf-example1-math}} is given in
+  {\mylstref{primes-omdoc-text}}.
+
+\begin{lstlisting}[label=lst:primes-omdoc-text,mathescape,
+  caption={An {\omdoc} Representation of {\myfigref{pf-example1-math}}.},
+  index={symbol,definition}]
+<assertion xml:id="a1">
+  <CMP><xhtml:p>There are infinitely many prime numbers.</xhtml:p></CMP>
+</assertion>
+<proof xml:id="p" for="#a1">
+  <omtext xml:id="intro">
+    <CMP><xhtml:p>We need to prove that the set $P$ of all prime numbers is not finite.</xhtml:p></CMP>
+  </omtext>
+  <derive xml:id="d1">
+    <CMP><xhtml:p>We proceed by assuming that $P$ is finite and reaching a contradiction.</xhtml:p></CMP>
+    <method>
+      <proof xml:id="p1">
+        <hypothesis xml:id="h2"><CMP><xhtml:p>Let $P$ be finite.</xhtml:p></CMP></hypothesis>
+        <derive xml:id="d3">
+          <CMP><xhtml:p>Then $P=\{p_1,\ldots,p_n\}$ for some $p_i$.</xhtml:p></CMP>
+          <method><premise xref="#h2"/></method>
+        </derive>
+        <symbol name="q"/>
+        <definition xml:id="d4" for="q" type="informal">
+          <CMP><xhtml:p>Let $q \stackrel{def}{=} p_1 \cdots p_n + 1$</xhtml:p></CMP>
+        </definition>
+        <derive xml:id="d5">
+          <CMP><xhtml:p> Since for each $p_i\in P$ we have $q>p_i$, we conclude $q\notin P$.</xhtml:p></CMP>
+        </derive>  
+        <omtext xml:id="c6">
+          <CMP><xhtml:p>We prove the absurdity by showing that $q$ is prime:</xhtml:p></CMP>
+        </omtext>  
+        <derive xml:id="d7">
+          <CMP><xhtml:p>For each $p_i \in P$ we have $q = p_i k + 1$ for some
+            natural number $k$, so $p_i$ can not divide $q$;</xhtml:p></CMP>
+          <method><premise xref="#d4"/></method>
+        </derive>
+        <derive xml:id="d8">
+          <CMP><xhtml:p>$q$ must be prime as $P$ is the set of all prime numbers.</xhtml:p></CMP> 
+          <method><premise xref="#d7"/></method>
+        </derive>
+        <derive xml:id="d9">
+          <CMP><xhtml:p>Thus we have contradicted our assumption</xhtml:p></CMP>
+          <method><premise xref="#d5"/><premise xref="#d8"/></method>
+        </derive>  
+      </proof>
+    </method>
+  </derive>  
+  <derive xml:id="d10" type="conclusion">
+    <CMP><xhtml:p>This proves the assertion.</xhtml:p></CMP>
+  </derive>  
+</proof>
+\end{lstlisting}
+
+Proofs are specified by {\eldef{proof}} elements in {\omdoc} that have the optional
+attributes {\attribute[ns-attr=xml]{id}{proof}} and {\attribute{theory}{proof}} and the
+required attribute {\attribute{for}{proof}}. The {\attribute{for}{proof}} attribute points
+to the assertion that is justified by this proof (this can be an {\element{assertion}}
+element or a {\element{derive}} proof step (see below), thereby making it possible to
+specify expansions of justifications and thus hierarchical proofs). Note that there can be
+more than one proof for a given assertion.
+
+\begin{myfig}{qtproof}{The {\omdoc} Proof Elements}
+\begin{scriptsize}
+\begin{tabular}{|>{\tt}l|>{\tt}l|>{\tt}p{2.6truecm}|c|>{\tt}p{4.2truecm}|}\hline
+{\rm Element}& \multicolumn{2}{l|}{Attributes\hspace*{2.25cm}} & D & Content  \\\hline
+             & {\rm Req.}  & {\rm Optional}     & C &           \\\hline\hline
+ proof       & for         & theory, xml:id, class, style & +   
+             & (omtext | derive | hypothesis | symbol | definition)* \\\hline
+ proofobject & for             & xml:id, class, style, theory & +  & CMP*, ({\mobjabbr}) \\\hline
+ hypothesis  &                 & xml:id, class, style, inductive & -- & CMP*, FMP*  \\\hline
+ derive      &                 & xml:id, class, style, type & -- & CMP*, FMP*, method? \\\hline
+ method      &                 & xref & -- & ({\mobjabbr} | premise | proof | proofobject)* \\\hline
+ premise     & xref            & rank & -- & EMPTY\\\hline
+\end{tabular}
+\end{scriptsize}
+\end{myfig}
+
+The content of a proof consists of a sequence of proof steps, whose {\indextoo{DAG}}
+structure is given by cross-referencing\index{cross-reference}. These proof steps are
+specified in four kinds of {\omdoc} elements:
+\begin{description}
+\item[{\element{omtext}}] {\omdoc} allows this element to allow for intermediate text in
+  proofs that does not have to have a logical correspondence to a proof step, but e.g.
+  guides the reader through the proof. Examples for this are remarks by the proof author,
+  e.g.  an explanation why some other proof method will not work. We can see another
+  example in {\mylstref{primes-omdoc-text}} in lines 5-7, where the comment gives a
+  preview over the course of the proof.
+\item[{\element{derive}}] elements specify normal proof steps that derive a new claim from
+  already known ones, from {\indextoo{assertion}s} or {\indextoo{axiom}s} in the current
+  theory, or from the {\indextoo{assumption}s} of the assertion that is under
+  consideration in the proof.  See for example lines $12ff$ in
+  {\mylstref{primes-omdoc-text}} for examples of {\element{derive}} proof steps that only
+  state the local assertion. We will consider the specification of justifications in
+  detail in {\mysecref{proofs:justifications}} below. The {\eldef{derive}} element carries
+  an optional {\attribute[ns-attr=xml]{id}{derive}} attribute for identification and an
+  optional {\attribute{type}{derive}} to single out special cases of proofs steps.
+  
+  The value {\attval{conclusion}{type}{derive}} is reserved for the concluding step of a
+  proof\footnote{As the argumentative structure of the proof is encoded in the
+    justification structure to be detailed in {\mysecref{proofs:justifications}}, the
+    concluding step of a proof need not be the last child of a proof element.}, i.e. the
+  one that derives the assertion made in the corresponding theorem.  
+  
+  The value {\attval{gap}{type}{derive}} is used for proof steps that are not justified
+  (yet): we call them {\twindef{gap}{steps}}. Note that the presence of gap steps allows
+  {\omdoc} to specify {\twintoo{incomplete}{proof}s} as proofs with gap steps.
+\item[{\element{hypothesis}}] elements allow to specify {\twintoo{local}{assumption}s}
+  that allow the hypothetical reasoning discipline needed for instance to specify proof by
+  contradiction, by case analysis, or simply to show that $A$ implies $B$, by assuming $A$
+  and then deriving $B$ from this local hypothesis. The scope of an hypothesis extends to
+  the end of the {\element{proof}} element containing it. In
+  {\mylstref{primes-omdoc-text}} the classification of step 2 from
+  {\myfigref{pf-example1-math}} as the {\eldef{hypothesis}} element {\snippet{h2}} forces
+  us to embed it into a {\element{derive}} element with a {\element{proof}} grandchild,
+  making a structure apparent that was hidden in the original.
+  
+  An important special case of hypothesis is the case of
+  ``{\twintoo{inductive}{hypothesis}}'', this can be flagged by setting the value of the
+  attribute {\attribute{inductive}{hypothesis}} to {\attval{yes}{inductive}{hypothesis}};
+  the default value is {\attval{no}{inductive}{hypothesis}}.
+  \setbox0=\hbox{\element{symbol}/\element{definition}}\item[\box0] These elements allow
+  to introduce new local symbols that are local to the containing {\element{proof}}
+  element.  Their meaning is just as described in {\mysecref{definitions}}, only that the
+  role of the {\element{axiom}} element described there is taken by the
+  {\element{hypothesis}} element. In {\mylstref{primes-omdoc-text}} step 4 in the proof
+  is represented by a {\element{symbol}}/{\element{definition}} pair. Like in the
+  {\element{hypothesis}} case, the scope of this symbol extends to the end of the
+  {\element{proof}} element containing it.
+\end{description}
+
+These elements contain an informal (natural language) representation of the proof step in
+a multilingual {\element{CMP}} group\twin{multilingual}{group} and possibly an
+{\element{FMP}} element that gives a formal representation of the claim made by this proof
+step. A {\element{derive}} element can furthermore contain a {\element{method}} element
+that specifies how the assertion is derived from already-known facts (see the next section
+for details). All of the proof step elements have an optional
+{\attributeshort[ns-attr=xml]{id}} attribute for identification and the {\css} attributes.
+
+As we have seen above, the content of any proof step is essentially a Gentzen-style sequent; see
+{\mylstref{expansion}} for an example. This mixed representation enhances multi-modal
+{\twintoo{proof}{presentation}}~\cite{Fiedler:tape97}, and the accumulation of proof
+information in one structure. Informal proofs can be formalized~\cite{Baur:susmt99};
+formal proofs can be transformed to natural language~\cite{HuangFiedler:pmfp96}. The first
+is important, since it will be initially infeasible to totally formalize all
+{\twintoo{mathematical}{proofs}} needed for the {\twintoo{correctness}{management}} of the
+{\twintoo{knowledge}{base}}.
+\end{tsection}
+
+\begin{tsection}[id=proofs:justifications]{Proof Step Justifications}
+  
+  So far we have only concerned ourselves with the linear structure of the proof, we have
+  identified the proof steps and classified them by their function in the proof. A central
+  property of the {\element{derive}} elements is that their content (the local claim)
+  follows from statements that we consider true. These can be earlier steps in the proof
+  or general knowledge. To convince the reader of a proof, the steps are often accompanied
+  with a {\defin{justification}}.  This can be given either by a logical
+  {\twintoo{inference}{rule}} or {\twintoo{higher-level}{evidence}} for the truth of the
+  claim.  The evidence can consist in a {\twintoo{proof}{method}} that can be used to
+  prove the assertion, or in a separate subproof, that could be presented if the consumer
+  was unconvinced.  Conceptually, both possibilities are equivalent, since the
+  {\indextoo{method}} can be used to compute the subproof (called its
+  {\defin{expansion}}). Justifications are represented in {\omdoc} by the
+  {\element{method}} children of {\element{derive}} elements\footnote{The structural and
+    formal justification elements discussed in this section are derived from hierarchical
+    data structures developed for semi-automated theorem proving (satisfying the logical
+    side). They allow natural language representations at every level (allowing for
+    natural representation of mathematical vernacular at multiple levels of abstraction).
+    This proof representation (see~\cite{BenzmuellerEtAl:otama97} for a discussion and
+    pointers) is a DAG of nodes which represent the proof steps.}  (see
+  {\mylstref{derive}} for an example):
+  
+  The {\eldef{method}} element contains a structural specification of the justification of
+  the claim made in the {\element{FMP}} of a {\element{derive}} element. So the
+  {\element{FMP}} together with the {\element{method}} element jointly form the
+  counterpart to the natural language content of the {\element{CMP}} group, they are
+  sibling to: The {\element{FMP}} formalizes the local claim, and the {\element{method}}
+  stands for the justification. In {\mylstref{derive}} the formula in the {\element{CMP}}
+  element corresponds to the claim, whereas the part ``By \ldots, we have'' is the
+  justification. In other words, a {\element{method}} element specifies a proof method or
+  inference rule with its arguments that justifies the assertion made in the
+  {\element{FMP}} elements.  It has an optional {\attribute{xref}{method}} attribute whose
+  target is an {\omdoc} definition of an {\twintoo{inference}{rule}} or
+  {\twintoo{proof}{method}}.\footnote{At the moment {\omdoc} does not provide markup for
+    such objects, so that they should best be represented by {\element{symbol}}s with
+    {\element{definition}} where the inference rule is explained in the {\element{CMP}}
+    (see the lower part of {\mylstref{derive}}), and the {\element{FMP}} holds a content
+    representation for the inference rule, e.g.  using the content
+    dictionary~\cite{CD:inference-rules}.  A good enhancement is to encapsulate
+    system-specific encodings of the inference rules in {\element{private}} or
+    {\element{code}} elements and have the {\attribute{xref}{method}} attribute point to
+    these.} A method may have {\element[ns-elt=om]{OMOBJ}}, {\element[ns-elt=m]{math}},
+  {\element{legacy}}, {\element{premise}}, {\element{proof}}, and
+  {\element{proofobject}}\footnote{This object is an alternative representation of certain
+    proofs, see {\mysecref{proofobjects}}.} children.  These act as
+  {\indextoo{parameter}}s to the method, e.g. for the repeated universal instantiation
+  method in {\mylstref{derive}} the parameters are the terms to instantiate the bound
+  variables.
+  
+  The {\eldef{premise}} elements are used to refer to already established assertions:
+  other proof steps or statements (given as {\element{assertion}}, {\element{definition}},
+  or {\element{axiom}} elements) the method was applied to to obtain the local claim of
+  the proof step. The {\element{premise}} elements are empty and carry the required
+  attribute {\attribute{xref}{premise}}, which contains the URI of the assertion.  Thus
+  the {\element{premise}} elements specify the {\indextoo{DAG}} structure of the
+  proof. Note that even if we do not mark up the method in a justification (e.g. if it is
+  unknown or obvious) it can still make sense to structure the argument in
+  {\element{premise}} elements. We have done so in {\mylstref{primes-omdoc-text}} to make
+  the dependencies of the argumentation explicit.
+ 
+  If a {\element{derive}} step is a logically (or even mathematically) complex step, an
+  expansion into sub-steps can be specified in a {\element{proof}} or
+  {\element{proofobject}} element embedded into the justifying {\element{method}} element.
+  An embedded proof allows us to specify generic markup for the hierarchic structure of
+  proofs. Expansions of nodes justified by method applications are computed, but the
+  information about the method itself is not discarded in the process as in tactical
+  theorem provers like {\isabelle}~\cite{Paulson:iagtp94} or {\nuprl}~\cite{Constable86}.
+  Thus, proof nodes may have justifications at multiple levels of abstraction in an
+  hierarchical proof data structure.  Thus the {\element{method}} elements allow to
+  augment the linear structure of the proof by a {\indextoo{tree}}/{\indextoo{DAG}}-like
+  secondary structure given by the {\element{premise}} links. Due to the complex
+  hierarchical structure of proofs, we cannot directly utilize the tree-like structure
+  provided by {\xml}, but use cross-referencing\index{cross-reference}.  The
+  {\element{derive}} step in {\mylstref{derive}} represents an inner node of the proof
+  tree/DAG with three children (the elements with identifiers {\snippet{A2}},
+  {\snippet{A4}}, and {\snippet{A5}}).
+
+\begin{lstlisting}[label=lst:derive,mathescape,
+  caption={A {\element{derive}} Proof Step},index={derive,method,premise}]
+<proof xml:id="proof.2.1.2.proof.D2.1" for="#assertion.2.1.2">
+  $\ldots$
+  <derive xml:id="D2.1">
+    <CMP><xhtml:p>By <oref xref="#A2"/>, <ref type="cite" xref="#A4"/>, and
+       <oref xref="#A5"/> we have $z+(a+(-a))=(z+a)+(-a)$.</xhtml:p></CMP>
+    <FMP>$z+(a+(-a))=(z+a)+(-a)$</FMP>
+    <method xref="nk-sorts.omdoc#NK-Sorts.forallistar">
+      <OMOBJ><OMV name="z"/></OMOBJ>
+      <OMOBJ><OMV name="a"/></OMOBJ>
+      <OMOBJ>$-a$</OMOBJ>
+      <premise xref="#A2"/><premise xref="#A4"/><premise xref="#A5"/>
+    </method>
+  </derive>
+  $\ldots$
+</proof>
+$\ldots$
+<theory xml:id="NK-Sorts">
+  <metadata>
+    <dc:title>Natural Deduction for Sorted Logic</dc:title>
+  </metadata>
+  
+  <symbol name="forallistar">
+    <metadata>
+      <dc:description>Repeated Universal Instantiation></dc:description>
+    </metadata>
+  </symbol>
+  <definition xml:id="forallistar.def" for="forallistar" type="informal">
+    <CMP><xhtml:p>Given $n$ parameters, the inference rule $\forall{I}^*$ instantiates 
+      the first $n$ universal quantifications in the antecedent with them.</xhtml:p></CMP>
+  </definition>
+  $\ldots$
+</theory>
+\end{lstlisting}
+
+
+In {\omdoc} the {\element{premise}} elements must reference proof steps in the current
+proof or statements ({\element{assertion}} or {\element{axiom}} elements) in the scope of
+the current theory: A statement is {\defemph{in scope of}}\index{scope}\twin{theory}{in
+  scope of} the current theory, if its home theory is the current theory or imported
+(directly or indirectly) by the current theory.
+  
+Furthermore note that a proof containing a {\element{premise}} element is not
+self-contained evidence for the validity of the {\element{assertion}} it proves.
+Of course it is only evidence for the validity at all (we call such a proof
+{\indextoo{grounded}}), if all the statements that are targets of
+{\element{premise}} references have grounded proofs themselves\footnote{For
+  {\element{assertion}} targets this requirement is obvious. Obviously,
+  {\element{axiom}s} do not need proofs, but certain forms of definitions need
+  well-definedness proofs (see {\mysubsecref{definitions}}). These are included in
+  the definition of a grounded proof.} and the reference relation does not contain
+cycles. A grounded proof can be made self-contained by inserting the target
+statements as {\element{derive}} elements before the referencing
+{\element{premise}} and embedding at least one {\element{proof}} into the
+{\element{derive}} as a justification.
+
+Let us now consider another proof example ({\mylstref{expansion}}) to fortify our intuition.
+
+\begin{lstlisting}[label=lst:expansion,mathescape,
+  caption={An {\omdoc} Representation of a Proof by Cases},
+  index={proof,derive,method,assumption,conclusion}]
+<assertion xml:id="t1" theory="sets">
+  <CMP><xhtml:p>If $a\in{U}$ or $a\in{V}$, then $a\in{U}\cup{V}$.</xhtml:p></CMP>
+  <FMP>
+    <assumption xml:id="t1_a">$a\in{U}\vee a\in{V}$</assumption>
+    <conclusion xml:id="t1_c">$a\in{U}\cup{V}$</conclusion>
+  </FMP>
+</assertion>
+<proof xml:id="t1_p1" for="#t1" theory="sets">
+  <omtext xml:id="t1_p1_m1">
+    <CMP><xhtml:p> We prove the assertion by a case analysis.</xhtml:p></CMP>
+  </omtext>
+  <derive xml:id="t1_p1_l1">
+    <CMP><xhtml:p>If $a\in{U}$, then $a\in{U}\cup{V}$.</xhtml:p></CMP>
+    <FMP>
+      <assumption xml:id="t1_p1_l1_a">$a\in{U}$</assumption>
+      <conclusion xml:id="t1_p1_l1_c">$a\in{U}\cup{V}$</conclusion>
+    </FMP>
+    <method xref="sk.omdoc#SK.by_definition">$\cup$</method>
+  </derive> 
+  <derive xml:id="t1_p1_l2">
+    <CMP><xhtml:p>If $a\in{V}$, then $a\in{U}\cup{V}$.</xhtml:p></CMP>
+    <FMP>
+      <assumption xml:id="t1_p1_l2_a">$a\in{V}$</assumption>
+      <conclusion xml:id="t1_p1_l2_c">$a\in{U}\cup{V}$</conclusion>
+    </FMP>
+    <method xref="sk.omdoc#SK.by_definition">$\cup$</method>
+  </derive> 
+  <derive xml:id="t1_p1_c">
+    <CMP><xhtml:p> We have considered both cases, so we have $a\in{U}\cup{V}$.</xhtml:p></CMP>
+  </derive> 
+</proof>
+\end{lstlisting}
+This proof is in {{\twindef{sequent}{style}}}\twin{proof}{sequent}: The statement of all
+local claims is in self-contained {\element{FMP}s} that mark up the statement in
+{\element{assumption}}/{\element{conclusion}} form, which makes the logical dependencies
+explicit. In this example we use inference rules from the calculus ``SK'',Gentzen's
+sequent calculus for {\atwintoo{classical}{first-order}{logic}}~\cite{Gentzen:uudlsiii35},
+which we assume to be formalized in a theory {\snippet{SK}}.  Note that local assumptions
+from the {\element{FMP}} should not be referenced outside the {\element{derive}} step they
+were made in. In effect, the {\element{derive}} element serves as a grouping device for
+local assumptions.
+
+Note that the same effect as embedding a {\element{proof}} element into a
+{\element{derive}} step can be obtained by specifying the {\element{proof}} at top-level
+and using the optional {\attribute{for}{proof}} attribute to refer to the identity of the
+enclosing proof step (given by its optional {\attribute[ns-attr=xml]{id}{derive}}
+attribute), we have done this in the proof in {\mylstref{expansion2}}, which expands the
+{\element{derive}} step with identifier {\snippet{t1\_p1\_l1}} in {\mylstref{expansion}}.
+
+\begin{lstlisting}[label=lst:expansion2,mathescape,
+  caption={An External Expansion of Step {\snippet{t\_1\_p1\_l1}} in {\mylstref{expansion}}},
+  index={proof,derive,method,assumption,conclusion}]
+<definition xml:id="union.def" for="union">
+  <OMOBJ>$\allcdot{P,Q,x}{x\in P\cup Q\Leftrightarrow x\in{P}\vee x\in{Q}}$</OMOBJ>
+</definition>
+
+<proof xml:id="t1_p1_l1.exp" for="#t1_p1_l1">
+  <derive xml:id="t1_p1_l1.d1">
+    <FMP>
+      <assumption xml:id="t1_p1_l1.d1.a">$a\in{U}$</assumption>
+      <conclusion xml:id="t1_p1_l1.d1.c">$a\in{U}$</conclusion>
+    </FMP>
+    <method xref="sk.omdoc#SK.axiom"/>
+  </derive>
+  <derive xml:id="t1_p1_l1.l1.d2">
+    <FMP>
+      <assumption xml:id="t1_p1_l1.d2.a">$a\in{U}$</assumption>
+      <conclusion xml:id="t1_p1_l1.d2.c">$a\in{U}\vee a\in{V}$</conclusion>
+    </FMP>
+    <method xref="sk.omdoc#SK.orR"><premise xref="#t1_p1_l1.d1"/></method>
+  </derive>
+  <derive xml:id="t1_p1_l1.d3">
+    <FMP>
+      <assumption xml:id="t1_p1_l1.d3.a">$a\in{U}\vee a\in{V}$</assumption>
+      <conclusion xml:id="t1_p1_l1.d3.c">$a\in{U}\cup{V}$</conclusion>
+    </FMP>
+    <method xref="sk.omdoc#SK.definition-rl">$U$, $V$, $a$
+      <premise xref="#unif.def"/>
+    </method>
+  </derive>
+  <derive xml:id="t1_p1_l1.d4">
+    <FMP>
+      <assumption xml:id="t1_p1_l1.d3.a">$a\in{U}$</assumption>
+      <conclusion xml:id="t1_p1_l1.d3.c">$a\in{U}\cup{V}$</conclusion>
+    </FMP>
+    <method xref="sk.omdoc#SK.cut">
+      <premise xref="#t1_p1_l1.d2"/>
+      <premise xref="#t1_p1_l1.d3"/>
+    </method>
+  </derive>
+</proof>          
+\end{lstlisting}
+\end{tsection}
+
+\begin{tsection}[id=proofs:scoping]{Scoping and Context in a Proof}
+  
+  Unlike the {\atwintoo{sequent}{style}{proof}s} we discussed in the last section, many
+  informal proofs use the
+  {\defemph{\atwintoo{natural}{deduction}{style}}}\atwin{natural}{deduction}{proof}~\cite{Gentzen:uudlsiii35},
+  which allows to reason from local assumptions. We have already seen such hypotheses as
+  {\element{hypothesis}} elements in {\mylstref{primes-omdoc-text}}. The main new feature
+  is that hypotheses can be introduced at some point in the proof, and are discharged
+  later.  As a consequence, they can only be used in certain parts of the proof.  The
+  hypothesis is inaccessible for inference outside the nearest ancestor {\element{proof}}
+  element of the {\element{hypothesis}}.
+  
+  Let us now reconsider the proof in {\myfigref{pf-example1-math}}. Some of the steps (2,
+  3, 4, 5, 7) leave the thesis unmodified; these are called {\twindef{forward}{reasoning}}
+  or {\atwindef{bottom-up}{proof}{step}s}, since they are used to derive new knowledge
+  from the available one with the aim of reaching the conclusion.  Some other steps (1, 6)
+  are used to conclude the (current) thesis by opening new subproofs, each one
+  characterized with a new local thesis.  These steps are called
+  {\twindef{backward}{reasoning}} or {\atwindef{top-down}{proof}{step}s} steps, since they
+  are used to reduce a complex problem (proving the thesis) to several simpler problems
+  (the subproofs).  In our example, both backward reasoning steps open just one new
+  subproof: Step 1 reduces the goal to proving that the finiteness of $P$ implies a
+  contradiction; step 5 reduces the goal to proving that $q$ is prime.
+  
+  Step 2 is used to introduce a new hypothesis, whose scope extends from the point where
+  it is introduced to the end of the current subproof, covering also all the steps
+  inbetween and in particular all subproofs that are introduced in these. In our example
+  the scope of the hypothesis that $P$ is finite (step 2 in {\myfigref{pf-example1-math}})
+  are steps 3 -- 8. In an {\twintoo{inductive}{proof}}, for instance, the scope of the
+  {\twintoo{inductive}{hypothesis}} covers only the proof of the
+  {\twintoo{inductive}{step}} and not the proof of the base case (independently from the
+  order adopted to present them to the user).
+  
+  Step 4 is similar, it introduces a new symbol $q$, which is a
+  {\twintoo{local}{declaration}} that has scope over lines 4 -- 9.  The difference between
+  a hypothesis and a local declaration is that the latter is used to introduce a variable
+  as a new element in a given set or type, whereas the former, is used to locally state
+  some property of the variables in scope. For example, {\emph{``let $n$ be a natural
+      number''}} is a declaration, while {\emph{``suppose $n$ to be a multiple of 2''}} is
+  a hypothesis.  The introduction of a new hypothesis or local declaration should always
+  be justified by a proof step that discharges it. In our example the declaration $P$ is
+  discharged in step 10. Note that in contrast to the representation in
+  {\mylstref{primes-omdoc-text}} we have chosen to view step 6 in
+  {\myfigref{pf-example1-math}} as a top-down proof step rather than a proof comment.
+  
+  To sum up, every proof step is characterized by a current thesis and a
+  {\emin{context}}, which is the set of all the local declarations, hypotheses,
+  and local definitions in scope. Furthermore, a step can either introduce a new
+  hypothesis, definition, or declaration or can just be a forward or backward
+  reasoning step.  It is a forward reasoning {\element{derive}} step if it leaves the current
+  thesis as it is.  It is a backward reasoning {\element{derive}} step if it opens new
+  subproofs, each one characterized by a new thesis and possibly a new context.
+
+\begin{lstlisting}[label=lst:primes-omdoc,mathescape,
+  caption={A top-down Representation of the Proof in {\myfigref{pf-example1-math}}.},
+  index={symbol,definition}]
+<assertion xml:id="a1">
+  <CMP><xhtml:p>There are infinitely many prime numbers.</xhtml:p></CMP>
+</assertion>
+<proof for="#a1">
+  <omtext xml:id="c0">
+    <CMP><xhtml:p>We need to prove that the set $P$ of all prime numbers is not finite.</xhtml:p></CMP>
+  </omtext>
+  <derive xml:id="d1">
+    <CMP><xhtml:p> We proceed by assuming that $P$ is finite and reaching a contradiction.</xhtml:p></CMP>
+    <method xref="nk.omdoc#NK.by-contradiction">
+      <proof>
+        <hypothesis xml:id="h2"><CMP><xhtml:p>Let $P$ be finite.</xhtml:p></CMP></hypothesis>
+        <derive xml:id="d3"><CMP><xhtml:p>Then $P=\{p_1,\ldots,p_n\}$ for some $n$</xhtml:p></CMP></derive>
+        <symbol name="q"/>
+        <definition xml:id="d4" for="q" type="informal">
+          <CMP><xhtml:p>Let $q \stackrel{def}{=} p_1 \cdots p_n + 1$</xhtml:p></CMP>
+        </definition>
+        <derive xml:id="d5a">
+          <CMP><xhtml:p>For each $p_i\in P$ we have $q > p_i$</xhtml:p></CMP>
+          <method xref="#Trivial"><premise xref="#d4"/></method>
+        </derive>
+        <derive xml:id="d5b">
+          <CMP><xhtml:p>$q \notin P$</xhtml:p></CMP>
+          <method xref="#Trivial"><premise xref="#d5"/></method>
+        </derive>
+        <derive xml:id="d6">
+          <CMP><xhtml:p>We show absurdity by showing that $q$ is prime</xhtml:p></CMP>
+          <FMP>$\bot$</FMP>
+          <method xref="#Contradiction">
+            <premise xref="#d5b"/>
+            <proof>
+              <derive xml:id="d7a">
+                <CMP><xhtml:p>
+                  For each $p_i \in P$ we have $q = p_i k + 1$ for a given natural number $k$.
+                </xhtml:p></CMP>
+                <method xref="#By_Definition"><premise xref="#d1"/></method>
+              </derive>
+              <derive xml:id="d7b">
+                <CMP><xhtml:p>Each $p_i \in P$ does not divide $q$</xhtml:p></CMP>
+              </derive>
+              <derive xml:id="d8">
+                <CMP><xhtml:p>$q$ is prime</xhtml:p></CMP>
+                <method xref="#Trivial">
+                  <premise xref="#h2"/>
+                  <premise xref="#p4"/>
+                </method>
+              </derive>
+            </proof>
+          </method>
+        </derive>
+      </proof>
+    </method>
+  </derive>
+</proof>
+\end{lstlisting}
+
+{\element{proof}} elements are considered to be
+non-assertional\twin{assertional}{element} in {\omdoc}, since they do not make
+assertions about mathematical objects themselves, but only justify such assertions.
+The assertional elements inside the proofs are governed by the scoping mechanisms
+discussed there, so that using them in a context where assertional elements are
+needed, can be forbidden. 
+\end{tsection}
+
+\begin{tsection}[id=proofobjects]{Formal Proofs as Mathematical Objects}
+  
+  In {\omdoc}, the notion of fully formal proofs is accommodated by the
+  {\eldef{proofobject}} element. In logic, the term {\twindef{proof}{object}} is used for
+  term representations for formal proofs via the Curry/Howard/DeBruijn Isomorphism (see
+  e.g.~\cite{Thompson91} for an introduction and {\myfigref{proofobject}} for an example).
+  $\lambda$-terms are among the most succinct representations of calculus-level proofs as
+  they only document the inference rules. Since they are fully formal, they are very
+  difficult to read and need specialized {\atwintoo{proof}{presentation}{system}s} for
+  human consumption. In proof objects inference rules are represented as mathematical
+  symbols, in our example in {\myfigref{proofobject}} we have assumed a theory
+  {\snippet{PL0ND}} for the calculus of {\twintoo{natural}{deduction}} in
+  {\twintoo{propositional}{logic}} which provides the necessary symbols (see
+  {\mylstref{plnd}}).
+  
+  The {\element{proofobject}} element contains an optional multilingual group of
+  {\element{CMP}} elements which describes the formal proof as well as a
+  {\twintoo{proof}{object}} which can be an {\element[ns-elt=om]{OMOBJ}},
+  {\element[ns-elt=m]{math}}, or {\element{legacy}} element.
+
+\begin{myfig}{proofobject}{A Proof Object for the Commutativity of Conjunction}
+\setbox0=\hbox{\quad\begin{textnd}
+  \ian{\ibn{\ianc{[A\land B]}
+                 {B}
+                 {\land{E_r}\hspace{1em}}}
+           {\ian{[A\land B]}
+                {A}
+                {\land{E_l}}}
+           {B\land A}
+           {\land{I}}}
+       {A\land B\Rightarrow B\land A}
+       {\Rightarrow\kern-.3em{I}}
+\end{textnd}}
+\setbox1=\hbox{\begin{minipage}{4.1cm}
+\begin{lstlisting}[frame=none,numbers=none,mathescape,label=proofobject,
+   index={proofobject,OMOBJ,OMBIND,OMS,OMBVAR,OMATTR,OMATP,OMA}]
+<proofobject xml:id="ac.p" for="#and-comm">
+ <metadata>
+  <dc:description>
+   Assuming $A\land B$ we have $B$ and $A$ 
+   from which we can derive $B\land A$.
+  </dc:description>
+ </metadata>
+ <OMOBJ>
+  <OMBIND id="andcom.pf">
+   <OMS cd="PL0ND" name="impliesI"/>
+   <OMBVAR>
+    <OMATTR>
+     <OMATP>
+      <OMS cd="PL0ND" name="type"/>
+      $A\land{B}$
+     </OMATP>
+     <OMV name="X"/>
+    </OMATTR>
+   </OMBVAR>
+   <OMA>
+    <OMS cd="PL0ND" name="andI"/>
+    <OMA>
+     <OMA>
+      <OMS cd="PL0ND" name="andEr"/>
+      <OMV name="X"/>
+     </OMA>
+     <OMA>
+      <OMS cd="PL0ND" name="andEl"/>
+      <OMV name="X"/>
+     </OMA>
+    </OMA>
+   </OMA>
+  </OMBIND>
+ </OMOBJ>
+</proofobject>
+\end{lstlisting}
+\end{minipage}}
+\setbox2=\hbox{\begin{minipage}{11cm}
+  The schema on the left shows the proof as a natural deduction proof tree, the
+  {\omdoc} representation gives the proof object as a $\lambda$ term. This term
+  would be written as the following term in traditional (mathematical) notation:
+  $\Rightarrow\kern-.3em{I}(\lambda{X:A\land{B}}.\land\kern-.3em{I}(\land{E_r}(X),\land{E_l}(X)))$
+\end{minipage}}
+
+\begin{tabular}{|cc|}\hline
+ \box0 & \box1\\\hline
+ \multicolumn{2}{|c|}{\box2}\\\hline
+\end{tabular}
+\end{myfig}
+Note that using {\omdoc} symbols for inference rules and mathematical objects for proofs
+reifies them to the object level and allows us to treat them at par with any other
+mathematical objects. We might have the following theory for natural deduction in
+propositional logic as a reference target for the second inference rule in
+{\myfigref{proofobject}}.
+
+\begin{lstlisting}[label=lst:plnd,mathescape,
+  caption={A Theory for Propositional Natural Deduction}]
+<theory xml:id="PL0ND">
+  <metadata>
+    <dc:description>The Natural Deduction Calculus for Propositional Logic</dc:description>
+  </metadata>
+  $\ldots$
+  <symbol name="andI">
+    <metadata><dc:subject>Conjunction Introduction</dc:subject></metadata>
+    <type system="prop-as-types">$A\to B\to(A\land B)$</type>
+  </symbol>
+
+  <definition xml:id="andI.def" for="andi">
+    <CMP><xhtml:p>Conjunction introduction, if we can derive $A$ and $B$, 
+      then we can conclude $A\wedge B$.</xhtml:p></CMP>
+  </definition>
+  $\ldots$
+</theory>
+\end{lstlisting}
+
+In particular, it is possible to use a {\element{definition}}
+element to define a {\atwintoo{derived}{inference}{rule}} by simply specifying the proof
+term as a {\indextoo{definiens}}:
+\begin{lstlisting}[mathescape]
+<symbol name="andcom">
+  <metadata><dc:description>Commutativity for $\wedge$</dc:description></metadata>
+  <type system="prop-as-types">$(A\land B)\to (B\land A)$</type>
+</symbol>
+<definition xml:id="andcom.def" for="#andcom" type="simple">
+  <OMOBJ><OMR href="#andcom.pf"/></OMOBJ>
+</definition>
+\end{lstlisting}
+Like {\element{proof}s}, {\element{proofobject}s} elements are considered to be
+non-assertional\twin{assertional}{element} in {\omdoc}, since they do not make
+assertions about mathematical objects themselves, but only justify such assertions.
+\end{tsection}
+\end{tchapter}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "omdoc"
+%%% End: 
+
+% LocalWords:  pf lst mathescape metacomment qtproof xref foralli NK SK andi
+% LocalWords:  orR pd proofobject em OMATP comm cd impliesI openproof andI def
+% LocalWords:  andEr andEl proofobjects exp rl unif pt omdoc CMP FMP href andI
+% LocalWords:  omtext truecm Gentzen OMOBJ OMV dc FOL OMBIND OMS OMBVAR OMATTR
+% LocalWords:  OMA ac ref FoND andcom PL andi OMR Claudio's ns attr ff elt rp
+% LocalWords:  MoWGLI forallistar strived Req multi metadata plnd andi andi
+% LocalWords:  inbetween andi andI andI andI andI andI

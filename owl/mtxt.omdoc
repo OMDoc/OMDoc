@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xml:id="mtxt.omdoc" version="1.3"
+  xmlns:dct="http://purl.org/dc/terms/" 
+       xmlns:cc="http://creativecommons.org/ns" 
+       xmlns="http://omdoc.org/ns"
+       xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+       xmlns:oo="http://omdoc.org/ontology#"
+       xmlns:om="http://www.openmath.org/OpenMath"
+       xmlns:m="http://www.w3.org/1998/Math/MathML">
+
+<metadata>
+  <meta property="dct:title">OMDoc document ontology (module MTXT)</meta>
+  <meta property="rdfs:comment">OMDoc document ontology, mathematical text module.  See chapter 14.3 (Text Fragments and their Rhetoric/Mathematical Roles) of the OMDoc1.2 specification.
+    This file is designed to be imported from the main module `omdoc'.</meta>
+  <meta property="dct:creator">Gordan Ristovski &lt;g.ristovski@jacobs-university.de></meta>
+  <meta property="dct:contributor">Christoph Lange &lt;ch.lange@jacobs-university.de></meta>
+  <meta property="dct:contributor">Nikita Zhiltsov (Никита Жильцов) &lt;nikita.zhiltsov@gmail.com></meta>
+  <!-- Contributors, please add your name here, and in the main file omdoc.omdoc –Christoph Lange -->
+  <meta property="dct:subject">Semantic Mathematical Markup, Mathematical Text</meta>
+</metadata>
+
+<theory xml:id="mtxt">
+  <metadata>
+    <link rel="oo:vocab" href="http://omdoc.org/ontology#"/>
+  </metadata>
+  <!-- meta-theories -->
+  <imports xml:id="owl" from="../examples/logics/owl.omdoc#owl"/>
+  <imports xml:id="pl1eq" from="../examples/logics/pl1eq.omdoc#pl1eq"/>
+  <!-- other modules of this ontology -->
+  <imports xml:id="st" from="st.omdoc#st"/>
+  <!-- Note: the base classes are imported by every module. -->
+
+  <symbol name="verbalizes">
+    <metadata>
+      <meta property="rdfs:comment">An informal knowledge item is supposed to represent its formal counterpart.</meta>
+      <meta property="rdfs:label" xml:lang="ru">вербализует</meta>
+      <meta property="rdfs:label" xml:lang="en">verbalizes</meta>
+      <meta property="rdfs:label" xml:lang="de">verbalisiert</meta>
+    </metadata>
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+          <OMS cd="owl" name="TransitiveProperty"/>
+          <OMS cd="base" name="MathKnowledgeItem"/>
+          <OMS cd="base" name="MathKnowledgeItem"/>
+          <!-- TODO This is incorrect, since in this format eg Axiom can verbalize Definition,
+               but as the scale of formality degrees is open, we can't model it more exactly in OWL.
+               We'd need an order on the FormalityDegrees and an additional rule for oo:verbalizes
+               (http://trac.omdoc.org/OMDoc/ticket/1635) -->
+        </OMA>
+      </OMOBJ>
+    </type>
+  </symbol>
+  
+  <symbol name="formalizes">
+    <metadata>
+      <meta property="rdfs:label" xml:lang="ru">формализует</meta>
+      <meta property="rdfs:label" xml:lang="en">formalizes</meta>
+      <meta property="rdfs:label" xml:lang="de">formalisiert</meta>
+    </metadata>
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMS cd="owl" name="ObjectProperty"/>
+      </OMOBJ>
+    </type>
+  </symbol>
+
+  <axiom for="formalizes">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+            <OMS cd="owl" name="inverseOf"/>
+            <OMS cd="mtxt" name="formalizes"/>
+            <OMS cd="mtxt" name="verbalizes"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+
+  <symbol name="Property">
+    <metadata>
+      <meta property="rdfs:comment">Represents a property, which can be either formal (FMP) or informal (CMP)</meta>
+      <meta property="rdfs:label" xml:lang="de">Eigenschaft</meta>
+      <meta property="rdfs:label" xml:lang="ru">Свойство</meta>
+      <meta property="rdfs:label" xml:lang="en">Property</meta>
+    </metadata>
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMS cd="owl" name="Class"/>
+      </OMOBJ>
+    </type>
+  </symbol>
+
+  <axiom for="Property">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+            <OMS cd="rdfs" name="subClassOf"/>
+            <OMS cd="mtxt" name="Property"/>
+            <OMS cd="base" name="MathKnowledgeItem"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+
+  <axiom for="Property">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+          <OMS cd="owl" name="AllDisjointClasses"/>
+          <OMS cd="mtxt" name="Property"/>
+          <OMS cd="st" name="Statement"/>
+          <OMS cd="st" name="Theory"/>
+          <OMS cd="st" name="Type"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+
+  <symbol name="hasProperty">
+    <metadata>
+      <meta property="rdfs:comment">Represents relation between nodes and its CMP/FMP children nodes</meta>
+      <meta property="rdfs:label" xml:lang="ru">обладает свойством</meta>
+      <meta property="rdfs:label" xml:lang="en">has Property</meta>
+      <meta property="rdfs:label" xml:lang="de">hat Eigenschaft</meta>
+    </metadata>
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+          <OMS cd="owl" name="ObjectProperty"/>
+          <OMS cd="st" name="Statement"/>
+          <OMS cd="mtxt" name="Property"/>
+        </OMA>
+      </OMOBJ>
+    </type>
+  </symbol>
+
+  <axiom for="hasProperty">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+          <OMS cd="rdfs" name="subPropertyOf"/>
+          <OMS cd="mtxt" name="hasProperty"/>
+          <OMS cd="base" name="hasDirectPart"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+
+  <symbol name="hasText">
+    <metadata>
+      <meta property="rdfs:comment">The text of an informal property (CMP in OMDoc)</meta>
+      <!-- Note: one doesn't always have to say 'has …' – I guess here it's pretty much clear without the 'has'. –Christoph, 2010/05/05 -->
+      <meta property="rdfs:label" xml:lang="en">Text</meta>
+      <meta property="rdfs:label" xml:lang="de">Text</meta>
+    </metadata>
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMS cd="owl" name="DatatypeProperty"/>
+      </OMOBJ>
+    </type>
+  </symbol>
+
+  <axiom for="hasText">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+          <OMS cd="rdfs" name="domain"/>
+          <OMS cd="mtxt" name="hasText"/>
+          <OMS cd="mtxt" name="Property"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+
+  <axiom for="hasText">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+          <OMS cd="rdfs" name="domain"/>
+          <OMS cd="mtxt" name="hasText"/>
+          <OMS cd="base" name="InformalKnowledgeItem"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+
+  <axiom for="hasText">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+          <OMS cd="rdfs" name="range"/>
+          <OMS cd="mtxt" name="hasText"/>
+          <OMS cd="rdfs" name="Literal"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+
+  <symbol name="SequentPart">
+    <metadata>
+      <meta property="rdfs:comment">A part (either assumption or conclusion) of a sequent structure that a formal property may have</meta>
+      <meta property="rdfs:label" xml:lang="ru">Следующая часть</meta>
+      <meta property="rdfs:label" xml:lang="en">Sequent Part</meta>
+      <meta property="rdfs:label" xml:lang="de">Sequenzabschnitt</meta>
+    </metadata>
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMS cd="owl" name="Class"/>
+      </OMOBJ>
+    </type>
+  </symbol>
+
+  <axiom for="SequentPart">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+            <OMS cd="rdfs" name="subClassOf"/>
+            <OMS cd="mtxt" name="SequentPart"/>
+            <OMS cd="st" name="Statement"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+
+  <axiom for="SequentPart">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+            <OMS cd="owl" name="disjointWith"/>
+            <OMS cd="mtxt" name="SequentPart"/>
+            <OMS cd="st" name="StatementInTheory"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+
+  <symbol name="Assumption">
+    <metadata>
+      <meta property="rdfs:comment">Represents any assumption that may occur in a formal property.</meta>
+      <meta property="rdfs:label" xml:lang="ru">Предположение</meta>
+      <meta property="rdfs:label" xml:lang="en">Assumption</meta>
+      <meta property="rdfs:label" xml:lang="de">Vermutung</meta>
+    </metadata>
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMS cd="owl" name="Class"/>
+      </OMOBJ>
+    </type>
+  </symbol>
+
+  <axiom for="Assumption">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+            <OMS cd="rdfs" name="subClassOf"/>
+            <OMS cd="mtxt" name="Assumption"/>
+            <OMS cd="mtxt" name="SequentPart"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+
+  <symbol name="Conclusion">
+    <metadata>
+      <meta property="rdfs:comment">Represents any conclusion that may occur in a formal property.</meta>
+      <meta property="rdfs:label" xml:lang="ru">Заключение</meta>
+      <meta property="rdfs:label" xml:lang="en">Conclusion</meta>
+      <meta property="rdfs:label" xml:lang="de">Schlussfolgerung</meta>
+    </metadata>
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMS cd="owl" name="Class"/>
+      </OMOBJ>
+    </type>
+  </symbol>
+
+  <axiom for="Conclusion">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+            <OMS cd="rdfs" name="subClassOf"/>
+            <OMS cd="mtxt" name="Conclusion"/>
+            <OMS cd="mtxt" name="SequentPart"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+
+  <axiom for="Assumption Conclusion">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+          <OMS cd="owl" name="AllDisjointClasses"/>
+          <OMS cd="mtxt" name="Assumption"/>
+          <OMS cd="mtxt" name="Conclusion"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+
+  <symbol name="assumes">
+    <metadata>
+      <meta property="rdfs:label" xml:lang="ru">предполагает</meta>
+      <meta property="rdfs:label" xml:lang="en">assumes</meta>
+      <meta property="rdfs:label" xml:lang="de">setzt voraus</meta>
+    </metadata>
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+          <OMS cd="owl" name="ObjectProperty"/>
+          <OMS cd="mtxt" name="Property"/>
+          <OMS cd="mtxt" name="Assumption"/>
+        </OMA>
+      </OMOBJ>
+    </type>
+  </symbol>
+
+  <axiom for="assumes">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+            <OMS cd="rdfs" name="subPropertyOf"/>
+            <OMS cd="mtxt" name="assumes"/>
+            <OMS cd="base" name="hasDirectPart"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+
+  <symbol name="concludesWith">
+    <metadata>
+      <meta property="rdfs:label" xml:lang="ru">заключается посредством</meta>
+      <meta property="rdfs:label" xml:lang="en">concludes with</meta>
+      <meta property="rdfs:label" xml:lang="de">schlussfolgert</meta>
+    </metadata>
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+          <OMS cd="owl" name="ObjectProperty"/>
+          <OMS cd="mtxt" name="Property"/>
+          <OMS cd="mtxt" name="Conclusion"/>
+        </OMA>
+      </OMOBJ>
+    </type>
+  </symbol>
+
+  <axiom for="concludesWith">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+            <OMS cd="rdfs" name="subPropertyOf"/>
+            <OMS cd="mtxt" name="concludesWith"/>
+            <OMS cd="base" name="hasDirectPart"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+
+  <axiom for="assumes concludesWith">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+          <OMS cd="owl" name="AllDisjointProperties"/>
+          <OMS cd="mtxt" name="assumes"/>
+          <OMS cd="mtxt" name="concludesWith"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+
+  <symbol name="usesSymbol">
+    <metadata>
+      <meta property="rdfs:comment">FMP can refer to several symbols in its body.</meta>
+      <meta property="rdfs:label" xml:lang="ru">использует символ</meta>
+      <meta property="rdfs:label" xml:lang="en">uses symbol</meta>
+      <meta property="rdfs:label" xml:lang="de">verwendet Symbol</meta>
+    </metadata>
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+          <OMS cd="owl" name="ObjectProperty"/>
+          <!-- TODO maybe we need more domain types for the inductive/pattern definition types,
+               as they don't have an FMP either, but requation children
+               same for AssertedType, which has _two_ MOBJ children, which should be distinguished -->
+          <OMA>
+            <OMS cd="owl" name="unionOf"/>
+            <OMS cd="st" name="SimpleDefinition"/>
+            <OMS cd="st" name="DeclaredType"/>
+            <!-- the former directly contain MOBJs, without a property level in between -->
+            <OMS cd="mtxt" name="Property"/>
+            <OMS cd="mtxt" name="SequentPart"/>
+          </OMA>
+          <OMS cd="st" name="GeneralSymbol"/>
+        </OMA>
+      </OMOBJ>
+    </type>
+  </symbol>
+
+  <symbol name="occursIn">
+    <metadata>
+      <meta property="rdfs:label" xml:lang="ru">встречается в</meta>
+      <meta property="rdfs:label" xml:lang="en">occurs in</meta>
+      <meta property="rdfs:label" xml:lang="de">kommt vor in</meta>
+    </metadata>
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMS cd="owl" name="ObjectProperty"/>
+      </OMOBJ>
+    </type>
+  </symbol>
+
+  <axiom for="occursIn">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+            <OMS cd="owl" name="inverseOf"/>
+            <OMS cd="mtxt" name="occursIn"/>
+            <OMS cd="mtxt" name="usesSymbol"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+
+  <!-- deprecated: https://trac.omdoc.org/OMDoc/ticket/1410 -->
+  <symbol name="logic">
+    <metadata>
+      <meta property="rdfs:comment">A Rigorous Mathematical Property is formally represented in some logic. This property helps us create a relation between the property and the logic. This is as defined in the OMDoc 1.2 specification, chapter 1 (Mathematical Text (Modules MTXT and RT)</meta>
+      <meta property="rdfs:label" xml:lang="en">Logic</meta>
+      <meta property="rdfs:label" xml:lang="de">Logik</meta>
+    </metadata>
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+          <OMS cd="owl" name="DatatypeProperty"/>
+        </OMA>
+      </OMOBJ>
+    </type>
+  </symbol>
+
+  <axiom for="logic">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+            <OMS cd="rdfs" name="domain"/>
+            <OMS cd="mtxt" name="logic"/>
+            <OMS cd="mtxt" name="Property"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+
+  <!-- TODO formalize multilingual CMPs and multi-logic FMPs -->
+</theory>
+</omdoc>
+
+<!-- vim:sw=2:sts=2
+-->

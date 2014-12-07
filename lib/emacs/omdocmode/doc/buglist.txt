@@ -1,0 +1,49 @@
+OMDoc mode -- buglist.txt			September 2002.
+
+A selection of bugs, issues and problems we know about and 
+(for the most part) intend to fix.
+
+Bugs and blemishes
+------------------
+- Errors sometimes halt functions in an inconsistent state
+  (requiring killing the current buffer).
+- Indentation code is recursive, which overflows the recursion stack
+  on deeply nested constructs and multi-tag lines.
+  (making indentation code mostly iterative may help).
+- Indentation breaks on empty lines and sometimes on CDATA.
+- some of the templates for insertion need to be fixed
+- better font colors for dark background (and test)
+- redo and extend the process part (for validation)
+- cleanup
+
+Portability issues
+------------------
+- Some code occasionally breaks in emacs version 21 
+  (because of tighter type checking)
+- Essential constructs don't work in emacs 19.
+  However, WE ARE NOT CURRENTLY PLANNING TO MAINTAIN omdoc-mode.el
+  FOR EMACS VERSIONS 19 OR OLDER.
+
+Additional functionality wishlist
+---------------------------------
+- for each tag: generate list of possible attributes for that tag
+- command to get rid of certain empty tags
+- command to generate closing tags (up to one of the main tags)
+- command to go to next element, previous element
+- command to delete the next element
+- bug-reporting mechanism
+
+Other (coding and cosmetic) improvements
+----------------------------------------
+- add customization properly
+- add groups for omdoc (main group) and subgroups for fonts, process etc.
+- clean up the configuration variables etc.
+- cleanup the utility code.
+
+More distant future 
+-------------------
+Brilliant, innovative, spectacular, and daring ideas to be added later.
+
+Please send comments, suggestions, bug reports and bug fixes
+to pjj@cs.cmu.edu.
+

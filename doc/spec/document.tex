@@ -1,0 +1,353 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This file is part of the LaTeX sources of the OMDoc 1.3 specification
+% Copyright (c) 2006 Michael Kohlhase
+% This work is licensed by the Creative Commons Share-Alike license
+% see http://creativecommons.org/licenses/by-sa/2.5/ for details
+\svnInfo $Id: document.tex 9251 2012-07-23 10:29:02Z kohlhase $
+\svnKeyword $HeadURL: https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.3/doc/spec/document.tex $
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{tchapter}[id=omdoc-infrastructure,short=Document Infrastructure]{Document Infrastructure (Module {\DOCmodule{spec}})}
+
+Mathematical knowledge is largely communicated by way of a specialized set of
+documents (e.g. e-mails, letters, pre-prints, journal articles, and textbooks).
+These employ special notational conventions and visual
+representations to convey the mathematical knowledge reliably and efficiently.
+
+When marking up mathematical knowledge, one always has the choice whether to mark up the
+structure of the document itself, or the structure of the mathematical knowledge that is
+conveyed in the document. Even though in most documents, the document structure is
+designed to help convey the structure of the knowledge, the two structures need not be the
+same.  To frame the discussion we will distinguish two aspects of mathematical
+documents. In the {\twinemph{knowledge-centered}{view}} we organize the mathematical
+knowledge by its function, and do not care about a way to present it to human
+recipients. In the {\twinemph{narrative-centered}{view}} we are interested in the
+structure of the argument that is used to convey the mathematical knowledge to a human
+user.
+
+We will call a document {\defin{knowledge-structured}} and
+{\defemph{narrative-struc\-tu\-red}}\index{narrative-structured}, based on which of the
+two aspects is prevalent in the organization of the material.  Narrative-structured
+documents in mathematics are generally directed at human consumption (even without being
+in presentation markup). They have a general narrative structure: text interleaving with
+formal elements like assertions, proofs, \ldots Generally, the order of presentation plays
+a role in their effectiveness as a means of communication.  Typical examples of this class
+are course materials or introductory textbooks.  Knowledge-structured documents are
+generally directed at machine consumption or for referencing. They do not have a linear
+narrative spine and can be accessed randomly and even re-ordered without information loss.
+Typical examples of these are formula collections, {\openmath} content dictionaries,
+technical specifications, etc.
+
+The distinction between knowledge-structured and narrative-structured documents is
+reminiscent of the {\indextoo{presentation}} vs.  {\indextoo{content}}
+distinction\index{distinction!presentation vs. content} discussed in
+{\mysecref{math-objects}}, but now it is on the level of document structure.  Note that
+mathematical documents are often in both categories: a mathematical textbook can be read
+from front to end, but it can also be used as a reference, accessing it by the index and
+the table of contents.  The way humans work with knowledge also involves a change of
+state. When we are taught or explore a mathematical domain, we have a linear/narrative
+path through the material, from which we abstract more and more, finally settling for a
+semantic representation that is relatively independent from the path we acquired it by.
+Systems like {\activemath} (see {\mysecref{activemath}}) use the {\omdoc} format in
+exactly that way playing on the difference between the two classes and generating
+narrative-structured representations from knowledge-structured ones on the fly.
+
+So, maybe the best way to think about this is that the question whether a document
+is narrative- or knowledge-structured is not a property of the document itself,
+but a property of the application processing this document.
+
+{\omdoc} provides markup infrastructure for both aspects. In this chapter, we will discuss
+the infrastructure for the narrative aspect --- for a working example we refer the reader
+to {\mychapref{courseware}}. We will look at markup elements for knowledge-structured
+documents in {\mysecref{theories}}.
+
+Even though the infrastructure for narrative aspects of mathematical documents is somewhat
+presentation-oriented, we will concentrate on content-markup for it. In particular, we
+will not concern ourselves with questions like font families, sizes, alignment, or
+positioning of text fragments. Like in most other {\xml} applications, this kind of
+information can be specified in the {\css} {\attributeshort{style}} and
+{\attributeshort{class}} attributes described in {\mysecref{common-attribs}}.
+
+\begin{tsection}[id=root]{The Document Root}
+  
+  The {\xml} root element of the {\omdoc} format is the {\eldef{omdoc}} element, it
+  contains all other elements described here. We call an {\omdoc} element a
+  {\twindef{top-level}{element}}, if it can appear as a direct child of the
+  {\element{omdoc}} element.
+  
+  The {\element{omdoc}} element (and the {\element{omgroup}} element introduced below as
+  well) has an optional attribute {\attribute[ns-attr=xml]{id}{omdoc}} that can be used to
+  reference the whole document. The {\attribute{version}{omdoc}} attribute is used to
+  specify the version of the {\omdoc} format the file conforms to.  It is fixed to the
+  string {\snippet{1.3}} by this specification.  This will prevent validation with a
+  different version of the {\indextoo{DTD}} or {\indextoo{schema}}, or processing with an
+  application using a different version of the {\omdoc} specification. The (optional)
+  attribute {\attributeshort{modules}} allows to specify the {\omdoc} modules that are
+  used in this document. The value of this attribute is a whitespace-separated list of
+  module identifiers (e.g. {\MOBJmodule{spec}} the left column in
+  {\myfigref{omdoc-modules}}), {\omdoc} sub-language identifiers (see
+  {\myfigref{omdoc-sub-languages}}), or {\twintoo{URI}{reference}s} for externally given
+  {\omdoc} modules or sub-language identifiers.\footnote{Allowing these external module
+    references keeps the {\omdoc} format extensible. Like in the case with
+    {\twintoo{namespace}{URI}s} {\omdoc} do not mandate that these
+    {\twintoo{URI}{reference}s} reference an actual resource. They merely act as
+    identifiers for the modules.} The intention is that if present, the
+  {\attributeshort{modules}} specifies the list of all the modules used in the document
+  (fragment).  If a {\attributeshort{modules}} attribute is present, then it is an error,
+  if the content of this element contains elements from a module that is not specified;
+  spurious module declarations in the {\attribute{modules}{omdoc}} attributes are allowed.
+  
+  The {\element{omdoc}} element acts as an implicit grouping element, just as the
+  {\element{omgroup}} element to be introduced in {\mysecref{sectioning}}. Both have an
+  optional {\attribute{type}{omdoc}} attribute; we will discuss its values and meaning in
+  {\mysecref{sectioning}}.
+  
+  Here and in the following we will use tables as the one in {\myfigref{qtgeneral}} to
+  give an overview over the respective {\omdoc} elements described in a chapter or
+  section.  The first column gives the element name, the second and third columns specify
+  the required and optional attributes. We will use the fourth column labeled ``DC'' to
+  indicate whether an {\omdoc} element can have a {\element{metadata}} child, which will
+  be described in the next section.  Finally the fifth column describes the content model
+  --- i.e. the allowable children --- of the element. For this, we will use a form of
+  Backus Naur Form notation\twin{Backus Naur form}{notation} also used in the DTD:
+  {\snippet{\#PCDATA}} stands for ``{\twintoo{parsed}{character data}}'', i.e. text
+  intermixed with legal {\omdoc} elements.) A synopsis of all elements is provided in
+  {\myappchapref{table}}.
+
+\begin{myfig}{qtgeneral}{{\omdoc} Elements for Specifying  Document Structure.}
+\begin{scriptsize}
+\begin{tabular}{|>{\tt}l|>{\tt}p{1truecm}|>{\tt}p{4truecm}|c|>{\tt}p{3.1truecm}|}\hline
+{\rm Element}& \multicolumn{2}{l|}{Attributes\hspace*{2.25cm}} & D & Content  \\\hline
+             & {\rm Required}  & {\rm Optional}      & C &           \\\hline\hline
+ omdoc       &  version, xmlns 
+                    & xml:id, type, class, style,  
+                       version, modules, theory      & +  &
+                       \llquote{front},(\llquote{top-level})*,\llquote{back} \\\hline
+\llquote{back} & && index?,bibliography?\\\hline
+\llquote{front} & && tableofcontents?\\\hline
+ omgroup     &   & xml:id, modules, type, class, style, theory
+                                                     & +  & (\llquote{top-level})* \\\hline
+ metadata    &   & xml:id, class, style        & -- & \llquote{MDelt}*\\\hline
+ ref         & xref & xml:id, type, class, style             & -- &     \\\hline
+ ignore      &      & xml:id, type, comment                  & -- & ANY\\\hline
+ index     &      & xml:id                  & -- & EMPTY\\\hline
+ bibliography    & files  & xml:id                  & -- & EMPTY\\\hline
+ \multicolumn{5}{|p{11cm}|}{where \llquote{top-level} stands for top-level {\omdoc} elements, and
+   \llquote{MDelt} for those introduced in {\mychapref{metadata}}}\\\hline
+\end{tabular}
+\end{scriptsize}
+\end{myfig}
+\end{tsection}
+
+\begin{newpart}{MK: we needed to introduce this, but the text is still very rough around
+    the edges. Moreover, we should look at traditional front matter, which probably are
+    things like abstract, acknowledgements, .... these need to be modeled as well. Also
+    think about sectionalfrontmatter and sectional back matter, e.g. get inspired by the
+    way LTXML treats them.}
+\begin{tsection}[id=frontbackmatter]{Front/Backmatter}
+  Documents usually have {\twin{front}{matter}} and {\twin{back}{matter}}, {\omdoc} is no
+  exception. Currently, the {\omdoc} front matter only consists of the
+  {\element{tableofcontents}} element. The back matter consists of the
+  optional elements {\element{index}} and {\element{bibliography}}. 
+
+  The {\eldef{tableofcontents}} element represents the position of an \twintoo{table
+    of}{contents}\ednote{we should probably generalize this to a ``table of'' element
+    where we can specify the ``of what'' in an attribute. } in the document. Note that
+  since {\omdoc} is a source format, we do not actually have to put the contents of the
+  table of contents at this position, but only need to specify content properties of the
+  table of contents is intended; the actual content can be generated by the presentation
+  process. For that the {\element{tableofcontents}} element uses the optional
+  {\attribute{level}{tableofcontents}} that can be used to specify the depth of the table
+  of contents.
+
+ The {\eldef{bibliography}} element is similar to {\element{index}}, but it specifies the
+  position bibliography to be generated. The {\element{bibliography}} element has a single
+  required attribute: the {\attribute{files}{bibliography}} specifies the bibliography
+  files in LaTeXML form\ednote{I think that we should just use the LaTeXML format, this
+    works well, and we can create it. But we need to reference bibTeX and LaTeXML here}
+  from which the actual references can be generated.\ednote{we also need the concept of a
+    citation in the mtext module to make this work.}
+
+  The {\eldef{index}} element represents the position of an index in the
+  document.\ednote{MK: currently we have no way of specifying the content shape of the
+    index, need to invent new attributes, maybe steal from LaTeXML}\ednote{maybe
+    generalize for glossary, symbol index,...}
+\end{tsection}
+\end{newpart}
+
+\begin{tsection}[id=metadata]{Metadata}
+  
+  The {\twintoo{World Wide}{Web}} was originally built for human consumption, and although everything
+  on it is machine-readable, most of it is not machine-understandable.  The accepted
+  solution is to provide {\indextoo{metadata}} ({\twintoo{data}{about data}}) to describe
+  the documents on the web in a machine-understandable format that can be processed
+  automatically. Metadata commonly specifies aspects of a document like title, authorship,
+  language usage, and administrative aspects like modification dates, distribution rights,
+  and identifiers.
+  
+  In general, metadata can either be embedded in the respective document, or be stated in
+  a separate one. The first facilitates maintenance and control (metadata is always at
+  your fingertips, and it can only be manipulated by the document's authors), the second
+  one enables inference and distribution. {\omdoc} allows to embed metadata into the
+  document, from where it can be harvested for external metadata formats, such as the
+  {\xml} {\indextoo{resource description framework}}
+  ({\rdf}~\cite{LasSwi:rdf99}).  We use one of the best-known metadata schemata for
+  documents -- the {\emin{Dublin Core}} (cf.  {\mysecsref{dc-elements}{dc-roles}}). The
+  purpose of annotating metadata in {\omdoc} is to facilitate the administration of
+  documents, e.g.  digital {\twintoo{rights}{management}}, and to generate input for
+  metadata-based tools, e.g.  RDF-based navigation and indexing of document collections.
+  Unlike most other document formats {\omdoc} allows to add metadata at many levels, also
+  making use of the metadata for document-internal markup purposes to ensure consistency.
+  
+  The {\eldef{metadata}} element contains elements for various metadata formats including
+  bibliographic data from the Dublin Core vocabulary (as mentioned above), licensing
+  information from the {\twintoo{Creative Commons}{Initiative}} (see
+  {\mysecref{creativecommons}}), as well as information for {\openmath} content dictionary
+  management. Application-specific metadata elements can be specified by adding
+  corresponding {\omdoc} modules that extend the content model of the {\element{metadata}}
+  element.
+
+  The {\omdoc} {\element{metadata}} element can be used to provide information about the
+  document as a whole (as the first child of the {\element{omdoc}} element), as well as
+  about specific fragments of the document, and even about the top-level mathematical
+  elements in {\omdoc}. This reinterpretation of bibliographic metadata as general data
+  about knowledge items allows us to extract document fragments and re-assemble them to
+  new aggregates without losing information about authorship, source, etc.
+\end{tsection}
+
+\begin{tsection}[id=comments]{Document Comments}
+  
+  Many content markup formats rely on {\indextoo{comment}ing} the source for human
+  understanding; in fact {\twintoo{source}{comment}s} are considered a vital part of
+  document markup. However, as {\xml} comments\twin{XML}{comment} (i.e. anything between
+  ``{\snippetin{<\char33--}}'' and ``{\snippetin{-->}}'' in a document) need not even be
+  read by some {\xml} parsers\twin{XML}{parser}, we cannot guarantee that they will
+  survive any {\xml} manipulation of the {\omdoc} source.
+
+  Therefore, anything that would normally go into comments should be modeled with an
+  {\element{omtext}} element ({\attribute{type}{omtext}} {\attval{comment}{type}{omtext}},
+  if it is a text-level comment; see {\mysecref{omtext}}) or with the {\eldef{ignore}}
+  element for {\twintoo{persistent}{comment}s}, i.e.  comments that survive processing.
+  The content of the {\element{ignore}} element can be any well-formed {\omdoc}, it can
+  occur as an {\omdoc} top-level element or inside mathematical texts (see
+  {\mychapref{mtxt}}). This element should be used if the author wants to comment the
+  {\omdoc} representation, but the end user should not see their content in a final
+  presentation of the document, so that {\omdoc} text elements are not suitable, e.g. in
+
+\begin{lstlisting}[numbers=none,index={ignore},mathescape]
+  <ignore type="todo" comment="this does not make sense yet, rework">
+    <assertion xml:id="heureka">$\ldots$</assertion>
+  </ignore>
+\end{lstlisting}
+
+Of course, {\element{ignore}} elements can be nested, e.g. if we want to mark up
+the comment text (a pure string as used in the example above is not enough to
+express the mathematics). This might lead to markup like 
+
+\begin{lstlisting}[label=nested-ignore,numbers=none,index={ignore},mathescape]
+  <ignore type="todo" comment="rework">
+    <ignore type="todo-comment">
+      <CMP><xhtml:p>This does not make sense yet, in particular, the equation 
+        <OMOBJ>$\ldots$</OMOBJ> cannot be true, think of <OMOBJ>$\ldots$</OMOBJ>
+      </xhtml:p></CMP>
+    </ignore>
+    <assertion xml:id="heureka">$\ldots$</assertion>
+  </ignore>
+\end{lstlisting}
+
+Another good use of the {\element{ignore}} element is to use it as an analogon to the
+{\atwintoo{in-place}{error}{markup}} in {\openmath} objects (see
+{\mysubsecref{om:error}}). In this case, we use the {\attribute{type}{ignore}} attribute to
+specify the kind of error and the content for the faulty {\omdoc} fragment. Note that
+since the whole object must be a valid {\omdoc} object (or at least licensed by a DTD or
+schema), the content itself must be a well-formed {\omdoc} fragment. As a consequence, the
+{\element{ignore}} element can only be used for ``{\twintoo{mathematical}{error}s}'' like
+sibling {\element{CMP}} or {\element{FMP}} elements that do not have the same meaning as
+in {\mylstref{ignore-error}}. {\xml}-well-formedness and validity errors will have to be
+handled by the {\xml} tools involved.
+
+\begin{lstlisting}[label=lst:ignore-error,
+  caption={Marking up Mathematical Errors Using {\element{ignore}}},
+  numbers=none,index={ignore}]
+  <ignore type="CMP-lang-error" 
+          comment="multilingual CMPs are not translations of each other">
+    <assertion xml:id="ass1">
+      <CMP><xhtml:p>The proof is trivial.</xhtml:p></CMP>
+      <CMP xml:lang="de"><xhtml:p>Der Beweis ist extrem schwer</xhtml:p></CMP>
+    </assertion>
+  </ignore>
+\end{lstlisting}    
+For another use of the {\element{ignore}} element, see {\myfigref{flatten}} in
+{\mysecref{sharing}}.
+\end{tsection}
+
+\begin{tsection}[id=sectioning]{Document Structure}
+
+  Like other documents mathematical ones are often divided into units like chapters,
+  sections, and paragraphs by tags and nesting information. {\omdoc} makes these document
+  relations explicit by using the {\eldef{omgroup}} element with an optional attribute
+  {\attribute{type}{omgroup}}. It can take the values\footnote{{\vomdoc{1.1}} also allowed
+    values {\oldattval{dataset}{type}{omgroup}{1.2}} and
+    {\oldattval{labeled-dataset}{type}{omgroup}{1.2}} for marking up tables.  These values
+    are deprecated in {\vomdoc{1.2}}, since we provide tables in module {\RTmodule{spec}};
+    see {\mysecref{rt}} for details. Furthermore, {\vomdoc{1.1}} allowed the value
+    {\oldattval{narrative}{type}{omgroup}{1.2}}, which was synonymous with
+    {\attval{sequence}{type}{omgroup}}.}
+\begin{description}
+\item[\attval{sequence}{type}{omgroup}] for a succession of paragraphs. This is the
+  default, and the normal way narrative texts are built up from paragraphs, mathematical
+  statements, figures, etc. Thus, if no {\attribute{type}{omgroup}} is given the type
+  {\attval{sequence}{type}{omgroup}} is assumed.
+\item[\attval{itemize}{type}{omgroup}] for unordered lists. The children of this type of
+  {\element{omgroup}} will usually be presented to the user as indented paragraphs
+  preceded by a {\twintoo{bullet}{symbol}}. Since the choice of this symbol is purely
+  presentational, {\omdoc} use the {\css} {\attributeshort{style}} or
+  {\attributeshort{class}} attributes\twin{CSS}{attribute} on the children to specify the
+  presentation of the bullet symbols (see {\mysecref{common-attribs}}).
+\item[\attval{enumeration}{type}{omgroup}] for ordered lists. The children of this
+  type of {\element{omgroup}} are usually presented like unordered lists, only
+  that they are preceded by a running number of some kind (e.g. ``1.'', ``2.''\ldots
+  or ``a)'', ``b)''\ldots; again the
+  {\attributeshort{style}} or {\attributeshort{class}} attributes apply).
+\item[\attval{sectioning}{type}{omgroup}] The children of this type of
+  {\element{omgroup}} will be interpreted as sections. This means that the
+  children will be usually numbered hierarchically, and their metadata will be
+  interpreted as section heading information. For instance the
+  {\element{metadata}}/{\element[ns-elt=dc]{title}} information (see {\mysecref{dc-elements}}
+  for details) will be used as the section title. Note that {\omdoc} does not
+  provide direct markup for particular hierarchical levels like
+  ``{\indextoo{chapter}}'', ``{\indextoo{section}}'', or
+  ``{\indextoo{paragraph}}'', but assumes that these are determined by the
+  application that presents the content to the human or specified using the {\css}
+  attributes.
+\end{description}
+Other values for the {\attributeshort{type}} attribute are also admissible, they should be
+{\twintoo{URI}{reference}s} to documents explaining their intension.
+  
+We consider the {\element{omdoc}} element as an implicit {\element{omgroup}}, in order to
+allow plugging together the content of different {\omdoc} documents as
+{\element{omgroup}s} in a larger document. Therefore, all the attributes of the
+{\element{omdoc}} element also appear on {\element{omgroup}} elements and behave exactly
+like those.
+\end{tsection}
+\end{tchapter}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "omdoc"
+%%% End: 
+
+% LocalWords:  xmlns RDF dtd lst ATTLIST DC qtmetadata ref ns attr specification
+% LocalWords:  otheromgrouptype xref mathescape enum qtgeneral dc activemath rt
+% LocalWords:  ing openmath attribs xsi schemaLocation struc tu DCelement mtxt
+% LocalWords:  todo heureka lang CMPs Der Beweis ist extrem schwer omdoc BNF cf
+% LocalWords:  courseware namespace omgroup PCDATA truecm DOCTYPE CDATA xml CMP
+% LocalWords:  omtext OMOBJ FMP de flattena flattenb kohlhase tchapter twinemph
+% LocalWords:  MDelt creativecommons elt metadata Bachus Naur dataset DOCmodule
+% LocalWords:  defin defemph ldots indextoo indextoo mysecref mychapref eldef
+% LocalWords:  attributeshort tsection twindef MOBJmodule myfigref twintoo tt
+% LocalWords:  Backus Backus myappchapref myfig scriptsize tt tt tt hline rm
+% LocalWords:  hspace llquote llquote llquote tableofcontents newpart ednote
+% LocalWords:  sectionalfrontmatter frontbackmatter mtext LasSwi emin mysecsref
+% LocalWords:  snippetin attval lstlisting atwintoo mysubsecref mylstref vomdoc
+% LocalWords:  oldattval RTmodule hbox fbox leftrightarrow fbox SieBen acgap00

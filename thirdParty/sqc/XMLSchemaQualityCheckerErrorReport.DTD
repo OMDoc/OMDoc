@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- DTD for the output of SQC, file created by David Bacigalupo, Revised 2001Apr02 by Bob Schloss, Revised 2001Aug06 by Bob Schloss -->
+<!ELEMENT schemaAnalysis (file*)>
+<!ATTLIST schemaAnalysis
+	SchemaQualityCheckerVersion CDATA #REQUIRED
+	cost CDATA #REQUIRED
+	haltAtFirstError CDATA #REQUIRED
+	requireEachDocumentValid CDATA #REQUIRED
+	schemaLanguageVersion CDATA #REQUIRED
+>
+<!ELEMENT file (startdatetime, (error* | noErrorFound), enddatetime)>
+<!ATTLIST file
+	filename CDATA #REQUIRED
+	fileNameWithoutPath CDATA #REQUIRED
+>
+<!ELEMENT error (source, message)>
+<!ATTLIST error
+	severity CDATA #REQUIRED
+	type CDATA #REQUIRED
+>
+<!ELEMENT message (#PCDATA)>
+<!ELEMENT source EMPTY>
+<!ATTLIST source
+	column CDATA #REQUIRED
+	line CDATA #REQUIRED
+	location CDATA #REQUIRED
+	locationWithoutPath CDATA #REQUIRED
+>
+<!ELEMENT startdatetime (#PCDATA)>
+<!ELEMENT enddatetime (#PCDATA)>
+<!ELEMENT noErrorFound EMPTY>

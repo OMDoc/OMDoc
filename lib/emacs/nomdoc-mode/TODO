@@ -1,0 +1,8 @@
+Additional functionality wishlist
+---------------------------------
+- for each tag: generate list of possible attributes for that tag
+- command to get rid of certain empty tags
+- command to generate closing tags (up to one of the main tags)
+- command to go to next element, previous element
+- command to delete the next element
+

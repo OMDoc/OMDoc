@@ -1,0 +1,49 @@
+<!--
+   An XML Document Type Definition for Open Mathematical documents (OMDoc 1.3)  DTD Driver 
+   $Id: omdoc.dtd 8458 2009-08-04 10:23:53Z kohlhase $
+   $HeadURL: https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.3/dtd/omdoc.dtd $
+   PUBLIC -//OMDoc//DTD OMDoc V1.3//EN
+   See the documentation and examples at http://www.omdoc.org 
+   Copyright (c) 1999-2006 Michael Kohlhase, released under the GNU Public License (GPL)
+-->
+
+
+<!-- general extra elements that can go into OMDoc -->
+<!ENTITY % omdoc.extra.class "">
+
+<!-- The default configuration for loading DTD modules -->
+<!ENTITY % omdoc.mathml.module "INCLUDE">   <!-- MathML -->
+<!ENTITY % omdoc.openmath.module "INCLUDE"> <!-- OpenMath -->
+<!ENTITY % omdoc.rt.module "INCLUDE">       <!-- Rich Text Structure -->
+<!ENTITY % omdoc.cc.module "INCLUDE">       <!-- Creative Commons -->
+<!ENTITY % omdoc.pres.module "INCLUDE">     <!-- presentation -->
+<!ENTITY % omdoc.ext.module "INCLUDE">      <!-- web extensions -->
+<!ENTITY % omdoc.pf.module "INCLUDE">       <!-- proofs --> 
+<!ENTITY % omdoc.st.module "INCLUDE">       <!-- math statements -->
+<!ENTITY % omdoc.adt.module "INCLUDE">      <!-- Abstract Data Types -->
+<!ENTITY % omdoc.cth.module "INCLUDE">      <!-- complex theories -->
+<!ENTITY % omdoc.dg.module "INCLUDE">       <!-- development graphs -->
+<!ENTITY % omdoc.quiz.module "INCLUDE">     <!-- simple exercises --> 
+
+<!-- we specify which namespaces should be prefixed -->
+<!ENTITY % omdocdc.prefixed "INCLUDE">
+<!ENTITY % omdoccc.prefixed "INCLUDE">
+<!ENTITY % xslt.prefixed "INCLUDE">
+<!ENTITY % om.prefixed "IGNORE">
+<!ENTITY % MATHML.prefixed "INCLUDE">
+
+<!-- we now load the qname  definitions -->
+<!ENTITY % omdoc-qname.mod PUBLIC "-//OMDoc//ENTITIES OMDoc V1.3//EN" "omdoc-qname.mod">
+%omdoc-qname.mod;
+
+<!-- we now load the  class definitions, but before we do, we specify strict MathML 
+     validation and make it clear that we do not want the XML Schema attributes -->
+<!ENTITY % MathMLstrict "INCLUDE">		
+<!ENTITY % omdoc.schema.attribs.enabled "IGNORE">
+<!ENTITY % omdoc-classes.mod PUBLIC "-//OMDoc//CLASSES OMDoc V1.3//EN" "omdoc-classes.mod">
+%omdoc-classes.mod;
+
+<!-- we now load the element models -->
+<!ENTITY % omdoc-model.mod PUBLIC "-//OMDoc//ELEMENTS OMDoc V1.3!//EN" "omdoc-model.mod">
+%omdoc-model.mod;
+

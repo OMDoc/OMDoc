@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xml:id="mtxt.omdoc" version="1.3"
+       xmlns:dct="http://purl.org/dc/terms/" 
+       xmlns:cc="http://creativecommons.org/ns" 
+       xmlns="http://omdoc.org/ns"
+       xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+       xmlns:oo="http://omdoc.org/ontology#"
+       xmlns:om="http://www.openmath.org/OpenMath"
+       xmlns:m="http://www.w3.org/1998/Math/MathML">
+
+  <metadata>
+    <meta property="dct:title">OMDoc document ontology (base concepts)</meta>
+    <meta property="rdfs:comment">Base concepts of the OMDoc document ontology</meta>
+    <meta property="dct:creator">Christoph Lange &lt;ch.lange@jacobs-university.de></meta>
+    <meta property="dct:contributor">Normen Müller <n.mueller@jacobs-university.de></meta>
+    <meta property="dct:contributor">Gordan Ristovski &lt;g.ristovski@jacobs-university.de></meta>
+    <meta property="dct:contributor">Nikita Zhiltsov (Никита Жильцов) &lt;nikita.zhiltsov@gmail.com></meta>
+    <!-- Contributors, please add your name here, and in the main file omdoc.omdoc –Christoph Lange -->
+    <meta property="dct:subject">Semantic Mathematical Markup</meta>
+  </metadata>
+
+  <theory xml:id="base">
+    <metadata>
+      <link rel="oo:vocab" href="http://omdoc.org/ontology#"/>
+    </metadata>
+    <!-- meta-theories -->
+    <imports xml:id="owl" from="../examples/logics/owl.omdoc#owl"/>
+    <imports xml:id="pl1eq" from="../examples/logics/pl1eq.omdoc#pl1eq"/>
+    <!-- other ontologies -->
+    <imports xml:id="dct" from="../examples/metadata/dcterms.omdoc#dct"/>
+
+    <omgroup>
+      <meta property="dct:title">Base Classes</meta>
+
+      <symbol name="MathKnowledgeItem">
+        <metadata>
+          <meta property="rdfs:comment">Any mathematical knowledge item that can be expressed in OMDoc (i.e. a statement or theory, or probably something else).  This base class neither has a counterpart in the OMDoc1.2 specification nor in its XML schema.</meta>
+          <meta property="rdfs:label" xml:lang="ru">Объект математического знания</meta>
+          <meta property="rdfs:label" xml:lang="en">Mathematical Knowledge Item</meta>
+          <meta property="rdfs:label" xml:lang="de">Mathematische Wissenseinheit</meta>
+        </metadata>
+        <type>
+          <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+            <OMS cd="owl" name="Class"/>
+          </OMOBJ>
+        </type>
+      </symbol>
+
+      <!-- Thanks to Knud Möller <knud.moeller@deri.org> for suggesting this representation -->
+      <symbol name="FormalityDegree">
+        <metadata>
+          <meta property="rdfs:comment">A class container for all formality degrees used to describe how formal a statement is. </meta>
+          <meta property="rdfs:label" xml:lang="ru">Степень формальности</meta>
+          <meta property="rdfs:label" xml:lang="en">Formality Degree</meta>
+          <meta property="rdfs:label" xml:lang="de">Formalitätsgrad</meta>
+        </metadata>
+        <type>
+          <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+            <OMS cd="owl" name="Class"/>
+          </OMOBJ>
+        </type>
+      </symbol>
+
+      <axiom for="MathKnowledgeItem FormalityDegree">
+        <FMP>
+          <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+            <OMA>
+              <OMS cd="owl" name="AllDisjointClasses"/>
+              <OMS cd="base" name="FormalityDegree"/>
+              <OMS cd="base" name="MathKnowledgeItem"/>
+            </OMA>
+          </OMOBJ>
+        </FMP>
+      </axiom>
+    </omgroup>
+
+    <omgroup>
+      <meta property="dct:title">Base Relations</meta>
+
+      <omgroup>
+        <meta property="dct:title">Dependencies</meta>
+
+        <symbol name="dependsOn">
+          <metadata>
+            <meta property="rdfs:comment">This relation denotes that one concept B depends on another concept A.  Dependency is “defined” as:  A change to A may have an impact on some property of B.  It is up to subproperties to fix the latter property to something reasonable, such as well-formedness.</meta>
+            <meta property="rdfs:label" xml:lang="ru">зависит от</meta>
+            <meta property="rdfs:label" xml:lang="en">depends on</meta>
+            <meta property="rdfs:label" xml:lang="de">hängt ab von</meta>
+          </metadata>
+          <type>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="owl" name="TransitiveProperty"/>
+                <OMS cd="base" name="MathKnowledgeItem"/>
+                <OMS cd="base" name="MathKnowledgeItem"/>
+              </OMA>
+            </OMOBJ>
+          </type>
+        </symbol>
+
+        <symbol name="wellFormedNessDependsOn">
+          <metadata>
+            <meta property="rdfs:comment">Dependency in terms of well-formedness, as defined by MMT/OMDoc 1.6.</meta>
+            <meta property="rdfs:label" xml:lang="en">wellformedness depends on</meta>
+            <meta property="rdfs:label" xml:lang="de">Wohlgeformtheit hängt ab von</meta>
+          </metadata>
+          <type>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMS cd="owl" name="TransitiveProperty"/>
+            </OMOBJ>
+          </type>
+        </symbol>
+
+        <axiom for="wellFormedNessDependsOn">
+          <FMP>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="rdfs" name="subPropertyOf"/>
+                <OMS cd="base" name="wellFormedNessDependsOn"/>
+                <OMS cd="base" name="dependsOn"/>
+              </OMA>
+            </OMOBJ>
+          </FMP>
+        </axiom>
+      </omgroup>
+
+      <omgroup>
+        <meta property="dct:title">Whole-Part</meta>
+
+        <symbol name="hasPart">
+          <metadata>
+            <meta property="rdfs:comment">The most generic containment relation, used to create relation between a whole and a part, denoting that one concept A (directly or indirectly) contains another concept B. This is orthogonal to dependency. Note that containment is not only transitive but also inverse functional, but both properties together are not allowed in OWL for decidability reasons.  Therefore, we model a single step of a transitive has-part chain (i.e. direct parthood) by a separate property, which is inverse functional.</meta>
+            <meta property="rdfs:label" xml:lang="en">has part</meta>
+            <meta property="rdfs:label" xml:lang="de">enthält</meta>
+            <meta property="rdfs:label" xml:lang="ru">имеет частью</meta>
+          </metadata>
+          <type>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="owl" name="TransitiveProperty"/>
+                <OMS cd="base" name="MathKnowledgeItem"/>
+                <OMS cd="base" name="MathKnowledgeItem"/>
+              </OMA>
+            </OMOBJ>
+          </type>
+        </symbol>
+
+        <axiom for="hasPart">
+          <FMP>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="rdfs" name="subPropertyOf"/>
+                <OMS cd="base" name="hasPart"/>
+                <OMS cd="dct" name="hasPart"/>
+              </OMA>
+            </OMOBJ>
+          </FMP>
+        </axiom>
+
+        <symbol name="isPartOf">
+          <metadata>
+            <meta property="rdfs:label" xml:lang="en">is part of</meta>
+            <meta property="rdfs:label" xml:lang="de">ist enthalten in</meta>
+          </metadata>
+          <type>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMS cd="owl" name="ObjectProperty"/>
+            </OMOBJ>
+          </type>
+        </symbol>
+
+        <!-- we have to model this explicitly, as DCMI Terms is RDFS only, i.e. does not declare
+        dct:isPartOf owl:inverseOf dct:hasPart -->
+        <axiom for="isPartOf">
+          <FMP>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="rdfs" name="subPropertyOf"/>
+                <OMS cd="base" name="isPartOf"/>
+                <OMS cd="dct" name="isPartOf"/>
+              </OMA>
+            </OMOBJ>
+          </FMP>
+        </axiom>
+
+        <axiom for="isPartOf">
+          <FMP>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="owl" name="inverseOf"/>
+                <OMS cd="base" name="isPartOf"/>
+                <OMS cd="base" name="hasPart"/>
+              </OMA>
+            </OMOBJ>
+          </FMP>
+        </axiom>
+
+        <symbol name="hasDirectPart">
+          <metadata>
+            <meta property="rdfs:comment">We model the direct relation between a whole and a part separately, as that allows us to state that it is inverse functional.</meta>
+            <meta property="rdfs:label" xml:lang="en">has direct part</meta>
+            <meta property="rdfs:label" xml:lang="de">enthält unmittelbar</meta>
+          </metadata>
+          <type>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMS cd="owl" name="InverseFunctionalProperty"/>
+            </OMOBJ>
+          </type>
+          <type>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMS cd="owl" name="ObjectProperty"/>
+            </OMOBJ>
+          </type>
+        </symbol>
+
+        <axiom for="hasDirectPart">
+          <FMP>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="rdfs" name="subPropertyOf"/>
+                <OMS cd="base" name="hasDirectPart"/>
+                <OMS cd="base" name="hasPart"/>
+              </OMA>
+            </OMOBJ>
+          </FMP>
+        </axiom>
+
+        <symbol name="isDirectPartOf">
+          <metadata>
+            <meta property="rdfs:label" xml:lang="en">is direct part of</meta>
+            <meta property="rdfs:label" xml:lang="de">ist unmittelbar enthalten in</meta>
+          </metadata>
+          <type>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMS cd="owl" name="ObjectProperty"/>
+            </OMOBJ>
+          </type>
+        </symbol>
+
+        <axiom for="isDirectPartOf">
+          <FMP>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="owl" name="inverseOf"/>
+                <OMS cd="base" name="isDirectPartOf"/>
+                <OMS cd="base" name="hasDirectPart"/>
+              </OMA>
+            </OMOBJ>
+          </FMP>
+        </axiom>
+      </omgroup>
+
+      <omgroup>
+        <meta property="dct:title">Formality</meta>
+
+        <symbol name="formalityDegree">
+          <metadata>
+            <meta property="rdfs:comment">Used to express how formal a mathematical knowledge item is.</meta>
+            <meta property="rdfs:label" xml:lang="ru">имеет степень формальности</meta>
+            <meta property="rdfs:label" xml:lang="en">formality degree</meta>
+            <meta property="rdfs:label" xml:lang="de">Formalitätsgrad</meta>
+          </metadata>
+          <type>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="owl" name="ObjectProperty"/>
+                <OMS cd="base" name="MathKnowledgeItem"/>
+                <OMS cd="base" name="FormalityDegree"/>
+              </OMA>
+            </OMOBJ>
+          </type>
+          <type>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMS cd="owl" name="FunctionalProperty"/>
+            </OMOBJ>
+          </type>
+        </symbol>
+
+        <symbol name="Informal">
+          <metadata>
+            <meta property="rdfs:label" xml:lang="ru">Неформальный</meta>
+            <meta property="rdfs:label" xml:lang="en">informal</meta>
+            <meta property="rdfs:label" xml:lang="de">informal</meta>
+          </metadata>
+          <type>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMS cd="base" name="FormalityDegree"/>
+            </OMOBJ>
+          </type>
+        </symbol>
+
+        <symbol name="Rigorous">
+          <metadata>
+            <meta property="rdfs:label" xml:lang="en">rigorous</meta>
+            <meta property="rdfs:label" xml:lang="de">rigoros</meta>
+          </metadata>
+          <type>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMS cd="base" name="FormalityDegree"/>
+            </OMOBJ>
+          </type>
+        </symbol>
+
+        <symbol name="Computerized">
+          <metadata>
+            <meta property="rdfs:label" xml:lang="ru">Компьютеризированный</meta>
+            <meta property="rdfs:label" xml:lang="en">computerized</meta>
+            <meta property="rdfs:label" xml:lang="de">computerisiert</meta>
+          </metadata>
+          <type>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMS cd="base" name="FormalityDegree"/>
+            </OMOBJ>
+          </type>
+        </symbol>
+
+        <symbol name="InformalKnowledgeItem">
+          <metadata>
+            <meta property="rdfs:label" xml:lang="ru">Объект неформального знания</meta>
+            <meta property="rdfs:label" xml:lang="en">Informal Knowledge Item</meta>
+            <meta property="rdfs:label" xml:lang="de">Informale Wissenseinheit</meta>
+          </metadata>
+          <type>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMS cd="owl" name="Class"/>
+            </OMOBJ>
+          </type>
+        </symbol>
+
+        <definition for="InformalKnowledgeItem" type="simple">
+          <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+            <OMA>
+              <OMS cd="owl" name="Restriction"/>
+              <OMS cd="base" name="formalityDegree"/>
+              <OMA>
+                <OMS cd="owl" name="hasValue"/>
+                <OMS cd="base" name="Informal"/>
+              </OMA>
+            </OMA>
+          </OMOBJ>
+        </definition>
+
+        <symbol name="RigorousKnowledgeItem">
+          <metadata>
+            <meta property="rdfs:label" xml:lang="en">Rigorous Knowledge Item</meta>
+            <meta property="rdfs:label" xml:lang="de">Rigorose Wissenseinheit</meta>
+          </metadata>
+          <type>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMS cd="owl" name="Class"/>
+            </OMOBJ>
+          </type>
+        </symbol>
+
+        <definition for="RigorousKnowledgeItem" type="simple">
+          <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+            <OMA>
+              <OMS cd="owl" name="Restriction"/>
+              <OMS cd="base" name="formalityDegree"/>
+              <OMA>
+                <OMS cd="owl" name="hasValue"/>
+                <OMS cd="base" name="Rigorous"/>
+              </OMA>
+            </OMA>
+          </OMOBJ>
+        </definition>
+      </omgroup>
+    </omgroup>
+  </theory>
+</omdoc>
+
+<!-- vim:sw=2:sts=2
+-->

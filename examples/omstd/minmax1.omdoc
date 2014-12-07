@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  
+       xmlns="http://omdoc.org/ns"
+       xmlns:om="http://www.openmath.org/OpenMath"
+       xmlns:m="http://www.w3.org/1998/Math/MathML"
+       xmlns:o="http://omdoc.org/ns"
+       xml:id="minmax1-omdoc">
+
+<metadata>
+  <dc:title>The OpenMath Content Dictionary minmax1.ocd  in OMDoc form</dc:title>
+  <dc:creator role="trl">Michael Kohlhase</dc:creator>
+  <dc:creator role="ant">The OpenMath Society</dc:creator>
+  <dc:date> 2001-03-12T00:00:00</dc:date>
+  <dc:source>Derived from the OpenMath CD http://www.openmath.org/cd/minmax.ocd.</dc:source>
+  <dc:type>Text</dc:type>
+  <dc:format>application/omdoc+xml</dc:format>
+  <dc:rights>Copyright (c) 2000-2002 Michael Kohlhase;
+    This OMDoc content dictionary is released under the OpenMath license:
+    http://monet.nag.co.uk/openmath/cdfiles/license.html
+  </dc:rights>
+  <dc:description>
+    This CD holds the definitions of min and max.
+  </dc:description>
+</metadata>
+
+<theory xml:id="minmax1">
+
+<imports xml:id="minmax1-imports-sts" from="sts.omdoc#sts"/>
+<imports xml:id="minmax1-imports-relation1" from="relation1.omdoc#relation1"/>
+<imports xml:id="minmax1-imports-set1" from="set1.omdoc#set1"/>
+
+<symbol name="min" xml:id="min">
+<metadata>
+<dc:description> 
+    This symbol denotes the unary minimum function which takes a set as
+    its argument and returns the minimum element in that set.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMA>
+	  <OMS name="structure" cd="sts"/>
+	  <OMV name="OrderedSet"/>
+	</OMA>
+	<OMV name="OrderedSet"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+<example xml:id="min-ex-1" type="for" for="#min">
+  <CMP>Representation of the equation minimum{1,9,5} = 1.</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="relation1" name="eq"/>
+      <OMA>
+	<OMS cd="minmax1" name="min"/>
+	<OMA>
+	  <OMS cd="set1" name="set"/>
+	  <OMI> 1 </OMI>
+	  <OMI> 9 </OMI>
+	  <OMI> 5 </OMI>
+	</OMA>
+      </OMA>
+      <OMI> 1 </OMI>
+    </OMA>
+  </OMOBJ>
+</example>
+<symbol name="max" xml:id="max">
+<metadata>
+<dc:description> 
+    This symbol denotes the unary maximum function which takes a set as
+    its argument and returns the maximum element in that set.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMA>
+	  <OMS name="structure" cd="sts"/>
+	  <OMV name="OrderedSet"/>
+	</OMA>
+	<OMV name="OrderedSet"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+<example xml:id="max-ex-1" type="for" for="#max">
+  <CMP>Representation of the equation maximum{1,9,5} = 9.</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="relation1" name="eq"/>
+      <OMA>
+	<OMS cd="minmax1" name="max"/>
+	<OMA>
+	  <OMS cd="set1" name="set"/>
+	  <OMI> 1 </OMI>
+	  <OMI> 9 </OMI>
+	  <OMI> 5 </OMI>
+	</OMA>
+      </OMA>
+      <OMI> 9 </OMI>
+    </OMA>
+  </OMOBJ>
+</example>
+</theory>
+</omdoc>
+

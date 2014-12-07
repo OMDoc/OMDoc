@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE omdoc PUBLIC "-//OMDoc//DTD OMDoc V1.3//EN"
+                "../../dtd/omdoc.dtd" []>
+   
+<omdoc xml:id="org-omdoc" 
+       xmlns:dc="http://purl.org/dc/elements/1.1/"
+       xmlns="http://omdoc.org/ns">
+
+ <metadata>
+  <dc:title>A basic Theory of SACHS accounting (ORG)</dc:title>
+  <dc:creator role="aut">Andrea Kohlhase</dc:creator>
+  <dc:creator role="aut">Michael Kohlhase</dc:creator>
+  <dc:creator role="aut">Achim Mahnke</dc:creator>
+  <dc:date>2008-08-26T00:00:00</dc:date>
+  <dc:description>
+    This is the basis of ....
+  </dc:description>
+ </metadata>
+
+ <theory xml:id="org-expenses">
+   <metadata>
+     <dc:title>Expenses</dc:title>
+   </metadata>
+
+   <imports from="expenses.omdoc#expenses"/>
+   <imports from="../omstd/arith1.omdoc#arith1"/>
+   <imports from="../omstd/relation1.omdoc#relation1"/>
+
+   <symbol name="expensesperti">
+     <metadata>
+       <dc:title>Expenses per time interval</dc:title>
+     </metadata>
+     <type system="sts">
+       <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="#titomoney"/></OMOBJ>
+     </type>
+   </symbol>
+   
+   <definition for="#expensesperti">
+     <CMP>The <term cd="org-expenses" name="expensesperti" role="definiendum">Expenses</term>
+     over a time interval are defined as the sum of all appliccable expenses over that
+     time interval</CMP>
+   </definition>
+
+   <symbol name="expensetype" role="type">
+     <metadata>
+       <dc:title>General Expense types</dc:title>
+     </metadata>
+   </symbol>
+
+   <symbol name="salaryexpense">
+     <metadata>
+       <dc:title>Salary Expenses</dc:title>
+     </metadata>
+     <type system="sts">
+       <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	 <OMS cd="expenses" name="expensetype"/>
+       </OMOBJ>
+     </type>
+   </symbol>
+
+   <symbol name="salariesperti">
+     <metadata>
+       <dc:title>Salary Expenses per time interval</dc:title>
+     </metadata>
+     <type system="sts">
+       <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="#titomoney"/></OMOBJ>
+     </type>
+   </symbol>
+
+   <symbol name="utilityexpense">
+     <metadata>
+       <dc:title>Utility Expenses</dc:title>
+     </metadata>
+     <type system="sts">
+       <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	 <OMS cd="expenses" name="expensetype"/>
+       </OMOBJ>
+     </type>
+   </symbol>
+
+   <symbol name="utilitiesperti">
+     <metadata>
+       <dc:title>Utility Expenses per time interval</dc:title>
+     </metadata>
+     <type system="sts">
+       <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="#titomoney"/></OMOBJ>
+     </type>
+   </symbol>
+
+
+   <symbol name="materialsexpense">
+     <metadata>
+       <dc:title>Materials Expenses</dc:title>
+     </metadata>
+     <type system="sts">
+       <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	 <OMS cd="expenses" name="expensetype"/>
+       </OMOBJ>
+     </type>
+   </symbol>
+
+   <symbol name="materialsperti">
+     <metadata>
+       <dc:title>Materials Expenses per time interval</dc:title>
+     </metadata>
+     <type system="sts">
+       <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="#titomoney"/></OMOBJ>
+     </type>
+   </symbol>
+
+   <symbol name="adminexpense">
+     <metadata>
+       <dc:title>Administration Expenses</dc:title>
+     </metadata>
+     <type system="sts">
+       <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	 <OMS cd="expenses" name="expensetype"/>
+       </OMOBJ>
+     </type>
+   </symbol>
+
+   <symbol name="adminperti">
+     <metadata>
+       <dc:title>Administration Expenses per time interval</dc:title>
+     </metadata>
+     <type system="sts">
+       <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="#titomoney"/></OMOBJ>
+     </type>
+   </symbol>
+
+   <symbol name="otherexpense">
+     <metadata>
+       <dc:title>Expenses for Other</dc:title>
+     </metadata>
+     <type system="sts">
+       <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	 <OMS cd="expenses" name="expensetype"/>
+       </OMOBJ>
+     </type>
+   </symbol>
+
+   <symbol name="otherperti">
+     <metadata>
+       <dc:title>Expenses for other per time interval</dc:title>
+     </metadata>
+     <type system="sts">
+       <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="#titomoney"/></OMOBJ>
+     </type>
+   </symbol>
+
+
+   <symbol name="expensespertiety">
+     <metadata>
+       <dc:title>Expenses per time interval and expense type</dc:title>
+     </metadata>
+     <type system="sts">
+       <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	 <OMA id="tietytomoney">
+	   <OMS cd="sts" name="mapsto"/>
+	   <OMS cd="time" name="timeinterval"/>
+	   <OMS cd="expenses" name="expensetype"/>
+	   <OMS cd="money" name="monetaryquantity"/>
+	 </OMA>
+       </OMOBJ>
+     </type>
+   </symbol>
+
+   <definition xml:id="ORG-costs" type="implicit" for="#expensespertiety">
+     <CMP>At ORG the total expenses are Salaries, Utilities, Administration, Materials, and Other</CMP>
+     <FMP>
+       <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	 <OMBIND>
+	   <OMS cd="quant1" name="forall"/>
+	   <OMBVAR>
+	     <OMATTR>
+	       <OMATP>
+		 <OMS name="type" cd="sts"/>
+		 <OMS cd="time" name="timeinterval"/>
+	       </OMATP>
+	       <OMV name="t"/>
+	     </OMATTR>
+	   </OMBVAR>
+	   <OMA>
+	     <OMS cd="relation1" name="eq"/>
+	     <OMA>
+	       <OMS cd="org-expenses" name="expensesperti"/>
+	       <OMV name="t"/>
+	     </OMA>
+	     <OMA>
+	       <OMS cd="arith1" name="plus"/>
+	       <OMA>
+		 <OMS cd="org-expenses" name="salariesperti"/>
+		 <OMV name="t"/>
+	       </OMA>
+	       <OMA>
+		 <OMS cd="org-expenses" name="utilitiesperti"/>
+		 <OMV name="t"/>
+	       </OMA>
+	       <OMA>
+		 <OMS cd="org-expenses" name="materialssperti"/>
+		 <OMV name="t"/>
+	       </OMA>
+	       <OMA>
+		 <OMS cd="org-expenses" name="adminperti"/>
+		 <OMV name="t"/>
+	       </OMA>
+	       <OMA>
+		 <OMS cd="org-expenses" name="otherperti"/>
+		 <OMV name="t"/>
+	       </OMA>
+	     </OMA>
+	   </OMA>
+	 </OMBIND>
+     </OMOBJ>
+     </FMP>
+   </definition>
+
+       
+ </theory>
+
+</omdoc>
+
+
+

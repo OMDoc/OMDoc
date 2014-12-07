@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- File written by PDE 1.0 -->
+<plugin
+   id="com.ibm.etools.sketch.sqc.extensionExample"
+   name="SQC Plugin Extension Example"
+   version="2.0"
+   provider-name="IBM Research">
+
+<requires>
+	<!-- VERY IMPORTANT NOTE : these three import statements MUST be present -->
+   <import plugin="org.eclipse.ui"/>
+   <import plugin="org.eclipse.core.resources"/>
+   <import plugin="com.ibm.etools.sketch.sqc" export="true"/> 
+</requires>
+
+				 
+<extension point="com.ibm.etools.sketch.sqc.fileExtension">
+	<!-- one or more <contribution> elements may appear here. -->
+	<!--The "fileExtension" attribute of each <contribution> elment MUST be set to the extension file that SQC Plugin should now handle. -->
+	<!-- The optional "options" attribute provides SQC options when a file of fileExtension is being processed.  Options have the same format and
+	meaning as for the SQC command line program. Note however that some options are not relevant in Eclipse environment : 
+		"-r", "-reportAsXML" -->  
+	
+	<contribution fileExtension="myExt1" options="-cost 10 "/>
+	<contribution fileExtension="myExt2" options="-outputExceptionName -cost 10"/>
+</extension> 
+			      
+		
+		 			 
+
+
+<extension
+      point="org.eclipse.ui.popupMenus">
+   
+   <!-- add an <objectContribution> element per new extension file -->
+   <!-- set the "nameFiler" attribute of <objectConttribution> so that only file of a given extension can be selected -->
+   
+   <objectContribution
+         objectClass="org.eclipse.core.resources.IFile"
+         nameFilter="*.myExt1"
+         id="com.ibm.etools.sketch.sqc.extensionExample1">
+         
+      <!-- VERY IMPORTANT NOTE : the "class" attribute of <action> element MUST be set to "com.ibm.etools.sketch.sqc.SQCAction" -->
+      <!-- set the "label" attribute of <action> element to "&amp;Validate with SQC" -->
+      <action
+            label="&amp;Validate with SQC"
+            class="com.ibm.etools.sketch.sqc.SQCAction"
+            enablesFor="+"
+            id="com.ibm.etools.sketch.sqc.extensionExample.SQCRunForMyExt1">
+      </action>
+   </objectContribution>
+  
+   
+   <objectContribution
+         objectClass="org.eclipse.core.resources.IFile"
+         nameFilter="*.myExt2"
+         id="com.ibm.etools.sketch.sqc.extensionExample2">
+         
+      <!-- VERY IMPORTANT NOTE : the "class" attribute MUST be set to "com.ibm.etools.sketch.sqc.SQCAction" -->
+       <!-- set the "label" attribute of action element to "&amp;Validate with SQC" -->
+      <action
+            label="&amp;Validate with SQC"
+            class="com.ibm.etools.sketch.sqc.SQCAction"
+            enablesFor="+"
+            id="com.ibm.etools.sketch.sqc.extensionExample.SQCRunForMyExt2">
+      </action>
+   </objectContribution>
+   
+   
+</extension>
+</plugin>

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet  type="text/xsl" href="mathml.xsl"?><html xmlns="http://www.w3.org/1999/xhtml" xmlns:pref="http://www.w3.org/2002/Math/preference" pref:renderer="mathplayer-dl">
+  <head>
+    <link rel="stylesheet" type="text/css" href="omdoc-cnx.css"/>
+    <title>The CASL logic language</title>
+  </head>
+  <body>
+<div class="titleblock">
+<div class="title">The CASL logic language</div>
+<div class="authors">Immanuel Normann</div>
+<div class="date">2005-04-20</div></div>
+
+
+<div class="symbol" id="type">
+<div class="titlebox">
+<span class="titleword">Concept</span>type</div></div>
+
+<div class="symbol" id="quantification">
+<div class="titlebox">
+<span class="titleword">Concept</span>quantification</div>
+	  HetsDataType:
+	  data FORMULA f = Quantification QUANTIFIER [VAR_DECL] (FORMULA f) [Pos]
+	       -- pos: QUANTIFIER, semi colons, dot
+	</div>
+
+<div class="symbol" id="universal">
+<div class="titlebox">
+<span class="titleword">Concept</span>universal</div>
+	  HetsDataType:
+	  data QUANTIFIER = Universal
+	</div>
+
+<div class="symbol" id="existential">
+<div class="titlebox">
+<span class="titleword">Concept</span>existential</div>
+	  HetsDataType:
+	  data QUANTIFIER = Existential
+	</div>
+
+<div class="symbol" id="unique-existential">
+<div class="titlebox">
+<span class="titleword">Concept</span>unique-existential</div>
+	  HetsDataType:
+	  data QUANTIFIER = Unique_existential
+	</div>
+
+<div class="symbol" id="conjunction">
+<div class="titlebox">
+<span class="titleword">Concept</span>conjunction</div>
+	  HetsDataType:
+	  data FORMULA f = Conjunction [FORMULA f] [Pos]
+	       -- pos: "/\"s
+	</div>
+
+<div class="symbol" id="disjunction">
+<div class="titlebox">
+<span class="titleword">Concept</span>disjunction</div>
+	  HetsDataType:
+	  data FORMULA f = Disjunction [FORMULA f] [Pos]
+	       -- pos: "\/"s
+	</div>
+
+<div class="symbol" id="implication">
+<div class="titlebox">
+<span class="titleword">Concept</span>implication</div>
+	  HetsDataType:
+	  data FORMULA f = Implication (FORMULA f) (FORMULA f) Bool [Pos]
+	       -- pos: "=&gt;" or "if" (True -&gt; "=&gt;")
+	</div>
+
+<div class="symbol" id="equivalence">
+<div class="titlebox">
+<span class="titleword">Concept</span>equivalence</div>
+	  HetsDataType:
+	  data FORMULA f = Equivalence (FORMULA f) (FORMULA f) [Pos]
+	       -- pos: "&lt;=&gt;"
+	</div>
+
+<div class="symbol" id="negation">
+<div class="titlebox">
+<span class="titleword">Concept</span>negation</div>
+	  HetsDataType:
+	  data FORMULA f = Negation (FORMULA f) [Pos]
+	       -- pos: not
+	</div>
+
+<div class="symbol" id="true">
+<div class="titlebox">
+<span class="titleword">Concept</span>true</div>
+	  HetsDataType:
+	  data FORMULA f = True_atom [Pos]
+	       -- pos: true
+	</div>
+
+<div class="symbol" id="false">
+<div class="titlebox">
+<span class="titleword">Concept</span>false</div>
+	  HetsDataType:
+	  data FORMULA f = False_atom [Pos]
+	       -- pos: false
+	</div>
+
+<div class="symbol" id="predication">
+<div class="titlebox">
+<span class="titleword">Concept</span>predication</div>
+	  HetsDataType:
+	  data FORMULA f = Predication PRED_SYMB [TERM f] [Pos]
+               -- pos: opt. "(",commas,")"
+	</div>
+
+<div class="symbol" id="definedness">
+<div class="titlebox">
+<span class="titleword">Concept</span>definedness</div>
+	  HetsDataType:
+	  data FORMULA f = Definedness (TERM f) [Pos]
+	       -- pos: def
+	</div>
+
+<div class="symbol" id="existential-equation">
+<div class="titlebox">
+<span class="titleword">Concept</span>existential-equation</div>
+	  HetsDataType:
+	  data FORMULA f = Existl_equation (TERM f) (TERM f) [Pos]
+               -- pos: =e=
+	</div>
+
+<div class="symbol" id="strong-equation">
+<div class="titlebox">
+<span class="titleword">Concept</span>strong-equation</div>
+	  HetsDataType:
+	  data FORMULA f = Strong_equation (TERM f) (TERM f) [Pos]
+	       -- pos: =
+	</div>
+
+<div class="symbol" id="membership">
+<div class="titlebox">
+<span class="titleword">Concept</span>membership</div>
+	  HetsDataType:
+	  data FORMULA f = Membership (TERM f) SORT [Pos]
+               -- pos: in
+	</div>
+
+<div class="example" id="ex1">
+<span class="titleword">Example</span>
+<p>forall x:real . not(x~x) iff false</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid79147"><semantics><mrow id="MCRid79150"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#universal" xlink:type="simple" id="id79152">universal</mo><mrow id="MCRid79158"><mi id="MCRid79178">x</mi></mrow><mrow id="MCRid79185"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#equivalence" xlink:type="simple" id="id79187">equivalence</mo><mrow><mo fence="true">(</mo><mrow><mrow id="MCRid79194"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#negation" xlink:type="simple" id="id79196">negation</mo><mrow><mo fence="true">(</mo><mrow><mrow id="MCRid79203"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#refl" xlink:type="simple" id="id79205">refl</mo><mrow><mo fence="true">(</mo><mrow><mi id="MCRid79211">x</mi><mo separator="true">,</mo><mi id="MCRid79216">x</mi></mrow><mo fence="true">)</mo></mrow></mrow></mrow><mo fence="true">)</mo></mrow></mrow><mo separator="true">,</mo><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#false" xlink:type="simple" id="id79222">false</mo></mrow><mo fence="true">)</mo></mrow></mrow></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid79147" xlink:type="simple"><OMBIND xlink:href="MCRid79150" xlink:type="simple"><OMS cd="casl" name="universal" xlink:href="MCRid79152" xlink:type="simple"/><OMBVAR xlink:href="MCRid79158" xlink:type="simple"><OMATTR xlink:href="MCRid79160" xlink:type="simple"><OMATP xlink:type="simple" xlink:href="MCRid79162"><OMS cd="casl" name="type" xlink:href="MCRid79164" xlink:type="simple"/><OMS cd="reflexive-ralation" name="real" xlink:href="MCRid79171" xlink:type="simple"/></OMATP><OMV name="x" xlink:href="MCRid79178" xlink:type="simple"/></OMATTR></OMBVAR><OMA xlink:href="MCRid79185" xlink:type="simple"><OMS cd="casl" name="equivalence" xlink:href="MCRid79187" xlink:type="simple"/><OMA xlink:href="MCRid79194" xlink:type="simple"><OMS cd="casl" name="negation" xlink:href="MCRid79196" xlink:type="simple"/><OMA xlink:href="MCRid79203" xlink:type="simple"><OMS cd="reflexive-ralation" name="refl" xlink:href="MCRid79205" xlink:type="simple"/><OMV name="x" xlink:href="MCRid79211" xlink:type="simple"/><OMV name="x" xlink:href="MCRid79216" xlink:type="simple"/></OMA></OMA><OMS cd="casl" name="false" xlink:href="MCRid79222" xlink:type="simple"/></OMA></OMBIND></OMOBJ></annotation-xml></semantics></math></div>
+
+
+
+</body>
+</html>

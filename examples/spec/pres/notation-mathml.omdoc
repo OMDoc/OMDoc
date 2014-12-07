@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE omdoc PUBLIC "-//OMDoc//DTD OMDoc V1.3//EN"
+                       "../../../dtd/omdoc.dtd" []>
+
+<omdoc xml:id="notation-mathml.omdoc"
+  xmlns="http://omdoc.org/ns"
+  xmlns:cc="http://creativecommons.org/ns"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xmlns:m="http://www.w3.org/1998/Math/MathML"
+  version="1.3">
+<metadata>
+  <dc:date action="created"> 2004-10-08T11:53:16Z </dc:date>
+  <dc:title xml:lang="en"> notation-mathml </dc:title>
+  <dc:creator role="aut"> Michael Kohlhase </dc:creator>
+  <dc:source>  </dc:source>
+  <dc:date action="updated"> 2004-10-08T11:53:16Z </dc:date>
+  <dc:type> Text </dc:type>
+  <dc:format> application/omdoc+xml </dc:format>
+  <dc:rights>Copyright (c) 2004 Michael Kohlhase</dc:rights>
+  <cc:license>
+    <cc:permissions reproduction="permitted" distribution="permitted" derivative_works="permitted"/>
+    <cc:prohibitions commercial_use="permitted"/>
+    <cc:requirements notice="required" copyleft="required" attribution="required"/>
+  </cc:license>
+</metadata>
+
+<omtext>
+<CMP>
+<m:math>
+  <m:apply>  
+    <m:forall/>
+    <m:bvar>
+      <m:semantics>
+        <m:ci><m:msub><m:mi>X</m:mi><m:mn>4</m:mn></m:msub></m:ci>
+        <m:annotation-xml encoding="application/xml+OMdoc"
+          definitionURL="http://omdoc.org/ns/omdoc.omdoc#notation">
+          <presentation for="#X"> 
+            <use format="TeX">X_4</use>
+            <style format="pmml">
+	      <element name="msub" ns="http://www.w3.org/1998/Math/MathML">
+		<element name="mi" ns="http://www.w3.org/1998/Math/MathML">
+		  <text>X</text>
+		</element>
+		<element name="mn" ns="http://www.w3.org/1998/Math/MathML">
+		  <text>4</text>
+		</element>
+	      </element>
+	    </style>
+            <style format="html">
+	      <text>X</text>
+	      <element name="sub" ns="http://www.w3.org/1999/xhtml">
+		<text>4</text>
+	      </element>
+	    </style>
+          </presentation>
+        </m:annotation-xml>
+      </m:semantics>
+    </m:bvar>
+    <m:apply><m:eq/><m:cn>4</m:cn><m:cn>4</m:cn></m:apply>
+  </m:apply>
+</m:math>
+</CMP>
+</omtext>
+</omdoc>

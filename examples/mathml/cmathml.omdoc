@@ -1,0 +1,1487 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- adapted from David Carlisle's cmathml.xml example -->
+
+<!DOCTYPE omdoc PUBLIC "-//OMDoc//DTD OMDoc V1.3//EN"
+                "../../dtd/omdoc.dtd" []>
+
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  xmlns="http://omdoc.org/ns"
+       xml:id="arith1-omdoc"
+       xmlns:m="http://www.w3.org/1998/Math/MathML">
+
+   <metadata>
+      <dc:title> Some Content MathML Examples</dc:title>
+      <dc:creator role="trl">Michael Kohlhase</dc:creator>
+      <dc:date>2002-05-01T00:00:00</dc:date>
+      <dc:description>This CD defines symbols for common arithmetic functions.</dc:description>
+   </metadata>
+
+      <example for="dummy" xml:id="d0e8">
+         <CMP>
+            <m:math>
+               <m:apply>
+		 <m:compose/>
+		 <m:ci> f </m:ci>
+		 <m:ci> g </m:ci>
+	       </m:apply>
+	    </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e20">
+         <CMP>
+            <m:math>
+               <m:apply>
+                  <m:compose/>
+                  <m:ci type="fn"> f </m:ci>
+                  <m:ci type="fn"> g </m:ci>
+                  <m:ci type="fn"> h </m:ci>
+               </m:apply>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e32">
+         <CMP>
+            <m:math>
+               <m:apply>
+                  <m:apply>
+                     <m:compose/>
+		     <m:ci> f </m:ci>
+		     <m:ci> g </m:ci>
+		  </m:apply>
+                  <m:ci> x </m:ci>
+               </m:apply>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e47">
+         <CMP>
+            <m:math>
+               <m:apply>
+                     <m:ci> f </m:ci>
+                  <m:apply>
+                        <m:ci> g </m:ci>
+                     <m:ci> x </m:ci>
+                  </m:apply>
+               </m:apply>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e61">
+         <CMP>
+            <m:math>
+               <m:apply>
+                  <m:eq/>
+                  <m:apply>
+                     <m:compose/>
+                        <m:ci> f </m:ci>
+                     <m:apply>
+                        <m:inverse/>
+                           <m:ci> f </m:ci>
+                     </m:apply>
+                  </m:apply>
+                  <m:ident/>
+               </m:apply>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e78">
+         <CMP>
+            <m:math>
+               <m:apply>
+                  <m:eq/>
+                  <m:apply>
+                     <m:domain/>
+                        <m:ci> f </m:ci>
+                  </m:apply>
+                  <m:reals/>
+               </m:apply>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e90">
+         <CMP>
+            <m:math>
+               <m:apply>
+                  <m:eq/>
+                  <m:apply>
+                     <m:abs/>
+                     <m:ci> x </m:ci>
+                  </m:apply>
+                  <m:piecewise>
+                     <m:piece>
+                        <m:apply>
+                           <m:minus/>
+                           <m:ci> x </m:ci>
+                        </m:apply>
+                        <m:apply>
+                           <m:lt/>
+                           <m:ci> x </m:ci>
+                           <m:cn> 0 </m:cn>
+                        </m:apply>
+                     </m:piece>
+                     <m:piece>
+                        <m:cn> 0 </m:cn>
+                        <m:apply>
+                           <m:eq/>
+                           <m:ci> x </m:ci>
+                           <m:cn> 0 </m:cn>
+                        </m:apply>
+                     </m:piece>
+                     <m:piece>
+                        <m:ci> x </m:ci>
+                        <m:apply>
+                           <m:gt/>
+                           <m:ci> x </m:ci>
+                           <m:cn> 0 </m:cn>
+                        </m:apply>
+                     </m:piece>
+                  </m:piecewise>
+               </m:apply>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e130">
+         <CMP>
+            <m:math>
+               <m:apply>
+                  <m:divide/>
+                  <m:ci> a </m:ci>
+                  <m:ci> b </m:ci>
+               </m:apply>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e140">
+         <CMP>
+            <m:math>
+               <m:apply>
+                  <m:power/>
+                  <m:ci> x </m:ci>
+                  <m:cn> 3 </m:cn>
+               </m:apply>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e150">
+         <CMP>
+            <m:math>
+               <m:apply>
+                  <m:times/>
+                  <m:ci> a </m:ci>
+                  <m:ci> b </m:ci>
+               </m:apply>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e160">
+         <CMP>
+            <m:math>
+               <m:apply>
+                  <m:times/>
+                  <m:cn> 1 </m:cn>
+                  <m:cn> 2 </m:cn>
+               </m:apply>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e170">
+         <CMP>
+            <m:math>
+               <m:apply>
+                  <m:times/>
+                  <m:cn> 1 </m:cn>
+                  <m:cn> 2 </m:cn>
+                  <m:apply>
+                     <m:plus/>
+                     <m:cn> 1 </m:cn>
+                     <m:cn> 2 </m:cn>
+                  </m:apply>
+                  <m:cn> 3 </m:cn>
+               </m:apply>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e188">
+         <CMP>
+            <m:math>
+               <m:apply>
+                  <m:plus/>
+                  <m:cn> 1 </m:cn>
+                  <m:cn> 2 </m:cn>
+                  <m:apply>
+                     <m:times/>
+                     <m:cn> 1 </m:cn>
+                     <m:cn> 2 </m:cn>
+                  </m:apply>
+                  <m:cn> 3 </m:cn>
+               </m:apply>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e206">
+         <CMP>
+            <m:math>
+               <m:apply>
+                  <m:plus/>
+                  <m:apply>
+                     <m:times/>
+                     <m:cn> 111 </m:cn>
+                     <m:ci> x </m:ci>
+                  </m:apply>
+                  <m:apply>
+                     <m:times/>
+                     <m:apply>
+                        <m:minus/>
+                        <m:cn> 222 </m:cn>
+                     </m:apply>
+                     <m:ci> x </m:ci>
+                     <m:ci> y </m:ci>
+                  </m:apply>
+                  <m:apply>
+                     <m:times/>
+                     <m:cn> 333 </m:cn>
+                     <m:ci> x </m:ci>
+                  </m:apply>
+                  <m:apply>
+                     <m:times/>
+                     <m:cn> -444 </m:cn>
+                     <m:ci> x </m:ci>
+                  </m:apply>
+                  <m:apply>
+                     <m:times/>
+                     <m:cn> 555</m:cn>
+                     <m:ci> x </m:ci>
+                  </m:apply>
+               </m:apply>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e246">
+         <CMP>
+            <m:math>
+               <m:apply>
+                  <m:root/>
+                  <m:ci> a </m:ci>
+               </m:apply>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e254">
+         <CMP>
+            <m:math>
+               <m:apply>
+                  <m:root/>
+                  <m:degree>
+                     <m:ci type="integer"> n </m:ci>
+                  </m:degree>
+                  <m:ci> a </m:ci>
+               </m:apply>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e265">
+         <CMP>
+            <m:math>
+               <m:apply>
+                  <m:not/>
+                  <m:ci> a </m:ci>
+               </m:apply>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e273">
+         <CMP>
+            <m:math>
+               <m:apply>
+                  <m:implies/>
+                  <m:ci> A </m:ci>
+                  <m:ci> B </m:ci>
+               </m:apply>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e283">
+         <CMP>
+            <m:math>
+               <m:apply>
+                  <m:forall/>
+                  <m:bvar>
+                     <m:ci> x </m:ci>
+                  </m:bvar>
+                  <m:apply>
+                     <m:eq/>
+                     <m:apply>
+                        <m:minus/>
+                        <m:ci> x </m:ci>
+                        <m:ci> x </m:ci>
+                     </m:apply>
+                     <m:cn>0</m:cn>
+                  </m:apply>
+               </m:apply>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e302">
+         <CMP>
+            <m:math>
+               <m:apply>
+                  <m:forall/>
+                  <m:bvar>
+                     <m:ci> p </m:ci>
+                  </m:bvar>
+                  <m:bvar>
+                     <m:ci> q </m:ci>
+                  </m:bvar>
+                  <m:condition>
+                     <m:apply>
+                        <m:and/>
+                        <m:apply>
+                           <m:in/>
+                           <m:ci> p </m:ci>
+                           <m:rationals/>
+                        </m:apply>
+                        <m:apply>
+                           <m:in/>
+                           <m:ci> q </m:ci>
+                           <m:rationals/>
+                        </m:apply>
+                        <m:apply>
+                           <m:lt/>
+                           <m:ci> p </m:ci>
+                           <m:ci> q </m:ci>
+                        </m:apply>
+                     </m:apply>
+                  </m:condition>
+                  <m:apply>
+                     <m:lt/>
+                     <m:ci> p </m:ci>
+                     <m:apply>
+                        <m:power/>
+                        <m:ci> q </m:ci>
+                        <m:cn> 2 </m:cn>
+                     </m:apply>
+                  </m:apply>
+               </m:apply>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e343">
+         <CMP>
+            <m:math>
+               <m:apply>
+                  <m:forall/>
+                  <m:bvar>
+                     <m:ci> n </m:ci>
+                  </m:bvar>
+                  <m:condition>
+                     <m:apply>
+                        <m:and/>
+                        <m:apply>
+                           <m:gt/>
+                           <m:ci> n </m:ci>
+                           <m:cn> 0 </m:cn>
+                        </m:apply>
+                        <m:apply>
+                           <m:in/>
+                           <m:ci> n </m:ci>
+                           <m:integers/>
+                        </m:apply>
+                     </m:apply>
+                  </m:condition>
+                  <m:apply>
+                     <m:exists/>
+                     <m:bvar>
+                        <m:ci> x </m:ci>
+                     </m:bvar>
+                     <m:bvar>
+                        <m:ci> y </m:ci>
+                     </m:bvar>
+                     <m:bvar>
+                        <m:ci> z </m:ci>
+                     </m:bvar>
+                     <m:condition>
+                        <m:apply>
+                           <m:and/>
+                           <m:apply>
+                              <m:in/>
+                              <m:ci> x </m:ci>
+                              <m:integers/>
+                           </m:apply>
+                           <m:apply>
+                              <m:in/>
+                              <m:ci> y </m:ci>
+                              <m:integers/>
+                           </m:apply>
+                           <m:apply>
+                              <m:in/>
+                              <m:ci> z </m:ci>
+                              <m:integers/>
+                           </m:apply>
+                        </m:apply>
+                     </m:condition>
+                     <m:apply>
+                        <m:eq/>
+                        <m:apply>
+                           <m:plus/>
+                           <m:apply>
+                              <m:power/>
+                              <m:ci> x </m:ci>
+                              <m:ci> n </m:ci>
+                           </m:apply>
+                           <m:apply>
+                              <m:power/>
+                              <m:ci> y </m:ci>
+                              <m:ci> n </m:ci>
+                           </m:apply>
+                        </m:apply>
+                        <m:apply>
+                           <m:power/>
+                           <m:ci> z </m:ci>
+                           <m:ci> n </m:ci>
+                        </m:apply>
+                     </m:apply>
+                  </m:apply>
+               </m:apply>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e417">
+         <CMP>
+            <m:math>
+               <m:apply>
+                  <m:abs/>
+                  <m:ci> x </m:ci>
+               </m:apply>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e425">
+         <CMP>
+            <m:math>
+               <m:apply>
+                  <m:conjugate/>
+                  <m:apply>
+                     <m:plus/>
+                     <m:ci> x </m:ci>
+                     <m:apply>
+                        <m:times/>
+                        <m:cn> i</m:cn>
+                        <m:ci> y </m:ci>
+                     </m:apply>
+                  </m:apply>
+               </m:apply>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e441">
+         <CMP>
+            <m:math>
+               <m:apply>
+                  <m:arg/>
+                  <m:apply>
+                     <m:plus/>
+                     <m:ci> x </m:ci>
+                     <m:apply>
+                        <m:times/>
+                        <m:cn> i </m:cn>
+                        <m:ci> y </m:ci>
+                     </m:apply>
+                  </m:apply>
+               </m:apply>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e457">
+         <CMP>
+            <m:math>
+               <m:apply>
+                  <m:real/>
+                  <m:apply>
+                     <m:plus/>
+                     <m:ci> x </m:ci>
+                     <m:apply>
+                        <m:times/>
+                        <m:cn> i </m:cn>
+                        <m:ci> y </m:ci>
+                     </m:apply>
+                  </m:apply>
+               </m:apply>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e473">
+         <CMP>
+            <m:math>
+               <m:apply>
+                  <m:imaginary/>
+                  <m:apply>
+                     <m:plus/>
+                     <m:ci> x </m:ci>
+                     <m:apply>
+                        <m:times/>
+                        <m:cn> i </m:cn>
+                        <m:ci> y </m:ci>
+                     </m:apply>
+                  </m:apply>
+               </m:apply>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e489">
+         <CMP>
+            <m:math>
+               <m:apply>
+                  <m:int/>
+                  <m:bvar>
+                     <m:ci> x </m:ci>
+                  </m:bvar>
+                  <m:lowlimit>
+                     <m:cn> 0 </m:cn>
+                  </m:lowlimit>
+                  <m:uplimit>
+                     <m:ci> a </m:ci>
+                  </m:uplimit>
+                  <m:apply>
+                     <m:ci> f </m:ci>
+                     <m:ci> x </m:ci>
+                  </m:apply>
+               </m:apply>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e509">
+         <CMP>
+            <m:math>
+               <m:apply>
+                  <m:int/>
+                  <m:bvar>
+                     <m:ci> x </m:ci>
+                  </m:bvar>
+                  <m:interval>
+                     <m:ci> a </m:ci>
+                     <m:ci> b </m:ci>
+                  </m:interval>
+                  <m:apply>
+                     <m:cos/>
+                     <m:ci> x </m:ci>
+                  </m:apply>
+               </m:apply>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e527">
+         <CMP>
+            <m:math>
+               <m:apply>
+                  <m:int/>
+                  <m:bvar>
+                     <m:ci> x </m:ci>
+                  </m:bvar>
+                  <m:condition>
+                     <m:apply>
+                        <m:in/>
+                        <m:ci> x </m:ci>
+                        <m:ci type="set"> D </m:ci>
+                     </m:apply>
+                  </m:condition>
+                  <m:apply>
+                     <m:ci type="fn"> f </m:ci>
+                     <m:ci> x </m:ci>
+                  </m:apply>
+               </m:apply>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e548">
+         <CMP>
+            <m:math>
+               <m:apply>
+                  <m:diff/>
+                  <m:ci> f </m:ci>
+               </m:apply>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e556">
+         <CMP>
+            <m:math>
+               <m:apply>
+                  <m:diff/>
+                  <m:bvar>
+                     <m:ci> x </m:ci>
+                  </m:bvar>
+                  <m:apply>
+                     <m:ci type="fn"> f </m:ci>
+                     <m:ci> x </m:ci>
+                  </m:apply>
+               </m:apply>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e570">
+         <CMP>
+            <m:math>
+               <m:apply>
+                  <m:diff/>
+                  <m:bvar>
+                     <m:ci> x </m:ci>
+                     <m:degree>
+                        <m:cn> 2 </m:cn>
+                     </m:degree>
+                  </m:bvar>
+                  <m:apply>
+                        <m:ci>f</m:ci>
+                     <m:ci> x </m:ci>
+                  </m:apply>
+               </m:apply>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e588">
+         <CMP>
+            <m:math>
+               <m:apply>
+                  <m:partialdiff/>
+                  <m:bvar>
+                     <m:ci> x </m:ci>
+                     <m:degree>
+                        <m:ci> m </m:ci>
+                     </m:degree>
+                  </m:bvar>
+                  <m:bvar>
+                     <m:ci> y </m:ci>
+                     <m:degree>
+                        <m:ci> n </m:ci>
+                     </m:degree>
+                  </m:bvar>
+                  <m:degree>
+                     <m:ci> k </m:ci>
+                  </m:degree>
+                  <m:apply>
+                     <m:ci type="fn"> f </m:ci>
+                     <m:ci> x </m:ci>
+                     <m:ci> y </m:ci>
+                  </m:apply>
+               </m:apply>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e616">
+         <CMP>
+            <m:math>
+               <m:apply>
+                  <m:partialdiff/>
+                  <m:bvar>
+                     <m:ci> x </m:ci>
+                  </m:bvar>
+                  <m:bvar>
+                     <m:ci> y </m:ci>
+                  </m:bvar>
+                  <m:apply>
+                     <m:ci type="fn"> f </m:ci>
+                     <m:ci> x </m:ci>
+                     <m:ci> y </m:ci>
+                  </m:apply>
+               </m:apply>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e635">
+         <CMP>
+            <m:math>
+               <m:apply>
+                  <m:partialdiff/>
+                  <m:bvar>
+                     <m:ci> x </m:ci>
+                     <m:degree>
+                        <m:cn>2</m:cn>
+                     </m:degree>
+                  </m:bvar>
+                  <m:bvar>
+                     <m:ci> y </m:ci>
+                  </m:bvar>
+                  <m:apply>
+                     <m:ci type="fn"> f </m:ci>
+                     <m:ci> x </m:ci>
+                     <m:ci> y </m:ci>
+                  </m:apply>
+               </m:apply>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e657">
+         <CMP>
+            <m:math>
+               <m:apply>
+                  <m:partialdiff/>
+                  <m:bvar>
+                     <m:ci> x </m:ci>
+                     <m:degree>
+                        <m:ci>a</m:ci>
+                     </m:degree>
+                  </m:bvar>
+                  <m:bvar>
+                     <m:ci> y </m:ci>
+                  </m:bvar>
+                  <m:apply>
+                     <m:ci type="fn"> f </m:ci>
+                     <m:ci> x </m:ci>
+                     <m:ci> y </m:ci>
+                  </m:apply>
+               </m:apply>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e679">
+         <CMP>
+            <m:math>
+               <m:apply>
+                  <m:partialdiff/>
+                  <m:list>
+                     <m:cn>1</m:cn>
+                     <m:cn>1</m:cn>
+                     <m:cn>3</m:cn>
+                  </m:list>
+                  <m:ci type="fn">f</m:ci>
+               </m:apply>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e694">
+         <CMP>
+            <m:math>
+               <m:apply>
+                  <m:partialdiff/>
+                  <m:bvar>
+                     <m:degree>
+                        <m:cn>2</m:cn>
+                     </m:degree>
+                     <m:ci>x</m:ci>
+                  </m:bvar>
+                  <m:bvar>
+                     <m:ci>y</m:ci>
+                  </m:bvar>
+                  <m:bvar>
+                     <m:ci>x</m:ci>
+                  </m:bvar>
+                  <m:degree>
+                     <m:cn>4</m:cn>
+                  </m:degree>
+                  <m:ci type="fn">f</m:ci>
+               </m:apply>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e717">
+         <CMP>
+            <m:math>
+               <m:apply>
+                  <m:partialdiff/>
+                  <m:bvar>
+                     <m:ci> x </m:ci>
+                     <m:degree>
+                        <m:ci> n </m:ci>
+                     </m:degree>
+                  </m:bvar>
+                  <m:bvar>
+                     <m:ci> y </m:ci>
+                     <m:degree>
+                        <m:ci> m </m:ci>
+                     </m:degree>
+                  </m:bvar>
+                  <m:apply>
+                     <m:sin/>
+                     <m:apply>
+                        <m:times/>
+                        <m:ci> x </m:ci>
+                        <m:ci> y </m:ci>
+                     </m:apply>
+                  </m:apply>
+               </m:apply>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e743">
+         <CMP>
+            <m:math>
+               <m:apply>
+                  <m:grad/>
+                  <m:ci> f</m:ci>
+               </m:apply>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e751">
+         <CMP>
+            <m:math>
+               <m:apply>
+                  <m:eq/>
+                  <m:apply>
+                     <m:laplacian/>
+                     <m:ci> f </m:ci>
+                  </m:apply>
+                  <m:apply>
+                     <m:divergence/>
+                     <m:apply>
+                        <m:grad/>
+                        <m:ci> f </m:ci>
+                     </m:apply>
+                  </m:apply>
+               </m:apply>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e767">
+         <CMP>
+            <m:math>
+               <m:set>
+                  <m:ci> b </m:ci>
+                  <m:ci> a </m:ci>
+                  <m:ci> c </m:ci>
+               </m:set>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e778">
+         <CMP>
+            <m:math>
+               <m:set>
+                  <m:bvar>
+                     <m:ci> x </m:ci>
+                  </m:bvar>
+                  <m:condition>
+                     <m:apply>
+                        <m:and/>
+                        <m:apply>
+                           <m:lt/>
+                           <m:ci> x </m:ci>
+                           <m:cn> 5 </m:cn>
+                        </m:apply>
+                        <m:apply>
+                           <m:in/>
+                           <m:ci> x </m:ci>
+                           <m:naturalnumbers/>
+                        </m:apply>
+                     </m:apply>
+                  </m:condition>
+                  <m:ci> x </m:ci>
+               </m:set>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e802">
+         <CMP>
+            <m:math>
+               <m:list>
+                  <m:ci> a </m:ci>
+                  <m:ci> b </m:ci>
+                  <m:ci> c </m:ci>
+               </m:list>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e813">
+         <CMP>
+            <m:math>
+               <m:list order="numeric">
+                  <m:bvar>
+                     <m:ci> x </m:ci>
+                  </m:bvar>
+                  <m:condition>
+                     <m:apply>
+                        <m:lt/>
+                        <m:ci> x </m:ci>
+                        <m:cn> 5 </m:cn>
+                     </m:apply>
+                  </m:condition>
+                  <m:ci> x </m:ci>
+               </m:list>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e830">
+         <CMP>
+            <m:math>
+               <m:apply>
+                  <m:union/>
+                  <m:ci> A </m:ci>
+                  <m:ci> B </m:ci>
+               </m:apply>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e840">
+         <CMP>
+            <m:math>
+               <m:apply>
+                  <m:intersect/>
+                  <m:ci type="set"> A </m:ci>
+                  <m:ci type="set"> B </m:ci>
+               </m:apply>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e850">
+         <CMP>
+            <m:math>
+               <m:apply>
+                  <m:notin/>
+                  <m:ci> a </m:ci>
+                  <m:ci> A </m:ci>
+               </m:apply>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e860">
+         <CMP>
+            <m:math>
+               <m:apply>
+                  <m:subset/>
+                  <m:ci> A </m:ci>
+                  <m:ci> B </m:ci>
+               </m:apply>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e870">
+         <CMP>
+            <m:math>
+               <m:apply>
+                  <m:prsubset/>
+                  <m:ci> A </m:ci>
+                  <m:ci> B </m:ci>
+               </m:apply>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e880">
+         <CMP>
+            <m:math>
+               <m:apply>
+                  <m:notsubset/>
+                  <m:ci> A </m:ci>
+                  <m:ci> B </m:ci>
+               </m:apply>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e890">
+         <CMP>
+            <m:math>
+               <m:apply>
+                  <m:notprsubset/>
+                  <m:ci> A </m:ci>
+                  <m:ci> B </m:ci>
+               </m:apply>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e900">
+         <CMP>
+            <m:math>
+               <m:apply>
+                  <m:setdiff/>
+                  <m:ci> A </m:ci>
+                  <m:ci> B </m:ci>
+               </m:apply>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e910">
+         <CMP>
+            <m:math>
+               <m:apply>
+                  <m:cartesianproduct/>
+                  <m:ci> A </m:ci>
+                  <m:ci> B </m:ci>
+               </m:apply>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e920">
+         <CMP>
+            <m:math>
+               <m:apply>
+                  <m:cartesianproduct/>
+                  <m:reals/>
+                  <m:reals/>
+                  <m:reals/>
+               </m:apply>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e929">
+         <CMP>
+            <m:math>
+               <m:apply>
+                  <m:sum/>
+                  <m:bvar>
+                     <m:ci> x </m:ci>
+                  </m:bvar>
+                  <m:lowlimit>
+                     <m:ci> a </m:ci>
+                  </m:lowlimit>
+                  <m:uplimit>
+                     <m:ci> b </m:ci>
+                  </m:uplimit>
+                  <m:apply>
+                     <m:ci type="fn"> f </m:ci>
+                     <m:ci> x </m:ci>
+                  </m:apply>
+               </m:apply>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e949">
+         <CMP>
+            <m:math>
+               <m:apply>
+                  <m:sum/>
+                  <m:bvar>
+                     <m:ci> x </m:ci>
+                  </m:bvar>
+                  <m:condition>
+                     <m:apply>
+                        <m:in/>
+                        <m:ci> x </m:ci>
+                        <m:ci type="set"> B </m:ci>
+                     </m:apply>
+                  </m:condition>
+                  <m:apply>
+                     <m:ci type="fn"> f </m:ci>
+                     <m:ci> x </m:ci>
+                  </m:apply>
+               </m:apply>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e970">
+         <CMP>
+            <m:math>
+               <m:apply>
+                  <m:product/>
+                  <m:bvar>
+                     <m:ci> x </m:ci>
+                  </m:bvar>
+                  <m:lowlimit>
+                     <m:ci> a </m:ci>
+                  </m:lowlimit>
+                  <m:uplimit>
+                     <m:ci> b </m:ci>
+                  </m:uplimit>
+                  <m:apply>
+                     <m:ci type="fn"> f </m:ci>
+                     <m:ci> x </m:ci>
+                  </m:apply>
+               </m:apply>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e990">
+         <CMP>
+            <m:math>
+               <m:apply>
+                  <m:product/>
+                  <m:bvar>
+                     <m:ci> x </m:ci>
+                  </m:bvar>
+                  <m:condition>
+                     <m:apply>
+                        <m:in/>
+                        <m:ci> x </m:ci>
+                        <m:ci type="set"> B </m:ci>
+                     </m:apply>
+                  </m:condition>
+                  <m:apply>
+                     <m:ci type="fn"> f </m:ci>
+                     <m:ci> x </m:ci>
+                  </m:apply>
+               </m:apply>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e1011">
+         <CMP>
+            <m:math>
+               <m:apply>
+                  <m:limit/>
+                  <m:bvar>
+                     <m:ci> x </m:ci>
+                  </m:bvar>
+                  <m:lowlimit>
+                     <m:cn> 0 </m:cn>
+                  </m:lowlimit>
+                  <m:apply>
+                     <m:sin/>
+                     <m:ci> x </m:ci>
+                  </m:apply>
+               </m:apply>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e1027">
+         <CMP>
+            <m:math>
+               <m:apply>
+                  <m:limit/>
+                  <m:bvar>
+                     <m:ci> x </m:ci>
+                  </m:bvar>
+                  <m:condition>
+                     <m:apply>
+                        <m:tendsto type="above"/>
+                        <m:ci> x </m:ci>
+                        <m:ci> a </m:ci>
+                     </m:apply>
+                  </m:condition>
+                  <m:apply>
+                     <m:sin/>
+                     <m:ci> x </m:ci>
+                  </m:apply>
+               </m:apply>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e1047">
+         <CMP>
+            <m:math>
+               <m:apply>
+                  <m:sin/>
+                  <m:ci> x </m:ci>
+               </m:apply>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e1055">
+         <CMP>
+            <m:math>
+               <m:apply>
+                  <m:sin/>
+                  <m:apply>
+                     <m:plus/>
+                     <m:apply>
+                        <m:cos/>
+                        <m:ci> x </m:ci>
+                     </m:apply>
+                     <m:apply>
+                        <m:power/>
+                        <m:ci> x </m:ci>
+                        <m:cn> 3 </m:cn>
+                     </m:apply>
+                  </m:apply>
+               </m:apply>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e1073">
+         <CMP>
+            <m:math>
+               <m:apply>
+                  <m:exp/>
+                  <m:ci> x </m:ci>
+               </m:apply>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e1081">
+         <CMP>
+            <m:math>
+               <m:apply>
+                  <m:log/>
+                  <m:logbase>
+                     <m:cn> 3 </m:cn>
+                  </m:logbase>
+                  <m:ci> x </m:ci>
+               </m:apply>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e1092">
+         <CMP>
+            <m:math>
+               <m:apply>
+                  <m:mean/>
+                  <m:ci> X </m:ci>
+               </m:apply>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e1100">
+         <CMP>
+            <m:math>
+               <m:apply>
+                  <m:sdev/>
+                  <m:ci> X </m:ci>
+               </m:apply>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e1108">
+         <CMP>
+            <m:math>
+               <m:apply>
+                  <m:variance/>
+                  <m:ci> X </m:ci>
+               </m:apply>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e1116">
+         <CMP>
+            <m:math>
+               <m:apply>
+                  <m:moment/>
+                  <m:degree>
+                     <m:cn> 3 </m:cn>
+                  </m:degree>
+                  <m:momentabout>
+                     <m:ci> p </m:ci>
+                  </m:momentabout>
+                  <m:ci> X </m:ci>
+               </m:apply>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e1130">
+         <CMP>
+            <m:math>
+               <m:vector>
+                  <m:cn> 1 </m:cn>
+                  <m:cn> 2 </m:cn>
+                  <m:cn> 3 </m:cn>
+                  <m:ci> x </m:ci>
+               </m:vector>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e1143">
+         <CMP>
+            <m:math>
+               <m:matrix>
+                  <m:matrixrow>
+                     <m:cn> 0 </m:cn>
+                     <m:cn> 1 </m:cn>
+                     <m:cn> 0 </m:cn>
+                  </m:matrixrow>
+                  <m:matrixrow>
+                     <m:cn> 0 </m:cn>
+                     <m:cn> 0 </m:cn>
+                     <m:cn> 1 </m:cn>
+                  </m:matrixrow>
+                  <m:matrixrow>
+                     <m:cn> 1 </m:cn>
+                     <m:cn> 0 </m:cn>
+                     <m:cn> 0 </m:cn>
+                  </m:matrixrow>
+               </m:matrix>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e1169">
+         <CMP>
+            <m:math>
+               <m:apply>
+                  <m:determinant/>
+                  <m:ci type="matrix"> A </m:ci>
+               </m:apply>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e1177">
+         <CMP>
+            <m:math>
+               <m:apply>
+                  <m:determinant/>
+                  <m:matrix>
+                     <m:matrixrow>
+                        <m:cn> 0 </m:cn>
+                        <m:cn> 1 </m:cn>
+                        <m:cn> 0 </m:cn>
+                     </m:matrixrow>
+                     <m:matrixrow>
+                        <m:cn> 0 </m:cn>
+                        <m:cn> 0 </m:cn>
+                        <m:cn> 1 </m:cn>
+                     </m:matrixrow>
+                     <m:matrixrow>
+                        <m:cn> 1 </m:cn>
+                        <m:cn> 0 </m:cn>
+                        <m:cn> 0 </m:cn>
+                     </m:matrixrow>
+                  </m:matrix>
+               </m:apply>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e1205">
+         <CMP>
+            <m:math>
+               <m:apply>
+                  <m:transpose/>
+                  <m:ci type="matrix"> A </m:ci>
+               </m:apply>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e1213">
+         <CMP>
+            <m:math>
+               <m:apply>
+                  <m:selector/>
+                  <m:ci type="matrix"> A </m:ci>
+                  <m:cn> 3 </m:cn>
+                  <m:cn> 2 </m:cn>
+               </m:apply>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e1225">
+         <CMP>
+            <m:math>
+               <m:apply>
+                  <m:eq/>
+                  <m:apply>
+                     <m:vectorproduct/>
+                     <m:ci type="vector"> A </m:ci>
+                     <m:ci type="vector"> B </m:ci>
+                  </m:apply>
+                  <m:apply>
+                     <m:times/>
+                     <m:ci> a </m:ci>
+                     <m:ci> b </m:ci>
+                     <m:apply>
+                        <m:sin/>
+                        <m:ci> Î¸ </m:ci>
+                     </m:apply>
+                     <m:ci type="vector"> N </m:ci>
+                  </m:apply>
+               </m:apply>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e1249">
+         <CMP>
+            <m:math>
+               <m:apply>
+                  <m:eq/>
+                  <m:apply>
+                     <m:scalarproduct/>
+                     <m:ci type="vector"> A </m:ci>
+                     <m:ci type="vector">B </m:ci>
+                  </m:apply>
+                  <m:apply>
+                     <m:times/>
+                     <m:ci> a </m:ci>
+                     <m:ci> b </m:ci>
+                     <m:apply>
+                        <m:cos/>
+                        <m:ci>  Î¸ </m:ci>
+                     </m:apply>
+                  </m:apply>
+               </m:apply>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e1271">
+         <CMP>
+            <m:math>
+                  <m:apply>
+                     <m:plus/>
+                     <m:apply>
+                        <m:sin/>
+                        <m:ci> x </m:ci>
+                     </m:apply>
+                     <m:cn> 5 </m:cn>
+                  </m:apply>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e1306">
+         <CMP>
+            <m:math>
+                     <m:apply>
+                        <m:plus/>
+                        <m:apply>
+                           <m:sin/>
+                           <m:ci> x </m:ci>
+                        </m:apply>
+                        <m:cn> 5 </m:cn>
+                     </m:apply>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e1341">
+         <CMP>
+            <m:math>
+               <m:apply>
+                  <m:in/>
+                  <m:cn type="integer"> 42 </m:cn>
+                  <m:integers/>
+               </m:apply>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e1350">
+         <CMP>
+            <m:math>
+               <m:apply>
+                  <m:in/>
+                  <m:cn type="complex-cartesian">17<m:sep/>29</m:cn>
+                  <m:complexes/>
+               </m:apply>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e1361">
+         <CMP>
+            <m:math>
+               <m:apply>
+                  <m:eq/>
+                  <m:apply>
+                     <m:or/>
+                     <m:true/>
+                     <m:ci type="logical">P</m:ci>
+                  </m:apply>
+                  <m:true/>
+               </m:apply>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e1373">
+         <CMP>
+            <m:math>
+               <m:apply>
+                  <m:neq/>
+                  <m:integers/>
+                  <m:emptyset/>
+               </m:apply>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e1381">
+         <CMP>
+            <m:math>
+               <m:apply>
+                  <m:approx/>
+                  <m:pi/>
+                  <m:cn type="rational">22<m:sep/>7</m:cn>
+               </m:apply>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e1392">
+         <CMP>
+            <m:math>
+               <m:eulergamma/>
+            </m:math>
+         </CMP>
+      </example>
+      <example for="dummy" xml:id="d0e1397">
+         <CMP>
+            <m:math>
+               <m:infinity/>
+            </m:math>
+         </CMP>
+      </example>
+</omdoc>

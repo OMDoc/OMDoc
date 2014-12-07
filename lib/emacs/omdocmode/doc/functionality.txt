@@ -1,0 +1,317 @@
+OMDoc mode:   functionality.txt			 September 2002.
+
+This file describes the functionality implemented in the OMDoc mode,
+except for that which is inherited from text mode and font-lock.
+
+Overview
+--------
+OMDoc mode provides functionality to make it easier to create,
+visualize and edit OMDoc documents.
+This functionality is grouped here as follows:
+1. Visualization <-----
+2. Indentation x
+3. Navigation x
+4. Automatic insertion of OMDoc constructs (tags) <---
+5. Automatic tag completions ('electric slash') x
+6. 'Validation' x
+7. Mixed functionality  <-----
+
+
+1. Visualization 
+----------------
+
+The mode uses font-lock for visualization (essentially coloring of text).
+Some of the 'standard' font-lock fonts are used for strings and comments,
+but a new typeface is defined for each OMDoc tag type (omdoc-font.el),
+as well as one for CDATA fields and error messages.
+
+For fontification to work, font-lock needs to be turned on.
+See the 'instructions.txt' file on how to do this.
+
+For normal use, no commands are needed: re-fontification occurs
+automatically whenever the buffer is changed.
+The following keybinding was provided in case problems occur:
+
+    C-c C-f	font-lock-fontify-buffer
+
+
+2. Indentation
+--------------
+
+Indentation improves readability of OMDoc documents, by giving a
+visual indication of the depth of nesting of each construct.
+Normal indentation happens 'automatically' while editing
+(when the user types <RET>), and works by finding a 'stable spot'
+within the previous few lines, and looking at all the occuring
+tags in between. The mode also provides indentation functionality
+where the scope is an OMDoc element (either any element or a main
+element).
+
+  1) C-i (TAB)	omdoc-indent-command
+     - finds a stable point earlier in the file
+     - determines tags between that point and the current line, and
+     - indents the currently line accordingly.
+
+  2) C-m (RET)	newline-and-indent
+     - like above, but first inserts a newline
+
+  3) M-C-\      indent-region (using omdoc-indent-command)
+     - indents the region, using omdoc-indent-command line by line
+
+  4) C-c C-q    omdoc-indent-enclosing-main
+     - Show and indent region of current top-level tag.
+     - Note: <omgroup> and <omdoc> tags are considered top-level tags.
+       Hence this command can be used to indent the whole document.
+
+  5) C-c q      omdoc-indent-enclosing
+     - Show and indent region of current enclosing tag (any tag).
+
+
+3. Navigation support
+---------------------
+
+  1) C-c C-b	omdoc-blink-enclosing-main
+     - Briefly highlight the region of current top-level tag.
+
+  2) C-c b	omdoc-blink-enclosing
+     - Briefly highlight the region of current enclosing tag (any tag).
+
+  3) C-c m	omdoc-find-matching-tag
+     - Finds the tag corresponding to the current tag, if any, and
+     - Briefly highlights that corresponding tag
+
+  4) C-c C-c	omdoc-goto-matching-tag
+     - Finds the tag corresponding to the current tag, if any, and
+     - Moves the point onto that corresponding tag.
+
+
+4. Automatic insertion of OMDoc constructs
+------------------------------------------
+
+The main command functionality provided by omdoc-mode regards the
+insertion of OMDoc tags. For each possible OMDoc construct there
+is a command, a menu option (grouped per tag type in the expert menu),
+and a key binding (grouped similarly). 
+
+Selecting the menu item or typing the key sequence for a command inserts
+the corresponding tag and places point in the right place. If a prefix
+argument is supplied, some tags are instead wrapped around the region.
+
+Omdoc-mode uses tempo.el to help automatically insert each of the
+OMDoc constructs. The template functionality offered by tempo.el
+further includes the maintenance of a list of insertion points,
+as well as the following:
+
+- to maneuver between insertion points after inserting a template:
+   ESC C-b	(M-C-b)	tempo-backward-mark
+   ESC C-f	(M-C-f)	tempo-forward-mark
+
+- to do tag completion (with template insertion) when inserting a tag:
+   ESC TAB (M-C-i)	tempo-complete-tag
+
+There is a command to insert an OMDoc document skeleton:
+
+             omdoc-insert-new-buffer-strings.
+
+No keybinding is provided: this command is run automatically when
+opening a new omdoc file, provided the omdoc-build-new-buffer variable
+is set to non-nil (which is the default).
+
+Below is the complete list of insertion commands, with their keybindings.
+For a brief motivation on the choice of keybindings, read the file
+prefixes_note.txt, also included with this documentation.
+As mentioned before, for each of the commands, a Menu option
+is provided under the OMDoc menu.
+
+Note: currently, only REQUIRED attributes are inserted in the tag's
+attribute list.
+
+a) Document Structure elements
+
+   C-c C-s		omdoc-structure-map
+
+   C-c C-s r	tempo-template-omdoc-ref
+   C-c C-s g	tempo-template-omdoc-omgroup
+   C-c C-s w	tempo-template-omdoc-with
+   C-c C-s c	tempo-template-omdoc-cmp
+   C-c C-s t	tempo-template-omdoc-omtext
+   C-c C-s l	tempo-template-omdoc-loc
+   C-c C-s u	tempo-template-omdoc-catalogue
+   C-c C-s o	tempo-template-omdoc-omdoc
+
+b) Math elements
+
+   C-c C-m		omdoc-math-map
+   (Emacs may show this as C-c RET)
+
+   C-c C-m e	tempo-template-omdoc-example
+   C-c C-m 1	tempo-template-omdoc-premise
+   C-c C-m ~	tempo-template-omdoc-method
+   C-c C-m h	tempo-template-omdoc-hypothesis
+   C-c C-m q	tempo-template-omdoc-conclude
+   C-c C-m -	tempo-template-omdoc-derive
+   C-c C-m m	tempo-template-omdoc-metacomment
+   C-c C-m 0	tempo-template-omdoc-proofobject
+   C-c C-m p	tempo-template-omdoc-proof
+   C-c C-m ?	tempo-template-omdoc-alternative
+   C-c C-m !	tempo-template-omdoc-assertion
+   C-c C-m *	tempo-template-omdoc-selector
+   C-c C-m $	tempo-template-omdoc-argument
+   C-c C-m r	tempo-template-omdoc-recognizer
+   C-c C-m k	tempo-template-omdoc-constructor
+   C-c C-m i	tempo-template-omdoc-insort
+   C-c C-m s	tempo-template-omdoc-sortdef
+   C-c C-m a	tempo-template-omdoc-adt
+   C-c C-m o	tempo-template-omdoc-ordering
+   C-c C-m %	tempo-template-omdoc-measure
+   C-c C-m v	tempo-template-omdoc-value
+   C-c C-m #	tempo-template-omdoc-pattern
+   C-c C-m =	tempo-template-omdoc-requation
+   C-c C-m d	tempo-template-omdoc-definition
+   C-c C-m x	tempo-template-omdoc-axiom
+   C-c C-m c	tempo-template-omdoc-conclusion
+   C-c C-m u	tempo-template-omdoc-assumption
+   C-c C-m f	tempo-template-omdoc-fmp
+   C-c C-m t	tempo-template-omdoc-type
+   C-c C-m n	tempo-template-omdoc-commonname
+   C-c C-m y	tempo-template-omdoc-symbol
+
+c) Theory elements
+
+   C-c C-t		omdoc-theory-map
+
+   C-c C-t o	tempo-template-omdoc-obligation
+   C-c C-t p	tempo-template-omdoc-path-just
+   C-c C-t a	tempo-template-omdoc-axiom-inclusion
+   C-c C-t d	tempo-template-omdoc-decomposition
+   C-c C-t r	tempo-template-omdoc-theory-inclusion
+   C-c C-t q	tempo-template-omdoc-inclusion
+   C-c C-t m	tempo-template-omdoc-morphism
+   C-c C-t i	tempo-template-omdoc-imports
+   C-c C-t t	tempo-template-omdoc-theory
+
+d) Auxiliary elements
+
+   C-c C-a		omdoc-auxiliary-map
+
+   C-c C-a g	tempo-template-omdoc-ignore
+   C-c C-a d	tempo-template-omdoc-data
+   C-c C-a f	tempo-template-omdoc-effect
+   C-c C-a o	tempo-template-omdoc-output
+   C-c C-a i	tempo-template-omdoc-input
+   C-c C-a c	tempo-template-omdoc-code
+   C-c C-a p	tempo-template-omdoc-private
+   C-c C-a l	tempo-template-omdoc-omlet
+   C-c C-a a	tempo-template-omdoc-answer
+   C-c C-a x	tempo-template-omdoc-choice
+   C-c C-a m	tempo-template-omdoc-mc
+   C-c C-a s	tempo-template-omdoc-solution
+   C-c C-a h	tempo-template-omdoc-hint
+   C-c C-a e	tempo-template-omdoc-exercise
+
+e) Presentation elements
+
+   C-c C-p		omdoc-presentation-map
+
+   C-c C-p r	tempo-template-omdoc-recurse
+   C-c C-p t	tempo-template-omdoc-text
+   C-c C-p v	tempo-template-omdoc-value-of
+   C-c C-p a	tempo-template-omdoc-attribute
+   C-c C-p e	tempo-template-omdoc-element
+   C-c C-p s	tempo-template-omdoc-style
+   C-c C-p x	tempo-template-omdoc-xslt
+   C-c C-p o	tempo-template-omdoc-omstyle
+   C-c C-p u	tempo-template-omdoc-use
+   C-c C-p p	tempo-template-omdoc-presentation
+
+f) Open Math elements
+
+   C-c C-o		omdoc-om-map
+
+   C-c C-o 1	tempo-template-omdoc-omatp
+   C-c C-o e	tempo-template-omdoc-ome
+   C-c C-o r	tempo-template-omdoc-omr
+   C-c C-o o	tempo-template-omdoc-omobj
+   C-c C-o t	tempo-template-omdoc-omattr
+   C-c C-o d	tempo-template-omdoc-ombind
+   C-c C-o a	tempo-template-omdoc-oma
+   C-c C-o f	tempo-template-omdoc-omf
+   C-c C-o g	tempo-template-omdoc-omstr
+   C-c C-o l	tempo-template-omdoc-ombvar
+   C-c C-o b	tempo-template-omdoc-omb
+   C-c C-o i	tempo-template-omdoc-omi
+   C-c C-o v	tempo-template-omdoc-omv
+   C-c C-o s	tempo-template-omdoc-oms
+
+g) Dublin Core elements
+
+   C-c C-d		omdoc-dc-map
+
+   C-c C-d e	tempo-template-omdoc-extradata
+   C-c C-d 1	tempo-template-omdoc-identifier
+   C-c C-d d	tempo-template-omdoc-date
+   C-c C-d i	tempo-template-omdoc-rights
+   C-c C-d r	tempo-template-omdoc-relation
+   C-c C-d l	tempo-template-omdoc-language
+   C-c C-d b	tempo-template-omdoc-source
+   C-c C-d f	tempo-template-omdoc-format
+   C-c C-d y	tempo-template-omdoc-type
+   C-c C-d p	tempo-template-omdoc-publisher
+   C-c C-d x	tempo-template-omdoc-description
+   C-c C-d s	tempo-template-omdoc-subject
+   C-c C-d t	tempo-template-omdoc-title
+   C-c C-d j	tempo-template-omdoc-project
+   C-c C-d c	tempo-template-omdoc-creator
+   C-c C-d 3	tempo-template-omdoc-contributor
+   C-c C-d m	tempo-template-omdoc-metadata
+
+
+
+5. Automatic tag completions ('electric slash')
+-----------------------------------------------
+  1) /		 omdoc-electric-slash
+     - Determine and insert correct closing tag, if not already following
+     - Only executed as such when at the end of a line.
+
+Similar commands, but allowable from any point, and capable of
+closing multiple tags, will be provided in the next release.
+
+
+6. 'Validation'
+---------------
+
+While editing OMDoc documents, it is useful to check well-formedness
+and/or validity. The file omdoc-process.el provides two functions:
+
+   1)  C-c v	  omdoc-simple-validate
+
+     - Does a simple syntactic check on the tags in the first
+       <omdoc> .. </omdoc> element in the current buffer
+     - Does a depth-first walk across the document tree, and
+     - reports (and proposes a correction for) the first 3 mismatches found
+
+   2) C-c C-v	  omdoc-validate
+
+     - Saves the current buffer, then, with input from the buffer
+     - does external validation (by default with "nsgmls -vw xml")
+     - and displays the output of the process in a separate buffer.
+    
+   3) C-c '       omdoc-next-error
+      - goes to the next error in the validation, loads the file if 
+        necessary. 
+
+See the instructions.txt file on how to change the defaults to
+accomodate your system setup.
+
+
+7. Mixed functionality
+----------------------
+  1) The mode determines the user logon name and full name from
+     the environment for insertion in metadata fields when required.
+
+  2) Time stamps
+
+   C-c C-z t      omdoc-insert-timestamp-delimiter-at-point
+     - Adds a timestamp delimiter (which will be updated
+       every time the buffer is saved)  
+     - This delimiter takes the form of a metadata <Date> tag.

@@ -1,0 +1,1248 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Constants used in the NuPrl to OMDoc translation.-->
+
+<!DOCTYPE omdoc PUBLIC "-//OMDoc//DTD OMDoc V1.3//EN"
+                "../../dtd/omdoc.dtd" []>
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  xmlns="http://omdoc.org/ns"
+xml:id="nuprl.omdoc">
+
+<metadata>
+ <dc:creator role="aut">Michael Kohlhase</dc:creator>
+ <dc:creator role="aut">Christoph Kreitz</dc:creator>
+ <dc:date action="created">2002-09-30T00:00:00</dc:date>
+ <dc:title>The Nuprl logic language</dc:title>
+ <dc:rights>GPL</dc:rights>
+</metadata>
+
+
+  <omtext xml:id="intro">
+    <CMP>This document contains and defines the constants used in the Nuprl
+    to OMDoc translation. Some of these may later have to be moved into
+    another theory.</CMP>
+  </omtext>
+
+<theory xml:id="nuprl">
+
+<!-- dc:source: x                       Variable  -->
+<!-- we use OpenMath Variables OMV -->
+
+<!-- dc:source: x:S->T                  dependent function type         x bound in T -->
+<symbol name="dependent-function-type" xml:id="nuprl.dependent-function-type">
+  <metadata>
+    <dc:description>
+      The dependent function type constructor is a binding operator. The source type is
+      the type of the bound variable X, the target type is represented in the body.
+ </dc:description>
+</metadata>
+</symbol>
+
+
+<presentation for="#dependent-function-type" role="applied">
+  <style format="default">
+    <recurse select="*[2]"/>
+    <text>:</text>
+    <recurse select="*[3]"/>
+    <text>-&gt;</text>
+    <recurse select="*[4]"/>
+  </style>
+  <style format="html">
+    <recurse select="*[2]"/><text>:</text><recurse select="*[3]"/><text>&#x021A6;</text><recurse select="*[4]"/>
+  </style>
+  <style format="pmml">
+    <element name="mrow">
+      <recurse select="*[2]"/>
+      <element name="mo" cr="yes"><text>:</text></element>
+      <recurse select="*[3]"/>
+      <element name="mo" cr="yes"><text>&#x021A6;</text></element>
+      <recurse select="*[4]"/>
+    </element>
+  </style>
+</presentation>
+
+<example xml:id="ex-dependent-function-type" for="#nuprl.dependent-function-type" type="for">
+  <CMP>A dependent function type</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="nuprl" name="dependent-function-type"/>
+        <OMV name="X"/>
+        <OMV name="S"/>
+        <OMV name="T"/>
+      </OMA>
+  </OMOBJ>
+</example>
+
+
+<!-- dc:source: S->T                    independent function type -->
+<symbol name="function-type" xml:id="nuprl.function-type">
+<metadata>
+<dc:description>The independent function type constructor. 
+    The first argument is the source type S, 
+    and the second, the target type T. 
+ </dc:description>
+</metadata>
+</symbol>
+
+
+<presentation for="#function-type" role="applied" fixity="infix">
+  <use format="default" >-&gt;</use>
+  <use format="html|pmml">&#x021A6;</use>
+</presentation>
+
+<example xml:id="ex-function-type" for="#nuprl.function-type" type="for">
+  <CMP>An independent function type</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="nuprl" name="function-type"/>
+      <OMV name="S"/>
+      <OMV name="T"/>
+    </OMA>
+  </OMOBJ>
+</example>
+
+
+<!-- dc:source: \x.t                    lambda abstraction              x bound in t  -->
+<!-- we use OMBIND with the following binding symbol -->
+<symbol name="lambda" xml:id="nuprl.lambda">
+<metadata>
+<dc:description>The lambda binding operator</dc:description>
+</metadata>
+</symbol>
+
+
+<presentation for="#lambda" role="binding">
+  <use format="default" lbrack="\" separator="." rbrack=""/>
+  <use format="TeX" lbrack="\backslash" separator="." rbrack=""/>
+</presentation>
+
+<presentation for="#lambda">
+  <use format="TeX">{\lambda}</use>
+  <use format="pmml|html">&#x003BB;</use>
+  <use format="pvs">LAMBDA</use>
+  <use format="post">lam</use>
+ </presentation>
+
+<example xml:id="ex-lambda" for="#nuprl.lambda" type="for">
+  <CMP>The identity function represented as a lambda abstraction.</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMBIND>
+      <OMS cd="nuprl" name="lambda"/>
+      <OMBVAR><OMV name="X"/></OMBVAR>
+      <OMV name="X"/>
+    </OMBIND>
+  </OMOBJ>
+</example>
+
+
+<!-- dc:source: f t                     application                       -->
+<!-- we will use OpenMath application OMA directly -->
+
+<!-- dc:source: x:SxT                   dependent product               x bound in T  -->
+
+<symbol name="dependent-product" xml:id="nuprl.dependent-product">
+<metadata>
+<dc:description>The dependent product constructor. 
+  The first argument is a type <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="S"/></OMOBJ>, and the second is a
+  function whose value is a type.
+ </dc:description>
+</metadata>
+</symbol>
+
+
+<!-- this only works if the second argument is a lambda-abstraction -->
+<presentation for="#dependent-product" role="binding">
+  <style format="default">
+    <recurse select="*[3]/*[2]"/>
+    <text>:</text>
+    <recurse select="*[2]"/>
+    <text> x </text>
+    <recurse select="*[3]/*[3]"/>
+  </style>
+  <style format="html">
+    <recurse select="*[3]/*[2]"/>
+    <text>:</text>
+    <recurse select="*[2]"/>
+    <text>&#x000D7;</text>
+    <recurse select="*[3]/*[2]"/>
+  </style>
+  <style format="pmml">
+    <element name="mrow">
+      <recurse select="*[3]/*[2]"/>
+      <element name="mo" cr="yes"><text>:</text></element>
+      <recurse select="*[2]"/>
+      <element name="mo" cr="yes"><text>&#x000D7;</text></element>
+      <recurse select="*[3]/*[2]"/>
+    </element>
+  </style>
+</presentation>
+
+<example xml:id="ex-dependent-product" for="#nuprl.dependent-product" type="for">
+  <CMP>A dependent product.</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="nuprl" name="dependent-product"/>
+      <OMS cd="nuprl" name="Z"/> 
+      <OMBIND>
+        <OMS cd="nuprl" name="lambda"/>
+        <OMBVAR><OMV name="N"/></OMBVAR>
+        <OMA>
+          <OMV name="vector"/>
+          <OMV name="N"/>
+        </OMA>
+      </OMBIND>
+    </OMA>
+  </OMOBJ>
+</example>
+
+<!-- dc:source: SxT                     independent product  -->
+<symbol name="product" xml:id="nuprl.product">
+<metadata>
+<dc:description>The independent product constructor. 
+    The two arguments are types S and T. 
+ </dc:description>
+</metadata>
+</symbol>
+
+
+<presentation for="#product" role="applied">
+  <use format="default" fixity="infix"> x </use>
+  <use format="html|pmml" fixity="infix">&#x000D7;</use>
+</presentation>
+
+<example xml:id="ex-product" for="#nuprl.product" type="for">
+  <CMP>A Cartesian product</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="nuprl" name="product"/>
+      <OMS cd="nuprl" name="Z"/>
+      <OMS cd="nuprl" name="Z"/>
+    </OMA>
+  </OMOBJ>
+</example>
+
+
+<!-- dc:source: <s,t>                   pair  -->
+<symbol name="pair" xml:id="nuprl.pair">
+<metadata>
+<dc:description>The binary pair constructor</dc:description>
+</metadata>
+</symbol>
+
+
+<presentation for="#pair" role="applied">
+  <use format="default" lbrack="&lt;" rbrack="&gt;">,</use>
+  <use format="TeX" lbrack="\langle" rbrack="\rangle">,</use>
+</presentation>
+
+<example xml:id="ex-pair" for="#nuprl.pair" type="for">
+  <CMP>A pair of natural numbers</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA><OMS cd="nuprl" name="pair"/><OMI>1</OMI><OMI>2</OMI></OMA>
+  </OMOBJ>
+</example>
+
+
+<!-- dc:source: let <x,y>=t in e        uniform projection (spread)     x,y bound in t  -->
+<symbol name="spread" xml:id="nuprl.spread">
+<metadata>
+<dc:description> The uniform projection constructor (officially "spread"). 
+    It takes two arguments; a term <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="t"/></OMOBJ>
+    and a binary function
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMBIND>
+        <OMS cd="nuprl" name="lambda"/>
+        <OMBVAR><OMV name="X"/><OMV name="Y"/></OMBVAR>
+        <OMV name="e"/>
+      </OMBIND>
+    </OMOBJ>.
+  </dc:description>
+</metadata>
+</symbol>
+
+
+<!-- this only works, if the first argument is a pair structure -->
+<presentation for="#spread"  role="binding">
+  <style format="default">
+    <text>let &lt;</text>
+    <recurse select="*[3]/*[2]/*[1]"/>
+    <text>,</text>
+    <recurse select="*[3]/*[2]/*[1]"/>
+    <text>&gt;=</text>
+    <recurse select="*[2]"/>
+    <text> in </text>
+    <recurse select="*[3]/*[3]"/>
+  </style>
+  <style format="html">
+    <text>let &#9001;&lt;</text>
+    <recurse select="*[3]/*[2]/*[1]"/>
+    <text>,</text>
+    <recurse select="*[3]/*[2]/*[1]"/>
+    <text>&#9002;=</text>
+    <recurse select="*[2]"/>
+    <text> in </text>
+    <recurse select="*[3]/*[3]"/>
+  </style>
+  <style format="TeX">
+    <text>let\langle</text>
+    <recurse select="*[3]/*[2]/*[1]"/>
+    <text>,</text>
+    <recurse select="*[3]/*[2]/*[1]"/>
+    <text>&gt;=</text>
+    <recurse select="*[2]"/>
+    <text> in </text>
+    <recurse select="*[3]/*[3]"/>
+  </style>
+  <style format="pmml">
+    <element name="mrow">
+      <element name="mo" cr="yes"><text>let</text></element>
+      <element name="mrow">
+	<element name="mo">
+	  <attribute name="fence"><text>true</text></attribute>
+	  <text>&#9001;</text>
+	</element>
+	<recurse select="*[3]/*[2]/*[1]"/>
+	<element name="mo">
+	  <attribute name="separator"><text>true</text></attribute>
+	  <text>&#9001;</text>
+	</element>
+	<recurse select="*[3]/*[2]/*[1]"/>
+	<element name="mo">
+	  <attribute name="fence"><text>true</text></attribute>
+	  <text>&#9002;</text>
+	</element>
+      </element>
+      <element name="mo" cr="yes"><text>=</text></element>
+      <recurse select="*[2]"/>
+      <element name="mo" cr="yes"><text>in</text></element>
+      <recurse select="*[3]/*[3]"/>
+    </element>
+  </style>
+</presentation>
+
+<!-- ***** change to something meaningful here -->
+<example xml:id="ex-spread" for="#nuprl.spread" type="for">
+  <CMP>A spread</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS name="spread" cd="nuprl"/>
+      <OMV name="t"/>
+      <OMBIND>
+        <OMS cd="nuprl" name="lambda"/>
+        <OMBVAR><OMV name="X"/><OMV name="Y"/></OMBVAR>
+        <OMV name="e"/>
+      </OMBIND>
+    </OMA>
+  </OMOBJ>
+</example>
+
+
+<!-- dc:source: S+T                     disjoint union type  -->
+<symbol name="disjoint-union" xml:id="nuprl.disjoint-union">
+<metadata>
+<dc:description>The disjoint union type constructor.</dc:description>
+</metadata>
+</symbol>
+
+
+<presentation for="#disjoint-union" role="applied">
+  <use format="default"  fixity="infix">+</use>
+  <use format="html|pmml"  fixity="infix">&#x0228E;</use>
+  <use format="TeX"  fixity="infix">\uplus</use>
+</presentation>
+
+<example xml:id="ex-disjoint-union" for="#nuprl.disjoint-union" type="for">
+  <CMP>The disjoint union of integers contains two copies of the integers.</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA id="ex-disjoint-union-1">
+      <OMS cd="nuprl" name="disjoint-union"/>
+      <OMS cd="nuprl" name="Z"/>
+      <OMS cd="nuprl" name="Z"/>
+    </OMA>
+  </OMOBJ>
+</example>
+
+
+<!-- dc:source: inl(e)                  left injection  -->
+<symbol name="inl" xml:id="nuprl.inl">
+<metadata>
+<dc:description>The left injection into a disjoint union type.</dc:description>
+</metadata>
+</symbol>
+
+
+<presentation for="#inl" role="applied">
+  <use format="default">inl</use>
+</presentation>
+
+<example xml:id="ex-inl" for="#nuprl) #byctx(list-type@nuprl.inl" type="for">
+  <CMP>The left injection of a dijoint union</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="nuprl" name="eq"/>
+      <OMA>
+        <OMS cd="nuprl" name="inl"/>
+        <OMA id="ex-inl-1">
+          <OMS cd="nuprl" name="disjoint-union"/>
+          <OMS cd="nuprl" name="Z"/>
+          <OMA id="ex-inl-2">
+            <OMS cd="nuprl" name="list-type"/>
+            <OMS cd="nuprl" name="Z"/>
+          </OMA>
+        </OMA>
+      </OMA>
+      <OMS cd="nuprl" name="Z"/>
+    </OMA>
+  </OMOBJ>
+</example>
+
+
+<!-- dc:source: inr(e)                  right injection  -->
+<symbol name="inr" xml:id="nuprl.inr">
+<metadata>
+<dc:description>The right injection into a disjoint union type.</dc:description>
+</metadata>
+</symbol>
+
+
+<presentation for="#inr" role="applied">
+  <use format="default">inr</use>
+</presentation>
+
+<example xml:id="ex-inr" for="#nuprl.inr" type="for">
+  <CMP>The right injection of a dijoint union</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="nuprl" name="eq"/>
+      <OMA>
+        <OMS cd="nuprl" name="inl"/>
+        <OMR href="ex-inl-1"/>
+        <OMR href="ex-inl-2"/>
+      </OMA>
+    </OMA>
+  </OMOBJ>
+</example>
+
+
+<!-- dc:source: case e of inl(x)->u | inr(y)->v         case split      x bound in u, y in v  -->
+<!-- **** copy from PVS **** -->
+<symbol name="case" xml:id="nuprl.case">
+<metadata>
+<dc:description></dc:description>
+</metadata>
+</symbol>
+
+
+<!-- <presentation for="#case">
+  <use format="default"></use>
+</presentation>-->
+
+<!-- add example for case here
+<example xml:id="ex-case" for="#nuprl.case" type="for">
+  <CMP></CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+  </OMOBJ>
+</example> -->
+
+
+<!-- dc:source: U{i}                    universe of level i  -->
+<symbol name="universe-of-level" xml:id="nuprl.universe-of-level">
+<metadata>
+<dc:description>The Universe of a given level.</dc:description>
+</metadata>
+</symbol>
+
+
+<presentation for="#universe-of-level" role="applied">
+  <use format="default">U</use>
+  <use format="TeX">{\cal U}</use>
+</presentation>
+
+<example xml:id="ex-universe-of-level" for="#nuprl.universe-of-level" type="for">
+  <CMP>The universe of level 3 is denoted by </CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA><OMS cd="nuprl" name="universe-of-level"/><OMI>3</OMI></OMA>
+  </OMOBJ>
+</example>
+
+
+<!-- dc:source: s=t in T                typed equality  -->
+<symbol name="eq" xml:id="nuprl.eq">
+<metadata>
+<dc:description>Typed Equality.</dc:description>
+</metadata>
+</symbol>
+
+
+<presentation for="#eq" role="applied">
+  <style format="default">
+    <recurse select="*[2]"/>
+    <text>=</text>
+    <recurse select="*[3]"/>
+    <text> in </text>
+    <recurse select="*[4]"/>
+  </style>
+  <style format="pmml">
+    <element name="mrow">
+      <recurse select="*[2]"/>
+      <element name="mo" cr="yes"><text>=</text></element>
+      <recurse select="*[3]"/>
+      <element name="mo" cr="yes"><text> in </text></element>
+      <recurse select="*[4]"/>
+    </element>
+  </style>
+</presentation>
+
+<example xml:id="ex-eq" for="#nuprl.eq" type="for">
+  <CMP>An equality among integers</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="nuprl" name="eq"/>
+      <OMI>3</OMI>
+      <OMI>3</OMI>
+      <OMS cd="nuprl" name="Z"/>
+    </OMA>
+  </OMOBJ>
+</example>
+
+
+<!-- dc:source: Ax                      axiom element  -->
+<symbol name="axiom" xml:id="nuprl.axiom">
+<metadata>
+<dc:description>The axiom element</dc:description>
+</metadata>
+</symbol>
+
+
+<presentation for="#axiom">
+  <use format="default">Ax</use>
+</presentation>
+
+<!-- ***** add example for axiom  here
+<example xml:id="ex-axiom" for="#nuprl.axiom" type="for">
+  <CMP></CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+  </OMOBJ>
+</example> -->
+
+
+<!-- dc:source: void                    empty type  -->
+<symbol name="void" xml:id="nuprl.void">
+<metadata>
+<dc:description>The empty type.</dc:description>
+</metadata>
+</symbol>
+
+
+<presentation for="#void">
+  <use format="default">void</use>
+</presentation>
+
+<!-- ********* add example involving void here
+<example xml:id="ex-void" for="#nuprl.void" type="for">
+  <CMP></CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+  </OMOBJ>
+</example> -->
+
+
+<!-- dc:source: Atom                    atom (string) type  -->
+<symbol name="atom" xml:id="nuprl.atom">
+<metadata>
+<dc:description>The atom (string) type</dc:description>
+</metadata>
+</symbol>
+
+
+<presentation for="#atom">
+  <use format="default">atom</use>
+</presentation>
+
+<!-- ********* add example involving atom here
+<example xml:id="ex-atom" for="#nuprl.atom" type="for">
+  <CMP></CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+  </OMOBJ>
+</example> -->
+
+
+<!-- dc:source: "token"                 token  -->
+<!-- **** Problem, what do we do with that? maybe map to OMSTR -->
+
+<!-- dc:source: if s=t then a else b    conditional on atoms  -->
+<symbol name="atom-conditional" xml:id="nuprl.atom-conditional">
+<metadata>
+<dc:description>The conditional on atoms. It takes four arguments:
+   The first two are supposed to be atoms, the last two are arbitrary terms.
+   If the first two are equal, then the value of the complex expression 
+   is that the third, else the fourth argument.</dc:description>
+</metadata>
+</symbol>
+
+
+<presentation for="#atom-conditional" xml:id="pr-atom-conditional" role="applied">
+  <style format="default">
+    <text>if </text>
+    <recurse select="*[2]"/>
+    <text>=</text>
+    <recurse select="*[3]"/>
+    <text> then </text>
+    <recurse select="*[4]"/>
+    <text> else </text>
+    <recurse select="*[5]"/>
+  </style>
+  <style format="pmml">
+    <element name="mrow">
+      <element name="mo" cr="yes"><text>if</text></element>
+      <recurse select="*[2]"/>
+      <element name="mo" cr="yes"><text>=</text></element>
+      <recurse select="*[3]"/>
+      <element name="mo" cr="yes"><text>then</text></element>
+      <recurse select="*[4]"/>
+      <element name="mo" cr="yes"><text>else</text></element>
+      <recurse select="*[5]"/>
+    </element>
+  </style>
+</presentation>
+
+<!-- ********* add example here
+<example xml:id="ex-atom-conditional" for="#nuprl.atom-conditional" type="for">
+  <CMP></CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+  </OMOBJ>
+</example> -->
+
+
+<!-- dc:source: Z                       integer type  -->
+<symbol name="Z" xml:id="nuprl.Z">
+<metadata>
+<dc:description>The type of integers.</dc:description>
+</metadata>
+</symbol>
+
+
+<presentation for="#Z">
+  <use format="default">Z</use>
+  <use  format="Tex">{\mathbb Z}</use>
+  <use  format="html|pmml">&#x02124;</use>
+</presentation>
+
+
+<!-- dc:source: 0,1,-1,2,-2,....        concrete integer numbers  -->
+<!--  we model these by  OpenMath integers OMI -->
+
+<!-- dc:source: rec-case e of i<0 -> f.down  -->
+<!-- dc:source:             |   0 ->base   -->
+<!-- dc:source:             | j>0 -> g.up       inductive term          i,f bound in down,   -->
+<!-- dc:source:                                                         j,g bound in up  -->
+<symbol name="rec-case" xml:id="nuprl.rec-case">
+<metadata>
+<dc:description></dc:description>
+</metadata>
+</symbol>
+
+
+<presentation for="#rec-case">
+  <use format="default"></use>
+</presentation>
+
+<!-- ******* add example here
+<example xml:id="ex-rec-case" for="#nuprl.rec-case" type="for">
+  <CMP></CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+  </OMOBJ>
+</example>-->
+
+
+<!-- dc:source: -n                      negation  -->
+<symbol name="unary-minus" xml:id="nuprl.unary-minus">
+<metadata>
+<dc:description>Negation.</dc:description>
+</metadata>
+</symbol>
+
+
+<presentation for="#unary-minus" role="applied" precedence="200">
+  <use format="default" lbrack="" rbrack="">-</use>
+</presentation>
+
+<example xml:id="ex-unary-minus" for="#nuprl.unary-minus" type="for">
+  <CMP>A negative integer</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA><OMS cd="nuprl" name="unary-minus"/><OMI>1</OMI></OMA>
+  </OMOBJ>
+</example>
+
+
+<!-- dc:source: i+j                     addition  -->
+<symbol name="plus" xml:id="nuprl.plus">
+<metadata>
+<dc:description>The addition operator.</dc:description>
+</metadata>
+</symbol>
+
+
+<presentation for="#plus" role="applied" precedence="500">
+  <use format="default" fixity="infix">+</use>
+</presentation>
+
+<example xml:id="ex-plus" for="#nuprl.plus" type="for">
+  <CMP></CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="nuprl" name="eq"/>
+      <OMA>
+        <OMS cd="nuprl" name="plus"/>
+        <OMA><OMS cd="nuprl" name="unary-minus"/><OMI>1</OMI></OMA>
+        <OMI>2</OMI>
+      </OMA>
+      <OMI>1</OMI>
+    </OMA>  
+  </OMOBJ>
+</example>
+
+
+<!-- dc:source: i-j                     subtraction  -->
+<symbol name="minus" xml:id="nuprl.minus">
+<metadata>
+<dc:description>The subtraction operator.</dc:description>
+</metadata>
+</symbol>
+
+
+<presentation for="#minus" role="applied" precedence="200">
+  <use format="default" fixity="infix">-</use>
+</presentation>
+
+<example xml:id="ex-minus" for="#nuprl.minus" type="for">
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="nuprl" name="eq"/>
+      <OMA>
+        <OMS cd="nuprl" name="minus"/>
+        <OMI>2</OMI>
+        <OMA><OMS cd="nuprl" name="unary-minus"/><OMI>1</OMI></OMA>
+      </OMA>
+      <OMI>3</OMI>
+    </OMA>  
+  </OMOBJ>
+</example>
+
+
+<!-- dc:source: i*j                     multiplication  -->
+<!-- ********** are the binary operators associative? -->
+<symbol name="times" xml:id="nuprl.times">
+<metadata>
+<dc:description>The multiplication Operator</dc:description>
+</metadata>
+</symbol>
+
+
+<presentation for="#times" role="applied" precedence="400">
+  <use format="default" fixity="infix">*</use>
+  <use format="TeX">{\cdot}</use>
+  <use format="pmml" crossref-symbol="no">&#x02062;</use>
+</presentation>
+
+<example xml:id="ex-times" for="#nuprl.times" type="for">
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="nuprl" name="eq"/>
+      <OMA>
+        <OMS cd="nuprl" name="times"/>
+        <OMA><OMS cd="nuprl" name="unary-minus"/><OMI>1</OMI></OMA>
+        <OMI>2</OMI>
+      </OMA>
+      <OMA><OMS cd="nuprl" name="unary-minus"/><OMI>2</OMI></OMA>
+    </OMA>  
+  </OMOBJ>
+</example>
+
+
+<!-- dc:source: i/j                     division  -->
+<symbol name="divide" xml:id="nuprl.divide">
+<metadata>
+<dc:description>The division operator.</dc:description>
+</metadata>
+</symbol>
+
+
+<presentation for="#divide" role="applied" precedence="600">
+  <use format="default" fixity="infix">/</use>
+  <use  format="pmml" element="mfrac"/>
+  <use  format="TeX" lbrack="{" rbrack="}" crossref-symbol="no">\over </use>
+</presentation>
+
+<example xml:id="ex-divide" for="#nuprl.divide" type="for">
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="nuprl" name="eq"/>
+      <OMA>
+        <OMS cd="nuprl" name="divide"/>
+        <OMI>4</OMI>
+        <OMI>2</OMI>
+      </OMA>
+      <OMI>2</OMI>
+    </OMA>  
+  </OMOBJ>
+</example>
+
+
+<!-- dc:source: i rem j                 quotient remainder  -->
+<symbol name="rem" xml:id="nuprl.rem">
+<metadata>
+<dc:description>The operator for quotient remainder.</dc:description>
+</metadata>
+</symbol>
+
+
+<presentation for="#rem" role="applied" fixity="infix">
+  <use format="default"> rem </use>
+</presentation>
+
+<example xml:id="ex-rem" for="#nuprl.rem" type="for">
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="nuprl" name="eq"/>
+      <OMA>
+        <OMS cd="nuprl" name="rem"/>
+        <OMI>4</OMI>
+        <OMI>2</OMI>
+      </OMA>
+      <OMI>0</OMI>
+    </OMA>  
+  </OMOBJ>
+</example>
+
+
+<!-- dc:source: if i=j then a else b    conditional on integers [here we have an ambiguity]  -->
+<symbol name="integer-eq-conditional" xml:id="nuprl.integer-eq-conditional">
+<metadata>
+<dc:description>The conditional on integers. It takes four arguments:
+   The first two are integers, the last two are arbitrary terms. 
+   If the first two are equal, then the value of the complex expression 
+   is that the third, else the fourth argument.</dc:description>
+</metadata>
+</symbol>
+
+
+<!-- <presentation for="#integer-eq-conditional" xref="pr-atom-conditional">
+</presentation>-->
+
+<example xml:id="ex-integer-eq-conditional" for="#nuprl.integer-eq-conditional" type="for">
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="nuprl" name="eq"/>
+      <OMA>
+        <OMS cd="nuprl" name="integer-eq-conditional"/>
+        <OMI>1</OMI>
+        <OMI>2</OMI>
+        <OMI>3</OMI>
+        <OMI>4</OMI>
+      </OMA>
+      <OMI>4</OMI>
+    </OMA>  
+  </OMOBJ>
+</example>
+
+
+<!-- dc:source: if i&lt;j then a else b    conditional on integers   -->
+<symbol name="integer-less-conditional" xml:id="nuprl.integer-less-conditional">
+<metadata>
+<dc:description>The inequality conditional on integers. It takes four arguments:
+   The first two are integers, the last two are arbitrary terms. 
+   If the first is less than the second one, then the value of the 
+   complex expression is that the third, else the fourth argument.
+  </dc:description>
+</metadata>
+</symbol>
+
+
+<presentation for="#integer-less-conditional" role="applied">
+  <style format="default">
+    <text>if </text>
+    <recurse select="*[2]"/>
+    <text> &lt; </text>
+    <recurse select="*[3]"/>
+    <text> then </text>
+    <recurse select="*[4]"/>
+    <text> else </text>
+    <recurse select="*[5]"/>
+  </style>
+  <style format="pmml">
+    <element name="mrow">
+      <element name="mo" cr="yes"><text>if</text></element>
+      <recurse select="*[2]"/>
+      <element name="mo" cr="yes"><text>&lt;</text></element>
+      <recurse select="*[3]"/>
+      <element name="mo" cr="yes"><text>then</text></element>
+      <recurse select="*[4]"/>
+      <element name="mo" cr="yes"><text>else</text></element>
+      <recurse select="*[5]"/>
+    </element>
+  </style>
+</presentation>
+
+<example xml:id="ex-integer-less-conditional" 
+         for="#nuprl.integer-less-conditional" type="for">
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="nuprl" name="eq"/>
+      <OMA>
+        <OMS cd="nuprl" name="integer-eq-conditional"/>
+        <OMI>1</OMI>
+        <OMI>2</OMI>
+        <OMI>3</OMI>
+        <OMI>4</OMI>
+      </OMA>
+      <OMI>4</OMI>
+    </OMA>  
+  </OMOBJ>
+</example>
+
+
+<!-- dc:source: i &lt;j                     inequality TYPE  -->
+<symbol name="less" xml:id="nuprl.less">
+<metadata>
+<dc:description>The inequality type constructor for two integers, it is inhabited, iff the first is
+  less than the other.
+  </dc:description>
+</metadata>
+</symbol>
+
+
+<presentation for="#less" role="applied" fixity="infix">
+  <use format="html|pmml"><![CDATA[&lt;]]></use>
+  <use format="default">&lt;</use>
+</presentation>
+
+<example xml:id="ex-less" for="#nuprl.less" type="for">
+  <CMP>The following type is not inhabited</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="nuprl" name="less"/>
+      <OMI>1</OMI>
+      <OMI>0</OMI>
+    </OMA>
+  </OMOBJ>
+</example>
+
+
+
+<!-- dc:source: T list                  list type  -->
+<symbol name="list-type" xml:id="nuprl.list-type">
+<metadata>
+<dc:description>The list type constructor</dc:description>
+</metadata>
+</symbol>
+
+
+<presentation for="#list-type" role="applied">
+  <use format="default" lbrack="" rbrack=""> list</use>
+</presentation>
+
+
+
+<!-- dc:source: []                      nil  -->
+<symbol name="nil" xml:id="nuprl.nil">
+<metadata>
+<dc:description>The empty list.</dc:description>
+</metadata>
+</symbol>
+
+
+<presentation for="#nil">
+  <use format="default">[]</use>
+</presentation>
+
+<!-- dc:source: a::l                    list cons  -->
+<symbol name="cons" xml:id="nuprl.cons">
+<metadata>
+<dc:description>The list construction operator. Its first argument is an element, 
+     and the second one a list.
+  </dc:description>
+</metadata>
+</symbol>
+
+
+<presentation for="#cons" role="applied" fixity="infix">
+  <use format="default">::</use>
+</presentation>
+
+<example xml:id="ex-cons" for="#nuprl) #byctx(nil@nuprl.cons" type="for">
+  <CMP>A construction of a sigleton list</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="nuprl" name="cons"/>
+      <OMV name="E"/>
+      <OMS cd="nuprl" name="nil"/>
+    </OMA>
+  </OMOBJ>
+</example>
+
+
+
+<!-- dc:source: rec-case e of []->base   -->
+<!-- dc:source:             | a::l -> f.up      list induction          a,l,f bound in up  -->
+<!-- ***** todo ***** -->
+
+<!-- dc:source: rectype X=T             inductive type  -->
+<symbol name="rectype" xml:id="nuprl.rectype">
+<metadata>
+<dc:description>The inductive type constructor, its first argument is a variable, 
+     its second one a type 
+  </dc:description>
+</metadata>
+</symbol>
+
+
+<presentation for="#rectype">
+  <style format="default">
+    <text>rectype </text>
+    <recurse select="*[2]"/>
+    <text>=</text>
+    <recurse select="*[3]"/>
+  </style>    
+  <style format="pmml">
+    <element name="mrow">
+      <element name="mo" cr="yes"><text>rectype</text></element>
+      <recurse select="*[2]"/>
+      <element name="mo" cr="yes"><text>=</text></element>
+      <recurse select="*[3]"/>
+    </element>
+  </style>    
+</presentation>
+
+<!-- ***** add meaningful example here
+<example xml:id="ex-rectype" for="#nuprl.rectype" type="for">
+  <CMP></CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+  </OMOBJ>
+</example> -->
+
+
+<!-- dc:source: let* f(x)=t in f(e)     structural recursion  -->
+<!-- ******** Problem, how do we do this? -->
+<symbol name="structural-recursion" xml:id="nuprl.structural-recursion">
+<metadata>
+<dc:description></dc:description>
+</metadata>
+</symbol>
+
+
+<presentation for="#structural-recursion">
+  <use format="default"></use>
+</presentation>
+
+<!-- ***** add meaningful example here
+<example xml:id="ex-structural-recursion" for="#nuprl.structural-recursion" type="for">
+  <CMP></CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+  </OMOBJ>
+</example>-->
+
+
+<!-- dc:source: {x:S|P}                 subset type                     x bound in P  -->
+<!-- we use OMBIND with the following binding symbol -->
+<symbol name="subset-type" xml:id="nuprl.subset-type">
+<metadata>
+<dc:description>The dependent subset type constructor. It takes two arguments:
+  The first one is a type <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="S"/></OMOBJ>,
+  the second one is a unary predicate <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="P"/></OMOBJ> on type <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV
+  name="S"/></OMOBJ>.  The value is the type of all objects of type
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="S"/></OMOBJ> that satisfy <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="P"/></OMOBJ>.</dc:description>
+</metadata>
+</symbol>
+
+
+<!-- only works if the second argument is actually a lambda-abstraction -->
+<presentation for="#subset-type" role="applied">
+  <style format="default">
+    <text>{</text>
+    <recurse select="*[3]/*[2]/*[1]"/>
+    <text>:</text>
+    <recurse select="*[2]"/>
+    <text>|</text>
+    <recurse select="*[3]/*[3]"/>
+    <text>}</text>
+   </style>
+  <style format="pmml">
+    <element name="mrow">
+      <element name="mo" cr="yes"><text>{</text></element>
+      <recurse select="*[3]/*[2]/*[1]"/>
+      <element name="mo" cr="yes"><text>:</text></element>
+      <recurse select="*[2]"/>
+      <element name="mo" cr="yes"><text>|</text></element>
+      <recurse select="*[3]/*[3]"/>
+      <element name="mo" cr="yes"><text>}</text></element>
+    </element>
+   </style>
+  <style format="TeX">
+    <text>\left\{</text>
+    <recurse select="*[3]/*[2]/*[1]"/>
+    <text>:</text>
+    <recurse select="*[2]"/>
+    <text>\left|</text>
+    <recurse select="*[3]/*[3]"/>
+    <text>\right.\right\}</text>
+   </style>
+</presentation>
+
+<example xml:id="ex-subset-type" for="#nuprl.subset-type" type="for">
+  <CMP>The type of singleton lists of integers containing 1.</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="nuprl" name="subset-type"/>
+      <OMS cd="nuprl" name="Z"/> 
+      <OMBIND>
+        <OMS cd="nuprl" name="lambda"/>
+      <OMBVAR><OMV name="x"/></OMBVAR>
+      <OMA>
+        <OMS cd="nuprl" name="eq"/>
+        <OMV name="x"/>
+        <OMI>1</OMI>
+        <OMS cd="nuprl" name="Z"/>
+      </OMA>
+    </OMBIND>
+   </OMA>
+  </OMOBJ>
+</example>
+
+
+
+<!-- dc:source: {S|P}                   independent subset type  -->
+<symbol name="independent-subset-type" xml:id="nuprl.independent-subset-type">
+<metadata>
+<dc:description>The independent subset type constructor.</dc:description>
+</metadata>
+</symbol>
+
+
+<presentation for="#independent-subset-type" role="applied">
+  <use format="default" fixity="infix" lbrack="{" rbrack="}">|</use>
+  <use format="TeX" fixity="infix" lbrack="\left\{" rbrack="\right.\right\}">\left|</use>
+</presentation>
+
+<!-- ********** add meaningful example here
+<example xml:id="ex-independent-subset-type" for="#nuprl.independent-subset-type" type="for">
+  <CMP></CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+  </OMOBJ>
+</example> -->
+
+
+<!-- dc:source: x,y:S//E                quotient type                   x,y bound in E  -->
+<!-- we do this with an OMBIND using the following symbol -->
+<symbol name="quotient-type" xml:id="nuprl.quotient-type">
+<metadata>
+<dc:description>The quotient type constructor. 
+   It takes two arguments, the first is a type <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="S"/></OMOBJ>, 
+   the second is a binary relation <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="R"/></OMOBJ> on 
+   <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="S"/></OMOBJ>. The value is the type of equivalence classes of
+   <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="S"/></OMOBJ>.
+  </dc:description>
+</metadata>
+</symbol>
+
+
+<!-- this only works if the relation is given as a binary lambda-abstraction -->
+<presentation for="#quotient-type" role="applied">
+  <style format="default">
+    <recurse select="*[3]/*[2]/*[1]"/>
+    <text>,</text>
+    <recurse select="*[3]/*[2]/*[2]"/>
+    <text>:</text>
+    <recurse select="*[2]"/>
+    <text>//</text>
+    <recurse select="*[3]/*[3]"/>
+  </style>
+  <style format="pmml">
+    <element name="mrow">
+      <recurse select="*[3]/*[2]/*[1]"/>
+      <element name="mo" cr="yes"><text>,</text></element>
+      <recurse select="*[3]/*[2]/*[2]"/>
+      <element name="mo" cr="yes"><text>:</text></element>
+      <recurse select="*[2]"/>
+      <element name="mo" cr="yes"><text>//</text></element>
+      <recurse select="*[3]/*[3]"/>
+    </element>
+  </style>
+</presentation>
+
+<!-- **** complete this example by specifying a nice relation on Z -->
+<example xml:id="ex-quotient-type" for="#nuprl.quotient-type" type="for">
+  <CMP>The following is a quotient type of <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="nuprl" name="Z"/></OMOBJ> by
+  ****</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="nuprl" name="quotient-type"/>
+      <OMS cd="nuprl" name="Z"/>
+      <OMBIND>   
+        <OMS cd="nuprl" name="lambda"/>
+        <OMBVAR><OMV name="x"/><OMV name="y"/></OMBVAR>
+        <OMA>
+          <OMS cd="nuprl" name="eq"/>
+          <OMV name="x"/>
+          <OMV name="y"/>
+          <OMS cd="nuprl" name="Z"/>
+        </OMA>
+      </OMBIND>
+    </OMA>
+  </OMOBJ>
+</example>
+
+
+
+<!-- dc:source: {\isect}x:S.T           intersection of family of types x bound in T  -->
+<symbol name="type-intersection" xml:id="nuprl.type-intersection">
+<metadata>
+<dc:description>The type intersection constructor.  
+  The first argument is a type <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="S"/></OMOBJ>, and the second is a
+  function whose value is a type.
+ </dc:description>
+</metadata>
+</symbol>
+
+
+<presentation for="#type-intersection">
+  <style format="default">
+    <text>{\cap}</text>
+    <recurse select="*[3]/*[2]/*[1]"/>
+    <text>:</text>
+    <recurse select="*[2]"/>
+    <text>.</text>
+    <recurse select="*[3]/*[3]"/>
+  </style>
+  <style format="pmml">
+    <element name="mrow">
+      <element name="mo" cr="yes"><text>{\isect}</text></element>
+      <recurse select="*[3]/*[2]/*[1]"/>
+      <element name="mo" cr="yes"><text>:</text></element>
+      <recurse select="*[2]"/>
+      <element name="mo" cr="yes"><text>.</text></element>
+      <recurse select="*[3]/*[3]"/>
+    </element>
+  </style>
+</presentation>
+
+<!-- ***** nonsense??? -->
+<example xml:id="ex-type-intersection" for="#nuprl.type-intersection" type="for">
+  <CMP>The intersection of all values of the type constructor 
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="ex-type-intersection-1"/></OMOBJ> on the integers is 
+  </CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="nuprl" name="type-intersection"/>
+      <OMS cd="nuprl" name="Z"/>
+      <OMBIND id="ex-type-intersection-1">
+        <OMS cd="nuprl" name="lambda"/>
+        <OMBVAR><OMV name="x"/></OMBVAR>
+        <OMA><OMV name="vec"/><OMV name="x"/></OMA>
+      </OMBIND>
+    </OMA>
+  </OMOBJ>
+</example>
+
+</theory>
+</omdoc>
+<!-- do we want to specify axioms for e.g. inl, inr, and disjoint union? -->

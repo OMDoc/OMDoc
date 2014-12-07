@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE omdoc PUBLIC "-//OMDoc//DTD OMDoc V1.3//EN"
+                "../../dtd/omdoc.dtd" []>
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  xmlns="http://omdoc.org/ns"
+xml:id="pvs.omdoc">
+
+<metadata>
+ <dc:creator role="aut">Michael Kohlhase</dc:creator>
+ <dc:date action="created">2001-05-19T00:00:00</dc:date>
+ <dc:date action="updated">2002-06-12T00:00:00</dc:date>
+ <dc:title>The PVS logic language</dc:title>
+ <dc:rights>GPL</dc:rights>
+</metadata>
+
+
+  <omtext xml:id="intro">
+    <CMP>This document contains and defines the constants used in the PVS
+    to OMDoc translation.</CMP>
+  </omtext>
+
+<theory xml:id="pvs">
+
+<imports from="deptypes.omdoc#deptypes"/>
+<imports from="record-calc.omdoc#record-calc"/>
+<imports from="sthol.omdoc#sthol"/>
+<imports from="cases.omdoc#cases"/>
+
+<symbol name="subtype">
+<metadata>
+<dc:description>The subtype constructor in PVS. It takes a predicate as an argument and
+  gives a type (the type of all objects that satisfy this predicate)</dc:description>
+</metadata>
+</symbol>
+
+<presentation xml:id="pr-subtype" for="#subtype" role="applied">
+  <xslt format="pvs" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+    <xsl:choose>
+      <xsl:when test="*[2]/om:OMBIND/om:OMS[position()=1 and @cd='pvs' and @name='lambda'] and 
+                     count(*[2]/om:OMBIND/om:OMBVAR/*)=1">
+        <xsl:text>{</xsl:text>
+        <xsl:apply-templates select="*[2]/om:OMBIND/om:OMBVAR"/>
+        <xsl:text> | </xsl:text>
+        <xsl:apply-templates select="*[2]/om:OMBIND/*[3]"/>
+        <xsl:text>}</xsl:text>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:text>(</xsl:text>
+        <xsl:apply-templates select="*[2]"/>
+        <xsl:text>)</xsl:text>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xslt>
+</presentation>
+
+  <symbol name="set" role="object" scope="global">
+<metadata>
+<dc:description>The set constructor it is a binding
+      constructor that returns the set of all elements that make the body
+      true.</dc:description>
+</metadata>
+</symbol>
+
+  <presentation xml:id="pr-set" for="#set" role="binding" fixity="infix">
+   <use format="pvs" lbrack="{" rbrack="}"> | </use>
+  </presentation>
+  
+
+  <symbol name="update" role="object" scope="global">
+<metadata>
+<dc:description>The function update operator takes an odd
+   number of arguments F, P_1,V_1,... P_n,V_n. The arguments at even positions are
+   interpreted as members A_i of the domain of F. F is updated by the updated at
+   A_i by the value V_i. In contrast to <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="pvs"
+   name="assignment"/></OMOBJ>, which extends the domain, the update expression is
+   undefined, if A_i are not member of the domain of F.</dc:description>
+</metadata>
+</symbol>
+
+  <presentation xml:id="pr-update" for="#update" role="applied">
+   <xslt format="pvs" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+    <xsl:apply-templates select="*[1]"/>
+    <xsl:for-each select="*[position() mod 2 = 1]">
+      <xsl:apply-templates select="."/>
+      <xsl:text> := </xsl:text>
+      <xsl:apply-templates select="following-sibling"/>
+      <xsl:if test="position()!=last() -1">
+       <xsl:text>,</xsl:text>
+      </xsl:if> 
+    </xsl:for-each>
+   </xslt>
+</presentation>
+
+
+  <symbol name="assign" role="object" scope="global">
+<metadata>
+<dc:description>The function assignment operator takes an
+   odd number of arguments F, P_1,V_1,... P_n,V_n. The arguments at even positions
+   are interpreted as members A_i of the domain of F. F is updated by the updated
+   at A_i by the value V_i. In contrast to <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="pvs"
+   name="update"/></OMOBJ>, which is undefined, if A_i are not member of the
+   domain of F, the assignment operator extends the domain of F as necessary</dc:description>
+</metadata>
+</symbol>
+
+  <presentation xml:id="pr-assign" for="#assign" role="applied">
+   <xslt format="pvs" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+    <xsl:apply-templates select="*[1]"/>
+    <xsl:for-each select="*[position mod 2 = 1]">
+      <xsl:apply-templates select="."/>
+      <xsl:text> := </xsl:text>
+      <xsl:apply-templates select="following-sibling"/>
+      <xsl:if test="position()!=last() -1">
+       <xsl:text>,</xsl:text>
+      </xsl:if> 
+    </xsl:for-each>
+   </xslt>
+</presentation>
+</theory>
+
+<!-- now we put the special-case pretty-printing stuff that is hard-coded in PVS,
+     this needs to be moved somewhere sensible later. -->
+
+<presentation xml:id="pr-not" for="#NOT" role="applied" theory="boolean">
+ <use format="pvs" lbrack="" rbrack=""> NOT </use>
+</presentation>
+
+<presentation for="#=" fixity="infix" role="applied" theory="equalities">
+ <use format="pvs">=</use>
+</presentation>
+
+<presentation for="#&amp;" role="applied" fixity="infix" theory="booleans">
+  <use format="pvs"> &amp; </use>
+ </presentation>
+
+<presentation for="#AND" role="applied" fixity="infix" theory="booleans">
+  <use format="pvs"> AND </use>
+ </presentation>
+
+ <presentation for="#OR" role="applied" fixity="infix" theory="booleans">
+  <use format="pvs"> OR </use>
+ </presentation>
+
+ <presentation xml:id="pr-IF" for="#IF" theory="if_def" role="applied">
+  <style format="pvs">
+    <text> IF </text><recurse select="*[2]"/>
+    <text> THEN </text><recurse select="*[3]"/>
+    <text> ELSE </text><recurse select="*[4]"/>
+    <text> ENDIF </text>
+  </style>
+ </presentation>
+
+ <presentation for="#&lt;" role="applied" fixity="infix" theory="booleans">
+  <use format="pvs"> &lt; </use>
+ </presentation>
+
+ <presentation for="#&gt;" role="applied" fixity="infix" theory="booleans">
+  <use format="pvs"> &gt; </use>
+ </presentation>
+
+ <presentation for="#&gt;=" role="applied" fixity="infix" theory="booleans">
+  <use format="pvs"> &gt;= </use>
+ </presentation>
+
+ <presentation for="#&lt;=" role="applied" fixity="infix" theory="booleans">
+  <use format="pvs"> &lt;= </use>
+ </presentation>
+
+ <presentation for="#&lt;=&gt;" role="applied" fixity="infix" theory="booleans">
+  <use format="pvs"> &lt;=&gt; </use>
+ </presentation>
+
+ <presentation  for="#/=" role="applied" fixity="infix" theory="booleans">
+   <use format="pvs"> /= </use>
+ </presentation>
+</omdoc>

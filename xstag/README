@@ -1,0 +1,6 @@
+We try to use XSTAG libraries for presenting OMDoc. 
+See https://code.google.com/p/xstag/ for documentation
+
+plmodule.html     a  tag document for planetary modules
+omdoc.xstag        a tag library for OMDoc
+

@@ -1,0 +1,9 @@
+May 31. 2003
+    [Michael Kohlhase] extended validation output parsing to xmllint
+May 30. 2003
+    [Michael Kohlhase] added OMR template OMSTR had to go to C-c C-o g to make
+                       room 
+May 30. 2003
+    [Michael Kohlhase] added validation output parsing (goto next error) for rxp
+March 30. 2003 
+      Version 0.8 by Peter Jansen

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xml:id="xsd.omdoc" version="1.3"
+       xmlns:dc="http://purl.org/dc/elements/1.1/"  
+       xmlns:om="http://www.openmath.org/OpenMath"
+       xmlns:oo="http://omdoc.org/ontology#"
+       xmlns:m="http://www.w3.org/1998/Math/MathML"
+       xmlns="http://omdoc.org/ns">
+
+<metadata>
+  <dc:title>A Content Dictionary for XML Schema datatypes</dc:title>
+  <dc:creator>Siarhei Kuryla</dc:creator>
+  <dc:date>2009-04-28</dc:date>
+  <dc:format>application/omdoc+xml</dc:format>
+  <dc:rights>Copyright (c) 2009 KWARC</dc:rights>
+  <dc:description>This CD defines the XML Schema datatypes.</dc:description>
+</metadata>
+
+<theory 
+  xml:id="xsd"
+  cdbase="http://www.openmath.org/cd"
+  cdstatus="experimental"
+  cdurl="https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.3/examples/logics/xsd.omdoc"
+  cdversion="0"
+  cdrevision="1">
+  <metadata>
+    <link rel="oo:vocab" href="http://www.w3.org/2001/XMLSchema#"/>
+  </metadata>
+
+    
+  <symbol name="string"/>
+  <symbol name="boolean"/>
+  <symbol name="float"/>
+  <symbol name="double"/>
+  <symbol name="decimal"/>
+  <symbol name="duration"/>
+  <symbol name="dateTime"/>  
+  <symbol name="time"/>
+  <symbol name="date"/>
+  <symbol name="gYearMonth"/>
+  <symbol name="gYear"/>
+  <symbol name="gMonthDay"/>
+  <symbol name="gDay"/>
+  <symbol name="gMonth"/>
+  <symbol name="hexBinary"/>
+  <symbol name="base64Binary"/>
+  <symbol name="anyURI"/>
+  <symbol name="QName"/>
+  <symbol name="NOTATION"/>
+  <symbol name="normalizedString"/>
+  <symbol name="token"/>
+  <symbol name="language"/>
+  <symbol name="IDREFS"/>
+  <symbol name="ENTITIES"/>
+  <symbol name="NMTOKEN"/>
+  <symbol name="NMTOKENS"/>
+  <symbol name="Name"/>
+  <symbol name="NCName"/>
+  <symbol name="ID"/>
+  <symbol name="IDREF"/>
+  <symbol name="ENTITY"/>
+  <symbol name="integer"/>
+  <symbol name="nonPositiveInteger"/>
+  <symbol name="negativeInteger"/>
+  <symbol name="long"/>      
+  <symbol name="int"/>
+  <symbol name="short"/>
+  <symbol name="byte"/>
+  <symbol name="nonNegativeInteger"/>      
+  <symbol name="unsignedLong"/>
+  <symbol name="unsignedInt"/>
+  <symbol name="unsignedShort"/>
+  <symbol name="unsignedByte"/>      
+  <symbol name="positiveInteger"/>
+</theory>
+</omdoc>
+
+<!-- vim:sw=2:sts=2
+-->

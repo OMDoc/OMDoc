@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE omdoc PUBLIC "-//OMDoc//DTD OMDoc V1.3//EN"
+                "../../dtd/omdoc.dtd" []>
+
+<omdoc xml:id="time-omdoc" 
+       xmlns:dc="http://purl.org/dc/elements/1.1/"
+       xmlns="http://omdoc.org/ns">
+
+ <metadata>
+  <dc:title>A basic Theory of SACHS accounting (Time)</dc:title>
+  <dc:creator role="aut">Andrea Kohlhase</dc:creator>
+  <dc:creator role="aut">Michael Kohlhase</dc:creator>
+  <dc:creator role="aut">Achim Mahnke</dc:creator>
+  <dc:date>2008-08-26T00:00:00</dc:date>
+  <dc:description>
+    This is the basis of ....
+  </dc:description>
+ </metadata>
+
+ <theory xml:id="time">
+   <metadata>
+     <dc:title>A little theory of time</dc:title>
+   </metadata>
+
+   <imports from="../omstd/sts.omdoc#sts"/>
+   <imports from="../omstd/quant1.omdoc#quant1"/>
+   <imports from="../omstd/relation1.omdoc#relation1"/>
+   <imports from="../omstd/setname1.omdoc#setname1"/>
+   <imports from="quantities.omdoc#quantities"/>
+
+   <symbol name="timeinterval" role="type">
+     <metadata>
+       <dc:title>Time Interval</dc:title>
+     </metadata>
+   </symbol>
+
+   <symbol name="year">
+     <metadata>
+       <dc:title>Year</dc:title>
+     </metadata>
+     <type system="sts">
+       <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	 <OMS cd="time" name="timeunit"/>
+       </OMOBJ>
+     </type>
+   </symbol>
+
+   <symbol name="timeunit" role="type">
+     <metadata>
+       <dc:title>Time Unit</dc:title>
+     </metadata>
+   </symbol>
+
+<!-- ****  better as type axiom for monetaryquantity? -->
+   <axiom>
+     <FMP>
+     <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+       <OMBIND>
+	 <OMS cd="quant1" name="forall"/>
+	 <OMBVAR>
+	   <OMATTR>
+	     <OMATP>
+	       <OMS name="type" cd="sts"/>
+	       <OMS cd="setname1" name="R"/>
+	     </OMATP>
+	     <OMV name="x"/>
+	   </OMATTR>
+	   <OMATTR>
+	     <OMATP>
+	       <OMS name="type" cd="sts"/>
+	       <OMS cd="time" name="timeunit"/>
+	     </OMATP>
+	     <OMV name="u"/>
+	   </OMATTR>
+	 </OMBVAR>
+	 <OMA>
+	   <OMS cd="sts" name="oftype"/>
+	   <OMA>
+	     <OMS cd="quantities" name="quantityof"/>
+	     <OMV name="x"/>
+	     <OMV name="u"/>
+	   </OMA>
+	   <OMS cd="time" name="timeinterval"/>
+	 </OMA>
+       </OMBIND>
+     </OMOBJ>
+     </FMP>
+   </axiom>
+ </theory>
+
+</omdoc>
+
+
+

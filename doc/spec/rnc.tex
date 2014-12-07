@@ -1,0 +1,182 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This file is part of the LaTeX sources of the OMDoc 1.3 specification
+% Copyright (c) 2006 Michael Kohlhase
+% This work is licensed by the Creative Commons Share-Alike license
+% see http://creativecommons.org/licenses/by-sa/2.5/ for details
+\svnInfo $Id: rnc.tex 8982 2012-02-01 09:54:05Z kohlhase $
+\svnKeyword $HeadURL: https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.3/doc/spec/rnc.tex $
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{tchapter}[id=rnc]{The RelaxNG Schema for OMDoc}
+
+We reprint the modularized {\relaxng} schema for {\omdoc} here. It is available at
+\url{http://omdoc.org/rnc} and consists of separate files for the {\omdoc}
+modules, which are loaded by the schema driver {\snippet{omdoc.rnc}} in this directory. We
+will use the abbreviated syntax for {\relaxng} here, since the {\xml} syntax, document
+type definitions\index{DTD} and even {\xml} schemata\twin{XML}{schema} can be generated
+from it by standard tools.
+
+The {\relaxng} schema consists of the grammar fragments for the modules (see
+{\myappseclref{rnc:math}{rnc:quiz}}), a definition of the most common attributes that
+occur in several of the modules (see {\myappsecref{rnc:attributes}}), and the sub-language
+driver files which we will introduce next.
+
+\begin{tsection}[id=rnc:attributes]{Common Parts of the Schema}
+  
+  The {\relaxng} grammar for {\omdoc} separates out declarations for commonly used
+  objects.
+
+
+  \lstinputlisting[language=RNC,nolol]{../../schema/rnc/omdoc-common.rnc}
+\end{tsection}
+
+\begin{tsection}[id=rnc:math]{Module {\MOBJmodule{RNC}}: Mathematical Objects and Text}
+  
+  The RNC module {\MOBJmodule{RNC}} includes the representations for mathematical objects
+  and defines the {\element{legacy}} element (see {\mychapref{mobj}} for a discussion). It
+  includes the standard {\relaxng} schema for {\openmath} (we have reprinted it in
+  {\myappsecref{rnc:openmath}}) adding the {\omdoc} identifier and {\css}
+  attributes\twin{CSS}{attribute} to all elements. If also includes a schema for {\mathml}
+  (see {\myappsecref{rnc:mathml}}).
+
+\lstinputlisting[language=RNC,index={legacy},nolol]{../../schema/rnc/omdocmobj.rnc}
+\end{tsection}
+
+\begin{tsection}[id=rnc:mtxt]{Module {\MTXTmodule{RNC}}: Mathematical Text}
+  
+ The RNC module {\MTXTmodule{RNC}} provides infrastructure for mathematical
+  vernacular (see {\mychapref{mtxt}} for a discussion).
+
+\lstinputlisting[language=RNC,
+  index={omtext,FMP,CMP,assumption,conclusion},nolol] 
+  {../../schema/rnc/omdocmtxt.rnc}
+\end{tsection}
+
+\begin{tsection}[id=rnc:doc]{Module {\DOCmodule{RNC}}: Document Infrastructure}
+  
+  The RNC module {\DOCmodule{RNC}} specifies the document infrastructure of
+  {\omdoc} documents (see
+  {\mychapref{omdoc-infrastructure}} for a discussion).
+
+  \lstinputlisting[language=RNC,nolol]{../../schema/rnc/omdocdoc.rnc}
+  \lstinputlisting[language=RNC,nolol]{../../schema/rnc/omdocmeta.rnc}
+\end{tsection}
+
+\begin{tsection}[id=rnc:dc]{Module {\DCmodule{RNC}}: Dublin Core Metadata}
+
+  The RNC module {\DCmodule{RNC}} includes an extension of the Dublin Core vocabulary for
+  bibliographic metadata, see {\mysecsref{dc-elements}{dc-roles}} for a discussion.
+
+\lstinputlisting[language=RNC,nolol,
+index={dc:contributor,dc:creator,dc:title,dc:subject,dc:description,dc:publisher,dc:type,
+  dc:format,dc:source,dc:language,dc:relation,dc:rights,dc:date,dc:identifier}]{../../schema/rnc/omdocdc.rnc}
+\end{tsection}
+
+\begin{tsection}[id=rnc:st]{Module {\STmodule{RNC}}: Mathematical Statements}
+
+The RNC module {\STmodule{RNC}} deals with mathematical statements like assertions
+and examples in {\omdoc} and provides an infrastructure for mathematical theories
+as contexts, for the {\omdoc} elements that fix the meaning for symbols, see
+{\mychapref{statements}} for a discussion.
+
+\lstinputlisting[language=RNC,nolol,
+index={type,assertion,alternative,example,theory,imports}] {../../schema/rnc/omdocst.rnc}
+\end{tsection}
+
+\begin{tsection}[id=rnc:adt]{Module {\ADTmodule{RNC}}: Abstract Data Types}
+
+The RNC module {\ADTmodule{RNC}} specifies the grammar for abstract data types in 
+{\omdoc}, see {\mychapref{adt}} for a discussion.
+
+\lstinputlisting[language=RNC,nolol,
+index={adt,sortdef,insort,constructor,recognizer,argument,destructor}]
+{../../schema/rnc/omdocadt.rnc}
+\end{tsection}
+
+\begin{tsection}[id=rnc:proof]{Module {\PFmodule{RNC}}: Proofs and Proof objects}
+
+The RNC module {\PFmodule{RNC}} deals with mathematical argumentations and proofs
+in {\omdoc}, see {\mychapref{proofs}} for a discussion.
+
+\lstinputlisting[language=RNC,nolol,
+index={proof,proofobject,derive,hypothesis,method,premise}]
+{../../schema/rnc/omdocpf.rnc}
+\end{tsection}
+
+\begin{tsection}[id=rnc:cth]{Module {\CTHmodule{RNC}}: Complex Theories}
+
+  The {\indextoo{RNC}} presented in this section deals with the module
+  {\CTHmodule{RNC}} of complex theories (see {\mychapref{complex-theories}} for a discussion).
+
+\lstinputlisting[language=RNC,nolol,
+index={morphism,inclusion,theory-inclusion,decomposition,
+  axiom-inclusion,path-just,obligation}] {../../schema/rnc/omdoccth.rnc}
+\end{tsection}
+
+\begin{tsection}[id=rnc:dg]{Module {\DGmodule{RNC}}: Development Graphs}
+
+  The {\indextoo{RNC}} presented in this section deals with the module
+  {\CTHmodule{DG}} of development graphs (see {\mysecref{development-graphs}} for a discussion).
+
+\lstinputlisting[language=RNC,nolol,
+index={morphism,inclusion,theory-inclusion,decomposition,
+  axiom-inclusion,path-just,obligation}] {../../schema/rnc/omdoccth.rnc}
+\end{tsection}
+
+\begin{tsection}[id=rnc:RT]{Module {\RTmodule{RNC}}: Rich Text Structure}
+
+  The RNC module {\RTmodule{RNC}} provides text structuring elements for
+  mathematical text below the level of mathematical statements (see
+  {\mysecref{rt}} for a discussion).
+
+\lstinputlisting[language=RNC,nolol,
+  index={p,ol,ul,li,table,tr,td,link,note}] 
+  {../../schema/rnc/omdocrt.rnc}
+\end{tsection}
+
+\begin{tsection}[id=rnc:ext]{Module {\EXTmodule{RNC}}: Applets and non-XML data}
+
+  The RNC module {\EXTmodule{RNC}} provides an infrastructure for applets, program
+  code, and non-{\xml} data like images or measurements (see {\mychapref{ext}} for
+  a discussion).
+
+\lstinputlisting[language=RNC,nolol,
+index={omlet,private,code,input,output,effect,data}] {../../schema/rnc/omdocext.rnc}
+\end{tsection}
+
+\begin{tsection}[id=rnc:pres]{Module {\PRESmodule{RNC}}: Adding Presentation Information}
+
+The RNC module {\PRESmodule{RNC}} provides a sub-language for defining notations
+for mathematical symbols and for styling {\omdoc} elements (see
+  {\mychapref{pres}} for a discussion).
+
+\lstinputlisting[language=RNC,nolol,
+index={presentation,use,omstyle,xslt,style,element,attribute,text,value-of,recurse}]
+{../../schema/rnc/omdocpres.rnc}
+\end{tsection}
+
+\begin{tsection}[id=rnc:quiz]{Module {\QUIZmodule{RNC}}: Infrastructure for Assessments}
+
+  The RNC module {\QUIZmodule{RNC}} provides a basic infrastructure for various
+  kinds of exercises (see {\mychapref{quiz}} for a discussion).
+
+  \lstinputlisting[language=RNC,nolol,index={exercise,hint,solution,mc,choice,answer}]
+  {../../schema/rnc/omdocquiz.rnc}
+\end{tsection}
+\end{tchapter}
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "omdoc"
+%%% End: 
+
+% LocalWords:  rnc MOBJ lstlistings lstomdoc fullflexible OMB OMSTR OMF OME RT
+% LocalWords:  OMATP ol ul li tr td mtxt doc dc adt sortdef insort mc nolol
+% LocalWords:  proofobject cth ext omlet pres omstyle xslt omdoc mobj openmath
+% LocalWords:  mathml omtext FMP CMP OMS OMV OMI OMA OMBIND OMBVAR OMATTR OMOBJ
+% LocalWords:  rt mobj metadata destructor recurse mobj  mobj kohlhase tchapter
+% LocalWords:  relaxng myappseclref myappsecref tsection mysecref PRESmodule
+% LocalWords:  lstinputlisting STmodule PFmodule QUIZmodule EXTmodule mychapref
+% LocalWords:  MOBJmodule MTXTmodule DOCmodule DCmodule mysecsref ADTmodule
+% LocalWords:  CTHmodule indextoo DGmodule RTmodule

@@ -1,0 +1,949 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This file is part of the LaTeX sources of the OMDoc 1.3 specification
+% Copyright (c) 2006 Michael Kohlhase
+% This work is licensed by the Creative Commons Share-Alike license
+% see http://creativecommons.org/licenses/by-sa/2.5/ for details
+\svnInfo $Id: mobj.tex 9253 2012-07-23 11:47:32Z kohlhase $
+\svnKeyword $HeadURL: https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.3/doc/spec/mobj.tex $
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{tchapter}[id=mobj,short=Mathematical Objects]{Mathematical Objects (Module {\MOBJmodule{spec}})}
+
+  A distinguishing feature of mathematics is its ability to represent and manipulate ideas
+  and objects in symbolic form as mathematical formulae\index{formula}.  {\omdoc} uses the
+  {\openmath} and {\cmathml} formats to represent mathematical formulae and objects.
+  Therefore, the {\openmath} standard~\cite{BusCapCar:2oms04} and the {\mathml} 2.0
+  recommendation (second edition)~\cite{CarIon:MathML03} are part of this specification.
+  We will review {\openmath} objects (top-level element {\element[ns-elt=om]{OMOBJ}}) in
+  {\mysecref{openmath}} and {\cmathml} (top-level element {\element[ns-elt=m]{math}}) in
+  {\mysecref{cmml}}, and specify an {\omdoc} element for entering mathematical formulae
+  (element {\element{legacy}}) in {\mysecref{legacy}}.
+
+\begin{myfig}{mobjtable}{Mathematical Objects in {\omdoc}}
+\begin{scriptsize}
+\begin{tabular}{|>{\tt}l|>{\tt}p{1.5truecm}|>{\tt}l|>{\tt}l|}\hline
+{\rm Element}& \multicolumn{2}{l|}{Attributes\hspace*{2.25cm}} & Content  \\\hline
+             & {\rm Required}  & {\rm Optional}     &           \\\hline\hline
+ OMOBJ   & id & class, style &  {\rm See {\myfigref{om}}} \\\hline 
+ m:math    & & id, xlink:href        & {\rm See {\myfigref{cmml}}} \\\hline
+ legacy  & format & xml:id, formalism  &  \#PCDATA \\\hline
+\end{tabular}
+\end{scriptsize}
+\end{myfig}
+
+The recapitulation in the next two sections is not normative, please consult
+{\mysecref{math-objects}} for a general introduction and history and the {\openmath}
+standard and the {\mathml} 2.0 Recommendation for details and
+clarifications.\ednote{MK@MK: MathML 3.0 is out, and thus OM and MathML are equivalent, we
+  should discuss this here. }\ednote{MK@MK: discuss the notion of \openmath validity in
+  terms of \omdoc content dictionaries. Introduce the notion of a CD catalog as a
+  document-format internal way of specifying the cdbase. \openmath cannot have an internal
+  one, since it does not transcend the object level. Cite the MathML3.0 spec that allows
+  this.}
+
+
+\begin{tsection}[id=openmath]{OpenMath}
+  
+  {\openmath} is a markup language for mathematical formulae that concentrates on the
+  meaning of formulae building on an extremely simple kernel (markup primitive for
+  syntactical forms of content formulae), and adds an extension mechanism for mathematical
+  concepts, the {\defemph{content dictionaries}}\twin{content}{dictionary}.  These are
+  {\indextoo{machine-readable}} documents that define the meaning of mathematical concepts
+  expressed by {\openmath} symbols.  The current released version of the {\openmath}
+  standard is {\openmath}2, which incorporates many of the experiences of the last years,
+  particularly with embedding {\openmath} into the {\omdoc} format.
+
+  We will only review the {\xml} encoding of {\openmath} objects here, since it is most
+  relevant to the {\omdoc} format. All elements of the {\xml} encoding live in the
+  {namespace\twin{OpenMath}{namespace}} \url{http://www.openmath.org/OpenMath}, for
+  which we traditionally use the {\twintoo{namespace}{prefix}}
+  {\snippetin{om:}}.\atwin{OpenMath}{namespace}{URI}
+
+\begin{myfig}{om}{{\openmath} Objects in {\omdoc}}
+\begin{scriptsize}
+\begin{tabular}{|>{\tt}l|>{\tt}l|>{\tt}l|>{\tt}l|}\hline
+{\rm Element}& \multicolumn{2}{l|}{Attributes\hspace*{2.25cm}} & Content  \\\hline
+             & {\rm Required}  & {\rm Optional}     &           \\\hline\hline
+ OMOBJ     & & id, cdbase, class, style   & \llquote{OMel}? \\\hline
+ OMS       & cd, name  & id, cdbase, class, style   &  EMPTY \\\hline
+ OMV       & name & id, class, style   &  EMPTY \\\hline
+ OMA       & & id, cdbase, class, style   & \llquote{OMel}* \\\hline
+ OMBIND    & & id, cdbase, class, style   & \llquote{OMel},OMBVAR,\llquote{OMel} \\\hline
+ OMBVAR    & & id, class, style   & (OMV | OMATTR)+ \\\hline
+ OMFOREIGN & & id, cdbase, class, style   & ANY \\\hline
+ OMATTR    & & id, cdbase, class, style   & \llquote{OMel}\\\hline
+ OMATP     & & id, cdbase, class, style   & (OMS, (\llquote{OMel}|OMFOREIGN))+ \\\hline
+ OMI       & & id, class, style   &  [0-9]* \\\hline 
+ OMB       & & id,  class, style   &  \#PCDATA \\\hline 
+ OMF       & & id, class, style, dec, hex &  \#PCDATA \\\hline 
+ OME       & & id, class, style   & \llquote{OMel}?\\\hline
+ OMR       & href &      & \llquote{OMel}?\\\hline
+ \multicolumn{4}{|l|}{where {\llquote{OMel}} is {\tt{(OMS|OMV|OMI|OMB|OMSTR|OMF|OMA|OMBIND|OME|OMATTR)}}}\\\hline
+\end{tabular}
+\end{scriptsize}
+\end{myfig}
+
+\begin{tsubsection}[id=om:core]{The Representational Core of {\openmath}}
+The central construct of the {\openmath} is that of an {\defemph{{\openmath}
+    object}}\index{object!{\sc OpenMath}}\index{{\sc OpenMath}! object} (represented by
+the {\eldef[ns-elt=om]{OMOBJ}} element in the {\xml} encoding), which has a tree-like
+representation made up of {\indextoo{application}s} ({\eldef[ns-elt=om]{OMA}}),
+{\indextoo{binding structure}s} ({\element[ns-elt=om]{OMBIND}} using
+{\element[ns-elt=om]{OMBVAR}} to tag {\twintoo{bound}{variable}s}), {\indextoo{variable}s}
+({\eldef[ns-elt=om]{OMV}}), and {\indextoo{symbol}s} ({\eldef[ns-elt=om]{OMS}}).
+
+The {\element[ns-elt=om]{OMA}} element contains representations of the function and its
+argument in ``prefix-\twin{prefix}{notation}'' or ``{\twintoo{Polish}{notation}}'',
+i.e. the first child is the representation of the function and all the subsequent ones are
+representations of the arguments in order.
+
+Objects and concepts that carry meaning independent of the local context (they are called
+{\defin{symbol}s} in {\openmath}) are represented as {\element[ns-elt=om]{OMS}} elements,
+where the value of the {\attribute[ns-elt=om]{name}{OMS}} attribute gives the name of the
+symbol.  The {\attribute[ns-elt=om]{cd}{OMS}} attribute specifies the relevant
+{\indextoo{content dictionary}}, a document that defines the meaning of a collection of
+symbols including the one referenced by the {\element[ns-elt=om]{OMS}}.  This document can
+either be an original {\openmath} content dictionary or an {\omdoc} document that serves
+as one (see {\mysubsecref{identifying}} for a discussion).  The optional
+{\attributeshort{cdbase}} on an {\element[ns-elt=om]{OMS}} element contains a
+{\indextoo{URI}} that can be used to disambiguate the content dictionary.  Alternatively,
+the {\attributeshort{cdbase}} attribute can be given on an {\openmath} element that is a
+parent to the {\element[ns-elt=om]{OMS}} in question: The {\element[ns-elt=om]{OMS}}
+inherits the {\attributeshort{cdbase}} of the nearest ancestor (inducing the usual {\xml}
+scoping rules for declarations).
+
+The {\openmath}2 standard proposes the following mechanism for determining a canonical
+identifying {\indextoo{URI}} for the symbol declaration referenced by an {\openmath}
+symbol of the form {\snippet{<OMS cd="foo" name="bar"/>}} with the
+{\attributeshort{cdbase}}-value e.g.  \url{http://www.openmath.org/cd}: it is the URI
+reference \url{http://www.openmath.org/cd/foo#bar}, which by convention identifies an
+{\element[ns-elt=omcd]{CDDefinition}} element with a child {\element[ns-elt=omcd]{Name}}
+whose value is {\snippet{bar}} in a content dictionary resource
+\url{http://www.openmath.org/cd/foo.ocd} (see {\mysubsecref{math-markup:openmath}} for a
+very brief introduction to {\openmath} content dictionaries). 
+
+Variables are represented as {\element[ns-elt=om]{OMV}} element.  As variables do not
+carry a meaning independent of their local content, {\element[ns-elt=om]{OMV}} only
+carries a {\attribute[ns-elt=om]{name}{OMV}} attribute (see {\mysecref{sem-var}} for
+further discussion).
+
+For instance, the formula $\sin(x)$ would be modeled as an application of the
+$\sin$ function (which in turn is represented as an {\openmath} symbol) to a
+variable:
+\begin{lstlisting}[label=sinx,language=OpenMath,numbers=none,
+   index={OMOBJ,OMA,OMV,OMS}]
+<OMOBJ xmlns="http://www.openmath.org/OpenMath">
+  <OMA cdbase="http://www.openmath.org/cd">
+    <OMS cd="transc1" name="sin"/>
+    <OMV name="x"/>
+  </OMA>
+</OMOBJ>   
+\end{lstlisting}
+
+In our case, the function $\sin$ is represented as an {\element[ns-elt=om]{OMS}} element
+with name {\snippet{sin}} from the {\indextoo{content dictionary}}
+{\snippet{transc1}}. The {\element[ns-elt=om]{OMS}} inherits the
+{\attributeshort{cdbase}}-value \url{http://www.openmath.org/cd}, which shows that it
+comes from the {\openmath} standard collection of content dictionaries from the
+{\element[ns-elt=om]{OMA}} element above.  The variable $x$ is represented in an
+{\element[ns-elt=om]{OMV}} element with {\attribute[ns-elt=om]{name}{OMV}}-value
+{\snippet{x}}.
+
+For the {\eldef[ns-elt=om]{OMBIND}} element consider the following representation of the
+formula $\allcdot{x}{\sin(x)\leq\pi}$.
+\begin{lstlisting}[label=allxsinx,language=OpenMath,numbers=none,
+   index={OMOBJ,OMA,OMV,OMBIND,OMBVAR}]
+<OMOBJ cdbase="http://www.openmath.org/cd">
+  <OMBIND>
+    <OMS cd="quant1" name="forall"/>
+    <OMBVAR><OMV name="x"/></OMBVAR>
+    <OMA>
+      <OMS cd="arith1" name="leq"/>
+      <OMA><OMS cd="transc1" name="sin"/><OMV name="x"/></OMA>
+      <OMS cd="nums1" name="pi"/>
+    </OMA>
+  </OMBIND>
+</OMOBJ>   
+\end{lstlisting}
+The {\element[ns-elt=om]{OMBIND}} element has exactly three children, the first one is a
+``{\twintoo{binding}{operator}}''\footnote{\label{foot:binding-operator}The binding
+  operator must be a symbol which either has the {\indextoo{role}}
+  {\attvalshort{binder}{role}} assigned by the {\openmath} content dictionary
+  (see~\cite{BusCapCar:2oms04} for details) or the symbol declaration in the {\omdoc}
+  content dictionary must have the value {\attval{binder}{role}{symbol}} for the attribute
+  {\attribute{role}{symbol}} (see {\mysubsecref{symbol-dec}}).} --- in this case the
+universal quantifier, the second one is a list of {\twintoo{bound}{variable}s} that must
+be encapsulated in an {\eldef[ns-elt=om]{OMBVAR}} element, and the third is the
+{\indextoo{body}} of the binding object, in which the bound variables can be used.
+{\openmath} uses the {\element[ns-elt=om]{OMBIND}} element to unambiguously specify the
+scope of bound variables in expressions: the bound variables in the
+{\element[ns-elt=om]{OMBVAR}} element can be used only inside the mother
+{\element[ns-elt=om]{OMBIND}} element, moreover they can be systematically
+renamed\twin{variable}{renaming} without changing the meaning of the binding
+expression. As a consequence, bound variables in the scope of an
+{\element[ns-elt=om]{OMBIND}} are distinct as {\openmath} objects from any variables
+outside it, even if they share a name.
+
+{\openmath} offers an element for annotating (parts of) formulae with external information
+(e.g. {\mathml} or {\LaTeX} presentation): the {\eldef[ns-elt=om]{OMATTR}} element that
+pairs an {\openmath} object with an attribute-value list. To annotate an {\openmath}
+object, it is embedded as the second child in an {\element[ns-elt=om]{OMATTR}}
+element. The attribute-value list is specified by children of the preceding
+{\eldef[ns-elt=om]{OMATP}} ({\underline{At}}tribute value {\underline{P}}air) element,
+which has an even number of children: children at odd positions must be
+{\element[ns-elt=om]{OMS}} (specifying the attribute, they are called {\defin{key}s} or
+{\defin{feature}s})\footnote{There are two kinds of keys in {\openmath} distinguished
+  according to the {\attribute{role}{symbol}} value on their {\element{symbol}}
+  declaration in the {\indextoo{content}{dictionary}}:
+  {\attval{attribution}{role}{symbol}} specifies that this attribute value pair may be
+  ignored by an application, so it should be used for information which does not change
+  the meaning of the attributed {\openmath} object. The {\attribute{role}{symbol}} is used
+  for keys that modify the meaning of the attributed {\openmath} object and thus cannot be
+  ignored by an application.}, and children at even positions are the {\defin{value}s} of
+the keys specified by their immediately preceding siblings. In the {\openmath} fragment in
+{\mylstref{omattr}} the expression $x+\pi$ is annotated with an alternative representation
+and a color.  {\Mylstref{complex-type-om}} has a more complex one involving types.
+
+\begin{lstlisting}[language=OpenMath,label=lst:omattr,mathescape,
+                   caption={Associating Alternate Representations with an
+                   {\openmath} Object},
+                   numbers=none,index={OMATTR,OMATP}]
+<OMATTR>
+  <OMATP>
+    <OMS cd="alt-rep" name="ascii"/>
+    <OMSTR>(x+1)</OMSTR>
+    <OMS cd="alt-rep" name="svg"/>
+    <OMFOREIGN encoding="application/svg+xml">
+      <svg xmlns='http://www.w3.org/2000/svg'>$\ldots$</svg>
+    </OMFOREIGN>
+    <OMS cd="pres" name="color"/>
+    <OMS cd="pres" name="red"/>
+  </OMATP>
+  <OMA>
+    <OMS cd="arith1" name="plus"/>
+    <OMV name="x"/>
+    <OMS cd="nums1" name="pi"/>
+  </OMA>
+</OMATTR>
+\end{lstlisting}
+
+A special application of the {\element[ns-elt=om]{OMATTR}} element is associating
+non-{\sc{Open\-Math}} objects with {\openmath} objects. For this, {\openmath}2 allows to
+use an {\eldef[ns-elt=om]{OMFOREIGN}} element in the even positions of an
+{\element[ns-elt=om]{OMATP}}. This element can be used to hold arbitrary {\xml} content
+(in our example above SVG: Scalable Vector Graphics~\cite{W3C:svg02}), its required
+{\attribute[ns-elt=om]{encoding}{OMFOREIGN}} attribute specifies the format of the
+content.  We recommend a {\twintoo{MIME}{type}}~\cite{FreBor:MIME96} (see
+{\mysecref{pres-bound}} for an application).
+\end{tsubsection}
+  
+\begin{tsubsection}[id=om:error]{Programming Extensions of {\openmath} Objects}
+
+  For representing objects in {\twintoo{computer algebra}{system}s} {\openmath} also
+  provides other basic data types: {\eldef[ns-elt=om]{OMI}} for {\indextoo{integer}s},
+  {\eldef[ns-elt=om]{OMB}} for {\indextoo{byte array}s}, {\eldef[ns-elt=om]{OMSTR}} for
+  {\indextoo{string}s}, and {\eldef[ns-elt=om]{OMF}} for floating point numbers. These do
+  not play a large role in the context of {\omdoc}, so we refer the reader to the
+  {\openmath} standard~\cite{BusCapCar:2oms04} for details.
+
+
+  The {\eldef[ns-elt=om]{OME}} element is used for {\atwintoo{in-place}{error}{markup}} in
+  {\openmath} objects, it can be used almost everywhere in {\openmath} elements. It has
+  two children; the first one is an {\twintoo{error}{operator}}\footnote{An error operator
+    is like a {\twintoo{binding}{operator}} in footnote~\ref{foot:binding-operator}, only
+    the symbol has role {\attval{error}{role}{symbol}}.}, i.e. an {\openmath} symbol that
+  specifies the kind of error, and the second one is the faulty {\openmath} object
+  fragment. Note that since the whole object must be a valid {\openmath} object, the
+  second child must be a well-formed {\openmath} object fragment. As a consequence, the
+  {\element[ns-elt=om]{OME}} element can only be used for ``{\twintoo{semantic}{error}s}''
+  like non-existing content dictionaries, out-of-bounds errors, etc.
+  {\xml}-well-formedness and DTD-validity errors will have to be handled by the {\xml}
+  tools involved. In the following example, we have marked up two errors in a faulty
+  representation of $\sin(\pi)$.  The outer error flags an arity violation (the function
+  $\sin$ only allows one argument), and the inner one flags the typo in the representation
+  of the constant $\pi$ (we used the name {\snippet{po}} instead of {\snippet{pi}}).
+
+\begin{lstlisting}[label=ome,language=OpenMath,numbers=none,index={OME}]
+<OME>
+  <OMS cd="type-error" name="arity-violation"/>
+  <OMA>
+    <OMS cd="transc1" name="sin"/>
+    <OME>
+      <OMS cd="error" name="unexpected_symbol"/>
+      <OMS cd="nums1" name="po"/>
+    </OME>
+    <OMV name="x"/>
+  </OMA>
+</OME>
+\end{lstlisting}
+  As we can see in this example, errors can be nested to encode multiple faults found by
+  an {\openmath} application.
+\end{tsubsection}
+
+\begin{tsubsection}[id=om:structure-sharing]{Structure Sharing in {\openmath}}
+
+  As we have seen above, {\openmath} objects are essentially trees, where the leaves are
+  symbols or variables. In many applications mathematical objects can grow to be very
+  large, so that more space-efficient representations are needed. Therefore, {\openmath}2
+  supports {\twintoo{structure}{sharing}}\footnote{Structure sharing is a well-known
+    technique in computer science that tries to gain space efficiency in algorithms by
+    re-using data structures that have already been created by pointing to them rather
+    than copying.} in {\openmath} objects. In {\myfigref{sharing}} we have contrasted the
+  tree representation of the object $1+1+1+1+1+1+1+1$ with the structure-shared one, which
+  represents the formula as a {\atwintoo{directed}{acyclic}{graph}} (\indextoo{DAG}). As
+  any DAG can be exploded\twin{explosion}{DAG} into a tree by recursively copying all
+  sub-graphs that have more than one incoming graph edge, DAGs can conserve space by
+  {\twintoo{structure}{sharing}}. In fact the tree on the left in {\myfigref{sharing}} is
+  exponentially larger than the corresponding DAG on the right.
+
+\begin{myfig}{sharing}{Structure Sharing by Directed Acyclic Graphs}
+  \begin{tikzpicture}
+    \node (u) at (-1,0) {$\cdot$};
+    \node (m) at (-1,1.5) {$d$};
+    \node (o) at (-1,3) {$\cdot$}; 
+    \draw[->] (m) -- (u);
+    \draw[->] (m) -- (o);
+    
+    \node (a1) at (0,0) {1}; 
+    \node (a2) at (1,0) {1};
+    \node (a3) at (2,0) {1}; 
+    \node (a4) at (3,0) {1};
+    \node (a5) at (4,0) {1}; 
+    \node (a6) at (5,0) {1};
+    \node (a7) at (6,0) {1}; 
+    \node (a8) at (7,0) {1};
+    
+    \node (f1) at (0.5,1) {+};
+    \node (f2) at (2.5,1) {+};
+    \node (f3) at (4.5,1) {+}; 
+    \node (f4) at (6.5,1) {+};
+    \node (f5) at (2,2) {+}; 
+    \node (f6) at (5,2) {+};
+    \node (f7) at (3.5,3) {+}; 
+    
+    \draw (f1) -- (a1);
+    \draw (f1) -- (a2);
+    \draw (f2) -- (a3);
+    \draw (f2) -- (a4); 
+    \draw (f3) -- (a5);
+    \draw (f3) -- (a6);
+    \draw (f4) -- (a7);
+    \draw (f4) -- (a8); 
+    \draw (f5) -- (f1);
+    \draw (f5) -- (f2);
+    \draw (f6) -- (f3);
+    \draw (f6) -- (f4); 
+    \draw (f7) -- (f5);
+    \draw (f7) -- (f6);
+    
+    \node (a) at (9,0) {1}; 
+    \node (F1) at (9,1) {+};
+    \node (F2) at (9,2) {+}; 
+    \node (F3) at (9,3) {+};
+    \draw (a) .. controls (9.2,.4) and (9.2,.6)  .. (F1);
+    \draw (a) .. controls (8.8,.4) and (8.8,.6)  .. (F1);
+    \draw (F1) .. controls (9.2,1.4) and (9.2,1.6)  .. (F2);
+    \draw (F1) .. controls (8.8,1.4) and (8.8,1.6)  .. (F2);
+    \draw (F2) .. controls (9.2,2.4) and (9.2,2.6)  .. (F3);
+    \draw (F2) .. controls (8.8,2.4) and (8.8,2.6)  .. (F3);
+
+    \node (t)  at (3.5,4)  {Tree};
+    \node (d)  at (9,4)    {DAG};
+    \node (nt) at (3.5,-1) {$2^d-1$ nodes}; 
+    \node (nd) at (9,-1)   {$d$ nodes};
+  \end{tikzpicture}
+\end{myfig}
+To support DAG structures, {\openmath}2 provides the (optional) attribute
+{\attributeshortcomment{id}{in {\sc{OpenMath}} objects}} on all {\openmath} objects and an
+element {\eldef[ns-elt=om]{OMR}}\footnote{{\openmath}1 and {\omdocv{1.0}} did now know
+  structure sharing, {\omdocv{1.1}} added {\attributeshort{xref}} attributes to the
+  {\openmath} elements {\element[ns-elt=om]{OMOBJ}}, {\element[ns-elt=om]{OMA}},
+  {\element[ns-elt=om]{OMBIND}} and
+  {\element[ns-elt=om]{OMATTR}}\index{openmath@{\sc{OpenMath}} elements!  extra attributes
+    {\snippet{id}} and {\snippet{xref}}} instead of {\element[ns-elt=om]{OMR}}
+  elements. This usage is deprecated in {\omdocv{1.2}}, in favor of the
+  {\element[ns-elt=om]{OMR}}-based solution from the {\openmath}2 standard. Obviously,
+  both representations are equivalent, and a transformation from
+  {\attributeshort{xref}}-based mechanism to the {\element[ns-elt=om]{OMR}}-based one is
+  immediate.} for the purpose of cross-referencing\index{cross-reference}. The
+{\element[ns-elt=om]{OMR}} element is empty and has the required attribute
+{\attribute[ns-elt=om]{href}{OMR}}; The {\openmath} element represented by this
+{\element[ns-elt=om]{OMR}} element is a copy of the {\openmath} element pointed to in the
+{\attribute[ns-elt=om]{href}{OMR}} attribute.  Note that the representation of the
+{\element[ns-elt=om]{OMR}} element is {\em{structurally equal}}, but not identical to the
+element it points to.
+
+Using the {\element[ns-elt=om]{OMR}} element, we can represent the {\openmath} objects in
+{\myfigref{sharing}} as the {\xml} representations in {\myfigref{explosion}}.
+
+\setbox0=\hbox{\begin{minipage}{5.2cm}
+\begin{lstlisting}[label=exploded,language=OpenMath,numbers=none,frame=none,
+   index={OMOBJ,OMA,OMV,href,OMR,id}]
+<OMOBJ>                        
+  <OMA>                        
+    <OMS cd="nat" name="plus"/>               
+    <OMA>                      
+      <OMS cd="nat" name="plus"/>             
+      <OMA>                    
+        <OMS cd="nat" name="plus"/>           
+        <OMI>1</OMI>
+        <OMI>1</OMI>
+      </OMA>                    
+      <OMA>                     
+        <OMS cd="nat" name="plus"/>
+        <OMI>1</OMI>
+        <OMI>1</OMI>
+      </OMA>
+    </OMA>                      
+    <OMA>                       
+      <OMS cd="nat" name="plus"/>
+      <OMA>                                           
+        <OMS cd="nat" name="plus"/>
+        <OMI>1</OMI>
+        <OMI>1</OMI>
+      </OMA>   
+      <OMA>
+        <OMS cd="nat" name="plus"/>
+        <OMI>1</OMI>
+        <OMI>1</OMI>
+      </OMA>
+    </OMA>                      
+  </OMA>                        
+</OMOBJ>                        
+\end{lstlisting}
+\end{minipage}}
+
+\setbox1=\hbox{\begin{minipage}{5.2cm}
+\begin{lstlisting}[label=shared,language=OpenMath,
+     index={OMOBJ,OMA,OMV},numbers=none,frame=none]
+<OMOBJ>
+  <OMA>
+    <OMS cd="nat" name="plus"/>
+    <OMA id="t1">
+      <OMS cd="nat" name="plus"/>
+      <OMA id="t11">
+        <OMS cd="nat" name="plus"/>
+        <OMI>1</OMI>
+        <OMI>1</OMI>
+      </OMA>
+      <OMR href="#t11"/>
+
+
+
+
+    </OMA>
+    <OMR href="#t1"/>
+
+
+
+
+
+
+
+
+
+
+
+
+  </OMA>
+</OMOBJ>
+\end{lstlisting}
+  \end{minipage}}
+
+\begin{myfig}{explosion}{The {\openmath} Objects from {\myfigref{sharing}} in {\xml} Encoding}
+\begin{tabular}{|c|c|}\hline
+Shared & Exploded \\\hline\hline
+\box1 & \box0\\\hline
+\end{tabular}
+\end{myfig}
+
+To ensure that the {\xml} representations actually correspond to directed
+acyclic\atwin{directed}{acyclic}{graph} graphs, the occurrences of the
+{\element[ns-elt=om]{OMR}} must obey the global acyclicity constraint below, where we say
+that an {\openmath} element {\defin{dominate}s} all its children and all elements they
+dominate; The {\element[ns-elt=om]{OMR}} also dominates its {\defin{target}}\footnote{The
+  target of an {\openmath} element with an {\attributeshortcomment{id}{in {\sc{OpenMath}}
+      objects}} attribute is defined analogously}, i.e. the element that carries the
+{\attributeshortcomment{id}{in {\sc{OpenMath}} objects}} attribute pointed to by the
+{\attribute[ns-elt=om]{href}{OMR}} attribute.  For instance, in the representation in
+{\myfigref{explosion}} the {\element[ns-elt=om]{OMA}} element with {\snippet{xml:id="t1"}}
+and also the second {\element[ns-elt=om]{OMA}} element dominate the
+{\element[ns-elt=om]{OMA}} element with {\snippet{xml:id="t11"}}.
+\begin{quote}
+  {\bf {\openmath} Acyclicity Constraint}:\\
+  An OpenMath element may not dominate itself.
+\end{quote}
+\begin{lstlisting}[language=OpenMath,numbers=none,label=lst:chained-fraction,
+  caption={A Simple Cycle},
+  index={OMOBJ,OMA,OMV}]
+<OMOBJ>
+  <OMA id="foo">
+    <OMS cd="nat" name="divide"/>
+    <OMI>1</OMI>
+    <OMA><OMS cd="nat" name="plus"/>
+      <OMI>1</OMI>
+      <OMR href="#foo"/>
+    </OMA> 
+  </OMA>
+</OMOBJ>
+\end{lstlisting}
+In {\mylstref{chained-fraction}} the {\element[ns-elt=om]{OMA}} element with {\snippet{xml:id="foo"}}
+dominates its third child, which dominates the {\element[ns-elt=om]{OMR}} with
+{\snippet{href="foo"}}, which dominates its target: the {\element[ns-elt=om]{OMA}} element
+with {\snippet{xml:id="foo"}}. So by transitivity, this element dominates itself, and by
+the acyclicity constraint, it is not the {\xml} representation of an {\openmath}
+object.  Even though it could be given the interpretation of the continued
+fraction
+\[1\over{1 + {1\over {1+\cdots}}}\] this would correspond to an infinite tree of
+applications, which is not admitted by the {\openmath} standard. Note that the acyclicity
+constraint is not restricted to such simple cases, as the example in {\mylstref{2cycle}}
+shows.  Here, the {\element[ns-elt=om]{OMA}} with {\snippet{xml:id="bar"}} dominates its
+third child, the {\element[ns-elt=om]{OMR}} element with {\snippet{href="baz"}}, which
+dominates its target {\element[ns-elt=om]{OMA}} with {\snippet{xml:id="baz"}}, which in
+turn dominates its third child, the {\element[ns-elt=om]{OMR}} with
+{\snippet{href="bar"}}, this finally dominates its target, the original
+{\element[ns-elt=om]{OMA}} element with {\snippet{xml:id="bar"}}. So again, this pair of
+{\openmath} objects violates the acyclicity constraint and is not the {\xml} encoding of
+an {\openmath} object.
+\begin{lstlisting}[language=OpenMath,numbers=none,label=lst:2cycle,
+  caption={A Cycle of Order Two},index={OMOBJ,OMA,OMV}]
+<OMOBJ>                                   <OMOBJ>
+  <OMA id="bar">                            <OMA id="baz">
+    <OMS cd="nat" name="plus"/>               <OMS cd="nat" name="plus"/>
+    <OMI>1</OMI>                              <OMI>1</OMI>
+    <OMR href="#baz"/>                        <OMR href="#bar"/>
+  </OMA>                                    </OMA>
+</OMOBJ>                                  </OMOBJ>
+\end{lstlisting}
+\end{tsubsection}
+\end{tsection}
+
+\begin{tsection}[id=cmml]{Content MathML}
+  
+  {\cmathml} is a content markup format that represents the abstract structure of formulae
+  in trees of logical sub-expressions much like {\openmath}.  However, in contrast to that,
+  {\cmathml} provides a lot of primitive tokens and constructor elements for the
+  {\indextoo{K-14}} fragment of mathematics ({\indextoo{Kindergarten}} to $14^{th}$ grade
+  (i.e. undergraduate college level)).
+
+  The current released version of the {\mathml} recommendation is the second edition of
+  {\mathml} 2.0~\cite{CarIon:MathML03}, a maintenance release for the {\mathml} 2.0
+  recommendation~\cite{CarIon:MathML01} that cleans up many semantic issues in the content
+  {\mathml} part. We will now review those parts of {\mathml} 2.0 that are relevant to
+  {\omdoc}; for the full story see~\cite{CarIon:MathML03}.
+
+  Even though {\omdoc} allows full {\cmathml}, we will advocate the use of the {\cmathml}
+  fragment described in this section, which is largely isomorphic to {\openmath}
+  (see~\mysubsecref{omvscmml} for a discussion).
+
+\begin{myfig}{cmml}{{\cmathml} in {\omdoc}}
+\begin{scriptsize}
+\begin{tabular}{|>{\tt}l|>{\tt}l|>{\tt}p{2truecm}|>{\tt}p{4truecm}|}\hline
+{\rm Element}& \multicolumn{2}{l|}{Attributes\hspace*{2.25cm}}  & Content  \\\hline
+              & {\rm Required}  & {\rm Optional}     &            \\\hline\hline
+ m:math       & & id, xlink:href                   & \llquote{CMel}+\\\hline
+ m:apply      & & id, xlink:href                   & m:bvar?,\llquote{CMel}*\\\hline
+ m:csymbol    & definitionURL  & id, xlink:href    & m:EMPTY \\\hline
+ m:ci         & & id, xlink:href                   & \#PCDATA \\\hline       
+ m:cn         & & id, xlink:href                   & ([0-9]|,|.)(*|e([0-9]|,|.)*)?\\\hline       
+ m:bvar       & & id, xlink:href                   & m:ci|m:semantics\\\hline
+ m:semantics  & & id, xlink:href, definitionURL 
+                & \llquote{CMel},(m:annotation | m:annotation-xml)*\\\hline
+ m:annotation & & definitionURL, encoding      & \#PCDATA \\\hline
+ m:annotation-xml & & definitionURL, encoding      & ANY \\\hline
+ \multicolumn{4}{|l|}{where {\llquote{CMel}} is 
+     {\tt{m:apply|m:csymbol|m:ci|m:cn|m:semantics}}}\\\hline
+\end{tabular}
+\end{scriptsize}
+\end{myfig}
+
+\begin{tsubsection}[id=mathml-core]{The Representational Core of {\cmathml}}
+
+  The top-level element of {\mathml} is the {\eldef[ns-elt=m]{math}}\footnote{For DTD
+    validation {\omdoc} uses the {\twintoo{namespace}{prefix}} ``{\snippetin{m:}}'' for
+    {\mathml} elements, since the {\omdoc} DTD needs to include the {\mathml} DTD with an
+    {\atwintoo{explicit}{namespace}{prefix}}, as both {\mathml} and {\omdoc} have a
+    {\element{selector}} element that would clash otherwise (DTDs are not
+    {\indextoo{namespace-aware}}).} element, see {\myfigref{om-commutativity}} for an
+  example. Like {\openmath}, {\cmathml} organizes the mathematical objects into a
+  functional tree.  The basic objects ({\mathml} calls them {\twintoo{token}{element}s})
+  are
+  \begin{description}
+  \item[{\bf\indextoo{identifier}s}] (element {\eldef[ns-elt=m]{ci}}) corresponding to
+    {\indextoo{variable}s}. The content of the {\element[ns-elt=m]{ci}} element is
+    arbitrary {\pmathml}, used as the name of the identifier.
+  \item[{\bf\indextoo{number}s}] (element {\eldef[ns-elt=m]{cn}}) for number
+    expressions. The attribute {\attribute[ns-elt=m]{type}{cn}} can be used to specify the
+    mathematical type of the number, e.g. {\snippet{complex}}, {\snippet{real}}, or
+    {\snippet{integer}}. The content of the {\element[ns-elt=m]{cn}} element is
+    interpreted as the value of the number expression.
+  \item[{\bf\indextoo{symbol}s}] (element {\eldef[ns-elt=m]{csymbol}}) for arbitrary
+    symbols.  Their meaning is determined by a {\snippetin{definitionURL}} attribute that
+    is a {\twintoo{URI}{reference}} that points to a symbol declaration in a defining
+    document. The content of the {\element[ns-elt=m]{csymbol}} element is a {\pmathml}
+    representation that used to depict the symbol.
+  \end{description}
+Apart from these generic elements, {\cmathml} provides a set of about 80 empty
+content elements that stand for objects, functions, relations, and constructors
+from various basic mathematic fields.
+
+The {\eldef[ns-elt=m]{apply}} element does double duty in {\cmathml}: it is not only used
+to mark up {\indextoo{application}s}, but also represents {\indextoo{binding}} structures
+if it has an {\eldef[ns-elt=m]{bvar}} child; see {\myfigref{om-commutativity}} below for a
+use case in a universal quantifier.
+
+The {\eldef[ns-elt=m]{semantics}} element provides a way to annotate {\cmathml} elements
+with arbitrary information. The first child of the {\element[ns-elt=m]{semantics}} element
+is annotated with the information in the {\eldef[ns-elt=m]{annotation-xml}} (for
+{\xml}-based information) and {\eldef[ns-elt=m]{annotation}} (for other information)
+elements that follow it. These elements carry
+{\attribute[ns-elt=m]{definitionURL}{annotation}} attributes that point to a
+``definition'' of the kind of information provided by them. The optional
+{\attribute[ns-elt=m]{encoding}{annotation}} is a string that describes the format of the
+content.
+\end{tsubsection}
+
+\begin{tsubsection}[id=omvscmml]{OpenMath vs. Content MathML}
+
+  {\openmath} and {\mathml} are well-integrated; there are semantics-preserving converters
+  between the two formats. {\mathml} supports the {\element[ns-elt=m]{semantics}} element,
+  that can be used to annotate {\mathml} presentations of mathematical objects with their
+  {\openmath} encoding. Analogously, {\openmath} supports the {\snippet{presentation}}
+  symbol in the {\element[ns-elt=om]{OMATTR}} element, that can be used for annotating
+  with {\mathml} presentation. {\openmath} is the designated extension mechanism for
+  {\mathml} beyond {\twintoo{K-14}{mathematics}}: Any symbol outside can be encoded as a
+  {\element[ns-elt=m]{csymbol}} element, whose
+  {\attribute[ns-elt=m]{definitionURL}{csymbol}} attribute points to the {\openmath} CD
+  that defines the meaning of the symbol. Moreover all of the {\mathml} content elements
+  have counterparts in the {\openmath} core content dictionaries\index{content
+    dictionary}~\cite{URL:omcd-core}. For the purposes of {\omdoc}, we will consider the
+  various representations following four representations of a content symbol in
+  {\myfigref{content-symbols}} as equivalent.  Note that the URI in the
+  {\attribute[ns-elt=m]{definitionURL}{csymbol}} attribute does not point to a specific
+  file, but rather uses its base name for the reference.  This allows a {\mathml} (or
+  {\omdoc}) application to select the format most suitable for it.
+
+
+  \begin{myfig}{content-symbols}{Four equivalent Representations of a Content Symbol}
+  \begin{tabular}{|p{11cm}|}\hline
+    {\footnotesize\snippet{<m:plus/>}}  \\\hline 
+    {\cmathml} token element \\\hline\hline
+    {\footnotesize\snippet{<m:plus definitionURL="http://www.openmath.org/cd/arith1\#plus"/>}}\\\hline
+    {\cmathml} token element with explicit pointer\\\hline\hline
+    {\footnotesize\snippet{<m:csymbol definitionURL="http://www.openmath.org/cd/arith1\#plus"/>}}\\\hline
+    empty {\cmathml} {\element[ns-elt=m]{csymbol}} \\\hline\hline
+    {\footnotesize\snippet{<m:csymbol
+        definitionURL="http://www.openmath.org/cd/arith1\#plus">}}\\
+    \hspace{2ex}{\snippet{<m:mo>+</m:mo>}}\\
+   {\snippet{</m:csymbol>}}\\\hline
+    {\cmathml} {\element[ns-elt=m]{csymbol}} with presentation\\\hline\hline
+    {\footnotesize\snippet{<OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="plus"/>}}  \\\hline
+    {\openmath} symbol\\\hline
+  \end{tabular}
+\end{myfig}
+
+\setbox0=\hbox{\begin{minipage}{5.3cm}\def\baselinestretch{.975}
+\begin{lstlisting}[label=omvsmom,language=OpenMath,frame=none,numbers=none,
+    index={OMOBJ,OMBIND,OMS,OMBVAR,OMV,OMATTR,OMATP}]
+<OMOBJ>                            
+ <OMBIND>                          
+  <OMS cd="quant1" name="forall"/> 
+  <OMBVAR>                         
+   <OMATTR>                        
+    <OMATP>                        
+     <OMS cd="sts" name="type"/>   
+     <OMS cd="setname1" name="R"/>  
+    </OMATP>                       
+    <OMV name="a"/>                
+
+   </OMATTR>                        
+   <OMATTR>                        
+    <OMATP>                        
+     <OMS cd="sts" name="type"/>   
+     <OMS cd="setname1" name="R"/>  
+    </OMATP>                       
+
+    <OMV name="b"/>                
+   </OMATTR>                        
+  </OMBVAR>                        
+   <OMA>                           
+    <OMS cd="relation" name="eq"/> 
+    <OMA>                          
+     <OMS cd="arith1" name="plus"/>
+     <OMV name="a"/>               
+     <OMV name="b"/>               
+    </OMA>                         
+    <OMA>                          
+     <OMS cd="arith1" name="plus"/>
+     <OMV name="b"/>               
+     <OMV name="a"/>               
+    </OMA>                         
+  </OMA>                           
+ </OMBIND>                         
+</OMOBJ>
+\end{lstlisting}
+\end{minipage}}
+\setbox1=\hbox{\scriptsize\begin{minipage}{4.3cm}
+ \begin{lstlisting}[label=omvsmm,language=MathML,frame=none,numbers=none,
+     index={math,apply,forall,bvar,ci,eq,plus}]
+<m:math>
+ <m:apply>  
+  <m:forall/>
+  <m:bvar> 
+
+
+
+
+
+   <m:ci type="real">a</m:ci>
+  </m:bvar>
+
+
+
+
+
+  <m:bvar>
+   <m:ci type="real">b</m:ci>
+
+  </m:bvar>
+  <m:apply>
+   <m:eq/>
+   <m:apply>
+    <m:plus/>
+    <m:ci type="real">a</m:ci>
+    <m:ci type="real">b</m:ci>
+   </m:apply>
+   <m:apply>
+    <m:plus/>
+    <m:ci type="real">b</m:ci>
+    <m:ci type="real">a</m:ci>
+   </m:apply>
+  </m:apply>
+ </m:apply>
+</m:math>
+\end{lstlisting}
+\end{minipage}}
+\begin{myfig}{om-commutativity}{{\openmath} vs. C-{\mathml} for Commutativity}
+\begin{tabular}{cc}
+  {\large\openmath}  &  {\large\mathml}\\
+  \fbox{\box0} & \fbox{\box1}
+\end{tabular}
+\end{myfig}
+In {\myfigref{om-commutativity}} we have put the {\openmath} and content {\mathml}
+encoding of the law of commutativity for the real numbers side by side to show the
+similarities and differences. There is an obvious line-by-line similarity for the
+tree constructors and token elements. The main difference is the treatment of
+types and variables.
+\end{tsubsection}
+\end{tsection}
+
+\begin{tsection}[id=mobj:types]{Representing Types in {\cmathml} and {\openmath}}
+
+
+  Types\index{type} are representations of certain simple sets that are treated specially
+  in (human or mechanical) {\twintoo{reasoning}{process}es}. In typed representations
+  variables and constants are usually associated with types to support more guided
+  reasoning processes. Types are structurally like mathematical objects (i.e. arbitrary
+  complex trees). Since types are ubiquitous in representations of mathematics, we will
+  briefly review the best practices for representing them in {\omdoc}.
+
+  {\mathml} supplies the {\attributeshortcomment{type}{on {\sc{MathML}} objects}}
+  attribute to specify types that can be taken from an open-ended list of type names.
+  {\openmath} uses the {\element[ns-elt=om]{OMATTR}} element to associate a type (in this
+  case the set of real numbers as specified in the {\snippetin{setname1}} content
+  dictionary) with the variable, using the {\twintoo{feature}{symbol}} {\snippetin{type}}
+  from the {\snippetin{sts}} content dictionary. This mechanism is much more heavy-weight
+  in our special case, but also more expressive: it allows to use arbitrary content
+  expressions for types, which is necessary if we were to assign e.g. the type
+  $(\RR\to\RR)\to(\RR\to\RR)$ for functionals on the real numbers. In such cases, the
+  second edition of the {\mathml}2 Recommendation advises a construction using the
+  {\element[ns-elt=m]{semantics}} element (see~\cite{DevKoh:stm03} for details).
+  {\Mylstsref{complex-type-om}{complex-type-mathml}} show the realizations of a
+  quantification over a variable of functional type in both formats.
+
+\begin{lstlisting}[language=OpenMath,label=lst:complex-type-om,,mathescape,
+    caption={A Complex Type in {\openmath}},
+    index={OMOBJ,OMBIND,OMS,OMBVAR,OMV,OMATTR,OMATP}]
+<OMOBJ>                            
+  <OMBIND>                          
+    <OMS cd="quant1" name="forall"/> 
+    <OMBVAR>                         
+      <OMATTR>                        
+        <OMATP>                        
+          <OMS cd="sts" name="type"/>
+          <OMA><OMS cd="sts" name="mapsto"/>   
+            <OMA><OMS cd="sts" name="mapsto"/>   
+              <OMS cd="setname1" name="R"/>  
+              <OMS cd="setname1" name="R"/>
+            </OMA>
+            <OMA><OMS cd="sts" name="mapsto"/>   
+              <OMS cd="setname1" name="R"/>  
+              <OMS cd="setname1" name="R"/>
+            </OMA>
+          </OMA>  
+        </OMATP>                       
+        <OMV name="F"/>                
+      </OMATTR>                        
+    </OMBVAR>                        
+    $\ldots$
+  </OMBIND>                         
+</OMOBJ>
+\end{lstlisting}
+
+Note that we have essentially used the same URI (to the {\snippetin{sts}} content
+dictionary) to identify the fact that the annotation to the variable is a type (in
+a particular type system).
+
+ \begin{lstlisting}[language=MathML,label=lst:complex-type-mathml,mathescape,
+     caption={A Complex Type in {\cmathml}},
+     index={math,apply,forall,bvar,ci,csymbol}]
+<m:math>
+  <m:apply>  
+    <m:forall/>
+    <m:bvar>
+      <m:semantics>
+        <m:ci>F</m:ci>
+        <m:annotation-xml definitionURL="http://www.openmath.org/cd/sts#type">
+          <m:apply>
+            <m:csymbol definitionURL="http://www.openmath.org/cd/sts#mapsto"/>
+            <m:apply>
+              <m:csymbol definitionURL="http://www.openmath.org/cd/sts#mapsto"/>
+              <m:csymbol definitionURL="http://www.openmath.org/cd/setname1#real"/>
+              <m:csymbol definitionURL="http://www.openmath.org/cd/setname1#real"/>
+            </m:apply>        
+            <m:apply>
+              <m:csymbol definitionURL="http://www.openmath.org/cd/sts#mapsto"/>
+              <m:csymbol definitionURL="http://www.openmath.org/cd/setname1#real"/>
+              <m:csymbol definitionURL="http://www.openmath.org/cd/setname1#real"/>
+            </m:apply>        
+          </m:apply>
+        </m:annotation-xml>
+      </m:semantics>
+    </m:bvar>
+    $\ldots$
+  </m:apply>
+</m:math>
+ \end{lstlisting}
+\end{tsection}
+
+\begin{tsection}[id=sem-var,short=Semantics of Variables]{The Semantics of Variables in
+    {\openmath} and {\cmathml}}
+ 
+  A more subtle, but nonetheless crucial difference between {\openmath} and {\mathml} is
+  the handling of variables, symbols, their names, and equality conditions.  {\openmath}
+  uses the {\attribute[ns-elt=om]{name}{OMV, om:OMS}} attribute to identify a variable or
+  symbol, and delegates the presentation of its name to other methods such as style
+  sheets. As a consequence, the elements {\element[ns-elt=om]{OMS}} and
+  {\element[ns-elt=om]{OMV}} are empty, and we have to understand the value of the
+  {\attribute[ns-elt=om]{name}{OMV, om:OMS}} attribute as a {\indextoo{pointer}} to a
+  defining occurrence. In case of symbols, this is the symbol declaration in the
+  {\twintoo{content}{dictionary}} identified in the {\attribute[ns-elt=om]{cd}{OMS}}
+  attribute. A symbol {\snippet{<OMS cd="\llquote{$cd_1$}" name="\llquote{$name_1$}"/>}}
+  is equal to {\snippet{<OMS cd="\llquote{$cd_2$}" name="\llquote{$name_2$}"/>}}, iff
+  {\llquote{$cd_1$}=\llquote{$cd_2$}} and {\llquote{$name_1$}=\llquote{$name_2$}} as
+  {\xml} simple names.  In case of variables this is more difficult: if the variable is
+  bound\twin{bound}{variable} by an {\element[ns-elt=om]{OMBIND}} element\footnote{We say
+    that an {\element[ns-elt=om]{OMBIND}} element {\defemph{binds}}\index{binding} an
+    {\openmath} variable {\snippet{<OMV name="x"/>}}, iff this
+    {\element[ns-elt=om]{OMBIND}} element is the nearest one, such that {\snippet{<OMV
+        name="x"/>}} occurs in (second child of the {\element[ns-elt=om]{OMATTR}} element
+    in) the {\element[ns-elt=om]{OMBVAR}} child (this is the
+    {\twindef{defining}{occurrence}} of {\snippet{<OMV name="x"/>}} here).}, then we
+  interpret all the variables {\snippet{<OMV name="x"/>}} in the
+  {\element[ns-elt=om]{OMBIND}} element as equal and different from any variables
+  {\snippet{<OMV name="x"/>}} outside. In fact the {\openmath} standard states that bound
+  variables can be renamed\twin{renaming}{variable} without changing the object
+  ({\defemph{$\alpha$-conversion}\index{alpha@$\alpha$-conversion}}). If {\snippet{<OMV
+      name="x"/>}} is not bound, then the scope of the variable cannot be reliably
+  defined; so equality with other occurrences of the variable {\snippet{<OMV name="x"/>}}
+  becomes an ill-defined problem.  We therefore discourage the use of unbound variables in
+  {\omdoc}; they are very simple to avoid by using symbols instead, introducing suitable
+  theories if necessary (see {\mysecref{theories}}).
+
+{\mathml} goes a different route: the {\element[ns-elt=m]{csymbol}} and {\element[ns-elt=m]{ci}}
+elements have content that is {\pmathml}, which is used for the presentation of the
+variable or symbol name.\footnote{Note that surprisingly, the empty {\cmathml} elements
+  are treated more in the {\openmath} spirit.}  While this gives us a much better handle
+on presentation of objects with variables than {\openmath} (where we are basically forced
+to make due with the ASCII\footnote{In the current {\openmath} standard, variable names
+  are restricted to alphanumeric characters starting with a letter. Note that unlike with
+  symbols, we cannot associate presentation information with variables via style sheets,
+  since these are not globally unique (see {\mysecref{pres-bound}} for a discussion of the
+  {\omdoc} solution to this problem).}  representation of the variable name), the question
+of scope and equality becomes much more difficult: Are two variables (semantically) the
+same, even if they have different colors, sizes, or font families? Again, for symbols the
+situation is simpler, since the {\attribute[ns-elt=m]{definitionURL}{csymbol}} attribute on the
+{\element[ns-elt=m]{csymbol}} element establishes a global identity criterion (two symbols are
+equal, iff they have the same {\attribute[ns-elt=m]{definitionURL}{csymbol}} value (as URI
+strings; see~\cite{BerFie:uri98}).) The second edition of the {\mathml} standard adopts
+the same solution for bound variables: it recommends to annotate the {\element[ns-elt=m]{bvar}}
+elements that declare the bound variable with an {\attribute[ns-elt=m]{id}{bvar}} attribute and
+use the {\attribute[ns-elt=m]{definitionURL}{ci}} attribute on the {\twintoo{bound}{occurrence}s}
+of the {\element[ns-elt=m]{ci}} element to point to those. The following example is taken
+from~\cite{KohDev:bvm03}, which has more details.
+
+\begin{lstlisting}[language=MathML,label=bvar-mathml,
+     index={math,bvar,ci,definitionURL}]
+<m:lambda>
+  <m:bvar><m:ci xml:id="the-boundvar">complex presentation</m:ci></m:bvar>
+  <m:apply>
+    <m:plus/>
+    <m:ci definitionURL="#the-boundvar">complex presentation</m:ci>
+    <m:ci definitionURL="#the-boundvar">complex presentation</m:ci>
+  </m:apply>
+</m:lambda>  
+\end{lstlisting}
+
+For presentation in {\mathml}, this gives us the best of both approaches, the
+{\element[ns-elt=m]{ci}} content can be used, and the {\indextoo{pointer}} gives a simple
+semantic equivalence criterion. For presenting {\openmath} and {\cmathml} in other
+formats {\omdoc} makes use of the infrastructure introduced in module
+{\PRESmodule{spec}}; see {\mysecref{pres-bound}} for a discussion.
+\end{tsection}
+
+\begin{tsection}[id=legacy]{Legacy Representation for Migration}
+
+  Sometimes, {\omdoc} is used as a migration format from {\indextoo{legacy}} texts (see
+  {\mychapref{algebra}} for an example). In such documents it can be too much effort to
+  convert all mathematical objects and formulae into {\openmath} or {\cmathml} form. For
+  this situation {\omdoc} provides the {\eldef{legacy}} element, which can contain
+  arbitrary math markup\footnote{If the content is an {\xml}-based, format like Scalable
+    Vector Graphics~\cite{W3C:svg02}, the {\indextoo{DTD}} must be augmented accordingly
+    for validation.}. The {\element{legacy}} element can occur wherever an
+  {\element[ns-elt=om]{OMOBJ}} or {\element[ns-elt=m]{math}} can and has an optional
+  {\attribute[ns-attr=xml]{id}{legacy}} attribute for identification. The content is
+  described by a pair of attributes:
+\begin{itemize}
+\item {\attribute{format}{legacy}} (required) specifies the format of the content
+  using URI reference. {\omdoc} does not restrict the possible values, possible values
+  include {\attval{TeX}{format}{legacy}}, {\attval{pmml}{format}{legacy}},
+  {\attval{html}{format}{legacy}}, and {\attval{qmath}{format}{legacy}}.
+\item {\attribute{formalism}{legacy}} is optional and describes the formalism (if
+  applicable) the content is expressed in. Again, the value is unrestricted character data
+  to allow a {\twintoo{URI}{reference}} to a definition of a formalism.
+\end{itemize}
+
+For instance in the following {\element{legacy}} element, the identity function is encoded
+in the untyped $\lambda$-calculus, which is characterized by a reference to the relevant
+Wikipedia article.
+
+\begin{lstlisting}[index={legacy}]
+<legacy format="TeX" formalism="http://en.wikipedia.org/wiki/Lambda_calculus">
+  \lambda{x}{x}
+</legacy>
+\end{lstlisting}
+\end{tsection}
+\end{tchapter}
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "omdoc"
+%%% End: 
+
+% LocalWords:  pmml qmath mobjtable xref cd transc var quant arith geq OMB OMF
+% LocalWords:  OMSTR OME po OMATP OMFOREIGN om OMR arcangle nodesep openmath emph
+% LocalWords:  nat xlink href lst foo baz cmml ci cn csymbol definitionURL bvar
+% LocalWords:  sts setname eq mathml mapsto truecm PCDATA dag sem alt ascii dec
+% LocalWords:  pres omvscmml OMel dtd ref CMel BNF forall underdefined sec rep
+% LocalWords:  omattr svg xmlns boundvar mobj cdbase omcds sinx allxsinx ome ns
+% LocalWords:  omvsmom omvsmm elt mathescape attr nt OMOBJ OMV OMA OMBIND OMI
+% LocalWords:  OMBVAR omcd CDDefinition leq nums nd th

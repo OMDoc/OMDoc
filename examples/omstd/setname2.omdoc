@@ -1,0 +1,750 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  
+       xmlns="http://omdoc.org/ns"
+       xmlns:om="http://www.openmath.org/OpenMath"
+       xmlns:m="http://www.w3.org/1998/Math/MathML"
+       xmlns:o="http://omdoc.org/ns"
+       xml:id="setname2-omdoc">
+
+<metadata>
+  <dc:title>The OpenMath Content Dictionary setname2.ocd  in OMDoc form</dc:title>
+  <dc:creator role="trl">Michael Kohlhase</dc:creator>
+  <dc:creator role="aut">James Davenport</dc:creator>
+  <dc:date> 2000-02-02T00:00:00</dc:date>
+  <dc:source>Derived from the OpenMath CD http://www.openmath.org/cd/setname2.ocd.</dc:source>
+  <dc:type>Text</dc:type>
+  <dc:format>application/omdoc+xml</dc:format>
+  <dc:rights>Copyright (c) 2000-2002 Michael Kohlhase;
+    This OMDoc content dictionary is released under the OpenMath license:
+    http://monet.nag.co.uk/openmath/cdfiles/license.html
+  </dc:rights>
+  <dc:description>
+    This CD defines some common sets of mathematics.
+  </dc:description>
+</metadata>
+
+<theory xml:id="setname2">
+
+<imports xml:id="setname2-imports-setname1" from="setname1.omdoc#setname1"/>
+<imports xml:id="setname2-imports-sts" from="sts.omdoc#sts"/>
+
+<symbol name="Boolean" xml:id="Boolean">
+<metadata>
+<dc:description> 
+    This symbol represents the set of Booleans. That is the truth values,
+    true and false.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMV name="Set"/>
+    </OMOBJ>
+  </type>
+</symbol>
+
+  <notation>
+    <prototype>
+      <om:OMS cd="setname2" name="Boolean"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="setname2">Boolean</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en">
+      <m:mo>Bool</m:mo>
+    </rendering>
+  </notation>
+
+<symbol name="A" xml:id="A">
+  <metadata>
+  <dc:description> This symbol represents the set of algebraic numbers.</dc:description>
+</metadata>
+</symbol>
+
+  <notation>
+    <prototype>
+      <om:OMS cd="setname2" name="A"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="setname2">A</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en">
+      <m:mo>A</m:mo>
+    </rendering>
+  </notation>
+
+<symbol name="Zm" xml:id="Zm">
+<metadata>
+<dc:description> 
+    This symbol represents the set of integers modulo m, where m is not necessarily
+    a prime. It takes one argument, the integer m.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMS name="N" cd="setname1"/>
+	<OMA>
+	  <OMS name="structure" cd="sts"/>
+	  <OMV name="Ring"/>
+	</OMA>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="setname2" name="Zm" o:cr="fun"/>
+        <expr name="arg"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="setname2" o:cr="fun">Zm</m:csymbol>
+        <expr name="arg"/>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <m:msub>
+        <m:mo o:cr="fun">ℤ</m:mo>
+	<render name="arg"/>
+      </m:msub>
+    </rendering>
+  </notation>
+
+<symbol name="GFp" xml:id="GFp">
+  <metadata>
+  <dc:description> This symbol represents the finite field of integers modulo p, where p is a prime.</dc:description><dc:subject>GFp</dc:subject></metadata>
+  <type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMS name="P" cd="setname1"/>
+	<OMA>
+	  <OMS name="structure" cd="sts"/>
+	  <OMV name="Field"/>
+	</OMA>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="setname2" name="GFp" o:cr="fun"/>
+        <expr name="arg"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="setname2" o:cr="fun">GFp</m:csymbol>
+        <expr name="arg"/>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <m:msub>
+        <m:mo o:cr="fun">GF</m:mo>
+	<render name="arg"/>
+      </m:msub>
+    </rendering>
+  </notation>
+
+<symbol name="GFpn" xml:id="GFpn">
+<metadata>
+<dc:description> 
+    This symbol represents the finite field with
+    <legacy format="mocktex">p^n</legacy> elements, where p is a prime.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMS name="P" cd="setname1"/>
+	<OMS name="N" cd="setname1"/>
+	<OMA>
+	  <OMS name="structure" cd="sts"/>
+	  <OMV name="Field"/>
+	</OMA>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="setname2" name="GFpn" o:cr="fun"/>
+        <expr name="arg"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="setname2" o:cr="fun">GFpn</m:csymbol>
+        <expr name="arg"/>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <m:msub>
+        <m:mo o:cr="fun">GF</m:mo>
+	<render name="arg"/>
+      </m:msub>
+    </rendering>
+  </notation>
+
+<symbol name="QuotientField" xml:id="QuotientField">
+<metadata>
+<dc:description> 
+    This symbol represents the quotient field of any integral domain.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMA>
+	  <OMS name="structure" cd="sts"/>
+	  <OMV name="IntegralDomain"/>
+	</OMA>
+	<OMA>
+	  <OMS name="structure" cd="sts"/>
+	  <OMV name="Field"/>
+	</OMA>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+
+
+<symbol name="H" xml:id="H">
+  <metadata>
+  <dc:description>This  symbol represents the set of quaternions.</dc:description><dc:subject>H</dc:subject></metadata>
+  <type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMV name="Field"/>
+    </OMOBJ>
+  </type>
+</symbol>
+
+  <notation>
+    <prototype>
+      <om:OMS cd="setname2" name="H"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="setname2">H</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en"><m:mo>ℍ</m:mo></rendering>
+  </notation>
+
+<theory xml:id="setname2-nonconstitutive">
+<imports from="alg1.omdoc#alg1"/>
+<imports from="arith1.omdoc#arith1"/>
+<imports from="quant1.omdoc#quant1"/>
+<imports from="relation1.omdoc#relation1"/>
+<imports from="set1.omdoc#set1"/>
+<imports from="logic1.omdoc#logic1"/>
+
+<example xml:id="H-ex-3" type="for" for="#H">
+  <CMP>There exists a,b in the quaternions s.t. a*b neq b*a</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMBIND>
+      <OMS cd="quant1" name="exists"/>
+      <OMBVAR>
+	<OMV name="a"/>
+	<OMV name="b"/>
+      </OMBVAR>
+      <OMA>
+	<OMS cd="relation1" name="neq"/>
+	<OMA>
+	  <OMS cd="arith1" name="times"/>
+	  <OMV name="a"/>
+	  <OMV name="b"/>
+	</OMA>
+	<OMA>
+	  <OMS cd="arith1" name="times"/>
+	  <OMV name="b"/>
+	  <OMV name="a"/>
+	</OMA>
+      </OMA>
+    </OMBIND>
+  </OMOBJ>
+</example>
+
+<example xml:id="QuotientField-ex-1" type="for" for="#QuotientField">
+  <CMP> The rationals equals QuotientField(Integers)</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="relation1" name="eq"/>
+      <OMS cd="setname1" name="Q"/>
+      <OMA>
+	<OMS cd="setname2" name="QuotientField"/>
+	<OMS cd="setname1" name="Z"/>
+      </OMA>
+    </OMA>
+  </OMOBJ>
+</example>
+
+
+<example xml:id="GFpn-ex-1" type="for" for="#GFpn">
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS name="eq" cd="relation1"/>
+      <OMA>
+	<OMS name="GFp" cd="setname2"/>
+	<OMV name="p"/>
+      </OMA>
+      <OMA>
+	<OMS name="GFpn" cd="setname2"/>
+	<OMV name="p"/>
+	<OMS name="one" cd="alg1"/>
+      </OMA>
+    </OMA>
+  </OMOBJ>
+</example>
+
+<example xml:id="Zm-ex-3" type="for" for="#Zm">
+  <CMP>The integers mod 12</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMA><OMS name="Zm" cd="setname2"/><OMI> 12 </OMI></OMA></OMOBJ>
+</example>
+
+<example xml:id="Zm-ex-4" type="for" for="#Zm">
+  <CMP>The integers mod m</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMA><OMS name="Zm" cd="setname2"/><OMV name="m"/></OMA></OMOBJ>
+</example>
+
+<example xml:id="Zm-ex-5" type="for" for="#Zm">
+  <CMP>4*5=8 in Z mod 12</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS name="eq" cd="relation1"/>
+      <OMA>
+	<OMS name="times" cd="arith1"/>
+	<OMATTR>
+	  <OMATP>
+	    <OMS name="type" cd="sts"/>
+	    <OMA>
+	      <OMS name="Zm" cd="setname2"/>
+	      <OMI> 12 </OMI>
+	    </OMA>
+	  </OMATP>
+	  <OMI> 4 </OMI>
+	</OMATTR>
+	<OMATTR>
+	  <OMATP>
+	    <OMS name="type" cd="sts"/>
+	    <OMA>
+	      <OMS name="Zm" cd="setname2"/>
+	      <OMI> 12 </OMI>
+	    </OMA>
+	  </OMATP>
+	  <OMI> 5 </OMI>
+	</OMATTR>
+      </OMA>
+      <OMATTR>
+	<OMATP>
+	  <OMS name="type" cd="sts"/>
+	  <OMA>
+	    <OMS name="Zm" cd="setname2"/>
+	    <OMI> 12 </OMI>
+	  </OMA>
+	</OMATP>
+	<OMI> 8 </OMI>
+      </OMATTR>
+    </OMA>
+  </OMOBJ>
+</example>
+
+<assertion xml:id="GFp-prop-1" type="lemma">
+  <CMP><legacy format="mocktex">x^p = x mod p</legacy> </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="eq" cd="relation1"/>
+	<OMA>
+	  <OMS name="power" cd="arith1"/>
+	  <OMATTR>
+	    <OMATP>
+	      <OMS name="type" cd="sts"/>
+	      <OMA>
+		<OMS name="GFp" cd="setname2"/>
+		<OMV name="p"/>
+	      </OMA>
+	    </OMATP>
+	    <OMV name="x"/>
+	  </OMATTR>
+	  <OMV name="p"/>
+	</OMA>
+	<OMATTR>
+	  <OMATP>
+	    <OMS name="type" cd="sts"/>
+	    <OMA>
+	      <OMS name="GFp" cd="setname2"/>
+	      <OMV name="p"/>
+	    </OMA>
+	  </OMATP>
+	  <OMV name="x"/>
+	</OMATTR>
+      </OMA>
+    </OMOBJ>
+  </FMP>
+</assertion>
+
+<assertion xml:id="A-prop-1" type="lemma">
+  <CMP> The algebraic numbers are a proper subset of the reals </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="set1" name="prsubset"/>
+	<OMS cd="setname2" name="A"/>
+	<OMS cd="setname1" name="R"/>
+      </OMA>
+    </OMOBJ>
+  </FMP>
+</assertion>
+
+<assertion xml:id="A-prop-3" type="lemma">
+  <CMP> The rationals are a proper subset of the algebraic numbers </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="set1" name="prsubset"/>
+	<OMS cd="setname1" name="Q"/>
+	<OMS cd="setname2" name="A"/>
+      </OMA>
+    </OMOBJ>
+  </FMP>
+</assertion>
+
+<assertion xml:id="Boolean-prop-1" type="lemma">
+  <CMP>
+    for all b in the booleans | (there exists an nb in the booleans | 
+    nb not= b implies nb = not b)
+  </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMBIND>
+	<OMS cd="quant1" name="forall"/>
+	<OMBVAR>
+	  <OMV name="b"/>
+	</OMBVAR>
+	<OMA>
+	  <OMS cd="logic1" name="implies"/>
+	  <OMA>
+	    <OMS cd="set1" name="in"/>
+	    <OMV name="b"/>
+	    <OMS cd="setname2" name="Boolean"/>
+	  </OMA>
+	  <OMBIND>
+	    <OMS cd="quant1" name="exists"/>
+	    <OMBVAR>
+	      <OMV name="nb"/>
+	    </OMBVAR>
+	    <OMA>
+	      <OMS cd="logic1" name="and"/>
+	      <OMA>
+		<OMS cd="set1" name="in"/>
+		<OMV name="nb"/>
+		<OMS cd="setname2" name="Boolean"/>
+	      </OMA>
+	      <OMA>
+		<OMS cd="relation1" name="neq"/>
+		<OMV name="nb"/>
+		<OMV name="b"/>
+	      </OMA>
+	      <OMA>
+		<OMS cd="relation1" name="eq"/>
+		<OMV name="nb"/>
+		<OMA>
+		  <OMS cd="logic1" name="not"/>
+		  <OMV name="b"/>
+		</OMA>
+	      </OMA>
+	    </OMA>
+	  </OMBIND>
+	</OMA>
+      </OMBIND>
+    </OMOBJ>
+  </FMP>
+</assertion>
+
+<assertion xml:id="Zm-prop-1" type="lemma">
+  <CMP>
+    for all x in the integers modulo m |
+    there exists an n such that n is an integer and
+    <legacy format="mocktex">n &lt;= m  and x^n = x</legacy>.
+  </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMBIND>
+	<OMS cd="quant1" name="forall"/>
+	<OMBVAR>
+	  <OMV name="x"/>
+	</OMBVAR>
+	<OMA>
+	  <OMS cd="logic1" name="implies"/>
+	  <OMA>
+	    <OMS cd="set1" name="in"/>
+	    <OMV name="x"/>
+	    <OMA>
+	      <OMS cd="setname2" name="Zm"/>
+	      <OMV name="m"/>
+	    </OMA>
+	  </OMA>
+	  <OMBIND>
+	    <OMS cd="quant1" name="exists"/>
+	    <OMBVAR>
+	      <OMV name="n"/>
+	    </OMBVAR>
+	    <OMA>
+	      <OMS cd="logic1" name="and"/>
+	      <OMA>
+		<OMS cd="set1" name="in"/>
+		<OMV name="n"/>
+		<OMS cd="setname1" name="Z"/>
+	      </OMA>
+	      <OMA>
+		<OMS cd="relation1" name="leq"/>
+		<OMV name="n"/>
+		<OMV name="m"/>
+	      </OMA>
+	      <OMA>
+		<OMS cd="relation1" name="eq"/>
+		<OMA>
+		  <OMS cd="arith1" name="power"/>
+		  <OMV name="x"/>
+		  <OMV name="n"/>
+		</OMA>
+		<OMV name="x"/>
+	      </OMA>
+	    </OMA>
+	  </OMBIND>
+	</OMA>
+      </OMBIND>
+    </OMOBJ>
+  </FMP>
+</assertion>
+
+<assertion xml:id="QuotientField-prop-2" type="lemma">
+  <CMP> R is a field iff QuotientField(R)=R </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="equivalent" cd="logic1"/>
+	<OMA>
+	  <OMS name="in" cd="set1"/>
+	  <OMV name="R"/>
+	  <OMA>
+	    <OMS name="structure" cd="sts"/>
+	    <OMV name="Field"/>
+	  </OMA>
+	</OMA>
+	<OMA>
+	  <OMS name="eq" cd="relation1"/>
+	  <OMA>
+	    <OMS name="QuotientField" cd="setname2"/>
+	    <OMV name="R"/>
+	  </OMA>
+	  <OMV name="R"/>
+	</OMA>
+      </OMA>
+    </OMOBJ>
+  </FMP>
+</assertion>
+
+<assertion xml:id="H-prop-1" type="lemma">
+  <CMP> 1 is a quaternion and
+    there exists i,j,k s.t. i,j,k are quaternions and
+    <legacy format="mocktex">i^2 = j^2 = k^2 = ijk = -1</legacy>
+    with <legacy format="mocktex">abs(i) not = abs(j) not = abs(k) not = 1</legacy>
+    implies for all q, q a quaternion implies there exists
+    <legacy format="mocktex">r_0, r_1, r_2, r_3</legacy> reals s.t. 
+    <legacy format="mocktex">q = r_0 + r_1*i + r_2*j + r_3*k</legacy>
+  </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="logic1" name="and"/>
+	<OMA>
+	  <OMS cd="set1" name="in"/>
+	  <OMS cd="alg1" name="one"/>
+	  <OMS cd="setname2" name="H"/>
+	</OMA>
+	<OMBIND>
+	  <OMS cd="quant1" name="exists"/>
+	  <OMBVAR>
+	    <OMV name="i"/>
+	    <OMV name="j"/>
+	    <OMV name="k"/>
+	  </OMBVAR>
+	  <OMA>
+	    <OMS cd="logic1" name="and"/>
+	    <OMA>
+	      <OMS cd="set1" name="in"/>
+	      <OMV name="i"/>
+	      <OMS cd="setname2" name="H"/>
+	    </OMA>
+	    <OMA>
+	      <OMS cd="set1" name="in"/>
+	      <OMV name="j"/>
+	      <OMS cd="setname2" name="H"/>
+	    </OMA>
+	    <OMA>
+	      <OMS cd="set1" name="in"/>
+	      <OMV name="k"/>
+	      <OMS cd="setname2" name="H"/>
+	    </OMA>
+	    <OMA>
+	      <OMS cd="relation1" name="eq"/>
+	      <OMA>
+		<OMS cd="arith1" name="power"/>
+		<OMV name="i"/>
+		<OMI> 2 </OMI>
+	      </OMA>
+	      <OMA>
+		<OMS cd="arith1" name="unary_minus"/>
+		<OMS cd="alg1" name="one"/>
+	      </OMA>
+	    </OMA>
+	    <OMA>
+	      <OMS cd="relation1" name="eq"/>
+	      <OMA>
+		<OMS cd="arith1" name="power"/>
+		<OMV name="j"/>
+		<OMI> 2 </OMI>
+	      </OMA>
+	      <OMA>
+		<OMS cd="arith1" name="unary_minus"/>
+		<OMS cd="alg1" name="one"/>
+	      </OMA>
+	    </OMA>
+	    <OMA>
+	      <OMS cd="relation1" name="eq"/>
+	      <OMA>
+		<OMS cd="arith1" name="power"/>
+		<OMV name="k"/>
+		<OMI> 2 </OMI>
+	      </OMA>
+	      <OMA>
+		<OMS cd="arith1" name="unary_minus"/>
+		<OMS cd="alg1" name="one"/>
+	      </OMA>
+	    </OMA>
+	    <OMA>
+	      <OMS cd="relation1" name="eq"/>
+	      <OMA>
+		<OMS cd="arith1" name="times"/>
+		<OMV name="i"/>
+		<OMV name="j"/>
+		<OMV name="k"/>
+	      </OMA>
+	      <OMA>
+		<OMS cd="arith1" name="unary_minus"/>
+		<OMS cd="alg1" name="one"/>
+	      </OMA>
+	    </OMA>
+	    <OMA>
+	      <OMS cd="relation1" name="neq"/>
+	      <OMA>
+		<OMS cd="arith1" name="abs"/>
+		<OMV name="i"/>
+	      </OMA>
+	      <OMS cd="alg1" name="one"/>
+	    </OMA>
+	    <OMA>
+	      <OMS cd="relation1" name="neq"/>
+	      <OMA>
+		<OMS cd="arith1" name="abs"/>
+		<OMV name="j"/>
+	      </OMA>
+	      <OMS cd="alg1" name="one"/>
+	    </OMA>
+	    <OMA>
+	      <OMS cd="relation1" name="neq"/>
+	      <OMA>
+		<OMS cd="arith1" name="abs"/>
+		<OMV name="k"/>
+	      </OMA>
+	      <OMS cd="alg1" name="one"/>
+	    </OMA>
+	    <OMBIND>
+	      <OMS cd="quant1" name="forall"/>
+	      <OMBVAR>
+		<OMV name="q"/>
+	      </OMBVAR>
+	      <OMA>
+		<OMS cd="logic1" name="implies"/>
+		<OMA>
+		  <OMS cd="set1" name="in"/>
+		  <OMV name="q"/>
+		  <OMS cd="setname2" name="H"/>
+		</OMA>
+		<OMBIND>
+		  <OMS cd="quant1" name="exists"/>
+		  <OMBVAR>
+		    <OMV name="r0"/>
+		    <OMV name="r1"/>
+		    <OMV name="r2"/>
+		    <OMV name="r3"/>
+		  </OMBVAR>
+		  <OMA>
+		    <OMS cd="logic1" name="and"/>
+		    <OMA>
+		      <OMS cd="set1" name="in"/>
+		      <OMV name="r0"/>
+		      <OMS cd="setname1" name="R"/>
+		    </OMA>
+		    <OMA>
+		      <OMS cd="set1" name="in"/>
+		      <OMV name="r1"/>
+		      <OMS cd="setname1" name="R"/>
+		    </OMA>
+		    <OMA>
+		      <OMS cd="set1" name="in"/>
+		      <OMV name="r2"/>
+		      <OMS cd="setname1" name="R"/>
+		    </OMA>
+		    <OMA>
+		      <OMS cd="set1" name="in"/>
+		      <OMV name="r3"/>
+		      <OMS cd="setname1" name="R"/>
+		    </OMA>
+		    <OMA>
+		      <OMS cd="relation1" name="eq"/>
+		      <OMV name="q"/>
+		      <OMA>
+			<OMS cd="arith1" name="plus"/>
+			<OMV name="r0"/>
+			<OMA>
+			  <OMS cd="arith1" name="times"/>
+			  <OMV name="r1"/>
+			  <OMV name="i"/>
+			</OMA>
+			<OMA>
+			  <OMS cd="arith1" name="times"/>
+			  <OMV name="r2"/>
+			  <OMV name="j"/>
+			</OMA>
+			<OMA>
+			  <OMS cd="arith1" name="times"/>
+			  <OMV name="r3"/>
+			  <OMV name="k"/>
+			</OMA>
+		      </OMA>
+		    </OMA>
+		  </OMA>
+		</OMBIND>
+	      </OMA>
+	    </OMBIND>
+	  </OMA>
+	</OMBIND>
+      </OMA>
+    </OMOBJ>
+  </FMP>
+</assertion>
+</theory>
+</theory>
+</omdoc>
+

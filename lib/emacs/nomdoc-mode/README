@@ -1,0 +1,56 @@
+The nOMDoc major mode for GNU Emacs
+------------------------------------
+
+A new OMDoc mode for editing Open Mathematical Documents
+by Darko Pesikan <dpesikan@gmail.com>, 2007
+
+I. SYSTEM REQUIREMENTS
+
+1. GNU Emacs 21.3 or later (http://www.gnu.org/software/emacs/)
+2. nXML mode for Emacs (http://www.thaiopensource.com/nxml-mode/)
+3. RelaxNG schemata for OMDoc documents (https://svn.omdoc.org/repos/omdoc/trunk/rnc/)
+4. xsltproc XSLT command line processor (http://packages.debian.org/unstable/text/xsltproc)
+5. a web browser with MathML/OpenMath support
+
+
+II. INSTALLING NOMDOC MODE
+
+1. Edit .emacs file.
+
+Open ~/.emacs and add the following two lines
+
+  (setq load-path (cons <PATH-TO-YOUR-NOMDOC-LISP-FILES> load-path))
+  (require 'nomdoc-mode)
+
+Optionally, to start the mode automatically when a file with extension omdoc
+is loaded add: 
+
+  (setq auto-mode-alist (append '((\\.omdoc\\'" . nomdoc-mode)) auto-mode-alist))
+
+2. Customize variables.
+
+A number of variables must be set before all features can run properly.
+
+*    M-x customize-variable rng-schema-locating-files
+
+	Append to THE FRONT of the list of paths the path to the main file of your
+	OMDoc RelaxNG schemata (e.g. "~/omdoc/rnc/omdoc.rnc")
+
+*    M-x customize-variable nxml-syntax-highlight-flag
+
+	Set the value to NIL to enable OMDoc-specific highlighting. To control
+	tag highlighting, see variables that end with "keywords" in M-x
+	customize-group nomdoc.
+
+*    M-x customize-group, variables:
+
+	nomdoc-xsl-dir
+
+	     Set the value to the full path of the directory where XSL sheets 
+	     for conversions CMathML <-> OpenMath reside. Usually those files are
+	     in <PATH-TO-YOUR-NOMDOC-LISP-FILES>/xsl.
+
+	nomdoc-browser
+	
+	     Set the value to the command for starting your favorite web
+	     browser. Default value is "firefox".

@@ -1,0 +1,36 @@
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:odo="http://www.omdoc.org/ontology#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" > 
+  <rdf:Description rdf:about="http://purl.org/dc/elements/1.1/creator">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.omdoc.org/ontology#">
+    <dc:subject>Semantic Mathematical Markup</dc:subject>
+    <dc:contributor>Krzysztof Retel &lt;retel@macs.hw.ac.uk&gt;</dc:contributor>
+    <dc:description>OMDoc document ontology in OWL-DL.
+The homepage of this project can be found at http://mathweb.org/wiki/OMDoc/document_ontology.
+Note: SWOOP and the WonderWeb OWL validator say it's OWL-DL, but Protégé says it's OWL-Full :-( Cf. the following quote from a paper about the Pellet reasoner: “Ensuring that an RDF/XML document meets all the restrictions is a relatively difﬁcult task for authors, and many existing OWL documents are nominally OWL-Full, even though their authors intend for them to be OWL-DL.”</dc:description>
+    <dc:contributor>Normen Müller &lt;n.mueller@jacobs-university.de&gt;</dc:contributor>
+    <owl:imports rdf:resource="file:///home/clange/svn/omdoc.org/branches/omdoc-1.2/owl/st.n3"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
+    <dc:creator>Christoph Lange &lt;ch.lange@jacobs-university.de&gt;</dc:creator>
+    <owl:versionInfo>0.4.3</owl:versionInfo>
+    <owl:imports rdf:resource="file:///home/clange/svn/omdoc.org/branches/omdoc-1.2/owl/pf.n3"/>
+    <dc:title>OMDoc document ontology</dc:title>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.org/dc/elements/1.1/description">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.org/dc/elements/1.1/subject">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.org/dc/elements/1.1/contributor">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.org/dc/elements/1.1/title">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+  </rdf:Description>
+</rdf:RDF>

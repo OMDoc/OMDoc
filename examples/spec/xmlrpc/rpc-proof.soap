@@ -1,0 +1,18 @@
+<?xml version='1.0'?>
+<env:Envelope xmlns:env="http://www.w3.org/2003/05/soap-envelope">
+  <env:Body>
+    <proof xml:id="p347" for="#peter-hates-somebody"
+           xmlns="http://www.mathweb.org/omdoc"> 
+      <derive xml:id="d1">
+        <FMP><legacy format="TeX">$hates(peter,peter)$</legacy></FMP>
+        <method xref="nd.omdoc#ND.chain">
+          <premise xref="#lovelife.mary-loves-peter"/>
+          <premise xref="#lovelife.opposite"/>
+        </method>
+      </derive>
+      <derive xml:id="concl">
+        <method xref="nd.omdoc#ND.ExI"><premise xref="#d1"/></method>
+      </derive>
+    </proof>
+  </env:Body>
+</env:Envelope>

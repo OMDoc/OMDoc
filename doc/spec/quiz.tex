@@ -1,0 +1,147 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This file is part of the LaTeX sources of the OMDoc 1.3 specification
+% Copyright (c) 2006 Michael Kohlhase
+% This work is licensed by the Creative Commons Share-Alike license
+% see http://creativecommons.org/licenses/by-sa/2.5/ for details
+\svnInfo $Id: quiz.tex 9251 2012-07-23 10:29:02Z kohlhase $
+\svnKeyword $HeadURL: https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.3/doc/spec/quiz.tex $
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{tchapter}[id=quiz,short=Exercises]{Exercises (Module {\QUIZmodule{spec}})}
+%TODO: GG do it!
+  Exercises and study problems are vital parts of mathematical documents like textbooks or
+  exams, in particular, mathematical exercises contain mathematical vernacular and pose
+  the same requirements on context like mathematical statements. Therefore markup for
+  exercises has to be tightly integrated into the document format, so {\omdoc} provides a
+  module for them.
+
+  Note that the functionality provided in this module is very limited, and largely serves
+  as a place-holder for more pedagogically informed developments in the future (see
+  {\mysecref{activemath}} and~\cite{GogMelUllCai:psmmee03} for an example in the {\omdoc}
+  framework).
+
+\begin{myfig}{qtex}{The {\omdoc} Auxiliary Elements for Exercises}
+\begin{scriptsize}
+\begin{tabular}{|>{\tt}l|>{\tt}l|>{\tt}p{3.3truecm}|c|>{\tt}p{4truecm}|}\hline
+{\rm Element}& \multicolumn{2}{l|}{Attributes\hspace*{2.25cm}} & D & Content  \\\hline
+             & {\rm Req.} & {\rm Optional}             & C &           \\\hline\hline
+ exercise    &            & xml:id, class, style       & +  & CMP*,FMP*,hint?,(solution*|mc*)\\\hline
+ hint        &            & xml:id, class, style       & +  & CMP*, FMP* \\\hline
+ solution    &            & xml:id, for, class, style  & +  & \llquote{top-level element} \\\hline
+ mc          &            & xml:id, for, class, style  & -- & choice, hint?, answer\\\hline
+ choice      &            & xml:id, class, style       & +  & CMP*, FMP*    \\\hline
+ answer      & verdict    & xml:id, class, style       & +  & CMP*, FMP*      \\\hline
+\end{tabular}
+\end{scriptsize}
+\end{myfig}
+
+The {\QUIZmodule{spec}} module provides the top-level elements {\eldef{exercise}},
+{\element{hint}}, and {\element{solution}}. The first one is used for
+{\indextoo{exercise}s} and {\indextoo{assessment}s}. The question statement is represented
+in the multilingual {\element{CMP}} group\twin{multilingual}{group} followed by a
+multi-logic {\element{FMP}} group\twin{multi-logic}{group}. This information can be
+augmented by {\indextoo{hint}s} (using the {\element{hint}} element) and a
+{\indextoo{solution}}/{\indextoo{assessment}} block (using the {\element{solution}} and
+{\element{mc}} elements).
+
+The {\element{hint}} and {\element{solution}} elements can occur as children of
+{\element{exercise}}; or outside, referencing it in their optional
+{\attribute{for}{solution}} attribute. This allows a flexible positioning of the hints and
+solutions, e.g. in separate documents that can be distributed separately from the
+{\element{exercise}} elements.  The {\eldef{hint}} element contains a
+{\element{CMP}}/{\element{FMP}} group for the hint text. The {\eldef{solution}} element
+can contain any number of {\omdoc} top-level elements to explain and justify the solution.
+This is the case, where the question contains an assertion whose proof is not displayed
+and left to the reader. Here, the {\element{solution}} contains a proof.
+
+\begin{lstlisting}[label=lst:texbook-exercise,escapechar=\%,
+  caption={An Exercise from the {\TeX}Book},
+  index={exercise,hint,solution}]
+<exercise xml:id="TeXBook-18-22">
+  <CMP><xhtml:p>
+    <p>Sometimes the condition that defines a set is given as a fairly long
+      English description; for example consider `{p|p and p+2 are prime}'. An 
+      hbox would do the job:</p>
+
+    <p style="display:block;font-family:fixed">
+      $\{\,p\mid\hbox{$p$ and $p+2$ are prime}\,\}$
+    </p>
+
+    <p>but a long formula like this is troublesome in a paragraph, since an hbox cannot
+      be broken between lines, and since the glue inside the 
+      <xhtml:span style="font-family:fixed">\hbox</xhtml:span> does not vary with the inter-word
+      glue in the line that contains it. Explain how the given formula could be
+      typeset with line breaks.</p>
+  </xhtml:p></CMP>  <hint>
+    <CMP><xhtml:p>Go back and forth between math mode and horizontal mode.</xhtml:p></CMP>
+  </hint>
+  <solution>
+    <CMP><xhtml:p>
+      <xhtml:span style="font-family:fixed">
+       $\{\,p\mid p$~and $p+2$ are prime$\,\}$
+      </xhtml:span>,
+      assuming that <xhtml:span style="font-family:fixed">\mathsurround</xhtml:span> is
+      zero. The more difficult alternative '<xhtml:span style="font-family:fixed">
+      $\{\,p\mid p\\ {\rm and}\ p+2\rm\ are\ prime\,\}$</xhtml:span>'
+      is not a solution, because line breaks do not occur at 
+      <xhtml:span style="font-family:fixed">\%\textvisiblespace%</xhtml:span> (or at glue of any
+      kin) within math formulas. Of course it may be best to display a formula like
+      this, instead of breaking it between lines.
+    </xhtml:p></CMP>
+  </solution>
+</exercise>
+\end{lstlisting}
+
+{\indextoo{Multiple-choice exercise}s} (see {\mylstref{exercise}}) are represented by a
+group of {\eldef{mc}} elements inside an {\element{exercise}} element.  An {\element{mc}}
+element represents a single choice in a multiple choice element. It contains the elements
+below (in this order).
+\begin{description}
+\item[{\element{choice}}] for the description of the choice (the text the user gets to see
+  and is asked to make a decision on). The {\eldef{choice}} element carries the
+  {\attributeshort[ns-attr=xml]{id}}, {\attributeshort{style}}, and
+  {\attributeshort{class}} attributes and contains a {\element{CMP}}/{\element{FMP}} group
+  for the text.
+\item[{\element{hint}}] (optional) for a hint to the user, see above for a description.
+\item[{\element{answer}}] for the feedback to the user. This can be the correct answer, or
+  some other feedback (e.g. another hint, without revealing the correct answer).  The
+  {\attribute{verdict}{answer}} attribute specifies the truth of the answer, it can have
+  the values {\attval{true}{verdict}{answer}} or {\attval{false}{verdict}{answer}}. This
+  element is required, inside a {\element{mc}}, since the {\attribute{verdict}{answer}} is
+  needed. It can be empty if no feedback is available. Furthermore, the {\eldef{answer}}
+  element carries the {\attributeshort[ns-attr=xml]{id}}, {\attributeshort{style}}, and
+  {\attributeshort{class}} attributes and contains a {\element{CMP}}/{\element{FMP}} group
+  for the text.
+\end{description}
+
+\begin{lstlisting}[label=lst:exercise,mathescape,
+  caption={A Multiple-Choice Exercise in {\omdoc}},
+  index={exercise,mc,choice,answer}]
+<exercise for="#ida.c6s1p4.l1" xml:id="ida.c6s1p4.mc1">
+  <CMP><xhtml:p>
+    What is the unit element of the semi-group $Q$ with operation $a*b = 3ab$?
+  </xhtml:p></CMP> 
+  <mc>
+    <choice><FMP><OMOBJ><OMI>1</OMI></OMOBJ></FMP></choice>
+    <answer verdict="false"><CMP><xhtml:p>No, $1*1=3$ and not 1</xhtml:p></CMP></answer>
+  </mc>
+  <mc>
+    <choice><CMP><xhtml:p>1/3</xhtml:p></CMP></choice>
+    <answer verdict="true"></answer>
+  </mc>
+  <mc>
+    <choice><CMP><xhtml:p>It has no unit.</xhtml:p></CMP></choice>
+    <answer verdict="false"><CMP><xhtml:p>No, try another answer</xhtml:p></CMP></answer>
+  </mc>
+</exercise>
+\end{lstlisting}
+\end{tchapter}
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "omdoc"
+%%% End: 
+
+% LocalWords:  qtex CMP FMP mc proofobject TeXBook hbox lst texbook truecm OMI
+% LocalWords:  escapechar OMOBJ omdoc ns attr Req multi activemath

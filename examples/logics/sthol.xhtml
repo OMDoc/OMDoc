@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet  type="text/xsl" href="mathml.xsl"?><html xmlns="http://www.w3.org/1999/xhtml" xmlns:pref="http://www.w3.org/2002/Math/preference" pref:renderer="mathplayer-dl">
+  <head>
+    <link rel="stylesheet" type="text/css" href="omdoc-cnx.css"/>
+    <title>Simply Typed Higher-Order Logic</title>
+  </head>
+  <body>
+<div class="titleblock">
+<div class="title">Simply Typed Higher-Order Logic</div>
+<div class="authors">Michael Kohlhase</div>
+<div class="date">2002-02-27</div></div>
+
+
+<div class="omtext" id="sthol-intro">
+<p>
+      This theory provides the classical two-valued first-order
+      quantifiers.
+    </p>
+</div>
+
+<div class="symbol" id="forall">
+<div class="titlebox">
+<span class="titleword">Concept</span>forall</div>This symbol is the binding symbol for the universal
+       quantifier.</div>
+
+<div class="example" id="forall-ex-1">
+<span class="titleword">Example</span>
+<p>All objects are equal to themselves</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid110130"><semantics><mrow id="MCRid110133"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#forall" xlink:type="simple" id="MCRid110135">∀</mo><mrow id="MCRid110141"><mi id="MCRid110142">x</mi></mrow><mi id="MCRid110155">x</mi><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#eq" xlink:type="simple" id="MCRid110148">=</mo><mi id="MCRid110159">x</mi></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid110130" xlink:type="simple"><OMBIND xlink:href="MCRid110133" xlink:type="simple"><OMS cd="sthol" name="forall" xlink:href="MCRid110135" xlink:type="simple"/><OMBVAR xlink:href="MCRid110141" xlink:type="simple"><OMV name="x" xlink:href="MCRid110142" xlink:type="simple"/></OMBVAR><OMA xlink:href="MCRid110146" xlink:type="simple"><OMS cd="sthol" name="eq" xlink:href="MCRid110148" xlink:type="simple"/><OMV name="x" xlink:href="MCRid110155" xlink:type="simple"/><OMV name="x" xlink:href="MCRid110159" xlink:type="simple"/></OMA></OMBIND></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="symbol" id="exists">
+<div class="titlebox">
+<span class="titleword">Concept</span>exists</div>This symbol is the binding symbol for the  existential ("there exists") quantifier.</div>
+
+<div class="example" id="exists-ex-1">
+<span class="titleword">Example</span>
+<p>If the universe is non-empty, then the following statement is true</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid133835"><semantics><mrow id="MCRid133838"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#exists" xlink:type="simple" id="MCRid133840">∃</mo><mrow id="MCRid133847"><mi id="MCRid133848">x</mi></mrow><mi id="MCRid133860">x</mi><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#eq" xlink:type="simple" id="MCRid133854">=</mo><mi id="MCRid133864">x</mi></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid133835" xlink:type="simple"><OMBIND xlink:href="MCRid133838" xlink:type="simple"><OMS cd="sthol" name="exists" xlink:href="MCRid133840" xlink:type="simple"/><OMBVAR xlink:href="MCRid133847" xlink:type="simple"><OMV name="x" xlink:href="MCRid133848" xlink:type="simple"/></OMBVAR><OMA xlink:href="MCRid133852" xlink:type="simple"><OMS cd="sthol" name="eq" xlink:href="MCRid133854" xlink:type="simple"/><OMV name="x" xlink:href="MCRid133860" xlink:type="simple"/><OMV name="x" xlink:href="MCRid133864" xlink:type="simple"/></OMA></OMBIND></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="omtext" id="sthol-hoas-intro">
+<p>Some authors prefer to use higher-order abstract syntax for quantifiers,
+      this variant only uses the binding symbol
+      <math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid133894"><semantics><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="lambda-calc.xml#lambda" xlink:type="simple" id="MCRid133896">λ</mo><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid133894" xlink:type="simple"><OMS cd="lambda-calc" name="lambda" xlink:href="MCRid133896" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math>
+      and models the quantifiers as higher-order predicates.
+    </p>
+</div>
+
+<div class="symbol" id="forall-op">
+<div class="titlebox">
+<span class="titleword">Concept</span>forall-op</div>This symbol is universal predicate of higher-order abstract
+       syntax.</div>
+
+<div class="example" id="forall-op-ex-1">
+<span class="titleword">Example</span>
+<p>All objects are equal to themselves</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid109073"><semantics><mrow id="MCRid109076"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#forall-op" xlink:type="simple" id="MCRid109078">Π</mo><mrow><mo fence="true">(</mo><mrow><mrow id="MCRid109084"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="lambda-calc.xml#lambda" xlink:type="simple" id="MCRid109086">λ</mo><mrow id="MCRid109093"><mi id="MCRid109094">x</mi></mrow><mi id="MCRid109106">x</mi><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#eq" xlink:type="simple" id="MCRid109100">=</mo><mi id="MCRid109110">x</mi></mrow></mrow><mo fence="true">)</mo></mrow></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid109073" xlink:type="simple"><OMA xlink:href="MCRid109076" xlink:type="simple"><OMS cd="sthol" name="forall-op" xlink:href="MCRid109078" xlink:type="simple"/><OMBIND xlink:href="MCRid109084" xlink:type="simple"><OMS cd="lambda-calc" name="lambda" xlink:href="MCRid109086" xlink:type="simple"/><OMBVAR xlink:href="MCRid109093" xlink:type="simple"><OMV name="x" xlink:href="MCRid109094" xlink:type="simple"/></OMBVAR><OMA xlink:href="MCRid109098" xlink:type="simple"><OMS cd="sthol" name="eq" xlink:href="MCRid109100" xlink:type="simple"/><OMV name="x" xlink:href="MCRid109106" xlink:type="simple"/><OMV name="x" xlink:href="MCRid109110" xlink:type="simple"/></OMA></OMBIND></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="symbol" id="exists-op">
+<div class="titlebox">
+<span class="titleword">Concept</span>exists-op</div>The existential ("there exists") quantifier of higher-order
+       abstract syntax.</div>
+
+<div class="example" id="exists-op-ex-1">
+<span class="titleword">Example</span>
+<p>If the universe is non-empty, then the following statement is true</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid109220"><semantics><mrow id="MCRid109223"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#exists-op" xlink:type="simple" id="MCRid109225">Σ</mo><mrow><mo fence="true">(</mo><mrow><mrow id="MCRid109232"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="lambda-calc.xml#lambda" xlink:type="simple" id="MCRid109234">λ</mo><mrow id="MCRid109240"><mi id="MCRid109241">x</mi></mrow><mi id="MCRid109254">x</mi><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#eq" xlink:type="simple" id="MCRid109247">=</mo><mi id="MCRid109258">x</mi></mrow></mrow><mo fence="true">)</mo></mrow></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid109220" xlink:type="simple"><OMA xlink:href="MCRid109223" xlink:type="simple"><OMS cd="sthol" name="exists-op" xlink:href="MCRid109225" xlink:type="simple"/><OMBIND xlink:href="MCRid109232" xlink:type="simple"><OMS cd="lambda-calc" name="lambda" xlink:href="MCRid109234" xlink:type="simple"/><OMBVAR xlink:href="MCRid109240" xlink:type="simple"><OMV name="x" xlink:href="MCRid109241" xlink:type="simple"/></OMBVAR><OMA xlink:href="MCRid109245" xlink:type="simple"><OMS cd="sthol" name="eq" xlink:href="MCRid109247" xlink:type="simple"/><OMV name="x" xlink:href="MCRid109254" xlink:type="simple"/><OMV name="x" xlink:href="MCRid109258" xlink:type="simple"/></OMA></OMBIND></OMA></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="symbol" id="eq">
+<div class="titlebox">
+<span class="titleword">Concept</span>eq</div>Higher-order equality.</div>
+
+<div class="omtext" id="stholif-intro">
+<p>The theory of higher-order logic with if/then/else.</p>
+</div>
+
+<div class="symbol" id="if">
+<div class="titlebox">
+<span class="titleword">Concept</span>if</div>This symbol is the ternary if/then/else operator. </div>
+
+<div class="example" id="if-axiom-1">
+<span class="titleword">Example</span>
+<p>For any <math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid138300"><semantics><mi id="MCRid138301">x</mi><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid138300" xlink:type="simple"><OMV name="x" xlink:href="MCRid138301" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math>, <math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid138305"><semantics><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid138305" xlink:type="simple"/></annotation-xml></semantics></math>
+     returns <math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid138313"><semantics><mi id="MCRid138314">x</mi><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid138313" xlink:type="simple"><OMV name="x" xlink:href="MCRid138314" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math>.
+   </p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid138319"><semantics><mrow id="MCRid138322"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="sthol.xml#forall" xlink:type="simple" id="MCRid138324">∀</mo><mrow id="MCRid138330"><mi id="MCRid138331">x</mi><mo separator="true">,</mo><mi id="MCRid138334">y</mi><mo separator="true">,</mo><mi id="MCRid138338">z</mi></mrow><mfenced id="id138342" open="(" close=")" separators=""><mi id="MCRid138351">x</mi><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="pl0.xml#implies" xlink:type="simple" id="MCRid138344">⇒</mo></mfenced></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid138319" xlink:type="simple"><OMBIND xlink:href="MCRid138322" xlink:type="simple"><OMS cd="sthol" name="forall" xlink:href="MCRid138324" xlink:type="simple"/><OMBVAR xlink:href="MCRid138330" xlink:type="simple"><OMV name="x" xlink:href="MCRid138331" xlink:type="simple"/><OMV name="y" xlink:href="MCRid138334" xlink:type="simple"/><OMV name="z" xlink:href="MCRid138338" xlink:type="simple"/></OMBVAR><OMA xlink:href="MCRid138342" xlink:type="simple"><OMS cd="pl0" name="implies" xlink:href="MCRid138344" xlink:type="simple"/><OMV name="x" xlink:href="MCRid138351" xlink:type="simple"/></OMA></OMBIND></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="omtext" id="sthold-intro">
+<p>The theory of higher-order logic with descriptions.</p>
+</div>
+
+<div class="symbol" id="that">
+<div class="titlebox">
+<span class="titleword">Concept</span>that</div>This symbol is the binding symbol for definite
+	descriptions. </div>
+
+<div class="example" id="that-ex-1">
+<span class="titleword">Example</span>
+<p>For any <math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid138503"><semantics><mi id="MCRid138504">x</mi><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid138503" xlink:type="simple"><OMV name="x" xlink:href="MCRid138504" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math>, <math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid138509"><semantics><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid138509" xlink:type="simple"/></annotation-xml></semantics></math>
+     returns <math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid138516"><semantics><mi id="MCRid138517">x</mi><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid138516" xlink:type="simple"><OMV name="x" xlink:href="MCRid138517" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math>.
+   </p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid138522"><semantics><mrow id="MCRid138525"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#forall" xlink:type="simple" id="MCRid138527">∀</mo><mrow id="MCRid138534"><mi id="MCRid138535">x</mi></mrow><mrow id="MCRid138547"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#that" xlink:type="simple" id="MCRid138553">℩</mo><mrow id="MCRid138559"><mi id="MCRid138560">y</mi></mrow><mi id="MCRid138573">x</mi><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="ind.xml#eq" xlink:type="simple" id="MCRid138566">=</mo><mi id="MCRid138577">y</mi></mrow><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#eq" xlink:type="simple" id="MCRid138541">=</mo><mi id="MCRid138583">x</mi></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid138522" xlink:type="simple"><OMBIND xlink:href="MCRid138525" xlink:type="simple"><OMS cd="sthol" name="forall" xlink:href="MCRid138527" xlink:type="simple"/><OMBVAR xlink:href="MCRid138534" xlink:type="simple"><OMV name="x" xlink:href="MCRid138535" xlink:type="simple"/></OMBVAR><OMA xlink:href="MCRid138539" xlink:type="simple"><OMS cd="sthol" name="eq" xlink:href="MCRid138541" xlink:type="simple"/><OMBIND xlink:href="MCRid138547" xlink:type="simple"><OMS cd="sthold" name="that" xlink:href="MCRid138553" xlink:type="simple"/><OMBVAR xlink:href="MCRid138559" xlink:type="simple"><OMV name="y" xlink:href="MCRid138560" xlink:type="simple"/></OMBVAR><OMA xlink:href="MCRid138564" xlink:type="simple"><OMS cd="ind" name="eq" xlink:href="MCRid138566" xlink:type="simple"/><OMV name="x" xlink:href="MCRid138573" xlink:type="simple"/><OMV name="y" xlink:href="MCRid138577" xlink:type="simple"/></OMA></OMBIND><OMV name="x" xlink:href="MCRid138583" xlink:type="simple"/></OMA></OMBIND></OMOBJ></annotation-xml></semantics></math></div>
+
+<div class="omtext" id="stholc-intro">
+<p>The theory of higher-order logic with a choice operator.</p>
+</div>
+
+<div class="symbol" id="choose">
+<div class="titlebox">
+<span class="titleword">Concept</span>choose</div>This symbol is the binding symbol for choice
+	operator.</div>
+
+<div class="axiom" id="choice-ax">
+<span class="titleword">Axiom</span> (The axiom of choice for ℩.) 
+<p>For any property <math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid138751"><semantics><mi id="MCRid138752">P</mi><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid138751" xlink:type="simple"><OMV name="P" xlink:href="MCRid138752" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math>,  that can be satisfied
+      by some <math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid138757"><semantics><mi id="MCRid138758">x</mi><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid138757" xlink:type="simple"><OMV name="x" xlink:href="MCRid138758" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math>, <math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid138764"><semantics><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid138764" xlink:type="simple"/></annotation-xml></semantics></math> 
+     chooses a concrete witness.
+   </p>
+
+<span class="FMP"><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid138778"><semantics><mrow id="MCRid138781"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#forall" xlink:type="simple" id="MCRid138783">∀</mo><mrow id="MCRid138789"><mi id="MCRid138790">P</mi></mrow><mfenced id="id138794" open="(" close=")" separators=""><mrow id="MCRid138803"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#exists" xlink:type="simple" id="MCRid138805">∃</mo><mrow id="MCRid138811"><mi id="MCRid138813">X</mi></mrow><mrow id="MCRid138817"><mi id="MCRid138818">P</mi><mrow><mo fence="true">(</mo><mrow><mi id="MCRid138821">x</mi></mrow><mo fence="true">)</mo></mrow></mrow></mrow><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="pl0.xml#implies" xlink:type="simple" id="MCRid138797">⇒</mo><mrow id="MCRid138827"><mi id="MCRid138829">P</mi><mrow><mo fence="true">(</mo><mrow><mrow id="MCRid138833"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#choose" xlink:type="simple" id="MCRid138839">℩</mo><mrow id="MCRid138846"><mi id="MCRid138847">y</mi></mrow><mi id="MCRid138854">S</mi></mrow></mrow><mo fence="true">)</mo></mrow></mrow></mfenced></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid138778" xlink:type="simple"><OMBIND xlink:href="MCRid138781" xlink:type="simple"><OMS cd="sthol" name="forall" xlink:href="MCRid138783" xlink:type="simple"/><OMBVAR xlink:href="MCRid138789" xlink:type="simple"><OMV name="P" xlink:href="MCRid138790" xlink:type="simple"/></OMBVAR><OMA xlink:href="MCRid138794" xlink:type="simple"><OMS cd="pl0" name="implies" xlink:href="MCRid138797" xlink:type="simple"/><OMBIND xlink:href="MCRid138803" xlink:type="simple"><OMS cd="sthol" name="exists" xlink:href="MCRid138805" xlink:type="simple"/><OMBVAR xlink:href="MCRid138811" xlink:type="simple"><OMV name="X" xlink:href="MCRid138813" xlink:type="simple"/></OMBVAR><OMA xlink:href="MCRid138817" xlink:type="simple"><OMV name="P" xlink:href="MCRid138818" xlink:type="simple"/><OMV name="x" xlink:href="MCRid138821" xlink:type="simple"/></OMA></OMBIND><OMA xlink:href="MCRid138827" xlink:type="simple"><OMV name="P" xlink:href="MCRid138829" xlink:type="simple"/><OMBIND xlink:href="MCRid138833" xlink:type="simple"><OMS cd="stholc" name="choose" xlink:href="MCRid138839" xlink:type="simple"/><OMBVAR xlink:href="MCRid138846" xlink:type="simple"><OMV name="y" xlink:href="MCRid138847" xlink:type="simple"/></OMBVAR><OMV name="S" xlink:href="MCRid138854" xlink:type="simple"/></OMBIND></OMA></OMA></OMBIND></OMOBJ></annotation-xml></semantics></math></span></div>
+
+<div class="symbol" id="choice-op">
+<div class="titlebox">
+<span class="titleword">Concept</span>choice-op</div>This symbol is a choice function.</div>
+
+<div class="axiom" id="choice-op-ax">
+<span class="titleword">Axiom</span> (The axiom of choice for ι.) 
+<p>For any non-empty set <math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid138978"><semantics><mi id="MCRid138980">S</mi><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid138978" xlink:type="simple"><OMV name="S" xlink:href="MCRid138980" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math>,
+      <math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid138984"><semantics><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#choice-op" xlink:type="simple" id="MCRid138986">ι</mo><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid138984" xlink:type="simple"><OMS cd="stholc" name="choice-op" xlink:href="MCRid138986" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math>
+       returns a member of <math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid138994"><semantics><mi id="MCRid138995">S</mi><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid138994" xlink:type="simple"><OMV name="S" xlink:href="MCRid138995" xlink:type="simple"/></OMOBJ></annotation-xml></semantics></math>.
+   </p>
+
+<span class="FMP"><math xmlns="http://www.w3.org/1998/Math/MathML" id="MCRid139008"><semantics><mrow id="MCRid139011"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#forall" xlink:type="simple" id="MCRid139013">∀</mo><mrow id="MCRid139019"><mi id="MCRid139020">S</mi></mrow><mfenced id="id139024" open="(" close=")" separators=""><mrow id="MCRid139032"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#exists" xlink:type="simple" id="MCRid139034">∃</mo><mrow id="MCRid139041"><mi id="MCRid139042">X</mi></mrow><mrow id="MCRid139046"><mi id="MCRid139047">S</mi><mrow><mo fence="true">(</mo><mrow><mi id="MCRid139050">x</mi></mrow><mo fence="true">)</mo></mrow></mrow></mrow><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="pl0.xml#implies" xlink:type="simple" id="MCRid139026">⇒</mo><mrow id="MCRid139055"><mi id="MCRid139058">S</mi><mrow><mo fence="true">(</mo><mrow><mrow id="MCRid139062"><mo xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#choose" xlink:type="simple" id="MCRid139064">℩</mo><mrow><mo fence="true">(</mo><mrow><mi id="MCRid139070">S</mi></mrow><mo fence="true">)</mo></mrow></mrow></mrow><mo fence="true">)</mo></mrow></mrow></mfenced></mrow><annotation-xml encoding="OpenMath"><OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="MCRid139008" xlink:type="simple"><OMBIND xlink:href="MCRid139011" xlink:type="simple"><OMS cd="sthol" name="forall" xlink:href="MCRid139013" xlink:type="simple"/><OMBVAR xlink:href="MCRid139019" xlink:type="simple"><OMV name="S" xlink:href="MCRid139020" xlink:type="simple"/></OMBVAR><OMA xlink:href="MCRid139024" xlink:type="simple"><OMS cd="pl0" name="implies" xlink:href="MCRid139026" xlink:type="simple"/><OMBIND xlink:href="MCRid139032" xlink:type="simple"><OMS cd="sthol" name="exists" xlink:href="MCRid139034" xlink:type="simple"/><OMBVAR xlink:href="MCRid139041" xlink:type="simple"><OMV name="X" xlink:href="MCRid139042" xlink:type="simple"/></OMBVAR><OMA xlink:href="MCRid139046" xlink:type="simple"><OMV name="S" xlink:href="MCRid139047" xlink:type="simple"/><OMV name="x" xlink:href="MCRid139050" xlink:type="simple"/></OMA></OMBIND><OMA xlink:href="MCRid139055" xlink:type="simple"><OMV name="S" xlink:href="MCRid139058" xlink:type="simple"/><OMA xlink:href="MCRid139062" xlink:type="simple"><OMS cd="stholc" name="choose" xlink:href="MCRid139064" xlink:type="simple"/><OMV name="S" xlink:href="MCRid139070" xlink:type="simple"/></OMA></OMA></OMA></OMBIND></OMOBJ></annotation-xml></semantics></math></span></div>
+
+
+
+</body>
+</html>

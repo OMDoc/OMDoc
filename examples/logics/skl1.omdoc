@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE omdoc PUBLIC "-//OMDoc//DTD OMDoc V1.3//EN"
+                "../../dtd/omdoc.dtd" []>
+
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  xmlns="http://omdoc.org/ns"
+xml:id="skl1.omdoc">
+
+ <metadata>
+  <dc:title>Strong First-Order Kleene Logic</dc:title>
+  <dc:creator role="aut">Michael Kohlhase</dc:creator>
+  <dc:date>2002-06-12T00:00:00</dc:date>
+  <dc:description>
+   This theory provides the three-valued first-order quantifiers for strong Kleene
+   Logic.
+  </dc:description>
+ </metadata>
+
+ <theory xml:id="skl1">
+  <imports xml:id="skl1-imports-skl0" from="pl0.omdoc#pl0"/>
+  <imports xml:id="skl1-imports-ind" from="ind.omdoc#ind"/>
+
+  <symbol name="forall" xml:id="skl1.forall">
+   <metadata>
+     <dc:subject>forall</dc:subject>
+     <dc:description>This symbol is the binding symbol for the three-calued
+       universal ("for all") quantifier.</dc:description>
+   </metadata>
+  </symbol>
+
+  <presentation xml:id="pr-forall" for="#forall">
+   <use  format="TeX">{\forall}</use>
+   <use  format="html|pmml">&#x02200;</use>
+   <use format="pvs">FORALL</use>
+  </presentation>
+
+  <example xml:id="forall-ex-1" type="for" for="#skl1.forall">
+   <CMP>All objects are equal to themselves</CMP>
+   <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMBIND>
+     <OMS cd="skl1" name="forall"/>
+     <OMBVAR><OMV name="x"/></OMBVAR>
+     <OMA>
+      <OMS cd="ind" name="eq"/>
+      <OMV name="x"/>
+      <OMV name="x"/>
+     </OMA>
+    </OMBIND>
+   </OMOBJ>
+  </example>
+
+  <symbol name="exists" xml:id="skl1.exists">
+   <metadata><dc:subject>exists</dc:subject>
+   <dc:description>This symbol is the binding symbol for the three-valued existential ("there
+     exists") quantifier.</dc:description>
+ </metadata>
+  </symbol>
+  <presentation xml:id="pr-exists" for="#exists">
+   <use  format="TeX">\exists</use>
+   <use  format="html|pmml">&#x02203;</use>
+   <use format="pvs">EXISTS</use>
+  </presentation>
+
+  <example xml:id="exists-ex-1" type="for" for="#skl1.exists">
+   <CMP>If the universe is non-empty, then the following statement is true</CMP>
+   <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMBIND>
+     <OMS cd="skl1" name="exists"/>
+     <OMBVAR><OMV name="x"/></OMBVAR>
+     <OMA>
+      <OMS cd="ind" name="eq"/>
+      <OMV name="x"/>
+      <OMV name="x"/>
+     </OMA>
+    </OMBIND>
+   </OMOBJ>
+  </example>
+ </theory>
+</omdoc>

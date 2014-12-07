@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE omdoc PUBLIC "-//OMDoc//DTD OMDoc V1.3//EN"
+                "../../../dtd/omdoc.dtd"
+ [<!ENTITY % omdoc.xmlns.theory.attrib "xmlns:bourbaki CDATA #IMPLIED">]>
+
+ <omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  xmlns="http://omdoc.org/ns"
+xml:id="background.omdoc">
+ <metadata>
+   <dc:title>The Background for Bourbaki's Algebra</dc:title>
+   <dc:creator role="trl">Michael Kohlhase</dc:creator> 
+   <dc:date action="created">2002-01-07T13:10:00Z</dc:date>
+   <dc:description>The Background for Bourbaki's Algebra</dc:description>
+   <dc:type>Dataset</dc:type>
+   <dc:format>application/omdoc+xml</dc:format>
+ </metadata>
+ 
+ <theory xml:id="functions">
+   <imports xml:id="functions-imports-sets" from="sets"/>
+   
+   <symbol name="function">
+<metadata>
+<dc:description>The property of being a function.</dc:description>
+</metadata>
+</symbol>
+
+   <symbol name="value">
+<metadata>
+<dc:description>The value of an argument under a function.</dc:description>
+</metadata>
+</symbol>
+
+   <definition xml:id="function-def" for="function value" type="informal">
+     <CMP>Let <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="A"/></OMOBJ> and <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="B"/></OMOBJ>
+       be sets, a relation
+       <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	 <OMA>
+	   <OMS cd="sets" name="subset"/>
+	   <OMV name="F"/>
+	   <OMA>
+	     <OMS cd="products" name="Cartesian_product"/>
+	     <OMV name="A"/>
+	     <OMV name="B"/>
+	   </OMA>
+	 </OMA>
+       </OMOBJ> is called a
+       <term cd="functions" name="function" role="definiens">function</term>, iff for all
+       <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	 <OMA>
+	   <OMS cd="sets" name="in"/>
+	   <OMV name="a"/>
+	   <OMV name="A"/>
+	 </OMA>
+       </OMOBJ> there is exactly one <term cd="functions" name="value" role="definiens">value</term>
+       <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	 <OMA>
+	   <OMS cd="sets" name="in"/>
+	   <OMV name="b"/>
+	   <OMV name="B"/>
+	 </OMA>
+       </OMOBJ> with
+       <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	 <OMA>
+	   <OMS cd="set1" name="in"/>
+	   <OMA>
+	     <OMS cd="products" name="pair"/>
+	     <OMV name="a"/>
+	     <OMV name="b"/>
+	   </OMA>
+	   <OMV name="F"/>
+	 </OMA>
+       </OMOBJ>
+     </CMP>
+   </definition>
+	       
+   <symbol name="pattern-defined">
+<metadata>
+<dc:description>A symbol for definition of functions by patterns</dc:description>
+</metadata>
+</symbol>
+
+   <presentation for="top" role="applied" fixity="infix">
+     <use format="TeX">\mapsto</use>
+     <use format="html|pmml">&#x021A6;</use>
+   </presentation>
+
+ </theory>
+
+ <theory xml:id="products">
+   <imports xml:id="products-imports-sets" from="sets"/>
+
+   <symbol name="cartesian_product">
+<metadata>
+<dc:description>
+       This symbol represents an n-ary construction function for constructing
+       the Cartesian product of sets. It takes n set arguments in order to
+       construct their Cartesian product.
+     </dc:description>
+</metadata>
+</symbol>
+
+
+   <presentation for="cartesian_product"
+		 role="applied" lbrack="" rbrack="" fixity="assoc">
+     <use  format="TeX">{\times}</use>
+     <use  format="pmml|html">&#x02A2F;</use>
+   </presentation>
+
+   <presentation for="cartesian_product">
+     <use format="cmml" element="cartesianproduct"/>
+   </presentation>
+
+   <symbol name="pair">
+<metadata>
+<dc:description>The pairing constructor</dc:description>
+</metadata>
+</symbol>
+
+
+   <presentation for="pair">
+     <use format="default" lbrack="&lt;" rbrack="&gt;" separator=","/>
+   </presentation>
+ </theory>
+
+ <theory xml:id="sets">
+   <symbol name="set">
+     <metadata>
+  <dc:description> The property of being a set. </dc:description>
+</metadata>
+</symbol>
+
+   <symbol name="union">
+<metadata>
+<dc:description> 
+       This symbol is used to denote the n-ary union of multisets. It
+       takes multisets as arguments, and denotes the multiset that 
+       contains all the elements that occur in any of them, with 
+       multiplicity the sum of all the multiplicities in the multiset 
+       arguments.
+   </dc:description>
+</metadata>
+</symbol>
+   <presentation for="union" role="applied" fixity="assoc" precedence="500">
+     <use  format="TeX">{\cup}</use>
+     <use  format="html|pmml">&#x0222A;</use>
+   </presentation>
+   <presentation for="union"><use format="cmml" element="union"/></presentation>
+
+   <symbol name="subset">
+     <metadata>
+  <dc:description> The subset relation. </dc:description>
+</metadata>
+</symbol>
+   <presentation for="subset" role="applied" fixity="infix" precedence="700">
+     <use  format="TeX">{\subseteq}</use>
+     <use  format="html|pmml">&#x02286;</use>
+   </presentation>
+   <presentation for="subset">
+     <use format="cmml" element="subset"/>
+   </presentation>
+
+   <symbol name="intersect">
+<metadata>
+<dc:description> 
+       This symbol is used to denote the n-ary intersection of 
+       multisets. It takes multisets as arguments, and denotes the 
+       multiset that contains all the elements that occur in all of 
+       them, with multiplicity the minimum of their multiplicities 
+       in all multisets.
+   </dc:description>
+</metadata>
+</symbol>
+   <presentation for="intersect" role="applied" fixity="assoc" precedence="500">
+     <use  format="TeX">{\cap}</use>
+     <use  format="html|pmml">&#x02229;</use>
+   </presentation>
+   <presentation for="intersect">
+     <use format="cmml" element="intersect"/>
+   </presentation>
+ </theory>
+ </omdoc>

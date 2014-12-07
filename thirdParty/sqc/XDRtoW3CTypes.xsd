@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema attributeFormDefault="unqualified" blockDefault=""
+    elementFormDefault="unqualified" finalDefault=""
+    targetNamespace="http://www.research.ibm.com/xmlns/xschematools/XDRtoW3CDatatypes"
+    xmlns="http://www.research.ibm.com/xmlns/xschematools/XDRtoW3CDatatypes" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <xsd:simpleType name="string">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="id">
+        <xsd:restriction base="xsd:ID"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="idref">
+        <xsd:restriction base="xsd:IDREF"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="idrefs">
+        <xsd:restriction base="xsd:IDREFS"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="entity">
+        <xsd:restriction base="xsd:ENTITY"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="entities">
+        <xsd:restriction base="xsd:ENTITIES"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="nmtoken">
+        <xsd:restriction base="xsd:NMTOKEN"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="nmtokens">
+        <xsd:restriction base="xsd:NMTOKENS"/>
+    </xsd:simpleType>
+    <xsd:notation name="jpeg" public="image/jpeg" system="viewer.exe"/>
+    <xsd:simpleType name="notation">
+        <xsd:restriction base="xsd:NOTATION">
+		<xsd:enumeration value="jpeg"/>
+	 </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="enumeration">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="double">
+        <xsd:restriction base="xsd:double"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="int">
+        <xsd:restriction base="xsd:int"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="fixed.14.4">
+        <xsd:restriction base="xsd:decimal">
+            <xsd:fractionDigits value="4"/>
+            <xsd:totalDigits value="18"/>
+            <xsd:pattern value="(\+|-)?\d{0,14}(\.d{0,4})"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="boolean">
+        <xsd:restriction base="xsd:boolean">
+            <xsd:pattern value="0|1"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="datetime">
+        <xsd:restriction base="xsd:dateTime">
+             <xsd:pattern value="\d{4,4}\-\d{2,2}-\d{2,2}T\d{2,2}:\d{2,2}:\d{2,2}"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="datetime.tz">
+        <xsd:restriction base="xsd:dateTime"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="date">
+        <xsd:restriction base="xsd:date"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="time.tz">
+        <xsd:restriction base="xsd:time"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="time">
+        <xsd:restriction base="xsd:time">
+             <xsd:pattern value="\d{2,2}:\d{2,2}:\d{2,2}"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="i1">
+        <xsd:restriction base="xsd:byte"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="i2">
+        <xsd:restriction base="xsd:short"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="i4">
+        <xsd:restriction base="xsd:int"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="i8">
+        <xsd:restriction base="xsd:long"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="ui1">
+        <xsd:restriction base="xsd:unsignedByte"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="ui2">
+        <xsd:restriction base="xsd:unsignedShort"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="ui4">
+        <xsd:restriction base="xsd:unsignedInt"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="ui8">
+        <xsd:restriction base="xsd:unsignedLong"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="r4">
+        <xsd:restriction base="xsd:float"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="r8">
+        <xsd:restriction base="xsd:double"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="float">
+        <xsd:restriction base="xsd:float"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="uuid">
+        <xsd:restriction base="xsd:string">
+            <xsd:pattern value="\d*[A-F]*-*"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="uri">
+        <xsd:restriction base="xsd:anyURI"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="bin.hex">
+        <xsd:restriction base="xsd:hexBinary"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="bin.base64">
+        <xsd:restriction base="xsd:base64Binary"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="char">
+        <xsd:restriction base="xsd:string">
+            <xsd:length value="1"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+</xsd:schema>

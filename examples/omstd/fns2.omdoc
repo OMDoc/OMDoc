@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  
+       xmlns="http://omdoc.org/ns"
+       xmlns:om="http://www.openmath.org/OpenMath"
+       xmlns:m="http://www.w3.org/1998/Math/MathML"
+       xmlns:o="http://omdoc.org/ns"
+xml:id="fns2-omdoc">
+
+<metadata>
+  <dc:title>The OpenMath Content Dictionary fns2.ocd  in OMDoc form</dc:title>
+  <dc:creator role="trl">Michael Kohlhase</dc:creator>
+  <dc:creator role="ant">The OpenMath Society</dc:creator>
+  <dc:date> 2001-03-12T00:00:00</dc:date>
+  <dc:source>Derived from the OpenMath CD http://www.openmath.org/cd/fns2.ocd.</dc:source>
+  <dc:type>Text</dc:type>
+  <dc:format>application/omdoc+xml</dc:format>
+  <dc:rights>Copyright (c) 2000-2002 Michael Kohlhase;
+    This OMDoc content dictionary is released under the OpenMath license:
+    http://monet.nag.co.uk/openmath/cdfiles/license.html
+  </dc:rights>
+  <dc:description>
+    This CD holds further functions concerning functions themselves. A
+    particularly interesting function is
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="fns2" name="apply_to_list"/></OMOBJ> which applies an nary
+    function to all the elements in a specified list. For example, such a function can
+    be used to form sums and products in conjunction with plus and times respectively.
+</dc:description> </metadata>
+
+<theory xml:id="fns2">
+
+<imports xml:id="fns2-imports-sts" from="sts.omdoc#sts"/>
+<imports xml:id="fns2-imports-logic1" from="logic1.omdoc#logic1"/>
+<imports xml:id="fns2-imports-set1" from="set1.omdoc#set1"/>
+<imports xml:id="fns2-imports-relation1" from="relation1.omdoc#relation1"/>
+<imports xml:id="fns2-imports-alg1" from="alg1.omdoc#alg1"/>
+<imports xml:id="fns2-imports-quant1" from="quant1.omdoc#quant1"/>
+<imports xml:id="fns2-imports-arith1" from="arith1.omdoc#arith1"/>
+<imports xml:id="fns2-imports-list1" from="list1.omdoc#list1"/>
+<imports xml:id="fns2-imports-fns1" from="fns1.omdoc#fns1"/>
+
+<symbol name="kernel" xml:id="kernel">
+<metadata>
+<dc:description> 
+    This symbol denotes the kernel of a given function. This may be
+    defined as the subset of the range of the given function which maps to
+    the identity element of the image of the given function, however no
+    semantics are assumed. The kernel of a function is also known as the
+    null space of the function.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMA>
+	  <OMS name="mapsto" cd="sts"/>
+	  <OMS name="Object" cd="sts"/>
+	  <OMS name="Object" cd="sts"/>
+	</OMA>
+	<OMS name="Object" cd="sts"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+<assertion xml:id="kernel-prop-1" type="lemma">
+  <CMP> <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="x"/></OMOBJ> in the kernal of
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="f"/></OMOBJ> implies that
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="#kernel-prop-1.1"/></OMOBJ>
+  </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="logic1" name="implies"/>
+	<OMA>
+	  <OMS cd="set1" name="in"/>
+	  <OMV name="x"/>
+	  <OMA>
+	    <OMS cd="fns2" name="kernel"/>
+	    <OMV name="f"/>
+	  </OMA>
+	</OMA>
+	<OMA id="kernel-prop-1.1">
+	  <OMS cd="relation1" name="eq"/>
+	  <OMA>
+	    <OMV name="f"/>
+	    <OMV name="x"/>
+	  </OMA>
+	  <OMS cd="alg1" name="zero"/>
+	</OMA>
+      </OMA>
+    </OMOBJ>
+  </FMP>
+</assertion>
+
+<symbol name="apply_to_list" xml:id="apply_to_list">
+<metadata>
+<dc:description> 
+    This symbol is used to denote the repeated application of an n-ary
+    function on the elements of a given list. For example when used with
+    plus or times this can represent sums and products.
+
+    The symbol takes two arguments; the first of which is the n-ary
+    function, the second a list.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMA>
+	  <OMS name="mapsto" cd="sts"/>
+	  <OMA>
+	    <OMS name="nary" cd="sts"/>
+	    <OMS name="Object" cd="sts"/>
+	  </OMA>
+	  <OMS name="Object" cd="sts"/>
+	</OMA>
+	<OMV name="ObjectList"/>
+	<OMS name="Object" cd="sts"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+
+<example xml:id="apply_to_list-ex-1" type="for" for="#apply_to_list">
+  <CMP>For all n 1 + 2 + ... + n = n(n+1)/2.</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMBIND>
+      <OMS cd="quant1" name="forall"/>
+      <OMBVAR>
+	<OMV name="n"/>
+      </OMBVAR>
+      <OMA>
+	<OMS cd="relation1" name="eq"/>
+	<OMA>
+	  <OMS cd="fns2" name="apply_to_list"/>
+	  <OMS cd="arith1" name="plus"/>
+	  <OMA>
+	    <OMS cd="list1" name="list"/>
+	    <OMI> 1 </OMI>
+	    <OMV name="n"/>
+	    <OMS cd="fns1" name="identity"/>
+	  </OMA>
+	</OMA>
+	<OMA>
+	  <OMS cd="arith1" name="divide"/>
+	  <OMA>
+	    <OMS cd="arith1" name="times"/>
+	    <OMV name="n"/>
+	    <OMA>
+	      <OMS cd="arith1" name="plus"/>
+	      <OMV name="n"/>
+	      <OMI> 1 </OMI>
+	    </OMA>
+	  </OMA>
+	  <OMI> 2 </OMI>
+	</OMA>
+      </OMA>
+    </OMBIND>
+  </OMOBJ>
+</example>
+<example xml:id="apply_to_list-ex-2" type="for" for="#apply_to_list">
+  <CMP>One may form a set in the following way. This gives the set 
+    <legacy format="mocktex">\{1^2, 2^2,... , 10^2\}</legacy></CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="fns2" name="apply_to_list"/>
+      <OMS cd="set1" name="set"/>
+      <OMA>
+	<OMS cd="list1" name="list"/>
+	<OMI> 1 </OMI>
+	<OMI> 10 </OMI>
+	<OMBIND>
+	  <OMS cd="fns1" name="lambda"/>
+	  <OMBVAR>
+	    <OMV name="x"/>
+	  </OMBVAR>
+	  <OMA>
+	    <OMS cd="arith1" name="power"/>
+	    <OMV name="x"/>
+	    <OMI> 2 </OMI>
+	  </OMA>
+	</OMBIND>
+      </OMA>
+    </OMA>
+  </OMOBJ>
+</example>
+
+<symbol name="right_compose" xml:id="right_compose">
+<metadata>
+<dc:description> 
+    This symbol represents a function forming the right-composition of its
+    two functional arguments.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMA>
+	  <OMS name="mapsto" cd="sts"/>
+	  <OMS name="Object" cd="sts"/>
+	  <OMS name="Object" cd="sts"/>
+	</OMA>
+	<OMA>
+	  <OMS name="mapsto" cd="sts"/>
+	  <OMS name="Object" cd="sts"/>
+	  <OMS name="Object" cd="sts"/>
+	</OMA>
+	<OMA>
+	  <OMS name="mapsto" cd="sts"/>
+	  <OMS name="Object" cd="sts"/>
+	  <OMS name="Object" cd="sts"/>
+	</OMA>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+<assertion xml:id="right_compose-prop-1" type="lemma">
+  <CMP> <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="#right_compose-prop-1.1"/></OMOBJ>.</CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMBIND id="right_compose-prop-1.1">
+	<OMS cd="quant1" name="forall"/>
+	<OMBVAR>
+	  <OMV name="f"/>
+	  <OMV name="g"/>
+	  <OMV name="x"/>
+	</OMBVAR>
+	<OMA>
+	  <OMS cd="relation1" name="eq"/>
+	  <OMA>
+	    <OMA>
+	      <OMS cd="fns2" name="right_compose"/>
+	      <OMV name="f"/>
+	      <OMV name="g"/>
+	    </OMA>
+	    <OMV name="x"/>
+	  </OMA>
+	  <OMA>
+	    <OMV name="g"/>
+	    <OMA>
+	      <OMV name="f"/>
+	      <OMV name="x"/>
+	    </OMA>
+	  </OMA>
+	</OMA>
+      </OMBIND>
+    </OMOBJ>
+  </FMP>
+</assertion>
+</theory>
+</omdoc>
+

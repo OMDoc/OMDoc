@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE omdoc PUBLIC "-//OMDoc//DTD OMDoc V1.3//EN"
+                "../../dtd/omdoc.dtd" []>
+
+<omdoc xml:id="money-omdoc" 
+       xmlns:dc="http://purl.org/dc/elements/1.1/"
+       xmlns="http://omdoc.org/ns">
+
+ <metadata>
+  <dc:title>A basic Theory of SACHS accounting (Money)</dc:title>
+  <dc:creator role="aut">Andrea Kohlhase</dc:creator>
+  <dc:creator role="aut">Michael Kohlhase</dc:creator>
+  <dc:creator role="aut">Achim Mahnke</dc:creator>
+  <dc:date>2008-08-26T00:00:00</dc:date>
+  <dc:description>
+    This is the basis of ....
+  </dc:description>
+ </metadata>
+
+ <theory xml:id="money">
+   <metadata>
+     <dc:title>Monetary Values</dc:title>
+   </metadata>
+
+   <imports from="../omstd/setname1.omdoc#setname1"/>
+   <imports from="../omstd/quant1.omdoc#quant1"/>
+   <imports from="../omstd/sts.omdoc#sts"/>
+   <imports from="quantities.omdoc#quantities"/>
+
+   <symbol name="monetaryquantity" role="type">
+     <metadata>
+       <dc:title>Monetary Quantity</dc:title>
+     </metadata>
+   </symbol>
+
+   <symbol name="usdollar">
+     <metadata>
+       <dc:title>US Dollar</dc:title>
+     </metadata>
+     <type system="sts">
+       <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	 <OMS cd="money" name="monetaryunit"/>
+       </OMOBJ>
+     </type>
+   </symbol>
+
+   <presentation for="#usdollar">
+     <use format="default">$</use>
+   </presentation>
+
+   <symbol name="euro">
+     <metadata>
+       <dc:title>Euro</dc:title>
+     </metadata>
+     <type system="sts">
+       <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	 <OMS cd="money" name="monetaryunit"/>
+       </OMOBJ>
+     </type>
+   </symbol>
+
+   <presentation for="#euro">
+     <use format="default">&#x20AC;</use>
+   </presentation>
+
+   <symbol name="monetaryunit" role="type">
+     <metadata>
+       <dc:title>Monetary Unit</dc:title>
+     </metadata>
+   </symbol>
+
+<!-- ****  better as type axiom for monetaryquantity? -->
+   <axiom>
+     <CMP>Monetary units combine with scalars to monetary quantities.</CMP>
+     <FMP>
+     <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+       <OMBIND>
+	 <OMS cd="quant1" name="forall"/>
+	 <OMBVAR>
+	   <OMATTR>
+	     <OMATP>
+	       <OMS name="type" cd="sts"/>
+	       <OMS cd="setname1" name="R"/>
+	     </OMATP>
+	     <OMV name="x"/>
+	   </OMATTR>
+	   <OMATTR>
+	     <OMATP>
+	       <OMS name="type" cd="sts"/>
+	       <OMS cd="money" name="monetaryunit"/>
+	     </OMATP>
+	     <OMV name="u"/>
+	   </OMATTR>
+	 </OMBVAR>
+	 <OMA>
+	   <OMS cd="sts" name="oftype"/>
+	   <OMA>
+	     <OMS cd="quantities" name="quantityof"/>
+	     <OMV name="x"/>
+	     <OMV name="u"/>
+	   </OMA>
+	   <OMS cd="money" name="monetaryquantity"/>
+	 </OMA>
+       </OMBIND>
+     </OMOBJ>
+     </FMP>
+   </axiom>
+
+   <omtext>
+     <CMP>As a rule of thumb,
+     <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+       <OMA><OMS cd="quantities" name="quantityof"/><OMI>1</OMI><OMS cd="money" name="euro"/></OMA>
+     </OMOBJ>
+     is about 
+     <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+       <OMA><OMS cd="quantities" name="quantityof"/><OMF dec="1.5"/><OMS cd="money" name="usdollar"/></OMA></OMOBJ>.
+     </CMP>
+   </omtext>
+ </theory>
+
+</omdoc>
+
+
+

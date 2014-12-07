@@ -1,0 +1,600 @@
+<?xml version="1.0"?>
+<!-- we are including some of the HTML entities into for convenience
+     If you need some that are not defined here, look them up in 
+     http://www.w3.org/TR/html4/HTMLlat1.ent and include them -->
+<!DOCTYPE locale [<!ELEMENT locale (key*)>
+    <!ELEMENT key (value*)><!ATTLIST key name ID #REQUIRED>
+    <!ELEMENT value (#PCDATA)>
+    <!ATTLIST value xml:lang (en|de|fr|la|it|nl|ru|pl|es|tr|zh|ja|ko) #REQUIRED>
+<!ENTITY iexcl  "&#161;">
+<!ENTITY agrave "&#224;">
+<!ENTITY aacute "&#225;">
+<!ENTITY acirc  "&#226;">
+<!ENTITY atilde "&#227;">
+<!ENTITY auml   "&#228;">
+<!ENTITY egrave "&#232;">
+<!ENTITY eacute "&#233;">
+<!ENTITY ecirc  "&#234;">
+<!ENTITY igrave "&#236;">
+<!ENTITY iacute "&#237;">
+<!ENTITY icirc  "&#238;">
+<!ENTITY iuml   "&#239;">
+<!ENTITY ntilde "&#241;">
+<!ENTITY ograve "&#242;">
+<!ENTITY oacute "&#243;">
+<!ENTITY ocirc  "&#244;">
+<!ENTITY otilde "&#245;">
+<!ENTITY ouml   "&#246;">
+<!ENTITY ugrave "&#249;">
+<!ENTITY uacute "&#250;">
+<!ENTITY ucirc  "&#251;">
+<!ENTITY uuml   "&#252;">
+<!ENTITY szlig  "&#223;">
+<!ENTITY Agrave "&#192;">
+<!ENTITY Aacute "&#193;">
+<!ENTITY Acirc  "&#194;">
+<!ENTITY Atilde "&#195;">
+<!ENTITY Auml   "&#196;">
+<!ENTITY Ccedil "&#199;">
+<!ENTITY Egrave "&#200;">
+<!ENTITY Eacute "&#201;">
+<!ENTITY Ecirc  "&#202;">
+<!ENTITY Ograve "&#210;">
+<!ENTITY Oacute "&#211;">
+<!ENTITY Ocirc  "&#212;">
+<!ENTITY Otilde "&#213;">
+<!ENTITY Ouml   "&#214;">
+<!ENTITY Ugrave "&#217;">
+<!ENTITY Uacute "&#218;">
+<!ENTITY Ucirc  "&#219;">
+<!ENTITY Uuml   "&#220;">
+]>
+<!-- we only have a limited set of languages at the moment, 
+     please add your ISO639  language  -->
+
+<locale>
+
+<!-- this is strictly for convenience so I can make empty stings in any language-->
+<key name="empty-value">
+  <value xml:lang="en"/>
+  <value xml:lang="es"/>
+  <value xml:lang="de"/>
+  <value xml:lang="fr"/>
+  <value xml:lang="it"/>
+  <value xml:lang="ru"/>
+  <value xml:lang="ja"/>
+</key>
+
+<!-- first come the key words, they appear in in the environments -->
+  
+<key name="definition">
+  <value xml:lang="en">Definition</value>
+  <value xml:lang="es">Definici&oacute;n</value>
+  <value xml:lang="de">Definition</value>
+  <value xml:lang="fr">D&eacute;finition</value>
+  <value xml:lang="it">Definizione</value>
+  <value xml:lang="ru">&#x041e;&#x043f;&#x0440;&#x0435;&#x0434;&#x0435;&#x043b;&#x0435;&#x043d;&#x0438;&#x0435;</value>
+  <value xml:lang="ja">&#x5b9a;&#x7fa9;</value>
+</key>
+
+<!-- altenative-def does not differ from Definition, it just happens to be the
+    second one that came along -->
+<key name="alternative">
+  <value xml:lang="en">Definition</value>
+  <value xml:lang="es">Definici&oacute;n</value>
+  <value xml:lang="de">Definition</value>
+  <value xml:lang="fr">D&eacute;finition</value>
+  <value xml:lang="it">Definizione</value>
+  <value xml:lang="ru">&#x041e;&#x043f;&#x0440;&#x0435;&#x0434;&#x0435;&#x043b;&#x0435;&#x043d;&#x0438;&#x0435;</value>
+  <value xml:lang="ja">&#x5b9a;&#x7fa9;</value>
+</key>
+
+<key name="theorem">
+  <value xml:lang="en">Theorem</value>
+  <value xml:lang="es">Teorema</value>
+  <value xml:lang="de">Theorem</value>
+  <value xml:lang="fr">Th&eacute;or&egrave;me</value>
+  <value xml:lang="it">Teorema</value>
+  <value xml:lang="ru">&#x0422;&#x0435;&#x043e;&#x0440;&#x0435;&#x043c;&#x0430;</value>
+  <value xml:lang="ja">&#x5b9a;&#x7406;</value>
+</key>
+
+<key name="lemma">
+  <value xml:lang="en">Lemma</value>
+  <value xml:lang="es">Lema</value>
+  <value xml:lang="de">Lemma</value>
+  <value xml:lang="fr">Lemme</value>
+  <value xml:lang="it">Lemma</value>
+  <value xml:lang="ru">&#x041b;&#x0435;&#x043c;&#x043c;&#x0430;</value>
+  <value xml:lang="ja">&#x88dc;&#x52a9;&#x5b9a;&#x7406;</value>
+</key>
+
+<key name="corollary">
+  <value xml:lang="en">Corollary</value>
+  <value xml:lang="es">Corolario</value>
+  <value xml:lang="de">Korollar</value>
+  <value xml:lang="fr">Corollaire</value>
+  <value xml:lang="it">Corollario</value>
+  <value xml:lang="ru">&#x0421;&#x043b;&#x0435;&#x0434;&#x0441;&#x0442;&#x0432;&#x0438;&#x0435;</value>
+  <value xml:lang="ja">&#x5b9a;&#x7406;&#x306e;&#x7cfb;</value>
+</key>
+
+<key name="conjecture">
+  <value xml:lang="en">Conjecture</value>
+  <value xml:lang="es">Conjetura</value>
+  <value xml:lang="de">Behauptung</value>
+  <value xml:lang="fr">Conjecture</value>
+  <value xml:lang="it">Congettura</value>
+  <value xml:lang="ru">&#x041f;&#x0440;&#x0435;&#x0434;&#x043f;&#x043e;&#x043b;&#x043e;&#x0436;&#x0435;&#x043d;&#x0438;&#x0435;</value>
+  <value xml:lang="ja">&#x63a8;&#x6e2c;</value>
+</key>
+
+<key name="example">
+  <value xml:lang="de">Beispiel</value>
+  <value xml:lang="en">Example</value>
+  <value xml:lang="es">Ejemplo</value>
+  <value xml:lang="fr">Exemple</value>
+  <value xml:lang="it">Esempio</value>
+  <value xml:lang="ru">&#x041f;&#x0440;&#x0438;&#x043c;&#x0435;&#x0440;</value>
+  <value xml:lang="ja">&#x4f8b;</value>
+</key>
+
+<key name="counterexample">
+  <value xml:lang="de">Gegenbeispiel</value>
+  <value xml:lang="en">Counter Example</value>
+</key>
+
+<key name="assertion">
+  <value xml:lang="de">Vermutung</value>
+  <value xml:lang="en">Assertion</value>
+</key>
+
+<key name="false-conjecture">
+  <value xml:lang="de">Behauptung</value>
+  <value xml:lang="en">False Conjecture</value>
+</key>
+
+<key name="axiom">
+  <value xml:lang="de">Axiom</value>
+  <value xml:lang="en">Axiom</value>
+  <value xml:lang="es">Axioma</value>
+  <value xml:lang="fr">Axiome</value>
+  <value xml:lang="it">Assioma</value>
+  <value xml:lang="ru">&#x0410;&#x043a;&#x0441;&#x0438;&#x043e;&#x043c;&#x0430;</value>
+  <value xml:lang="ja">&#x516c;&#x7406;</value>
+</key>
+
+<key name="exercise">
+  <value xml:lang="de">&Uuml;bung</value>
+  <value xml:lang="en">Exercise</value>
+  <value xml:lang="es">Ejercicio</value>
+  <value xml:lang="fr">Exercice</value>
+  <value xml:lang="it">Esercizio</value>
+  <value xml:lang="ru">&#x0423;&#x043f;&#x0440;&#x0430;&#x0436;&#x043d;&#x0435;&#x043d;&#x0438;&#x0435;</value>
+  <value xml:lang="ja">&#x7df4;&#x7fd2;</value>
+</key>
+
+<key name="solution">
+  <value xml:lang="de">L&ouml;sung</value>
+  <value xml:lang="en">Solution</value>
+  <value xml:lang="es">Soluci&oacute;n</value>
+  <value xml:lang="fr">Solution</value>
+  <value xml:lang="it">Soluzione</value>
+  <value xml:lang="ru">&#x0420;&#x0435;&#x0448;&#x0435;&#x043d;&#x0438;&#x0435;</value>
+  <value xml:lang="ja">&#x89e3;&#x7b54;</value>
+</key>
+
+<key name="hint">
+  <value xml:lang="de">Tip</value>
+  <value xml:lang="en">Hint</value>
+  <value xml:lang="es">Pista</value>
+  <value xml:lang="fr">Indication</value>
+  <value xml:lang="it">Aiuto</value>
+  <value xml:lang="ru">&#x0423;&#x043a;&#x0430;&#x0437;&#x0430;&#x043d;&#x0438;&#x0435;</value>
+  <value xml:lang="ja">&#x30d2;&#x30f3;&#x30c8;</value>
+</key>
+
+<!-- This Keyword is used to indicate that now comes a logical formula 
+     that signifies the same as the natural language formalization in the sentence
+     before. This could also be the text in a button that has to be clicked in
+     order to see the formalization. -->
+<key name="FMP">
+  <value xml:lang="en">Formal Version</value>
+  <value xml:lang="es">Formalizado</value>
+  <value xml:lang="de">Formal</value>
+  <value xml:lang="fr">Formellement</value>
+  <value xml:lang="it">Formalemente:</value>
+  <value xml:lang="ru">&#x0424;&#x043e;&#x0440;&#x043c;&#x0430;&#x043b;&#x044c;&#x043d;&#x0430;&#x044f; &#x0432;&#x0435;&#x0440;&#x0441;&#x0438;&#x044f;</value>
+  <value xml:lang="ja">&#x6b63;&#x5f0f;&#x306b;</value>
+</key>
+
+<!-- sometimes mathematical elemens are 'for' something, like a definition is
+     'for' a concept, or a proof is 'for' a theorem -->
+<key name="for">
+  <value xml:lang="de">f&uuml;r</value>
+  <value xml:lang="en">for</value>
+  <value xml:lang="es">para</value>
+  <value xml:lang="fr">pour</value>
+  <value xml:lang="it">per</value>
+  <value xml:lang="ru">&#x0434;&#x043b;&#x044f;</value>
+  <value xml:lang="ja">&#x306b;&#x5bfe;&#x3057;&#x3066;</value>
+</key>
+
+
+<!-- The formal content of a  theorem is made of n assumptions and m conclusions.
+     These keywords will be used, if they are presented in a tabular way.-->
+<key name="assumption">
+  <value xml:lang="en">Assumption</value>
+  <value xml:lang="es">Suposici&oacute;n</value>
+  <value xml:lang="de">Annahme</value>
+  <value xml:lang="fr">Supposition</value>
+  <value xml:lang="it">Supposizione</value>
+  <value xml:lang="ru">&#x041f;&#x0440;&#x0435;&#x0434;&#x043f;&#x043e;&#x0441;&#x044b;&#x043b;&#x043a;&#x0430;</value>
+  <value xml:lang="ja">&#x4eee;&#x5b9a;</value>
+</key>
+
+<key name="conclusion">
+  <value xml:lang="en">Conclusion</value>
+  <value xml:lang="es">Conclusi&oacute;n</value>
+  <value xml:lang="de">Ziel</value>
+  <value xml:lang="fr">Conclusion</value>
+  <value xml:lang="it">Conclusione</value>
+  <value xml:lang="ru">&#x0417;&#x0430;&#x043a;&#x043b;&#x044e;&#x0447;&#x0435;&#x043d;&#x0438;&#x0435;</value>
+  <value xml:lang="ja">&#x7d50;&#x8ad6;</value>
+</key>
+
+<!-- the next keywords are for proofs and proof steps.-->
+<key name="proof">
+  <value xml:lang="de">Beweis</value>
+  <value xml:lang="en">Proof</value>
+  <value xml:lang="es">Demostraci&oacute;n</value>
+  <value xml:lang="fr">Preuve</value>
+  <value xml:lang="it">Dimostrazione</value>
+  <value xml:lang="ru">&#x0414;&#x043e;&#x043a;&#x0430;&#x0437;&#x0430;&#x0442;&#x0435;&#x043b;&#x044c;&#x0441;&#x0442;&#x0432;&#x043e;</value>
+  <value xml:lang="ja">&#x8a3c;&#x660e;</value>
+</key>
+
+<!-- a hypothesis is a local assumption 'A' that will be made to prove that 'A
+     implies B'-->
+<key name="hypothesis">
+  <value xml:lang="en">Hypothesis</value>
+  <value xml:lang="es">Hip&oacute;tesis</value>
+  <value xml:lang="de">Hypothese</value>
+  <value xml:lang="fr">Hypoth&egrave;se</value>
+  <value xml:lang="it">Ipotesi</value>
+  <value xml:lang="ru">&#x0413;&#x0438;&#x043f;&#x043e;&#x0442;&#x0435;&#x0437;&#x0430;</value>
+  <value xml:lang="ja">&#x4eee;&#x8aac;</value>
+</key>
+
+<!-- a premise is an assertion in a proof that this proof step rest upon -->
+<key name="premise">
+  <value xml:lang="en">Premise</value>
+  <value xml:lang="es">Premisa</value>
+  <value xml:lang="de">Praemisse</value>
+  <value xml:lang="fr">Pr&eacute;misse</value>
+  <value xml:lang="it">Premessa</value>
+  <value xml:lang="ru">&#x041f;&#x0440;&#x0435;&#x0434;&#x043f;&#x043e;&#x0441;&#x044b;&#x043b;&#x043a;&#x0430;</value> 
+  <value xml:lang="ja">&#x524d;&#x63d0;</value>
+</key>
+
+<!-- the typical proof step in a proof, when displayed in a tabular form. -->
+<key name="derive">
+  <value xml:lang="de">Es gilt:</value>
+  <value xml:lang="en">Fact:</value>
+  <value xml:lang="es">Hecho:</value>
+  <value xml:lang="fr">Fait:</value>
+  <value xml:lang="it">Fatto:</value>
+  <value xml:lang="ru">&#x0424;&#x0430;&#x043a;&#x0442;</value>
+  <value xml:lang="ja">&#x4e8b;&#x5b9f;&#xff1a;</value>
+</key>
+
+<!-- just as 'conclude', but the last one in a proof.-->
+<key name="conclude">
+  <value xml:lang="de">Es gilt:</value>
+  <value xml:lang="en">Fact:</value>
+  <value xml:lang="es">Hecho:</value>
+  <value xml:lang="fr">Fait:</value>
+  <value xml:lang="it">Infine:</value>
+  <value xml:lang="ru">&#x0424;&#x0430;&#x043a;&#x0442;:</value>
+  <value xml:lang="ja">&#x4e8b;&#x5b9f;&#xff1a;</value>
+</key>
+
+<!-- The next keywords are part of the formal description of proof steps presented
+     in a tabular way. They connect logical formulae. An example 
+     (the formulae and references I have put into [].)
+     3. Fact  [x=5] ...
+     4. Fact: [2+x=7]  by [adding-both-sides] (on [2])  from [3]  -->
+ 
+<key name="proven-by">
+  <value xml:lang="de">durch</value>
+  <value xml:lang="en">by</value>
+  <value xml:lang="es">por</value>
+  <value xml:lang="fr">par</value>
+  <value xml:lang="it">per</value>
+  <value xml:lang="ru">&#x043f;&#x043e;</value>
+  <value xml:lang="ja">&#x306b;&#x3088;&#x3063;&#x3066;</value>
+</key>
+
+<key name="from-premises">
+  <value xml:lang="de">aus</value>
+  <value xml:lang="en">from</value>
+  <value xml:lang="es">de</value>
+  <value xml:lang="fr">de</value>
+  <value xml:lang="it">da</value>
+  <value xml:lang="ru">&#x0438;&#x0437;</value>
+  <value xml:lang="ja">&#x304b;&#x3089;</value>
+</key>
+
+<key name="on-parameters">
+  <value xml:lang="de">auf</value>
+  <value xml:lang="en">on</value>
+  <value xml:lang="es">sobre</value>
+  <value xml:lang="fr">sur</value>
+  <value xml:lang="it">di</value>
+  <value xml:lang="ru">&#x043e;&#x0442;</value>
+  <value xml:lang="ja">&#x306e;&#x4e0a;&#x306b;</value>
+</key>
+
+<!-- A symbol for a concept -->
+<key name="symbol">
+  <value xml:lang="de">Konzept</value>
+  <value xml:lang="en">Concept</value>
+  <value xml:lang="es">Concepto</value>
+  <value xml:lang="fr">Concept</value>
+  <value xml:lang="it">Concetto</value>
+  <value xml:lang="ru">&#x041f;&#x043e;&#x043d;&#x044f;&#x0442;&#x0438;&#x0435;</value>
+  <value xml:lang="ja">&#x6982;&#x5ff5;</value>
+</key>
+
+<!-- Its type -->
+<key name="type">
+  <value xml:lang="de">Typ</value>
+  <value xml:lang="en">Type</value>
+  <value xml:lang="es">Tipo</value>
+  <value xml:lang="fr">Type</value>
+  <value xml:lang="it">Tipo</value>
+  <value xml:lang="ru">&#x0422;&#x0438;&#x043f;</value>
+  <value xml:lang="ja">&#x30bf;&#x30a4;&#x30d7;</value>
+</key>
+
+<!-- a name by which it is known -->
+<key name="commonname">
+  <value xml:lang="de">Name</value>
+  <value xml:lang="en">Common Name</value>
+  <value xml:lang="es">Nombre com&uacute;n</value>
+  <value xml:lang="fr">Nom commun</value>
+  <value xml:lang="it">Nome comune</value>
+  <value xml:lang="ru">&#x0418;&#x043c;&#x044f;</value>
+  <value xml:lang="ja">&#x5171;&#x901a;&#x306e;&#x540d;&#x524d;</value>
+</key>
+
+<!-- the next keywords are for documenting program code in OMDocs, 
+     they specify the input, output and side effects of the program 
+     The side effects are if the program changes the state of the world 
+     other than by producing output -->
+<key name="input">
+  <value xml:lang="de">Eingabe</value>
+  <value xml:lang="en">Input</value>
+  <value xml:lang="es">Entrada</value>
+  <value xml:lang="fr">Entr&eacute;e</value>
+  <value xml:lang="it">Ingresso</value>
+  <value xml:lang="ru">&#x0412;&#x0432;&#x043e;&#x0434;</value>
+  <value xml:lang="ja">&#x5165;&#x529b;</value>
+</key>
+
+<key name="output">
+  <value xml:lang="de">Ausgabe</value>
+  <value xml:lang="en">Output</value>
+  <value xml:lang="es">Salida</value>
+  <value xml:lang="fr">Sortie</value>
+  <value xml:lang="it">Uscita</value>
+  <value xml:lang="ru">&#x0412;&#x044b;&#x0432;&#x043e;&#x0434;</value>
+  <value xml:lang="ja">&#x51fa;&#x529b;</value>
+</key>
+
+<key name="effect">
+  <value xml:lang="de">Seiteneffekt</value>
+  <value xml:lang="en">Side effect</value>
+  <value xml:lang="es">Efecto secundario</value>
+  <value xml:lang="fr">Effet de bord</value>
+  <value xml:lang="it">Effetto secondario</value>
+  <value xml:lang="ru">&#x041f;&#x043e;&#x0431;&#x043e;&#x0447;&#x043d;&#x044b;&#x0439; &#x044d;&#x0444;&#x0444;&#x0435;&#x043a;&#x0442;</value>
+  <value xml:lang="ja">&#x526f;&#x4f5c;&#x7528;</value>
+</key>
+
+<!-- =========== RSMatter ========== -->
+<!-- the next set of keywords is for classifying the relations between    
+     pieces of text text and (possibly) math elements -->
+<key name="abstract">
+  <value xml:lang="de">Zusammenfassung</value>
+  <value xml:lang="en">Abstract</value>
+  <value xml:lang="es">Resumen</value>
+  <value xml:lang="fr">R&eacute;sum&eacute;</value>
+  <value xml:lang="it">Sommario</value>
+  <value xml:lang="ru">&#x0420;&#x0435;&#x0437;&#x044e;&#x043c;&#x0435;</value>
+  <value xml:lang="ja">&#x8981;&#x7d04;</value>
+</key>
+
+<key name="introduction">
+  <value xml:lang="de">Einf&uuml;hrung</value>
+  <value xml:lang="en">Introduction</value>
+  <value xml:lang="es">Introducci&oacute;n</value>
+  <value xml:lang="fr">Introduction</value> 	
+  <value xml:lang="it">Introduzione</value>
+  <value xml:lang="ru">&#x0412;&#x0432;&#x0435;&#x0434;&#x0435;&#x043d;&#x0438;&#x0435;</value>
+  <value xml:lang="ja">&#x5e8f;&#x8ad6;</value>
+</key>
+
+<!-- the conclusion of a document -->
+<key name="doc-conclusion">
+  <value xml:lang="de">Fazit</value>
+  <value xml:lang="en">Conclusion</value>
+  <value xml:lang="es">Conclusi&oacute;n</value>
+  <value xml:lang="fr">Conclusion</value>
+  <value xml:lang="it">Conclusione</value>
+  <value xml:lang="ru">&#x0417;&#x0430;&#x043a;&#x043b;&#x044e;&#x0447;&#x0435;&#x043d;&#x0438;&#x0435;</value>
+  <value xml:lang="ja">&#x7d50;&#x8ad6;</value>
+</key>
+
+
+<key name="thesis">
+  <value xml:lang="de">These</value>
+  <value xml:lang="en">Thesis</value>
+  <value xml:lang="es">Tesis</value>
+  <value xml:lang="fr">Th&egrave;se</value> 
+  <value xml:lang="it">Tesi</value>
+  <value xml:lang="ru">&#x0422;&#x0435;&#x0437;&#x0438;&#x0441;</value>
+  <value xml:lang="ja">&#x547d;&#x984c;</value>
+</key>
+
+<key name="antihesis">
+  <value xml:lang="de">Antithese</value>
+  <value xml:lang="en">Antithesis</value>
+  <value xml:lang="es">Ant&iacute;tesis</value>
+  <value xml:lang="fr">Antith&egrave;se</value> 
+  <value xml:lang="it">Antitesi</value>
+  <value xml:lang="ru">&#x0410;&#x043d;&#x0442;&#x0438;&#x0442;&#x0435;&#x0437;&#x0438;&#x0441;</value>
+  <value xml:lang="ja">&#x5bfe;&#x53e5;</value>
+</key>
+
+<key name="elaboration">
+  <value xml:lang="de">Erkl"arung</value>
+  <value xml:lang="en">Elaboration</value>
+  <value xml:lang="es">Elaboraci&oacute;n</value>
+  <value xml:lang="fr">&Eacute;laboration</value> 
+  <value xml:lang="it">Elaborazione</value>
+  <value xml:lang="ru">&#x0417;&#x0430;&#x043c;&#x0435;&#x0447;&#x0430;&#x043d;&#x0438;&#x0435;</value>
+  <value xml:lang="ja">&#x8aac;&#x660e;</value>
+</key>
+
+<key name="motivation">
+  <value xml:lang="de">Motivation</value>
+  <value xml:lang="en">Motivation</value>
+  <value xml:lang="es">Motivaci&oacute;n</value>
+  <value xml:lang="fr">Motivation</value> 
+  <value xml:lang="it">Motivazione</value>
+  <value xml:lang="ru">&#x041e;&#x0431;&#x043e;&#x0441;&#x043d;&#x043e;&#x0432;&#x0430;&#x043d;&#x0438;&#x0435;</value>
+  <value xml:lang="ja">&#x52d5;&#x6a5f;</value>
+</key>
+
+<key name="evidence">
+  <value xml:lang="de">Evidenz</value>
+  <value xml:lang="en">Evidence</value>
+  <value xml:lang="es">Evidencia</value>
+  <value xml:lang="fr">&Eacute;vidence</value>
+  <value xml:lang="it">Evidenza</value>
+  <value xml:lang="ru">&#x041e;&#x0447;&#x0435;&#x0432;&#x0438;&#x0434;&#x043d;&#x043e;&#x0435;</value>
+  <value xml:lang="ja">&#x8a3c;&#x62e0;</value>
+</key>
+
+<key name="remark">
+  <value xml:lang="de">Bemerkung</value>
+  <value xml:lang="en">Remark</value>
+  <value xml:lang="es">Comentario</value>
+  <value xml:lang="fr">Remarque</value>
+  <value xml:lang="it">Commento</value>
+  <value xml:lang="ru">&#x041a;&#x043e;&#x043c;&#x043c;&#x0435;&#x043d;&#x0442;&#x0430;&#x0440;&#x0438;&#x0439;</value>
+  <value xml:lang="ja">&#x5099;&#x8003;</value>
+</key>
+
+<!-- =========== general messages ========== -->
+
+<!-- This is the first text that is entered as a comment in the generated file. -->
+
+<key name="boilerplate">
+  <value xml:lang="en">
+  This file is automatically generated, from an OMDoc,
+  by an XSL style sheet, do not edit!
+  For information about OMDoc, see http://www.omdoc.org
+  </value>
+  <value xml:lang="es">
+  Este archivo ha sido generado autom&aacute;ticamente, de un OMDoc,
+  por la hoja de un estilo XSL, &iexcl;no lo modifique!
+  Para informaci&oacute;n sobre OMDoc, vea http://www.omdoc.org
+  </value>
+  <value xml:lang="de">
+  Diese Datei ist automatisch aus einem OMDoc generiert durch 
+  ein XSL style sheet, bitte nicht aendern!
+  Information ueber OMdoc finden Sie unter http://www.omdoc.org
+  </value>
+  <value xml:lang="fr">
+  Ce fichier est engendr&eacute; automatiquement d'un OMDoc par une feuille de style
+  XSL, ne pas &eacute;diter !
+  Vous trouverez des informations sur OMdoc sur http://www.omdoc.org
+  </value>
+  <value xml:lang="it">
+  Questo documento &eacute; generato automaticamente da un OMDoc attraverso 
+  un stylesheet XSL, non modificare!
+  Per informazioni su OMDoc consultare http://www.omdoc.org
+  </value>
+   <value xml:lang="ru">&#x042d;&#x0442;&#x043e;&#x0442; &#x0444;&#x0430;&#x0438;&#x043b; &#x0441;&#x0433;&#x0435;&#x043d;&#x0435;&#x0440;&#x0438;&#x0440;&#x043e;&#x0432;&#x0430;&#x043d;&#x043d; &#x0430;&#x0432;&#x0442;&#x043e;&#x043c;&#x0430;&#x0442;&#x0438;&#x0447;&#x0435;&#x0441;&#x043a;&#x0438; &#x0438;&#x0437;  OMDoc &#x0441; &#x043f;&#x043e;&#x043c;&#x043e;&#x0449;&#x044c;&#x044e; 
+   XSL style sheet &#x0442;&#x0430;&#x0431;&#x043b;&#x0438;&#x0446;&#x044b; - &#x043d;&#x0435; &#x0440;&#x0435;&#x0434;&#x0430;&#x043a;&#x0442;&#x0438;&#x0440;&#x043e;&#x0432;&#x0430;&#x0442;&#x044c;! &#x0414;&#x043b;&#x044f; &#x0438;&#x043d;&#x0444;&#x043e;&#x0440;&#x043c;&#x0430;&#x0446;&#x0438;&#x0438; &#x043e;&#x0431; 
+   OMDoc, &#x0441;&#x043c;&#x043e;&#x0442;&#x0440;&#x0438;&#x0442;&#x0435;  http://www.omdoc.org
+   </value>
+   <value xml:lang="ja">&#x3053;&#x306e;&#x30d5;&#x30a1;&#x30a4;&#x30eb;&#x306f;XSL&#x30b9;&#x30bf;&#x30a4;&#x30eb;&#x30b7;&#x30fc;&#x30c8;omdoc-html-nice.xsl&#x306b;&#x3088;&#x3063;&#x3066;&#x3001;
+OMDoc&#x3088;&#x308a;&#x81ea;&#x52d5;&#x7684;&#x306b;&#x767a;&#x751f;&#x3057;&#x307e;&#x3059;&#x3002;&#x7de8;&#x96c6;&#x3057;&#x306a;&#x3044;&#x3067;&#x4e0b;&#x3055;&#x3044;&#x3002;
+OMDoc&#x306b;&#x95a2;&#x3059;&#x308b;&#x60c5;&#x5831;&#x306f;&#x3001;http://www.omdoc.org&#x3092;&#x5fa1;&#x89a7;&#x4e0b;&#x3055;&#x3044;&#x3002;
+   </value>
+</key>
+
+<!-- ====== now come the error messages ==== -->
+<!-- this error message is basically about this file itself, this is issued,
+     if there is no value with the correct xml:lang value for the key -->
+<key name="no-value-error">
+  <value xml:lang="en">Could not find locale for key: </value>
+  <value xml:lang="es">No encuentro un 'locale' para la clave: </value>
+  <value xml:lang="de">Kein locale-Wert gefunden f&uuml;r: </value>
+  <value xml:lang="fr">Une r&eacute;gionalisation n'a pas &eacute;t&eacute; trouv&eacute;e pour: </value>
+  <value xml:lang="it">Traduzione locale non trovata per: </value>
+  <value xml:lang="ru">&#x041d;&#x0435; &#x043c;&#x043e;&#x0433;&#x0443; &#x043d;&#x0430;&#x0439;&#x0442;&#x0438; 'locale' &#x0434;&#x043b;&#x044f;  &#x043a;&#x043b;&#x0430;&#x0432;&#x0438;&#x0448;&#x0438;</value>
+  <value xml:lang="ja">&#x306e;&#x5c45;&#x5834;&#x6240;&#x3092;&#x898b;&#x3064;&#x3051;&#x3089;&#x308c;&#x307e;&#x305b;&#x3093;&#x3067;&#x3057;&#x305f;&#x3002;</value>
+</key>  
+
+<!-- The CMPs contain the text in OMDocs, they are also language-coded by the
+     xml:lang attribute. If there is none for the correct language, then this
+     error message is issued -->
+<key name="no-cmp-error">
+  <value xml:lang="en">I have not found an english CMP for </value>
+  <value xml:lang="es">No encuentro una CMP en espa&ntilde;ol para </value>
+  <value xml:lang="de">Ich habe keine deutsche CMP gefunden f&uuml;r </value>
+  <value xml:lang="fr">Une CMP n'a pas &eacute;t&eacute; trouv&eacute;e pour </value>
+  <value xml:lang="it">Non trovata CMP in italiano per: </value>
+  <value xml:lang="ru">&#x041d;&#x0435; &#x043c;&#x043e;&#x0433;&#x0443; &#x043d;&#x0430;&#x0439;&#x0442;&#x0438; &#x0440;&#x0443;&#x0441;&#x0441;&#x043a;&#x0438;&#x0439; CMP &#x0434;&#x043b;&#x044f; </value>
+  <value xml:lang="ja">&#x306e;&#x65e5;&#x672c;&#x8a9e;CMP&#x306f;&#x898b;&#x3064;&#x3051;&#x3089;&#x308c;&#x307e;&#x305b;&#x3093;&#x3067;&#x3057;&#x305f;&#x3002;</value>
+</key>
+
+<key name="two-cmp-error">
+  <value xml:lang="en">I found two CMPs for </value>
+  <value xml:lang="es">Encuentro dos CMP para </value>
+  <value xml:lang="de">Ich habe zwei CMPs gefunden f&uuml;r </value>
+  <value xml:lang="fr">J'ai trouv&eacute; deux CMP pour </value>
+  <value xml:lang="it">Trovata due CMP per: </value>
+</key>
+
+<key name="code">
+  <value xml:lang="en">Code</value>
+  <value xml:lang="de">Programmtext</value>
+</key>
+
+<key name="postulate">
+  <value xml:lang="en">Postulate</value>
+  <value xml:lang="de">Postulat</value>
+</key>
+
+<key name="proposition">
+  <value xml:lang="en">Proposition</value>
+  <value xml:lang="de">Proposition</value>
+</key>
+
+<key name="obligation">
+  <value xml:lang="en">Obligation</value>
+  <value xml:lang="de">Beweisverpflichtung</value>
+</key>
+
+<key name="formula">
+  <value xml:lang="en">Formula</value>
+  <value xml:lang="de">Formel</value>
+</key>
+
+</locale>
+

@@ -1,0 +1,40 @@
+# Note that namespace URIs must end with / or # for our ontology merging tool
+@prefix dct:      <http://purl.org/dc/terms/> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix oo:     <http://omdoc.org/ontology#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+
+#The SALT document ontology
+@prefix sdoc:	 <http://salt.semanticauthoring.org/onto/abstract-document-ontology#> .
+
+# Any OMDoc-aware application should know this namespace (here with a 
+# trailing slash), as it is the default CD base URI of OpenMath
+@prefix cd:      <http://www.openmath.org/cd/> .
+
+# Declare them as OWL property types, as DCMI Terms is RDFS only (see http://bloody-byte.net/rdf/dc_owl2dl/)
+dct:creator
+	a	owl:AnnotationProperty .
+dct:contributor
+	a	owl:AnnotationProperty .
+dct:subject
+	a	owl:AnnotationProperty .
+dct:title
+	a	owl:AnnotationProperty .
+
+oo:  a       owl:Ontology ;
+	dct:title "OMDoc document ontology" ;
+	rdfs:comment """OMDoc document ontology in OWL-DL.
+The homepage of this project can be found at http://mathweb.org/wiki/OMDoc/document_ontology.""" ;
+	dct:creator "Christoph Lange <ch.lange@jacobs-university.de>" ;
+	dct:contributor "Normen Müller <n.mueller@jacobs-university.de>" , "Krzysztof Retel <retel@macs.hw.ac.uk>" , "Gordan Ristovski <g.ristovski@jacobs-university.de>", "Andrei Ioniţă <a.ionita@jacobs-university.de>", "Nikita Zhiltsov (Никита Жильцов) <nikita.zhiltsov@gmail.com>";
+	# Contributors (to this file or to any other), please add your name here. --Christoph Lange
+	dct:subject "Semantic Mathematical Markup" ;
+	owl:versionInfo "0.5.14" ;
+	# As with other software projects:
+	# * leave version as is for very small changes (typo corrections) that do not change the semantics
+	# * increase minor version number for small changes and contributions that change or extend the semantics
+	# * increase major version number for really big changes. This should be discussed beforehand!
+	# Thanks! --Christoph Lange
+	owl:imports <file:st.n3> , <file:pf.n3> , <file:doc.n3> , <file:pres.n3>, <file:mtxt.n3> .
+	# Note: the base classes are imported by every module.
+	# TODO: add other OMDoc modules

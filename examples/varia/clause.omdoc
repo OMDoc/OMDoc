@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!DOCTYPE omdoc PUBLIC "-//OMDoc//DTD OMDoc V1.3//EN"
+                "../../dtd/omdoc.dtd" []>
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  xmlns="http://omdoc.org/ns"
+xml:id="clauselogic">
+
+<metadata>
+  <dc:title>A first stab at clause logic</dc:title>
+  <dc:creator role="aut">Michael Kohlhase</dc:creator>
+  <dc:creator role="aut">Peter Baumgartner</dc:creator>
+  <dc:date>2001-09-25T00:00:00</dc:date>
+</metadata>
+
+<theory xml:id="clauses">
+  <metadata>
+    <dc:description>A first stab at clause logic</dc:description>
+  </metadata>
+  <symbol name="pnclause">
+   <metadata><dc:subject>clause</dc:subject>
+<dc:subject xml:lang="de">Klausel</dc:subject></metadata>
+  </symbol>
+  <presentation for="#pnclause" role="applied" fixity="infix" lbrack="" rbrack="">
+    <use format="default">:-</use>
+    <use format="html" element="tt">:-</use>
+  </presentation>
+
+  <symbol name="poslits"/>
+  <presentation for="#poslits" role="applied" fixity="assoc" rbrack="" lbrack="">
+    <use format="default">;</use>
+  </presentation>
+
+  <symbol name="neglits"/>
+  <presentation for="#neglits" role="applied" fixity="assoc"  rbrack="" lbrack="">
+    <use format="default">,</use>
+  </presentation>
+
+
+  <example xml:id="test" for="#clause">
+    <CMP>Hier ist ein Beispiel f"ur eine Klausel: 
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+          <OMS cd="clauses" name="pnclause"/>
+          <OMA>
+            <OMS cd="clauses" name="poslits"/>
+            <OMI>1</OMI>
+            <OMI>2</OMI>
+          </OMA>
+          <OMA>
+            <OMS cd="clauses" name="neglits"/>
+            <OMI>1</OMI>
+            <OMI>2</OMI>
+          </OMA>
+        </OMA>
+      </OMOBJ>
+      ist das nicht sch"en?
+    </CMP>
+  </example>
+
+  <symbol name="lclause">
+   <metadata><dc:subject>literal clause</dc:subject>
+<dc:subject xml:lang="de">Literal-Klausel</dc:subject></metadata>
+  </symbol>
+
+  <symbol name="poslit"/>
+  <presentation for="#poslit" role="applied">
+    <use format="default"/>
+  </presentation>
+
+  <symbol name="neglit"/>
+  <presentation for="#neglit" role="applied">
+    <use format="default"/>
+  </presentation>
+
+  <presentation for="#lclause" role="applied">
+    <xslt format="default" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+        <xsl:for-each select="om:OMA[om:OMS[@name='poslit' and @cd='clauses']]">
+          <xsl:apply-templates select="*[2]"/>
+          <xsl:if test="position()!=last()"><xsl:text>;</xsl:text></xsl:if>
+        </xsl:for-each>
+        <xsl:text>:-</xsl:text>
+        <xsl:for-each select="om:OMA[om:OMS[@name='neglit' and @cd='clauses']]">
+          <xsl:apply-templates select="*[2]"/>
+          <xsl:if test="position()!=last()"><xsl:text>,</xsl:text></xsl:if>
+        </xsl:for-each>
+        <xsl:text>.</xsl:text>
+    </xslt>
+    <xslt format="html" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+      <xsl:element name="tt" namespace="http://www.w3.org/1999/xhtml">
+        <xsl:for-each select="om:OMA[om:OMS[@name='poslit' and @cd='clauses']]">
+          <xsl:apply-templates select="*[2]">
+	    <xsl:with-param name="prefix" select="$prefix"/>
+	  </xsl:apply-templates>
+          <xsl:if test="position()!=last()"><xsl:text>;</xsl:text></xsl:if>
+        </xsl:for-each>
+        <xsl:text>:-</xsl:text>
+        <xsl:for-each select="om:OMA[om:OMS[@name='neglit' and @cd='clauses']]">
+          <xsl:apply-templates select="*[2]">
+	    <xsl:with-param name="prefix" select="$prefix"/>
+	  </xsl:apply-templates>
+          <xsl:if test="position()!=last()"><xsl:text>,</xsl:text></xsl:if>
+        </xsl:for-each>
+        <xsl:text>.</xsl:text>
+      </xsl:element>
+    </xslt>
+    <xslt format="pmml" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+    <xsl:element name="mrow" namespace="http://www.w3.org/1998/Math/MathML">
+      <xsl:attribute name="style"><xsl:text>font-family:monospace</xsl:text></xsl:attribute>
+      <xsl:element name="mrow" xmlns="http://www.w3.org/1998/Math/MathML">
+        <xsl:for-each select="om:OMA[om:OMS[@name='poslit' and @cd='clauses']]">
+          <xsl:apply-templates select="*[2]">
+	    <xsl:with-param name="prefix" select="$prefix"/>
+	  </xsl:apply-templates>
+          <xsl:if test="position()!=last()">
+	    <xsl:element name="mo" namespace="http://www.w3.org/1998/Math/MathML">
+	      <xsl:attribute name="separator"><xsl:text>true</xsl:text></xsl:attribute>
+	      <xsl:text>;</xsl:text>
+	    </xsl:element>
+	  </xsl:if>
+        </xsl:for-each>
+      </xsl:element>
+      <xsl:element name="mo" namespace="http://www.w3.org/1998/Math/MathML"><xsl:text>:-</xsl:text></xsl:element>
+      <xsl:element name="mrow" xmlns="http://www.w3.org/1998/Math/MathML">
+	<xsl:for-each select="om:OMA[om:OMS[@name='neglit' and @cd='clauses']]">
+          <xsl:apply-templates select="*[2]">
+	    <xsl:with-param name="prefix" select="$prefix"/>
+	  </xsl:apply-templates>
+          <xsl:if test="position()!=last()"><xsl:text>,</xsl:text></xsl:if>
+        </xsl:for-each>
+      </xsl:element>
+      <xsl:element name="mo" namespace="http://www.w3.org/1998/Math/MathML">
+	<xsl:text>.</xsl:text>
+      </xsl:element>
+    </xsl:element>
+    </xslt>
+  </presentation>
+
+  <example xml:id="test2" for="#lclause">
+    <CMP>Hier ist ein Beispiel f"ur eine Klausel:</CMP> 
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+        <OMS cd="clauses" name="lclause"/>
+        <OMA>
+          <OMS cd="clauses" name="poslit"/>
+          <OMA><OMS cd="sdf" name="p"/><OMI>1</OMI><OMI>2</OMI></OMA>
+        </OMA>
+        <OMA>
+          <OMS cd="clauses" name="neglit"/>
+          <OMI>2</OMI>
+        </OMA>
+        <OMA>
+          <OMS cd="clauses" name="poslit"/>
+          <OMI>2</OMI>
+        </OMA>
+      </OMA>
+    </OMOBJ>
+  </example>
+</theory>
+</omdoc>
