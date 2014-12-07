@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc:omdoc xmlns:omdoc="http://omdoc.org/ns"
+	     xmlns:om="http://www.openmath.org/OpenMath"
+	     xmlns:dc="http://purl.org/dc/elements/1.1/" 
+	     xmlns:m="http://www.w3.org/1998/Math/MathML"
+	     xml:id="arith1-omdoc">
+
+<omdoc:metadata>
+  <dc:title>The OpenMath Content Dictionary arith1.ocd  in OMDoc form</dc:title>
+  <dc:creator role="trl">Michael Kohlhase</dc:creator>
+  <dc:creator role="ant">The OpenMath Society</dc:creator>
+  <dc:date action="updated">2002-12-02T10:19:29Z</dc:date>
+  <dc:source>Derived from the OpenMath CD http://www.openmath.org/cd/arith1.ocd.</dc:source>
+  <dc:type>Text</dc:type>
+  <dc:format>application/omdoc+xml</dc:format>
+  <dc:rights>Copyright (c) 2000-2002 Michael Kohlhase;
+    This OMDoc content dictionary is released under the OpenMath license:
+    http://monet.nag.co.uk/openmath/cdfiles/license.html
+  </dc:rights>
+  <dc:description>This CD defines symbols for common arithmetic functions.</dc:description>
+  </omdoc:metadata>
+
+<omdoc:theory xml:id="arith1">
+
+<omdoc:imports from="../omstd/sts.omdoc#sts"/>
+<omdoc:imports from="../omstd/relation1.omdoc#relation1"/>
+
+<omdoc:symbol name="lcm">
+
+<omdoc:metadata><dc:description> The symbol to represent the n-ary function to return the least common
+  multiple of its arguments.
+</dc:description>
+<dc:description  xml:lang="de"> 
+  Das Symbol f"ur das kleinste gemeinsame Vielfache (als n-aere Funktion).
+</dc:description>
+<dc:subject>lcm</dc:subject>
+<dc:subject  xml:lang="de">kgV</dc:subject>
+</omdoc:metadata>
+<omdoc:type system="../omstd/sts.omdoc#sts">
+  <om:OMOBJ>
+    <om:OMA>
+      <om:OMS name="mapsto" cd="sts"/>
+      <om:OMA>
+	<om:OMS name="nassoc" cd="sts"/>
+	<om:OMV name="SemiGroup"/>
+      </om:OMA>
+      <om:OMV name="SemiGroup"/>
+    </om:OMA>
+  </om:OMOBJ>
+</omdoc:type>
+</omdoc:symbol>
+<omdoc:presentation xml:id="pr_lcm" for="#lcm">
+  <omdoc:use format="default">lcm</omdoc:use>
+  <omdoc:use format="default" xml:lang="de">kgV</omdoc:use>
+  <omdoc:use format="cmml" element="lcm"/>
+</omdoc:presentation>
+
+<omdoc:assertion xml:id="lcm-prop-1" type="lemma">
+  <omdoc:FMP>
+    <m:math>
+      <m:apply>
+	<m:csymbol definitionURL="../omstd/relation1.omdoc#eq"/>
+	<m:apply>
+	  <m:csymbol definitionURL="../omstd/arith1.omdoc#lcm"/>
+	  <m:ci>a</m:ci>
+	  <m:ci>b</m:ci>
+	</m:apply>
+	<m:apply>
+	  <m:csymbol definitionURL="../omstd/arith1.omdoc#divide"/>
+	  <m:apply>
+	    <m:csymbol definitionURL="../omstd/arith1.omdoc#times"/>
+	    <m:ci>a</m:ci>
+	    <m:ci>b</m:ci>
+	  </m:apply>
+	  <m:apply>
+	    <m:csymbol definitionURL="../omstd/arith1.omdoc#gcd"/>
+	    <m:ci>a</m:ci>
+	    <m:ci>b</m:ci>
+	  </m:apply>
+	</m:apply>
+      </m:apply>
+    </m:math>
+  </omdoc:FMP>
+</omdoc:assertion>
+</omdoc:theory>
+</omdoc:omdoc>

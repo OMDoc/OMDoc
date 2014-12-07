@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  xmlns="http://omdoc.org/ns"
+xml:id="error-omdoc">
+
+
+  <dc:title>The OpenMath Content Dictionary error.ocd  in OMDoc form</dc:title>
+  <dc:creator role="trl">Michael Kohlhase</dc:creator>
+  <dc:creator role="ant">The OpenMath Society</dc:creator>
+  <dc:date> 2000-03-21T00:00:00</dc:date>
+  <dc:source>Derived from the OpenMath CD http://www.openmath.org/cd/moreerrors.ocd.</dc:source>
+  <dc:type>Text</dc:type>
+  <dc:format>application/omdoc+xml</dc:format>
+  <dc:rights>Copyright (c) 2000-2002 Michael Kohlhase;
+    This OMDoc content dictionary is released under the OpenMath license:
+    http://monet.nag.co.uk/openmath/cdfiles/license.html
+  </dc:rights>
+
+
+<theory xml:id="error" cdbase="http://www.openmath.org/cd">
+  <symbol name="encodingError" xml:id="encodingError">
+
+<dc:description>
+      This symbol represents the error which is returned when an application
+      detects a lexical or syntactic error. It should have one argument
+      which is a string, which should explain the error that occurred.
+  </dc:description>
+
+</symbol>
+  <symbol name="algorithm" xml:id="algorithm">
+
+<dc:description>
+      This symbol represents the error which is returned when an application
+      raises an error due to algorithmic restrictions of the
+      implementations. This includes operations not implemented or partially
+      implemented, divisions by zero and other domain errors. It will have
+      at least one argument, which is a string describing the problem. It
+      may have a second argument which is relevant to the error.
+  </dc:description>
+
+</symbol>
+  <symbol name="limitation" xml:id="limitation">
+
+<dc:description>
+      This symbol represents the error which is returned when an application
+      reads an error caused by the limitations of an implementation when
+      dealing with OpenMath objects such as limits on the size of objects or
+      on the kind of objects manipulated. This can include limits on the
+      size of a bytearray or integer, a limit on the number of arguments of
+      an application or the inability to deal with Unicode characters
+      outside ISO latin 1. It will have at least one argument, which is a
+      string describing the problem. It may have a second argument which is
+      relevant to the error.
+  </dc:description>
+
+</symbol>
+  <symbol name="unexpected" xml:id="unexpected">
+
+<dc:description>
+      This symbol represents the error which is returned when an application
+      reads an error caused by an unexpected problem. It will have
+      at least one argument, which is a string describing the problem. It
+      may have a second argument which is relevant to the error.
+  </dc:description>
+
+</symbol>
+  <symbol name="asynchronousError" xml:id="asynchronousError">
+
+<dc:description>
+      This symbol represents the error which is returned when an application
+      encounters some asynchronous error, for example if a limit in memory
+      has been reached, or an error has occurred in some system call (I/O
+      error, disk full, machine down). It should have one argument, which is
+      a string describing the problem.
+  </dc:description>
+
+</symbol>
+</theory>
+</omdoc>

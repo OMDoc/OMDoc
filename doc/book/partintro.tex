@@ -1,0 +1,78 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This file is part of the LaTeX sources of the OMDoc 1.6 book
+% Copyright (c) 2006 Michael Kohlhase
+% This work is licensed by the Creative Commons Share-Alike license
+% see http://creativecommons.org/licenses/by-sa/2.5/ for details
+\svnInfo $Id: partintro.tex 8429 2009-07-19 11:09:13Z kohlhase $
+\svnKeyword $HeadURL: https://svn.omdoc.org/repos/omdoc/trunk/doc/book/partintro.tex $
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\mockchapter
+  In this part of the book we will look at the problem of marking up mathematical
+  knowledge and mathematical documents in general, situate the {\omdoc} format, and
+  compare it to other formats like {\openmath} and {\mathml}.
+
+  The {\omdoc} format is an open markup language for mathematical documents and the
+  \twinalt{knowledge}{mathematical}{knowledge} encapsulated in them. The representation in
+  {\omdoc} makes the document content unambiguous and their context transparent.
+
+  {\omdoc} approaches this goal by embedding control codes into mathematical documents
+  that identify the document structure, the meaning of text fragments, and their relation
+  to other mathematical knowledge in a process called {\emph{\twintoo{document}{markup}}}.
+  Document markup is a communication form that has existed for many years. Until the
+  computerization of the printing industry, markup was primarily done by a copy editor
+  writing instructions on a manuscript for a typesetter to follow. Over a period of time,
+  a standard set of symbols was developed and used by copy editors to communicate with
+  typesetters on the intended appearance of documents. As computers became widely
+  available, authors began using word processing software to write and edit their
+  documents.  Each word processing program had its own method of markup to store and
+  recall documents.
+
+  Ultimately, the goal of all markup is to help the recipient of the document better cope
+  with the content by providing additional information e.g. by visual cues or explicit
+  structuring elements. Mathematical texts are usually very carefully designed to give
+  them a structure that supports understanding of the complex nature of the objects
+  discussed and the argumentations about them.  Such documents are usually structured
+  according to the argument made and enhanced by specialized notation (mathematical
+  formulae) for the particular objects.\footnote{Of course this holds not only for texts
+    in pure mathematics, but for any argumentative text, including texts from the sciences
+    and engineering disciplines.  We will use the adjective ``mathematical'' in an
+    inclusive way to make this distinction on text form, not strictly on the scientific
+    labeling.}  In contrast, the structure of texts like novels or poems normally obey
+  different (e.g. aesthetic) constraints.
+
+  In mathematical discourses, conventions about document form, numbering, typography,
+  formula structure, choice of glyphs for concepts, etc. and the corresponding markup
+  codes have evolved over a long scientific history and by now carry a lot of the
+  information needed to understand a particular text. But since they pre-date the computer
+  age, they were developed for the consumption by humans (mathematicians) and mainly with
+  ``{\indextoo{ink-on-paper}}'' representations (books, journals, letters) in mind, which
+  turns out to be too limited in many ways.
+
+  In the age of {\twintoo{Internet}{publication}} and
+  {\atwintoo{mathematical}{software}{system}s}, the universal accessibility of the
+  documents breaks an assumption implicit in the design of traditional
+  {\twintoo{mathematical}{document}s}: namely that the reader will come from the same
+  \twinalt{(scientific) background}{scientific}{background} as the author and will
+  directly understand the {\indextoo{notation}s} and {\twintoo{structural}{convention}s}
+  used by the author.  We can also rely less and less on the premise that mathematical
+  documents are primarily for human consumption as mathematical software systems are more
+  and more embedded into the process of doing mathematics. This, together with the fact
+  that mathematical documents are primarily produced and stored on computers, places a
+  much heavier burden on the markup format, since it has to make all of this implicit
+  information explicit in the communication.
+
+  In the next two chapters we will set the stage for the {\omdoc} approach. We will first
+  discuss general issues in markup formats (see {\sref{markup-types}}), existing
+  solutions (see {\sref{markup:www}}), and the current
+  {\xml}-based framework for {\twintoo{markup}{language}s} on the web
+  (see {\sref{xml}}).  Then we will elaborate the special
+  requirements for marking up the content of mathematics (see {\sref{math-markup}}).
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "main"
+%%% End: 
+
+% LocalWords:  www

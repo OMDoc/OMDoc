@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html id="cases.omdoc" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <link rel="stylesheet" type="text/css" href="omdoc-default.css"/>
+    <title>cases</title>
+  </head>
+  <body>
+    <div class="dc-titleblock">
+      <div class="dc-title">cases</div>
+      <div class="dc-authors">Michael Kohlhase</div>
+      <div class="dc-date">2008-12-15 2008-12-1</div>
+    </div>
+    <div class="theory" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="http://purl.org/dc/elements/1.1/">
+      <h1 id="cases">1. Case Statements</h1>
+      <div class="omdoc-symbol" id="cases" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#cases"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>cases
+        </div>The cases operator takes arguments E,C_1,... C_n,[E']. The first argument E is an expression on which the case analysis is performed. The remaining arguments are either 
+        <span id="MCRd20e29" class="displaymath" xmlns="">
+          <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+            <m:mo>case</m:mo>
+          </m:math>
+        </span> expressions C_i or (optionally, if they are the last argument) and expression for the else case. The value of the case expression is the unique value of the matching case or (if none matches and one is given) the value of the else-expression, orelse undefined. 
+      </div>
+      <div class="omdoc-symbol" id="case" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#cases"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>case
+        </div>The case operator takes two arguments C (a constructor) and F (a form) that perform a case analysis in a 
+        <span id="MCRd20e60" class="displaymath" xmlns="">
+          <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+            <m:mo>cases</m:mo>
+          </m:math>
+        </span> expression. If F is a binding expression with symbol 
+        <span id="MCRd20e64" class="displaymath" xmlns="">
+          <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+            <m:mo>case-lambda</m:mo>
+          </m:math>
+        </span>, then the bound varibles A1,...,An of F are called the arguments of C. The case expression succeeds, iff the expression in the superordinate 
+        <span id="MCRd20e68" class="displaymath" xmlns="">
+          <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+            <m:mo>cases</m:mo>
+          </m:math>
+        </span> expression matches the term C(A_1,...,A_n) with substitution sigma. In this case the value of the case expression is sigma applied to the body of F.
+      </div>
+      <div class="omdoc-symbol" id="case-other" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#cases"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>case-other
+        </div>The "other case" constructor takes one arguments: a form F. This case alowys succeeds in a case expression, if no other does. In this case the value of the case expression is F.
+      </div>
+      <div class="omdoc-example" role="Example" about="#cases #case #case-other" xml:id="">
+        <a class="omdoc" rel="oso:exemplifies" href="#cases #case #case-other"/>
+        <a class="omdoc" rel="oso:homeTheory" href="#cases #case #case-other"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Example</span>
+        </div>
+        <p>The following is an object defined by a case statement</p>
+        <span id="MCRd20e94" class="displaymath" xmlns="">
+          <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+            <m:mrow>
+              <m:mo>cases</m:mo>
+              <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+              <m:mi>tree</m:mi>
+              <m:mo separator="true">,</m:mo>
+              <m:mrow>
+                <m:mo>case</m:mo>
+                <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                <m:mi>nil</m:mi>
+                <m:mo separator="true">,</m:mo>
+                <m:mrow>
+                  <m:mi>node</m:mi>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mi>value</m:mi>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+                <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+              </m:mrow>
+              <m:mo separator="true">,</m:mo>
+              <m:mrow>
+                <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+              </m:mrow>
+              <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+            </m:mrow>
+          </m:math>
+        </span>
+      </div>
+      <div class="omdoc-symbol" id="case-lambda" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#cases"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>case-lambda
+        </div> The symbol for binding objects in case statements, see 
+        <span id="MCRd20e150" class="displaymath" xmlns="">
+          <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+            <m:mo>case</m:mo>
+          </m:math>
+        </span>.
+      </div>
+    </div>
+  </body>
+</html>

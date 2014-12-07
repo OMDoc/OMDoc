@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  
+       xmlns:om="http://www.openmath.org/OpenMath"
+       xmlns:m="http://www.w3.org/1998/Math/MathML"
+       xmlns="http://omdoc.org/ns"
+       xml:id="pf2hol-omdoc">
+
+ <metadata>
+  <dc:title>Two-valued higher-order logic with partial functions</dc:title>
+  <dc:creator role="aut">Michael Kohlhase</dc:creator>
+  <dc:date>2008-07-04T18:28:06</dc:date>
+  <dc:rights>Copyright (c) 2008 Michael Kohlhase</dc:rights>
+  <license xmlns="http://creativecommons.org/ns">
+    <permissions reproduction="permitted" distribution="permitted" derivative_works="permitted"/>
+    <prohibitions commercial_use="permitted"/>
+    <requirements notice="required" copyleft="required" attribution="required"/>
+  </license>
+ </metadata>
+
+ <theory xml:id="pf2hol">
+ <metadata>
+  <dc:title>Two-valued higher-order logic with partial functions</dc:title>
+  <dc:description>
+   Two-valued higher-order logic with partial functions
+  </dc:description>
+ </metadata>
+  <imports xml:id="pf2hol-imports-sthol" from="sthol.omdoc#sthol"/>
+  <imports xml:id="pf2hol-imports-undefined" from="undefined.omdoc#undefined"/>
+
+</theory>
+</omdoc>

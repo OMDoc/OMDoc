@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<notations xmlns="http://www.w3.org/ns/mathml-cd" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:om="http://www.openmath.org/OpenMath" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+  <notation cdbase="FIXME" cd="substitution" name="substitute">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="substitution" name="substitute"/>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="substitution">substitute</m:csymbol>
+        <expr name="arg"/>
+      </m:apply>
+    </prototype>
+    <!--REPLACEME: This is just copied for manual intervention:-->
+    <element xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath" name="mrow" crid="." cr="yes">
+      <element name="mo" cr="yes">
+	<attribute name="fence"><text>true</text></attribute>
+	<text>[</text>
+      </element>
+      <recurse select="*[2]"/>
+      <element name="mo" cr="yes"><text>/</text></element>
+      <recurse select="*[3]"/>
+      <element name="mo" cr="yes">
+	<attribute name="fence"><text>true</text></attribute>
+	<text>]</text>
+      </element>
+    </element>
+    <!--/REPLACEME-->
+  </notation>
+  <notation cdbase="FIXME" cd="substitution" name="apply">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="substitution" name="apply"/>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="substitution">apply</m:csymbol>
+        <expr name="arg"/>
+      </m:apply>
+    </prototype>
+    <!--REPLACEME: This is just copied for manual intervention:-->
+    <recurse xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath" select="*[2]"/>
+    <element xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath" name="mo" cr="yes">
+    <attribute name="fence"><text>true</text></attribute>
+    <text>(</text>
+   </element>
+   <recurse xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath" select="*[3]"/>
+   <element xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath" name="mo" cr="yes">
+    <attribute name="fence"><text>true</text></attribute>
+    <text>)</text>
+   </element>
+    <!--/REPLACEME-->
+  </notation>
+  <notation cdbase="FIXME" cd="substitution" name="substlist">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="substitution" name="substlist"/>
+        <exprlist name="args">
+          <expr name="arg"/>
+        </exprlist>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="substitution">substlist</m:csymbol>
+        <exprlist name="args">
+          <expr name="arg"/>
+        </exprlist>
+      </m:apply>
+    </prototype>
+    <rendering precedence="1000">
+      <m:mrow>
+        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
+        <iterate name="args" precedence="1000">
+          <separator>
+            <m:mo>,</m:mo>
+          </separator>
+          <render name="arg"/>
+        </iterate>
+        <m:mo mcd:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+</notations>

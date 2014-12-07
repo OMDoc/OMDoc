@@ -1,0 +1,878 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xml:id="rdf.omdoc" version="1.6"
+       xmlns:dc="http://purl.org/dc/elements/1.1/" 
+       xmlns:cc="http://creativecommons.org/ns" 
+       xmlns:om="http://www.openmath.org/OpenMath"
+       xmlns:m="http://www.w3.org/1998/Math/MathML"
+       xmlns:oo="http://omdoc.org/ontology#"
+       xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+       xmlns="http://omdoc.org/ns">
+
+<metadata>
+  <dc:title>A Content Dictionary for the RDF Vocabulary Description Language (RDFS)</dc:title>
+  <dc:creator>Christoph Lange</dc:creator>
+  <dc:date>2008-09-12</dc:date>
+  <dc:format>application/omdoc+xml</dc:format>
+  <dc:rights>Copyright (c) 2008 Michael Kohlhase</dc:rights>
+  <dc:description>This CD defines the RDFS language.</dc:description>
+</metadata>
+
+<theory xml:id="rdfs">
+  
+  <metadata>
+    <link rel="oo:semWebBase" href="http://www.w3.org/2000/01/rdf-schema#"/>
+  </metadata>
+
+  <imports from="../omstd/quant1.omdoc#quant1"/>
+  <imports from="../omstd/logic1.omdoc#logic1"/>
+
+  <imports from="rdf.omdoc#rdf">
+      <morphism xml:id="rdf-type.morphism">
+          <requation>
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="rdf" name="type"/></OMOBJ>
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="rdfs" name="type"/></OMOBJ>
+          </requation>
+      </morphism>
+      <morphism xml:id="rdf-Property.morphism">
+          <requation>
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="rdf" name="Property"/></OMOBJ>
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="rdfs" name="Property"/></OMOBJ>
+          </requation>
+      </morphism>
+      <morphism xml:id="rdf-Statement.morphism">
+          <requation>
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="rdf" name="Statement"/></OMOBJ>
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="rdfs" name="Statement"/></OMOBJ>
+          </requation>
+      </morphism>   
+      <morphism xml:id="rdf-subject.morphism">
+          <requation>
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="rdf" name="subject"/></OMOBJ>
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="rdfs" name="subject"/></OMOBJ>
+          </requation>
+      </morphism>   
+      <morphism xml:id="rdf-predicate.morphism">
+          <requation>
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="rdf" name="predicate"/></OMOBJ>
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="rdfs" name="predicate"/></OMOBJ>
+          </requation>
+      </morphism>
+      <morphism xml:id="rdf-object.morphism">
+          <requation>
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="rdf" name="object"/></OMOBJ>
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="rdfs" name="object"/></OMOBJ>
+          </requation>
+      </morphism>
+      <morphism xml:id="rdf-Bag.morphism">
+          <requation>
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="rdf" name="Bag"/></OMOBJ>
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="rdfs" name="Bag"/></OMOBJ>
+          </requation>
+      </morphism>
+      <morphism xml:id="rdf-Seq.morphism">
+          <requation>
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="rdf" name="Seq"/></OMOBJ>
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="rdfs" name="Seq"/></OMOBJ>
+          </requation>
+      </morphism>
+      <morphism xml:id="rdf-Alt.morphism">
+          <requation>
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="rdf" name="Alt"/></OMOBJ>
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="rdfs" name="Alt"/></OMOBJ>
+          </requation>
+      </morphism>
+      <morphism xml:id="rdf-value.morphism">
+          <requation>
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="rdf" name="value"/></OMOBJ>
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="rdfs" name="value"/></OMOBJ>
+          </requation>
+      </morphism>
+      <morphism xml:id="List.morphism">
+          <requation>
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="rdf" name="List"/></OMOBJ>
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="rdfs" name="List"/></OMOBJ>
+          </requation>
+      </morphism>
+      <morphism xml:id="nil.morphism">
+          <requation>
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="rdf" name="nil"/></OMOBJ>
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="rdfs" name="nil"/></OMOBJ>
+          </requation>
+      </morphism>
+      <morphism xml:id="first.morphism">
+          <requation>
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="rdf" name="first"/></OMOBJ>
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="rdfs" name="first"/></OMOBJ>
+          </requation>
+      </morphism>
+      <morphism xml:id="rest.morphism">
+          <requation>
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="rdf" name="rest"/></OMOBJ>
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="rdfs" name="rest"/></OMOBJ>
+          </requation>
+      </morphism>
+      <morphism xml:id="XMLLiteral.morphism">
+          <requation>
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="rdf" name="XMLLiteral"/></OMOBJ>
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="rdfs" name="XMLLiteral"/></OMOBJ>
+          </requation>
+      </morphism>            
+  </imports>       
+
+  <!-- RDF symbol definitions -->
+  <symbol name="type">
+    <metadata>
+      <meta property="rdfs:label">type</meta>
+      <meta property="rdfs:comment">The subject is an instance of a class.</meta>
+      <meta property="rdfs:isDefined">http://www.w3.org/1999/02/22-rdf-syntax-ns#</meta>
+    </metadata>
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	<OMA>
+	  <OMS cd="rdf" name="Property"/>
+	  <OMS cd="rdfs" name="Resource"/>
+	  <OMS cd="rdfs" name="Class"/>        
+	</OMA>
+      </OMOBJ>
+    </type>    
+  </symbol>
+
+  <symbol name="Property" xml:id="Property.symbol">
+    <metadata>
+      <meta property="rdfs:label">Property</meta>
+      <meta property="rdfs:comment">The class of RDF properties.</meta>
+      <meta property="rdfs:isDefined">http://www.w3.org/1999/02/22-rdf-syntax-ns#</meta>
+    </metadata>
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMS cd="rdfs" name="Class"/>
+      </OMOBJ>
+    </type>    
+  </symbol>    
+
+  <axiom for="Property">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+          <OMS cd="rdfs" name="subClassOf"/>
+          <OMS cd="rdfs" name="Property"/>
+          <OMS cd="rdfs" name="Resource"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+  
+  <symbol name="Statement" xml:id="Statement.symbol">
+    <metadata>
+      <meta property="rdfs:label">Statement</meta>
+      <meta property="rdfs:comment">The class of RDF statements.</meta>
+      <meta property="rdfs:isDefined">http://www.w3.org/1999/02/22-rdf-syntax-ns#</meta>
+    </metadata>
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMS cd="rdfs" name="Class"/>
+      </OMOBJ>
+    </type>    
+  </symbol> 
+
+  <axiom for="Statement">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+          <OMS cd="rdfs" name="subClassOf"/>
+          <OMS cd="rdfs" name="Statement"/>
+          <OMS cd="rdfs" name="Resource"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+
+  <symbol name="subject">
+    <metadata>
+      <meta property="rdfs:label">subject</meta>
+      <meta property="rdfs:comment">The subject of the subject RDF statement.</meta>
+      <meta property="rdfs:isDefined">http://www.w3.org/1999/02/22-rdf-syntax-ns#</meta>
+    </metadata>
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	<OMA>
+	  <OMS cd="rdf" name="Property"/>
+	  <OMS cd="rdf" name="Statement"/>
+	  <OMS cd="rdfs" name="Resource"/>
+	</OMA>
+      </OMOBJ>
+    </type>    
+  </symbol>
+  
+  <symbol name="predicate">
+    <metadata>
+      <meta property="rdfs:label">predicate</meta>
+      <meta property="rdfs:comment">The predicate of the subject RDF statement.</meta>
+      <meta property="rdfs:isDefined">http://www.w3.org/1999/02/22-rdf-syntax-ns#</meta>
+    </metadata>
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	<OMA>
+	  <OMS cd="rdf" name="Property"/>
+	  <OMS cd="rdf" name="Statement"/>
+	  <OMS cd="rdfs" name="Resource"/>
+	</OMA>
+      </OMOBJ>
+    </type>    
+  </symbol> 
+
+  <symbol name="object">
+    <metadata>
+      <meta property="rdfs:label">object</meta>
+      <meta property="rdfs:comment">The object of the subject RDF statement.</meta>
+      <meta property="rdfs:isDefined">http://www.w3.org/1999/02/22-rdf-syntax-ns#</meta>
+    </metadata>
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	<OMA>
+	  <OMS cd="rdf" name="Property"/>
+	  <OMS cd="rdf" name="Statement"/>
+	  <OMS cd="rdfs" name="Resource"/>
+	</OMA>
+      </OMOBJ>
+    </type>    
+  </symbol>     
+
+  <symbol name="Bag" xml:id="Bag.symbol">
+    <metadata>
+      <meta property="rdfs:label">Bag</meta>
+      <meta property="rdfs:comment">The class of unordered containers.</meta>
+      <meta property="rdfs:isDefined">http://www.w3.org/1999/02/22-rdf-syntax-ns#</meta>
+    </metadata>
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMS cd="rdfs" name="Class"/>
+      </OMOBJ>
+    </type>    
+  </symbol> 
+
+  <axiom for="Bag">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+          <OMS cd="rdfs" name="subClassOf"/>
+          <OMS cd="rdfs" name="Bag"/>
+          <OMS cd="rdfs" name="Container"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+  
+  <symbol name="Seq" xml:id="Seq.symbol">
+    <metadata>
+      <meta property="rdfs:label">Seq</meta>
+      <meta property="rdfs:comment">The class of ordered containers.</meta>
+      <meta property="rdfs:isDefined">http://www.w3.org/1999/02/22-rdf-syntax-ns#</meta>
+    </metadata>
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMS cd="rdfs" name="Class"/>
+      </OMOBJ>
+    </type>    
+  </symbol> 
+
+  <axiom for="Seq">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+          <OMS cd="rdfs" name="subClassOf"/>
+          <OMS cd="rdfs" name="Seq"/>
+          <OMS cd="rdfs" name="Container"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>  
+
+  <symbol name="Alt" xml:id="Alt.symbol">
+    <metadata>
+      <meta property="rdfs:label">Alt</meta>
+      <meta property="rdfs:comment">The class of containers of alternatives.</meta>
+      <meta property="rdfs:isDefined">http://www.w3.org/1999/02/22-rdf-syntax-ns#</meta>
+    </metadata>
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMS cd="rdfs" name="Class"/>
+      </OMOBJ>
+    </type>    
+  </symbol> 
+
+  <axiom for="Alt">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+          <OMS cd="rdfs" name="subClassOf"/>
+          <OMS cd="rdfs" name="Alt"/>
+          <OMS cd="rdfs" name="Container"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>    
+
+  <symbol name="value">
+    <metadata>
+      <meta property="rdfs:label">value</meta>
+      <meta property="rdfs:comment">Idiomatic property used for structured values.</meta>
+      <meta property="rdfs:isDefined">http://www.w3.org/1999/02/22-rdf-syntax-ns#</meta>
+    </metadata>
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	<OMA>
+	  <OMS cd="rdf" name="Property"/>
+	  <OMS cd="rdfs" name="Resource"/>
+	  <OMS cd="rdfs" name="Resource"/>        
+	</OMA>
+      </OMOBJ>
+    </type>    
+  </symbol> 
+
+  <symbol name="List" xml:id="List.symbol">
+    <metadata>
+      <meta property="rdfs:label">List</meta>
+      <meta property="rdfs:comment">The class of RDF Lists.</meta>
+      <meta property="rdfs:isDefined">http://www.w3.org/1999/02/22-rdf-syntax-ns#</meta>
+    </metadata>
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMS cd="rdfs" name="Class"/>
+      </OMOBJ>
+    </type>    
+  </symbol> 
+
+  <axiom for="List">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+          <OMS cd="rdfs" name="subClassOf"/>
+          <OMS cd="rdfs" name="List"/>
+          <OMS cd="rdfs" name="Resource"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>    
+
+  <symbol name="nil">
+    <metadata>
+      <meta property="rdfs:label">nil</meta>
+      <meta property="rdfs:comment">The empty list, with no items in it. If the rest of a list is nil then the list has no more items in it.</meta>
+      <meta property="rdfs:isDefined">http://www.w3.org/1999/02/22-rdf-syntax-ns#</meta>
+    </metadata>
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMS cd="rdf" name="List"/>
+      </OMOBJ>
+    </type>    
+  </symbol>
+  
+  <symbol name="first">
+    <metadata>
+      <meta property="rdfs:label">first</meta>
+      <meta property="rdfs:comment">The first item in the subject RDF list.</meta>
+      <meta property="rdfs:isDefined">http://www.w3.org/1999/02/22-rdf-syntax-ns#</meta>
+    </metadata>
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	<OMA>
+	  <OMS cd="rdfs" name="Property"/>
+	  <OMS cd="rdfs" name="List"/>
+	  <OMS cd="rdfs" name="Resource"/>       
+	</OMA>
+      </OMOBJ>
+    </type>    
+  </symbol>
+  
+  <symbol name="rest">
+    <metadata>
+      <meta property="rdfs:label">rest</meta>
+      <meta property="rdfs:comment">The rest of the subject RDF list after the first item.</meta>
+      <meta property="rdfs:isDefined">http://www.w3.org/1999/02/22-rdf-syntax-ns#</meta>
+    </metadata>
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	<OMA>
+	  <OMS cd="rdfs" name="Property"/>
+	  <OMS cd="rdfs" name="List"/>
+	  <OMS cd="rdfs" name="List"/>       
+	</OMA>
+      </OMOBJ>
+    </type>    
+  </symbol>
+  
+  <symbol name="XMLLiteral" xml:id="XMLLiteral.symbol">
+    <metadata>
+      <meta property="rdfs:label">XMLLiteral</meta>
+      <meta property="rdfs:comment">The class of XML literal values.</meta>
+      <meta property="rdfs:isDefined">http://www.w3.org/1999/02/22-rdf-syntax-ns#</meta>
+    </metadata>
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMS cd="rdfs" name="Datatype"/>
+      </OMOBJ>
+    </type>    
+  </symbol> 
+
+  <axiom for="XMLLiteral">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+          <OMS cd="rdfs" name="subClassOf"/>
+          <OMS cd="rdfs" name="XMLLiteral"/>
+          <OMS cd="rdfs" name="Literal"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>    
+
+  <!-- formalization of the rdfs:domain/range syntactic sugar.
+       This is split into three axioms for better readability -->  
+  <axiom xml:id="proptype-type">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMBIND>
+	<OMS cd="quant1" name="forall"/>
+	<OMBVAR>
+	  <OMV name="p"/>
+	  <OMATTR>
+	    <OMATP>
+	      <OMS cd="rdf" name="type"/>
+	      <OMA>
+		<OMV name="p"/>
+		<OMV name="d"/>
+		<OMV name="r"/>
+	      </OMA>
+	    </OMATP>
+	    <OMV name="property"/>
+	  </OMATTR>
+	</OMBVAR>
+	<OMA>
+	  <OMS cd="logic1" name="implies"/>
+	  <!-- this condition is valid even for p = rdf:Property,
+	       as rdfs:subPropertyOf is reflexive. -->
+	  <OMA>
+	    <OMS cd="rdfs" name="subPropertyOf"/>
+	    <OMV name="p"/>
+	    <OMS cd="rdf" name="Property"/>
+	  </OMA>
+	  <OMA>
+	    <OMS cd="rdf" name="type"/>
+	    <OMV name="property"/>
+	    <OMV name="p"/>
+	  </OMA>
+	</OMA>
+      </OMBIND>
+    </OMOBJ>
+  </axiom>
+
+  <axiom xml:id="proptype-domain">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMBIND>
+	<OMS cd="quant1" name="forall"/>
+	<OMBVAR>
+	  <OMV name="p"/>
+	  <OMV name="d"/>
+	  <OMATTR>
+	    <OMATP>
+	      <OMS cd="rdf" name="type"/>
+	      <OMA>
+		<OMV name="p"/>
+		<OMV name="d"/>
+		<OMV name="r"/>
+	      </OMA>
+	    </OMATP>
+	    <OMV name="property"/>
+	  </OMATTR>
+	</OMBVAR>
+        <OMA>
+	  <OMS cd="logic1" name="implies"/>
+	  <OMA>
+	    <OMS cd="rdfs" name="subPropertyOf"/>
+	    <OMV name="p"/>
+	    <OMS cd="rdf" name="Property"/>
+	  </OMA>
+	  <OMA>
+	    <OMS cd="rdfs" name="domain"/>
+	    <OMV name="property"/>
+	    <OMV name="d"/>
+	  </OMA>
+	</OMA>
+      </OMBIND>
+    </OMOBJ>
+  </axiom>
+
+  <axiom xml:id="proptype-range">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMBIND>
+	<OMS cd="quant1" name="forall"/>
+	<OMBVAR>
+	  <OMV name="p"/>
+	  <OMV name="r"/>
+	  <OMATTR>
+	    <OMATP>
+	      <OMS cd="rdf" name="type"/>
+	      <OMA>
+		<OMV name="p"/>
+		<OMV name="d"/>
+		<OMV name="r"/>
+	      </OMA>
+	    </OMATP>
+	    <OMV name="property"/>
+	  </OMATTR>
+	</OMBVAR>
+        <OMA>
+	  <OMS cd="logic1" name="implies"/>
+	  <OMA>
+	    <OMS cd="rdfs" name="subPropertyOf"/>
+	    <OMV name="p"/>
+	    <OMS cd="rdf" name="Property"/>
+	  </OMA>
+	  <OMA>
+	    <OMS cd="rdfs" name="range"/>
+	    <OMV name="property"/>
+	    <OMV name="r"/>
+	  </OMA>
+	</OMA>
+      </OMBIND>
+    </OMOBJ>
+  </axiom>     
+  
+  <!-- RDFS symbols -->  
+  <symbol name="Resource">
+    <metadata>    
+      <meta property="rdfs:isDefinedBy">http://www.w3.org/2000/01/rdf-schema#</meta>
+      <meta property="rdfs:label">Resource</meta>
+      <meta property="rdfs:comment">The class resource, everything.</meta>
+    </metadata>    
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMS cd="rdfs" name="Class"/>
+      </OMOBJ>
+    </type>
+  </symbol>
+
+  <symbol name="Class" xml:id="Class.symbol">
+    <!-- This would be the literal translation from RDFS.  Can a symbol have itself as a type?
+         Discussion: https://trac.kwarc.info/krextor/ticket/26 -->
+    <metadata>    
+      <meta property="rdfs:isDefinedBy">http://www.w3.org/2000/01/rdf-schema#</meta>
+      <meta property="rdfs:label">Class</meta>
+      <meta property="rdfs:comment">The class of classes.</meta>
+    </metadata>  
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMS cd="rdfs" name="Class"/>
+      </OMOBJ>
+    </type>
+  </symbol>
+  
+  <axiom for="Class">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+          <OMS cd="rdfs" name="subClassOf"/>
+          <OMS cd="rdfs" name="Class"/>
+          <OMS cd="rdfs" name="Resource"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+ 
+  <symbol name="subClassOf">
+    <metadata>    
+      <meta property="rdfs:isDefinedBy">http://www.w3.org/2000/01/rdf-schema#</meta>
+      <meta property="rdfs:label">subClassOf</meta>
+      <meta property="rdfs:comment">The subject is a subclass of a class.</meta>
+    </metadata> 
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	<OMA>
+	  <OMS cd="rdf" name="Property"/>
+	  <OMS cd="rdfs" name="Class"/>
+	  <OMS cd="rdfs" name="Class"/>
+	</OMA>
+      </OMOBJ>
+    </type>
+  </symbol>
+  
+  <notation>
+    <prototype>
+      <om:OMA><om:OMS cd="rdfs" name="subClassOf"/><expr name="arg1"/><expr name="arg2"/></om:OMA>
+    </prototype>
+    <rendering>
+      <m:mrow>
+        <render name="arg1"/>
+        <m:mo>⊑</m:mo>
+        <render name="arg2"/>
+      </m:mrow>
+    </rendering>
+  </notation>
+  
+  <symbol name="subPropertyOf">
+    <metadata>    
+      <meta property="rdfs:isDefinedBy">http://www.w3.org/2000/01/rdf-schema#</meta>
+      <meta property="rdfs:label">subPropertyOf</meta>
+      <meta property="rdfs:comment">The subject is a subproperty of a property.</meta>
+    </metadata>  
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	<OMA>
+	  <OMS cd="rdf" name="Property"/>
+	  <OMS cd="rdf" name="Property"/>
+	  <OMS cd="rdf" name="Property"/>      
+	</OMA>
+      </OMOBJ>
+    </type>
+  </symbol>
+    
+  <notation>
+    <prototype>
+      <om:OMA><om:OMS cd="rdfs" name="subPropertyOf"/><expr name="arg1"/><expr name="arg2"/></om:OMA>
+    </prototype>
+    <rendering>
+      <m:mrow>
+        <render name="arg1"/>
+        <m:mo>⊑</m:mo>
+        <render name="arg2"/>
+      </m:mrow>
+    </rendering>
+  </notation>
+  
+  <symbol name="comment">
+    <metadata>    
+      <meta property="rdfs:isDefinedBy">http://www.w3.org/2000/01/rdf-schema#</meta>
+      <meta property="rdfs:label">comment</meta>
+      <meta property="rdfs:comment">A description of the subject resource.</meta>
+    </metadata> 
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	<OMA>
+	  <OMS cd="rdf" name="Property"/>
+	  <OMS cd="rdfs" name="Resource"/>
+	  <OMS cd="rdfs" name="Resource"/>   
+	</OMA>
+      </OMOBJ>
+    </type>
+  </symbol>
+  
+  <symbol name="label">
+    <metadata>    
+      <meta property="rdfs:isDefinedBy">http://www.w3.org/2000/01/rdf-schema#</meta>
+      <meta property="rdfs:label">label</meta>
+      <meta property="rdfs:comment">A human-readable name for the subject.</meta>
+    </metadata>  
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	<OMA>
+	  <OMS cd="rdf" name="Property"/>
+	  <OMS cd="rdfs" name="Resource"/>
+	  <OMS cd="rdfs" name="Literal"/>
+	</OMA>
+      </OMOBJ>
+    </type>
+  </symbol>
+    
+  <symbol name="domain">
+    <metadata>    
+      <meta property="rdfs:isDefinedBy">http://www.w3.org/2000/01/rdf-schema#</meta>
+      <meta property="rdfs:label">domain</meta>
+      <meta property="rdfs:comment">A domain of the subject property.</meta>
+    </metadata>  
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	<OMA>
+	  <OMS cd="rdf" name="Property"/>
+	  <OMS cd="rdf" name="Property"/>        
+	  <OMS cd="rdfs" name="Class"/>
+	</OMA>
+      </OMOBJ>
+    </type>
+  </symbol>
+  
+  <symbol name="range">
+    <metadata>    
+      <meta property="rdfs:isDefinedBy">http://www.w3.org/2000/01/rdf-schema#</meta>
+      <meta property="rdfs:label">range</meta>
+      <meta property="rdfs:comment">A range of the subject property.</meta>
+    </metadata>  
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	<OMA>
+	  <OMS cd="rdf" name="Property"/>
+	  <OMS cd="rdf" name="Property"/>        
+	  <OMS cd="rdfs" name="Class"/>
+	</OMA>
+      </OMOBJ>
+    </type>
+  </symbol>
+  
+  <symbol name="seeAlso">
+    <metadata>    
+      <meta property="rdfs:isDefinedBy">http://www.w3.org/2000/01/rdf-schema#</meta>
+      <meta property="rdfs:label">seeAlso</meta>
+      <meta property="rdfs:comment">Further information about the subject resource.</meta>
+    </metadata>  
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	<OMA>
+	  <OMS cd="rdf" name="Property"/>
+	  <OMS cd="rdfs" name="Resource"/>
+	  <OMS cd="rdfs" name="Resource"/>
+	</OMA>
+      </OMOBJ>
+    </type>
+  </symbol>
+  
+  <symbol name="isDefinedBy" xml:id="isDefinedBy.symbol">
+    <metadata>    
+      <meta property="rdfs:isDefinedBy">http://www.w3.org/2000/01/rdf-schema#</meta>
+      <meta property="rdfs:label">isDefinedBy</meta>
+      <meta property="rdfs:comment">The defininition of the subject resource.</meta>
+    </metadata>  
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	<OMA>
+	  <OMS cd="rdf" name="Property"/>
+	  <OMS cd="rdfs" name="Resource"/>
+	  <OMS cd="rdfs" name="Resource"/>
+	</OMA>
+      </OMOBJ>
+    </type>
+  </symbol>
+  
+  <axiom for="isDefinedBy">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+          <OMS cd="rdfs" name="subClassOf"/>
+          <OMS cd="rdfs" name="isDefinedBy"/>
+          <OMS cd="rdfs" name="seeAlso"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom> 
+    
+  <symbol name="Literal" xml:id="Literal.symbol">
+    <metadata>    
+      <meta property="rdfs:isDefinedBy">http://www.w3.org/2000/01/rdf-schema#</meta>
+      <meta property="rdfs:label">Literal</meta>
+      <meta property="rdfs:comment">The class of literal values, eg. textual strings and integers.</meta>
+    </metadata>  
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMS cd="rdfs" name="Class"/>
+      </OMOBJ>
+    </type>
+  </symbol>
+  
+  <axiom for="Literal">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+          <OMS cd="rdfs" name="subClassOf"/>
+          <OMS cd="rdfs" name="Literal"/>
+          <OMS cd="rdfs" name="Resource"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom> 
+    
+  <symbol name="Container" xml:id="Container.symbol">
+    <metadata>    
+      <meta property="rdfs:isDefinedBy">http://www.w3.org/2000/01/rdf-schema#</meta>
+      <meta property="rdfs:label">Container</meta>
+      <meta property="rdfs:comment">The class of RDF containers.</meta>
+    </metadata>  
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMS cd="rdfs" name="Class"/>
+      </OMOBJ>
+    </type>
+  </symbol>
+  
+  <axiom for="Container">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+          <OMS cd="rdfs" name="subClassOf"/>
+          <OMS cd="rdfs" name="Container"/>
+          <OMS cd="rdfs" name="Resource"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom> 
+    
+  <symbol name="ContainerMembershipProperty" xml:id="ContainerMembershipProperty.symbol">
+    <metadata>    
+      <meta property="rdfs:isDefinedBy">http://www.w3.org/2000/01/rdf-schema#</meta>
+      <meta property="rdfs:label">ContainerMembershipProperty</meta>
+      <meta property="rdfs:comment">The class of container membership properties, rdf:_1, rdf:_2, ..., all of which are sub-properties of 'member'.</meta>
+    </metadata>  
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMS cd="rdfs" name="Class"/>
+      </OMOBJ>
+    </type>
+  </symbol>
+  
+  <axiom for="Container">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+          <OMS cd="rdfs" name="subClassOf"/>
+          <OMS cd="rdfs" name="Container"/>
+          <OMS cd="rdf" name="Property"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>    
+    
+  <symbol name="member">
+    <metadata>    
+      <meta property="rdfs:isDefinedBy">http://www.w3.org/2000/01/rdf-schema#</meta>
+      <meta property="rdfs:label">member</meta>
+      <meta property="rdfs:comment">A member of the subject resource.</meta>
+    </metadata>  
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	<OMA>
+	  <OMS cd="rdf" name="Property"/>
+	  <OMS cd="rdfs" name="Resource"/>
+	  <OMS cd="rdfs" name="Resource"/>
+	</OMA>
+      </OMOBJ>
+    </type>
+  </symbol>
+  
+  <symbol name="Datatype" xml:id="Datatype.symbol">
+    <metadata>    
+      <meta property="rdfs:isDefinedBy">http://www.w3.org/2000/01/rdf-schema#</meta>
+      <meta property="rdfs:label">Datatype</meta>
+      <meta property="rdfs:comment">The class of RDF datatypes.</meta>
+    </metadata>  
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMS cd="rdfs" name="Class"/>
+      </OMOBJ>
+    </type>
+  </symbol>
+  
+  <axiom for="Datatype">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+          <OMS cd="rdfs" name="subClassOf"/>
+          <OMS cd="rdfs" name="Container"/>
+          <OMS cd="rdfs" name="Class"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>    
+  
+</theory>
+</omdoc>
+
+<!-- vim:sw=2:sts=2
+-->

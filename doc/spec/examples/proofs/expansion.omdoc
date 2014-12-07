@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xml:id="expansion.omdoc"
+  xmlns="http://omdoc.org/ns"
+  xmlns:cc="http://creativecommons.org/ns"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  version="1.6">
+<metadata>
+  <dc:date action="created"> 2004-10-08T12:39:02Z </dc:date>
+  <dc:title xml:lang="en"> expansion </dc:title>
+  <dc:creator role="aut"> Michael Kohlhase </dc:creator>
+  <dc:source>  </dc:source>
+  <dc:date action="updated"> 2004-10-08T12:39:02Z </dc:date>
+  <dc:type> Text </dc:type>
+  <dc:format> application/omdoc+xml </dc:format>
+  <dc:rights>Copyright (c) 2004 Michael Kohlhase</dc:rights>
+  <cc:license>
+    <cc:permissions reproduction="permitted" distribution="permitted" derivative_works="permitted"/>
+    <cc:prohibitions commercial_use="permitted"/>
+    <cc:requirements notice="required" copyleft="required" attribution="required"/>
+  </cc:license>
+</metadata>
+<assertion xml:id="t1" theory="sets">
+  <CMP>If $a\in{U}$ or $a\in{V}$, then $a\in{U}\cup{V}$.</CMP>
+  <FMP>
+    <assumption xml:id="t1_a"><legacy format="TeX">$a\in{U}\vee a\in{V}$</legacy></assumption>
+    <conclusion xml:id="t1_c"><legacy format="TeX">$a\in{U}\cup{V}$</legacy></conclusion>
+  </FMP>
+</assertion>
+<proof xml:id="t1_p1" for="#t1" theory="sets">
+  <omtext xml:id="t1_p1_m1">
+    <CMP> We prove the assertion by a case analysis.</CMP>
+  </omtext>
+  <derive xml:id="t1_p1_l1">
+    <CMP>If $a\in{U}$, then $a\in{U}\cup{V}$.</CMP>
+    <FMP>
+      <assumption xml:id="t1_p1_l1_a"><legacy format="TeX">$a\in{U}$</legacy></assumption>
+      <conclusion xml:id="t1_p1_l1_c"><legacy format="TeX">$a\in{U}\cup{V}$</legacy></conclusion>
+    </FMP>
+    <method xref="sk.omdoc#SK.by_definition"><legacy format="TeX">$\cup$</legacy></method>
+  </derive> 
+  <derive xml:id="t1_p1_l2">
+    <CMP>If $a\in{V}$, then $a\in{U}\cup{V}$.</CMP>
+    <FMP>
+      <assumption xml:id="t1_p1_l2_a"><legacy format="TeX">$a\in{V}$</legacy></assumption>
+      <conclusion xml:id="t1_p1_l2_c"><legacy format="TeX">$a\in{U}\cup{V}$</legacy></conclusion>
+    </FMP>
+    <method xref="sk.omdoc#SK.by_definition"><legacy format="TeX">$\cup$</legacy></method>
+  </derive> 
+  <derive xml:id="t1_p1_c">
+    <CMP> We have considered both cases, so we have $a\in{U}\cup{V}$.</CMP>
+  </derive> 
+</proof>
+
+</omdoc>

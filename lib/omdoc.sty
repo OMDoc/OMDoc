@@ -1,0 +1,125 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{omdoc}[2000/10/26]
+\usepackage{theorem,url,hyperref,graphicx}
+
+\def\amp{&}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theorems and related stuff, such that in Definitions and related stuff there is no italic font
+% These macros can handle the optional arguments of definitions and remarks.
+% March 1995
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \newwrite\@hintfile\newwrite\@solutionfile
+% \immediate\openout\@hintfile=\jobname-hints.tex
+% \immediate\openout\@solutionfile=\jobname-solutions.tex
+% \newenvironment{hint}[1]{}{}%
+% %{[Hint(\ref{hint:#1}; p.~\pageref{hint:#1})]\writeout\bgroup\begin{Hint}}%
+% %{\writeout{\end{Hint}\egroup}}
+% \newenvironment{Hint}[1]%
+% {\begin{Hintthm}\label{hint:#1}}%
+% {\end{Hintthm}}
+% \newenvironment{solution}[1]{}{}%
+% %{[Solution(\ref{sol:#1}; p.~\pageref{sol:#1})]\writeout\bgroup{\begin{Hint}}%
+% %{\end{Hint}\egroup}}
+% \newenvironment{Solution}[1]%
+% {\begin{Hintthm}\label{sol:#1}}%
+% {\end{Hintthm}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% The symbols and their positioning rules for the end of proofs in the proof environment
+
+\def\kasten{\hfil\null\nobreak\hfill
+            \hbox{\vrule\vbox{\hrule width 6 pt\vskip 6pt\hrule}\vrule}
+            \par\smallskip}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% environment for the rsmatter attributes
+\newenvironment{Introduction}{\paragraph{Introduction}}{\par}
+\newenvironment{introduction}{\paragraph{Introduction}}{\par}
+\newenvironment{linkage}{}{}
+\newenvironment{elaboration}{\begin{Remark}}{\end{Remark}}
+
+\def\om@definition{definition}
+\def\om@assertion{assertion}
+\def\om@type{type}
+\def\om@symbol{symbol}
+\def\om@example{example}
+\def\om@proof{proof}
+\def\om@axiom{axiom}
+\def\omdocenv#1#2#3#4% type, extra, label, key
+{\gdef\om@arg{#1}%
+\ifx\om@arg\om@definition\rmenv{#2}{#3}{#4}\fi%
+\ifx\om@arg\om@assertion\emenv{#2}{#3}{#4}\fi%
+\ifx\om@arg\om@symbol\rmenv{#2}{#3}{#4}\fi%
+\ifx\om@arg\om@example\rmenv{#2}{#3}{#4}\fi%
+\ifx\om@arg\om@proof\pf{#2}{#3}{#4}\fi%
+\ifx\om@arg\om@axiom\rmenv{#2}{#3}{#4}\fi%
+\ifx\om@arg\om@type\rmenv{#2}{}{#4}\fi}%
+\def\endomdocenv{\ifx\om@arg\om@definition\endrmenv\fi%
+\ifx\om@arg\om@assertion\endemenv\fi%
+\ifx\om@arg\om@symbol\endrmenv\fi%
+\ifx\om@arg\om@example\endrmenv\fi%
+\ifx\om@arg\om@proof\endpf\fi%
+\ifx\om@arg\om@axiom\endrmenv\fi
+\ifx\om@arg\om@type\endrmenv\fi}
+\newcounter{env}
+\def\rmenv#1#2#3% extra, label, key
+{\par\noindent{\bf #3}% print the type
+\def\@empty{}\def\@label{#2}\stepcounter{env}% set up the tests, increment
+\ifx\@empty\@label\else\ \arabic{env}\fi%print the number, if there is a label
+\ {#1}% print the extra
+\ifx\@empty\@label\else\label{#2}\fi}%do the label, if there is content
+\def\endrmenv{\par}
+\def\emenv#1#2% label, key
+{\rmenv{#1}{#2}\em}
+\def\endemenv{\endrmenv}
+\newenvironment{pf}[2]% label, key
+{\par\noindent{#2}}{\kasten}
+
+\def\lessthan{<}
+\def\greaterthan{>}
+
+
+\newenvironment{omgroup-slide}{}{}
+\def\itemslide{}
+
+\newenvironment{omgroup-enumeration}{\begin{enumerate}}{\end{enumerate}}
+\def\itemenumeration{\item}
+
+\newenvironment{omgroup-itemize}{\begin{itemize}}{\end{itemize}}
+\def\itemitemize{\item}
+
+\newenvironment{omgroup-section}{\section{Section}}{}
+\newenvironment{omgroup-sectioning}{\section{Section}}{}
+\newenvironment{omgroup-subsection}{\subsection{SubSection}}{}
+\def\itemsection{}
+\def\itemsectioning{}
+\def\itemsubsection{}
+
+\newenvironment{omgroup-sequence}{\begin{itemize}}{\end{itemize}}
+\def\itemsequence{\item}
+
+
+%%%%%%% style environements.
+
+\newenvironment{style}[3]% display, class, style (we disregard this at the moment)
+{\def\style@envname{#1-#2}\begin{\style@envname}{#3}}%
+{\end{\style@envname}}%
+
+\newenvironment{block-}[1]{}{}
+\newenvironment{block-titleblock}[1]{\begin{center}}{\end{center}}
+\newenvironment{block-description}[1]{}{\par}
+\newenvironment{block-subject}[1]{}{\par}
+\newenvironment{block-date}[1]{}{\par}
+\newenvironment{block-title}[1]{}{\par}
+\newenvironment{block-authors}[1]{}{\par}
+\newenvironment{block-firstname}[1]{}{}
+\newenvironment{block-surname}[1]{}{}
+\newenvironment{block-othername}[1]{}{}
+\newenvironment{block-email}[1]{\url\bgroup}{\egroup}
+
+\newenvironment{blockcodeline}[1]{\begin{tt}}{\end{tt}}
+
+%%% inline environments
+\newenvironment{inline-}[1]{}{}
+\newenvironment{inline-definiens}[1]{\bgroup\bf}{\egroup}
+\newenvironment{inline-important}[1]{\bgroup\em}{\egroup}
+

@@ -1,0 +1,554 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xml:id="foaf.omdoc" version="1.6"
+       xmlns:dc="http://purl.org/dc/elements/1.1/" 
+       xmlns:cc="http://creativecommons.org/ns" 
+       xmlns="http://omdoc.org/ns"
+       xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+       xmlns:oo="http://omdoc.org/ontology#"
+       xmlns:om="http://www.openmath.org/OpenMath"
+       xmlns:m="http://www.w3.org/1998/Math/MathML">
+
+
+<metadata>
+  <dc:title>The FOAF Ontology</dc:title>
+  <dc:creator role="trl">Christoph Lange</dc:creator>
+  <dc:contributor>Michael Kohlhase</dc:contributor>
+  <dc:date action="updated">2008-09-12</dc:date>
+
+  <!-- TODO DC recommend that rather than using strings one should import the DCMI type
+       vocabulary, but there's no way of doing so before we solve 
+       https://trac.omdoc.org/OMDoc/ticket/1435.
+       See 
+       http://dublincore.org/documents/dces/#type
+       http://dublincore.org/documents/dcmi-type-vocabulary/#Text-003
+       -Christoph
+  -->
+  <dc:type>Text</dc:type>
+  <dc:source>Most of the Material in this CD is extracted from http://xmlns.com/foaf/spec/</dc:source>
+  <dc:format>application/omdoc+xml</dc:format>
+  <dc:rights>Copyright (c) 2008 Michael Kohlhase</dc:rights>
+  <dc:description>This theory defines symbols of the FOAF ontology.</dc:description>
+</metadata>
+
+<theory name="foaf" xml:id="foaf">
+  <metadata>
+    <link rel="oo:semWebBase" href="http://xmlns.com/foaf/0.1/"/>
+    <dc:title>Friend of a Friend (FOAF) vocabulary</dc:title>
+    <dc:description>The Friend of a Friend (FOAF) RDF vocabulary, described using W3C RDF Schema and the Web Ontology Language.</dc:description>
+ </metadata>
+
+<!-- TODO
+If we're not interested in modeling a certain ontology in OMDoc but want to
+refer to its resources just by URI, how can we do that?  Should we use the RDFa syntax of link/@rel?
+-->
+
+<!-- Other ontologies that we import -->
+<imports from="wordnet.omdoc#wordnet"/>
+<imports from="../../doc/spec/cds/dc.omdoc#dc"/>
+
+<!-- TODO idea: we could add missing owl:imports from the OMDoc theory graph -->
+
+<!-- metatheories -->
+<!-- TODO make this a metatheory -->
+<imports from="../logics/owl.omdoc#owl"/>
+
+<!-- other mathematical CDs that we need for MathTalk -->
+<imports from="../omstd/quant1.omdoc#quant1"/>
+<imports from="../omstd/logic1.omdoc#logic1"/>
+
+<symbol name="Agent" xml:id="Agent.symbol">
+  <metadata>
+    <meta property="rdfs:label">Agent</meta>
+    <meta property="rdfs:comment">An agent (eg. person, group, software or physical artifact).</meta>
+    <dc:description>The foaf:Agent class is the class of agents; things that do stuff.</dc:description>
+  </metadata>
+  <type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMS cd="owl" name="Class"/>
+    </OMOBJ>
+  </type>
+</symbol>
+
+<axiom for="Agent">
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="rdfs" name="subClassOf"/>
+	<OMS cd="foaf" name="Agent"/>
+	<OMS cd="wordnet" name="Agent-3"/>
+      </OMA>
+    </OMOBJ>
+  </FMP>
+</axiom>
+
+<axiom for="Agent">
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="owl" name="disjointWith"/>
+	<OMS cd="foaf" name="Agent"/>
+	<OMS cd="foaf" name="Document"/>
+      </OMA>
+    </OMOBJ>
+  </FMP>
+</axiom>
+
+<omtext type="elaboration" for="#Agent.symbol">
+  <CMP>
+    <p>A well known sub-class of foaf:Agent is foaf:Person, representing people. Other kinds of agents include foaf:Organization and foaf:Group.</p>
+    <p>The foaf:Agent class is useful in a few places in FOAF where foaf:Person would have been overly specific. For example, the IM chat ID properties such as jabberID are typically associated with people, but sometimes belong to software bots.</p>
+  </CMP>
+</omtext>
+
+<symbol name="Document" xml:id="Document.symbol">
+  <metadata>
+    <meta property="rdfs:label">Document</meta>
+    <meta property="rdfs:comment">A document.</meta>
+    <dc:description>The foaf:Document class represents those things which are, broadly conceived, 'documents'.</dc:description>
+  </metadata>
+  <type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMS cd="owl" name="Class"/>
+    </OMOBJ>
+  </type>
+</symbol>
+
+<symbol name="Group" xml:id="Group.symbol">
+  <metadata>
+    <meta property="rdfs:label">Group</meta>
+    <meta property="rdfs:comment">A class of Agents.</meta>
+    <dc:description>The foaf:Group class represents a
+      collection of individual agents (and may itself play the role of a
+      foaf:Agent, i.e. something that can perform actions).</dc:description>
+  </metadata>
+  <type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMS cd="owl" name="Class"/>
+    </OMOBJ>
+  </type>
+</symbol>
+
+<omtext type="elaboration" for="#Group.symbol">
+  <CMP>
+    <p>This concept is intentionally quite broad, covering informal and ad-hoc groups,
+    long-lived communities, organizational groups within a workplace, etc. Some such
+    groups may have associated characteristics which could be captured in RDF (perhaps a
+    foaf:homepage, foaf:name, mailing list etc.).</p>
+    <p>While a foaf:Group has the characteristics of a foaf:Agent, it is also associated
+    with a number of other foaf:Agents (typically people) who constitute the
+    foaf:Group. FOAF provides a mechanism, the foaf:membershipClass property, which
+    relates a foaf:Group to a sub-class of the class foaf:Agent who are members of the
+    group. This is a little complicated, but allows us to make group membership rules
+    explicit.</p>
+  </CMP>
+</omtext>
+
+<axiom for="Group">
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="rdfs" name="subClassOf"/>
+	<OMS cd="foaf" name="Group"/>
+	<OMS cd="foaf" name="Agent"/>
+      </OMA>
+    </OMOBJ>
+  </FMP>
+</axiom>
+
+<symbol name="Person">
+  <metadata>
+    <meta property="rdfs:label">Person</meta>
+    <meta property="rdfs:comment">A person.</meta>
+    <dc:description>The foaf:Person class represents people. Something is a foaf:Person if it is a person. We don't nitpick about whether they're alive, dead, real, or imaginary. The foaf:Person class is a sub-class of the foaf:Agent class, since all people are considered 'agents' in FOAF.</dc:description>
+    <!-- This ontology is only referenced once from FOAF, so we save the effort
+    of rewriting it in OMDoc. -->
+    <link rel="rdfs:subClassOf" href="http://www.w3.org/2000/10/swap/pim/contact#Person"/>
+  </metadata>
+  <type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMS cd="owl" name="Class"/>
+    </OMOBJ>
+  </type>
+</symbol>
+
+<axiom for="Person">
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="rdfs" name="subClassOf"/>
+	<OMS cd="foaf" name="Person"/>
+	<OMS cd="wordnet" name="Person"/>
+      </OMA>
+    </OMOBJ>
+  </FMP>
+</axiom>
+
+<axiom for="Person">
+  <CMP>
+    <p>The foaf:Person class is a sub-class of the foaf:Agent class, since all people are
+    considered 'agents' in FOAF.</p>
+  </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="rdfs" name="subClassOf"/>
+	<OMS cd="foaf" name="Person"/>
+	<OMS cd="foaf" name="Agent"/>
+      </OMA>
+    </OMOBJ>
+  </FMP>
+</axiom>
+
+<axiom for="Person">
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="owl" name="disjointWith"/>
+	<OMS cd="foaf" name="Person"/>
+	<OMS cd="foaf" name="Organization"/>
+      </OMA>
+    </OMOBJ>
+  </FMP>
+</axiom>
+
+<!-- TODO add various subclass axioms for foaf:Person -->
+
+<!-- I am not sure; maybe we really want to use <OMS cd="owl" name="FunctionalProperty"/>
+     instead of the function type, so I will make use of an OMDoc feature and declare two
+     types for it. -->
+<!-- Of course we want to use owl:FunctionalProperty, but that does not yet say anything 
+     about domain and range of our property, so we'd need the second function
+     type declaration anyway. -Christoph -->
+<!-- BTW, foaf:name is not a functional property, as there can be more than one
+     name for a thing.  But this discussion is relevant for other properties that
+     are functional properties, so I'll leave it in this place. -Christoph -->
+<symbol name="name" xml:id="name.symbol">
+  <metadata>
+    <meta property="rdfs:label">name</meta>
+    <meta property="rdfs:comment">A name for some thing.</meta>
+    <dc:description>The name of a thing</dc:description>
+  </metadata>
+  <type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="owl" name="DatatypeProperty"/>
+	<OMS cd="owl" name="Thing"/>
+	<OMS cd="rdfs" name="Literal"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+
+<axiom for="name">
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="rdfs" name="subPropertyOf"/>
+	<OMS cd="foaf" name="name"/>
+	<OMS cd="rdfs" name="Label"/>
+      </OMA>
+    </OMOBJ>
+  </FMP>
+</axiom>
+
+<symbol name="made" xml:id="made.symbol">
+  <metadata>
+    <meta property="rdfs:label">made</meta>
+    <meta property="rdfs:comment">Something that was made by this agent.</meta>
+    <dc:description>The foaf:made property relates a foaf:Agent to something foaf:made by it.<!-- See foaf:made for more details on the relationship between these FOAF terms and related Dublin Core vocabulary.--></dc:description>
+  </metadata>
+  <type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="owl" name="ObjectProperty"/>
+	<OMS cd="foaf" name="Agent"/>
+	<OMS cd="owl" name="Thing"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+
+<axiom xml:id="made.maker.inverse.ax" for="made">
+  <CMP>As such it is an inverse of the foaf:maker property, which relates a thing to something that made it.</CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="owl" name="inverseOf"/>
+	<OMS cd="foaf" name="made"/>
+	<OMS cd="foaf" name="maker"/>
+      </OMA>
+    </OMOBJ>
+  </FMP>
+</axiom>
+
+<symbol name="maker" xml:id="maker.symbol">
+  <metadata>
+    <meta property="rdfs:label">maker</meta>
+    <meta property="rdfs:comment">An agent that made this thing.</meta>
+    <dc:description>The foaf:maker property relates something to a foaf:Agent that foaf:made it. As such it is an inverse of the foaf:made property.
+
+      The foaf:name (or other rdfs:label) of the foaf:maker of something can be described as the dc:creator of that thing.
+
+      For example, if the thing named by the URI http://rdfweb.org/people/danbri/ has a foaf:maker that is a foaf:Person whose foaf:name is 'Dan Brickley', we can conclude that http://rdfweb.org/people/danbri/ has a dc:creator of 'Dan Brickley'. 
+
+      FOAF descriptions are encouraged to use dc:creator only for simple textual names, and to use foaf:maker to indicate creators, rather than risk confusing creators with their names. This follows most Dublin Core usage. See UsingDublinCoreCreator for details.</dc:description>
+  </metadata>
+</symbol>
+
+<type for="#maker.symbol" just-by="#maker.domain-range">
+  <CMP>Range and domain of foaf:maker (not declared, but asserted):</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMS cd="foaf" name="maker"/>
+  </OMOBJ>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="owl" name="ObjectProperty"/>
+      <OMS cd="owl" name="Thing"/>
+      <OMS cd="foaf" name="Agent"/>
+    </OMA>
+  </OMOBJ>
+</type>
+
+<omtext><CMP>Now, we have to restate this as an assertion and prove
+    it.</CMP></omtext>
+
+<assertion type="lemma" xml:id="maker.domain-range">
+  <CMP>foaf:maker has range <om:OMOBJ><om:OMS cd="owl" name="Thing"/></om:OMOBJ>and domain <om:OMOBJ><om:OMS cd="foaf" name="Agent"/></om:OMOBJ>.</CMP>
+</assertion>
+
+<proof for="#maker.domain-range">
+  <CMP>We prove this using the declared type of foaf:made, using the axiom that
+    declares foaf:maker as an inverse of foaf:made (<ref type="cite"
+      xref="#made.maker.inverse.ax"/>) and the OWL model-theoretic semantics of
+    owl:inverseOf (once the latter has been formalized properly in the OWL
+    theory, which we have not done here ;-)</CMP>
+</proof>
+
+<assertion type="lemma" xml:id="maker.made.inverse.ass">
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="owl" name="inverseOf"/>
+	<OMS cd="foaf" name="maker"/>
+	<OMS cd="foaf" name="made"/>
+      </OMA>
+    </OMOBJ>
+  </FMP>
+</assertion>
+
+<proof for="#maker.made.inverse.ass">
+  <CMP><!-- TODO prove using the declared type of foaf#made,
+    made.maker.inverse.ax and the OWL model-theoretic semantics of
+    owl#inverseOf (once the latter has been formalized properly in the owl
+    theory) --></CMP>
+  <omtext>
+    <CMP>We need to prove <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="owl" name="inverseOf"/>
+	<OMS cd="foaf" name="maker"/>
+	<OMS cd="foaf" name="made"/>
+      </OMA>
+    </OMOBJ>.</CMP>
+  </omtext>
+  <derive>
+    <CMP>We know that <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	<OMA>
+	  <OMS cd="owl" name="inverseOf"/>
+	  <OMS cd="foaf" name="made"/>
+	  <OMS cd="foaf" name="maker"/>
+	</OMA>
+    </OMOBJ>.</CMP>
+    <!--
+    <method><premise xref="#made.maker.inverse.ax"/></method>
+    -->
+  </derive>
+  <derive>
+    <CMP>Interpreted using the model-theoretic semantics, this means that
+      <m:math><m:mrow><m:msup><m:mo>made</m:mo><m:mo>I</m:mo></m:msup>
+	  <m:mo>=</m:mo><m:msup><m:mrow><m:mo stretchy="true">(</m:mo><m:msup><m:mo>maker</m:mo><m:mo>-</m:mo></m:msup><m:mo stretchy="true">)</m:mo></m:mrow><m:mo>I</m:mo></m:msup>
+	  <m:mo>=</m:mo><m:msup><m:mrow><m:mo stretchy="true">(</m:mo><m:msup><m:mo>maker</m:mo><m:mo>I</m:mo></m:msup><m:mo stretchy="true">)</m:mo></m:mrow><m:mo>-</m:mo></m:msup>
+    </m:mrow></m:math>.</CMP>
+    <!--
+    <method><premise xref="owl.omdoc#FIXME"/></method>
+    -->
+  </derive>
+  <derive>
+    <CMP>Now we apply the inverse on both sides, eliminate double inverses, and obtain
+      <m:math>
+	<m:mrow>
+	  <m:msup>
+	    <m:mrow>
+	      <m:mo stretchy="true">(</m:mo>
+	      <m:msup>
+		<m:mo>made</m:mo>
+		<m:mo>I</m:mo>
+	      </m:msup>
+	      <m:mo stretchy="true">)</m:mo>
+	    </m:mrow>
+	    <m:mo>-</m:mo>
+	  </m:msup>
+	  <m:mo>=</m:mo>
+	  <m:msup>
+	    <m:mrow>
+	      <m:mo stretchy="true">(</m:mo>
+	      <m:msup>
+		<m:mrow>
+		  <m:mo stretchy="true">(</m:mo>
+		  <m:msup>
+		    <m:mo>maker</m:mo>
+		    <m:mo>I</m:mo>
+		  </m:msup>
+		  <m:mo stretchy="true">)</m:mo>
+		</m:mrow>
+		<m:mo>-</m:mo>
+	      </m:msup>
+	      <m:mo stretchy="true">)</m:mo>
+	    </m:mrow>
+	    <m:mo>-</m:mo>
+	  </m:msup>
+	  <m:mo>=</m:mo>
+	  <m:msup>
+	    <m:mo>maker</m:mo>
+	    <m:mo>I</m:mo>
+	  </m:msup>
+      </m:mrow></m:math>
+    </CMP>
+    <!--
+    <method><premise xref="relations.omdoc#FIXME"/><premise xref="owl.omdoc#FIXME"/></method>
+    -->
+  </derive>
+  <derive type="conclusion">
+    <CMP>This is just the interpretation of <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	<OMA>
+	  <OMS cd="owl" name="inverseOf"/>
+	  <OMS cd="foaf" name="maker"/>
+	  <OMS cd="foaf" name="made"/>
+	</OMA>
+    </OMOBJ>, which we had to prove.</CMP>
+  </derive>
+</proof>
+
+<symbol name="member">
+  <metadata>
+    <meta property="rdfs:label">member</meta>
+    <meta property="rdfs:comment">Indicates a member of a Group</meta>
+    <dc:description>The foaf:member property relates a foaf:Group to a foaf:Agent that is a member of that group.</dc:description>
+  </metadata>
+  <type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="owl" name="ObjectProperty"/>
+	<OMS cd="foaf" name="Group"/>
+	<OMS cd="foaf" name="Agent"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+
+<symbol name="membershipClass" xml:id="membershipClass.symbol">
+  <metadata>
+    <meta property="rdfs:label">membershipClass</meta>
+    <meta property="rdfs:comment">Indicates the class of individuals that are a member of a Group</meta>
+    <!-- OMDoc 1.2 syntax for the renderer -->
+    <dc:description>The foaf:membershipClass property relates a foaf:Group to an RDF class representing a sub-class of foaf:Agent whose instances are all the agents that are a foaf:member of the foaf:Group.
+     See foaf:Group for details and examples.</dc:description>
+  </metadata>
+  <type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="rdf" name="Property"/>
+	<OMS cd="foaf" name="Group"/>
+	<OMS cd="owl" name="Class"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+
+<axiom for="membershipClass">
+  <CMP>
+    <p>Behind the scenes, further RDF statements can be used to express the rules for being a member of this group.</p>
+    <!--
+    <p>Behind the scenes, further RDF statements can be used to express the rules for being a member of this group. End-users of FOAF need not pay attention to these details.</p>
+    <p>Here is an example. We define a foaf:Group representing those people who are ILRT staff members. The foaf:membershipClass property connects the group (conceived of as a social entity and agent in its own right) with the class definition for those people who constitute it. In this case, the rule is that all group members are in the ILRTStaffPerson class, which is in turn populated by all those things that are a foaf:Person and which have a foaf:workplaceHomepage of http://www.ilrt.bris.ac.uk/. This is typical: FOAF groups are created by specifying a sub-class of foaf:Agent (in fact usually this will be a sub-class of foaf:Person), and giving criteria for which things fall in or out of the sub-class. For this, we use the owl:onProperty and owl:hasValue properties, indicating the property/value pairs which must be true of matching agents.</p>
+    <omlet action="display" data="#membershipClass.listing">
+      <private xml:id="membershipClass.listing"><data format="text/xml"><![CDATA[ 
+<!- here we see a FOAF group described.
+     each foaf group may be associated with an OWL definition 
+     specifying the class of agents that constitute the group's membership ->
+<foaf:Group>
+ <foaf:name>ILRT staff</foaf:name>
+ <foaf:membershipClass>
+    <owl:Class rdf:about="http://ilrt.example.com/groups#ILRTStaffPerson">
+     <rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+     <rdfs:subClassOf>
+       <owl:Restriction> 
+         <owl:onProperty rdf:resource="http://xmlns.com/foaf/0.1/workplaceHomepage"/>
+         <owl:hasValue rdf:resource="http://www.ilrt.bris.ac.uk/"/>
+       </owl:Restriction> 
+     </rdfs:subClassOf>
+   </owl:Class>
+ </foaf:membershipClass>
+</foaf:Group>]]></data></private></omlet>
+<p>Note that while these example OWL rules for being in the eg:ILRTStaffPerson class are based on a foaf:Person having a particular foaf:workplaceHomepage, this places no obligations on the authors of actual FOAF documents to include this information. If the information is included, then generic OWL tools may infer that some person is an eg:ILRTStaffPerson. To go the extra step and infer that some eg:ILRTStaffPerson is a foaf:member of the group whose foaf:name is "ILRT staff", tools will need some knowledge of the way FOAF deals with groups. In other words, generic OWL technology gets us most of the way, but the full foaf:Group machinery requires extra work for implementors.</p>
+--></CMP>
+  <FMP>
+    <!-- 
+    TODO We are aware of alternatives, but this is still a nice example.
+    http://lists.foaf-project.org/pipermail/foaf-dev/2007-May/008555.html.
+    -->
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMBIND>
+	<OMS cd="quant1" name="forall"/>
+	<OMBVAR>
+	  <!-- Note that we really need not restrict the sets of m, g, and C,
+	  as an RDFS reasoner will infer them from the ranges and domains of
+	  the properties used. -->
+	  <OMV name="m"/>
+	  <OMV name="g"/>
+	  <OMV name="C"/>
+	</OMBVAR>
+	<OMA>
+	  <OMS cd="logic1" name="implies"/>
+	  <OMA>
+	    <OMS cd="logic1" name="and"/>
+	    <OMA>
+	      <OMS cd="rdf" name="type"/>
+	      <OMV name="m"/>
+	      <OMV name="C"/>
+	    </OMA>
+	    <OMA>
+	      <OMS cd="foaf" name="membershipClass"/>
+	      <OMV name="g"/>
+	      <OMV name="C"/>
+	    </OMA>
+	  </OMA>
+	  <OMA>
+	    <OMS cd="foaf" name="member"/>
+	    <OMV name="g"/>
+	    <OMV name="m"/>
+	  </OMA>
+	</OMA>
+      </OMBIND>
+    </OMOBJ>
+  </FMP>
+</axiom>
+
+<notation>
+  <prototype>
+    <om:OMA><om:OMS cd="foaf" name="member"/><expr name="arg1"/><expr name="arg2"/></om:OMA>
+  </prototype>
+  <rendering>
+    <m:mrow>
+      <render name="arg1"/>
+      <m:msub><m:mo>∋</m:mo><m:mi>member</m:mi></m:msub>
+      <render name="arg2"/>
+    </m:mrow>
+  </rendering>
+</notation>
+
+</theory>
+</omdoc>
+
+<!-- vim:sw=2:sts=2
+-->

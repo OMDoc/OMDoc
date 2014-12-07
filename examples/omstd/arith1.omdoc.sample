@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<math   xmlns="http://www.w3.org/1998/Math/MathML">  
+  <mrow id="lcm-prop-1.O">
+    <mrow>
+      <mo>lcm</mo>
+      <mo fence="true">(</mo>
+      <mi>a</mi>
+      <mo separator="true">,</mo>
+      <mi>b</mi>
+      <mo fence="true">)</mo>
+    </mrow>
+    <mo>=</mo>
+    <mfrac>
+      <mrow>
+	<mi>a</mi>
+	<mo>&InvisibleTimes;</mo>
+	<mi>b</mi>
+      </mrow>
+      <mrow>
+	<mo>gcd</mo>
+	<mo fence="true">(</mo>
+	<mi>a</mi>
+	<mo separator="true">,</mo>
+	<mi>b</mi>
+	<mo fence="true">)</mo>
+      </mrow>
+    </mfrac>
+  </mrow>
+</math>

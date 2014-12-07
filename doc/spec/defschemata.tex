@@ -1,0 +1,495 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This file is part of the LaTeX sources of the OMDoc 1.6 specification
+% Copyright (c) 2006 Michael Kohlhase
+% This work is licensed by the Creative Commons Share-Alike license
+% see http://creativecommons.org/licenses/by-sa/2.5/ for details
+\svnInfo $Id: defschemata.tex 8487 2009-08-11 22:09:44Z clange $
+\svnKeyword $HeadURL: https://svn.omdoc.org/repos/omdoc/trunk/doc/spec/defschemata.tex $
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{omgroup}{Derived Statements}
+
+\begin{module}[id=derived-defs]
+\begin{omgroup}[short=Derived Definitions]{Derived Definition Forms}
+
+\begin{oldpart}{fit into the picture here}
+\begin{definition}[display=flow,id=well-defined.def]
+  We say that a definiendum is {\defin{well-defined}}, iff the corresponding definiens
+  uniquely determines it;
+\end{definition}
+adding such definitions to a theory always results in a conservative extension.
+
+\begin{myfig}{math-def}{Some Common Definitions}\small
+ \begin{tabular}{|p{2.2cm}|p{7cm}|l|}\hline
+   Definiens & Definiendum & Type \\\hline\hline
+   The number 1 & $1\deq s(0)$ (1 is the successor of 0) & simple\\\hline
+   The exponential function $e^\cdot$ 
+         &  The {\textbf{exponential function}} $e^\cdot$ is the solution to the
+   differential equation $\partial f=f$ [where $f(0)=1$]. & implicit\\\hline
+   The addition function + & {\textbf{Addition}} on the natural numbers is defined by the equations
+   $x+0=x$ and $x+s(y)=s(x+y)$. & recursive\\\hline
+ \end{tabular}
+\end{myfig}
+Definitions can have many forms, they can be
+\begin{itemize}
+\item equations where the left hand side is the defined symbol and the right hand side is
+  a term that does not contain it, as in our discussion above or the first case in
+  {\myfigref{math-def}}. \inlinedef{We call such definitions
+    \twindefalt{simple}{simple}{definition}.}
+\item general statements that uniquely determine the meaning of the objects or concepts in
+  question, as in the second definition in {\myfigref{math-def}}. \inlinedef{We call such
+    definitions {\twindefalt{implicit}{implicit}{definition}}; the
+    {\twintoo{Peano}{axioms}} are another example of this category.}
+  
+  Note that this kind of definitions requires a proof of unique existence to ensure
+  {\indextoo{well-defined}ness}.  Incidentally, if we leave out the part in square
+  brackets in the second definition in {\myfigref{math-def}}, the differential equation
+  only characterizes the exponential function up to additive real constants. In this case,
+  the ``definition'' only restricts the meaning of the exponential function to a set of
+  possible values.  \inlinedef{We call such a set of axioms a
+    {\twindefalt{loose}{loose}{definition}} definition.}
+\item given as a set of equations, as in the third case of {\myfigref{math-def}}, even
+  though this is strictly a special case of an implicit definition: it is a sub-case,
+  where well-definedness can be shown by giving an argument why the systematic
+  applications of these equations \indexalt{terminates}{termination}, e.g.  by exhibiting
+  an {\indextoo{ordering}} that makes the left hand sides strictly smaller than the
+  right-hand sides. \inlinedef{We call such a definition
+    {\twindefalt{inductive}{definition}{inductive}}.}
+\end{itemize}
+
+\begin{presonly}
+  \begin{myfig}{alternative-theory}{Theory-Constitutive Elements in {\omdoc}}
+    \begin{scriptsize}
+      \begin{tabular}{|>{\snippet}l|>{\tt}l|>{\tt}p{3.6truecm}|c|>{\tt}p{3.2truecm}|}\hline
+        {\rm Element}& \multicolumn{2}{l|}{Attributes\hspace*{2.25cm}} & M & Content  \\\hline
+                     & {\rm Required}  & {\rm Optional}                & C &          \\\hline\hline
+          definition & for & xml:id, type, style, class, uniqueness, existence 
+                                                                       & + & h:p* \llquote{mobj}  \\\hline
+          definition & for & xml:id, type, style, class, consistency, exhaustivity & +  
+                           & h:p*, requation+, measure?, ordering?  \\\hline
+          requation  &           & xml:id, style, class    & -- & \llquote{mobj},\llquote{mobj} \\\hline
+          measure    &           & xml:id, style, class    & -- & \llquote{mobj} \\\hline
+          ordering   &           & xml:id, style, class    & -- & \llquote{mobj} \\\hline
+ \multicolumn{5}{|l|}{where \llquote{mobj} is {\tt{(\mobjabbr)}}}\\\hline
+\end{tabular}
+\end{scriptsize}
+\end{myfig}
+\end{presonly}
+
+In {\myfigref{math-def}} we have seen that there are many ways to fix the meaning of a
+symbol, therefore {\omdoc} {\element{definition}} elements are more complex than
+{\element{axiom}s}.  In particular, the {\element{definition}} element supports several
+kinds of definition mechanisms with specialized content models specified in the
+{\attribute{type}{definition}} attribute (cf. the discussion at the end of
+{\sref{statements-constitutive}}):
+
+\begin{module}[id=implicit-defs]
+\begin{omgroup}{Implicit Definitions}
+
+This kind of definition is often (more accurately) called ``{\emph{\indextoo{definition by
+      description}}}'', since the {\indextoo{definiendum}} is described so accurately,
+that there is exactly one object satisfying the description. The ``description'' of the
+defined symbol is given as a multi-system {\element{FMP}} group whose content uniquely
+determines the value of the symbols that are specified in the
+{\attribute{for}{definition}} attribute of the {\element{definition}} element with
+{\attribute{type}{definition}} {\attval{implicit}{type}{definition}}.  The necessary
+statement of unique existence can be specified in the {\attribute{existence}{definition}}
+and {\attribute{uniqueness}{definition}} attribute, whose values are
+{\twintoo{URI}{reference}s} to to assertional statements (see
+\sref{assertional-statements}) that represent the respective properties.  We give
+an example of an implicit definition in {\mylstref{exp-def}}.
+
+\begin{lstlisting}[label=lst:exp-def,mathescape,
+  caption={An Implicit Definition of the Exponential Function},
+  index={definition,assertion,type,uniqueness,existence}]
+<definition xml:id="exp-def" for="#exp" type="implicit" 
+            uniqueness="#exp-unique" existence="#exp-exists">
+  <FMP>$exp\sp{\prime}=exp\wedge exp(0)=1$</FMP>
+</definition>
+<assertion xml:id="exp-unique">
+  <h:p>
+    There is at most one differentiable function that solves the 
+    differential equation in definition <ref type="cite" xref="#exp-def"/>.
+  </h:p>
+</assertion>
+<assertion xml:id="exp-exists">
+  <h:p>
+    The differential equation in <ref type="cite" xref="#exp-def"/> is solvable.
+  </h:p>
+</assertion>
+\end{lstlisting}
+\end{omgroup}
+\end{module}
+
+\begin{module}[id=inductive-defs]
+\begin{omgroup}{Inductive Definitions}
+
+  This is a variant of the {\attval{implicit}{type}{definition}} case above. It defines a
+  {\twintoo{recursive}{function}} by a set of {\twintoo{recursive}{equation}s}
+  \inlinedef{in {\eldef{requation}} elements whose left and right hand sides are specified
+    by the two children}. The first one is called \inlinedef{the {\defin{pattern}}}, and
+  the second one \inlinedef{the {\defin{value}}}. The intended meaning of the defined
+  symbol is, that the value (with the variables suitably substituted) can be substituted
+  for a formula that matches the pattern element. In this case, the {\element{definition}}
+  element carries a {\attribute{type}{definition}} with value
+  {\attval{inductive}{type}{definition}} and the optional attributes
+  {\attribute{exhaustivity}{definition}} and {\attribute{consistency}{definition}}, which
+  point to {\element{assertion}}s stating that the cases spanned by the patterns are
+  exhaustive (i.e. all cases are considered), or that the values are consistent (where the
+  cases overlap, the values are equal).
+
+{\Mylstref{recursive}} gives an example of a a recursive definition of the addition on the
+natural numbers.
+\begin{lstlisting}[label=lst:recursive,mathescape,
+  caption={A recursive definition of addition},
+  index={definition,requation}]
+<definition xml:id="plus.def" for="#plus" type="inductive" 
+            consistency="#s-not-0" exhaustivity="#s-or-0">
+  <metadata><dc:subject>addition</dc:subject></metadata>
+  <h:p>Addition is defined by recursion on the second argument.</h:p>
+  <requation>$x+0\leadsto x$</requation>
+  <requation>$x+s(y)\leadsto s(x+y)$</requation>
+</definition>
+\end{lstlisting} 
+To guarantee termination of the recursive instantiation (necessary to ensure
+well-definedness), it is possible to specify a {\indextoo{measure function}} and
+well-founded {\indextoo{ordering}} by the optional {\element{measure}} and
+{\element{ordering}} elements which contain mathematical objects. The elements contain
+mathematical objects.
+
+\begin{definition}[id=measure.def]
+  The content of the {\eldef{measure}} element specifies a measure function, i.e. a
+  function from argument tuples for the function defined in the parent
+  {\element{definition}} element to a space with an ordering relation which is specified
+  in the {\eldef{ordering}} element. This element also carries an optional attribute
+  {\attribute{terminating}{measure}} that points to an {\element{assertion}} element that
+  states that this ordering relation is a terminating partial ordering.
+\end{definition}
+
+\begin{definition}[id=pattern.def] 
+  {\twindefalt{Pattern definitions}{pattern}{definition}} are a special degenerate cases
+  of the recursive definition. A function is defined by a set of {\element{requation}}
+  elements, but the defined function does not occur in the second children.
+\end{definition}
+This form of definition is often used instead of {\attval{simple}{type}{definition}} in
+logical languages that do not have a function constructor. It allows to define a function
+by its behavior on patterns of arguments. Since termination is trivial in this case, no
+{\element{measure}} and {\snippet{ordering}} elements appear in the body of a
+{\element{definition}} element whose {\attribute{type}{definition}} has value
+{\attval{pattern}{type}{definition}}.
+\end{omgroup}
+\end{module}
+\end{oldpart}
+\end{omgroup}
+\end{module}
+
+\begin{module}[id=adt]
+\begin{omgroup}[id=adt,short=Abstract Data Types]
+                           {Abstract Data Types (Module {\ADTmodule{spec}})}
+
+\begin{module}[id=adt]
+ Most specification languages for mathematical theories support definition mechanisms for
+sets that are inductively generated by a set of constructors and
+{\twintoo{recursive}{function}s} on these under the heading of {\twintoo{abstract}{data
+    type}s}. Prominent examples of abstract data types are natural numbers, lists, trees,
+etc. The module {\ADTmodule{spec}} presented in this chapter extends {\omdoc} by a concise
+syntax for abstract data types that follows the model used in the {\casl} (Common Abstract
+Specification Language~\cite{CoFI:2004:CASL-RM}) standard.
+
+Conceptually, an abstract data type declares a collection of symbols and axioms that can
+be used to construct certain mathematical objects and to group them into sets. For
+instance, the {\twintoo{Peano}{axioms}} (see {\myfigref{peano}}) introduce the symbols $0$
+(the number {\indextoo{zero}}), $s$ (the {\twintoo{successor}{function}}), and $\NN$ (the
+set of {\twintoo{natural}{number}s}) and fix their meaning by five axioms. These state
+that the set $\NN$ contains exactly those objects that can be constructed from $0$ and $s$
+alone (\inlinedef{these symbols are called {\twindef{constructor}{symbol}s} and the
+  representations {\twindef{constructor}{term}s}}). Optionally, an abstract data type can
+also declare \inlinedef{{\twindef{selector}{symbol}s}, for (partial) inverses of the
+  constructors}. In the case of natural numbers the {\twintoo{predecessor}{function}} is a
+selector for $s$: it ``selects'' the argument $n$, from which a (non-zero) number $s(n)$
+has been constructed.
+
+\begin{definition}[display=flow,id=free.def]
+  Following {\casl} we will call sets of objects that can be represented as constructor
+  terms {\defin{sort}s}. A sort is called {\defin{free}}, iff there are no identities
+  between constructor terms, i.e.  two objects represented by different constructor terms
+  can never be equal.
+\end{definition}
+The sort $\NN$ of natural numbers is a free sort. An example of a sort that is not free is
+the theory of finite sets given by the constructors $\emptyset$ and the
+{\twintoo{set}{insertion}} function $\iota$ , since the set $\{a\}$ can be obtained by
+inserting $a$ into the empty set an arbitrary (positive) number of times; so
+e.g. $\iota(a,\emptyset)=\iota(a,\iota(a,\emptyset))$. \inlinedef{This kind of sort is called
+{\defin{generated}}, since it only contains elements that are expressible in the
+constructors}. 
+\begin{definition}[display=flow,id=generated.def]
+  An abstract data type is called {\defin{loose}}, if it contains elements besides the
+  ones generated by the constructors. We consider free sorts more {\defin{strict}} than
+  generated ones, which in turn are more strict than loose ones.
+\end{definition}
+
+\begin{presonly}
+\begin{myfig}{adtheory}{Abstract data types in {\omdoc}}
+\begin{scriptsize}
+\begin{tabular}{|>{\tt}l|>{\tt}l|>{\tt}p{3.3truecm}|c|>{\tt}p{3truecm}|}\hline
+{\rm Element}& \multicolumn{2}{l|}{Attributes\hspace*{2.25cm}} & M & Content  \\\hline
+             & {\rm Req.}  & {\rm Optional}     & D &           \\\hline\hline
+ adt         &          & xml:id, class, style, parameters  & +  & sortdef+\\\hline
+ sortdef     & name     & type, role, scope, class, style & + & (constructor | insort)*, recognizer? \\\hline
+ constructor & name     & type, scope, class, style & +  & argument*\\\hline
+ argument    &          &              & +  & type, selector?\\\hline
+ insort      & for      &              & -- & \\\hline
+ selector    & name     & type, scope, role, total, class, style
+                                       & + & EMPTY\\\hline
+ recognizer  & name     & type, scope, role, class, style & + & \\\hline
+\end{tabular}
+\end{scriptsize}
+\end{myfig}
+\end{presonly}
+
+\begin{definition}[id=adt.def]
+  In {\omdoc}, we use the {\eldef{adt}} element to specify abstract data types possibly
+  consisting of multiple sorts.  It is a {\indextoo{theory-constitutive}} statement and
+  can only occur as a child of a {\element{theory}} element (see
+  {\sref{statements-constitutive}} for a discussion). An {\element{adt}} element contains
+  one or more {\element{sortdef}} elements that define the {\indextoo{sort}s} and specify
+  their members and it can carry a {\attribute{parameters}{adt}} attribute that contains a
+  whitespace-separated list of parameter variable names. If these are present, they
+  declare type variables that can be used in the specification of the new sort and
+  constructor symbols see {\extref{projects}{verifun}} for an example.
+\end{definition}
+
+We will use an augmented representation of the abstract data type of natural numbers as a
+running example for introduction of the functionality added by the {\ADTmodule{spec}}
+module; {\mylstref{nat-adt}} contains the listing of the {\omdoc} encoding. In this
+example, we introduce a second sort $\bbP$ for {\atwintoo{positive}{natural}{number}s} to
+make it more interesting and to pin down the {\indextoo{type}} of the
+{\twintoo{predecessor}{function}}.
+
+\begin{definition}[id=sordef.def]
+  A {\eldef{sortdef}} element is a highly condensed piece of syntax that declares a
+  {\twintoo{sort}{symbol}} together with the {\twintoo{constructor}{symbol}s} and their
+  {\twintoo{selector}{symbol}s} of the corresponding sort. It has a required
+  {\attribute{name}{sortdef}} attribute that specifies the symbol name, an optional
+  {\attribute{type}{adt}} attribute that can have the values {\attval{free}{type}{adt}},
+  {\attval{generated}{type}{adt}}, and {\attval{loose}{type}{adt}} with the meaning
+  discussed above. A {\element{sortdef}} element contains a set of {\eldef{constructor}}
+  and {\eldef{insort}} elements.  The latter are empty elements which refer to a sort
+  declared elsewhere in a {\element{sortdef}} with their {\attribute{for}{insort}}
+  attribute: An {\element{insort}} element with
+  {\snippet{for="}}\llquote{URI}{\snippet{\#\llquote{name}"}} specifies that all the
+  constructors of the sort {\snippet{\llquote{name}}} are also constructors for the one
+  defined in the parent {\element{sortdef}}. Furthermore, the type of a sort given by a
+  {\element{sortdef}} element can only be as strict as the types of any sorts included by
+  its {\element{insort}} children.
+\end{definition}
+
+{\Mylstref{nat-adt}} introduces the {\twintoo{sort}{symbol}s} {\snippet{pos-nats}}
+(positive natural numbers) and {\snippet{nats}} (natural numbers) , the symbol names are
+given by the required {\attribute{name}{constructor}} attribute. Since a constructor is in
+general an $n$-ary function, a {\element{constructor}} element contains $n$
+{\element{argument}} children that specify the argument sorts of this function along with
+possible selector functions.
+
+\begin{definition}[id=argument.def]
+  The argument sort is given as the first child of the {\eldef{argument}} element: a
+  {\element{type}} element as described in {\sref{type-axioms}}.
+\end{definition}
+Note that $n$ may be 0 and thus the constructor element may not have {\element{argument}}
+children (see for instance the {\element{constructor}} for {\snippet{zero}} in
+{\mylstref{nat-adt}}). The first {\element{sortdef}} element there introduces the
+constructor symbol {\snippet{succ@Nat}} for the {\twintoo{successor}{function}}. This
+function has one argument, which is a natural number (i.e. a member of the sort
+{\snippet{nats}}).
+
+Sometimes it is convenient to specify the inverses of a constructors that are
+functions. For this {\omdoc} offers the possibility to add an empty {\element{selector}}
+element as the second child of an {\element{argument}} child of a
+{\element{constructor}}.
+
+\begin{definition}[id=selector.def]
+  The {\eldef{selector}} element has a required attribute {\attribute{name}{selector}}
+  specifies the symbol name, the optional {\attribute{total}{selector}} attribute of the
+  {\element{selector}} element specifies whether the function represented by this symbol
+  is \twinalt{total}{total}{function} (value {\attval{yes}{total}{selector}}) or
+  \twinalt{partial}{partial}{function} (value {\attval{no}{total}{selector}}).  In
+  {\mylstref{nat-adt}} the {\element{selector}} element in the first {\element{sortdef}}
+  introduces a {\twintoo{selector}{symbol}} for the {\twintoo{successor}{function}}
+  {\snippet{succ}}. As {\snippet{succ}} is a function from {\snippet{nats}} to
+  {\snippet{pos-nats}}, {\snippet{pred}} is a total function from {\snippet{pos-nats}} to
+  {\snippet{nats}}.
+\end{definition}
+
+\begin{definition}[id=recognizer.def]
+  Finally, a {\element{sortdef}} element can contain a {\eldef{recognizer}} child that
+  specifies a symbol for a {\indextoo{predicate}} that is true, iff its argument is of the
+  respective sort. The name of the predicate symbol is specified in the required
+  {\attribute{name}{recognizer}} attribute.
+\end{definition} 
+
+{\Mylstref{nat-adt}} introduces such a \inlinedef{{\twindef{recognizer}{predicate}}} as
+the last child of the {\element{sortdef}} element for the sort {\snippet{pos-nats}}.
+
+Note that the {\element{sortdef}}, {\element{constructor}}, {\element{selector}},
+and {\element{recognizer}} elements define symbols of the name specified by their
+{\attribute{name}{symbol}} element in the theory that contains the {\element{adt}}
+element. To govern the visibility, they carry the attribute
+{\attribute{scope}{symbol}} (with values {\attval{global}{scope}{symbol}} and
+{\attval{local}{scope}{symbol}}) and the attribute {\attribute{role}{symbol}}
+(with values {\attval{type}{role}{symbol}}, {\attval{sort}{role}{symbol}},
+{\attval{object}{role}{symbol}}).
+\begin{lstlisting}[label=lst:nat-adt,
+  caption={The natural numbers using {\element{adt}} in {\omdoc}},
+  index={adt,sortdef,constructor,argument,selector,recognizer,insort}]
+<theory xml:id="Nat">
+  <adt xml:id="nat-adt">
+    <metadata>
+      <dc:title>Natural Numbers as an Abstract Data Type.</dc:title>
+      <dc:description>The Peano axiomatization of natural numbers.</dc:description>
+    </metadata>
+
+    <sortdef name="pos-nats" type="free">
+      <metadata>
+        <dc:description>The set of positive natural numbers.</dc:description>
+      </metadata>
+      <constructor name="succ">
+        <metadata><dc:description>The successor function.</dc:description></metadata>
+        <argument>
+          <type><OMS cd='Nat' name="nats"/></type>
+          <selector name="pred" total="yes">
+            <metadata><dc:description>The predecessor function.</dc:description></metadata>
+          </selector>
+        </argument>
+      </constructor>
+      <recognizer name="positive">
+        <metadata>
+          <dc:description>
+            The recognizer predicate for positive natural numbers.
+          </dc:description>
+        </metadata>
+      </recognizer>
+    </sortdef>
+
+    <sortdef name="nats"  type="free">
+      <metadata><dc:description>The set of natural numbers</dc:description></metadata>
+      <constructor name="zero">
+        <metadata><dc:description>The number zero.</dc:description></metadata>
+      </constructor>
+      <insort for="#pos-nats"/>
+    </sortdef>
+  </adt>
+</theory>
+\end{lstlisting}
+To summarize {\mylstref{nat-adt}}: The abstract data type {\snippet{nat-adt}} is free and
+defines two sorts {\snippet{pos-nats}} and {\snippet{nats}} for the (positive) natural
+numbers. The positive numbers ({\snippet{pos-nats}}) are generated by the successor
+function (which is a constructor) on the natural numbers (all positive natural numbers are
+successors). On {\snippet{pos-nats}}, the inverse {\snippet{pred}} of {\snippet{succ}} is
+{\indextoo{total}}.  The set {\snippet{nats}} of all natural numbers is defined to be the
+union of {\snippet{pos-nats}} and the constructor {\snippet{zero}}.  Note that this
+definition implies the five well-known Peano Axioms: the first two specify the
+constructors, the third and fourth exclude identities between constructor terms, while the
+induction axiom states that {\snippet{nats}} is generated by {\snippet{zero}} and
+{\snippet{succ}}.  The document that contains the {\snippet{nat-adt}} could also contain
+the symbols and axioms defined implicitly in the {\element{adt}} element explicitly as
+{\element{symbol}} and {\element{axiom}} elements for reference.  These would then carry
+the {\attribute{generated-from}{axiom}} attribute with value
+{\snippet{nat-adt}}.
+\end{module}
+\end{omgroup}
+\end{module}
+
+\begin{omgroup}[id=adt-strict]{Strict Translations}
+
+  We will now give the a formal\ednote{do we really want to call it ``formal''?} semantics
+  of the {\STmodule{spec}} elements in terms of strict {\omdoc} (see
+  {\sref{strict}}).\ednote{what do we do if there is both FMP and CMPs in an
+    axiom?}\ednote{what do we do if there is more than one symbol per
+    definition?}\ednote{what do we do for non-simple definitions}
+
+Implicit definitions are licensed by a {\twintoo{description}{operator}} in the
+meta-theory. In a theory  {\llquote{t}}, whose meta-theory {\llquote{m}} contains a
+description operator {\llquote{that}} we have\ednote{point to a theory with description
+  operator or similar functionality. Maybe give a special theory $D$ and allow all
+  meta-theories {\llquote{t}} that have a view from $D$.}\ednote{do we want a description
+  operator that takes the existence and uniqueness proofs as arguments? Can we point to
+  {\element{proof}} elements somehow? What do we really do with the attributes?}
+\begin{center}\lstset{frame=none,numbers=none,lineskip=-.7ex,aboveskip=-.5em,belowskip=-1em,mathescape}
+ \begin{tabular}{|p{6.5cm}|p{7.5cm}|}\hline
+    pragmatic & strict\\\hline
+\begin{lstlisting}
+<symbol name="$\llquote{n}$">
+  <type system="$\llquote{s}$">$\llquote{t}$</type>
+</symbol>
+<definition type="implicit" 
+            xml:id="$\llquote{i}$" for="$\llquote{f}$"
+            uniqueness="$\llquote{u}$" existence="$\llquote{e}$">
+  <FMP>$\llquote{\ensuremath{\Phi[n]}}$</FMP>
+</definition>
+\end{lstlisting}
+&
+\begin{lstlisting}
+<object name="$\llquote{n}$" xml:id="$\llquote{i}$">
+  <type system="$\llquote{s}$">$\llquote{t}$</type>
+  <definition>
+    <OMBIND>
+      <OMS cd="$\llquote{m}$" name="$\llquote{that}$"/>
+      <OMBVAR><OMV name="$\llquote{x}$"/></OMBVAR>
+      $\psom{\Phi[x]}$
+    </OMBIND>
+ </definition>
+</object>
+\end{lstlisting}
+\\\hline 
+\end{tabular}
+\end{center}
+where $\Phi[x]$ is obtained from $\Phi[n]$ by replacing all {\snippet{<OMS
+    cd="\llquote{t}'' name="\llquote{n}"/>}} by {\snippet{<OMV name="\llquote{n}''/>}}.
+
+Similarly inductive definitions are licensed by a recursion operator {\llquote{rec}}:
+\begin{center}\lstset{frame=none,numbers=none,lineskip=-.7ex,aboveskip=-.5em,belowskip=-1em}
+  \begin{tabular}{|p{6.5cm}|p{7.5cm}|}\hline
+    pragmatic & strict\\\hline
+{
+\begin{lstlisting}[numbers=none,frame=none,mathescape]
+<symbol name="$\llquote{n}$">
+  <type system="$\llquote{s}$">$\llquote{t}$</type>
+</symbol>
+<definition type="inductive" 
+            xml:id="$\llquote{i}$" for="$\llquote{f}$"
+            consistency="$\llquote{c}$" exhaustivity="$\llquote{e}$">
+  <requation>$\llquote{\ensuremath{\Phi_1[n]}}\llquote{\ensuremath{\Psi_1[n]}}$</requation>
+  $\ldots$
+  <requation>$\llquote{\ensuremath{\Phi_m[n]}}\llquote{\ensuremath{\Psi_m[n]}}$</requation>
+</definition>
+\end{lstlisting}
+}&{
+\begin{lstlisting}[numbers=none,frame=none,mathescape]
+<object name="$\llquote{n}$" xml:id="$\llquote{i}$">
+  <type system="$\llquote{s}$">$\llquote{t}$</type>
+  <definition>
+    <OMBIND>
+      <OMS cd="$\llquote{m}$" name="$\llquote{rec}$"/>
+      <OMBVAR><OMV name="$\llquote{x}$"/></OMBVAR>
+      $\psom{\Phi_1[x]}\;\psom{\Psi_2[x]}\;\ldots\;
+       \psom{\Phi_m[x]}\;\psom{\Psi_m[x]}$
+    </OMBIND>
+  </definition>
+</object>
+\end{lstlisting}
+}\\\hline 
+\end{tabular}
+\end{center}
+\ednote{what is the correct form of the recursion operator?}\ednote{similar question with
+  the attributes here.}
+\end{omgroup}
+\end{omgroup}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "main"
+%%% End: 
+
+% LocalWords:  adt suc pred emptyset adtheory sortdef nat insort prediate lst
+% LocalWords:  pos nats succ inductively ary omdoc peano Req dc cd metadata
+% LocalWords: verifun

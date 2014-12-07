@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html id="sthol-omdoc" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <link rel="stylesheet" type="text/css" href="omdoc-default.css"/>
+    <title>Simply Typed Higher-Order Logic</title>
+  </head>
+  <body>
+    <div class="dc-titleblock">
+      <div class="dc-title">Simply Typed Higher-Order Logic</div>
+      <div class="dc-authors">Michael Kohlhase</div>
+      <div class="dc-date">2008-07-04</div>
+    </div>
+    <div class="theory" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="http://purl.org/dc/elements/1.1/">
+      <h1 id="sthol">1. Simply Typed Higher-Order Logic</h1>
+      <div class="imports">imports from: 
+        <a href="pl0.xhtml#pl0">pl0</a>, 
+        <a href="lambda-calc.xhtml#lambda-calc">lambda-calc</a>, 
+        <a href="indeq.xhtml#indeq">indeq</a>
+      </div>
+      <div class="omdoc-symbol" id="forall" role="Symbol" about="#sthol.forall" xml:id="sthol.forall">
+        <a class="omdoc" rel="oso:homeTheory" href="#sthol"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>forall
+        </div>This symbol is the binding symbol for the universal quantifier.
+      </div>
+      <div class="omdoc-example" id="forall-ex-1" role="Example" about="#sthol.forall" xml:id="forall-ex-1">
+        <a class="omdoc" rel="oso:exemplifies" href="#sthol.forall"/>
+        <a class="omdoc" rel="oso:homeTheory" href="#sthol.forall"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Example</span>
+        </div>
+        <p>All objects are equal to themselves</p>
+        <span id="MCRd20e42" class="displaymath" xmlns="">
+          <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+            <m:mrow>
+              <m:mo>‚àÄ</m:mo>
+              <m:mi>x</m:mi>
+              <m:mo mcd:egroup="separator" separator="true">.</m:mo>
+              <m:mrow>
+                <m:mi>x</m:mi>
+                <m:mo>=</m:mo>
+                <m:mi>x</m:mi>
+              </m:mrow>
+            </m:mrow>
+          </m:math>
+        </span>
+      </div>
+      <div class="omdoc-symbol" id="exists" role="Symbol" about="#sthol.exists" xml:id="sthol.exists">
+        <a class="omdoc" rel="oso:homeTheory" href="#sthol"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>exists
+        </div>This symbol is the binding symbol for the existential ("there exists") quantifier.
+      </div>
+      <div class="omdoc-example" id="exists-ex-1" role="Example" about="#sthol.exists" xml:id="exists-ex-1">
+        <a class="omdoc" rel="oso:exemplifies" href="#sthol.exists"/>
+        <a class="omdoc" rel="oso:homeTheory" href="#sthol.exists"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Example</span>
+        </div>
+        <p>If the universe is non-empty, then the following statement is true</p>
+        <span id="MCRd20e75" class="displaymath" xmlns="">
+          <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+            <m:mrow>
+              <m:mo>‚àÉ</m:mo>
+              <m:mi>x</m:mi>
+              <m:mo mcd:egroup="separator" separator="true">.</m:mo>
+              <m:mrow>
+                <m:mi>x</m:mi>
+                <m:mo>=</m:mo>
+                <m:mi>x</m:mi>
+              </m:mrow>
+            </m:mrow>
+          </m:math>
+        </span>
+      </div>
+      <div class="omdoc-omtext" id="sthol-hoas-intro">
+        <p>Some authors prefer to use higher-order abstract syntax for quantifiers, this variant only uses the binding symbol 
+          <span id="MCRd20e93" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:mcd="http://www.w3.org/ns/mathml-cd">Œª</m:math>
+          </span> and models the quantifiers as higher-order predicates. 
+        </p>
+      </div>
+      <div class="omdoc-symbol" id="forall-op" role="Symbol" about="#sthol.forall-op" xml:id="sthol.forall-op">
+        <a class="omdoc" rel="oso:homeTheory" href="#sthol"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>forall-op
+        </div>This symbol is universal predicate of higher-order abstract syntax.
+      </div>
+      <div class="omdoc-example" id="forall-op-ex-1" role="Example" about="#sthol.forall-op" xml:id="forall-op-ex-1">
+        <a class="omdoc" rel="oso:exemplifies" href="#sthol.forall-op"/>
+        <a class="omdoc" rel="oso:homeTheory" href="#sthol.forall-op"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Example</span>
+        </div>
+        <p>All objects are equal to themselves</p>
+        <span id="MCRd20e115" class="displaymath" xmlns="">
+          <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+            <m:mrow>
+              <m:mo>Œ†</m:mo>
+              <m:mo fence="true" mcd:egroup="fence">(</m:mo>
+              <m:mrow>Œª
+                <m:mi>x</m:mi>
+                <m:mo mcd:egroup="separator" separator="true">.</m:mo>
+                <m:mrow>
+                  <m:mi>x</m:mi>
+                  <m:mo>=</m:mo>
+                  <m:mi>x</m:mi>
+                </m:mrow>
+              </m:mrow>
+              <m:mo fence="true" mcd:egroup="fence">)</m:mo>
+            </m:mrow>
+          </m:math>
+        </span>
+      </div>
+      <div class="omdoc-symbol" id="exists-op" role="Symbol" about="#sthol.exists-op" xml:id="sthol.exists-op">
+        <a class="omdoc" rel="oso:homeTheory" href="#sthol"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>exists-op
+        </div>The existential ("there exists") quantifier of higher-order abstract syntax.
+      </div>
+      <div class="omdoc-example" id="exists-op-ex-1" role="Example" about="#sthol.exists-op" xml:id="exists-op-ex-1">
+        <a class="omdoc" rel="oso:exemplifies" href="#sthol.exists-op"/>
+        <a class="omdoc" rel="oso:homeTheory" href="#sthol.exists-op"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Example</span>
+        </div>
+        <p>If the universe is non-empty, then the following statement is true</p>
+        <span id="MCRd20e154" class="displaymath" xmlns="">
+          <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+            <m:mrow>
+              <m:mo>Œ£</m:mo>
+              <m:mo fence="true" mcd:egroup="fence">(</m:mo>
+              <m:mrow>Œª
+                <m:mi>x</m:mi>
+                <m:mo mcd:egroup="separator" separator="true">.</m:mo>
+                <m:mrow>
+                  <m:mi>x</m:mi>
+                  <m:mo>=</m:mo>
+                  <m:mi>x</m:mi>
+                </m:mrow>
+              </m:mrow>
+              <m:mo fence="true" mcd:egroup="fence">)</m:mo>
+            </m:mrow>
+          </m:math>
+        </span>
+      </div>
+      <div class="omdoc-symbol" id="eq" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#sthol"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>eq
+        </div>Higher-order equality.
+      </div>
+      <div class="omdoc-symbol" id="neq" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#sthol"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>neq
+        </div>Higher-order inequality.
+      </div>
+    </div>
+  </body>
+</html>

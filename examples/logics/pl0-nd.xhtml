@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html id="pl0-omdoc" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <link rel="stylesheet" type="text/css" href="omdoc-default.css"/>
+    <title>ND for Classical Propositional Logic</title>
+  </head>
+  <body>
+    <div class="dc-titleblock">
+      <div class="dc-title">ND for Classical Propositional Logic</div>
+      <div class="dc-authors">Michael Kohlhase</div>
+      <div class="dc-date">2008-07-04</div>
+    </div>
+    <div class="theory" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="http://purl.org/dc/elements/1.1/">
+      <h1 id="pl0-nd">1. The Natural Deduction Calculus for Propositional Logic</h1>
+      <div class="imports">imports from: 
+        <a href="pl0.xhtml#pl0">pl0</a>
+      </div>
+      <div class="omdoc-symbol" id="noti" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#pl0-nd"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>noti(
+          <a class="omdoc" href="#">Definition</a>)
+        </div>
+      </div>
+      <div class="omdoc-definition" id="noti.def" role="Definition" about="#noti" xml:id="noti.def">
+        <a class="omdoc" rel="oso:defines" href="#noti"/>
+        <a class="omdoc" rel="oso:homeTheory" href="#noti"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Definition</span>
+        </div>
+        <p>Negation introduction: if we can derive 
+          <span id="MCRd20e27" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+              <m:mo>F</m:mo>
+            </m:math>
+          </span> from a hypothesis 
+          <span id="MCRd20e31" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+              <m:mi>A</m:mi>
+            </m:math>
+          </span>, then we can conclude 
+          <span id="MCRd20e35" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+              <m:mrow>
+                <m:mo>¬¨</m:mo>
+                <m:mi>A</m:mi>
+              </m:mrow>
+            </m:math>
+          </span>. 
+        </p>
+      </div>
+      <div class="omdoc-symbol" id="note" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#pl0-nd"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>note(
+          <a class="omdoc" href="#">Definition</a>)
+        </div>
+      </div>
+      <div class="omdoc-definition" id="note.def" role="Definition" about="#note" xml:id="note.def">
+        <a class="omdoc" rel="oso:defines" href="#note"/>
+        <a class="omdoc" rel="oso:homeTheory" href="#note"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Definition</span>
+        </div>
+        <p>Negation elimination: if we can derive 
+          <span id="MCRd20e49" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+              <m:mi>A</m:mi>
+            </m:math>
+          </span> and 
+          <span id="MCRd20e53" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+              <m:mrow>
+                <m:mo>¬¨</m:mo>
+                <m:mi>A</m:mi>
+              </m:mrow>
+            </m:math>
+          </span>, then we can conclude 
+          <span id="MCRd20e60" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+              <m:mo>F</m:mo>
+            </m:math>
+          </span>. 
+        </p>
+      </div>
+      <div class="omdoc-symbol" id="andi" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#pl0-nd"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>andi(
+          <a class="omdoc" href="#">Definition</a>)
+        </div>
+      </div>
+      <div class="omdoc-definition" id="andi.def" role="Definition" about="#andi" xml:id="andi.def">
+        <a class="omdoc" rel="oso:defines" href="#andi"/>
+        <a class="omdoc" rel="oso:homeTheory" href="#andi"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Definition</span>
+        </div>
+        <p>Conjunction introduction, if we can derive 
+          <span id="MCRd20e71" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+              <m:mi>A</m:mi>
+            </m:math>
+          </span> and 
+          <span id="MCRd20e75" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+              <m:mi>B</m:mi>
+            </m:math>
+          </span>, then we can conclude 
+          <span id="MCRd20e79" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+              <m:mrow>
+                <m:mi>A</m:mi>
+                <m:mo>‚àß</m:mo>
+                <m:mi>B</m:mi>
+              </m:mrow>
+            </m:math>
+          </span>. 
+        </p>
+      </div>
+      <div class="omdoc-symbol" id="ander" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#pl0-nd"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>ander(
+          <a class="omdoc" href="#">Definition</a>)
+        </div>
+      </div>
+      <div class="omdoc-definition" id="ander.def" role="Definition" about="#ander" xml:id="ander.def">
+        <a class="omdoc" rel="oso:defines" href="#ander"/>
+        <a class="omdoc" rel="oso:homeTheory" href="#ander"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Definition</span>
+        </div>
+        <p>Conjunction introduction right: if we can derive 
+          <span id="MCRd20e95" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+              <m:mrow>
+                <m:mi>A</m:mi>
+                <m:mo>‚àß</m:mo>
+                <m:mi>B</m:mi>
+              </m:mrow>
+            </m:math>
+          </span>, then we can conclude 
+          <span id="MCRd20e104" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+              <m:mi>B</m:mi>
+            </m:math>
+          </span>. 
+        </p>
+      </div>
+      <div class="omdoc-symbol" id="andel" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#pl0-nd"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>andel(
+          <a class="omdoc" href="#">Definition</a>)
+        </div>
+      </div>
+      <div class="omdoc-definition" id="andel.def" role="Definition" about="#andel" xml:id="andel.def">
+        <a class="omdoc" rel="oso:defines" href="#andel"/>
+        <a class="omdoc" rel="oso:homeTheory" href="#andel"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Definition</span>
+        </div>
+        <p>Conjunction introduction left: if we can derive 
+          <span id="MCRd20e116" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+              <m:mrow>
+                <m:mi>A</m:mi>
+                <m:mo>‚àß</m:mo>
+                <m:mi>B</m:mi>
+              </m:mrow>
+            </m:math>
+          </span>, then we can conclude 
+          <span id="MCRd20e125" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+              <m:mi>A</m:mi>
+            </m:math>
+          </span>. 
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

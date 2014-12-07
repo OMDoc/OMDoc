@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<notations xmlns="http://www.w3.org/ns/mathml-cd" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:om="http://www.openmath.org/OpenMath" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+  <notation cdbase="FIXME" cd="deptypes" name="dependent-recordtype">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="deptypes" name="dependent-recordtype"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="deptypes">dependent-recordtype</m:csymbol>
+        <expr name="arg"/>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <!--SPECIFYME: no rendering generated-->
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="deptypes" name="dependent-tupletype">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="deptypes" name="dependent-tupletype"/>
+        <expr name="arg"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="deptypes">dependent-tupletype</m:csymbol>
+        <expr name="arg"/>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <!--SPECIFYME: no rendering generated-->
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="deptypes" name="dependent-cotupletype">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="deptypes" name="dependent-cotupletype"/>
+        <exprlist name="args">
+          <expr name="arg"/>
+        </exprlist>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="deptypes">dependent-cotupletype</m:csymbol>
+        <expr name="arg"/>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <!--SPECIFYME: no rendering generated-->
+    </rendering>
+  </notation>
+</notations>

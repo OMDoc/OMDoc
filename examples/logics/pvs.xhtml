@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html id="pvs.omdoc" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <link rel="stylesheet" type="text/css" href="omdoc-default.css"/>
+    <title>The PVS logic language</title>
+  </head>
+  <body>
+    <div class="dc-titleblock">
+      <div class="dc-title">The PVS logic language</div>
+      <div class="dc-authors">Michael Kohlhase</div>
+      <div class="dc-date">2001-05-192002-06-12</div>
+    </div>
+    <div class="omdoc-omtext" id="intro">
+      <p>This document contains and defines the constants used in the PVS to OMDoc translation.</p>
+    </div>
+    <div class="theory" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="http://purl.org/dc/elements/1.1/">
+      <h1 id="pvs">1. The PVS logic language</h1>
+      <div class="imports">imports from: 
+        <a href="deptypes.xhtml#deptypes">deptypes</a>, 
+        <a href="record-calc.xhtml#record-calc">record-calc</a>, 
+        <a href="sthol.xhtml#sthol">sthol</a>, 
+        <a href="cases.xhtml#cases">cases</a>
+      </div>
+      <div class="omdoc-symbol" id="subtype" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#pvs"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>subtype
+        </div>The subtype constructor in PVS. It takes a predicate as an argument and gives a type (the type of all objects that satisfy this predicate)
+      </div>
+      <div class="omdoc-symbol" id="set" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#pvs"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>set
+        </div>The set constructor it is a binding constructor that returns the set of all elements that make the body true.
+      </div>
+      <div class="omdoc-symbol" id="update" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#pvs"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>update
+        </div>The function update operator takes an odd number of arguments F, P_1,V_1,... P_n,V_n. The arguments at even positions are interpreted as members A_i of the domain of F. F is updated by the updated at A_i by the value V_i. In contrast to 
+        <span id="MCRd20e61" class="displaymath" xmlns="">
+          <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+            <m:mo>assignment</m:mo>
+          </m:math>
+        </span>, which extends the domain, the update expression is undefined, if A_i are not member of the domain of F.
+      </div>
+      <div class="omdoc-symbol" id="assign" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#pvs"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>assign
+        </div>The function assignment operator takes an odd number of arguments F, P_1,V_1,... P_n,V_n. The arguments at even positions are interpreted as members A_i of the domain of F. F is updated by the updated at A_i by the value V_i. In contrast to 
+        <span id="MCRd20e81" class="displaymath" xmlns="">
+          <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+            <m:mo>update</m:mo>
+          </m:math>
+        </span>, which is undefined, if A_i are not member of the domain of F, the assignment operator extends the domain of F as necessary
+      </div>
+    </div>
+  </body>
+</html>

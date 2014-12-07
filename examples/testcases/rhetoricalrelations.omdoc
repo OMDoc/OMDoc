@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+
+<!-- This example is no longer valid according to the new RelaxNG grammar. The changes were performed in the omgroup and omtext elements! -->
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  xmlns="http://omdoc.org/ns"
+xml:id="rhetoricalrelations.omdoc">
+
+<metadata>
+<dc:title>test</dc:title>
+<dc:creator role="aut">hf</dc:creator>
+<dc:date>2001-12-12T00:00:00</dc:date>
+</metadata>
+
+<!-- correct input -->
+
+<!-- 1.all attributes present -->
+<omgroup xml:id="gr2.1" type="introduction" class="jana">
+	<omtext xml:id="txt2.1" type="motivation" class="special">
+		<CMP xml:id="bla"> This is random text
+			<phrase xml:id="sat2.1" type="satellite" relation="antithesis" for="#nuc2.1"> 					While some scientists say the Moon is made of stone
+			</phrase>
+			<phrase xml:id="nuc2.1" type="nucleus"> we prove that it is made of white cheese </phrase>
+			<phrase xml:id="sat2.2" type="satellite" relation="elaboration" for="#nuc2.1"> 					swiss Emmental cheese to be exact!
+			</phrase>
+		 </CMP>
+	</omtext>
+</omgroup>
+
+<omgroup xml:id="gr2.1.1" type="motivation" class="giceva">
+	<omtext xml:id="txt2.1.1" type="scenario" class="myclass">
+	<CMP xml:id="blable"> It was a nice sunny weekend
+		<phrase xml:id="sat2.1.1" type="satellite" relation="cause" for="#nuc2.1.1">I am preparing you for:</phrase>
+		<phrase xml:id="nuc2.1.1" type="nucleus">This is a very important sentence!</phrase>
+		<phrase xml:id="sat2.2.1" type="satellite" relation="elaboration" for="#nuc2.1.1">To conclude...</phrase>
+	</CMP>
+	</omtext>
+</omgroup>
+
+</omdoc>

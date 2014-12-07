@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html id="casl.omdoc" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <link rel="stylesheet" type="text/css" href="omdoc-default.css"/>
+    <title>The CASL logic language</title>
+  </head>
+  <body>
+    <div class="dc-titleblock">
+      <div class="dc-title">The CASL logic language</div>
+      <div class="dc-authors">Immanuel Normann</div>
+      <div class="dc-date">2005-04-20</div>
+    </div>
+    <div class="theory" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="http://purl.org/dc/elements/1.1/">
+      <h1 id="casl">1. The CASL logic language</h1>
+      <div class="omdoc-symbol" id="type" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#casl"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>type
+        </div>
+      </div>
+      <div class="omdoc-symbol" id="quantification" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#casl"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>quantification
+        </div> HetsDataType: data FORMULA f = Quantification QUANTIFIER [VAR_DECL] (FORMULA f) [Pos] -- pos: QUANTIFIER, semi colons, dot 
+      </div>
+      <div class="omdoc-symbol" id="universal" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#casl"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>universal
+        </div> HetsDataType: data QUANTIFIER = Universal 
+      </div>
+      <div class="omdoc-symbol" id="existential" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#casl"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>existential
+        </div> HetsDataType: data QUANTIFIER = Existential 
+      </div>
+      <div class="omdoc-symbol" id="unique-existential" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#casl"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>unique-existential
+        </div> HetsDataType: data QUANTIFIER = Unique_existential 
+      </div>
+      <div class="omdoc-symbol" id="conjunction" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#casl"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>conjunction
+        </div> HetsDataType: data FORMULA f = Conjunction [FORMULA f] [Pos] -- pos: "/\"s 
+      </div>
+      <div class="omdoc-symbol" id="disjunction" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#casl"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>disjunction
+        </div> HetsDataType: data FORMULA f = Disjunction [FORMULA f] [Pos] -- pos: "\/"s 
+      </div>
+      <div class="omdoc-symbol" id="implication" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#casl"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>implication
+        </div> HetsDataType: data FORMULA f = Implication (FORMULA f) (FORMULA f) Bool [Pos] -- pos: "=&gt;" or "if" (True -&gt; "=&gt;") 
+      </div>
+      <div class="omdoc-symbol" id="equivalence" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#casl"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>equivalence
+        </div> HetsDataType: data FORMULA f = Equivalence (FORMULA f) (FORMULA f) [Pos] -- pos: "&lt;=&gt;" 
+      </div>
+      <div class="omdoc-symbol" id="negation" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#casl"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>negation
+        </div> HetsDataType: data FORMULA f = Negation (FORMULA f) [Pos] -- pos: not 
+      </div>
+      <div class="omdoc-symbol" id="true" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#casl"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>true
+        </div> HetsDataType: data FORMULA f = True_atom [Pos] -- pos: true 
+      </div>
+      <div class="omdoc-symbol" id="false" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#casl"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>false
+        </div> HetsDataType: data FORMULA f = False_atom [Pos] -- pos: false 
+      </div>
+      <div class="omdoc-symbol" id="predication" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#casl"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>predication
+        </div> HetsDataType: data FORMULA f = Predication PRED_SYMB [TERM f] [Pos] -- pos: opt. "(",commas,")" 
+      </div>
+      <div class="omdoc-symbol" id="definedness" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#casl"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>definedness
+        </div> HetsDataType: data FORMULA f = Definedness (TERM f) [Pos] -- pos: def 
+      </div>
+      <div class="omdoc-symbol" id="existential-equation" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#casl"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>existential-equation
+        </div> HetsDataType: data FORMULA f = Existl_equation (TERM f) (TERM f) [Pos] -- pos: =e= 
+      </div>
+      <div class="omdoc-symbol" id="strong-equation" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#casl"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>strong-equation
+        </div> HetsDataType: data FORMULA f = Strong_equation (TERM f) (TERM f) [Pos] -- pos: = 
+      </div>
+      <div class="omdoc-symbol" id="membership" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#casl"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>membership
+        </div> HetsDataType: data FORMULA f = Membership (TERM f) SORT [Pos] -- pos: in 
+      </div>
+      <div class="omdoc-example" id="ex1" role="Example" about="#universal #equivalence #negation" xml:id="ex1">
+        <a class="omdoc" rel="oso:exemplifies" href="#universal #equivalence #negation"/>
+        <a class="omdoc" rel="oso:homeTheory" href="#universal #equivalence #negation"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Example</span>
+        </div>
+        <p>forall x:real . not(x~x) iff false</p>
+        <span id="MCRd20e91" class="displaymath" xmlns="">
+          <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+            <m:mrow>
+              <m:mo>universal</m:mo>
+              <m:mrow>
+                <m:mi>x</m:mi>
+                <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">:</m:mo>
+                <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                <m:mo>type</m:mo>
+                <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">,</m:mo>
+                <m:mo>real</m:mo>
+                <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+              </m:mrow>
+              <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">.</m:mo>
+              <m:mrow>
+                <m:mo>equivalence</m:mo>
+                <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                <m:mrow>
+                  <m:mo>negation</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mrow>
+                    <m:mo>refl</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                    <m:mi>x</m:mi>
+                    <m:mo separator="true">,</m:mo>
+                    <m:mi>x</m:mi>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                  </m:mrow>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+                <m:mo separator="true">,</m:mo>
+                <m:mo>false</m:mo>
+                <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+              </m:mrow>
+            </m:mrow>
+          </m:math>
+        </span>
+      </div>
+    </div>
+  </body>
+</html>

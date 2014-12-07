@@ -1,0 +1,691 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html id="VeriFun3.0-2005-03-11" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <link rel="stylesheet" type="text/css" href="omdoc-default.css"/>
+    <title>Polymorphic ADTs</title>
+  </head>
+  <body>
+    <div class="dc-titleblock">
+      <div class="dc-title">Polymorphic ADTs</div>
+      <div class="dc-authors">Michael Kohlhase, Normen M"uller</div>
+      <div class="dc-date">2005-04-05</div>
+    </div>
+    <div class="header"/>
+    <div class="omdoc-omtext" id="intro">
+      <p> This document contains polymorphic ADTs, polymorphic functions and polymorphic lemmas. These were manually translated from the VeriFun system to OMDoc. </p>
+    </div>
+    <div class="theory" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="http://purl.org/dc/elements/1.1/">
+      <div class="imports">imports from: 
+        <a href="../logics/vafp.omdoc#vafp">vafp</a>
+      </div>
+      <div class="omdoc-symbol" id="f1" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#VeriFun"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>f1
+        </div>
+        <div class="omdoc-type" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>(simpletypes)
+          </div>
+          <span id="MCRd19e420" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns">
+              <m:mrow>
+                <m:mo>all-types</m:mo>
+                <m:mi>a</m:mi>
+                <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">.</m:mo>
+                <m:mrow>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mi>a</m:mi>
+                  <m:mo separator="true">,</m:mo>
+                  <m:mi>a</m:mi>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+              </m:mrow>
+            </m:math>
+          </span>
+        </div>
+      </div>
+      <div class="omdoc-symbol" id="f2" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#VeriFun"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>f2
+        </div>
+        <div class="omdoc-type" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>(simpletypes)
+          </div>
+          <span id="MCRd19e444" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns">
+              <m:mrow>
+                <m:mo>all-types</m:mo>
+                <m:mi>a</m:mi>
+                <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">,</m:mo>
+                <m:mi>b</m:mi>
+                <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">.</m:mo>
+                <m:mrow>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mi>a</m:mi>
+                  <m:mo separator="true">,</m:mo>
+                  <m:mi>b</m:mi>
+                  <m:mo separator="true">,</m:mo>
+                  <m:mrow>
+                    <m:mo>tree</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                    <m:mi>a</m:mi>
+                    <m:mo separator="true">,</m:mo>
+                    <m:mi>b</m:mi>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                  </m:mrow>
+                  <m:mo separator="true">,</m:mo>
+                  <m:mrow>
+                    <m:mo>tree</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                    <m:mi>a</m:mi>
+                    <m:mo separator="true">,</m:mo>
+                    <m:mi>b</m:mi>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                  </m:mrow>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+              </m:mrow>
+            </m:math>
+          </span>
+        </div>
+      </div>
+      <div class="omdoc-symbol" id="f3" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#VeriFun"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>f3
+        </div>
+        <div class="omdoc-type" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>(simpletypes)
+          </div>
+          <span id="MCRd19e501" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns">
+              <m:mrow>
+                <m:mo>all-types</m:mo>
+                <m:mi>a</m:mi>
+                <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">,</m:mo>
+                <m:mi>b</m:mi>
+                <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">.</m:mo>
+                <m:mrow>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mi>a</m:mi>
+                  <m:mo separator="true">,</m:mo>
+                  <m:mi>b</m:mi>
+                  <m:mo separator="true">,</m:mo>
+                  <m:mrow>
+                    <m:mo>tree</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                    <m:mrow>
+                      <m:mo>list</m:mo>
+                      <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                      <m:mi>a</m:mi>
+                      <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                    </m:mrow>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                  </m:mrow>
+                  <m:mo separator="true">,</m:mo>
+                  <m:mrow>
+                    <m:mo>stack</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                    <m:mi>b</m:mi>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                  </m:mrow>
+                  <m:mo separator="true">,</m:mo>
+                  <m:mi>b</m:mi>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+              </m:mrow>
+            </m:math>
+          </span>
+        </div>
+      </div>
+      <div class="omdoc-symbol" id="f4" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#VeriFun"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>f4
+        </div>
+        <div class="omdoc-type" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>(simpletypes)
+          </div>
+          <span id="MCRd19e561" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns">
+              <m:mrow>
+                <m:mo>all-types</m:mo>
+                <m:mi>a</m:mi>
+                <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">,</m:mo>
+                <m:mi>b</m:mi>
+                <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">,</m:mo>
+                <m:mi>c</m:mi>
+                <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">,</m:mo>
+                <m:mi>d</m:mi>
+                <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">.</m:mo>
+                <m:mrow>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mrow>
+                    <m:mo>tree</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                    <m:mi>a</m:mi>
+                    <m:mo separator="true">,</m:mo>
+                    <m:mi>b</m:mi>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                  </m:mrow>
+                  <m:mo separator="true">,</m:mo>
+                  <m:mrow>
+                    <m:mo>tree</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                    <m:mi>c</m:mi>
+                    <m:mo separator="true">,</m:mo>
+                    <m:mi>d</m:mi>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                  </m:mrow>
+                  <m:mo separator="true">,</m:mo>
+                  <m:mo>N</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+              </m:mrow>
+            </m:math>
+          </span>
+        </div>
+      </div>
+      <div class="omdoc-symbol" id="f5" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#VeriFun"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>f5
+        </div>
+        <div class="omdoc-type" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>(simpletypes)
+          </div>
+          <span id="MCRd19e622" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns">
+              <m:mrow>
+                <m:mo>all-types</m:mo>
+                <m:mi>value</m:mi>
+                <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">.</m:mo>
+                <m:mrow>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mrow>
+                    <m:mo>list</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                    <m:mi>value</m:mi>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                  </m:mrow>
+                  <m:mo separator="true">,</m:mo>
+                  <m:mo>N</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+              </m:mrow>
+            </m:math>
+          </span>
+        </div>
+      </div>
+      <div class="omdoc-symbol" id="f6" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#VeriFun"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>f6
+        </div>
+        <div class="omdoc-type" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>(simpletypes)
+          </div>
+          <span id="MCRd19e653" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns">
+              <m:mrow>
+                <m:mo>all-types</m:mo>
+                <m:mi>value</m:mi>
+                <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">.</m:mo>
+                <m:mrow>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mrow>
+                    <m:mo>list</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                    <m:mrow>
+                      <m:mo>list</m:mo>
+                      <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                      <m:mi>value</m:mi>
+                      <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                    </m:mrow>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                  </m:mrow>
+                  <m:mo separator="true">,</m:mo>
+                  <m:mo>N</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+              </m:mrow>
+            </m:math>
+          </span>
+        </div>
+      </div>
+      <div class="omdoc-symbol" id="f7" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#VeriFun"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>f7
+        </div>
+        <div class="omdoc-type" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>(simpletypes)
+          </div>
+          <span id="MCRd19e690" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns">
+              <m:mrow>
+                <m:mo>all-types</m:mo>
+                <m:mi>value</m:mi>
+                <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">,</m:mo>
+                <m:mi>key</m:mi>
+                <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">.</m:mo>
+                <m:mrow>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mi>value</m:mi>
+                  <m:mo separator="true">,</m:mo>
+                  <m:mi>key</m:mi>
+                  <m:mo separator="true">,</m:mo>
+                  <m:mrow>
+                    <m:mo>tree</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                    <m:mi>value</m:mi>
+                    <m:mo separator="true">,</m:mo>
+                    <m:mi>key</m:mi>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                  </m:mrow>
+                  <m:mo separator="true">,</m:mo>
+                  <m:mrow>
+                    <m:mo>tree</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                    <m:mi>value</m:mi>
+                    <m:mo separator="true">,</m:mo>
+                    <m:mi>key</m:mi>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                  </m:mrow>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+              </m:mrow>
+            </m:math>
+          </span>
+        </div>
+      </div>
+      <div class="omdoc-symbol" id="f8" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#VeriFun"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>f8
+        </div>
+        <div class="omdoc-type" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>(simpletypes)
+          </div>
+          <span id="MCRd19e747" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns">
+              <m:mrow>
+                <m:mo>all-types</m:mo>
+                <m:mi>a</m:mi>
+                <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">,</m:mo>
+                <m:mi>b</m:mi>
+                <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">.</m:mo>
+                <m:mrow>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mrow>
+                    <m:mo>list</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                    <m:mi>a</m:mi>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                  </m:mrow>
+                  <m:mo separator="true">,</m:mo>
+                  <m:mrow>
+                    <m:mo>list</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                    <m:mi>b</m:mi>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                  </m:mrow>
+                  <m:mo separator="true">,</m:mo>
+                  <m:mrow>
+                    <m:mo>tree</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                    <m:mi>a</m:mi>
+                    <m:mo separator="true">,</m:mo>
+                    <m:mi>b</m:mi>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                  </m:mrow>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+              </m:mrow>
+            </m:math>
+          </span>
+        </div>
+      </div>
+      <div class="omdoc-symbol" id="f9" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#VeriFun"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>f9
+        </div>
+        <div class="omdoc-type" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>(simpletypes)
+          </div>
+          <span id="MCRd19e803" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns">
+              <m:mrow>
+                <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                <m:mrow>
+                  <m:mo>list</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mo>N</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+                <m:mo separator="true">,</m:mo>
+                <m:mo>N</m:mo>
+                <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+              </m:mrow>
+            </m:math>
+          </span>
+        </div>
+      </div>
+      <div class="omdoc-symbol" id="f10" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#VeriFun"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>f10
+        </div>
+        <div class="omdoc-type" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>(simpletypes)
+          </div>
+          <span id="MCRd19e827" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns">
+              <m:mrow>
+                <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                <m:mrow>
+                  <m:mo>list</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mrow>
+                    <m:mo>list</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                    <m:mo>N</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                  </m:mrow>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+                <m:mo separator="true">,</m:mo>
+                <m:mo>N</m:mo>
+                <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+              </m:mrow>
+            </m:math>
+          </span>
+        </div>
+      </div>
+      <div class="omdoc-symbol" id="f11" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#VeriFun"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>f11
+        </div>
+        <div class="omdoc-type" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>(simpletypes)
+          </div>
+          <span id="MCRd19e857" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns">
+              <m:mrow>
+                <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                <m:mrow>
+                  <m:mo>list</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mrow>
+                    <m:mo>stack</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                    <m:mo>N</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                  </m:mrow>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+                <m:mo separator="true">,</m:mo>
+                <m:mrow>
+                  <m:mo>tree</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mrow>
+                    <m:mo>list</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                    <m:mo>N</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                  </m:mrow>
+                  <m:mo separator="true">,</m:mo>
+                  <m:mrow>
+                    <m:mo>stack</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                    <m:mo>N</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                  </m:mrow>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+                <m:mo separator="true">,</m:mo>
+                <m:mo>N</m:mo>
+                <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+              </m:mrow>
+            </m:math>
+          </span>
+        </div>
+      </div>
+      <div class="omdoc-symbol" id="f12" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#VeriFun"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>f12
+        </div>
+        <div class="omdoc-type" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>(simpletypes)
+          </div>
+          <span id="MCRd19e916" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns">
+              <m:mrow>
+                <m:mo>all-types</m:mo>
+                <m:mi>b</m:mi>
+                <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">.</m:mo>
+                <m:mrow>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mo>N</m:mo>
+                  <m:mo separator="true">,</m:mo>
+                  <m:mi>b</m:mi>
+                  <m:mo separator="true">,</m:mo>
+                  <m:mrow>
+                    <m:mo>tree</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                    <m:mo>N</m:mo>
+                    <m:mo separator="true">,</m:mo>
+                    <m:mi>b</m:mi>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                  </m:mrow>
+                  <m:mo separator="true">,</m:mo>
+                  <m:mrow>
+                    <m:mo>tree</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                    <m:mo>N</m:mo>
+                    <m:mo separator="true">,</m:mo>
+                    <m:mi>b</m:mi>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                  </m:mrow>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+              </m:mrow>
+            </m:math>
+          </span>
+        </div>
+      </div>
+      <div class="omdoc-symbol" id="f13" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#VeriFun"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>f13
+        </div>
+        <div class="omdoc-type" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>(simpletypes)
+          </div>
+          <span id="MCRd19e969" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns">
+              <m:mrow>
+                <m:mo>all-types</m:mo>
+                <m:mi>b</m:mi>
+                <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">.</m:mo>
+                <m:mrow>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mo>N</m:mo>
+                  <m:mo separator="true">,</m:mo>
+                  <m:mi>b</m:mi>
+                  <m:mo separator="true">,</m:mo>
+                  <m:mrow>
+                    <m:mo>tree</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                    <m:mo>N</m:mo>
+                    <m:mo separator="true">,</m:mo>
+                    <m:mo>N</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                  </m:mrow>
+                  <m:mo separator="true">,</m:mo>
+                  <m:mrow>
+                    <m:mo>tree</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                    <m:mo>N</m:mo>
+                    <m:mo separator="true">,</m:mo>
+                    <m:mo>N</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                  </m:mrow>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+              </m:mrow>
+            </m:math>
+          </span>
+        </div>
+      </div>
+      <div class="omdoc-symbol" id="f14" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#VeriFun"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>f14
+        </div>
+        <div class="omdoc-type" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>(simpletypes)
+          </div>
+          <span id="MCRd19e1023" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns">
+              <m:mrow>
+                <m:mo>all-types</m:mo>
+                <m:mi>a</m:mi>
+                <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">,</m:mo>
+                <m:mi>b</m:mi>
+                <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">.</m:mo>
+                <m:mrow>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mrow>
+                    <m:mo>list</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                    <m:mrow>
+                      <m:mo>stack</m:mo>
+                      <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                      <m:mo>N</m:mo>
+                      <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                    </m:mrow>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                  </m:mrow>
+                  <m:mo separator="true">,</m:mo>
+                  <m:mrow>
+                    <m:mo>tree</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                    <m:mi>a</m:mi>
+                    <m:mo separator="true">,</m:mo>
+                    <m:mi>b</m:mi>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                  </m:mrow>
+                  <m:mo separator="true">,</m:mo>
+                  <m:mo>N</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+              </m:mrow>
+            </m:math>
+          </span>
+        </div>
+      </div>
+      <div class="omdoc-symbol" id="f15" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#VeriFun"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>f15
+        </div>
+        <div class="omdoc-type" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>(simpletypes)
+          </div>
+          <span id="MCRd19e1079" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns">
+              <m:mrow>
+                <m:mo>all-types</m:mo>
+                <m:mi>a</m:mi>
+                <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">,</m:mo>
+                <m:mi>b</m:mi>
+                <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">.</m:mo>
+                <m:mrow>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mrow>
+                    <m:mo>list</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                    <m:mrow>
+                      <m:mo>stack</m:mo>
+                      <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                      <m:mo>N</m:mo>
+                      <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                    </m:mrow>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                  </m:mrow>
+                  <m:mo separator="true">,</m:mo>
+                  <m:mrow>
+                    <m:mo>stack</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                    <m:mi>a</m:mi>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                  </m:mrow>
+                  <m:mo separator="true">,</m:mo>
+                  <m:mrow>
+                    <m:mo>tree</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                    <m:mi>a</m:mi>
+                    <m:mo separator="true">,</m:mo>
+                    <m:mi>b</m:mi>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                  </m:mrow>
+                  <m:mo separator="true">,</m:mo>
+                  <m:mo>N</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+              </m:mrow>
+            </m:math>
+          </span>
+        </div>
+      </div>
+      <div class="omdoc-assertion" id="lem1" role="Assertion" about="#lem1" xml:id="lem1">
+        <a class="omdoc" rel="oso:homeTheory" href="#VeriFun"/>
+        <span class="omdoc-titleword">Assertion</span>
+        <span class="omdoc-FMP">
+          <span id="MCRd19e1148" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns">
+              <m:mrow>
+                <m:mo>∀</m:mo>
+              </m:mrow>
+            </m:math>
+          </span>
+        </span>
+      </div>
+    </div>
+  </body>
+</html>

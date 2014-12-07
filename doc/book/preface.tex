@@ -1,0 +1,90 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This file is part of the LaTeX sources of the OMDoc 1.6 book
+% Copyright (c) 2006 Michael Kohlhase
+% This work is licensed by the Creative Commons Share-Alike license
+% see http://creativecommons.org/licenses/by-sa/2.5/ for details
+\svnInfo $Id: preface.tex 8904 2011-01-25 06:37:12Z kohlhase $
+\svnKeyword $HeadURL: https://svn.omdoc.org/repos/omdoc/trunk/doc/book/preface.tex $
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{omgroup}[display=flow]{Preface}
+\addcontentsline{toc}{section}{Preface} 
+
+Mathematics is one of the oldest areas of human knowledge\footnote{We find mathematical
+  knowledge written down on Sumerian clay tablets, and even {\indextoo{Euclid}}'s
+  {\emph{\twinalt{Elements}{Euclid's}{elements}}}, an early rigorous development of a
+  larger body of mathematics, is over 2000 years old.}.  It forms the basis most modern
+sciences, technology and engineering disciplines build upon it: Mathematics provides them
+with modeling tools like statistical analysis or differential equations.  Inventions like
+public-key cryptography show that no part of mathematics is fundamentally inapplicable.
+Last, but not least, we teach mathematics to our students to develop abstract thinking and
+hone their reasoning skills.
+  
+However, mathematical knowledge is far too vast to be understood by one person, moreover,
+it has been estimated that the total amount of published mathematics doubles every
+ten--fifteen years~\cite{Odlyzko:tlogr95}. Thus the question of supporting the management
+and dissemination of \atwinalt{mathematical
+  knowledge}{mathematical}{knowledge}{management} is becoming ever more pressing but
+remains difficult: Even though mathematical knowledge can vary greatly in its
+presentation, level of formality and rigor, there is a level of deep semantic structure
+that is common to all forms of mathematics and that must be represented to capture the
+essence of the knowledge.
+
+At the same time it is plausible to expect that the way we do (i.e. conceive, develop,
+communicate about, and publish) mathematics will change considerably in the next years.
+The Internet plays an ever-increasing role in our everyday life, and most of the
+mathematical activities will be supported by mathematical software systems connected by a
+commonly accepted distribution architecture, which makes the combined systems appear to the
+user as one homogeneous application. They will communicate with human users and amongst
+themselves by exchanging structured mathematical documents, whose document format makes
+the context of the communication and the meaning of the mathematical objects unambiguous.
+
+Thus the inter-operation of mathematical services can be seen as a knowledge management
+task between software systems. On the other hand, mathematical knowledge management will
+almost certainly be web-based, distributed, modular, and integrated into the emerging math
+services architecture. So the two fields constrain and cross-fertilize each other at the
+same time.  A shared fundamental task that has to be solved for the vision of a ``web of
+mathematical knowledge'' ({\mathweb}) to become reality is to define an open markup
+language for the mathematical objects and knowledge exchanged between mathematical
+services.  The {\omdoc} format (\underline{O}pen \underline{M}athematical
+\underline{Doc}uments) presented here is an answer to this challenge, it attempts to
+provide an infrastructure for the communication and storage of
+{\twintoo{mathematical}{knowledge}}.
+
+Mathematics -- with its long tradition in the pursuit of {\twintoo{conceptual}{clarity}}
+and {\twintoo{representational}{rigor}} -- is an interesting test case for general
+{\twintoo{knowledge}{management}}, since it abstracts from vagueness of other knowledge
+without limiting its inherent complexity. The concentration on mathematics in {\omdoc} and
+this {\report} does not preclude applications in other areas. On the contrary, all the
+material directly extends to the {\indextoo{STEM}} ({\indextoo{science}},
+{\indextoo{technology}}, {\indextoo{education}}, and {\indextoo{mathematics}}) fields,
+once a certain level of conceptualization has been reached.
+
+This {\report} tries to be a one-stop information source about the {\omdoc} format, its
+applications, and best practices. It is intended for authors of mathematical documents and
+for application developers. The book is divided into four parts: an introduction to markup for
+mathematics (Part I), an {\omdoc} primer with paradigmatic examples for many kinds of
+mathematical documents (Part II), the rigorous specification of the {\omdoc} document
+format (Part III), and an {\xml} document type definition and schema (Part IV).
+
+The {\report} can be read in multiple ways: 
+\begin{itemize}
+\item for users that only need a casual exposure to the format, or authors that
+  have a specific text category in mind, it may be best to look at the examples in
+  the {\omdoc} primer ({\mypartref{primer}} of this {\report}), 
+\item for an in-depth account of the format and all the possibilities of modeling
+  mathematical documents, the rigorous specification in
+  {\mypartref{specification}} is indispensable.  This is particularly true for
+  application developers, who will also want to study the external resources,
+  existing {\omdoc} applications and projects, in {\mypartref{applications}}.
+\item Application developers will also need to familiarize themselves with the {\omdoc}
+  Schema in the Appendix.
+\end{itemize}
+\end{omgroup}
+
+%%% Local Variables: 
+%%% mode: LaTeX
+%%% TeX-master: "main"
+%%% End: 
+
+% LocalWords:  athematical uments

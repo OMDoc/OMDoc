@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xml:id="textboo-exercise.omdoc"
+  xmlns="http://omdoc.org/ns"
+  xmlns:cc="http://creativecommons.org/ns"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  version="1.6">
+<metadata>
+  <dc:date action="created"> 2004-10-08T12:47:28Z </dc:date>
+  <dc:title xml:lang="en"> textboo-exercise </dc:title>
+  <dc:creator role="aut"> Michael Kohlhase </dc:creator>
+  <dc:source>  </dc:source>
+  <dc:date action="updated"> 2004-10-08T12:47:28Z </dc:date>
+  <dc:type> Text </dc:type>
+  <dc:format> application/omdoc+xml </dc:format>
+  <dc:rights>Copyright (c) 2004 Michael Kohlhase</dc:rights>
+  <cc:license>
+    <cc:permissions reproduction="permitted" distribution="permitted" derivative_works="permitted"/>
+    <cc:prohibitions commercial_use="permitted"/>
+    <cc:requirements notice="required" copyleft="required" attribution="required"/>
+  </cc:license>
+</metadata>
+
+<exercise xml:id="TeXBook-18-22">
+  <CMP>
+    <p>Sometimes the condition that defines a set is given as a fairly long
+      English description; for example consider `{p|p and p+2 are prime}'. An 
+      hbox would do the job:</p>
+
+    <p style="display:block;font-family:fixed">
+      $\{\,p\mid\hbox{$p$ and $p+2$ are prime}\,\}$
+    </p>
+
+    <p>but a long formula like this is troublesome in a paragraph, since an hbox cannot
+      be broken between lines, and since the glue inside the glue inside the 
+      <phrase style="font-family:fixed">\hbox</phrase> does not vary with the inter-word
+      glue in the line that contains it. Explain how the given formula could be
+      typeset with line breaks allows.</p>
+  </CMP>
+  <hint>
+    <CMP>Go back and forth between math mode and horizontal mode.</CMP>
+  </hint>
+  <solution>
+    <omtext>
+    <CMP>
+      <phrase style="font-family:fixed">$\{\,p\mid p$~and $p+2$ are prime$\,\}$</phrase>,
+      assuming that <phrase style="font-family:fixed">\mathsurround</phrase> is
+      zero. The more difficult alternative '<phrase style="font-family:fixed">
+      $\{\,p\mid p\\ {\rm and}\ p+2\rm\ are\ prime\,\}$</phrase>'
+      is not a solution, because line breaks do not occur at 
+      <phrase style="font-family:fixed">\%\textvisiblespace%</phrase> (or at glue of any
+      kin) within math formulas. Of course it may be best to display a formula like
+      this, instead of breaking it between lines.
+    </CMP>
+    </omtext>
+  </solution>
+</exercise>
+
+</omdoc>

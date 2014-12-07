@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xml:id="kwarc.omdoc" version="1.6"
+       xmlns:dc="http://purl.org/dc/elements/1.1/" 
+       xmlns:cc="http://creativecommons.org/ns" 
+       xmlns="http://omdoc.org/ns">
+
+<metadata>
+  <dc:title>The OpenMath Content Dictionary for the KWARC group; an example for an OWL ontology written in OMDoc</dc:title>
+  <dc:creator role="trl">Michael Kohlhase</dc:creator>
+  <dc:contributor>Christoph Lange</dc:contributor>
+  <dc:date action="updated">2008-09-12T10:10:45</dc:date>
+  <dc:type>Text</dc:type>
+  <dc:format>application/omdoc+xml</dc:format>
+  <dc:rights>Copyright (c) 2008 Michael Kohlhase</dc:rights>
+  <dc:description>This CD defines symbols the KWARC group</dc:description>
+</metadata>
+
+<theory name="kwarc" xml:id="kwarc">
+
+<imports from="../metadata/foaf.omdoc#foaf"/>
+
+<symbol name="kwarc" xml:id="kwarc.symbol">
+  <type system="owl">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMS cd="foaf" name="Group"/>
+    </OMOBJ>
+  </type>
+</symbol>
+
+<axiom for="kwarc">
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA/>
+    </OMOBJ>
+  </FMP>
+</axiom>
+
+<symbol name="christoph" xml:id="christoph.symbol">
+  <type system="owl">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMS cd="foaf" name="Person"/>
+    </OMOBJ>
+  </type>
+</symbol>
+
+<symbol name="miko" xml:id="miko.symbol">
+  <type system="owl">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMS cd="foaf" name="Person"/>
+    </OMOBJ>
+  </type>
+</symbol>
+
+<axiom for="christoph">
+  <CMP>Christoph Lange is a KWARC member</CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="foaf" name="member"/>
+	<OMS cd="kwarc" name="kwarc"/>
+	<OMS cd="kwarc" name="christoph"/>
+      </OMA>
+    </OMOBJ>
+  </FMP>
+</axiom>
+
+<axiom for="miko">
+  <CMP>Michael Kohlhase is a KWARC member</CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="foaf" name="member"/>
+	<OMS cd="kwarc" name="kwarc"/>
+	<OMS cd="kwarc" name="miko"/>
+      </OMA>
+    </OMOBJ>
+  </FMP>
+</axiom>
+
+</theory>
+</omdoc>
+
+<!-- vim:sw=2:sts=2
+-->
+

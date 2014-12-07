@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  xmlns="http://omdoc.org/ns"
+xml:id="relation2-omdoc">
+
+
+  <dc:title>The OpenMath Content Dictionary relation2.ocd  in OMDoc form</dc:title>
+  <dc:creator role="trl">Michael Kohlhase</dc:creator>
+  <dc:creator role="ant">The OpenMath Society</dc:creator>
+  <dc:date> 1999-05-10T00:00:00</dc:date>
+  <dc:source>Derived from the OpenMath CD http://www.openmath.org/cd/relation2.ocd.</dc:source>
+  <dc:type>Text</dc:type>
+  <dc:format>application/omdoc+xml</dc:format>
+  <dc:rights>Copyright (c) 2000-2002 Michael Kohlhase;
+    This OMDoc content dictionary is released under the OpenMath license:
+    http://monet.nag.co.uk/openmath/cdfiles/license.html
+  </dc:rights>
+  <dc:description>
+    This CD holds further definitions of symbols that represent
+    relations in some way; at present this only includes a definition
+    for approx.
+  </dc:description>
+
+
+<theory xml:id="relation2" cdbase="http://www.openmath.org/cd">
+  <include from="sts.omdoc#sts"/>
+  <include from="setname2.omdoc#setname2"/>
+
+<symbol name="approx" xml:id="approx">
+
+<dc:description> 
+    This symbol is used to denote the approximate equality of its two arguments.
+</dc:description>
+
+<type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMS name="NumericalValue" cd="sts"/>
+	<OMS name="NumericalValue" cd="sts"/>
+	<OMS cd="setname2" name="Boolean"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+<presentation xml:id="pr-approx" for="#approx" role="applied" fixity="infix" lbrack="" rbrack="">
+  <use format="TeX">{\sim}</use>
+  <use format="html|pmml">&#x02242;</use>
+</presentation>
+</theory>
+</omdoc>

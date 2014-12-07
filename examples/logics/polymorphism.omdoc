@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  
+       xmlns="http://omdoc.org/ns"
+       xmlns:om="http://www.openmath.org/OpenMath"
+       xmlns:m="http://www.w3.org/1998/Math/MathML"
+       xml:id="polymorphism.omdoc">
+
+<metadata>
+ <dc:creator role="aut">Florian Rabe</dc:creator>
+ <dc:date action="created">2008-07-08T00:00:00</dc:date>
+ <dc:title>Polymorphism</dc:title>
+  <license xmlns="http://creativecommons.org/ns">
+    <permissions reproduction="permitted" distribution="permitted" derivative_works="permitted"/>
+    <prohibitions commercial_use="permitted"/>
+    <requirements notice="required" copyleft="required" attribution="required"/>
+  </license>
+</metadata>
+
+<omtext xml:id="intro">
+ <CMP>This document defines the operators for parametric poplymorphism.</CMP>
+</omtext>
+
+<symbol name="polymorphic-term" role="binder">
+<metadata>
+<dc:description>The polymorphic term constructor. It abstracts over a kinded variable and returns a term. It can be applied to types.
+</dc:description>
+</metadata>
+</symbol>
+
+<symbol name="polymorphic-type" role="binder">
+<metadata>
+<dc:description>The polymorphic type constructor. It returns the type of polymorphic terms by abstracting over a typed variable and returning a type.
+</dc:description>
+</metadata>
+</symbol>
+
+<symbol name="polymorphic-application" role="object">
+<metadata>
+<dc:description>The application operator that applies (polymorphic) terms to types.
+</dc:description>
+</metadata>
+</symbol>
+
+
+
+</omdoc>

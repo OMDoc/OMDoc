@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  RELAX NG Schema for OpenMath 3
+  $Id: openmath3.rnc 8405 2009-06-21 00:26:33Z kohlhase $
+  $HeadURL: https://svn.omdoc.org/repos/omdoc/trunk/schema/rnc/openmath3.rnc $
+  See the documentation and examples at http://www.openmath.org
+-->
+<grammar ns="http://www.openmath.org/OpenMath" xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  <start>
+    <ref name="OMOBJ"/>
+  </start>
+  <!-- OpenMath object constructor -->
+  <define name="OMOBJ">
+    <element name="OMOBJ">
+      <interleave>
+        <ref name="compound.attributes"/>
+        <optional>
+          <attribute name="version">
+            <data type="string"/>
+          </attribute>
+        </optional>
+        <ref name="omel"/>
+      </interleave>
+    </element>
+  </define>
+  <!-- Elements which can appear inside an OpenMath object -->
+  <define name="omel">
+    <choice>
+      <ref name="OMS"/>
+      <ref name="OMV"/>
+      <ref name="OMI"/>
+      <ref name="OMB"/>
+      <ref name="OMSTR"/>
+      <ref name="OMF"/>
+      <ref name="OMA"/>
+      <ref name="OMBIND"/>
+      <ref name="OME"/>
+      <ref name="OMATTR"/>
+      <ref name="OMR"/>
+    </choice>
+  </define>
+  <!-- things which can be variables -->
+  <define name="omvar">
+    <choice>
+      <ref name="OMV"/>
+      <ref name="attvar"/>
+    </choice>
+  </define>
+  <define name="attvar">
+    <element name="OMATTR">
+      <interleave>
+        <ref name="common.attributes"/>
+        <group>
+          <ref name="OMATP"/>
+          <choice>
+            <ref name="OMV"/>
+            <ref name="attvar"/>
+          </choice>
+        </group>
+      </interleave>
+    </element>
+  </define>
+  <define name="cdbase">
+    <optional>
+      <attribute name="cdbase">
+        <data type="anyURI"/>
+      </attribute>
+    </optional>
+  </define>
+  <!-- attributes common to all elements -->
+  <define name="common.attributes">
+    <optional>
+      <attribute name="id">
+        <data type="ID"/>
+      </attribute>
+    </optional>
+  </define>
+  <!-- attributes common to all elements that construct compound OM objects. -->
+  <define name="compound.attributes">
+    <interleave>
+      <ref name="common.attributes"/>
+      <ref name="cdbase"/>
+    </interleave>
+  </define>
+  <!-- symbol -->
+  <define name="OMS">
+    <element name="OMS">
+      <interleave>
+        <ref name="common.attributes"/>
+        <attribute name="name">
+          <data type="NCName"/>
+        </attribute>
+        <attribute name="cd">
+          <data type="NCName"/>
+        </attribute>
+        <ref name="cdbase"/>
+      </interleave>
+    </element>
+  </define>
+  <!-- variable -->
+  <define name="OMV">
+    <element name="OMV">
+      <interleave>
+        <ref name="common.attributes"/>
+        <attribute name="name">
+          <data type="NCName"/>
+        </attribute>
+      </interleave>
+    </element>
+  </define>
+  <!-- integer -->
+  <define name="OMI.content">
+    <data type="string">
+      <param name="pattern">\s*(-\s?)?[0-9]+(\s[0-9]+)*\s*</param>
+    </data>
+  </define>
+  <define name="OMI">
+    <element name="OMI">
+      <interleave>
+        <ref name="common.attributes"/>
+        <ref name="OMI.content"/>
+      </interleave>
+    </element>
+  </define>
+  <!-- byte array -->
+  <define name="OMB">
+    <element name="OMB">
+      <interleave>
+        <ref name="common.attributes"/>
+        <data type="base64Binary"/>
+      </interleave>
+    </element>
+  </define>
+  <!-- string -->
+  <define name="OMSTR">
+    <element name="OMSTR">
+      <interleave>
+        <ref name="common.attributes"/>
+        <text/>
+      </interleave>
+    </element>
+  </define>
+  <!-- IEEE floating point number -->
+  <define name="OMF">
+    <element name="OMF">
+      <interleave>
+        <ref name="common.attributes"/>
+        <choice>
+          <attribute name="dec">
+            <data type="double"/>
+          </attribute>
+          <attribute name="hex">
+            <data type="string">
+              <param name="pattern">[0-9A-F]+</param>
+            </data>
+          </attribute>
+        </choice>
+      </interleave>
+    </element>
+  </define>
+  <!-- apply constructor -->
+  <define name="OMA">
+    <element name="OMA">
+      <interleave>
+        <ref name="compound.attributes"/>
+        <oneOrMore>
+          <ref name="omel"/>
+        </oneOrMore>
+      </interleave>
+    </element>
+  </define>
+  <!-- binding constructor -->
+  <define name="OMBIND">
+    <element name="OMBIND">
+      <interleave>
+        <ref name="compound.attributes"/>
+        <group>
+          <ref name="omel"/>
+          <ref name="OMBVAR"/>
+          <ref name="omel"/>
+        </group>
+      </interleave>
+    </element>
+  </define>
+  <!-- the condition element -->
+  <define name="OMC">
+    <element name="OMC">
+      <interleave>
+        <ref name="common.attributes"/>
+        <ref name="omel"/>
+      </interleave>
+    </element>
+  </define>
+  <!-- variables used in binding constructor -->
+  <define name="OMBVAR">
+    <element name="OMBVAR">
+      <interleave>
+        <ref name="common.attributes"/>
+        <oneOrMore>
+          <ref name="omvar"/>
+        </oneOrMore>
+      </interleave>
+    </element>
+  </define>
+  <!-- error constructor -->
+  <define name="OME">
+    <element name="OME">
+      <interleave>
+        <ref name="common.attributes"/>
+        <group>
+          <ref name="OMS"/>
+          <zeroOrMore>
+            <choice>
+              <ref name="omel"/>
+              <ref name="OMFOREIGN"/>
+            </choice>
+          </zeroOrMore>
+        </group>
+      </interleave>
+    </element>
+  </define>
+  <!-- attribution constructor and attribute pair constructor -->
+  <define name="OMATTR">
+    <element name="OMATTR">
+      <interleave>
+        <ref name="compound.attributes"/>
+        <group>
+          <ref name="OMATP"/>
+          <ref name="omel"/>
+        </group>
+      </interleave>
+    </element>
+  </define>
+  <define name="OMATP">
+    <element name="OMATP">
+      <interleave>
+        <ref name="compound.attributes"/>
+        <oneOrMore>
+          <ref name="OMS"/>
+          <choice>
+            <ref name="omel"/>
+            <ref name="OMFOREIGN"/>
+          </choice>
+        </oneOrMore>
+      </interleave>
+    </element>
+  </define>
+  <!-- foreign constructor -->
+  <define name="OMFOREIGN">
+    <element name="OMFOREIGN">
+      <interleave>
+        <ref name="compound.attributes"/>
+        <optional>
+          <attribute name="encoding">
+            <data type="string"/>
+          </attribute>
+        </optional>
+        <zeroOrMore>
+          <choice>
+            <ref name="omel"/>
+            <ref name="notom"/>
+          </choice>
+        </zeroOrMore>
+      </interleave>
+    </element>
+  </define>
+  <!--
+    Any elements not in the om namespace
+    (valid om is allowed as a descendant)
+  -->
+  <define name="notom">
+    <text/>
+  </define>
+  <!--
+     (element * - om:* {attribute * { text }*,(omel|notom)*}
+      | text)
+  -->
+  <!-- reference constructor -->
+  <define name="OMR">
+    <element name="OMR">
+      <interleave>
+        <ref name="common.attributes"/>
+        <attribute name="href">
+          <data type="anyURI"/>
+        </attribute>
+      </interleave>
+    </element>
+  </define>
+</grammar>

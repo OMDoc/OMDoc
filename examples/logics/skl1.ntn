@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<notations xmlns="http://www.w3.org/ns/mathml-cd" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:om="http://www.openmath.org/OpenMath" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+  <notation cdbase="FIXME" cd="skl1" name="forall">
+    <prototype>
+      <om:OMS cd="skl1" name="forall"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="skl1">forall</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en">∀</rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="skl1" name="exists">
+    <prototype>
+      <om:OMS cd="skl1" name="exists"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="skl1">exists</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en">∃</rendering>
+  </notation>
+</notations>

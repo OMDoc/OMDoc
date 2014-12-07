@@ -1,0 +1,80 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This file is part of the LaTeX sources of the OMDoc 1.6 book
+% Copyright (c) 2006 Michael Kohlhase
+% This work is licensed by the Creative Commons Share-Alike license
+% see http://creativecommons.org/licenses/by-sa/2.5/ for details
+% $Id: main.tex 8904 2011-01-25 06:37:12Z kohlhase $
+% $HeadURL: https://svn.omdoc.org/repos/omdoc/trunk/doc/book/main.tex $
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[book]{omdocspec}
+\usepackage[hide]{ed}     %../macros set to [hide] when publishing
+\usepackage{include}
+\usepackage[backref=true,hyperref=auto,style=alphabetic]{biblatex}
+\bibliography{../bibs/kwarc}
+\input{dcmcontributors}
+\makeindex
+
+\svnInfo $Id: main.tex 8904 2011-01-25 06:37:12Z kohlhase $
+\svnKeyword $HeadURL: https://svn.omdoc.org/repos/omdoc/trunk/doc/book/main.tex $
+\begin{document}
+\begin{DCmetadata}[bookhead]
+  \DCMtitle{ {\omdoc} : An Open Markup Format\\[1ex]
+    for Mathematical Documents\\
+ Language Specification, Primer, Projects, Applications\\{}
+ [Version 1.6 (pre-2.0)]}
+  \DCMcreators{miko}
+  \DCMdate{\today}
+  \DCMcopyrightnotice{2009}{Michael Kohlhase}
+  \DCMlicensenotice{This work is licensed by the Creative Commons Share-Alike license
+    \url{http://creativecommons.org/licenses/by-sa/2.5/}: the contents of this specification
+    or fragments thereof may be copied and distributed freely, as long as they are
+    attributed to the original author and source, derivative works (i.e. modified versions
+    of the material) may be published as long as they are also licenced under the Creative
+    Commons Share-Alike license.}
+\end{DCmetadata}
+
+\frontmatter
+\Inbook{dedication}
+\Inbook{abstract}
+\Inbook{foreword}
+\Inbook{preface}
+\Inbook{acknowledgements}
+\setcounter{tocdepth}{1}\tableofcontents\newpage
+
+\mainmatter
+\part{Setting the Stage for Open Mathematical Documents}\label{part:markup}
+\Inbook{partintro}
+\Inbook{math-markup}
+\Inbook{omdoc-markup}
+
+\part{An OMDoc Primer}\label{part:primer}
+\Inprimer{preface}
+\Inprimer{toc}
+
+\part{The OMDoc Document Format}\label{part:specification}
+\Inspec{preface}
+\Inspec{toc}
+
+\part{Processing OMDoc}\label{part:applications}
+\Inprocessing{preface}
+\Inprocessing{toc}
+
+\part[Applications and Projects]{{\omdoc} Applications and Projects}\label{part:applications}
+\Inprojects{preface}
+\Inprojects{toc}
+
+\Inspec{partappendix}
+\Inspec{appendix}
+\backmatter
+\printbibliograph\newpage
+{\small\printindex}
+
+\end{document}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 
+
+% LocalWords:  rnc

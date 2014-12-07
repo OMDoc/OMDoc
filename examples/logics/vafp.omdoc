@@ -1,0 +1,1074 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/" 
+       xmlns="http://omdoc.org/ns" 
+       xmlns:om="http://www.openmath.org/OpenMath"
+       xmlns:m="http://www.w3.org/1998/Math/MathML"
+       xml:id="vfap.omdoc">
+  
+  <metadata>
+    <dc:creator role="aut">Michael Kohlhase</dc:creator>
+    <dc:creator role="aut">Normen M"uller</dc:creator>
+    <dc:date action="created">2008-06-29T00:00:00</dc:date>
+    <dc:title>The Verifun logic language</dc:title>
+  <dc:rights>Copyright (c) 2008 Michael Kohlhase</dc:rights>
+  <license xmlns="http://creativecommons.org/ns">
+    <permissions reproduction="permitted" distribution="permitted" derivative_works="permitted"/>
+    <prohibitions commercial_use="permitted"/>
+    <requirements notice="required" copyleft="required" attribution="required"/>
+  </license>
+
+  </metadata>
+
+  <omtext xml:id="intro">
+    <CMP>This document contains and defines the constants used in the Verifun
+    to OMDoc translation.</CMP>
+  </omtext>
+
+  <theory xml:id="vafp">
+    <metadata>
+      <dc:title>The Verifun logic language</dc:title>
+    </metadata>
+
+    <imports from="pl1.omdoc#pl1"/>
+    <imports from="cases.omdoc#cases"/>
+
+    <symbol name="function" role="object" scope="global" xml:id="vafp.function">
+      <metadata>
+	<dc:subject>function</dc:subject>
+	<dc:description>
+	  This symbol is used to represent anonymous functions as lambda expansions. 
+	  It is used in a binder that takes two further arguments, the first of which
+	  is a list of variables, and the second of which is an expression, and it
+	  forms the function which is the lambda extraction of the expression
+	</dc:description>
+      </metadata>
+    </symbol>
+
+    <presentation xml:id="pr-function" for="#function" role="binding">
+      <use format="TeX">{\lambda}</use>
+      <use format="pmml|html">&#x003BB;</use>
+      <use format="verifun">function</use>
+    </presentation>
+
+    <example xml:id="function-id-ex" for="#vafp.function">
+      <CMP>The following is a representation of the identity function:</CMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	<OMBIND>
+	  <OMS cd="vafp" name="function"/>
+	  <OMBVAR><OMV name="X"/></OMBVAR>
+	  <OMV name="X"/>
+	</OMBIND>
+      </OMOBJ>
+    </example>
+    <!-- ************************************************************************************************************  -->
+    <symbol name="let" role="object" scope="global">
+      <metadata><dc:description>The unary let binder</dc:description></metadata>
+    </symbol>
+    
+    <presentation for="#let" role="binding">
+      <style format="vafp">
+	<text>let </text>
+	<recurse select="OMBVAR/*"/>
+	<text>; &#xA;</text>
+	<recurse select="*[3]"/>
+	<text>end</text>
+      </style>      
+      <style format="default">
+	<text>let </text>
+	<recurse select="OMBVAR/*"/>
+	<text>in &#xA;</text>
+	<recurse select="*[3]"/>
+	<text>end</text>
+      </style>      
+    </presentation>
+    <!-- ************************************************************************************************************  -->
+    <symbol name="let-value"  role="semantic-attribution">
+      <metadata><dc:description>The attribute for the value of a variable under a let binding</dc:description></metadata>
+    </symbol>
+
+    <presentation for="#let-value" role="key" fixity="postfix"> 
+      <use format="default"> := </use>
+    </presentation>
+
+    <example for="#let #let-value">
+      <CMP>The following is an example for function constructed with the help of a let binding</CMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	<OMA>
+	  <OMS cd="vafp" name="equal"/>
+	  <OMV name="plus"/>
+	  <OMBIND>
+	    <OMS cd="vafp" name="function"/>
+	    <OMBVAR><OMV name="X"/><OMV name="Y"/></OMBVAR>
+	    <OMA>
+	      <OMS cd="vafp" name="if"/>
+	      <OMA><OMS cd="vafp" name="equal"/><OMV name="X"/><OMS cd="vafp" name="zero"/></OMA>
+	      <OMV name="Y"/>
+	      <OMBIND>
+		<OMS cd="vafp" name="let"/>
+		<OMBVAR>
+		  <OMATTR>
+		    <OMATP>
+		      <OMS cd="vafp" name="let-value"/>
+		      <OMA><OMS cd="vafp" name="pred"/><OMV name="X"/></OMA>
+		    </OMATP>
+		    <OMV name="N"/>
+		  </OMATTR>
+		</OMBVAR>
+		<OMA><OMV name="plus"/><OMV name="X"/><OMV name="Y"/></OMA>
+	      </OMBIND>
+	    </OMA>
+	  </OMBIND>
+	</OMA>
+      </OMOBJ>
+    </example>
+    <!-- ************************************************************************************************************  -->
+    <symbol name="if">
+      <metadata>
+	<dc:subject>if then else</dc:subject>
+	<dc:description>This symbol is the ternary if/then/else operator. </dc:description>
+      </metadata>
+      <type system="simpletypes.omdoc#simpletypes">
+	<OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	  <OMBIND>
+	    <OMS cd="simpletypes" name="all-types"/>
+	    <OMBVAR><OMV name="a"/></OMBVAR>
+	    <OMA>
+	      <OMS cd="simpletypes" name="funtype"/>
+	      <OMS cd="vafp" name="bool"/>
+	      <OMV name="a"/>
+	      <OMV name="a"/>
+	      <OMV name="a"/>
+	    </OMA>
+	  </OMBIND>
+	</OMOBJ>
+      </type>
+    </symbol>
+
+    <presentation xml:id="pr-if" for="#if" role="applied" arity="3">
+      <use format="verifun">if</use>
+      <style format="default">
+	<text> if </text><recurse select="*[2]"/>
+	<text> then </text><recurse select="*[3]"/>
+	<text> else </text><recurse select="*[4]"/>
+	<text> fi </text>
+      </style>
+    </presentation>
+    <!-- ************************************************************************************************************  -->
+    <symbol name="unknown">
+      <metadata><dc:description>The unknown value</dc:description></metadata>
+      <type system="simpletypes.omdoc#simpletypes">
+	<OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	  <OMBIND>
+	    <OMS cd="simpletypes" name="all-types"/>
+	    <OMBVAR>
+	      <OMV name="a"/>
+	    </OMBVAR>
+	    <OMA>
+	      <OMS cd="simpletypes" name="funtype"/>
+	      <OMV name="a"/>
+	    </OMA>
+	  </OMBIND>
+	</OMOBJ>
+      </type>
+    </symbol>
+    
+    <presentation for="#unknown">
+      <use format="verifun">*</use>
+      <use format="default">*</use>
+    </presentation>
+    <!-- ************************************************************************************************************  -->
+    <symbol name="equal">
+      <type system="simpletypes.omdoc#simpletypes">
+	<OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	  <OMBIND>
+	    <OMS cd="simpletypes" name="all-types"/>
+	    <OMBVAR>
+	      <OMV name="a"/>
+	    </OMBVAR>
+	    <OMA>
+	      <OMS cd="simpletypes" name="funtype"/>
+	      <OMV name="a"/>
+	      <OMV name="a"/>
+	      <OMS cd="vafp" name="bool"/>
+	    </OMA>
+	  </OMBIND>
+	</OMOBJ>
+      </type>
+    </symbol>
+    
+    <presentation for="#equal" role="applied" fixity="infix">
+      <use format="verifun">=</use>
+      <use format="default">=</use>
+    </presentation>
+    <!-- ************************************************************************************************************  -->
+    <adt xml:id="bool-adt">
+      <sortdef name="bool" type="free">
+	<constructor name="true"/>
+	<constructor name="false"/>
+      </sortdef>
+    </adt>
+    
+    <presentation for="#bool">
+      <use format="default">Bool</use>
+      <use format="verifun">bool</use>
+    </presentation>
+    
+    <presentation for="#true">
+      <use format="verifun">true</use>
+      <use format="default">T</use>
+    </presentation>
+    
+    <presentation for="#false">
+      <use format="default">F</use>
+      <use format="verifun">false</use>
+    </presentation>
+    <!-- ************************************************************************************************************  -->
+    <adt xml:id="nat-adt">
+      <sortdef name="nat">
+	<constructor name="zero"/>
+	<constructor name="succ">
+	  <argument>
+	    <type system="simpletypes.omdoc#simpletypes">
+	      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+		<OMS cd="vafp" name="nat"/>
+	      </OMOBJ>
+	    </type>
+	    <selector total="yes" name="pred"/>
+	  </argument>
+	</constructor>
+      </sortdef>
+    </adt>
+
+    <symbol name="is_zero">
+      <type system="simpletypes.omdoc#simpletypes">
+	<OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	  <OMA>
+	    <OMS cd="simpletypes" name="funtype"/>
+	    <OMS cd="vafp" name="nat"/>
+	    <OMS cd="vafp" name="bool"/>
+	  </OMA>
+	</OMOBJ>
+      </type>
+    </symbol>
+    
+    <symbol name="is_succ">
+      <type system="simpletypes.omdoc#simpletypes">
+	<OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	  <OMA>
+	    <OMS cd="simpletypes" name="funtype"/>
+	    <OMS cd="vafp" name="nat"/>
+	    <OMS cd="vafp" name="bool"/>
+	  </OMA>
+	</OMOBJ>
+      </type>
+    </symbol>
+    
+    <presentation for="#is_zero" role="applied" arity="1">
+      <use format="verifun">?0</use>
+      <use format="default">?0</use>
+    </presentation>
+    
+    <presentation for="#is_succ" role="applied" arity="1">
+      <use format="verifun">?succ</use>
+      <use format="default">?succ</use>
+    </presentation>
+    
+    <presentation for="#nat">
+      <use format="default">N</use>
+      <use format="verifun">nat</use>
+    </presentation>
+    
+    <presentation for="#zero">
+      <use format="default">0</use>
+      <use format="verifun">0</use>
+    </presentation>
+    
+    <presentation for="#succ" role="applied" arity="1">
+      <use format="default">s</use>
+      <use format="verifun">succ</use>
+    </presentation>
+
+    <presentation for="#pred" role="applied" arity="1">
+      <use format="default">p</use>
+      <use format="verifun">pred</use>
+    </presentation>
+    <!-- ************************************************************************************************************  -->
+    <symbol name="greater">
+      <metadata><dc:description>The greater than relation on natural numbers</dc:description></metadata>
+      <type system="simpletypes.omdoc#simpletypes">
+	<OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	  <OMA>
+	    <OMS cd="simpletypes" name="funtype"/>
+	    <OMS cd="vafp" name="nat"/>
+	    <OMS cd="vafp" name="nat"/>
+	    <OMS cd="vafp" name="bool"/>
+	  </OMA>
+	</OMOBJ>
+      </type>
+    </symbol>
+    
+    <presentation for="#greater" role="applied" fixity="infix">
+      <use format="verifun">?gt</use>
+      <use format="default">&gt;</use>
+    </presentation>
+    
+    <symbol name="greater.dom">
+      <type system="simpletypes.omdoc#simpletypes">
+	<OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	  <OMA>
+	    <OMS cd="simpletypes" name="funtype"/>
+	    <OMS cd="vafp" name="nat"/>
+	    <OMS cd="vafp" name="nat"/>
+	    <OMS cd="vafp" name="bool"/>
+	  </OMA>
+	</OMOBJ>
+      </type>
+    </symbol>
+    
+    <presentation for="#greater.dom">
+      <use format="verifun">&gt;$</use>
+      <use format="default">&gt;$</use>
+    </presentation>
+    <!-- ************************************************************************************************************  -->
+    <assertion xml:id="equal_transitive" type="lemma">
+      <FMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+          <OMBIND>
+            <OMS cd="pl1" name="forall"/>
+            <OMBVAR>
+              <OMATTR>
+                <OMATP>
+                  <OMS cd="simpletypes" name="type"/>
+                  <OMV name="item"/>
+                </OMATP>
+                <OMV name="x"/>
+              </OMATTR>
+              <OMATTR>
+                <OMATP>
+                  <OMS cd="simpletypes" name="type"/>
+                  <OMV name="item"/>
+                </OMATP>
+                <OMV name="y"/>
+              </OMATTR>
+              <OMATTR>
+                <OMATP>
+                  <OMS cd="simpletypes" name="type"/>
+                  <OMV name="item"/>
+                </OMATP>
+                <OMV name="z"/>
+              </OMATTR>
+            </OMBVAR>
+            <OMA>
+              <OMS cd="vafp" name="if"/>
+              <OMA>
+                <OMS cd="vafp" name="equal"/>
+                <OMV name="x"/>
+                <OMV name="y"/>
+              </OMA>
+              <OMA>
+                <OMS cd="vafp" name="if"/>
+                <OMA>
+                  <OMS cd="vafp" name="equal"/>
+                  <OMV name="y"/>
+                  <OMV name="z"/>
+                </OMA>
+                <OMA>
+                  <OMS cd="vafp" name="equal"/>
+                  <OMV name="x"/>
+                  <OMV name="z"/>
+                </OMA>
+		<OMS cd="vafp" name="true"/>
+	      </OMA>
+	      <OMS cd="vafp" name="true"/>              
+            </OMA>
+          </OMBIND>
+        </OMOBJ>
+      </FMP>
+    </assertion>
+
+    <presentation for="#equal_transitive">
+      <use format="default">=_transitive</use>
+      <use format="verifun">=_transitive</use>
+    </presentation>
+    <!-- ************************************************************************************************************  -->
+    <assertion xml:id="greater_transitive" type="lemma">
+      <FMP>
+	<OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	  <OMBIND>
+	    <OMS cd="pl1" name="forall"/>
+	    <OMBVAR>
+	      <OMATTR>
+		<OMATP>
+		  <OMS cd="simpletypes" name="type"/>
+		  <OMS cd="vafp" name="nat"/>
+		</OMATP>
+		<OMV name="x"/>
+	      </OMATTR>
+	      <OMATTR>
+                <OMATP>
+		  <OMS cd="simpletypes" name="type"/>
+		  <OMS cd="vafp" name="nat"/>
+		</OMATP>
+		<OMV name="y"/>
+	      </OMATTR>
+	      <OMATTR>
+		<OMATP>
+		  <OMS cd="simpletypes" name="type"/>
+		  <OMS cd="vafp" name="nat"/>
+		</OMATP>
+		<OMV name="z"/>
+	      </OMATTR>
+            </OMBVAR>
+	    <OMA>
+	      <OMS cd="vafp" name="if"/>
+	      <OMA>
+		<OMS cd="vafp" name="greater"/>
+                <OMV name="x"/>
+                <OMV name="y"/>
+              </OMA>
+              <OMA>
+                <OMS cd="vafp" name="if"/>
+                <OMA>
+                  <OMS cd="vafp" name="greater"/>
+                  <OMV name="y"/>
+                  <OMV name="z"/>
+                </OMA>
+                <OMA>
+                  <OMS cd="vafp" name="greater"/>
+                  <OMV name="x"/>
+                  <OMV name="z"/>
+                </OMA>
+		<OMS cd="vafp" name="true"/>                
+              </OMA>
+	      <OMS cd="vafp" name="true"/>
+            </OMA>
+          </OMBIND>
+        </OMOBJ>
+      </FMP>
+    </assertion>
+
+    <presentation for="#greater_transitive">
+      <use format="default">&gt;_transitive</use>
+      <use format="verifun">&gt;_transitive</use>
+    </presentation>
+    <!-- ************************************************************************************************************  -->
+    <assertion xml:id="greater_irreflexive" type="lemma">
+      <FMP>
+	<OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	  <OMBIND>
+	    <OMS cd="pl1" name="forall"/>
+	    <OMBVAR>
+	      <OMATTR>
+		<OMATP>
+		  <OMS cd="simpletypes" name="type"/>
+		  <OMS cd="vafp" name="nat"/>
+		</OMATP>
+		<OMV name="x"/>
+	      </OMATTR>
+	      <OMATTR>
+		<OMATP>
+		  <OMS cd="simpletypes" name="type"/>
+		  <OMS cd="vafp" name="nat"/>
+		</OMATP>
+		<OMV name="y"/>
+	      </OMATTR>
+	    </OMBVAR>
+	    <OMA>
+	      <OMS cd="vafp" name="if"/>
+	      <OMA>
+                <OMS cd="vafp" name="equal"/>
+                <OMV name="x"/>
+                <OMV name="y"/>
+              </OMA>
+              <OMA>
+                <OMS cd="vafp" name="if"/>
+                <OMA>
+                  <OMS cd="vafp" name="greater"/>
+                  <OMV name="x"/>
+                  <OMV name="y"/>
+                </OMA>
+		<OMS cd="vafp" name="false"/>
+		<OMS cd="vafp" name="true"/>
+              </OMA>
+	      <OMS cd="vafp" name="true"/>              
+            </OMA>
+          </OMBIND>
+        </OMOBJ>
+      </FMP>
+    </assertion>
+
+    <presentation for="#greater_irreflexive">
+      <use format="default">&gt;_irreflexive*</use>
+      <use format="verifun">&gt;_irreflexive*</use>
+    </presentation>
+    <!-- ************************************************************************************************************  -->
+    <assertion xml:id="greater_neg_transitive" type="lemma">
+      <FMP>
+	<OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	  <OMBIND>
+	    <OMS cd="pl1" name="forall"/>
+	    <OMBVAR>
+	      <OMATTR>
+		<OMATP>
+		  <OMS cd="simpletypes" name="type"/>
+		  <OMS cd="vafp" name="nat"/>
+		</OMATP>
+		<OMV name="z"/>
+	      </OMATTR>
+	      <OMATTR>
+		<OMATP>
+		  <OMS cd="simpletypes" name="type"/>
+		  <OMS cd="vafp" name="nat"/>
+		</OMATP>
+		<OMV name="x"/>
+	      </OMATTR>
+	      <OMATTR>
+		<OMATP>
+		  <OMS cd="simpletypes" name="type"/>
+		  <OMS cd="vafp" name="nat"/>
+		</OMATP>
+		<OMV name="y"/>
+	      </OMATTR>
+	    </OMBVAR>
+	    <OMA>
+	      <OMS cd="vafp" name="if"/>
+	      <OMA>
+		<OMS cd="vafp" name="greater"/>
+                <OMV name="x"/>
+                <OMV name="z"/>
+              </OMA>
+              <OMA>
+                <OMS cd="vafp" name="if"/>
+                <OMA>
+                  <OMS cd="vafp" name="greater"/>
+                  <OMV name="x"/>
+                  <OMV name="y"/>
+                </OMA>
+                <OMS cd="vafp" name="true"/>
+                <OMA>
+                  <OMS cd="vafp" name="greater"/>
+                  <OMV name="y"/>
+                  <OMV name="z"/>
+                </OMA>
+              </OMA>
+	      <OMS cd="vafp" name="true"/>
+	    </OMA>
+	  </OMBIND>
+	</OMOBJ>
+      </FMP>
+    </assertion>
+
+    <presentation for="#greater_neg_transitive">
+      <use format="default">&gt;_neg_transitive</use>
+      <use format="verifun">&gt;_neg_transitive</use>
+    </presentation>
+    <!-- ************************************************************************************************************  -->
+    <assertion xml:id="greater_total" type="lemma">
+      <FMP>
+	<OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	  <OMBIND>
+	    <OMS cd="pl1" name="forall"/>
+	    <OMBVAR>
+              <OMATTR>
+		<OMATP>
+		  <OMS cd="simpletypes" name="type"/>
+		  <OMS cd="vafp" name="nat"/>
+		</OMATP>
+		<OMV name="x"/>
+	      </OMATTR>
+	      <OMATTR>
+		<OMATP>
+		  <OMS cd="simpletypes" name="type"/>
+		  <OMS cd="vafp" name="nat"/>
+		</OMATP>
+		<OMV name="y"/>
+	      </OMATTR>
+	    </OMBVAR>
+	    <OMA>
+	      <OMS cd="vafp" name="if"/>
+	      <OMA>
+		<OMS cd="vafp" name="greater"/>
+                <OMV name="x"/>
+                <OMV name="y"/>
+              </OMA>
+	      <OMS cd="vafp" name="true"/>              
+              <OMA>
+                <OMS cd="vafp" name="if"/>
+                <OMA>
+                  <OMS cd="vafp" name="greater"/>
+                  <OMV name="y"/>
+                  <OMV name="x"/>
+                </OMA>
+                <OMS cd="vafp" name="true"/>
+                <OMA>
+                  <OMS cd="vafp" name="equal"/>
+                  <OMV name="x"/>
+                  <OMV name="y"/>
+                </OMA>
+              </OMA>
+            </OMA>
+          </OMBIND>
+        </OMOBJ>
+      </FMP>
+    </assertion>
+
+    <presentation for="#greater_total">
+      <use format="default">&gt;_total</use>
+      <use format="verifun">&gt;_total</use>
+    </presentation>
+    <!-- ************************************************************************************************************  -->
+    <assertion xml:id="greater_pred" type="lemma">
+      <FMP>
+	<OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	  <OMBIND>
+	    <OMS cd="pl1" name="forall"/>
+	    <OMBVAR>
+	      <OMATTR>
+		<OMATP>
+		  <OMS cd="simpletypes" name="type"/>
+                  <OMS cd="vafp" name="nat"/>
+		</OMATP>
+		<OMV name="x"/>
+	      </OMATTR>
+	      <OMATTR>
+		<OMATP>
+		  <OMS cd="simpletypes" name="type"/>
+		  <OMS cd="vafp" name="nat"/>
+		</OMATP>
+		<OMV name="y"/>
+              </OMATTR>
+	    </OMBVAR>
+	    <OMA>
+	      <OMS cd="vafp" name="if"/>
+	      <OMA>
+		<OMS cd="vafp" name="is_zero"/>
+                <OMV name="x"/>
+              </OMA>
+	      <OMS cd="vafp" name="true"/>
+	      <OMA>
+                <OMS cd="vafp" name="if"/>
+                <OMA>
+                  <OMS cd="vafp" name="equal"/>
+                  <OMV name="x"/>
+                  <OMV name="y"/>
+                </OMA>
+                <OMA>
+                  <OMS cd="vafp" name="greater"/>
+                  <OMV name="x"/>
+                  <OMA>
+                    <OMS cd="vafp" name="pred"/>
+                    <OMV name="y"/>
+                  </OMA>
+                </OMA>
+                <OMS cd="vafp" name="true"/>
+              </OMA>
+	    </OMA>
+	  </OMBIND>
+	</OMOBJ>
+      </FMP>
+    </assertion>
+
+    <presentation for="#greater_pred">
+      <use format="default">&gt;_pred*</use>
+      <use format="verifun">&gt;_pred*</use>
+    </presentation>
+    <!-- ************************************************************************************************************  -->
+    <assertion xml:id="greater_succ" type="lemma">
+      <FMP>
+	<OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	  <OMBIND>
+	    <OMS cd="pl1" name="forall"/>
+	    <OMBVAR>
+	      <OMATTR>
+		<OMATP>
+		  <OMS cd="simpletypes" name="type"/>
+		  <OMS cd="vafp" name="nat"/>
+		</OMATP>
+		<OMV name="x"/>
+	      </OMATTR>
+	      <OMATTR>
+		<OMATP>
+		  <OMS cd="simpletypes" name="type"/>
+		  <OMS cd="vafp" name="nat"/>
+		</OMATP>
+		<OMV name="y"/>
+	      </OMATTR>
+	    </OMBVAR>
+	    <OMA>
+	      <OMS cd="vafp" name="if"/>
+	      <OMA>
+		<OMS cd="vafp" name="equal"/>
+                <OMV name="x"/>
+                <OMV name="y"/>
+              </OMA>
+              <OMA>
+                <OMS cd="vafp" name="greater"/>
+                <OMA>
+                  <OMS cd="vafp" name="succ"/>
+                  <OMV name="x"/>
+                </OMA>
+                <OMV name="y"/>
+              </OMA>
+	      <OMS cd="vafp" name="true"/>
+            </OMA>
+          </OMBIND>
+        </OMOBJ>
+      </FMP>
+    </assertion>
+
+    <presentation for="#greater_succ">
+      <use format="default">&gt;_succ*</use>
+      <use format="verifun">&gt;_succ*</use>
+    </presentation>
+    <!-- ************************************************************************************************************  -->
+    <assertion xml:id="greater_pred_estimation" type="lemma">
+      <FMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+          <OMBIND>
+	    <OMS cd="pl1" name="forall"/>
+	    <OMBVAR>
+              <OMATTR>
+		<OMATP>
+		  <OMS cd="simpletypes" name="type"/>
+		  <OMS cd="vafp" name="nat"/>
+		</OMATP>
+		<OMV name="x"/>
+	      </OMATTR>
+	      <OMATTR>
+		<OMATP>
+		  <OMS cd="simpletypes" name="type"/>
+		  <OMS cd="vafp" name="nat"/>
+		</OMATP>
+		<OMV name="y"/>
+	      </OMATTR>
+	    </OMBVAR>
+	    <OMA>
+	      <OMS cd="vafp" name="if"/>
+              <OMA>
+		<OMS cd="vafp" name="greater"/>
+		<OMV name="x"/>
+		<OMV name="y"/>
+	      </OMA>
+	      <OMA>
+                <OMS cd="vafp" name="if"/>
+                <OMA>
+                  <OMS cd="vafp" name="is_zero"/>
+                  <OMV name="y"/>
+                </OMA>
+                <OMS cd="vafp" name="true"/>
+                <OMA>
+                  <OMS cd="vafp" name="greater"/>
+                  <OMV name="x"/>
+                  <OMA>
+                    <OMS cd="vafp" name="pred"/>
+                    <OMV name="y"/>
+                  </OMA>
+                </OMA>
+              </OMA>
+              <OMA>
+                <OMS cd="vafp" name="if"/>
+                <OMA>
+                  <OMS cd="vafp" name="equal"/>
+                  <OMV name="x"/>
+                  <OMV name="y"/>
+                </OMA>
+                <OMS cd="vafp" name="true"/>
+                <OMA>
+                  <OMS cd="vafp" name="if"/>
+                  <OMA>
+                    <OMS cd="vafp" name="greater"/>
+                    <OMV name="x"/>
+                    <OMA>
+                      <OMS cd="vafp" name="pred"/>
+                      <OMV name="y"/>
+                    </OMA>
+                  </OMA>
+		  <OMS cd="vafp" name="false"/>
+		  <OMS cd="vafp" name="true"/>
+                </OMA>
+              </OMA>
+            </OMA>
+          </OMBIND>
+        </OMOBJ>
+      </FMP>
+    </assertion>
+
+    <presentation for="#greater_pred_estimation">
+      <use format="default">&gt;_pred_estimation</use>
+      <use format="verifun">&gt;_pred_estimation</use>
+    </presentation>
+    <!-- ************************************************************************************************************  -->
+    <assertion xml:id="greater_pred_weak_estimation" type="lemma">
+      <FMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	  <OMBIND>
+	    <OMS cd="pl1" name="forall"/>
+	    <OMBVAR>
+              <OMATTR>
+		<OMATP>
+		  <OMS cd="simpletypes" name="type"/>
+		  <OMS cd="vafp" name="nat"/>
+		</OMATP>
+		<OMV name="x"/>
+	      </OMATTR>
+	      <OMATTR>
+		<OMATP>
+		  <OMS cd="simpletypes" name="type"/>
+		  <OMS cd="vafp" name="nat"/>
+		</OMATP>
+		<OMV name="y"/>
+	      </OMATTR>
+	    </OMBVAR>
+	    <OMA>
+	      <OMS cd="vafp" name="if"/>
+	      <OMA>
+                <OMS cd="vafp" name="is_zero"/>
+                <OMV name="x"/>
+              </OMA>
+	      <OMS cd="vafp" name="true"/>
+	      <OMA>
+                <OMS cd="vafp" name="if"/>
+                <OMA>
+                  <OMS cd="vafp" name="equal"/>
+                  <OMV name="x"/>
+                  <OMV name="y"/>
+                </OMA>
+                <OMA>
+                  <OMS cd="vafp" name="if"/>
+                  <OMA>
+                    <OMS cd="vafp" name="greater"/>
+                    <OMA>
+                      <OMS cd="vafp" name="pred"/>
+                      <OMV name="x"/>
+                    </OMA>
+                    <OMV name="y"/>
+                  </OMA>
+		  <OMS cd="vafp" name="false"/>
+		  <OMS cd="vafp" name="true"/>
+                </OMA>
+                <OMS cd="vafp" name="true"/>
+              </OMA>
+            </OMA>
+          </OMBIND>
+        </OMOBJ>
+      </FMP>
+    </assertion>
+
+    <presentation for="#greater_pred_weak_estimation">
+      <use format="default">&gt;_pred_weak_estimation*</use>
+      <use format="verifun">&gt;_pred_weak_estimation*</use>
+    </presentation>
+    <!-- ************************************************************************************************************  -->
+    <assertion xml:id="greater_entails_not_zero" type="lemma">
+      <FMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+          <OMBIND>
+            <OMS cd="pl1" name="forall"/>
+            <OMBVAR>
+              <OMATTR>
+                <OMATP>
+                  <OMS cd="simpletypes" name="type"/>
+                  <OMS cd="vafp" name="nat"/>
+                </OMATP>
+                <OMV name="x"/>
+              </OMATTR>
+              <OMATTR>
+                <OMATP>
+                  <OMS cd="simpletypes" name="type"/>
+                  <OMS cd="vafp" name="nat"/>
+                </OMATP>
+                <OMV name="y"/>
+              </OMATTR>
+            </OMBVAR>
+            <OMA>
+              <OMS cd="vafp" name="if"/>
+              <OMA>
+                <OMS cd="vafp" name="greater"/>
+                <OMV name="x"/>
+                <OMV name="y"/>
+              </OMA>
+              <OMA>
+                <OMS cd="vafp" name="if"/>
+                <OMA>
+                  <OMS cd="vafp" name="is_zero"/>
+                  <OMV name="x"/>
+                </OMA>
+                <OMS cd="vafp" name="false"/>
+                <OMS cd="vafp" name="true"/>
+              </OMA>
+	      <OMS cd="vafp" name="true"/>
+	    </OMA>
+          </OMBIND>
+        </OMOBJ>
+      </FMP>
+    </assertion>
+
+    <presentation for="#greater_entails_not_zero">
+      <use format="default">&gt;_entails_not_zero</use>
+      <use format="verifun">&gt;_entails_not_zero</use>
+    </presentation>
+    <!-- ************************************************************************************************************  -->
+    <assertion xml:id="greater_asymmetric" type="lemma">
+      <FMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+          <OMBIND>
+            <OMS cd="pl1" name="forall"/>
+            <OMBVAR>
+              <OMATTR>
+                <OMATP>
+                  <OMS cd="simpletypes" name="type"/>
+                  <OMS cd="vafp" name="nat"/>
+                </OMATP>
+                <OMV name="x"/>
+              </OMATTR>
+              <OMATTR>
+                <OMATP>
+                  <OMS cd="simpletypes" name="type"/>
+                  <OMS cd="vafp" name="nat"/>
+                </OMATP>
+                <OMV name="y"/>
+              </OMATTR>
+            </OMBVAR>
+            <OMA>
+              <OMS cd="vafp" name="if"/>
+              <OMA>
+                <OMS cd="vafp" name="greater"/>
+                <OMV name="x"/>
+                <OMV name="y"/>
+              </OMA>
+              <OMA>
+                <OMS cd="vafp" name="if"/>
+                <OMA>
+                  <OMS cd="vafp" name="greater"/>
+                  <OMV name="y"/>
+                  <OMV name="x"/>
+                </OMA>
+                <OMS cd="vafp" name="false"/>
+                <OMS cd="vafp" name="true"/>
+              </OMA>
+	      <OMS cd="vafp" name="true"/>              
+            </OMA>
+          </OMBIND>
+        </OMOBJ>
+      </FMP>
+    </assertion>
+
+    <presentation for="#greater_asymmetric">
+      <use format="default">&gt;_asymmetric</use>
+      <use format="verifun">&gt;_asymmetric</use>
+    </presentation>
+    <!-- ************************************************************************************************************  -->
+    <assertion xml:id="not_zero_entails_greater_zero" type="lemma">
+      <FMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+          <OMBIND>
+            <OMS cd="pl1" name="forall"/>
+            <OMBVAR>
+              <OMATTR>
+                <OMATP>
+                  <OMS cd="simpletypes" name="type"/>
+                  <OMS cd="vafp" name="nat"/>
+                </OMATP>
+                <OMV name="x"/>
+              </OMATTR>
+              <OMATTR>
+                <OMATP>
+                  <OMS cd="simpletypes" name="type"/>
+                  <OMS cd="vafp" name="nat"/>
+                </OMATP>
+                <OMV name="y"/>
+              </OMATTR>
+            </OMBVAR>
+            <OMA>
+              <OMS cd="vafp" name="if"/>
+              <OMA>
+                <OMS cd="vafp" name="is_zero"/>
+                <OMV name="y"/>
+              </OMA>
+              <OMA>
+                <OMS cd="vafp" name="if"/>
+                <OMA>
+                  <OMS cd="vafp" name="is_zero"/>
+                  <OMV name="x"/>
+                </OMA>
+                <OMS cd="vafp" name="true"/>
+                <OMA>
+                  <OMS cd="vafp" name="greater"/>
+                  <OMV name="x"/>
+                  <OMV name="y"/>
+                </OMA>
+              </OMA>
+	      <OMS cd="vafp" name="true"/>
+            </OMA>
+          </OMBIND>
+        </OMOBJ>
+      </FMP>
+    </assertion>
+
+    <presentation for="#not_zero_entails_greater_zero">
+      <use format="default">not_zero_entails_&gt;_zero</use>
+      <use format="verifun">not_zero_entails_&gt;_zero</use>
+    </presentation>
+    <!-- ************************************************************************************************************  -->
+    <assertion xml:id="pred_weak_greater_monotone" type="lemma">
+      <FMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+          <OMBIND>
+            <OMS cd="pl1" name="forall"/>
+            <OMBVAR>
+              <OMATTR>
+                <OMATP>
+                  <OMS cd="simpletypes" name="type"/>
+                  <OMS cd="vafp" name="nat"/>
+                </OMATP>
+                <OMV name="x"/>
+              </OMATTR>
+              <OMATTR>
+                <OMATP>
+                  <OMS cd="simpletypes" name="type"/>
+                  <OMS cd="vafp" name="nat"/>
+                </OMATP>
+                <OMV name="y"/>
+              </OMATTR>
+            </OMBVAR>
+            <OMA>
+              <OMS cd="vafp" name="if"/>
+              <OMA>
+                <OMS cd="vafp" name="is_zero"/>
+                <OMV name="x"/>
+              </OMA>
+	      <OMS cd="vafp" name="true"/>
+	      <OMA>
+                <OMS cd="vafp" name="if"/>
+                <OMA>
+                  <OMS cd="vafp" name="greater"/>
+                  <OMA>
+                    <OMS cd="vafp" name="pred"/>
+                    <OMV name="x"/>
+                  </OMA>
+                  <OMA>
+                    <OMS cd="vafp" name="pred"/>
+                    <OMV name="y"/>
+                  </OMA>
+                </OMA>
+                <OMA>
+                  <OMS cd="vafp" name="greater"/>
+                  <OMV name="x"/>
+                  <OMV name="y"/>
+                </OMA>
+                <OMS cd="vafp" name="true"/>
+              </OMA>
+            </OMA>
+          </OMBIND>
+        </OMOBJ>
+      </FMP>
+    </assertion>
+
+    <presentation for="#pred_weak_greater_monotone">
+      <use format="default">pred_weak_&gt;_monotone</use>
+      <use format="verifun">pred_weak_&gt;_monotone</use>
+    </presentation>
+
+  </theory>
+</omdoc>

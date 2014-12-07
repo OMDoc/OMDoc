@@ -1,0 +1,82 @@
+# A RelaxNG for Open Mathematical documents (OMDoc 1.6) Module PRES       
+# $Id: notation-strict.rnc 8937 2011-08-08 07:26:52Z kohlhase $
+# $HeadURL: https://svn.omdoc.org/repos/omdoc/trunk/schema/rnc/strict/notation-strict.rnc $
+# See the documentation and examples at http://www.omdoc.org
+# Copyright (c) 2004-2008 Michael Kohlhase, released under the GNU Public License (GPL) 
+
+default namespace omdoc = "http://omdoc.org/ns"
+theory.class &= notation*
+
+prototype.attribs = empty
+prototype.model = protoexp
+prototype = element prototype {tref|(prototype.attribs & prototype.model)}
+
+protoexp = grammar {include "openmath/openmath3.rnc" 
+	               {start = omel
+			common.attributes = attribute id {xsd:ID}?&parent idrest.attribs}
+		    omel |= parent proto.class
+		    omvar |= parent proto.class
+		    common.attributes &= parent ntn.attrib}
+         | grammar {include "../../mathml3/mathml3.rnc" {start = ContExp}
+	            ContExp |= parent proto.class
+		    ci |= parent proto.class
+		    CommonAtt &= parent ntn.attrib}
+
+precedence.att = attribute precedence {xsd:integer}
+context.att = attribute xml:lang {text}? & 
+	              attribute context {text}? & 
+	              attribute variant {text}?
+
+format.att = attribute format {text}?
+
+rendering.attribs = precedence.att? & context.att & format.att
+rendering.model = renderexp
+rendering = element rendering {tref|(rendering.attribs & rendering.model)}
+
+renderexp = grammar {include "../../mathml3/mathml3-common.rnc" {start = PresentationExpression}
+                                    include "../../mathml3/mathml3-presentation.rnc" 
+      		                    PresentationExpression |= parent render.class
+		                    CommonAtt &= parent ntn.attrib
+	                            mtable.content.class |= parent render.class
+	                            mtr.content.class |= parent render.class}
+                    | (pdata|render.class)*
+
+pdata.attribs = empty
+pdata.model = text
+pdata = element pdata {pdata.attribs & pdata.model}		     
+
+iterexp = grammar {include "../../mathml3/mathml3.rnc" 
+	{start = PresentationExpression|mtr|mlabeledtr|mtd}
+		   PresentationExpression |=  parent render.class
+		   MathML.Common.attrib &= parent ntn.attrib
+		   mtable.content.class |= parent render.class
+		   mtr.content.class |= parent render.class}
+
+notation.attribs = id.attribs & triple.att	      
+notation.model = metadata.class & p* & prototype+ & rendering*
+notation =  element notation {tref|(notation.attribs & notation.model)}
+
+# we extend the content and presentation models by metavariables
+proto.class = exprlist | expr 
+render.class = render | iterate
+ntn.attrib = attribute cr {text}? & attribute egroup {text}?
+
+exprlist.attribs = name.attrib
+exprlist.model = protoexp*
+exprlist = element exprlist {exprlist.attribs & exprlist.model}
+
+expr.attribs = name.attrib
+expr.model = empty
+expr = element expr {expr.attribs & expr.model}
+
+iterate.attribs = name.attrib & precedence.att?
+iterate.model = separator & iterexp*
+iterate = element iterate {iterate.attribs & iterate.model} 
+
+render.attribs = name.attrib & precedence.att?
+render.model = empty
+render = element render {render.attribs & render.model}
+
+separator.attribs = empty
+separator.model = renderexp*
+separator = element separator {separator.attribs & separator.model}

@@ -1,0 +1,1089 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<omdoc xml:id="VeriFun3.0-2005-03-11"
+       xmlns="http://omdoc.org/ns" xmlns:dc="http://purl.org/dc/elements/1.1/">
+
+  <metadata>
+    <dc:creator role="aut">Michael Kohlhase</dc:creator>
+    <dc:creator role="aut">Normen M"uller</dc:creator>
+    <dc:date action="created">2005-04-05T00:00:00</dc:date>
+    <dc:title>Polymorphic ADTs</dc:title>
+    <dc:rights>GPL</dc:rights>
+  </metadata>
+
+  <omtext xml:id="intro">
+    <CMP>
+      This document contains polymorphic ADTs, polymorphic functions
+      and polymorphic lemmas. These were manually translated from the
+      VeriFun system to OMDoc.
+    </CMP>
+  </omtext>
+
+  <theory xml:id="VeriFun">
+    <imports from="../logics/vafp.omdoc#vafp"/>
+
+
+    <!-- ******************************************************************* -->
+    <!-- ADTs -->
+
+
+    <!-- ******************************************************************* -->
+    <!-- 
+	 list[@a] <= 
+	  empty, 
+	  add(hd:@a, tl:list[@a]) 
+    -->
+
+    <adt xml:id="list.adt" parameters="a">
+      <sortdef type="free" name="list">
+	<constructor name="empty"/>
+	<constructor name="add">
+	  <argument>
+	    <type system="simpletypes">
+	      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+		<OMV name="a" />
+	      </OMOBJ>
+	    </type>
+	    <selector total="yes" name="hd" />
+	  </argument>
+	  <argument>
+	    <type system="simpletypes">
+	      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+		<OMA>
+		  <OMS cd="VeriFun" name="list" />
+		  <OMV name="a" />
+		</OMA>
+	      </OMOBJ>
+	    </type>
+	    <selector total="yes" name="tl" />
+	  </argument>
+	</constructor>
+      </sortdef>
+    </adt>
+  
+
+
+
+
+    <!-- ******************************************************************* -->
+    <!-- 
+	 stack[@a] <= 
+	  bottom,
+	  push(top:@a, pop:stack[@a]) 
+    -->
+
+    <adt xml:id="stack.adt" parameters="a">
+      <sortdef type="free" name="stack">
+	<constructor name="bottom"/>
+	<constructor name="push">
+	  <argument>
+	    <type system="simpletypes">
+	      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+		<OMV name="a" />
+	      </OMOBJ>
+	    </type>
+	    <selector total="yes" name="top" />
+	  </argument>	  
+	  <argument>
+	    <type system="simpletypes">
+	      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+		<OMA>
+		  <OMS cd="VeriFun" name="stack" />
+		  <OMV name="a" />
+		</OMA>
+	      </OMOBJ>
+	    </type>
+	    <selector total="yes" name="pop" />
+	  </argument>
+	</constructor>
+      </sortdef>
+    </adt>
+    
+
+
+
+
+    <!-- ******************************************************************* -->
+    <!-- 
+	 tree[@a,@b] <= 
+	  nil,
+	  leaf(val:@b),
+	  node(lchild:tree[@a,@b], key:key, rchild:tree[@a,@b]) 
+    -->
+
+    <adt xml:id="tree.adt" parameters="a b">
+      <sortdef type="free" name="tree">
+	<constructor name="nil"/>
+	<constructor name="leaf">
+	  <argument>
+	    <type system="simpletypes">
+	      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+		<OMV name="b" />		
+	      </OMOBJ>
+	    </type>
+	    <selector total="yes" name="val" />
+	  </argument>
+	</constructor>
+	<constructor name="node">
+	  <argument>
+	    <type system="simpletypes">
+	      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+		<OMA>
+		  <OMS cd="VeriFun" name="tree" />
+		  <OMV name="a" />
+		  <OMV name="b" />
+		</OMA>
+	      </OMOBJ>
+	    </type>
+	    <selector total="yes" name="lchild" />
+	  </argument>
+	  <argument>
+	    <type system="simpletypes">
+	      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+		<OMV name="a" />
+	      </OMOBJ>
+	    </type>
+	    <selector total="yes" name="key" />
+	  </argument>
+	  <argument>
+	    <type system="simpletypes">
+	      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+		<OMA>
+		  <OMS cd="VeriFun" name="tree" />
+		  <OMV name="a" />
+		  <OMV name="b" />
+		</OMA>
+	      </OMOBJ>
+	    </type>
+	    <selector total="yes" name="rchild" />
+	  </argument>
+	</constructor>
+      </sortdef>
+    </adt>
+
+
+
+
+
+    <!-- ******************************************************************* -->
+    <!-- 
+	 adt1[@a] <= 
+	  con1, 
+	  con2(sel21:stack[@a], sel22:adt1[@a])
+    -->
+
+    <adt xml:id="adt1.adt" parameters="a">
+      <sortdef type="free" name="adt1">
+	<constructor name="con1"/>
+	<constructor name="con2">
+	  <argument>
+	    <type system="simpletypes">
+	      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+		<OMA>
+		  <OMS cd="VeriFun" name="stack" />
+		  <OMV name="a" />
+		</OMA>
+	      </OMOBJ>
+	    </type>
+	    <selector total="yes" name="sel21" />
+	  </argument>	  
+	  <argument>
+	    <type system="simpletypes">
+	      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+		<OMA>
+		  <OMS cd="VeriFun" name="adt1" />
+		  <OMV name="a" />
+		</OMA>
+	      </OMOBJ>
+	    </type>
+	    <selector total="yes" name="sel22" />
+	  </argument>
+	</constructor>
+      </sortdef>
+    </adt>
+
+
+
+
+
+    <!-- ******************************************************************* -->
+    <!-- 
+	 adt2[@a] <= 
+	  con1,
+	  con2(sel21:list[stack[@a]], sel22:adt2[@a])
+    -->
+
+    <adt xml:id="adt2.adt" parameters="a">
+      <sortdef type="free" name="adt2">
+	<constructor name="con1"/>
+	<constructor name="con2">
+	  <argument>
+	    <type system="simpletypes">
+	      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+		<OMA>
+		  <OMS cd="VeriFun" name="list" />
+		  <OMA>
+		    <OMS cd="VeriFun" name="stack" />
+		    <OMV name="a" />
+		  </OMA>
+		</OMA>
+	      </OMOBJ>
+	    </type>
+	    <selector total="yes" name="sel21" />
+	  </argument>	  
+	  <argument>
+	    <type system="simpletypes">
+	      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+		<OMA>
+		  <OMS cd="VeriFun" name="adt2" />
+		  <OMV name="a" />
+		</OMA>
+	      </OMOBJ>
+	    </type>
+	    <selector total="yes" name="sel22" />
+	  </argument>
+	</constructor>
+      </sortdef>
+    </adt>
+
+
+
+
+
+    <!-- ******************************************************************* -->
+    <!-- 
+	 adt3[@value] <= 
+	  con1,
+	  con2(sel21:list[stack[@value]], sel22:adt2[@value])
+    -->
+
+    <adt xml:id="adt3.adt" parameters="value">
+      <sortdef type="free" name="adt3">
+	<constructor name="con1"/>
+	<constructor name="con2">
+	  <argument>
+	    <type system="simpletypes">
+	      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+		<OMA>
+		  <OMS cd="VeriFun" name="list" />
+		  <OMA>
+		    <OMS cd="VeriFun" name="stack" />
+		    <OMS cd="VeriFun" name="value" />
+		  </OMA>
+		</OMA>
+	      </OMOBJ>
+	    </type>
+	    <selector total="yes" name="sel21" />
+	  </argument>	  
+	  <argument>
+	    <type system="simpletypes">
+	      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+		<OMA>
+		  <OMS cd="VeriFun" name="adt2" />
+		  <OMS cd="VeriFun" name="value" />
+		</OMA>
+	      </OMOBJ>
+	    </type>
+	    <selector total="yes" name="sel22" />
+	  </argument>
+	</constructor>
+      </sortdef>
+    </adt>
+
+
+
+
+
+    <!-- ******************************************************************* -->
+    <!-- 
+	 adt4[@a] <= 
+	  con1,
+	  con2(sel21:list[@a]),
+	  con3(sel31:list[stack[@a]], sel32:adt4[@a])
+    -->
+
+    <adt xml:id="adt4.adt" parameters="a">
+      <sortdef type="free" name="adt4">
+	<constructor name="con1"/>
+	<constructor name="con2">
+	  <argument>
+	    <type system="simpletypes">
+	      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+		<OMA>
+		  <OMS cd="VeriFun" name="list" />
+		  <OMV name="a" />		  
+		</OMA>
+	      </OMOBJ>
+	    </type>
+	    <selector total="yes" name="sel21" />
+	  </argument>	  
+	</constructor>
+	<constructor name="con3">
+	  <argument>
+	    <type system="simpletypes">
+	      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+		<OMA>
+		  <OMS cd="VeriFun" name="list" />
+		  <OMA>
+		    <OMS cd="VeriFun" name="stack" />
+		    <OMV name="a" />
+		  </OMA>
+		</OMA>
+	      </OMOBJ>
+	    </type>
+	    <selector total="yes" name="sel31" />
+	  </argument>
+	  <argument>
+	    <type system="simpletypes">
+	      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+		<OMA>
+		  <OMS cd="VeriFun" name="adt4" />
+		  <OMV name="a" />		  
+		</OMA>
+	      </OMOBJ>
+	    </type>
+	    <selector total="yes" name="sel32" />
+	  </argument>
+	</constructor>
+      </sortdef>
+    </adt>
+
+
+
+
+
+    <!-- ******************************************************************* -->
+    <!-- 
+	 adt5 <= 
+	  con1,
+	  con2(sel21:list[stack[nat]], sel22:adt5)
+    -->
+
+    <adt xml:id="adt5.adt">
+      <sortdef type="free" name="adt5">
+	<constructor name="con1"/>
+	<constructor name="con2">
+	  <argument>
+	    <type system="simpletypes">
+	      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+		<OMA>
+		  <OMS cd="VeriFun" name="list" />
+		  <OMA>
+		    <OMS cd="VeriFun" name="stack" />
+		    <OMS cd="vafp" name="nat" /> 
+		  </OMA>
+		</OMA>
+	      </OMOBJ>
+	    </type>
+	    <selector total="yes" name="sel21" />
+	  </argument>
+	  <argument>
+	    <type system="simpletypes">
+	      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+		<OMS cd="VeriFun" name="adt5" />
+	      </OMOBJ>
+	    </type>
+	    <selector total="yes" name="sel22" />
+	  </argument>
+	</constructor>
+      </sortdef>
+    </adt>
+
+
+
+
+
+    <!-- ******************************************************************* -->
+    <!-- 
+	 adt6[@b] <= 
+	  con1(sel11:@b)
+    -->
+
+    <adt xml:id="adt6.adt" parameters="b">
+      <sortdef type="free" name="adt6">
+	<constructor name="con1">
+	  <argument>
+	    <type system="simpletypes">
+	      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+		<OMV name="b" /> 
+	      </OMOBJ>
+	    </type>
+	    <selector total="yes" name="sel11" />
+	  </argument>
+	</constructor>
+      </sortdef>
+    </adt>
+
+
+
+
+
+    <!-- ******************************************************************* -->
+    <!-- 
+	 adt7[@value] <= 
+	  con1,
+	  con2(sel21:adt6[@value],sel22:adt7[@value])
+    -->
+
+    <adt xml:id="adt7.adt" parameters="value">
+      <sortdef type="free" name="adt7">
+	<constructor name="con1"/>
+	<constructor name="con2">
+	  <argument>
+	    <type system="simpletypes">
+	      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+		<OMA>
+		  <OMS cd="VeriFun" name="adt6" />
+		  <OMS cd="VeriFun" name="value" /> 
+		</OMA>
+	      </OMOBJ>
+	    </type>
+	    <selector total="yes" name="sel21" />
+	  </argument>
+	  <argument>
+	    <type system="simpletypes">
+	      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+		<OMA>
+		  <OMS cd="VeriFun" name="adt7" />
+		  <OMS cd="VeriFun" name="value" />
+		</OMA>
+	      </OMOBJ>
+	    </type>
+	    <selector total="yes" name="sel22" />
+	  </argument>
+	</constructor>
+      </sortdef>
+    </adt>
+
+
+
+
+
+    <!-- ******************************************************************* -->
+    <!-- 
+	 adt8[@c] <= 
+	  con1(sel11:list[stack[@c]])
+    -->
+
+    <adt xml:id="adt8.adt" parameters="c">
+      <sortdef type="free" name="adt8">
+	<constructor name="con1">
+	  <argument>
+	    <type system="simpletypes">
+	      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+		<OMA>
+		  <OMS cd="VeriFun" name="list" />
+		  <OMA>
+		    <OMS cd="VeriFun" name="stack" />
+		    <OMS cd="VeriFun" name="c" /> 
+		  </OMA>
+		</OMA>
+	      </OMOBJ>
+	    </type>
+	    <selector total="yes" name="sel11" />
+	  </argument>
+	</constructor>
+      </sortdef>
+    </adt>
+
+
+
+
+
+    <!-- ******************************************************************* -->
+    <!-- 
+	 adt9 <= 
+	  con1(sel11:list[list[nat]]) 
+    -->
+
+    <adt xml:id="adt9.adt">
+      <sortdef type="free" name="adt9">
+	<constructor name="con1">
+	  <argument>
+	    <type system="simpletypes">
+	      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+		<OMA>
+		  <OMS cd="VeriFun" name="list" />
+		  <OMA>
+		    <OMS cd="VeriFun" name="list" />
+		    <OMS cd="vafp" name="nat" /> 
+		  </OMA>
+		</OMA>
+	      </OMOBJ>
+	    </type>
+	    <selector total="yes" name="sel11" />
+	  </argument>
+	</constructor>
+      </sortdef>
+    </adt>
+
+
+
+
+
+    <!-- ******************************************************************* -->
+    <!-- FUNCTIONS -->
+
+
+    <!-- ******************************************************************* -->
+    <!-- 
+	 f1(x:@a):@a 
+    -->
+
+    <symbol name="f1">
+      <type system="simpletypes">
+	<OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	<OMBIND>
+	  <OMS cd="simpletypes" name="all-types"/>
+	  <OMBVAR>
+	    <OMV name="a"/>
+	  </OMBVAR>
+	  <OMA>
+	    <OMS cd="simpletypes" name="funtype"/>
+	    <OMV name="a"/>
+	    <OMV name="a"/>
+	  </OMA>
+	</OMBIND>	
+	</OMOBJ>
+      </type>
+    </symbol>
+
+
+
+
+
+    <!-- ******************************************************************* -->
+    <!-- 
+	 f2(x:@a, y:@b, z:tree[@a, @b]):tree[@a,@b]
+    -->
+
+    <symbol name="f2">
+      <type system="simpletypes">
+	<OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	<OMBIND>
+	  <OMS cd="simpletypes" name="all-types"/>
+	  <OMBVAR>
+	    <OMV name="a"/>
+	    <OMV name="b"/>
+	  </OMBVAR>
+	  <OMA>
+	    <OMS cd="simpletypes" name="funtype"/>
+	    <OMV name="a"/>
+	    <OMV name="b"/>
+	    <OMA>
+	      <OMS cd="VeriFun" name="tree"/>
+	      <OMV name="a"/>
+	      <OMV name="b"/>
+	    </OMA>
+	    <OMA>
+	      <OMS cd="VeriFun" name="tree"/>
+	      <OMV name="a"/>
+	      <OMV name="b"/>
+	    </OMA>
+	  </OMA>
+	</OMBIND>
+	</OMOBJ>
+      </type>
+    </symbol>
+
+
+
+
+
+    <!-- ******************************************************************* -->
+    <!-- 
+	 f3(x:@a, y:@b, z:tree[list[@a], stack[@b]]):@b
+    -->
+
+    <symbol name="f3">
+      <type system="simpletypes">
+	<OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	  <OMBIND>
+	    <OMS cd="simpletypes" name="all-types"/>
+	    <OMBVAR>
+	      <OMV name="a"/>
+	      <OMV name="b"/>
+	    </OMBVAR>
+	    <OMA>
+	      <OMS cd="simpletypes" name="funtype"/>
+	      <OMV name="a"/>
+	      <OMV name="b"/>
+	      <OMA>
+		<OMS cd="VeriFun" name="tree"/>
+		<OMA>
+		  <OMS cd="VeriFun" name="list"/>
+		  <OMV name="a"/>
+		</OMA>
+	      </OMA>
+	      <OMA>
+		<OMS cd="VeriFun" name="stack"/>
+		<OMV name="b"/>
+	      </OMA>
+	      <OMV name="b"/>
+	    </OMA>	        
+	  </OMBIND>
+	</OMOBJ>
+      </type>
+    </symbol>
+
+
+
+
+
+    <!-- ******************************************************************* -->
+    <!-- 
+	 f4(x:tree[@a,@b], y:tree[@c,@d]):nat
+    -->
+
+    <symbol name="f4">
+      <type system="simpletypes">
+	<OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	  <OMBIND>
+	    <OMS cd="simpletypes" name="all-types"/>
+	    <OMBVAR>
+	      <OMV name="a"/>
+	      <OMV name="b"/>
+	      <OMV name="c"/>
+	      <OMV name="d"/>
+	    </OMBVAR>
+	    <OMA>
+	      <OMS cd="simpletypes" name="funtype"/>
+	      <OMA>
+		<OMS cd="VeriFun" name="tree"/>
+		<OMV name="a"/>
+		<OMV name="b"/>	      
+	      </OMA>
+	      <OMA>
+		<OMS cd="VeriFun" name="tree"/>
+		<OMV name="c"/>
+		<OMV name="d"/>	      
+	      </OMA>
+	      <OMS cd="vafp" name="nat"/>
+	    </OMA>
+	  </OMBIND>
+	</OMOBJ>
+      </type>
+    </symbol>
+
+
+
+
+
+    <!-- ******************************************************************* -->
+    <!-- 
+	 f5(x:list[@value]):nat
+    -->
+
+    <symbol name="f5">
+      <type system="simpletypes">
+	<OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	  <OMBIND>
+	    <OMS cd="simpletypes" name="all-types"/>
+	    <OMBVAR>
+	      <OMV name="value"/>
+	    </OMBVAR>
+	    <OMA>
+	      <OMS cd="simpletypes" name="funtype"/>
+	      <OMA>
+		<OMS cd="VeriFun" name="list"/>
+		<OMV name="value"/>
+	      </OMA>
+	      <OMS cd="vafp" name="nat"/>	    
+	    </OMA>
+	  </OMBIND>
+	</OMOBJ>
+      </type>
+    </symbol>
+
+
+
+
+
+    <!-- ******************************************************************* -->
+    <!-- 
+	 f6(x:list[list[@value]]):nat
+    -->
+
+    <symbol name="f6">
+      <type system="simpletypes">
+	<OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	  <OMBIND>
+	    <OMS cd="simpletypes" name="all-types"/>
+	    <OMBVAR>
+	      <OMV name="value"/>
+	    </OMBVAR>
+	    <OMA>
+	      <OMS cd="simpletypes" name="funtype"/>
+	      <OMA>
+		<OMS cd="VeriFun" name="list"/>
+		<OMA>
+		  <OMS cd="VeriFun" name="list"/>
+		  <OMV name="value"/>
+		</OMA>
+	      </OMA>
+	      <OMS cd="vafp" name="nat"/>	    
+	    </OMA>
+	  </OMBIND>
+	</OMOBJ>
+      </type>
+    </symbol>
+
+
+
+
+
+    <!-- ******************************************************************* -->
+    <!-- 
+	 f7(k:@value, v:@key, t:tree[@value,@key]):tree[@value,@key]
+    -->
+
+    <symbol name="f7">
+      <type system="simpletypes">
+	<OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	  <OMBIND>
+	    <OMS cd="simpletypes" name="all-types"/>
+	    <OMBVAR>
+	      <OMV name="value"/>
+	      <OMV name="key"/>
+	    </OMBVAR>
+	    <OMA>
+	      <OMS cd="simpletypes" name="funtype"/>
+	      <OMV name="value"/>
+	      <OMV name="key"/>
+	      <OMA>
+		<OMS cd="VeriFun" name="tree"/>
+		<OMV name="value"/>
+		<OMV name="key"/>
+	      </OMA>
+	      <OMA>
+		<OMS cd="VeriFun" name="tree"/>
+		<OMV name="value"/>
+		<OMV name="key"/>
+	      </OMA>
+	    </OMA>
+	  </OMBIND>
+	</OMOBJ>
+      </type>
+    </symbol>
+
+
+
+
+
+    <!-- ******************************************************************* -->
+    <!-- 
+	 f8(l:list[@a], k:list[@b]):tree[@a,@b]
+    -->
+
+    <symbol name="f8">
+      <type system="simpletypes">
+	<OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	  <OMBIND>
+	    <OMS cd="simpletypes" name="all-types"/>
+	    <OMBVAR>
+	      <OMV name="a"/>
+	      <OMV name="b"/>
+	    </OMBVAR>
+	    <OMA>
+	      <OMS cd="simpletypes" name="funtype"/>
+	      <OMA>
+		<OMS cd="VeriFun" name="list"/>
+		<OMV name="a"/>
+	      </OMA>
+	      <OMA>
+		<OMS cd="VeriFun" name="list"/>
+		<OMV name="b"/>
+	      </OMA>
+	      <OMA>
+		<OMS cd="VeriFun" name="tree"/>
+		<OMV name="a"/>
+		<OMV name="b"/>
+	      </OMA>
+	    </OMA>
+	  </OMBIND>
+	</OMOBJ>
+      </type>
+    </symbol>
+
+
+
+
+
+    <!-- ******************************************************************* -->
+    <!-- 
+	 f9(x:list[nat]):nat
+    -->
+
+    <symbol name="f9">
+      <type system="simpletypes">
+	<OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	  <OMA>
+	    <OMS cd="simpletypes" name="funtype"/>
+	    <OMA>
+	      <OMS cd="VeriFun" name="list"/>
+	      <OMS cd="vafp" name="nat"/>
+	    </OMA>
+	    <OMS cd="vafp" name="nat"/>	    
+	  </OMA>
+	</OMOBJ>
+      </type>
+    </symbol>
+
+
+
+
+
+    <!-- ******************************************************************* -->
+    <!-- 
+	 f10(x:list[list[nat]]):nat
+    --> 
+
+    <symbol name="f10">
+      <type system="simpletypes">
+	<OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	  <OMA>
+	    <OMS cd="simpletypes" name="funtype"/>
+	    <OMA>
+	      <OMS cd="VeriFun" name="list"/>
+	      <OMA>
+		<OMS cd="VeriFun" name="list"/>
+		<OMS cd="vafp" name="nat"/>
+	      </OMA>
+	    </OMA>
+	    <OMS cd="vafp" name="nat"/>	    
+	  </OMA>
+	</OMOBJ>
+      </type>
+    </symbol>
+
+
+
+
+
+    <!-- ******************************************************************* -->
+    <!-- 
+	 f11(x:list[stack[nat]], y:tree[list[nat], stack[nat]]):nat
+    --> 
+
+    <symbol name="f11">
+      <type system="simpletypes">
+	<OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	  <OMA>
+	    <OMS cd="simpletypes" name="funtype"/>
+	    <OMA>
+	      <OMS cd="VeriFun" name="list"/>
+	      <OMA>
+		<OMS cd="VeriFun" name="stack"/>
+		<OMS cd="vafp" name="nat"/>
+	      </OMA>
+	    </OMA>
+	    <OMA>
+	      <OMS cd="VeriFun" name="tree"/>
+	      <OMA>
+		<OMS cd="VeriFun" name="list"/>
+		<OMS cd="vafp" name="nat"/>
+	      </OMA>
+	      <OMA>
+		<OMS cd="VeriFun" name="stack"/>
+		<OMS cd="vafp" name="nat"/>
+	      </OMA>
+	    </OMA>
+	    <OMS cd="vafp" name="nat"/>
+	  </OMA>
+	</OMOBJ>
+      </type>
+    </symbol>
+
+
+
+
+
+    <!-- ******************************************************************* -->
+    <!-- 
+	 f12(k:nat, v:@b, t:tree[nat,@b]):tree[nat,@b]
+    --> 
+
+    <symbol name="f12">
+      <type system="simpletypes">
+	<OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	  <OMBIND>
+	    <OMS cd="simpletypes" name="all-types"/>
+	    <OMBVAR>
+	      <OMV name="b"/>
+	    </OMBVAR>
+	    <OMA>
+	      <OMS cd="simpletypes" name="funtype"/>
+	      <OMS cd="vafp" name="nat"/>
+	      <OMV name="b"/>
+	      <OMA>
+		<OMS cd="VeriFun" name="tree"/>
+		<OMS cd="vafp" name="nat"/>
+		<OMV name="b"/>
+	      </OMA>
+	      <OMA>
+		<OMS cd="VeriFun" name="tree"/>
+		<OMS cd="vafp" name="nat"/>
+		<OMV name="b"/>
+	      </OMA>
+	    </OMA>
+	  </OMBIND>
+	</OMOBJ>
+      </type>
+    </symbol>
+
+
+
+
+
+    <!-- ******************************************************************* -->
+    <!-- 
+	 f13(k:nat, v:@b, t:tree[nat,nat]):tree[nat,nat]
+    -->
+ 
+    <symbol name="f13">
+      <type system="simpletypes">
+	<OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	  <OMBIND>
+	    <OMS cd="simpletypes" name="all-types"/>
+	    <OMBVAR>
+	      <OMV name="b"/>
+	    </OMBVAR>
+	    <OMA>
+	      <OMS cd="simpletypes" name="funtype"/>
+	      <OMS cd="vafp" name="nat"/>
+	      <OMV name="b"/>
+	      <OMA>
+		<OMS cd="VeriFun" name="tree"/>
+		<OMS cd="vafp" name="nat"/>
+		<OMS cd="vafp" name="nat"/>
+	      </OMA>
+	      <OMA>
+		<OMS cd="VeriFun" name="tree"/>
+		<OMS cd="vafp" name="nat"/>
+		<OMS cd="vafp" name="nat"/>
+	      </OMA>
+	    </OMA>
+	  </OMBIND>
+	</OMOBJ>
+      </type>
+    </symbol>
+
+
+
+
+
+    <!-- ******************************************************************* -->
+    <!-- f14(k:list[stack[nat]], l:tree[@a,@b]):nat --> 
+
+    <symbol name="f14">
+      <type system="simpletypes">
+	<OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	  <OMBIND>
+	    <OMS cd="simpletypes" name="all-types"/>
+	    <OMBVAR>
+	      <OMV name="a"/>
+	      <OMV name="b"/>
+	    </OMBVAR>
+	    <OMA>
+	      <OMS cd="simpletypes" name="funtype"/>
+	      <OMA>
+		<OMS cd="VeriFun" name="list"/>
+		<OMA>
+		  <OMS cd="VeriFun" name="stack"/>
+		  <OMS cd="vafp" name="nat"/>
+		</OMA>
+	      </OMA>
+	      <OMA>
+		<OMS cd="VeriFun" name="tree"/>
+		<OMV name="a"/>
+		<OMV name="b"/>
+	      </OMA>
+	      <OMS cd="vafp" name="nat"/>
+	    </OMA>
+	  </OMBIND>
+	</OMOBJ>
+      </type>
+    </symbol>
+
+
+
+
+
+    <!-- ******************************************************************* -->
+    <!-- f15(k:list[stack[nat]], s:stack[@a], l:tree[@a,@b]):nat --> 
+
+    <symbol name="f15">
+      <type system="simpletypes">
+	<OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	  <OMBIND>
+	    <OMS cd="simpletypes" name="all-types"/>
+	    <OMBVAR>
+	      <OMV name="a"/>
+	      <OMV name="b"/>
+	    </OMBVAR>
+	    <OMA>
+	      <OMS cd="simpletypes" name="funtype"/>
+	      <OMA>
+		<OMS cd="VeriFun" name="list"/>
+		<OMA>
+		  <OMS cd="VeriFun" name="stack"/>
+		  <OMS cd="vafp" name="nat"/>
+		</OMA>
+	      </OMA>
+	      <OMA>
+		<OMS cd="VeriFun" name="stack"/>
+		<OMV name="a"/>
+	      </OMA>
+	      <OMA>
+		<OMS cd="VeriFun" name="tree"/>
+		<OMV name="a"/>
+		<OMV name="b"/>
+	      </OMA>
+	      <OMS cd="vafp" name="nat"/>
+	    </OMA>
+	  </OMBIND>
+	</OMOBJ>
+      </type>
+    </symbol>
+
+
+
+
+
+    <!-- ******************************************************************* -->
+    <!-- LEMMAS -->
+
+    <!-- ******************************************************************* -->
+    <!--
+	lemma lem1 <= all x:list[@a]
+	 x=x
+    -->
+
+    <assertion xml:id="lem1">
+      <FMP>
+	<OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	  <OMBIND>
+	    <OMS cd="pl1" name="forall"/>
+	    <OMBVAR>
+	      <OMATTR>
+		<OMATP>
+		  <OMS cd="vafp" name="type" />
+		  <OMA>
+		    <OMS cd="VeriFun" name="list" />
+		    <OMV name="a" />
+		  </OMA>
+		</OMATP>
+		<OMV name="x" />
+	      </OMATTR>
+	    </OMBVAR>
+	    <OMA>
+	      <OMS cd="vafp" name="eq" />
+	      <OMV name="x" />
+	      <OMV name="x" />
+	    </OMA>
+	  </OMBIND>
+	</OMOBJ>
+      </FMP>
+    </assertion>
+
+  </theory>
+</omdoc>

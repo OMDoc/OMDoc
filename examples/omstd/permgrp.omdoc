@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  xmlns="http://omdoc.org/ns"
+xml:id="permgrp-omdoc">
+
+
+  <dc:title>The OpenMath Content Dictionary permgrp.ocd  in OMDoc form</dc:title>
+  <dc:creator role="trl">Michael Kohlhase</dc:creator>
+  <dc:creator role="ant">The OpenMath Society</dc:creator>
+  <dc:date> 1999-05-10T00:00:00</dc:date>
+  <dc:source>Derived from the OpenMath CD http://www.openmath.org/cd/permgrp.ocd.</dc:source>
+  <dc:type>Text</dc:type>
+  <dc:format>application/omdoc+xml</dc:format>
+  <dc:rights>Copyright (c) 2000-2002 Michael Kohlhase;
+    This OMDoc content dictionary is released under the OpenMath license:
+    http://monet.nag.co.uk/openmath/cdfiles/license.html
+  </dc:rights>
+  <dc:description> A CD of functions for permutation groups   </dc:description>
+
+
+<theory xml:id="permgrp" cdbase="http://www.openmath.org/cd">
+
+<include from="sts.omdoc#sts"/>
+
+<omtext xml:id="CDComment-10" type="introduction">
+  <CMP>
+    Written by A. Solomon on 1998-11-19
+    Modified by David Carlisle 1999-04-28
+  </CMP>
+</omtext>
+<symbol name="orbit" xml:id="orbit">
+
+<dc:description>
+    The binary function whose value is the set of integers which 
+    are in the orbit of the second argument under the action of the first
+    argument which is a permutation group.
+</dc:description>
+
+<type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMV name="PermutationGroup"/>
+	<OMV name="PositiveInteger"/>
+	<OMV name="Set"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+<symbol name="stabilizer" xml:id="stabilizer">
+
+<dc:description>
+    The first argument is a permutation group, the second is 
+    some object (point or set) upon which the first argument acts.
+    The value is the subgroup of the first argument which 
+    stabilize the second argument.
+</dc:description>
+
+<type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMA>
+	  <OMS name="structure" cd="sts"/>
+	  <OMV name="PermutationGroup"/>
+	</OMA>
+	<OMV name="PermutationGroup"/>
+	<OMV name="Set"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+<symbol name="is_transitive" xml:id="is_transitive">
+
+<dc:description>
+    The unary function whose value is true iff the permutation group argument acts
+    transitively.
+</dc:description>
+
+<type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMV name="PermutationGroup"/>
+	<OMV name="Boolean"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+<symbol name="is_primitive" xml:id="is_primitive">
+
+<dc:description>
+    The unary function whose value is true iff its permutation group argument acts
+    primitively.
+</dc:description>
+
+<type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMV name="PermutationGroup"/>
+	<OMV name="Boolean"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+</theory>
+</omdoc>

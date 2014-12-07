@@ -1,0 +1,498 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  A RelaxNG schema for Open Mathematical documents (OMDoc 1.6) Module ST 
+  $Id: omdocst.rnc 8432 2009-07-19 13:18:40Z kohlhase $
+  $HeadURL: https://svn.omdoc.org/repos/omdoc/trunk/schema/rnc/omdocst.rnc $
+  See the documentation and examples at http://www.omdoc.org
+  Copyright (c) 2004-2007 Michael Kohlhase, released under the GNU Public License (GPL) 
+-->
+<grammar ns="http://omdoc.org/ns" xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  <define name="scope.attrib">
+    <optional>
+      <attribute name="scope">
+        <choice>
+          <value>global</value>
+          <value>local</value>
+        </choice>
+      </attribute>
+    </optional>
+  </define>
+  <define name="constitutive" combine="interleave">
+    <interleave>
+      <zeroOrMore>
+        <ref name="symbol"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="axiom"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="definition"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="imports"/>
+      </zeroOrMore>
+    </interleave>
+  </define>
+  <define name="nonconstit" combine="interleave">
+    <interleave>
+      <zeroOrMore>
+        <ref name="assertion"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="type"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="alternative"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="example"/>
+      </zeroOrMore>
+    </interleave>
+  </define>
+  <define name="theory-unique">
+    <data type="NCName"/>
+  </define>
+  <define name="just-by.attrib">
+    <attribute name="just-by">
+      <ref name="SURI"/>
+    </attribute>
+  </define>
+  <define name="constitutive.attribs">
+    <ref name="id.attribs"/>
+    <optional>
+      <attribute name="generated-from">
+        <ref name="SURI"/>
+      </attribute>
+    </optional>
+  </define>
+  <define name="sym.role.attrib">
+    <attribute name="role">
+      <choice>
+        <value>type</value>
+        <value>sort</value>
+        <value>object</value>
+        <value>binder</value>
+        <value>attribution</value>
+        <value>application</value>
+        <value>constant</value>
+        <value>semantic-attribution</value>
+        <value>error</value>
+      </choice>
+    </attribute>
+  </define>
+  <define name="symbol.attribs">
+    <interleave>
+      <optional>
+        <ref name="scope.attrib"/>
+      </optional>
+      <ref name="name.attrib"/>
+      <ref name="constitutive.attribs"/>
+      <optional>
+        <ref name="sym.role.attrib"/>
+      </optional>
+    </interleave>
+  </define>
+  <define name="symbol.model">
+    <optional>
+      <ref name="metadata"/>
+    </optional>
+    <zeroOrMore>
+      <ref name="type"/>
+    </zeroOrMore>
+  </define>
+  <define name="symbol">
+    <element name="symbol">
+      <interleave>
+        <ref name="symbol.attribs"/>
+        <ref name="symbol.model"/>
+      </interleave>
+    </element>
+  </define>
+  <define name="axiom.attribs">
+    <interleave>
+      <ref name="constitutive.attribs"/>
+      <ref name="fori.attrib"/>
+      <optional>
+        <attribute name="type">
+          <data type="string"/>
+        </attribute>
+      </optional>
+    </interleave>
+  </define>
+  <define name="axiom.model">
+    <optional>
+      <ref name="metadata"/>
+    </optional>
+    <zeroOrMore>
+      <ref name="p"/>
+    </zeroOrMore>
+  </define>
+  <define name="axiom">
+    <element name="axiom">
+      <interleave>
+        <ref name="axiom.attribs"/>
+        <ref name="axiom.model"/>
+      </interleave>
+    </element>
+  </define>
+  <define name="for.attrib">
+    <attribute name="for">
+      <ref name="SURI"/>
+    </attribute>
+  </define>
+  <!-- simple definitions -->
+  <define name="exists.attrib">
+    <attribute name="existence">
+      <ref name="SURI"/>
+    </attribute>
+  </define>
+  <define name="def.simple.attribs">
+    <attribute name="type">
+      <value>simple</value>
+    </attribute>
+    <optional>
+      <ref name="exists.attrib"/>
+    </optional>
+  </define>
+  <define name="def.simple">
+    <interleave>
+      <ref name="def.simple.attribs"/>
+      <ref name="mobj"/>
+    </interleave>
+  </define>
+  <!-- implicit definitions -->
+  <define name="unique.attrib">
+    <attribute name="uniqueness">
+      <ref name="SURI"/>
+    </attribute>
+  </define>
+  <define name="def.implicit.attribs">
+    <interleave>
+      <attribute name="type">
+        <value>implicit</value>
+      </attribute>
+      <optional>
+        <ref name="exists.attrib"/>
+      </optional>
+      <optional>
+        <ref name="unique.attrib"/>
+      </optional>
+    </interleave>
+  </define>
+  <define name="def.implicit">
+    <interleave>
+      <ref name="def.implicit.attribs"/>
+      <ref name="mobj"/>
+    </interleave>
+  </define>
+  <!-- definitions by (recursive) equations -->
+  <define name="exhaust.attrib">
+    <attribute name="exhaustivity">
+      <ref name="SURI"/>
+    </attribute>
+  </define>
+  <define name="consist.attrib">
+    <attribute name="consistency">
+      <ref name="SURI"/>
+    </attribute>
+  </define>
+  <define name="def.eq.attribs">
+    <interleave>
+      <optional>
+        <attribute name="type">
+          <choice>
+            <value>pattern</value>
+            <value>inductive</value>
+          </choice>
+        </attribute>
+      </optional>
+      <optional>
+        <ref name="exhaust.attrib"/>
+      </optional>
+      <optional>
+        <ref name="consist.attrib"/>
+      </optional>
+    </interleave>
+  </define>
+  <define name="def.eq.model">
+    <zeroOrMore>
+      <ref name="requation"/>
+    </zeroOrMore>
+    <optional>
+      <ref name="measure"/>
+    </optional>
+    <optional>
+      <ref name="ordering"/>
+    </optional>
+  </define>
+  <define name="def.eq">
+    <interleave>
+      <ref name="def.eq.attribs"/>
+      <ref name="def.eq.model"/>
+    </interleave>
+  </define>
+  <!-- all definition forms, add more by extending this. -->
+  <define name="defs.all">
+    <choice>
+      <ref name="def.simple"/>
+      <ref name="def.implicit"/>
+      <ref name="def.eq"/>
+    </choice>
+  </define>
+  <define name="definition.attribs">
+    <interleave>
+      <ref name="constitutive.attribs"/>
+      <ref name="for.attrib"/>
+    </interleave>
+  </define>
+  <define name="definition">
+    <element name="definition">
+      <interleave>
+        <ref name="definition.attribs"/>
+        <ref name="defs.all"/>
+      </interleave>
+    </element>
+  </define>
+  <define name="requation">
+    <element name="requation">
+      <ref name="id.attribs"/>
+      <ref name="mobj"/>
+      <ref name="mobj"/>
+    </element>
+  </define>
+  <define name="measure">
+    <element name="measure">
+      <ref name="id.attribs"/>
+      <ref name="mobj"/>
+    </element>
+  </define>
+  <define name="ordering">
+    <element name="ordering">
+      <ref name="id.attribs"/>
+      <optional>
+        <attribute name="terminating">
+          <ref name="SURI"/>
+        </attribute>
+      </optional>
+      <ref name="mobj"/>
+    </element>
+  </define>
+  <!-- the non-constitutive statements, they need a theory attribute -->
+  <define name="omdoc.toplevel.attribs" combine="interleave">
+    <optional>
+      <attribute name="theory">
+        <ref name="MURI"/>
+      </attribute>
+    </optional>
+  </define>
+  <define name="ded.status.class">
+    <choice>
+      <value>satisfiable</value>
+      <value>counter-satisfiable</value>
+      <value>no-consequence</value>
+      <value>theorem</value>
+      <value>conter-theorem</value>
+      <value>contradictory-axioms</value>
+      <value>tautologous-conclusion</value>
+      <value> tautology</value>
+      <value>equivalent</value>
+      <value>conunter-equivalent</value>
+      <value>unsatisfiable-conclusion</value>
+      <value>unsatisfiable</value>
+    </choice>
+  </define>
+  <define name="assertion.attribs">
+    <interleave>
+      <ref name="omdoc.toplevel.attribs"/>
+      <optional>
+        <attribute name="type">
+          <ref name="assertiontype"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="status">
+          <ref name="ded.status.class"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="just-by">
+          <ref name="SURI"/>
+        </attribute>
+      </optional>
+    </interleave>
+  </define>
+  <define name="assertion.model">
+    <optional>
+      <ref name="metadata"/>
+    </optional>
+    <zeroOrMore>
+      <ref name="p"/>
+    </zeroOrMore>
+  </define>
+  <define name="assertion">
+    <element name="assertion">
+      <interleave>
+        <ref name="assertion.attribs"/>
+        <ref name="assertion.model"/>
+      </interleave>
+    </element>
+  </define>
+  <!--
+    the assertiontype has no formal meaning yet, it is solely for human consumption. 
+    'just-by' is a list of URIRefs that point to proof objects, etc that justifies the status.
+  -->
+  <define name="alternative">
+    <element name="alternative">
+      <ref name="omdoc.toplevel.attribs"/>
+      <ref name="for.attrib"/>
+      <ref name="defs.all"/>
+      <choice>
+        <group>
+          <attribute name="equivalence">
+            <ref name="SURI"/>
+          </attribute>
+          <attribute name="equivalence-thm">
+            <ref name="SURI"/>
+          </attribute>
+        </group>
+        <group>
+          <attribute name="entailed-by">
+            <ref name="SURI"/>
+          </attribute>
+          <attribute name="entails">
+            <ref name="SURI"/>
+          </attribute>
+          <attribute name="entailed-by-thm">
+            <ref name="SURI"/>
+          </attribute>
+          <attribute name="entails-thm">
+            <ref name="SURI"/>
+          </attribute>
+        </group>
+      </choice>
+    </element>
+  </define>
+  <!--
+    just-by, points to the theorem justifying well-definedness
+    entailed-by, entails, point to other (equivalent definitions
+    entailed-by-thm, entails-thm point to the theorems justifying
+    the entailment relation)
+  -->
+  <define name="example.attribs">
+    <interleave>
+      <ref name="omdoc.toplevel.attribs"/>
+      <ref name="for.attrib"/>
+      <optional>
+        <attribute name="type">
+          <choice>
+            <value>for</value>
+            <value>against</value>
+          </choice>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="assertion">
+          <ref name="SURI"/>
+        </attribute>
+      </optional>
+    </interleave>
+  </define>
+  <define name="example.model">
+    <zeroOrMore>
+      <ref name="p"/>
+    </zeroOrMore>
+    <ref name="mobj"/>
+  </define>
+  <define name="example">
+    <element name="example">
+      <interleave>
+        <ref name="example.attribs"/>
+        <ref name="example.model"/>
+      </interleave>
+    </element>
+  </define>
+  <define name="theory.attribs" combine="interleave">
+    <interleave>
+      <ref name="id.attribs"/>
+      <optional>
+        <attribute name="cdurl">
+          <data type="anyURI"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="cdbase">
+          <data type="anyURI"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="cdreviewdate">
+          <data type="date"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="cdversion">
+          <data type="nonNegativeInteger"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="cdrevision">
+          <data type="nonNegativeInteger"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="cdstatus">
+          <choice>
+            <value>official</value>
+            <value>experimental</value>
+            <value>private</value>
+            <value>obsolete</value>
+          </choice>
+        </attribute>
+      </optional>
+    </interleave>
+  </define>
+  <define name="theory.class" combine="interleave">
+    <zeroOrMore>
+      <ref name="tgroup"/>
+    </zeroOrMore>
+  </define>
+  <define name="imports.attribs">
+    <interleave>
+      <ref name="id.attribs"/>
+      <ref name="from.attrib"/>
+    </interleave>
+  </define>
+  <define name="imports.model">
+    <optional>
+      <ref name="metadata"/>
+    </optional>
+  </define>
+  <define name="imports">
+    <element name="imports">
+      <interleave>
+        <ref name="imports.attribs"/>
+        <ref name="imports.model"/>
+      </interleave>
+    </element>
+  </define>
+  <define name="tgroup.attribs">
+    <interleave>
+      <ref name="constitutive.attribs"/>
+      <ref name="ogroup.attribs"/>
+    </interleave>
+  </define>
+  <define name="tgroup.model">
+    <optional>
+      <ref name="metadata"/>
+    </optional>
+    <ref name="theory.class"/>
+  </define>
+  <define name="tgroup">
+    <element name="tgroup">
+      <interleave>
+        <ref name="tgroup.attribs"/>
+        <ref name="tgroup.model"/>
+      </interleave>
+    </element>
+  </define>
+</grammar>

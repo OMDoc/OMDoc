@@ -1,0 +1,777 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  
+       xmlns="http://omdoc.org/ns"
+       xmlns:om="http://www.openmath.org/OpenMath"
+       xmlns:m="http://www.w3.org/1998/Math/MathML"
+       xml:id="skl0-omdoc">
+
+ <metadata>
+  <dc:title>Strong Kleene Logic (Three-valued Propositional Logic)</dc:title>
+  <dc:creator role="aut">Michael Kohlhase</dc:creator>
+  <dc:date>2008-07-04T18:28:06</dc:date>
+  <dc:rights>Copyright (c) 2008 Michael Kohlhase</dc:rights>
+  <license xmlns="http://creativecommons.org/ns">
+    <permissions reproduction="permitted" distribution="permitted" derivative_works="permitted"/>
+    <prohibitions commercial_use="permitted"/>
+    <requirements notice="required" copyleft="required" attribution="required"/>
+  </license>
+ </metadata>
+
+ <theory xml:id="skl0">
+ <metadata>
+  <dc:title>Strong Kleene Logic (Three-valued Propositional Logic)</dc:title>
+  <dc:description>
+    This theory provides three-valued propositional connectives with Kleene's strong
+    interpretation, it shares the symbol names with the OpenMath content dictionary 
+    logic1 for consistency.
+  </dc:description>
+ </metadata>
+
+  <imports xml:id="pl0-imports" from="pl0.omdoc#pl0"/>
+
+  <symbol name="threebool" role="type">
+   <metadata>
+     <dc:subject>three-valued booleans</dc:subject>
+     <dc:description> <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="skl0"
+     name="threebool"/></OMOBJ> is the type of thre-valued truth values .</dc:description>
+   </metadata>
+  </symbol>
+
+  <presentation for="#threebool" arity="0">
+   <use format="default">o</use>
+  </presentation>
+
+  <symbol name="undefined">
+   <metadata><dc:subject>undefined</dc:subject>
+     <dc:description>
+       <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="skl0"
+       name="undefined"/></OMOBJ> represents the undefined truth
+     value.</dc:description>
+   </metadata>
+   <type system="simpletypes.omdoc#simpletypes">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="skl0" name="threebool"/></OMOBJ>
+   </type>
+  </symbol>
+
+  <presentation for="#undefined" arity="0">
+   <use  format="default">U</use>
+  </presentation>
+
+ <symbol name="eq">
+   <metadata>
+     <dc:description>
+     <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="skl0" name="eq"/></OMOBJ> is
+     the equality relation on truth values</dc:description>
+   </metadata>
+</symbol>
+
+
+<presentation xml:id="pr-eq" for="#eq" role="applied" fixity="infix" precedence="700" arity="2">
+ <use  format="default">=</use>
+ <use  format="pmml">=</use>
+</presentation>
+
+ <symbol name="neq">
+   <metadata>
+     <dc:description> 
+       <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="skl0" name="new"/></OMOBJ>
+       is the inequality relation on truth values.
+     </dc:description>
+   </metadata>
+</symbol>
+
+
+<presentation xml:id="pr-neq" for="#neq" role="applied" fixity="infix" lbrack="" rbrack="" precedence="700" arity="2">
+   <use  format="default">!=</use>
+   <use  format="TeX">{\ne}</use>
+   <use  format="html|pmml">&#x02260;</use>
+  </presentation>
+
+  <presentation for="#neq"> 
+   <use  format="default">!=</use>
+   <use  format="TeX">{\ne}</use>
+   <use  format="html|pmml">&#x02260;</use>
+  </presentation>
+
+  <axiom xml:id="tfu-distinct">
+   <CMP>The truth values 
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="truthval" name="true"/></OMOBJ>,
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="skl0" name="undefined"/></OMOBJ> and 
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="truthval" name="false"/></OMOBJ> are distinct.
+   </CMP>
+   <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="pl0" name="and"/>
+	<OMA>
+	  <OMS cd="truthval" name="neq"/>
+	  <OMS cd="truthval" name="true"/>
+	  <OMS cd="truthval" name="false"/>
+	</OMA>
+	<OMA>
+	  <OMS cd="truthval" name="neq"/>
+	  <OMS cd="truthval" name="true"/>
+	  <OMS cd="skl0" name="undefined"/>
+	</OMA>
+	<OMA>
+	  <OMS cd="truthval" name="neq"/>
+	  <OMS cd="truthval" name="false"/>
+	  <OMS cd="skl0" name="undefined"/>
+	</OMA>
+      </OMA>
+    </OMOBJ>
+   </FMP>
+  </axiom>
+
+  <symbol name="not">
+   <metadata><dc:subject>not</dc:subject>
+   <dc:description>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="skl0"
+        name="not"/></OMOBJ> represents the logical not function which takes one boolean
+        argument, and returns the opposite boolean value. It has the truth table
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath" style="display:block">
+     <OMA>
+      <OMS cd="truth-tables" name="tt"/>
+      <OMS cd="skl0" name="not"/>
+      <OMA><OMS cd="truth-tables" name="ttargs"/></OMA>
+      <OMA>
+       <OMS cd="truth-tables" name="ttrow"/>
+       <OMS cd="truthval" name="true"/>
+       <OMS cd="truthval" name="false"/>
+      </OMA>   
+      <OMA>
+       <OMS cd="truth-tables" name="ttrow"/>
+       <OMS cd="skl0" name="undefined"/>
+       <OMS cd="skl0" name="undefined"/>
+      </OMA>   
+      <OMA>
+       <OMS cd="truth-tables" name="ttrow"/>
+       <OMS cd="truthval" name="false"/>
+       <OMS cd="truthval" name="true"/>
+      </OMA>   
+     </OMA>
+    </OMOBJ>
+  </dc:description>
+</metadata>
+</symbol>
+
+  <presentation xml:id="pr-not" for="#not" role="applied" precedence="200" arity="1">
+   <use format="TeX">{\neg}</use>
+   <use format="html|pmml">&#x000AC;</use>
+   <use format="pvs" lbrack="" rbrack=""> NOT </use>
+  </presentation>
+
+  <presentation for="#not">
+   <use format="TeX">{\neg}</use>
+   <use format="html|pmml">&#x000AC;</use>
+   <use format="pvs"> NOT </use>
+  </presentation>
+
+  <definition xml:id="false-def" for="false" type="simple">
+   <CMP><OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="truthval" name="false"/></OMOBJ> is 
+   <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="true-prop-1.1"/></OMOBJ></CMP>
+    <OMOBJ  xmlns="http://www.openmath.org/OpenMath">
+     <OMA id="true-prop-1.1">
+      <OMS cd="skl0" name="not"/>
+      <OMS cd="truthval" name="true"/>
+     </OMA>
+    </OMOBJ>
+  </definition>
+
+  <assertion xml:id="false-prop-1" type="lemma">
+   <CMP><OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="false-prop-1.1"/></OMOBJ></CMP>
+   <FMP>
+    <OMOBJ  xmlns="http://www.openmath.org/OpenMath">
+     <OMA id="false-prop-1.1">
+      <OMS cd="skl0" name="eq"/>
+      <OMA>
+       <OMS cd="skl0" name="not"/>
+       <OMS cd="truthval" name="false"/>
+      </OMA>
+      <OMS cd="truthval" name="true"/>
+     </OMA>
+    </OMOBJ>
+   </FMP>
+  </assertion>
+
+  <assertion xml:id="not-prop-1" type="lemma">
+   <CMP><OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="not-prop-1.1"/></OMOBJ> for all <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="X"/></OMOBJ>.</CMP>
+   <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+     <OMBIND>
+      <OMS cd="skl0" name="forall"/>
+      <OMBVAR><OMV name="x"/></OMBVAR>
+      <OMA id="not-prop-1.1">
+       <OMS cd="skl0" name="eq"/>
+       <OMA>
+	<OMS cd="skl0" name="not"/>
+	<OMA>
+	 <OMS cd="skl0" name="not"/>
+	 <OMV name="x"/>
+	</OMA>
+       </OMA>
+       <OMV name="x"/>
+      </OMA>
+     </OMBIND>
+    </OMOBJ>
+   </FMP>
+  </assertion>
+
+  <symbol name="and">
+   <metadata>
+     <dc:subject>and</dc:subject>
+   <dc:description>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="skl0"
+        name="and"/></OMOBJ> represents the logical and function which is an n-ary
+        function taking boolean arguments and returning a boolean value. It is true if all
+        arguments are true or false otherwise. Its truth table is
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath" style="display:block">
+     <OMA>
+      <OMS cd="truth-tables" name="tt"/>
+      <OMS cd="skl0" name="and"/>
+      <OMA>
+       <OMS cd="truth-tables" name="ttargs"/>
+       <OMS cd="truthval" name="false"/>
+       <OMS cd="skl0" name="undefined"/>
+       <OMS cd="truthval" name="true"/>
+      </OMA>
+      <OMA>
+       <OMS cd="truth-tables" name="ttrow"/>
+       <OMS cd="truthval" name="false"/>
+       <OMS cd="truthval" name="false"/>
+       <OMS cd="truthval" name="false"/>
+       <OMS cd="truthval" name="false"/>
+      </OMA>   
+      <OMA>
+       <OMS cd="truth-tables" name="ttrow"/>
+       <OMS cd="skl0" name="undefined"/>
+       <OMS cd="truthval" name="false"/>
+       <OMS cd="skl0" name="undefined"/>
+       <OMS cd="skl0" name="undefined"/>
+      </OMA>   
+      <OMA>
+       <OMS cd="truth-tables" name="ttrow"/>
+       <OMS cd="truthval" name="true"/>
+       <OMS cd="truthval" name="false"/>
+       <OMS cd="skl0" name="undefined"/>
+       <OMS cd="truthval" name="true"/>
+      </OMA>   
+     </OMA>
+    </OMOBJ>
+  </dc:description>
+</metadata>
+<type system="simpletypes.omdoc#simpletypes">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+     <OMA>
+      <OMS name="funtype" cd="simpletypes"/>
+      <OMS cd="skl0" name="threebool"/>
+      <OMS cd="skl0" name="threebool"/>
+      <OMS cd="skl0" name="threebool"/>
+     </OMA>
+    </OMOBJ>
+   </type>
+  </symbol>
+  
+  <presentation xml:id="pr-and" for="#and" role="applied" fixity="assoc" precedence="500">
+   <use  format="TeX">{\wedge}</use>
+   <use  format="html|pmml">&#x02227;</use>
+   <use format="pvs"> AND </use>
+  </presentation>
+  <presentation for="#and">
+   <use format="TeX">{\wedge}</use>
+   <use format="html|pmml">&#x02227;</use>
+   <use format="pvs"> AND </use>
+  </presentation>
+  <assertion xml:id="and-prop-1" type="lemma">
+   <CMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="and-prop-1.1"/></OMOBJ> for all <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="X"/></OMOBJ>.
+   </CMP>
+   <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+     <OMBIND>
+      <OMS cd="skl0" name="forall"/>
+      <OMBVAR>
+       <OMV name="x"/>
+      </OMBVAR>
+      <OMA id="and-prop-1.1">
+       <OMS cd="skl0" name="eq"/>
+       <OMA>
+	<OMS cd="skl0" name="and"/>
+	<OMV name="x"/>
+	<OMA>
+	 <OMS cd="skl0" name="not"/>
+	 <OMV name="x"/>
+	</OMA>
+       </OMA>
+       <OMS cd="truthval" name="false"/>
+      </OMA>
+     </OMBIND>
+    </OMOBJ>
+   </FMP>
+  </assertion>
+  
+  <symbol name="xor">
+   <metadata><dc:subject>xor</dc:subject>
+   <dc:description>
+     <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="skl0" name="xor"/></OMOBJ>
+     represents the logical xor function which is an n-ary function taking boolean
+     arguments and returning a boolean value. It is true if there are an odd number of
+     true arguments or false otherwise. Its truth table is
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath" style="display:block">
+     <OMA>
+      <OMS cd="truth-tables" name="tt"/>
+      <OMS cd="skl0" name="xor"/>
+      <OMA>
+       <OMS cd="truth-tables" name="ttargs"/>
+       <OMS cd="truthval" name="false"/>
+       <OMS cd="skl0" name="undefined"/>
+       <OMS cd="truthval" name="true"/>
+      </OMA>
+      <OMA>
+       <OMS cd="truth-tables" name="ttrow"/>
+       <OMS cd="truthval" name="true"/>
+       <OMS cd="truthval" name="false"/>
+       <OMS cd="skl0" name="undefined"/>
+       <OMS cd="truthval" name="true"/>
+      </OMA>   
+      <OMA>
+       <OMS cd="truth-tables" name="ttrow"/>
+       <OMS cd="skl0" name="undefined"/>
+       <OMS cd="skl0" name="undefined"/>
+       <OMS cd="skl0" name="undefined"/>
+       <OMS cd="truthval" name="true"/>
+      </OMA>   
+      <OMA>
+       <OMS cd="truth-tables" name="ttrow"/>
+       <OMS cd="truthval" name="true"/>
+       <OMS cd="truthval" name="true"/>
+       <OMS cd="truthval" name="true"/>
+       <OMS cd="truthval" name="false"/>
+      </OMA>   
+     </OMA>
+    </OMOBJ>
+  </dc:description>
+ </metadata>
+   <type system="simpletypes.omdoc#simpletypes">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+     <OMA>
+      <OMS name="funtype" cd="simpletypes"/>
+      <OMS cd="skl0" name="threebool"/>
+      <OMS cd="skl0" name="threebool"/>
+      <OMS cd="skl0" name="threebool"/>
+     </OMA>
+    </OMOBJ>
+   </type>
+  </symbol>
+  
+  <presentation xml:id="pr-xor" for="#xor" role="applied" fixity="assoc" precedence="500">
+   <use  format="default">!</use>
+  </presentation>
+
+  <presentation for="#xor">
+   <use  format="default">!</use>
+  </presentation>
+
+  <assertion xml:id="xor-prop-1" type="lemma">
+   <CMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="xor-prop-1.1"/></OMOBJ> for all <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="X"/></OMOBJ>.
+   </CMP>
+   <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+     <OMBIND>
+      <OMS cd="skl0" name="forall"/>
+      <OMBVAR>
+       <OMV name="x"/>
+      </OMBVAR>
+      <OMA id="xor-prop-1.1">
+       <OMS cd="skl0" name="eq"/>
+       <OMA>
+	<OMS cd="skl0" name="xor"/>
+	<OMV name="x"/>
+	<OMV name="x"/>
+       </OMA>
+       <OMS cd="truthval" name="false"/>
+      </OMA>
+     </OMBIND>
+    </OMOBJ>
+   </FMP>
+  </assertion>
+  
+  <assertion xml:id="xor-prop-3" type="lemma">
+   <CMP><OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="xor-prop-3.1"/></OMOBJ> for all <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="X"/></OMOBJ>.</CMP>
+   <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+     <OMBIND>
+      <OMS cd="skl0" name="forall"/>
+      <OMBVAR><OMV name="x"/></OMBVAR>
+      <OMA id="xor-prop-3.1">
+       <OMS cd="skl0" name="eq"/>
+       <OMA>
+	<OMS cd="skl0" name="xor"/>
+	<OMV name="x"/>
+	<OMA><OMS cd="skl0" name="not"/><OMV name="x"/></OMA>
+       </OMA>
+       <OMS cd="truthval" name="true"/>
+      </OMA>
+     </OMBIND>
+    </OMOBJ>
+   </FMP>
+  </assertion>
+  
+  <symbol name="or">
+   <metadata><dc:subject>or</dc:subject>
+   <dc:description>
+     <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="skl0" name="or"/></OMOBJ>
+     represents the logical or function which is an n-ary
+    function taking boolean arguments and returning a boolean value. It
+    is true if any of the arguments are true or false otherwise. Its truth table is 
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath" style="display:block">
+     <OMA>
+      <OMS cd="truth-tables" name="tt"/>
+      <OMS cd="skl0" name="or"/>
+      <OMA>
+       <OMS cd="truth-tables" name="ttargs"/>
+       <OMS cd="truthval" name="false"/>
+       <OMS cd="skl0" name="undefined"/>
+       <OMS cd="truthval" name="true"/>
+      </OMA>
+      <OMA>
+       <OMS cd="truth-tables" name="ttrow"/>
+       <OMS cd="truthval" name="true"/>
+       <OMS cd="truthval" name="false"/>
+       <OMS cd="skl0" name="undefined"/>
+       <OMS cd="truthval" name="true"/>
+      </OMA>   
+      <OMA>
+       <OMS cd="truth-tables" name="ttrow"/>
+       <OMS cd="skl0" name="undefined"/>
+       <OMS cd="skl0" name="undefined"/>
+       <OMS cd="skl0" name="undefined"/>
+       <OMS cd="truthval" name="true"/>
+      </OMA>   
+      <OMA>
+       <OMS cd="truth-tables" name="ttrow"/>
+       <OMS cd="truthval" name="true"/>
+       <OMS cd="truthval" name="true"/>
+       <OMS cd="truthval" name="true"/>
+       <OMS cd="truthval" name="true"/>
+      </OMA>   
+     </OMA>
+    </OMOBJ>
+  </dc:description>
+</metadata>
+   <type system="simpletypes.omdoc#simpletypes">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+     <OMA>
+      <OMS name="funtype" cd="simpletypes"/>
+      <OMS cd="skl0" name="threebool"/>
+      <OMS cd="skl0" name="threebool"/>
+      <OMS cd="skl0" name="threebool"/>
+     </OMA>
+    </OMOBJ>
+   </type>
+  </symbol>
+  <presentation xml:id="pr-or" for="#or" role="applied" fixity="assoc" precedence="500">
+   <use  format="TeX">{\vee}</use>
+   <use  format="html|pmml">&#x02228;</use>
+   <use format="pvs"> OR </use>
+  </presentation>
+  <presentation for="#or">
+   <use  format="TeX">{\vee}</use>
+   <use  format="html|pmml">&#x02228;</use>
+   <use format="pvs"> OR </use>
+  </presentation>
+
+<ignore comment="rework">
+  <axiom xml:id="qnd">
+   <CMP>The axiom of the excluded fourth: <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="tnd.1"/></OMOBJ> 
+     for all <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="X"/></OMOBJ>.</CMP>
+   <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+     <OMBIND>
+      <OMS cd="skl0" name="forall"/>
+      <OMBVAR><OMV name="x"/></OMBVAR>
+      <OMA id="tnd.1">
+       <OMS cd="skl0" name="or"/>
+       <OMV name="x"/>
+       <OMA><OMS cd="skl0" name="not"/><OMV name="x"/></OMA>
+      </OMA>
+     </OMBIND>
+    </OMOBJ>
+   </FMP>
+  </axiom>
+</ignore>
+
+  <assertion xml:id="or-prop-1" type="lemma">
+   <CMP><OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="or-prop-1.1"/></OMOBJ> for all <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="X"/></OMOBJ>.</CMP>
+   <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+     <OMBIND>
+      <OMS cd="skl0" name="forall"/>
+      <OMBVAR><OMV name="x"/></OMBVAR>
+      <OMA id="or-prop-1.1">
+       <OMS cd="skl0" name="eq"/>
+       <OMA>
+	<OMS cd="skl0" name="or"/>
+	<OMV name="x"/>
+	<OMA><OMS cd="skl0" name="not"/><OMV name="x"/></OMA>
+       </OMA>
+       <OMS cd="truthval" name="true"/>
+      </OMA>
+     </OMBIND>
+    </OMOBJ>
+   </FMP>
+  </assertion>
+
+  <assertion xml:id="or-prop-3" type="lemma">
+   <CMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="or-prop-3.1"/></OMOBJ> for all 
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="a"/></OMOBJ> and <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="b"/></OMOBJ>.
+   </CMP>
+   <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+     <OMBIND>
+      <OMS cd="skl0" name="forall"/>
+      <OMBVAR>
+       <OMV name="a"/>
+       <OMV name="b"/>
+      </OMBVAR>
+      <OMA id="or-prop-3.1">
+       <OMS cd="skl0" name="eq"/>
+       <OMA>
+	<OMS cd="skl0" name="not"/>
+	<OMA>
+	 <OMS cd="skl0" name="and"/>
+	 <OMV name="a"/>
+	 <OMV name="b"/>
+	</OMA>
+       </OMA>
+       <OMA>
+	<OMS cd="skl0" name="or"/>
+	<OMA>
+	 <OMS cd="skl0" name="not"/>
+	 <OMV name="a"/>
+	</OMA>
+	<OMA>
+	 <OMS cd="skl0" name="not"/>
+	 <OMV name="b"/>
+	</OMA>
+       </OMA>
+      </OMA>
+     </OMBIND>
+    </OMOBJ>
+   </FMP>
+  </assertion>
+
+  <symbol name="implies">
+   <metadata><dc:subject>implies</dc:subject>
+   <dc:description>
+     <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="skl0"
+     name="implies"/></OMOBJ> represents the logical implies function which takes two
+     boolean expressions as arguments. It evaluates to false if the first argument is true
+     and the second argument is false, otherwise it evaluates to true. Its truth table is
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath" style="display:block">
+     <OMA>
+      <OMS cd="truth-tables" name="tt"/>
+      <OMS cd="skl0" name="implies"/>
+      <OMA>
+       <OMS cd="truth-tables" name="ttargs"/>
+       <OMS cd="truthval" name="false"/>
+       <OMS cd="skl0" name="undefined"/>
+       <OMS cd="truthval" name="true"/>
+      </OMA>
+      <OMA>
+       <OMS cd="truth-tables" name="ttrow"/>
+       <OMS cd="truthval" name="true"/>
+       <OMS cd="truthval" name="true"/>
+       <OMS cd="truthval" name="true"/>
+       <OMS cd="truthval" name="true"/>
+      </OMA>   
+      <OMA>
+       <OMS cd="truth-tables" name="ttrow"/>
+       <OMS cd="skl0" name="undefined"/>
+       <OMS cd="skl0" name="undefined"/>
+       <OMS cd="skl0" name="undefined"/>
+       <OMS cd="truthval" name="true"/>
+      </OMA>   
+      <OMA>
+       <OMS cd="truth-tables" name="ttrow"/>
+       <OMS cd="truthval" name="true"/>
+       <OMS cd="truthval" name="false"/>
+       <OMS cd="skl0" name="undefined"/>
+       <OMS cd="truthval" name="true"/>
+      </OMA>   
+     </OMA>
+    </OMOBJ>
+  </dc:description>
+    </metadata>
+   <type system="simpletypes.omdoc#simpletypes">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+     <OMA>
+      <OMS name="funtype" cd="simpletypes"/>
+      <OMS cd="skl0" name="threebool"/>
+      <OMS cd="skl0" name="threebool"/>
+      <OMS cd="skl0" name="threebool"/>
+     </OMA>
+    </OMOBJ>
+   </type>
+  </symbol>
+
+  <presentation xml:id="pr-implies" for="#implies" role="applied" fixity="infix">
+   <use format="default">=&gt;</use>
+   <use  format="TeX">{\Rightarrow}</use>
+   <use  format="html|pmml">&#x021D2;</use>
+  </presentation>
+  <presentation for="#implies">
+   <use format="default">=&gt;</use>
+   <use  format="TeX">{\Rightarrow}</use>
+   <use  format="html|pmml">&#x021D2;</use>
+  </presentation>
+
+  <assertion xml:id="implies-prop-1" type="lemma">
+   <CMP><OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="implies-prop-1.1"/></OMOBJ> for all <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="X"/></OMOBJ>.</CMP>
+   <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+     <OMBIND>
+      <OMS cd="skl0" name="forall"/>
+      <OMBVAR><OMV name="x"/></OMBVAR>
+      <OMA id="implies-prop-1.1">
+       <OMS cd="skl0" name="implies"/>
+       <OMS cd="truthval" name="false"/>
+       <OMV name="x"/>
+      </OMA>
+     </OMBIND>
+    </OMOBJ>
+   </FMP>
+  </assertion>
+  
+  <symbol name="equivalent">
+   <metadata><dc:subject>equivalent</dc:subject>
+   <dc:description> 
+     <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="skl0"
+     name="equivalent"/></OMOBJ> is used to show that two boolean expressions are
+     logically equivalent, that is have the same boolean value for any inputs. Its truth
+     table is
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath" style="display:block">
+     <OMA>
+      <OMS cd="truth-tables" name="tt"/>
+      <OMS cd="skl0" name="equivalent"/>
+      <OMA>
+       <OMS cd="truth-tables" name="ttargs"/>
+       <OMS cd="truthval" name="false"/>
+       <OMS cd="skl0" name="undefined"/>
+       <OMS cd="truthval" name="true"/>
+      </OMA>
+      <OMA>
+       <OMS cd="truth-tables" name="ttrow"/>
+       <OMS cd="truthval" name="false"/>
+       <OMS cd="truthval" name="true"/>
+       <OMS cd="skl0" name="undefined"/>
+       <OMS cd="truthval" name="true"/>
+      </OMA>   
+      <OMA>
+       <OMS cd="truth-tables" name="ttrow"/>
+       <OMS cd="skl0" name="undefined"/>
+       <OMS cd="skl0" name="undefined"/>
+       <OMS cd="skl0" name="undefined"/>
+       <OMS cd="truthval" name="true"/>
+      </OMA>   
+      <OMA>
+       <OMS cd="truth-tables" name="ttrow"/>
+       <OMS cd="truthval" name="true"/>
+       <OMS cd="truthval" name="true"/>
+       <OMS cd="truthval" name="true"/>
+       <OMS cd="truthval" name="true"/>
+      </OMA>   
+     </OMA>
+    </OMOBJ>
+  </dc:description>
+</metadata>
+</symbol>
+
+  <presentation xml:id="pr-equivalent" for="#equivalent" role="applied" fixity="assoc"
+		precedence="700">
+<!--   <use format="default">&lt;=&gt;</use> -->
+   <use  format="TeX">{\Leftrightarrow}</use>
+   <use  format="html|pmml">&#x02261;</use>
+  </presentation>
+  <presentation for="#equivalent">
+<!--   <use format="default">&lt;=&gt;</use> -->
+   <use  format="TeX">{\Leftrightarrow}</use>
+   <use  format="html|pmml">&#x02261;</use>
+  </presentation>
+
+  <definition xml:id="equivalent-def" for="equivalent" type="implicit">
+   <CMP> The condition <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="equivalent-def.1"/></OMOBJ> is equivalent to the
+          condition that <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="equivalent-def.2"/></OMOBJ>. 
+   </CMP>
+   <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+     <OMA>
+      <OMS cd="skl0" name="equivalent"/>
+      <OMA id="equivalent-def.1">
+       <OMS cd="skl0" name="equivalent"/>
+       <OMV name="A"/>
+       <OMV name="B"/>
+      </OMA>
+      <OMA id="equivalent-def.2">
+       <OMS cd="skl0" name="and"/>
+       <OMA>
+	<OMS cd="skl0" name="implies"/>
+	<OMV name="A"/>
+	<OMV name="B"/>
+       </OMA>
+       <OMA>
+	<OMS cd="skl0" name="implies"/>
+	<OMV name="B"/>
+	<OMV name="A"/>
+       </OMA>
+      </OMA>
+     </OMA>
+    </OMOBJ>
+   </FMP>
+  </definition>
+
+  <symbol name="tf">
+    <metadata>
+      <dc:description>
+	<OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="skl0"
+	name="tf"/></OMOBJ>The definedness connective; it is true, if it's argument is
+	true or false, it is false on undefined. Its truth table is
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath" style="display:block">
+     <OMA>
+      <OMS cd="truth-tables" name="tt"/>
+      <OMS cd="skl0" name="tf"/>
+      <OMA><OMS cd="truth-tables" name="ttargs"/></OMA>
+      <OMA>
+       <OMS cd="truth-tables" name="ttrow"/>
+       <OMS cd="truthval" name="false"/>
+       <OMS cd="truthval" name="true"/>
+      </OMA>   
+      <OMA>
+       <OMS cd="truth-tables" name="ttrow"/>
+       <OMS cd="skl0" name="undefined"/>
+       <OMS cd="truthval" name="false"/>
+      </OMA>   
+      <OMA>
+       <OMS cd="truth-tables" name="ttrow"/>
+       <OMS cd="truthval" name="true"/>
+       <OMS cd="truthval" name="false"/>
+      </OMA>   
+     </OMA>
+    </OMOBJ>
+  </dc:description>
+</metadata>
+    <type system="simpletypes.omdoc#simpletypes">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+     <OMA>
+      <OMS name="funtype" cd="simpletypes"/>
+      <OMS cd="skl0" name="threebool"/>
+      <OMS cd="skl0" name="threebool"/>
+     </OMA>
+    </OMOBJ>
+   </type>
+  </symbol>
+ </theory>
+</omdoc>

@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  xmlns="http://omdoc.org/ns"
+xml:id="arith1-omdoc" >
+
+<metadata>
+  <dc:title>The OpenMath Content Dictionary arith1.ocd in OMDoc Form</dc:title>
+  <dc:creator role="trl">Michael Kohlhase</dc:creator>
+  <dc:creator role="ant">The OpenMath Society</dc:creator>
+  <dc:date action="updated"> 2004-07-13T10:37:36Z </dc:date>
+  <dc:source>Derived from the OpenMath CD http://www.openmath.org/cd/arith1.ocd.</dc:source>
+  <dc:type>Text</dc:type>
+  <dc:format>application/omdoc+xml</dc:format>
+  <dc:rights>Copyright (c) 2000-2003 Michael Kohlhase;
+    This OMDoc content dictionary is released under the OpenMath license:
+    http://monet.nag.co.uk/openmath/cdfiles/license.html
+  </dc:rights>
+  <dc:description>This CD defines symbols for common arithmetic functions.</dc:description>
+  </metadata>
+
+<theory xml:id="arith1" cdreviewdate="2003-04-01" cdstatus="official" cdversion="2" cdrevision="0">
+<metadata>
+  <dc:title>Common Arithmetic Functions</dc:title>
+  <dc:date action="updated">2001-03-12T09:00:10</dc:date>
+</metadata>
+<imports xml:id="arith1-imports-sts" from="sts.omdoc#sts"/>
+<imports xml:id="arith1-imports-relation1" from="relation1.omdoc#relation1"/>
+
+<symbol name="lcm">
+  <metadata>
+<dc:description>The symbol to repre sent the n-ary function to return the least common
+  multiple of its arguments.
+</dc:description>
+<dc:description  xml:lang="de"> 
+  Das Symbol f"ur das kleinste gemeinsame Vielfache (als n-aere Funktion).
+</dc:description>
+<dc:subject>lcm, least common mean</dc:subject>
+<dc:subject xml:lang="de">kgV, kleinstes gemeinsames Vielfaches</dc:subject>
+</metadata>
+<type system="sts">
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS name="mapsto" cd="sts"/>
+      <OMA>
+        <OMS name="nassoc" cd="sts"/>
+        <OMV name="SemiGroup"/>
+      </OMA>
+      <OMV name="SemiGroup"/>
+    </OMA>
+  </OMOBJ>
+</type>
+</symbol>
+
+<presentation xml:id="pr_lcm" for="lcm">
+  <use  format="default">lcm</use>
+  <use  format="default" xml:lang="de">kgV</use>
+  <use format="cmml" element="lcm"/>
+</presentation>
+
+<definition xml:id="lcm-def" type="implicit" for="lcm">
+  <CMP><OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="lcm-def.O"/></OMOBJ></CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA id="lcm-def.O">
+        <OMS cd="relation1" name="eq"/>
+        <OMA><OMS cd="arith1" name="lcm"/>
+          <OMV name="a"/><OMV name="b"/>
+        </OMA>
+        <OMA>
+          <OMS cd="arith1" name="divide"/>
+          <OMA><OMS cd="arith1" name="times"/>
+            <OMV name="a"/>
+            <OMV name="b"/>
+          </OMA>
+          <OMA><OMS cd="arith1" name="gcd"/>
+            <OMV name="a"/>
+            <OMV name="b"/>
+          </OMA>
+        </OMA>
+      </OMA>
+    </OMOBJ>
+  </FMP>
+</definition>
+
+<assertion xml:id="lcm-prop-3" type="lemma">
+  <CMP>For all integers <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="a"/></OMOBJ>, 
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="b"/></OMOBJ> there is no 
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="lcm-prop-3.1"/></OMOBJ> such that 
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="lcm-prop-3.2"/></OMOBJ> and 
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="lcm-prop-3.3"/></OMOBJ> and 
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="lcm-prop-3.4"/></OMOBJ>.
+  </CMP>
+  <CMP xml:lang="de">Fuer alle ganzen Zahlen 
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="a"/></OMOBJ>, 
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="b"/></OMOBJ> 
+    gibt es kein <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="lcm-prop-3.1"/></OMOBJ> mit   
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="lcm-prop-3.2"/></OMOBJ> und 
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="lcm-prop-3.3"/></OMOBJ> und 
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="lcm-prop-3.4"/></OMOBJ>.
+  </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMBIND>
+	<OMS cd="quant1" name="forall"/>
+	<OMBVAR>
+	  <OMV name="a"/>
+	  <OMV name="b"/>
+	</OMBVAR>
+	<OMA>
+	  <OMS cd="logic1" name="implies"/>
+	  <OMA>
+	    <OMS cd="logic1" name="and"/>
+	    <OMA>
+	      <OMS cd="set1" name="in"/>
+	      <OMV name="a"/>
+	      <OMS cd="setname1" name="Z"/>
+	    </OMA>
+	    <OMA>
+	      <OMS cd="set1" name="in"/>
+	      <OMV name="b"/>
+	      <OMS cd="setname1" name="Z"/>
+	    </OMA>
+	  </OMA>
+	  <OMA>
+	    <OMS cd="logic1" name="not"/>
+	    <OMBIND>
+	      <OMS cd="quant1" name="exists"/>
+	      <OMBVAR>
+		<OMV name="c"/>
+	      </OMBVAR>
+	      <OMA>
+		<OMS cd="logic1" name="and"/>
+		<OMA id="lcm-prop-3.1">
+		  <OMS cd="relation1" name="gt"/>
+		  <OMV name="c"/>
+		  <OMI>0</OMI>
+		</OMA>
+		<OMA id="lcm-prop-3.2">
+		  <OMS cd="integer1" name="factorof"/>
+		  <OMV name="a"/>
+		  <OMV name="c"/>
+		</OMA>
+		<OMA id="lcm-prop-3.3">
+		  <OMS cd="integer1" name="factorof"/>
+		  <OMV name="b"/>
+		  <OMV name="c"/>
+		</OMA>
+		<OMA id="lcm-prop-3.4">
+		  <OMS cd="relation1" name="lt"/>
+		  <OMV name="c"/>
+		  <OMA>
+		    <OMS cd="arith1" name="lcm"/>
+		    <OMV name="a"/>
+		    <OMV name="b"/>
+		  </OMA>
+		</OMA>
+	      </OMA>
+	    </OMBIND>
+	  </OMA>
+	</OMA>
+      </OMBIND>
+    </OMOBJ>
+  </FMP>
+</assertion>
+
+</theory>
+</omdoc>

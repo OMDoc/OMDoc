@@ -1,0 +1,687 @@
+\begin{theindex}
+
+  \item 8601
+    \subitem ISO (), \hyperpage{7, 8}
+
+  \indexspace
+
+  \item abstract
+    \subitem data type, \hyperpage{21}
+  \item {\scshape  {ActiveMath}}, \hyperpage{5}, \hyperpage{29, 30}, 
+		\hyperpage{36}
+  \item actual
+    \subitem parameter
+      \subsubitem theory, \hyperpage{23}
+  \item {\tt  {against}}
+    \subitem attribute value
+      \subsubitem for {{\tt  {type}}} on {{\tt  {example}}}, 
+		\hyperpage{13}
+  \item algebraic
+    \subitem specification, \hyperpage{21}
+  \item animal, \hyperpage{30}
+  \item {\tt  {application/omdoc+xml}}, \hyperpage{8}
+  \item archiving
+    \subitem document, \hyperpage{5}
+  \item {{\tt  {argument}}
+    \subitem  element}, \hyperpage{22}
+  \item assertion, \hyperpage{32}
+  \item {{\tt  {assertion}}
+    \subitem  element}, \hyperpage{32}, \hyperpage{39}
+  \item {{\tt  {assertion}}}
+    \subitem attribute
+      \subsubitem on {{\tt  {example}}}, \hyperpage{15}, \hyperpage{32}
+  \item automated
+    \subitem concept formation
+      \subsubitem system, \hyperpage{37}
+    \subitem proof
+      \subsubitem assistant, \hyperpage{37}
+    \subitem theorem
+      \subsubitem prover, \hyperpage{37}
+  \item {\tt  {axiom}}
+    \subitem attribute value
+      \subsubitem for {{\tt  {type}}} on {{\tt  {omtext}}}, 
+		\hyperpage{9}
+  \item {{\tt  {axiom}}
+    \subitem  element}, \hyperpage{30, 31}
+
+  \indexspace
+
+  \item {{\tt  {base}}}
+    \subitem attribute
+      \subsubitem on {{\tt  {morphism}}}, \hyperpage{26}
+
+  \indexspace
+
+  \item Carnegie Mellon University, \hyperpage{29}
+  \item Cartesian
+    \subitem product, \hyperpage{11}
+  \item {\scshape  {Casl}}, \hyperpage{21}
+  \item catalog
+    \subitem XML, \hyperpage{7}
+  \item {\tt  {cc:}}, \hyperpage{7}
+  \item {{\tt  {cc:permissions}}
+    \subitem  element}, \hyperpage{8}
+  \item {{\tt  {cc:prohibitions}}
+    \subitem  element}, \hyperpage{8}
+  \item {{\tt  {cc:requirements}}
+    \subitem  element}, \hyperpage{8}
+  \item {\tt  {cd}}
+    \subitem attribute value
+      \subsubitem for {{\tt  {module}}} on {{\tt  {omdoc}}}, 
+		\hyperpage{10}
+  \item {{\tt  {cd}}}
+    \subitem attribute
+      \subsubitem on {{\tt  {OMS}}}, \hyperpage{11}
+  \item {{\tt  {cd*}}}
+    \subitem attribute
+      \subsubitem on {{\tt  {theory}}}, \hyperpage{17}
+  \item CDATA, \hyperpage{33}
+  \item {{\tt  {omcd:CDName}}
+    \subitem  element}, \hyperpage{17}
+  \item {{\tt  {omcd:CDURL}}
+    \subitem  element}, \hyperpage{17}
+  \item character
+    \subitem lists of, \hyperpage{24}
+  \item {{\tt  {class}}}
+    \subitem attribute
+      \subsubitem on {{\tt  {dc:title}}}, \hyperpage{34}
+      \subsubitem on {{\tt  {ref}}}, \hyperpage{34}
+  \item class definition
+    \subitem CSS (), \hyperpage{34}
+  \item clause
+    \subitem copyleft, \hyperpage{8}
+  \item closing
+    \subitem tag, \hyperpage{8}
+  \item code
+    \subitem fragment, \hyperpage{33}
+  \item {{\tt  {code}}
+    \subitem  element}, \hyperpage{33}
+  \item computer algebra
+    \subitem system, \hyperpage{37}
+  \item concept, \hyperpage{30}, \hyperpage{32}
+    \subitem extension, \hyperpage{30}
+  \item concept formation
+    \subitem automated (), \hyperpage{37}
+  \item constraint
+    \subitem solver, \hyperpage{37}
+  \item constructor, \hyperpage{11}, \hyperpage{21}
+  \item content
+    \subitem management, \hyperpage{30}
+    \subitem OMDoc, \hyperpage{30}
+  \item content dictionary, \hyperpage{11}
+    \subitem OMDoc, \hyperpage{10}
+  \item Content {\sc  MathML}, \hyperpage{5}, \hyperpage{9, 10}
+  \item copyleft
+    \subitem clause, \hyperpage{8}
+  \item correct, \hyperpage{30}
+  \item counter-example, \hyperpage{32}
+  \item courseware, \hyperpage{29}
+  \item {\textbf  {C}Point}, \hyperpage{29}
+  \item Creative Commons
+    \subitem license, \hyperpage{8}
+    \subitem namespace, \hyperpage{7}
+  \item cross-reference, \hyperpage{30}
+  \item CSS
+    \subitem class definition
+      \subsubitem class definition, \hyperpage{34}
+  \item {\scshape  {CSS}}, \hyperpage{34}
+
+  \indexspace
+
+  \item {{\tt  {data}}
+    \subitem  element}, \hyperpage{33}
+  \item data type
+    \subitem abstract, \hyperpage{21}
+  \item {\tt  {Dataset}}, \hyperpage{8}
+  \item {\tt  {dc:}}, \hyperpage{7}
+  \item {{\tt  {dc:description}}
+    \subitem  element}, \hyperpage{11}, \hyperpage{17}
+  \item {{\tt  {dc:source}}
+    \subitem  element}, \hyperpage{17}
+  \item {{\tt  {dc:title}}
+    \subitem  element}, \hyperpage{34}
+  \item declaration
+    \subitem namespace, \hyperpage{7}
+    \subitem namespace prefix, \hyperpage{10}
+  \item decomposition, \hyperpage{23}
+  \item deduction
+    \subitem natural (), \hyperpage{40}
+  \item {\tt  {definiens}}
+    \subitem attribute value
+      \subsubitem for {{\tt  {role}}} on {{\tt  {term}}}, 
+		\hyperpage{11}
+  \item definite
+    \subitem description
+      \subsubitem operator, \hyperpage{26}
+  \item definition
+    \subitem document type, \hyperpage{10}
+  \item {\tt  {definition}}
+    \subitem attribute value
+      \subsubitem for {{\tt  {type}}} on {{\tt  {omtext}}}, 
+		\hyperpage{9}
+  \item {{\tt  {definition}}
+    \subitem  element}, \hyperpage{11}, \hyperpage{14}
+  \item {{\tt  {derive}}
+    \subitem  element}, \hyperpage{32, 33}, \hyperpage{40}
+  \item description
+    \subitem definite (), \hyperpage{26}
+  \item {{\tt  {dc:description}}
+    \subitem  element}, \hyperpage{11}, \hyperpage{17}
+  \item development
+    \subitem graph, \hyperpage{23}
+  \item distribution, \hyperpage{8}
+  \item document
+    \subitem archiving, \hyperpage{5}
+    \subitem knowledge-centered, \hyperpage{30}
+    \subitem narrative-structured, \hyperpage{30}
+    \subitem retrieval, \hyperpage{5}
+  \item document type
+    \subitem definition, \hyperpage{10}
+  \item DTD, \hyperpage{8}, \hyperpage{10}
+  \item Dublin Core
+    \subitem namespace, \hyperpage{7}
+
+  \indexspace
+
+  \item {{\tt  {effect}}
+    \subitem  element}, \hyperpage{33}
+  \item {{\tt  {xml:en}}}
+    \subitem attribute value
+      \subsubitem for {{\tt  {lang}}}, \hyperpage{8}
+  \item encoding
+    \subitem UTF-8, \hyperpage{7}
+  \item entity
+    \subitem parameter, \hyperpage{10}
+  \item {\tt  {enumeration}}
+    \subitem attribute value
+      \subsubitem for {{\tt  {type}}} on {{\tt  {omdoc}}}, 
+		\hyperpage{9}
+  \item example, \hyperpage{31}
+  \item {\tt  {example}}
+    \subitem attribute value
+      \subsubitem for {{\tt  {type}}} on {{\tt  {omtext}}}, 
+		\hyperpage{9}, \hyperpage{13}
+  \item {{\tt  {example}}
+    \subitem  element}, \hyperpage{13}, \hyperpage{15}, 
+		\hyperpage{31--33}
+  \item extension
+    \subitem concept, \hyperpage{30}
+
+  \indexspace
+
+  \item figure
+    \subitem rhetoric/didactic, \hyperpage{35, 36}
+  \item {\scshape  {FireFox}}, \hyperpage{39}
+  \item first-order
+    \subitem logic, \hyperpage{14}
+    \subitem theorem
+      \subsubitem prover, \hyperpage{38}
+  \item {{\tt  {FMP}}
+    \subitem  element}, \hyperpage{14}, \hyperpage{32}, \hyperpage{40}
+  \item {\tt  {for}}
+    \subitem attribute value
+      \subsubitem for {{\tt  {type}}} on {{\tt  {example}}}, 
+		\hyperpage{13}
+  \item {{\tt  {for}}}
+    \subitem attribute
+      \subsubitem on {{\tt  {axiom}}}, \hyperpage{31}
+      \subsubitem on {{\tt  {definition}}}, \hyperpage{11}
+      \subsubitem on {{\tt  {example}}}, \hyperpage{13}, \hyperpage{32}
+      \subsubitem on {{\tt  {proof}}}, \hyperpage{39}
+  \item formal
+    \subitem parameter
+      \subsubitem theory, \hyperpage{23}
+  \item {{\tt  {format}}}
+    \subitem attribute
+      \subsubitem on {{\tt  {data}}}, \hyperpage{33}
+  \item fragment
+    \subitem code, \hyperpage{33}
+  \item {{\tt  {from}}}
+    \subitem attribute
+      \subsubitem on {{\tt  {imports}}}, \hyperpage{11}
+  \item function
+    \subitem predecessor, \hyperpage{22}
+  \item functional
+    \subitem structure, \hyperpage{10}
+  \item Fundamentals of Computer Science, \hyperpage{29}
+
+  \indexspace
+
+  \item generator
+    \subitem model, \hyperpage{37}
+  \item graph
+    \subitem development, \hyperpage{23}
+  \item group
+    \subitem multilingual, \hyperpage{8, 9}
+
+  \indexspace
+
+  \item {{\tt  {h:p}}
+    \subitem  element}, \hyperpage{8, 9}, \hyperpage{13, 14}
+  \item {{\tt  {hiding}}}
+    \subitem attribute
+      \subsubitem on {{\tt  {morphism}}}, \hyperpage{27}
+  \item higher-level
+    \subitem structure, \hyperpage{9}
+  \item {\scshape  {Hol}}, \hyperpage{5}
+  \item {{\tt  {href}}}
+    \subitem attribute
+      \subsubitem on {{\tt  {OMR}}}, \hyperpage{15}
+  \item {\scshape  {HTTP}}, \hyperpage{37, 38}
+
+  \indexspace
+
+  \item {{\tt  {xml:id}}}
+    \subitem attribute
+      \subsubitem on {{\tt  {omdoc}}}, \hyperpage{7}, \hyperpage{9}, 
+		\hyperpage{17}
+      \subsubitem on {{\tt  {omtext}}}, \hyperpage{9}
+  \item identifier
+    \subitem public, \hyperpage{7}
+  \item {\tt  {implicit}}
+    \subitem attribute value
+      \subsubitem for {{\tt  {type}}} on {{\tt  {definition}}}, 
+		\hyperpage{14}
+  \item {{\tt  {imports}}
+    \subitem  element}, \hyperpage{11, 12}, \hyperpage{14}, 
+		\hyperpage{23}, \hyperpage{27}
+  \item inclusion
+    \subitem theory, \hyperpage{22}, \hyperpage{24}
+  \item {{\tt  {inclusion}}
+    \subitem  element}, \hyperpage{23}
+  \item inductively defined
+    \subitem set, \hyperpage{21}
+  \item inheritance
+    \subitem theory, \hyperpage{35}
+  \item input, \hyperpage{33}
+  \item {{\tt  {input}}
+    \subitem  element}, \hyperpage{33}
+  \item instance
+    \subitem theory, \hyperpage{21}
+  \item internal
+    \subitem subset, \hyperpage{10}
+  \item Internet Explorer, \hyperpage{39}
+  \item ``is a'' relation, \hyperpage{32}
+  \item ISO
+    \subitem 8601
+      \subsubitem norm, \hyperpage{7, 8}
+  \item {\tt  {itemize}}
+    \subitem attribute value
+      \subsubitem for {{\tt  {type}}} on {{\tt  {omdoc}}}, 
+		\hyperpage{34}
+
+  \indexspace
+
+  \item Java, \hyperpage{33}
+  \item {{\tt  {just-by}}}
+    \subitem attribute
+      \subsubitem on {{\tt  {assertion}}}, \hyperpage{32}
+
+  \indexspace
+
+  \item knowledge
+    \subitem management, \hyperpage{30}
+    \subitem presentation, \hyperpage{30}
+    \subitem representation, \hyperpage{30}
+  \item knowledge-centered
+    \subitem document, \hyperpage{30}
+
+  \indexspace
+
+  \item {{\tt  {xml:lang}}}
+    \subitem attribute
+      \subsubitem on {{\tt  {description}}}, \hyperpage{11}
+      \subsubitem on {{\tt  {h:p}}}, \hyperpage{8}
+  \item {{\tt  {legacy}}
+    \subitem  element}, \hyperpage{9}
+  \item {\tt  {lemma}}
+    \subitem attribute value
+      \subsubitem for {{\tt  {type}}} on {{\tt  {omtext}}}, 
+		\hyperpage{9}
+  \item license
+    \subitem Creative Commons, \hyperpage{8}
+  \item lists of
+    \subitem character, \hyperpage{24}
+  \item {\tt  {local}}
+    \subitem attribute value
+      \subsubitem for {{\tt  {type}}} on {{\tt  {imports}}}, 
+		\hyperpage{23}
+  \item logic
+    \subitem first-order, \hyperpage{14}
+
+  \indexspace
+
+  \item magma, \hyperpage{14}
+  \item management
+    \subitem content, \hyperpage{30}
+    \subitem knowledge, \hyperpage{30}
+  \item mathematical
+    \subitem service, \hyperpage{37}
+    \subitem software bus, \hyperpage{37}
+    \subitem vernacular, \hyperpage{5}, \hyperpage{13}
+  \item {\sc  MathML}
+    \subitem content, \hyperpage{5}, \hyperpage{9, 10}
+  \item {\scshape  {MathWeb}}, \hyperpage{37, 38}
+  \item {\scshape  {MathWeb-SB}}, \hyperpage{37, 38}
+  \item {\scshape  {MathWeb-WS}}, \hyperpage{37}, \hyperpage{39, 40}
+  \item {\scshape  {MBase}}, \hyperpage{5}, \hyperpage{30}, 
+		\hyperpage{39}
+  \item meta-data, \hyperpage{6}
+  \item metadata, \hyperpage{7}, \hyperpage{17}
+  \item {{\tt  {metadata}}
+    \subitem  element}, \hyperpage{6}, \hyperpage{9}, \hyperpage{17}, 
+		\hyperpage{34}
+  \item {{\tt  {method}}
+    \subitem  element}, \hyperpage{40}
+  \item Microsoft
+    \subitem Internet Explorer, \hyperpage{39}
+  \item MIME
+    \subitem type, \hyperpage{8}
+  \item {\scshape  {Mizar}}, \hyperpage{5}
+  \item model
+    \subitem generator, \hyperpage{37}
+  \item {{\tt  {module}}}
+    \subitem attribute
+      \subsubitem on {{\tt  {omdoc}}}, \hyperpage{10}
+  \item {{\tt  {modules}}}
+    \subitem attribute
+      \subsubitem on {{\tt  {omdoc}}}, \hyperpage{7}, \hyperpage{17}
+  \item monoid, \hyperpage{26}
+  \item {{\tt  {morphism}}
+    \subitem  element}, \hyperpage{22}, \hyperpage{26, 27}
+  \item MS
+    \subitem  Internet Explorer, \hyperpage{39}
+  \item multilingual
+    \subitem group, \hyperpage{8, 9}
+
+  \indexspace
+
+  \item {{\tt  {name}}}
+    \subitem attribute
+      \subsubitem on {{\tt  {definition}}}, \hyperpage{11}
+      \subsubitem on {{\tt  {OMS}}}, \hyperpage{11}
+      \subsubitem on {{\tt  {OMV}}}, \hyperpage{11}
+      \subsubitem on {{\tt  {symbol}}}, \hyperpage{11}
+  \item namespace
+    \subitem Creative Commons, \hyperpage{7}
+    \subitem declaration, \hyperpage{7}
+    \subitem Dublin Core, \hyperpage{7}
+    \subitem OMDoc, \hyperpage{7}
+    \subitem OpenMath, \hyperpage{7}
+    \subitem prefix
+      \subsubitem declaration, \hyperpage{7}
+    \subitem prefixed, \hyperpage{10}
+  \item namespace prefix
+    \subitem declaration, \hyperpage{10}
+  \item narrative
+    \subitem OMDoc, \hyperpage{30}
+  \item narrative-structured
+    \subitem document, \hyperpage{30}
+  \item natural
+    \subitem deduction
+      \subsubitem calculus, \hyperpage{40}
+  \item {\scshape  {NuPrL}}, \hyperpage{5}
+
+  \indexspace
+
+  \item object-oriented
+    \subitem programming, \hyperpage{30}
+  \item {{\tt  {obligation}}
+    \subitem  element}, \hyperpage{22}
+  \item {\tt  {om:}}, \hyperpage{7}
+  \item {{\tt  {om:OMA}}
+    \subitem  element}, \hyperpage{11}
+  \item {{\tt  {om:OMR}}
+    \subitem  element}, \hyperpage{15}
+  \item {{\tt  {om:OMS}}
+    \subitem  element}, \hyperpage{11}
+  \item {{\tt  {om:OMV}}
+    \subitem  element}, \hyperpage{11}
+  \item {{\tt  {om:OMA}}
+    \subitem  element}, \hyperpage{11}
+  \item {{\tt  {omcd:CDName}}
+    \subitem  element}, \hyperpage{17}
+  \item {{\tt  {omcd:CDURL}}
+    \subitem  element}, \hyperpage{17}
+  \item OMDoc
+    \subitem content, \hyperpage{30}
+    \subitem content dictionary, \hyperpage{10}
+    \subitem namespace, \hyperpage{7}
+    \subitem narrative, \hyperpage{30}
+  \item {\sc  {OMDoc}}
+    \subitem version {1.6}, \hyperpage{7}
+  \item {\scshape  {OMDoc}}, \hyperpage{1}, \hyperpage{3--11}, 
+		\hyperpage{13}, \hyperpage{15--18}, \hyperpage{20--23}, 
+		\hyperpage{26}, \hyperpage{29--40}, \hyperpage{42}
+  \item {{\tt  {omdoc}}
+    \subitem  element}, \hyperpage{8, 9}, \hyperpage{17}, 
+		\hyperpage{34}
+  \item {\tt  {omdoc-basic}}, \hyperpage{10}
+  \item {{\tt  {omlet}}
+    \subitem  element}, \hyperpage{34}
+  \item {{\tt  {om:OMR}}
+    \subitem  element}, \hyperpage{15}
+  \item {{\tt  {om:OMS}}
+    \subitem  element}, \hyperpage{11}
+  \item {{\tt  {omtext}}
+    \subitem  element}, \hyperpage{8, 9}, \hyperpage{12, 13}, 
+		\hyperpage{34}
+  \item {{\tt  {om:OMV}}
+    \subitem  element}, \hyperpage{11}
+  \item OpenMath
+    \subitem namespace, \hyperpage{7}
+  \item {\scshape  {OpenMath}}, \hyperpage{3}, \hyperpage{5}, 
+		\hyperpage{7}, \hyperpage{9--12}, \hyperpage{14--18}, 
+		\hyperpage{21}
+  \item output, \hyperpage{33}
+  \item {{\tt  {output}}
+    \subitem  element}, \hyperpage{33}
+
+  \indexspace
+
+  \item pair, \hyperpage{11}
+  \item parameter, \hyperpage{21}
+    \subitem actual (), \hyperpage{23}
+    \subitem entity, \hyperpage{10}
+    \subitem formal (), \hyperpage{23}
+  \item parser, \hyperpage{33}
+  \item permission, \hyperpage{8}
+  \item {{\tt  {cc:permissions}}
+    \subitem  element}, \hyperpage{8}
+  \item predecessor
+    \subitem function, \hyperpage{22}
+  \item prefix
+    \subitem namespace (), \hyperpage{7}
+  \item prefixed
+    \subitem namespace, \hyperpage{10}
+  \item {{\tt  {premise}}
+    \subitem  element}, \hyperpage{33}, \hyperpage{40}
+  \item presentation
+    \subitem knowledge, \hyperpage{30}
+    \subitem slides, \hyperpage{29}
+  \item primitive
+    \subitem symbol, \hyperpage{30, 31}
+  \item {{\tt  {private}}
+    \subitem  element}, \hyperpage{31}
+  \item product
+    \subitem Cartesian, \hyperpage{11}
+  \item programming
+    \subitem object-oriented, \hyperpage{30}
+  \item {{\tt  {cc:prohibitions}}
+    \subitem  element}, \hyperpage{8}
+  \item proof
+    \subitem automated (), \hyperpage{37}
+  \item {{\tt  {proof}}
+    \subitem  element}, \hyperpage{32}, \hyperpage{39}
+  \item {{\tt  {ws:prove}}
+    \subitem  element}, \hyperpage{38}
+  \item public
+    \subitem identifier, \hyperpage{7}
+  \item {\scshape  {Pvs}}, \hyperpage{21}
+
+  \indexspace
+
+  \item {\scshape  {RDF}}, \hyperpage{36}
+  \item reasoning
+    \subitem system, \hyperpage{37}
+  \item {{\tt  {ref}}
+    \subitem  element}, \hyperpage{34, 35}
+  \item reference
+    \subitem URI, \hyperpage{11}, \hyperpage{31}
+  \item {{\tt  {reformulates}}}
+    \subitem attribute
+      \subsubitem on {{\tt  {private}}}, \hyperpage{31}
+  \item relation, \hyperpage{11}
+    \subitem ``is a'', \hyperpage{32}
+  \item representation
+    \subitem knowledge, \hyperpage{30}
+  \item reproduction, \hyperpage{8}
+  \item {{\tt  {cc:requirements}}
+    \subitem  element}, \hyperpage{8}
+  \item {{\tt  {requires}}}
+    \subitem attribute
+      \subsubitem on {{\tt  {code}}}, \hyperpage{33}
+  \item retrieval
+    \subitem document, \hyperpage{5}
+  \item rhetoric/didactic
+    \subitem figure, \hyperpage{35, 36}
+  \item {{\tt  {role}}}
+    \subitem attribute
+      \subsubitem on {{\tt  {term}}}, \hyperpage{11}
+
+  \indexspace
+
+  \item schema
+    \subitem XML, \hyperpage{8}
+  \item selfinclusion
+    \subitem theory, \hyperpage{26}, \hyperpage{28}
+  \item semigroup, \hyperpage{25}
+  \item service
+    \subitem mathematical, \hyperpage{37}
+  \item set
+    \subitem inductively defined, \hyperpage{21}
+  \item side-effect, \hyperpage{33}
+  \item {\tt  {simple}}
+    \subitem attribute value
+      \subsubitem for {{\tt  {type}}} on {{\tt  {definition}}}, 
+		\hyperpage{14}
+  \item slicing, \hyperpage{9}
+  \item slide, \hyperpage{29, 30}
+  \item {\tt  {slide}}
+    \subitem attribute value
+      \subsubitem for {{\tt  {type}}} on {{\tt  {omdoc}}}, 
+		\hyperpage{34}
+  \item slide presentation, \hyperpage{29}
+  \item {\scshape  {Soap}}, \hyperpage{37--39}
+  \item software bus
+    \subitem mathematical, \hyperpage{37}
+  \item solver
+    \subitem constraint, \hyperpage{37}
+  \item sort, \hyperpage{21}
+  \item {{\tt  {sortdef}}
+    \subitem  element}, \hyperpage{21}
+  \item source
+    \subitem theory, \hyperpage{22}
+  \item {{\tt  {dc:source}}
+    \subitem  element}, \hyperpage{17}
+  \item {\scshape  {Spass}}, \hyperpage{37--40}
+  \item specification, \hyperpage{21}
+    \subitem algebraic, \hyperpage{21}
+  \item start
+    \subitem tag, \hyperpage{7}, \hyperpage{10}
+  \item structure
+    \subitem functional, \hyperpage{10}
+    \subitem higher-level, \hyperpage{9}
+  \item {{\tt  {style}}}
+    \subitem attribute
+      \subsubitem on {{\tt  {ref}}}, \hyperpage{34}
+  \item subset
+    \subitem internal, \hyperpage{10}
+  \item symbol
+    \subitem primitive, \hyperpage{30, 31}
+  \item {{\tt  {symbol}}
+    \subitem  element}, \hyperpage{11}, \hyperpage{31}
+  \item system
+    \subitem computer algebra, \hyperpage{37}
+    \subitem reasoning, \hyperpage{37}
+
+  \indexspace
+
+  \item tag
+    \subitem closing, \hyperpage{8}
+    \subitem start, \hyperpage{7}, \hyperpage{10}
+  \item target
+    \subitem theory, \hyperpage{22}
+  \item taxonomy, \hyperpage{30}, \hyperpage{34}
+  \item {{\tt  {term}}
+    \subitem  element}, \hyperpage{11}
+  \item {\tt  {Text}}, \hyperpage{8}
+  \item theorem
+    \subitem automated (), \hyperpage{37}
+    \subitem first-order (), \hyperpage{38}
+  \item {\tt  {theorem}}
+    \subitem attribute value
+      \subsubitem for {{\tt  {type}}} on {{\tt  {omtext}}}, 
+		\hyperpage{9}
+  \item theory, \hyperpage{21}, \hyperpage{29}
+    \subitem inclusion, \hyperpage{22}, \hyperpage{24}
+    \subitem inheritance, \hyperpage{35}
+    \subitem instance, \hyperpage{21}
+    \subitem selfinclusion, \hyperpage{26}, \hyperpage{28}
+    \subitem source, \hyperpage{22}
+    \subitem target, \hyperpage{22}
+  \item {{\tt  {theory}}
+    \subitem  element}, \hyperpage{10, 11}, \hyperpage{17}
+  \item {{\tt  {theory}}}
+    \subitem attribute
+      \subsubitem on {{\tt  {assertion}}}, \hyperpage{39}
+  \item {{\tt  {dc:title}}
+    \subitem  element}, \hyperpage{34}
+  \item {\scshape  {Tramp}}, \hyperpage{40}
+  \item translator, \hyperpage{7}
+  \item tree, \hyperpage{30}
+  \item type
+    \subitem MIME, \hyperpage{8}
+  \item {{\tt  {type}}}
+    \subitem attribute
+      \subsubitem on {{\tt  {definition}}}, \hyperpage{14}
+      \subsubitem on {{\tt  {example}}}, \hyperpage{13}, \hyperpage{32}
+      \subsubitem on {{\tt  {imports}}}, \hyperpage{23}
+      \subsubitem on {{\tt  {omdoc}}}, \hyperpage{9}, \hyperpage{34}
+      \subsubitem on {{\tt  {omtext}}}, \hyperpage{9}
+
+  \indexspace
+
+  \item URI, \hyperpage{7}
+    \subitem reference, \hyperpage{11}, \hyperpage{31}
+  \item UTF-8
+    \subitem encoding, \hyperpage{7}
+
+  \indexspace
+
+  \item vernacular
+    \subitem mathematical, \hyperpage{5}, \hyperpage{13}
+  \item {{\tt  {version}}}
+    \subitem attribute
+      \subsubitem on {{\tt  {omdoc}}}, \hyperpage{7}
+
+  \indexspace
+
+  \item W3C, \hyperpage{37}
+  \item {{\tt  {ws:prove}}
+    \subitem  element}, \hyperpage{38}
+
+  \indexspace
+
+  \item XML
+    \subitem catalog, \hyperpage{7}
+    \subitem schema, \hyperpage{8}
+  \item {\scshape  {XML}}, \hyperpage{4, 5}, \hyperpage{7, 8}, 
+		\hyperpage{33}, \hyperpage{37, 38}
+  \item {\scshape  {XML-RPC}}, \hyperpage{37}
+  \item {{\tt  {xref}}}
+    \subitem attribute
+      \subsubitem on {{\tt  {method}}}, \hyperpage{40}
+      \subsubitem on {{\tt  {ref}}}, \hyperpage{34}
+
+\end{theindex}

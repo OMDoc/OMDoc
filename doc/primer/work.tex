@@ -1,0 +1,55 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This file is part of the LaTeX sources of the OMDoc 1.6 primer
+% Copyright (c) 2006 Michael Kohlhase
+% This work is licensed by the Creative Commons Share-Alike license
+% see http://creativecommons.org/licenses/by-sa/2.5/ for details
+% $Id: work.tex 8571 2009-11-28 13:34:52Z kohlhase $
+% $HeadURL: https://svn.omdoc.org/repos/omdoc/trunk/doc/primer/work.tex $
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass{omdocspec}
+\usepackage[hide]{ed}     %../macros set to [hide] when publishing
+\usepackage{include}
+\input{dcmcontributors}
+\makeindex
+
+\svnInfo $Id: work.tex 8571 2009-11-28 13:34:52Z kohlhase $xo
+\svnKeyword $HeadURL: https://svn.omdoc.org/repos/omdoc/trunk/doc/primer/work.tex $
+
+\begin{document}
+\begin{DCmetadata}[spechead]
+  \DCMtitle{An {\omdoc} Primer [Version 1.6 (pre-2.0)]}
+  \DCMcreators{miko}
+  \DCMdate{\today}
+  \DCMcopyrightnotice{2008}{Michael Kohlhase}
+
+  \DCMlicensenotice{This work is licensed by the Creative Commons Share-Alike license
+    \url{http://creativecommons.org/licenses/by-sa/2.5/}: the contents of this
+    specification or fragments thereof may be copied and distributed freely, as long as
+    they are attributed to the original author and source, derivative works (i.e. modified
+    versions of the material) may be published as long as they are also licenced under the
+    Creative Commons Share-Alike license.}
+
+  \DCMabstract{This document an easily approachable description of the {\omdoc} format by
+    way of paradigmatic examples of {\omdoc} documents.  The primer should be used
+    alongside the formal descriptions of the language contained in {\omdoc} specification.
+
+    The intended audience for the primer are users who only need a casual exposure to the
+    format, or authors that have a specific text category in mind.  The examples presented
+    here also serve as specifications of ``best practice'', to give the readers an
+    intuition for how to encode various kinds of mathematical knowledge.}
+\end{DCmetadata}
+
+\Inspec{toc}
+\bibliographystyle{alpha} 
+\bibliography{kwarc}\newpage
+{\small\printindex}
+ 
+\end{document}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 
+
+% LocalWords:  rnc

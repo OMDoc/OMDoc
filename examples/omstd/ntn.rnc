@@ -1,0 +1,61 @@
+# A RelaxNG schema for Open Mathematical documents (OMDoc 1.6: OMDoc Basic) 
+# $Id: omdoc-basic.rnc 6634 2007-07-13 06:32:51Z kohlhase $
+# $HeadURL: https://svn.omdoc.org/repos/omdoc/trunk/rnc/omdoc-basic.rnc $
+# See the documentation and examples at http://www.omdoc.org
+# Copyright (c) 2004-2007 Michael Kohlhase, released under the GNU Public License (GPL) 
+
+default namespace mcd = "http://www.w3.org/ns/mathml-cd"
+
+start = notations
+
+include "../../rnc/openmath3.rnc"
+include "../../rnc/mathml3/mathml3.rnc"
+
+notations = element notations{notation*}
+
+notation = element notation {attribute cdbase {xsd:anyURI}?,
+	                     attribute name {xsd:NCName},
+			     attribute cd {xsd:NCName},
+			     (prototype|rendering)*}
+
+# we extend the content and presentation models by metavariables
+ContExp.class |= exprlist | expr 
+PresExp.class |=  render | iterate
+omel |= exprlist | expr 
+
+# and also the models for bound variables 
+omvar |= exprlist | expr
+bvar.var |= exprlist | expr
+
+# and the OM variables by mcd:cr
+common.attributes &= attribute mcd:cr {text}?
+
+# and finally a special treatment for mtables
+mtable.content.class |= render | iterate
+mtr.content.class |= render | iterate
+
+precedence.att = attribute precedence {xsd:integer}
+
+exprlist = element exprlist {attribute name {xsd:NCName},(ContExp.class|omel)*}
+
+expr = element expr {attribute name {xsd:NCName}}
+
+iterate.class = PresExp.class|mtr|mlabeledtr|mtd
+
+iterate = element iterate {attribute name {xsd:NCName}, 
+	                   precedence.att?,
+			   separator,(iterate.class)*} 
+render = element render {attribute name {xsd:NCName},
+                         precedence.att?}
+
+
+prototype = element prototype {omel|(ContExp.class)}
+
+
+rendering = element rendering {precedence.att?,
+	                       attribute xml:lang {text}?,
+			       attribute context {text}?,
+			       attribute variant {text}?,
+	    	    	       (PresExp.class)} 	    
+
+separator = element separator {(PresExp.class)*}

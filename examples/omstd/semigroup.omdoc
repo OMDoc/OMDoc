@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  xmlns="http://omdoc.org/ns"
+xml:id="semigroup-omdoc">
+
+
+  <dc:title>The OpenMath Content Dictionary semigroup.ocd  in OMDoc form</dc:title>
+  <dc:creator role="trl">Michael Kohlhase</dc:creator>
+  <dc:creator role="ant">Olga Caprotti</dc:creator>
+  <dc:date> 1999-09-29T00:00:00</dc:date>
+  <dc:source>Derived from the OpenMath CD http://www.openmath.org/cd/semigroup.ocd.</dc:source>
+  <dc:type>Text</dc:type>
+  <dc:format>application/omdoc+xml</dc:format>
+  <dc:rights>Copyright (c) 2000-2002 Michael Kohlhase;
+    This OMDoc content dictionary is released under the OpenMath license:
+    http://monet.nag.co.uk/openmath/cdfiles/license.html
+  </dc:rights>
+  <dc:description> The definition of a semigroup as setoid with a binary operation. </dc:description>
+
+
+<theory xml:id="semigroup" cdbase="http://www.openmath.org/cd">
+  <symbol name="associative" xml:id="associative">
+
+<dc:description> The type of associative binary operation.
+  </dc:description>
+
+</symbol>
+  <assertion xml:id="associative-prop-1" type="lemma">
+    <CMP> Is defined as  
+      <legacy format="mocktex">Lambda {sg_Carrier:&gt; Setoid; sg_op: mapsto(sg_Carrier sg_Carrier sg_Carrier)}.</legacy>
+      <legacy format="mocktex">PiType{ x,y,z: sg_Carrier }. eq(sg_op(x, sg_op(y,z)), sg_op( sg_op(x,y),z))</legacy>
+    </CMP>
+  </assertion>
+  <symbol name="Semigroup" xml:id="Semigroup">
+
+<dc:description> The contructor for the type of semigroups as a Setoid 
+      with a binary operation.
+  </dc:description>
+
+</symbol>
+  <assertion xml:id="Semigroup-prop-1" type="lemma">
+    <CMP> Is defined as  
+      <legacy format="mocktex">Lambda {sg_Carrier:&gt; Setoid; sg_op: mapsto(sg_Carrier sg_Carrier sg_Carrier)}.</legacy>
+      <legacy format="mocktex">SigmaType{ sg_Carrier:&gt; Setoid; sg_op:mapsto(sg_Carrier sg_Carrier sg_Carrier); (associative sg_Carrier sg_op) }</legacy>
+    </CMP>
+  </assertion>
+  <symbol name="make_Semigroup" xml:id="make_Semigroup">
+
+<dc:description> The contructor for the tuples consisting of a setoid, 
+      and an associative binary operation.
+  </dc:description>
+
+</symbol>
+  <assertion xml:id="make_Semigroup-prop-1" type="lemma">
+    <CMP> Is defined as  
+      <legacy format="mocktex">Lambda {sg_Carrier:&gt; Setoid; </legacy>
+      <legacy format="mocktex">sg_op: 	mapsto(sg_Carrier sg_Carrier sg_Carrier);</legacy>
+      <legacy format="mocktex">proof: (associative sg_Carrier sg_op)}.</legacy>
+      <legacy format="mocktex">Tuple (Setoid,	sg_op, proof)</legacy>
+    </CMP>
+  </assertion>
+</theory>
+</omdoc>

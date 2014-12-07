@@ -1,0 +1,59 @@
+# A RelaxNG schema for Open Mathematical documents (OMDoc 1.6) Module ST 
+
+# $Id: st-strict.rnc 8554 2009-11-07 15:52:49Z kohlhase $
+# $HeadURL: https://svn.omdoc.org/repos/omdoc/trunk/schema/rnc/strict/st-strict.rnc $
+# See the documentation and examples at http://www.omdoc.org
+# Copyright (c) 2004-2007 Michael Kohlhase, released under the GNU Public License (GPL) 
+
+default namespace omdoc = "http://omdoc.org/ns"
+
+theory.attribs = name.attrib & attribute meta {MMTURI}?
+theory.class = theory* & \include* & constitutive & structure* & omtext*
+theory.model = metadata.class & theory.class
+theory = element theory {tref|(theory.attribs &  theory.model)}
+
+type.attribs = empty
+type.model = metadata.class & mobj
+type = element type {tref|(type.attribs & type.model)}
+
+supertype.attribs = empty
+supertype.model = metadata.class & mobj
+supertype = element supertype {tref|(supertype.attribs & supertype.model)}
+
+sdef.attribs = empty
+sdef.model = metadata.class & mobj
+sdef = element definition {tref|(sdef.attribs&sdef.model)}
+
+arguments = xsd:integer | "*"
+constant.attribs = name.attrib & attribute arguments {arguments}?
+constant.class =   type? & supertype? & sdef?
+constant.model =   metadata.class & constant.class
+constitutive = element constant {constant.attribs & attribute role {consrole}? & constant.model}*
+nonconstit  =  element constant {constant.attribs & attribute role {noncrole}? & constant.model}*
+
+noncrole=  "theorem" | "proof"  
+synrole = "binder" | "semantic-attribution" | "attribution" | "key"
+consrole = "element" | "sort" | "axiom" | "judgment" | "error" | "errortype" | "level" | synrole | noncrole
+
+conass.attribs = name.attrib
+conass.model = mobj
+conass = element conass {tref|(conass.attribs & conass.model)}
+
+strass.attribs = name.attrib
+strass.model = morphism
+strass = element strass {tref|(strass.attribs & strass.model)}
+
+assignment = conass | strass
+
+structure.attribs = name.attrib & from.attrib
+structure.class = (\include | assignment)* | element definition {morphism}
+structure.model = metadata.class & structure.class
+structure = element structure {tref|(structure.attribs & structure.model)}
+
+view.attribs = structure.attribs & to.attrib
+view.model = structure.model
+view = element view {tref|(view.attribs & view.model)}
+
+\include = element \include {from.attrib}
+
+omdoc.class &= theory* & view* & nonconstit

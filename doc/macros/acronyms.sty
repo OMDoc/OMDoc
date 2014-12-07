@@ -1,0 +1,312 @@
+\newif\ifhyper\hyperfalse
+\DeclareOption{hyper}{\hypertrue}
+\DeclareOption{nohyper}{\hyperfalse}
+\ProcessOptions
+\ifhyper\else\RequirePackage{nohyperref}\fi
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Systems of the AGS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\sys}[2][]{\def\@test#1\def\@empty{}
+  \ifx\@test\@empty{#2}\index{#2@#2}\else\texorpdfstring{#2}{#1}\index{#1@{#2}}\fi}
+\def\scsys#1{\texorpdfstring{{\scshape{#1}}}{#1}\index{#1@{\scshape{#1}}}}
+\def\ttsys#1{\texorpdfstring{\tt #1}{#1}\index{#1@{\tt #1}}}
+\def\mbase{\scsys{MBase}}
+\def\tramp{\scsys{Tramp}}
+\def\mkrp{MKRP\index{MKRP}}
+
+\def\OMEGA{\scsys{$\Omega${\scshape{mega}}}}
+\def\proverb{\scsys{ProVerb}}
+\def\pds{\mbox{$\cal PDS$}\index{pds@$\cal PDS$}}
+\def\mathweb{\scsys{MathWeb}}
+\def\mathwebsb{\scsys{MathWeb-SB}}
+\def\mathwebws{\scsys{MathWeb-WS}}
+\def\mosh{\scsys{Mosh}}
+\def\multi{\scsys{Multi}}
+\def\leo{{\mbox{$\cal LEO$}}\index{LEO@$\cal LEO$}}
+\def\mycas{\scsys{$\mu$CAS}}
+\def\octopus{\scsys{OctOpus}}
+\def\loui{\mbox{${\cal L}\Omega\cal UI$}}
+\def\LOUI{\loui\index{LOUI@\loui}}
+\def\inka{\scsys{InKa}}
+\def\maya{\scsys{Maya}}
+\def\dgrl{\scsys{Dgrl}}
+\def\vse{\scsys{VSE}}
+\def\vsesl{\scsys{VSE-SL}}
+\def\lima{\scsys{Lima}}
+\def\activemath{\scsys{ActiveMath}}
+\def\mathdox{\scsys{MathDox}}
+\def\connexions{\scsys{ConneXions}}
+\def\rhaptos{\scsys{Rhaptos}}
+\def\cnx{\scsys{CNX}}
+\def\qmath{\scsys{QMath}}
+\def\sentido{\scsys{Sentido}}
+\def\oqmath{\scsys{OQMath}}
+\def\ompe{\scsys{OMPE}}
+\def\jEditOQMath{\tt{jEditOQMath}}
+\def\ccaps{\scsys{CCaps}}
+\def\post{\mbox{$\cal POST$}\index{POST@$\cal POST$}}
+\def\prex{\mbox{\itshape P\hspace{-2pt}.\hspace{1pt}rex\/}\index{Prex@P.Rex}}
+\def\oants{\scsys{$\Omega$-Ants}}
+\def\OANTS{\oants}
+\def\cosie{${\cal C}o{\cal SIE}$}
+\def\sapper{\scsys{Sapper}}
+\def\DIALOG{\scsys{Dialog}}
+\def\CORE{\scsys{Core}}
+\def\arxiv{ar$\chi$iv}
+\def\arxmliv{\scsys{arXMLiv}}
+\newcommand{\texmacs}{\textsc{\TeX$_{\textsc{\normalsize macs}}$}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% External Deduction Systems
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\def\nuprl{\scsys{NuPrL}}
+\def\automath{\scsys{AutoMath}}
+\def\theorema{\scsys{Theorema}}
+\def\nqthm{\scsys{NqThm}}
+\def\hot{\scsys{Hot}}
+\def\hol{\scsys{Hol}}
+\def\gandalf{\scsys{Gandalf}}
+\def\setheo{\scsys{SeTheo}}
+\def\otter{\scsys{Otter}}
+\def\spass{\scsys{Spass}}
+\def\tps{\scsys{TPS}}
+\def\cpt{\scsys{Cpt}}
+\def\coq{\scsys{CoQ}}
+\def\protein{\scsys{ProTeIn}}
+\def\waldmeister{\scsys{WaldMeister}}
+\def\eqp{\sys{EQP}}
+\def\bliksem{\scsys{Bliksem}}
+\def\satchmo{\scsys{Satchmo}}
+\def\isabelle{\scsys{Isabelle}}
+\def\clam{\scsys{Clam}}
+\def\twelf{\scsys{Twelf}}
+\def\oyster{\scsys{Oyster}}
+\def\lambdaclam{\sys[lambdaClam]{$\lambda${\sl Clam}}}
+\def\imps{\scsys{Imps}}
+\def\pvs{\scsys{Pvs}}
+\def\sem{\scsys{SEM}}
+\def\acltwo{\scsys{ACL2}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Computer Algebra Systems
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\maxima{\scsys{Maxima}}
+\def\yacas{\scsys{Yacas}}
+\def\maple{\scsys{Maple}}
+\def\CAS{\scsys{Cas}}
+\def\mathematica{\scsys{Mathematica}}
+\def\magma{\scsys{MagMa}}
+\def\gap{\sys{GAP}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Other Software Systems
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\wiki{\sys{Wiki}}
+\def\oracle{\scsys{Oracle}}
+\def\mozilla{\scsys{Mozilla}}
+\def\firefox{\scsys{FireFox}}
+\def\bugzilla{\scsys{BugZilla}}
+\def\unix{\scsys{Unix}}
+\def\windows{\scsys{Windows}}
+\def\svn{\scsys{svn}}
+\def\subversion{\scsys{Subversion}}
+\def\svk{\scsys{SVK}}
+\def\git{\scsys{GIT}}
+\def\svnkit{\scsys{SVNKit}}
+\def\cvs{\scsys{CVS}}
+\def\amaya{\scsys{Amaya}}
+\def\netscape{\sys{Netscape Navigator}\index{Navigator!Netscape}}
+\def\msie{MS Internet Explorer\index{MS! Internet Explorer}
+ \index{Internet Explorer}\index{Microsoft!Internet Explorer}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Programming Languages
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\oz{\scsys{Oz}}
+\def\mozart{\scsys{mOZart}}
+\def\lisp{\scsys{Lisp}}
+\def\commonlisp{\scsys{CommonLisp}}
+\def\prolog{\scsys{ProLog}}
+\def\java{\scsys{Java}}
+\def\scala{\scsys{Scala}}
+\def\javascript{\scsys{JavaScript}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Protocols
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\ascii{\scsys{ASCII}}
+\def\html{\scsys{HTML}}
+\def\http{\scsys{HTTP}}
+\def\mysql{\scsys{MYSQL}}
+\def\xhtml{\scsys{XHTML}}
+\def\svg{\scsys{svg}}
+\def\docbook{\scsys{DocBook}}
+\def\postscript{\scsys{PostScript}}
+\def\pdf{\scsys{PDF}}
+\def\sgml{\scsys{SGML}}
+\def\dsssl{\scsys{DSSSL}}
+\def\dssl{\dsssl}
+\def\mathml{\scsys{MathML}}
+\def\mathplayer{\scsys{MathPlayer}}
+\def\cmathml{Content-\texorpdfstring{\scshape{MathML}}{MathML}%
+\index{Content {\sc MathML}}\index{MathML@{\sc MathML}!content}}
+\def\pmathml{Presentation-{\mathml}%
+\index{Presentation \texorpdfstring{\scshape{MathML}}{MathML}}\index{MathML@{\sc MathML}!presentation}}
+\def\cmath{\scsys{Content-Math}}
+\def\pmath{\scsys{Presentation-Math}}
+\def\codeml{\protect\scsys{CodeML}}
+\def\chemml{\scsys{ChemML}}
+\def\openmath{\scsys{OpenMath}}
+\def\xmlrpc{\scsys{XML-RPC}}
+\def\xml{\scsys{XML}}
+\def\uri{\scsys{URI}}
+\def\cnxml{\scsys{CNXML}}
+\def\relaxng{\scsys{RelaxNG}}
+\def\rdf{\scsys{RDF}}
+\def\rdfa{\scsys{RDFa}}
+\def\owl{{\scsys{Owl}}}
+\def\owldl{{\scsys{Owl-DL}}}
+\def\xmi{{\scsys{XMI}}}
+\def\soap{\scsys{Soap}}
+\def\xsl{\scsys{XSL}}
+\def\xslfo{\scsys{XSL-FO}}
+\def\xslt{\scsys{XSLT}}
+\def\css{\scsys{CSS}}
+\def\xlink{\scsys{XLink}}
+\def\xpointer{\scsys{XPointer}}
+\def\xpath{\scsys{XPath}}
+\def\omdoc{\scsys{OMDoc}}
+\def\explainomdocacronym{\underline{O}pen \underline{M}athematical \underline{Doc}uments}
+\def\jomdoc{\scsys{JOMDoc}}
+\def\ombase{\scsys{OMBase}}
+\def\vomdoc#1{Version {#1} of {\sc{OMDoc}}\index{OMDoc@{\sc{OMDoc}}!version {#1}}}
+\def\omdocv#1{{\sc{OMDoc}\kern.1em{#1}}\index{OMDoc@{\sc{OMDoc}}!version {#1}}}
+\def\titleomdoc{\omdoc}
+\def\Titleomdoc{\omdoc}
+\def\chapteromdoc{\omdoc}
+\def\kqml{\scsys{Kqml}}
+\def\casl{\scsys{Casl}}
+\def\physml{\scsys{PhysML}}
+\def\sciml{\scsys{SCiML}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Management of Change
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\dms{\scsys{DMS}}
+\def\moc{\scsys{MoC}}
+\def\dag{\scsys{DAG}}
+\def\narcon{\scsys{NarCon}}
+\def\infom{\scsys{Infom}}
+\def\cdet{\scsys{CDET}}
+\def\mmiss{\scsys{MM{\scriptsize{I}}SS}}
+\def\hetcasl{\scsys{HetCasl}}
+\def\hets{\scsys{Hets}}
+\def\harmony{\scsys{Harmony}}
+\def\xmldiff{\scsys{xmldiff}}
+\def\subversion{\scsys{Sub\-ver\-sion}}
+\def\so{\sc{SysOnto}}
+\def\protege{\sc{Prot\'eg\'e}}
+\def\racer{\sc{Racer}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Communities of Practices
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\mkm{\scsys{MKM}}
+\def\mkmlong{\scsys{Mathematical Knowledge Management}}
+\def\cop{\scsys{CoP}}
+\def\comprac{\scsys{Community of Practice}}
+\def\compracs{\scsys{Communities of Practice}}
+\def\mathcop{\scsys{mathematical CoP}}
+\def\mathcops{\scsys{mathematical CoPs}}
+\def\mathprac{\scsys{mathematical practice}}
+\def\mathpracs{\scsys{mathematical practices}}
+\def\mocop{\sys{mocop}}
+\def\eLearning{\sys{eLearning}}
+\def\cocoma{\sys{cocoma}}
+\def\lectora{\scsys{le\-c\-tora}}
+\def\mmlkit{\texttt{mmlkit}}
+\def\panta{\emph{panta rhei}}
+\def\pasci{\texttt{{\emph{panta rhei for science}}}}
+\def\ombase{\texttt{{\emph{OMBase}}}}
+\def\pastud{\texttt{{\emph{panta rhei for students}}}}
+\def\plato{\textsc{Plat$\Omega$}}
+\def\mypanta{\texttt{{\emph{my panta rhei}}}}
+\def\pantav1{\texttt{{\emph{panta rhei v1}}}}
+\def\anit{\scsys{anIt}}
+\def\lectlight{\scsys{le\-c\-tora light}}
+\def\casamiento{\scsys{casa\-mien\-to}}
+\def\annotea{\sys{Annotea}}
+\def\cream{\sys{CREAM}}
+\def\mspace{\sys{mSpace}}
+\def\jem{\sys{JEM}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Various
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\kwarc{\sys{KWARC}}
+\def\iub{\sys{IUB}}
+\def\tptp{\sys{TPTP}}
+\def\doris{\scsys{Doris}}
+\def\mizar{\scsys{Mizar}}
+\def\omrs{\scsys{OmRS}}
+\def\IDA{\scsys{IDA}}
+\def\cpoint{\sys[CPoint]{\textbf{C}Point}}
+\def\cword{\sys[CWord]{\textbf{C}Word}}
+\def\texpoint{\sys[TeXPoint]{{\TeX}Point}}
+\def\ccaps{\scsys{CCaps}}
+\def\ppt{\sys{PPT}\index{PowerPoint@MS PowerPoint}}
+\def\vba{\scsys{VBA}}
+\def\emacs{\scsys{Emacs}}
+\def\rxp{\sys{RXP}}
+\def\nsgmls{\sys{nsgmls}}
+\def\latexml{\scsys{LaTeXML}}
+\def\sax{\sys{Sax}}
+\def\jome{\sys{JOME}}
+\def\emacs{\scsys{Emacs}}
+\def\nb2om{{\scsys{nb2omdoc}}}
+\def\unicode{\scsys{Unicode}}
+\def\swim{\scsys{SWiM}}
+%% Fancy version with ``registered trademark'' symbol, probably overkill:
+%%\def\unicode{Unicode\textsuperscript{\tiny{\textregistered}}}
+\def\LNCS{LNCS}
+\def\@stex{\texorpdfstring{s\kern-.5ex\TeX}{sTeX}}
+\def\stex{\@stex\index{sTeX@\protect\@stex}}
+\def\sTeX{\stex}
+\def\uml{\scsys{UML}}
+\def\dtd{\scsys{DTD}}
+\def\cms{\scsys{CMS}}
+\def\ecms{\scsys{ECMS}}
+\def\plone{\scsys{Plone}}
+\def\zope{\scsys{Zope}}
+\def\cmf{\scsys{CMF}}
+\def\php{\scsys{PHP}}
+\def\velocity{\scsys{Velocity}}
+\def\servelts{\scsys{Servelts}}
+\def\python{\scsys{Python}}
+\def\swe{\scsys{SWE}}
+\def\dockon{\scsys{DockON}} 
+
+% LocalWords:  AGS MBase MKRP mega ProVerb pds MathWeb SB WS Mosh CAS OctOpus
+% LocalWords:  LOUI InKa Dgrl VSE SL ActiveMath ConneXions Rhaptos CNX QMath DL
+% LocalWords:  CCaps rex Sapper NuPrL AutoMath Theorema NqThm Hol Gandalf Spass
+% LocalWords:  SeTheo TPS Cpt CoQ ProTeIn WaldMeister EQP Bliksem Satchmo Twelf
+% LocalWords:  Isabelle Pvs SEM ACL Mathematica MagMa Mozilla FireFox BugZilla
+% LocalWords:  svn Amaya mOZart CommonLisp ProLog JavaScript svg DocBook DSSSL
+% LocalWords:  MathPlayer CodeML ChemML OpenMath CNXML RelaxNG RDF XMI XSL FO
+% LocalWords:  XLink XPointer OMDoc em Kqml Casl PhysML SCiML DMS MoC NarCon SS
+% LocalWords:  Infom CDET HetCasl Hets lo cu tor locutor xmldiff ver sion Prot
+% LocalWords:  SysOnto eg CoP CoPs mocop cocoma le tora panta rhei casa Annotea
+% LocalWords:  mSpace JEM KWARC IUB TPTP Mizar OmRS IDA PPT PowerPoint VBA RXP
+% LocalWords:  nsgmls LaTeXML JOME om nb Unicode SWiM LNCS sTeX UML DTD CMS CMF
+% LocalWords:  ECMS Plone Zope PHP Servelts SWE DockON nohyper nohyperref Multi
+% LocalWords:  UI MathDox Sentido OQMath OMPE jEditOQMath SIE ar arXMLiv Maxima
+% LocalWords:  Yacas Cas Wiki SVK SVNKit CVS MYSQL XHTML PostScript PDF MathML
+% LocalWords:  RPC RDFa XSLT CSS XPath JOMDoc OMBase MKM eLearning mmlkit anIt
+% LocalWords:  omdoc lambdaClam Scala athematical uments CWord TeXPoint

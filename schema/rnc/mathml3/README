@@ -1,0 +1,7 @@
+This SVN directory contains slightly modified versions of the 
+MathML3 RelaxNG Schema for inclusion in the OMDoc schema. It is
+also intended as an SVN external for inclusion into other schemata. 
+
+The only difference to the official schemata is the introduction 
+of an additional top-level schema: mathml3-elemental, which extends 
+mathml3-strict by the content elements (it is just shorter to write). 

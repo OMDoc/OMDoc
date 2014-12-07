@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html id="inference-rules.omdoc" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <link rel="stylesheet" type="text/css" href="omdoc-default.css"/>
+    <title>Inference Rules.</title>
+  </head>
+  <body>
+    <div class="dc-titleblock">
+      <div class="dc-title">Inference Rules.</div>
+      <div class="dc-authors">Michael Kohlhase</div>
+      <div class="dc-date">2002-06-24</div>
+    </div>
+    <div class="theory" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="http://purl.org/dc/elements/1.1/">
+      <h1 id="inference-rules">1. Inference Rules.</h1>
+      <div class="omdoc-omtext" id="inference-rules-intro">
+        <p>An inference rule is a relation on (sets of) judgements, read with the intuition that</p>
+      </div>
+      <div class="omdoc-symbol" id="schema" role="Symbol" about="#inference-rules.schema" xml:id="inference-rules.schema">
+        <a class="omdoc" rel="oso:homeTheory" href="#inference-rules"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>schema
+        </div>This is the binding symbols for schematic inference rules. All the bound variables may be freely instantiated.
+      </div>
+      <div class="omdoc-symbol" id="rule" role="Symbol" about="#inferencerules.rule" xml:id="inferencerules.rule">
+        <a class="omdoc" rel="oso:homeTheory" href="#inference-rules"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>rule
+        </div> An inference rule is an n+1-ary relation on judgments. The first n arguments are called the antecedents, and the last one the consequent. We read an inference rule with the intuition that if the antecedents have been derived, then the consequent can be. 
+      </div>
+      <div class="theory">
+        <div class="imports">imports from: 
+          <a href="pl0.xhtml#pl0">pl0</a>
+        </div>
+        <div class="omdoc-example" id="exmp" role="Example" about="#inference-rules.schema #inference-rules.rule" xml:id="exmp">
+          <a class="omdoc" rel="oso:exemplifies" href="#inference-rules.schema #inference-rules.rule"/>
+          <a class="omdoc" rel="oso:homeTheory" href="#inference-rules.schema #inference-rules.rule"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Example</span>
+          </div>
+          <p>Modus Ponens is an inference rule</p>
+          <span id="MCRd20e93" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+              <m:mrow>
+                <m:mi>A</m:mi>
+                <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">,</m:mo>
+                <m:mi>B</m:mi>
+                <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">.</m:mo>
+              </m:mrow>
+            </m:math>
+          </span>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

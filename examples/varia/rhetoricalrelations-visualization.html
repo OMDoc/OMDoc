@@ -1,0 +1,94 @@
+<html xmlns="http://www.w3.org/1999/xhtml" id="rhetoricalrelations.omdoc">
+   
+   <head><style type="text/css">
+                @import "http://o.aolcdn.com/dojo/1.0.0/dijit/themes/tundra/tundra.css";
+                @import "http://o.aolcdn.com/dojo/1.0.0/dojo/resources/dojo.css"
+            </style><script type="text/javascript" src="http://o.aolcdn.com/dojo/1.1.0/dojo/dojo.xd.js" djConfig="parseOnLoad: true"></script><script type="text/javascript">
+                dojo.require("dojo.parser");
+            </script><script src="jquery-1.2.6.js" type="text/javascript"></script><script src="rhetorical-visualization.js" type="text/javascript"></script><script type="text/javascript">
+                dojo.require("dijit.Tooltip");
+                dojo.require("dojo.parser");
+                dojo.require("dijit.form.Button");
+		dojo.require("dijit.TitlePane");
+                function call_function(choice) {
+                alert(choice+" was clicked.");
+                }
+                function save_function() {
+                alert("Save Button");
+                }
+                function save_as_function(choice) {
+                alert("Save As Button");
+                }
+            </script>
+      <link rel="stylesheet" type="text/css" href="omdoc-rhetoricalrelations.css"></link>
+      
+      <title>test</title>
+      
+   </head>
+   
+   <body class="tundra" onLoad="javascript:first()"><button dojoType="dijit.form.Button" onclick="plain();">Plain</button><button dojoType="dijit.form.Button" onclick="blocks();">Blocks</button><button dojoType="dijit.form.Button" onclick="relations();">Relations</button><br></br>
+      
+      <div class="dc-titleblock">
+         
+         <div class="dc-title">test</div>
+         
+         <div class="dc-authors">hf</div>
+         
+         <div class="dc-date">2001-12-12</div>
+         
+      </div>
+      
+      
+      <div class="omdoc-omgroup salt-introduction jana">
+         
+         <div class="header">motivation</div>
+         
+         <div class="omdoc-omtext salt-motivation special" id="txt2.1">
+            
+            <p id="bla"> This is random text
+               			
+               <span onMouseOver="high('#nuc2.1');" onMouseOut="low('#nuc2.1');" title="relation type: antithesis" class="satellite" rel="http://salt.semanticauthoring.org/onto/rhetorical-ontology#antithesis" resource="#nuc2.1" id="sat2.1"> 					While some scientists say the Moon is made of stone
+                  			</span>
+               <span class="nucleus" id="nuc2.1" onClick="outSatellites(); getSatellites('#nuc2.1');"><span dojoType="dijit.Menu" contextMenuForWindow="false" style="display:none;" leftClicktoOpen="true;" targetNodeIds="d1e37">
+                     <div dojoType="dijit.MenuItem" onClick="outSatellites();">Remove Highlights</div>
+                     <div dojoType="dijit.MenuItem" onClick="outSatellites(); getSatellites('#nuc2.1');"> All Satellites</div>
+                     <div dojoType="dijit.MenuSeparator"></div>
+                     <div dojoType="dijit.MenuItem" onClick="outSatellites(); getSpecificSatellite('#nuc2.1','antithesis')" disabled="false">Antithesis</div>
+                     <div dojoType="dijit.MenuItem" onClick="outSatellites(); getSpecificSatellite('#nuc2.1','elaboration')" disabled="false">Elaboration</div></span> we prove that it is made of white cheese </span><span class="link ddbox dropdwon_box_tab" id="d1e37"> . </span>
+               <span onMouseOver="high('#nuc2.1');" onMouseOut="low('#nuc2.1');" title="relation type: elaboration" class="satellite" rel="http://salt.semanticauthoring.org/onto/rhetorical-ontology#elaboration" resource="#nuc2.1" id="sat2.2"> 					swiss Emmental cheese to be exact!
+                  			</span>
+               
+            </p>
+            
+         </div>
+         
+      </div>
+      
+      <div class="omdoc-omgroup salt-motivation giceva">
+         
+         <div class="header">scenario</div>
+         
+         <div class="omdoc-omtext salt-scenario myclass" id="txt2.1.1">
+            
+            <p id="blable"> It was a nice sunny weekend
+               		
+               <span onMouseOver="high('#nuc2.1.1');" onMouseOut="low('#nuc2.1.1');" title="relation type: cause" class="satellite" rel="http://salt.semanticauthoring.org/onto/rhetorical-ontology#cause" resource="#nuc2.1.1" id="sat2.1.1">I am preparing you for:</span>
+               <span class="nucleus" id="nuc2.1.1" onClick="outSatellites(); getSatellites('#nuc2.1.1');"><span dojoType="dijit.Menu" contextMenuForWindow="false" style="display:none;" leftClicktoOpen="true;" targetNodeIds="d1e58">
+                     <div dojoType="dijit.MenuItem" onClick="outSatellites();">Remove Highlights</div>
+                     <div dojoType="dijit.MenuItem" onClick="outSatellites(); getSatellites('#nuc2.1.1');"> All Satellites</div>
+                     <div dojoType="dijit.MenuSeparator"></div>
+                     <div dojoType="dijit.MenuItem" onClick="outSatellites(); getSpecificSatellite('#nuc2.1.1','elaboration')" disabled="false">Elaboration</div>
+                     <div dojoType="dijit.MenuItem" onClick="outSatellites(); getSpecificSatellite('#nuc2.1.1','cause')" disabled="false">Cause</div></span>This is a very important sentence!</span><span class="link ddbox dropdwon_box_tab" id="d1e58"> . </span>
+               <span onMouseOver="high('#nuc2.1.1');" onMouseOut="low('#nuc2.1.1');" title="relation type: elaboration" class="satellite" rel="http://salt.semanticauthoring.org/onto/rhetorical-ontology#elaboration" resource="#nuc2.1.1" id="sat2.2.1">To conclude...</span>
+               
+            </p>
+            
+         </div>
+         
+      </div>
+      
+      
+      
+   </body>
+   
+</html>

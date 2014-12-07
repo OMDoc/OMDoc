@@ -1,0 +1,5013 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://omdoc.org/ns" xml:id="Lecture4" xmlns:andi="Andrea's collection" xmlns:miko="Micha's collection">
+  <metadata>
+    <dc:title xml:lang="en">
+      No Slide dc:title
+    </dc:title>
+    <dc:creator>
+      Peter Lee
+    </dc:creator>
+    <dc:date action="created">2000-08-26T00:00:00</dc:date>
+    <dc:date action="updated">2003-01-25T00:00:00</dc:date>
+    
+  </metadata>
+<omdoc xml:id="C256-page1" type="slide">
+  <metadata>
+    <dc:title xml:lang="en">
+      Collections, Stacks, and Queues
+    </dc:title>
+  </metadata>
+  <omtext xml:id="C256-Rectangle-2-txt-1">
+    <CMP xml:lang="en">
+      Collections, Stacks, and Queues
+    </CMP>
+  </omtext>
+  <omtext xml:id="C256-Rectangle-3-txt-1">
+    <CMP xml:lang="en">
+      <phrase style="italic"><phrase style="red">15-211 Fundamental Data Structures and Algorithms</phrase></phrase>
+    </CMP>
+  </omtext>
+  <omdoc xml:id="C256-Rectangle-4-1" type="section">
+    <omtext xml:id="C256-Rectangle-4-txt-2">
+      <CMP xml:lang="en">
+        Peter Lee
+      </CMP>
+    </omtext>
+    <omtext xml:id="C256-Rectangle-4-txt-3">
+      <CMP xml:lang="en">
+        January 24, 2001
+      </CMP>
+    </omtext>
+  </omdoc>
+  <omdoc xml:id="C256-notes" type="section">
+  </omdoc>
+</omdoc>
+<omdoc xml:id="C339-page2" type="slide">
+  <metadata>
+    <dc:title xml:lang="en">
+      Plan
+    </dc:title>
+  </metadata>
+  <omdoc xml:id="C339-Rectangle-3-1" type="itemize">
+    <omtext xml:id="C339-Rectangle-3-txt-2">
+      <CMP xml:lang="en">
+        Today we will finish our lectures on Java programming, and start on some simple data structures.
+      </CMP>
+    </omtext>
+    <omdoc xml:id="C339-Rectangle-3-3" type="itemize">
+      <metadata>
+        <dc:title xml:lang="en">
+          Reading:
+        </dc:title>
+      </metadata>
+      <omtext xml:id="C339-Rectangle-3-txt-4">
+        <CMP xml:lang="en">
+          For today: <phrase style="bold"><phrase style="blue">Chapters 6 and 16</phrase></phrase>
+        </CMP>
+      </omtext>
+      <omtext xml:id="C339-Rectangle-3-txt-5">
+        <CMP xml:lang="en">
+          For next week: <phrase style="bold"><phrase style="red">Chapters 17 and 18</phrase></phrase>
+        </CMP>
+      </omtext>
+    </omdoc>
+  </omdoc>
+  <omdoc xml:id="C339-notes" type="section">
+  </omdoc>
+</omdoc>
+<omdoc xml:id="C861-page3" type="slide">
+  <metadata>
+    <dc:title xml:lang="en">
+      Corrections
+    </dc:title>
+  </metadata>
+  <omtext xml:id="C861-Rectangle-3-txt-1">
+    <CMP xml:lang="en">
+      A corrected version of the last lecture (Jan.22) is available on the Blackboard.
+    </CMP>
+  </omtext>
+  <omdoc xml:id="C861-notes" type="section">
+  </omdoc>
+</omdoc>
+<omdoc xml:id="C709-page4" type="slide">
+  <omtext xml:id="C709-Text-Box-2-txt-1">
+    <CMP xml:lang="en">
+      <phrase style="italic"><phrase style="red">Recap</phrase></phrase>
+    </CMP>
+  </omtext>
+  <omdoc xml:id="C709-notes" type="section">
+  </omdoc>
+</omdoc>
+<theory xml:id="C847-Theory1">
+  <metadata>
+    <dc:title xml:lang="en">
+      taxonomy
+    </dc:title>
+    <dc:date action="created">2002-12-16T00:00:00</dc:date>
+    <dc:date action="update">2002-12-16T00:00:00</dc:date>
+  </metadata>
+  <omtext xml:id="C847-Theory1-txt-1">
+    <CMP xml:lang="en">
+      Inheritance: Taxonomy metaphor
+    </CMP>
+  </omtext>
+  <symbol name="human" scope="global">
+    <metadata><dc:subject>human</dc:subject></metadata>
+  </symbol>
+  <symbol name="mammal" scope="global">
+    <metadata><dc:subject>mammal</dc:subject></metadata>
+  </symbol>
+  <symbol name="animal" scope="global">
+    <metadata><dc:subject>animal</dc:subject></metadata>
+  </symbol>
+  <omtext xml:id="C847-Theory1-comment">
+    <CMP xml:lang="en">
+      This theory needs to be linked to a knowledge base about animal taxonomy.
+    </CMP>
+  </omtext>
+  <omdoc xml:id="C847-page5" type="slide">
+    <metadata>
+      <dc:title xml:lang="en">
+        Inheritance: Taxonomy metaphor
+      </dc:title>
+    </metadata>
+    <omtext xml:id="C847-Oval-2051-txt-1">
+      <CMP xml:lang="en">
+        Animal
+      </CMP>
+    </omtext>
+    <omtext xml:id="C847-Oval-2052-txt-1">
+      <CMP xml:lang="en">
+        Human
+      </CMP>
+    </omtext>
+    <omtext xml:id="C847-Oval-2053-txt-1">
+      <CMP xml:lang="en">
+        Canine
+      </CMP>
+    </omtext>
+    <omtext xml:id="C847-Oval-2054-txt-1">
+      <CMP xml:lang="en">
+        Dog
+      </CMP>
+    </omtext>
+    <omtext xml:id="C847-Oval-2055-txt-1">
+      <CMP xml:lang="en">
+        Wolf
+      </CMP>
+    </omtext>
+    <omtext xml:id="C847-Oval-2056-txt-1">
+      <CMP xml:lang="en">
+        Professor
+      </CMP>
+    </omtext>
+    <omtext xml:id="C847-Oval-2057-txt-1">
+      <CMP xml:lang="en">
+        Student
+      </CMP>
+    </omtext>
+    <omtext xml:id="C847-Oval-2060-txt-1">
+      <CMP xml:lang="en">
+        Reptile
+      </CMP>
+    </omtext>
+    <omtext xml:id="C847-Oval-2061-txt-1">
+      <CMP xml:lang="en">
+        Mammal
+      </CMP>
+    </omtext>
+    <omtext xml:id="C847-Oval-2068-txt-1">
+      <CMP xml:lang="en">
+        Lorises
+      </CMP>
+    </omtext>
+    <omtext xml:id="C847-Text-Box-2072-txt-1">
+      <CMP xml:lang="en">
+        <phrase style="blue">extends</phrase>
+      </CMP>
+    </omtext>
+    <omtext xml:id="C847-Text-Box-2073-txt-1">
+      <CMP xml:lang="en">
+        <phrase style="blue">extends</phrase>
+      </CMP>
+    </omtext>
+    <omtext xml:id="C847-Text-Box-2074-txt-1">
+      <CMP xml:lang="en">
+        <phrase style="blue">extends</phrase>
+      </CMP>
+    </omtext>
+    <omtext xml:id="C847-Text-Box-2075-txt-1">
+      <CMP xml:lang="en">
+        <phrase style="blue">extends</phrase>
+      </CMP>
+    </omtext>
+    <omtext xml:id="C847-Text-Box-2076-txt-1">
+      <CMP xml:lang="en">
+        <phrase style="blue">extends</phrase>
+      </CMP>
+    </omtext>
+    <omtext xml:id="C847-Text-Box-2077-txt-1">
+      <CMP xml:lang="en">
+        <phrase style="blue">extends</phrase>
+      </CMP>
+    </omtext>
+    <omtext xml:id="C847-Text-Box-2078-txt-1">
+      <CMP xml:lang="en">
+        <phrase style="blue">extends</phrase>
+      </CMP>
+    </omtext>
+    <omtext xml:id="C847-Text-Box-2079-txt-1">
+      <CMP xml:lang="en">
+        <phrase style="blue">extends</phrase>
+      </CMP>
+    </omtext>
+    <omtext xml:id="C847-Text-Box-2080-txt-1">
+      <CMP xml:lang="en">
+        <phrase style="blue">extends</phrase>
+      </CMP>
+    </omtext>
+    <omtext xml:id="C847-Picture-2082-img">
+      <CMP xml:lang="en">
+        <omlet function="C847-Picture-2082-prv" style="embed" type="image" action="none" width="540" height="366.25"/>
+      </CMP>
+    </omtext>
+    <omdoc xml:id="C847-notes" type="section">
+    </omdoc>
+  </omdoc>
+</theory>
+<theory xml:id="C862-Theory2">
+  <metadata>
+    <dc:title xml:lang="en">
+      classes versus instances
+    </dc:title>
+    <dc:description xml:lang="en">
+      contrasts Java classes with instances of such classes
+    </dc:description>
+  </metadata>
+  <omtext xml:id="C862-Theory2-txt-1">
+    <CMP xml:lang="en">
+      Classes vs instances
+    </CMP>
+  </omtext>
+  <symbol name="class" scope="global">
+    <metadata><dc:subject>Java class</dc:subject></metadata>
+  </symbol>
+  <symbol name="instance" scope="global">
+    <metadata><dc:subject>Java class instance</dc:subject></metadata>
+  </symbol>
+  <symbol name="object" scope="global">
+    <metadata><dc:subject>Java object</dc:subject></metadata>
+  </symbol>
+  <symbol name="superclass" scope="global">
+    <metadata><dc:subject>Java superclass</dc:subject></metadata>
+  </symbol>
+  <omtext xml:id="C862-Theory2-comment">
+    <CMP xml:lang="en">
+    </CMP>
+  </omtext>
+  <omdoc xml:id="C862-page6" type="slide">
+    <metadata>
+      <dc:title xml:lang="en">
+        Classes vs instances
+      </dc:title>
+    </metadata>
+    <axiom xml:id="C862-Axiom3">
+      <metadata>
+        <dc:title xml:lang="en">
+          objects are class instances
+        </dc:title>
+      </metadata>
+      <CMP xml:lang="en">
+        Every <phrase style="italic"><phrase style="blue">object </phrase></phrase>is an <phrase style="italic"><phrase style="red">instance </phrase></phrase>of a <phrase style="italic"><phrase style="blue">class</phrase></phrase>.
+      </CMP>
+    </axiom>
+    <axiom xml:id="C862-Axiom2">
+      <metadata>
+        <dc:title xml:lang="en">
+          class defines object
+        </dc:title>
+        <dc:description xml:lang="en">
+          characteristics of an object
+        </dc:description>
+      </metadata>
+      <CMP xml:lang="en">
+        The characteristics of an object are defined by its class.
+      </CMP>
+    </axiom>
+    <axiom xml:id="C862-Axiom1">
+      <metadata>
+        <dc:title xml:lang="en">
+          Inheritance
+        </dc:title>
+        <dc:description xml:lang="en">
+          methods and constructors of superclasses are accessible
+        </dc:description>
+      </metadata>
+      <CMP xml:lang="en">
+        An object <phrase style="italic"><phrase style="blue">inherits </phrase></phrase>characteristics from all of its <phrase style="italic"><phrase style="red">superclasses</phrase></phrase>
+      </CMP>
+    </axiom>
+    <omdoc xml:id="C862-notes" type="section">
+    </omdoc>
+  </omdoc>
+</theory>
+<theory xml:id="C863-Theory4">
+  <metadata>
+    <dc:title xml:lang="en">
+      Danny's classes vs instances
+    </dc:title>
+    <dc:description xml:lang="en">
+      illustration of Java inheritance by means of example from biological inheritance
+    </dc:description>
+  </metadata>
+  <omtext xml:id="C863-Theory4-txt-1">
+    <CMP xml:lang="en">
+      Classes vs instances
+    </CMP>
+  </omtext>
+  <symbol name="Danny Sleator" scope="global">
+    <metadata><dc:subject>Danny Sleator</dc:subject></metadata>
+  </symbol>
+  <omtext xml:id="C863-Theory4-comment">
+    <CMP xml:lang="en">
+    </CMP>
+  </omtext>
+  <omdoc xml:id="C863-page7" type="slide">
+    <metadata>
+      <dc:title xml:lang="en">
+        Classes vs instances
+      </dc:title>
+    </metadata>
+    <omtext xml:id="C863-Text-Box-8-txt-1">
+      <CMP xml:lang="en">
+        <phrase style="italic"> </phrase>
+      </CMP>
+    </omtext>
+    <omtext xml:id="C863-Text-Box-7-txt-1">
+      <CMP xml:lang="en">
+        Example:
+      </CMP>
+    </omtext>
+    <axiom xml:id="C863-Axiom4">
+      <metadata>
+        <dc:title xml:lang="en">
+          Danny is professor
+        </dc:title>
+        <dc:description xml:lang="en">
+          illustration of 'instance'
+        </dc:description>
+      </metadata>
+      <CMP xml:lang="en">
+        <phrase style="italic"><phrase style="blue">Danny Sleator </phrase></phrase>is an <phrase style="italic"><phrase style="red">instance</phrase></phrase> of the <phrase style="italic"><phrase style="blue">Professor</phrase></phrase> class.
+      </CMP>
+    </axiom>
+    <assertion xml:id="C863-Theorem1" theory="#C863-Theory4" type="theorem">
+      <metadata>
+        <dc:title xml:lang="en">
+          what Danny is
+        </dc:title>
+        <dc:description xml:lang="en">
+          inheritance for humans
+        </dc:description>
+      </metadata>
+      <CMP xml:lang="en">
+        He is therefore also an instance of the <phrase style="italic"><phrase style="blue">Human</phrase></phrase>, <phrase style="italic"><phrase style="blue">Mammal</phrase></phrase>, and <phrase style="italic"><phrase style="blue">Animal</phrase></phrase> classes.
+        Isn't it necessary to have this theorem also linked to the 'taxonomy' theory? Or would that be specified in a 'proof'?
+      </CMP>
+    </assertion>
+    <symbol name="isa" scope="global">
+      <metadata><dc:subject>'is a' relation</dc:subject></metadata>
+    </symbol>
+    <definition xml:id="C863-Definition2" for="isa" type="simple">
+      <metadata>
+        <dc:title xml:lang="en">
+          Definition for 'is a'
+        </dc:title>
+        <dc:description xml:lang="en">
+          'is a' - relation
+        </dc:description>
+      </metadata>
+      <CMP xml:lang="en">
+        Sometimes we say that Danny Sleator &#x201C;<phrase style="italic"><phrase style="red">is a</phrase></phrase>&#x201D; Professor (or Human or Mammal&#x2026;)
+      </CMP>
+    </definition>
+    <symbol name="hasa" scope="global">
+      <metadata><dc:subject>has-relation</dc:subject></metadata>
+    </symbol>
+    <definition xml:id="C863-Definition1" for="hasa" type="simple">
+      <metadata>
+        <dc:title xml:lang="en">
+          Definition for 'has a'
+        </dc:title>
+      </metadata>
+      <CMP xml:lang="en">
+        Danny also &#x201C;<phrase style="italic"><phrase style="red">has a</phrase></phrase>&#x201D; wife and son, who are also instances of the Human clas
+      </CMP>
+    </definition>
+    <omdoc xml:id="C863-notes" type="section">
+    </omdoc>
+  </omdoc>
+</theory>
+<theory xml:id="C864-Theory5">
+  <metadata>
+    <dc:title xml:lang="en">
+      Java code for classes
+    </dc:title>
+    <dc:date action="created">2002-12-16T00:00:00</dc:date>
+    <dc:date action="update">2002-12-16T00:00:00</dc:date>
+  </metadata>
+  <omtext xml:id="C864-Theory5-txt">
+    <CMP xml:lang="en">
+      <omlet function="#C864-Theory5-code"  type="code" action="none"/>
+    </CMP>
+  </omtext>
+  <symbol name="extends" scope="global">
+    <metadata><dc:subject>extension relation in inheritance</dc:subject></metadata>
+  </symbol>
+  <omtext xml:id="C864-Theory5-comment">
+    <CMP xml:lang="en">
+    </CMP>
+  </omtext>
+  <omdoc xml:id="C864-page8" type="slide">
+    <metadata>
+      <dc:title xml:lang="en">
+        In Java:
+      </dc:title>
+    </metadata>
+    <axiom xml:id="C864-Axiom35">
+      <metadata>
+        <dc:title xml:lang="en">
+          implicit extension of object
+        </dc:title>
+        <dc:date action="created">2002-12-17T00:00:00</dc:date>
+      </metadata>
+      <CMP xml:lang="en">
+        <phrase style="italic"><phrase style="red">Implicitly extends class Object</phrase></phrase>
+      </CMP>
+    </axiom>
+    <example xml:id="C864-Example1" for="#C864-Theory5">
+      <metadata>
+        <dc:title xml:lang="en">
+          class declaration
+        </dc:title>
+        <dc:description xml:lang="en">
+          class animal
+        </dc:description>
+        <dc:date action="created">2002-12-16T00:00:00</dc:date>
+      </metadata>
+      <CMP xml:lang="en">
+        <omlet function="#C864-Example1-code"  type="code" action="none"/>
+      </CMP>
+    </example>
+    <example xml:id="C864-Example2" for="#C864-Theory5">
+      <metadata>
+        <dc:title xml:lang="en">
+          class declaration and extension 1
+        </dc:title>
+      </metadata>
+      <CMP xml:lang="en">
+        <omlet function="#C864-Example2-code"  type="code" action="none"/>
+      </CMP>
+    </example>
+    <example xml:id="C864-Example3" for="#C864-Theory5">
+      <metadata>
+        <dc:title xml:lang="en">
+          class declaration and extension 2
+        </dc:title>
+      </metadata>
+      <CMP xml:lang="en">
+        <omlet function="#C864-Example3-code"  type="code" action="none"/>
+      </CMP>
+    </example>
+    <example xml:id="C864-Example4" for="#C864-Theory5">
+      <metadata>
+        <dc:title xml:lang="en">
+          class declaration and extension 3
+        </dc:title>
+      </metadata>
+      <CMP xml:lang="en">
+        <omlet function="#C864-Example4-code"  type="code" action="none"/>
+      </CMP>
+    </example>
+    <example xml:id="C864-Example25" for="#C864-Theory5">
+      <metadata>
+        <dc:title xml:lang="en">
+          instatiation
+        </dc:title>
+        <dc:date action="created">2002-12-17T00:00:00</dc:date>
+        <dc:date action="update">2002-12-17T00:00:00</dc:date>
+      </metadata>
+      <CMP xml:lang="en">
+        <omlet function="#C864-Example25-code"  type="code" action="none"/>
+        OK, this is the chopper problem: Here I chopped at the beginning and am now unable to go back and group this line with the next 4 lines of code together (as it should be)
+      </CMP>
+    </example>
+    <omtext xml:id="C864-Text-Box-19-txt-1">
+      <CMP xml:lang="en">
+        <phrase style="bold"> Public static main () {</phrase>
+      </CMP>
+    </omtext>
+    <omtext xml:id="C864-Text-Box-20-txt-1">
+      <CMP xml:lang="en">
+        <phrase style="bold"> Professor danny = new Professor();</phrase>
+      </CMP>
+    </omtext>
+    <omtext xml:id="C864-Text-Box-21-txt-1">
+      <CMP xml:lang="en">
+        <phrase style="bold"> &#x2026;</phrase>
+      </CMP>
+    </omtext>
+    <omtext xml:id="C864-Text-Box-22-txt-1">
+      <CMP xml:lang="en">
+        <phrase style="bold"> }</phrase>
+      </CMP>
+    </omtext>
+    <omdoc xml:id="C864-notes" type="section">
+    </omdoc>
+  </omdoc>
+  <omdoc xml:id="C865-page9" type="slide">
+    <metadata>
+      <dc:title xml:lang="en">
+        In a bit more detail&#x2026;
+      </dc:title>
+    </metadata>
+    <example xml:id="C865-Example5" for="#C864-Theory5">
+      <metadata>
+        <dc:title xml:lang="en">
+          class-instance-inheritance
+        </dc:title>
+        <dc:description xml:lang="en">
+          detailed example
+        </dc:description>
+      </metadata>
+      <CMP xml:lang="en">
+        <omlet function="#C865-Example5-code"  type="code" action="none"/>
+        Is this the right treatment for this code??
+      </CMP>
+    </example>
+    <example xml:id="C865-Example6" for="C864-Theory5">
+      <metadata>
+        <dc:title xml:lang="en">
+          class, instance, inheritance contd.
+        </dc:title>
+      </metadata>
+      <CMP xml:lang="en">
+        <omlet function="#C865-Example6-code"  type="code" action="none"/>
+      </CMP>
+    </example>
+    <symbol name="instance_variables" scope="global">
+    </symbol>
+    <definition xml:id="C865-Definition5" for="instance_variables" type="simple">
+      <metadata>
+        <dc:title xml:lang="en">
+          instance variable declaration in Java
+        </dc:title>
+        <dc:date action="created">
+          20021217
+        </dc:date>
+        <dc:date action="update">
+          20021217
+        </dc:date>
+        <Language>en</Language>
+      </metadata>
+      <CMP xml:lang="en">
+        <phrase style="italic"><phrase style="red">Instance variables</phrase></phrase>
+        Here we have the problem of symbol declaration. Note that instance was defined as primitive symbol in the class vs instances theory already, but here there is - so to speak - a definition of what is meant by instance variables (at least if one is able to see the arrows)
+      </CMP>
+    </definition>
+    <omdoc xml:id="C865-notes" type="section">
+    </omdoc>
+  </omdoc>
+</theory>
+<theory xml:id="C866-Theory6">
+  <metadata>
+    <dc:title xml:lang="en">
+      constructor methods
+    </dc:title>
+    <dc:date action="created">
+      20021216
+    </dc:date>
+    <dc:date action="update">
+      20021217
+    </dc:date>
+    <Language>en</Language>
+  </metadata>
+  <omtext xml:id="C866-Theory6-txt-1">
+    <CMP xml:lang="en">
+      Constructor methods
+    </CMP>
+  </omtext>
+  <symbol name="constructor (method)" scope="global">
+    <metadata><dc:subject>Java constructor</dc:subject></metadata>
+  </symbol>
+  <symbol name="method" scope="global">
+    <metadata><dc:subject>Java method</dc:subject></metadata>
+  </symbol>
+  <omtext xml:id="C866-Theory6-comment">
+    <CMP xml:lang="en">
+    </CMP>
+  </omtext>
+  <omdoc xml:id="C866-page10" type="slide">
+    <metadata>
+      <dc:title xml:lang="en">
+        Constructor methods
+      </dc:title>
+    </metadata>
+    <axiom xml:id="C866-Axiom6">
+      <metadata>
+        <dc:title xml:lang="en">
+          class defines constructor methods
+        </dc:title>
+      </metadata>
+      <CMP xml:lang="en">
+        Each class defines one or more <phrase style="italic"><phrase style="blue">constructor methods</phrase></phrase> for initializing an object&#x2019;s instance variables.
+      </CMP>
+    </axiom>
+    <omtext xml:id="C866-Question1-txt-1" type="question">
+      <CMP xml:lang="en">
+        Question: What are the instance variables for an instance of the Professor class
+      </CMP>
+    </omtext>
+    <omdoc xml:id="C866-notes" type="section">
+    </omdoc>
+  </omdoc>
+</theory>
+<theory xml:id="C867-Theory7">
+  <metadata>
+    <dc:title xml:lang="en">
+      sample constructors
+    </dc:title>
+    <dc:date action="created">
+      20021216
+    </dc:date>
+    <dc:date action="update">
+      20021216
+    </dc:date>
+    <Language>en</Language>
+  </metadata>
+  <omtext xml:id="C867-Theory7-txt-1">
+    <CMP xml:lang="en">
+      Sample constructors
+    </CMP>
+  </omtext>
+  <imports xml:id="C867-Theory7-imp-1" from="file://omdoc#CTheory3-Theory5-Theory6"/>
+  <omtext xml:id="C867-Theory7-comment">
+    <CMP xml:lang="en">
+      or should this be an example??
+    </CMP>
+  </omtext>
+  <omdoc xml:id="C867-page11" type="slide">
+    <metadata>
+      <dc:title xml:lang="en">
+        Sample constructors
+      </dc:title>
+    </metadata>
+    <example xml:id="C867-Example7" for="#C867-Theory7">
+      <metadata>
+        <dc:title xml:lang="en">
+          Java constructors and inheritance
+        </dc:title>
+        <dc:date action="created">
+          20021216
+        </dc:date>
+        <Language>en</Language>
+      </metadata>
+      <CMP xml:lang="en">
+        <omlet function="#C867-Example7-code"  type="code" action="none"/>
+      </CMP>
+    </example>
+    <omdoc xml:id="C867-Question2-1" type="section">
+      <omtext xml:id="C867-Question2-txt-2" type="question">
+        <CMP xml:lang="en">
+          <phrase style="italic"><phrase style="red">Why can&#x2019;t we simply write </phrase></phrase>
+        </CMP>
+      </omtext>
+      <omtext xml:id="C867-Question2-txt-4" type="question">
+        <CMP xml:lang="en">
+          <phrase style="bold">age = years; </phrase>
+        </CMP>
+      </omtext>
+      <omtext xml:id="C867-Question2-txt-6" type="question">
+        <CMP xml:lang="en">
+          <phrase style="italic"><phrase style="red">instead of this?</phrase></phrase>
+        </CMP>
+      </omtext>
+    </omdoc>
+    <omdoc xml:id="C867-notes" type="section">
+    </omdoc>
+  </omdoc>
+</theory>
+<theory xml:id="C850-Theory8">
+  <metadata>
+    <dc:title xml:lang="en">
+      Java class hierarchy
+    </dc:title>
+    <dc:description xml:lang="en">
+      excerpt
+    </dc:description>
+    <dc:date action="created">
+      20021216
+    </dc:date>
+    <dc:date action="update">
+      20021216
+    </dc:date>
+    <Language>en</Language>
+  </metadata>
+  <omtext xml:id="C850-Theory8-txt-1">
+    <CMP xml:lang="en">
+      Java class hierarchy (excerpt)
+    </CMP>
+  </omtext>
+  <omtext xml:id="C850-Theory8-comment">
+    <CMP xml:lang="en">
+      symbols for every node in the graph?                                  how do I get the graph in one piece?                                  what about the box being superimposed on the graph?
+    </CMP>
+  </omtext>
+  <omdoc xml:id="C850-page12" type="slide">
+    <metadata>
+      <dc:title xml:lang="en">
+        Java class hierarchy (excerpt)
+      </dc:title>
+    </metadata>
+    <omtext xml:id="C850-Text-Box-1027-txt-1">
+      <CMP xml:lang="en">
+        Click here
+      </CMP>
+    </omtext>
+    <axiom xml:id="C850-Axiom7">
+      <metadata>
+        <dc:title xml:lang="en">
+          every class inherites from object
+        </dc:title>
+      </metadata>
+      <CMP xml:lang="en">
+        <phrase style="blue">All Classes in Java Ultimately Inherit from Object</phrase>
+      </CMP>
+    </axiom>
+    <axiom xml:id="C850-Axiom9">
+      <metadata>
+        <dc:title xml:lang="en">
+          java inheritance tree
+        </dc:title>
+        <dc:date action="created">
+          20021216
+        </dc:date>
+        <dc:date action="update">
+          20021217
+        </dc:date>
+        <Language>en</Language>
+      </metadata>
+      <CMP xml:lang="en">
+        <omlet function="C850-Axiom9-prv" style="embed" type="image" action="none" width="720" height="354"/>
+        Does this work? What about the superposition of the box? Does the box I put in capture the whole tree? Should it respect the structure beneath the box or not?
+      </CMP>
+    </axiom>
+    <omdoc xml:id="C850-notes" type="section">
+    </omdoc>
+  </omdoc>
+  <omdoc xml:id="C852-page13" type="slide">
+    <metadata>
+      <dc:title xml:lang="en">
+        Java.lang
+      </dc:title>
+    </metadata>
+    <axiom xml:id="C852-Axiom10">
+      <metadata>
+        <dc:title xml:lang="en">
+          transitivity of inheritance
+        </dc:title>
+        <dc:date action="created">
+          20021216
+        </dc:date>
+        <dc:date action="update">
+          20021217
+        </dc:date>
+        <Language>en</Language>
+      </metadata>
+      <CMP xml:lang="en">
+        <ul>
+          <li>
+            <phrase style="blue">Inheritance is transitive: </phrase>
+          </li>
+          <li>
+            <phrase style="blue">Short IS-A Number IS-A Object </phrase>
+          </li>
+          <li>
+            <phrase style="blue">therefore </phrase>
+          </li>
+          <li>
+            <phrase style="blue">Short IS-A Object</phrase>
+          </li>
+        </ul>
+      </CMP>
+    </axiom>
+    <omdoc xml:id="C852-notes" type="section">
+    </omdoc>
+  </omdoc>
+</theory>
+<theory xml:id="C848-Theory9">
+  <metadata>
+    <dc:title xml:lang="en">
+      taxonomy of shapes
+    </dc:title>
+    <dc:date action="created">
+      20021216
+    </dc:date>
+    <dc:date action="update">
+      20021216
+    </dc:date>
+    <Language>en</Language>
+  </metadata>
+  <omtext xml:id="C848-Theory9-txt-1">
+    <CMP xml:lang="en">
+      Another Taxonomy - Shapes
+    </CMP>
+  </omtext>
+  <omtext xml:id="C848-Theory9-comment">
+    <CMP xml:lang="en">
+    </CMP>
+  </omtext>
+  <omdoc xml:id="C848-page14" type="slide">
+    <metadata>
+      <dc:title xml:lang="en">
+        Another Taxonomy - Shapes
+      </dc:title>
+    </metadata>
+    <omtext xml:id="C848-Rectangle-1028-txt-1">
+      <CMP xml:lang="en">
+        Rectangle
+      </CMP>
+    </omtext>
+    <omtext xml:id="C848-Rectangle-1029-txt-1">
+      <CMP xml:lang="en">
+        Square
+      </CMP>
+    </omtext>
+    <omtext xml:id="C848-Oval-1031-txt-1">
+      <CMP xml:lang="en">
+        Ellipse
+      </CMP>
+    </omtext>
+    <omtext xml:id="C848-Oval-1032-txt-1">
+      <CMP xml:lang="en">
+        Circle
+      </CMP>
+    </omtext>
+    <omtext xml:id="C848-Rectangle-1040-txt-1">
+      <CMP xml:lang="en">
+        Shape
+      </CMP>
+    </omtext>
+    <omtext xml:id="C848-AutoShape-1041-txt-1">
+      <CMP xml:lang="en">
+        Triangle
+      </CMP>
+    </omtext>
+    <axiom xml:id="C848-Axiom11">
+      <metadata>
+        <dc:title xml:lang="en">
+          inheritance tree for shapes
+        </dc:title>
+        <dc:date action="created">
+          20021216
+        </dc:date>
+        <dc:date action="update">
+          20021217
+        </dc:date>
+        <Language>en</Language>
+      </metadata>
+      <CMP xml:lang="en">
+        <omlet function="C848-Axiom11-prv" style="embed" type="image" action="none" width="648" height="372"/>
+        Is this right? Does it work / respect the strucutre beneath the square?
+      </CMP>
+    </axiom>
+    <omdoc xml:id="C848-notes" type="section">
+    </omdoc>
+  </omdoc>
+</theory>
+<theory xml:id="C853-Theory10">
+  <metadata>
+    <dc:title xml:lang="en">
+      interface classes
+    </dc:title>
+    <dc:date action="created">
+      20021216
+    </dc:date>
+    <dc:date action="update">
+      20021217
+    </dc:date>
+    <Language>en</Language>
+  </metadata>
+  <omtext xml:id="C853-Theory10-txt-1">
+    <CMP xml:lang="en">
+      Interface classes
+    </CMP>
+  </omtext>
+  <symbol name="implements" scope="global">
+    <metadata><dc:subject>Java class implementation</dc:subject></metadata>
+  </symbol>
+  <symbol name="subclass" scope="global">
+    <metadata><dc:subject>Java subclass</dc:subject></metadata>
+  </symbol>
+  <omtext xml:id="C853-Theory10-comment">
+    <CMP xml:lang="en">
+    </CMP>
+  </omtext>
+  <omdoc xml:id="C853-page15" type="slide">
+    <metadata>
+      <dc:title xml:lang="en">
+        Interface classes
+      </dc:title>
+    </metadata>
+    <example xml:id="C853-Example8" for="#C853-Theory10">
+      <metadata>
+        <dc:title xml:lang="en">
+          shape interface
+        </dc:title>
+      </metadata>
+      <CMP xml:lang="en">
+        <omlet function="#C853-Example8-code"  type="code" action="none"/>
+      </CMP>
+    </example>
+    <axiom xml:id="C853-Axiom12">
+      <metadata>
+        <dc:title xml:lang="en">
+          interfaces define methods
+        </dc:title>
+      </metadata>
+      <CMP xml:lang="en">
+        <phrase style="italic"><phrase style="blue">The interface defines all of the methods that are required in any implementation of Shape.</phrase></phrase>
+      </CMP>
+    </axiom>
+    <omdoc xml:id="C853-notes" type="section">
+    </omdoc>
+  </omdoc>
+  <omdoc xml:id="C870-page16" type="slide">
+    <metadata>
+      <dc:title xml:lang="en">
+        Some rules about interfaces
+      </dc:title>
+    </metadata>
+    <axiom xml:id="C870-Axiom13">
+      <metadata>
+        <dc:title xml:lang="en">
+          interface rule 1
+        </dc:title>
+        <dc:date action="created">
+          20021216
+        </dc:date>
+        <dc:date action="update">
+          20021217
+        </dc:date>
+        <Language>en</Language>
+      </metadata>
+      <CMP xml:lang="en">
+        No instance variables, no constructor methods.
+      </CMP>
+    </axiom>
+    <axiom xml:id="C870-Axiom14">
+      <metadata>
+        <dc:title xml:lang="en">
+          interface rule 2
+        </dc:title>
+        <dc:date action="created">
+          20021216
+        </dc:date>
+        <dc:date action="update">
+          20021217
+        </dc:date>
+        <Language>en</Language>
+      </metadata>
+      <CMP xml:lang="en">
+        No code. All methods must be &#x201C;abstract&#x201D;.
+      </CMP>
+    </axiom>
+    <axiom xml:id="C870-Axiom15">
+      <metadata>
+        <dc:title xml:lang="en">
+          interface rule 3
+        </dc:title>
+        <dc:date action="created">
+          20021216
+        </dc:date>
+        <dc:date action="update">
+          20021217
+        </dc:date>
+        <Language>en</Language>
+      </metadata>
+      <CMP xml:lang="en">
+        Subclasses that implement the interface say &#x201C;<phrase style="blue">implements</phrase>&#x201D;.
+      </CMP>
+    </axiom>
+    <axiom xml:id="C870-Axiom16">
+      <metadata>
+        <dc:title xml:lang="en">
+          interface rule 4
+        </dc:title>
+        <dc:date action="created">
+          20021216
+        </dc:date>
+        <dc:date action="update">
+          20021217
+        </dc:date>
+        <Language>en</Language>
+      </metadata>
+      <CMP xml:lang="en">
+        A class can inherit from (i.e., implement) multiple interfaces
+      </CMP>
+    </axiom>
+    <omdoc xml:id="C870-notes" type="section">
+    </omdoc>
+  </omdoc>
+</theory>
+<theory xml:id="C868-Theory11">
+  <metadata>
+    <dc:title xml:lang="en">
+      abstract classes
+    </dc:title>
+    <dc:date action="created">
+      20021216
+    </dc:date>
+    <dc:date action="update">
+      20021216
+    </dc:date>
+    <Language>en</Language>
+  </metadata>
+  <omtext xml:id="C868-Theory11-txt-1">
+    <CMP xml:lang="en">
+      Abstract classes
+    </CMP>
+  </omtext>
+  <omtext xml:id="C868-Theory11-comment">
+    <CMP xml:lang="en">
+    </CMP>
+  </omtext>
+  <omdoc xml:id="C868-page17" type="slide">
+    <metadata>
+      <dc:title xml:lang="en">
+        Abstract classes
+      </dc:title>
+    </metadata>
+    <example xml:id="C868-Example9" for="#C868-Theory11">
+      <metadata>
+        <dc:title xml:lang="en">
+          abstract class: shape
+        </dc:title>
+      </metadata>
+      <CMP xml:lang="en">
+        <omlet function="#C868-Example9-code"  type="code" action="none"/>
+      </CMP>
+    </example>
+    <axiom xml:id="C868-Axiom18">
+      <metadata>
+        <dc:title xml:lang="en">
+          method definition
+        </dc:title>
+      </metadata>
+      <CMP xml:lang="en">
+        <phrase style="italic"><phrase style="blue">The abstract class defines all of the methods that are required in any implementation of Shape.</phrase></phrase>
+      </CMP>
+    </axiom>
+    <axiom xml:id="C868-Axiom17">
+      <metadata>
+        <dc:title xml:lang="en">
+          inheritance from abstract class
+        </dc:title>
+        <dc:date action="created">
+          20021216
+        </dc:date>
+        <dc:date action="update">
+          20021217
+        </dc:date>
+        <Language>en</Language>
+      </metadata>
+      <CMP xml:lang="en">
+        <omlet function="C868-Axiom17-prv" style="embed" type="image" action="none" width="450" height="300"/>
+        Does it work? Overlap?
+      </CMP>
+    </axiom>
+    <omdoc xml:id="C868-notes" type="section">
+    </omdoc>
+  </omdoc>
+  <omdoc xml:id="C871-page18" type="slide">
+    <metadata>
+      <dc:title xml:lang="en">
+        Rules about abstract classes
+      </dc:title>
+    </metadata>
+    <axiom xml:id="C871-Axiom19">
+      <metadata>
+        <dc:title xml:lang="en">
+          abstract class rule 1
+        </dc:title>
+      </metadata>
+      <CMP xml:lang="en">
+        May have instance variables.
+        What about elipses in the wording of the axiom?
+      </CMP>
+    </axiom>
+    <axiom xml:id="C871-Axiom20">
+      <metadata>
+        <dc:title xml:lang="en">
+          abstract classes rule 2
+        </dc:title>
+        <dc:date action="created">
+          20021216
+        </dc:date>
+        <dc:date action="update">
+          20021217
+        </dc:date>
+        <Language>en</Language>
+      </metadata>
+      <CMP xml:lang="en">
+        Can&#x2019;t invoke &#x201C;new&#x201D; on an abstract class.
+      </CMP>
+    </axiom>
+    <axiom xml:id="C871-Axiom21">
+      <metadata>
+        <dc:title xml:lang="en">
+          abstract classes rule 3
+        </dc:title>
+        <dc:date action="created">
+          20021216
+        </dc:date>
+        <dc:date action="update">
+          20021217
+        </dc:date>
+        <Language>en</Language>
+      </metadata>
+      <CMP xml:lang="en">
+        Abstract methods must be declared &#x201C;<phrase style="blue">abstract</phrase>&#x201D;. Code can be supplied for other methods.
+      </CMP>
+    </axiom>
+    <axiom xml:id="C871-Axiom22">
+      <metadata>
+        <dc:title xml:lang="en">
+          abstract classes rule 5
+        </dc:title>
+        <dc:date action="created">
+          20021216
+        </dc:date>
+        <dc:date action="update">
+          20021217
+        </dc:date>
+        <Language>en</Language>
+      </metadata>
+      <CMP xml:lang="en">
+        Subclasses that inherit from an abstract class say &#x201C;<phrase style="blue">extends</phrase>&#x201D;.
+      </CMP>
+    </axiom>
+    <axiom xml:id="C871-Axiom23">
+      <metadata>
+        <dc:title xml:lang="en">
+          abstract classes rule 5
+        </dc:title>
+        <dc:date action="created">
+          20021216
+        </dc:date>
+        <dc:date action="update">
+          20021217
+        </dc:date>
+        <Language>en</Language>
+      </metadata>
+      <CMP xml:lang="en">
+        A class may inherit from only one abstract class
+      </CMP>
+    </axiom>
+    <omdoc xml:id="C871-notes" type="section">
+    </omdoc>
+  </omdoc>
+</theory>
+<theory xml:id="C869-Theory12">
+  <metadata>
+    <dc:title xml:lang="en">
+      abstract vs interface classes
+    </dc:title>
+    <dc:date action="created">
+      20021216
+    </dc:date>
+    <dc:date action="update">
+      20021216
+    </dc:date>
+    <Language>en</Language>
+  </metadata>
+  <omtext xml:id="C869-Theory12-txt-1">
+    <CMP xml:lang="en">
+      Abstract vs interface classes
+    </CMP>
+  </omtext>
+  <omtext xml:id="C869-Theory12-comment">
+    <CMP xml:lang="en">
+    </CMP>
+  </omtext>
+  <omdoc xml:id="C869-page19" type="slide">
+    <metadata>
+      <dc:title xml:lang="en">
+        Abstract vs interface classes
+      </dc:title>
+    </metadata>
+    <omtext xml:id="C869-Question3-txt-1" type="question">
+      <CMP xml:lang="en">
+        When does it make sense to use one over the other?
+      </CMP>
+    </omtext>
+    <omtext xml:id="C869-Answer1-txt-1" type="answer">
+      <CMP xml:lang="en">
+        Interfaces are simpler and allow multiple inheritance.
+      </CMP>
+    </omtext>
+    <omtext xml:id="C869-Answer2-txt-1" type="answer">
+      <CMP xml:lang="en">
+        But sometimes it is handy to have code and instance variables, and so in these cases abstract classes work better
+      </CMP>
+    </omtext>
+    <omdoc xml:id="C869-notes" type="section">
+    </omdoc>
+  </omdoc>
+</theory>
+<omdoc xml:id="C856-page20" type="slide">
+  <metadata>
+    <dc:title xml:lang="en">
+      Abstract class example
+    </dc:title>
+  </metadata>
+  <example xml:id="C856-Example10" for="#C868-Theory11">
+    <metadata>
+      <dc:title xml:lang="en">
+        abstract class example
+      </dc:title>
+      <dc:date action="created">
+        20021216
+      </dc:date>
+      <dc:date action="update">
+        20021216
+      </dc:date>
+      <Language>en</Language>
+    </metadata>
+    <CMP xml:lang="en">
+      <omlet function="#C856-Example10-code"  type="code" action="none"/>
+    </CMP>
+  </example>
+  <omdoc xml:id="C856-notes" type="section">
+  </omdoc>
+</omdoc>
+<theory xml:id="C857-Theory14">
+  <metadata>
+    <dc:title xml:lang="en">
+      definition of subclasses
+    </dc:title>
+    <dc:date action="created">
+      20021216
+    </dc:date>
+    <dc:date action="update">
+      20021216
+    </dc:date>
+    <Language>en</Language>
+  </metadata>
+  <omtext xml:id="C857-Theory14-txt-1">
+    <CMP xml:lang="en">
+      Defining the subclasses
+    </CMP>
+  </omtext>
+  <omtext xml:id="C857-Theory14-comment">
+    <CMP xml:lang="en">
+    </CMP>
+  </omtext>
+  <omdoc xml:id="C857-page21" type="slide">
+    <metadata>
+      <dc:title xml:lang="en">
+        Defining the subclasses
+      </dc:title>
+    </metadata>
+    <example xml:id="C857-Example11" for="#C857-Theory14">
+      <metadata>
+        <dc:title xml:lang="en">
+          example: definition of subclasses
+        </dc:title>
+      </metadata>
+      <CMP xml:lang="en">
+        <omlet function="#C857-Example11-code"  type="code" action="none"/>
+      </CMP>
+    </example>
+    <assertion xml:id="C857-Theorem2" theory="#C857-Theory14" type="theorem">
+      <metadata>
+        <dc:title xml:lang="en">
+          inheritance of methods
+        </dc:title>
+        <dc:date action="created">
+          20021217
+        </dc:date>
+        <dc:date action="update">
+          20021217
+        </dc:date>
+        <Language>en</Language>
+      </metadata>
+      <CMP xml:lang="en">
+        <phrase style="italic"><phrase style="red">Note that semiperimeter() is inherited from Shape.</phrase></phrase>
+      </CMP>
+    </assertion>
+    <omdoc xml:id="C857-notes" type="section">
+    </omdoc>
+  </omdoc>
+  <omdoc xml:id="C858-page22" type="slide">
+    <metadata>
+      <dc:title xml:lang="en">
+        Defining a subclass
+      </dc:title>
+    </metadata>
+    <example xml:id="C858-Example12" for="#C857-Theory14">
+      <metadata>
+        <dc:title xml:lang="en">
+          subclass diagram
+        </dc:title>
+        <dc:date action="created">
+          20021217
+        </dc:date>
+        <dc:date action="update">
+          20021217
+        </dc:date>
+        <Language>en</Language>
+      </metadata>
+      <CMP xml:lang="en">
+        <omlet function="C858-Example12-prv" style="embed" type="image" action="none" width="618" height="354"/>
+        Does it work?
+      </CMP>
+    </example>
+    <omdoc xml:id="C858-notes" type="section">
+    </omdoc>
+  </omdoc>
+</theory>
+<theory xml:id="C786-Theory15">
+  <metadata>
+    <dc:title xml:lang="en">
+      Lists in the J2SE
+    </dc:title>
+    <dc:date action="created">
+      20021217
+    </dc:date>
+    <dc:date action="update">
+      20021217
+    </dc:date>
+    <Language>en</Language>
+  </metadata>
+  <omtext xml:id="C786-Theory15-txt-1">
+    <CMP xml:lang="en">
+      <phrase style="italic"><phrase style="red">Lists in the J2SE</phrase></phrase>
+    </CMP>
+  </omtext>
+  <omtext xml:id="C786-Theory15-comment">
+    <CMP xml:lang="en">
+    </CMP>
+  </omtext>
+  <omdoc xml:id="C786-page23" type="slide">
+    <omdoc xml:id="C786-notes" type="section">
+    </omdoc>
+  </omdoc>
+</theory>
+<theory xml:id="C836-Theory16">
+  <metadata>
+    <dc:title xml:lang="en">
+      J2SE Collection API (excerpt)
+    </dc:title>
+    <dc:date action="created">
+      20021217
+    </dc:date>
+    <dc:date action="update">
+      20021217
+    </dc:date>
+    <Language>en</Language>
+  </metadata>
+  <omtext xml:id="C836-Theory16-txt-1">
+    <CMP xml:lang="en">
+      J2SE Collection API (excerpt)
+    </CMP>
+  </omtext>
+  <omtext xml:id="C836-Theory16-comment">
+    <CMP xml:lang="en">
+    </CMP>
+  </omtext>
+  <omdoc xml:id="C836-page24" type="slide">
+    <metadata>
+      <dc:title xml:lang="en">
+        J2SE Collection API (excerpt)
+      </dc:title>
+    </metadata>
+    <axiom xml:id="C836-Axiom25">
+      <metadata>
+        <dc:title xml:lang="en">
+          implementation and inheritance graph
+        </dc:title>
+        <dc:date action="created">
+          20021217
+        </dc:date>
+        <dc:date action="update">
+          20021218
+        </dc:date>
+        <Language>en</Language>
+      </metadata>
+      <CMP xml:lang="en">
+        <omlet function="C836-Axiom25-prv" style="embed" type="image" action="none" width="720" height="408"/>
+      </CMP>
+    </axiom>
+    <omdoc xml:id="C836-notes" type="section">
+    </omdoc>
+  </omdoc>
+</theory>
+<theory xml:id="C838-Theory17">
+  <metadata>
+    <dc:title xml:lang="en">
+      inheritance of interfaces
+    </dc:title>
+    <dc:date action="created">
+      20021217
+    </dc:date>
+    <dc:date action="update">
+      20021217
+    </dc:date>
+    <Language>en</Language>
+  </metadata>
+  <omtext xml:id="C838-Theory17-txt-1">
+    <CMP xml:lang="en">
+      Inheritance of interfaces
+    </CMP>
+  </omtext>
+  <omtext xml:id="C838-Theory17-comment">
+    <CMP xml:lang="en">
+    </CMP>
+  </omtext>
+  <omdoc xml:id="C838-page25" type="slide">
+    <metadata>
+      <dc:title xml:lang="en">
+        Inheritance of interfaces
+      </dc:title>
+    </metadata>
+    <axiom xml:id="C838-Axiom26">
+      <metadata>
+        <dc:title xml:lang="en">
+          implementation of interfaces
+        </dc:title>
+        <dc:date action="created">
+          20021217
+        </dc:date>
+        <dc:date action="update">
+          20021217
+        </dc:date>
+        <Language>en</Language>
+      </metadata>
+      <CMP xml:lang="en">
+        Classes can <phrase style="italic"><phrase style="red">implement</phrase></phrase> one or more interfaces.
+      </CMP>
+    </axiom>
+    <omtext xml:id="C838-Comment1-txt-1" type="comment">
+      <CMP xml:lang="en">
+        This means that the class provides code for all of the methods specified in the interface(s).
+      </CMP>
+    </omtext>
+    <example xml:id="C838-Example23" for="#C838-Theory17">
+      <metadata>
+        <dc:title xml:lang="en">
+          code for interface inheritance
+        </dc:title>
+        <dc:date action="created">
+          20021217
+        </dc:date>
+        <dc:date action="update">
+          20021217
+        </dc:date>
+        <Language>en</Language>
+      </metadata>
+      <CMP xml:lang="en">
+        <omlet function="#C838-Example23-code"  type="code" action="none"/>
+      </CMP>
+    </example>
+    <omdoc xml:id="C838-notes" type="section">
+    </omdoc>
+  </omdoc>
+</theory>
+<theory xml:id="C839-Theory18">
+  <metadata>
+    <dc:title xml:lang="en">
+      inheritance of classes
+    </dc:title>
+    <dc:date action="created">
+      20021217
+    </dc:date>
+    <dc:date action="update">
+      20021217
+    </dc:date>
+    <Language>en</Language>
+  </metadata>
+  <omtext xml:id="C839-Theory18-txt-1">
+    <CMP xml:lang="en">
+      Inheritance of classes
+    </CMP>
+  </omtext>
+  <omtext xml:id="C839-Theory18-comment">
+    <CMP xml:lang="en">
+      Note the contrast to the inheritance of interfaces on the previous slide. How could this contrast be incoporated into the annotation?
+    </CMP>
+  </omtext>
+  <omdoc xml:id="C839-page26" type="slide">
+    <metadata>
+      <dc:title xml:lang="en">
+        Inheritance of classes
+      </dc:title>
+    </metadata>
+    <example xml:id="C839-Example24" for="#C839-Theory18">
+      <metadata>
+        <dc:title xml:lang="en">
+          sample code for class inheritance
+        </dc:title>
+        <dc:date action="created">
+          20021217
+        </dc:date>
+        <dc:date action="update">
+          20021217
+        </dc:date>
+        <Language>en</Language>
+      </metadata>
+      <CMP xml:lang="en">
+        <omlet function="#C839-Example24-code"  type="code" action="none"/>
+      </CMP>
+    </example>
+    <omtext xml:id="C839-Comment2-txt-1" type="comment">
+      <CMP xml:lang="en">
+        This means that the class provides everything that the superclass provides, plus possibly more, and also possibly modifying superclass methods.
+      </CMP>
+    </omtext>
+    <axiom xml:id="C839-Axiom27">
+      <metadata>
+        <dc:title xml:lang="en">
+          single inheritance for classes
+        </dc:title>
+        <dc:date action="created">
+          20021217
+        </dc:date>
+        <dc:date action="update">
+          20021217
+        </dc:date>
+        <Language>en</Language>
+      </metadata>
+      <CMP xml:lang="en">
+        Classes can <phrase style="italic"><phrase style="red">extend</phrase></phrase> exactly one class.
+      </CMP>
+    </axiom>
+    <omdoc xml:id="C839-notes" type="section">
+    </omdoc>
+  </omdoc>
+</theory>
+<omdoc xml:id="C788-page27" type="slide">
+  <metadata>
+    <dc:title xml:lang="en">
+      Java lists are mutable
+    </dc:title>
+  </metadata>
+  <omdoc xml:id="C788-Group-10" type="section">
+    <metadata>
+      <Language>en</Language>
+    </metadata>
+  </omdoc>
+  <omdoc xml:id="C788-Group-6" type="section">
+    <metadata>
+      <Language>en</Language>
+    </metadata>
+  </omdoc>
+  <assertion xml:id="C788-Postulate1" theory="#C786-Theory15" type="postulate">
+    <metadata>
+      <dc:title xml:lang="en">
+        Mutability of Java lists
+      </dc:title>
+      <dc:date action="created">
+        20021217
+      </dc:date>
+      <dc:date action="update">
+        20021217
+      </dc:date>
+      <Language>en</Language>
+    </metadata>
+    <CMP xml:lang="en">
+      Java lists are mutable
+      Is this a postulate? I would like it to be a claim or assertion -possibly even a consequence...
+    </CMP>
+  </assertion>
+  <omdoc xml:id="C788-Comment3-1" type="itemize">
+    <omtext xml:id="C788-Comment3-txt-2" type="comment">
+      <CMP xml:lang="en">
+        Notice that the <phrase style="bold">add()</phrase> method (which we have been calling <phrase style="bold">append()</phrase>) has a different functionality:
+      </CMP>
+    </omtext>
+    <omdoc xml:id="C788-Comment3-3" type="itemize">
+      <metadata>
+        <dc:title xml:lang="en">
+          Ours:
+        </dc:title>
+      </metadata>
+      <omtext xml:id="C788-Comment3-txt-4" type="comment">
+        <CMP xml:lang="en">
+          <phrase style="blue">public List append (int n); </phrase>
+        </CMP>
+      </omtext>
+    </omdoc>
+    <omdoc xml:id="C788-Comment3-5" type="itemize">
+      <metadata>
+        <dc:title xml:lang="en">
+          J2SE&#x2019;s:
+        </dc:title>
+      </metadata>
+      <omtext xml:id="C788-Comment3-txt-6" type="comment">
+        <CMP xml:lang="en">
+          <phrase style="blue">public void add (int index, Object o);</phrase>
+        </CMP>
+      </omtext>
+    </omdoc>
+  </omdoc>
+  <omtext xml:id="C788-Question9-txt-1" type="question">
+    <CMP xml:lang="en">
+      <phrase style="bold"><phrase style="italic"><phrase style="red"> Can we implement the J2SE version?</phrase></phrase></phrase>
+    </CMP>
+  </omtext>
+  <omdoc xml:id="C788-notes" type="section">
+  </omdoc>
+</omdoc>
+<omdoc xml:id="C790-page28" type="slide">
+  <metadata>
+    <dc:title xml:lang="en">
+      Our &#x201C;in-place&#x201D; append
+    </dc:title>
+  </metadata>
+  <example xml:id="C790-Example15" for="#C786-Theory15">
+    <metadata>
+      <dc:title xml:lang="en">
+        'in place' append method
+      </dc:title>
+      <dc:date action="created">
+        20021217
+      </dc:date>
+      <dc:date action="update">
+        20021217
+      </dc:date>
+      <Language>en</Language>
+    </metadata>
+    <CMP xml:lang="en">
+      Our &#x201C;in-place&#x201D; append
+      ...this is a difficult one, don't know what to do with it...
+    </CMP>
+  </example>
+  <example xml:id="C790-Example16" for="#C790-Example15">
+    <metadata>
+      <dc:title xml:lang="en">
+        illustration of example 15
+      </dc:title>
+      <dc:date action="created">
+        20021217
+      </dc:date>
+      <dc:date action="update">
+        20021218
+      </dc:date>
+      <Language>en</Language>
+    </metadata>
+    <CMP xml:lang="en">
+      <omlet function="C790-Example16-prv" style="embed" type="image" action="none" width="600" height="426"/>
+    </CMP>
+  </example>
+  <omdoc xml:id="C790-notes" type="section">
+  </omdoc>
+</omdoc>
+<omdoc xml:id="C791-page29" type="slide">
+  <metadata>
+    <dc:title xml:lang="en">
+      So&#x2026;
+    </dc:title>
+  </metadata>
+  <omtext xml:id="C791-RhetoricalQuestion1-txt-1" type="rhetoricalquestion">
+    <CMP xml:lang="en">
+      &#x2026;no problem, right?
+    </CMP>
+  </omtext>
+  <omdoc xml:id="C791-Warning1-1" type="section">
+    <omtext xml:id="C791-Warning1-txt-2" type="warning">
+      <CMP xml:lang="en">
+        <phrase style="red">Wrong</phrase>. There is one bad case:
+      </CMP>
+    </omtext>
+    <omtext xml:id="C791-Warning1-txt-4" type="warning">
+      <CMP xml:lang="en">
+        <phrase style="bold"> <phrase style="blue">IntListInterface L = new EmptyIntList(); </phrase></phrase>
+      </CMP>
+    </omtext>
+    <omtext xml:id="C791-Warning1-txt-5" type="warning">
+      <CMP xml:lang="en">
+        <phrase style="bold"><phrase style="blue"> L.append(123);</phrase> </phrase>
+      </CMP>
+    </omtext>
+    <omtext xml:id="C791-Warning1-txt-7" type="warning">
+      <CMP xml:lang="en">
+        Creates a new list, and then <phrase style="italic"><phrase style="red">forgets where it is</phrase></phrase>.
+      </CMP>
+    </omtext>
+  </omdoc>
+  <omdoc xml:id="C791-notes" type="section">
+  </omdoc>
+</omdoc>
+<omdoc xml:id="C793-page30" type="slide">
+  <metadata>
+    <dc:title xml:lang="en">
+      Like so:
+    </dc:title>
+  </metadata>
+  <omtext xml:id="C793-Text-Box-1027-txt-1">
+    <CMP xml:lang="en">
+      L
+    </CMP>
+  </omtext>
+  <omtext xml:id="C793-Text-Box-1028-txt-1">
+    <CMP xml:lang="en">
+      nil
+    </CMP>
+  </omtext>
+  <omdoc xml:id="C793-Group-1030" type="section">
+    <metadata>
+      <Language>en</Language>
+    </metadata>
+    <omtext xml:id="C793-Text-Box-1085-txt-1">
+      <CMP xml:lang="en">
+        L
+      </CMP>
+    </omtext>
+    <omtext xml:id="C793-Text-Box-1087-txt-1">
+      <CMP xml:lang="en">
+        nil
+      </CMP>
+    </omtext>
+  </omdoc>
+  <omtext xml:id="C793-Text-Box-1036-txt-1">
+    <CMP xml:lang="en">
+      new node inaccessible!
+    </CMP>
+  </omtext>
+  <example xml:id="C793-Example26" for="#C793-Warning2">
+    <metadata>
+      <dc:title xml:lang="en">
+        changing from empty to non-empty list
+      </dc:title>
+      <dc:date action="created">
+        20021218
+      </dc:date>
+      <dc:date action="update">
+        20021218
+      </dc:date>
+      <Language>en</Language>
+    </metadata>
+    <CMP xml:lang="en">
+      <omlet function="#C793-Example26-code"  type="code" action="none"/>
+    </CMP>
+  </example>
+  <omtext xml:id="C793-Warning2-img" type="warning">
+    <CMP xml:lang="en">
+      <omlet function="C793-Warning2-prv" style="embed" type="image" action="none" width="690" height="372"/>
+    </CMP>
+  </omtext>
+  <omdoc xml:id="C793-notes" type="section">
+  </omdoc>
+</omdoc>
+<theory xml:id="C778-Theory19">
+  <metadata>
+    <dc:title xml:lang="en">
+      wrappers
+    </dc:title>
+    <dc:date action="created">
+      20021217
+    </dc:date>
+    <dc:date action="update">
+      20021217
+    </dc:date>
+    <Language>en</Language>
+  </metadata>
+  <omtext xml:id="C778-Theory19-txt-1">
+    <CMP xml:lang="en">
+      Wrappers
+    </CMP>
+  </omtext>
+  <omtext xml:id="C778-Theory19-comment">
+    <CMP xml:lang="en">
+    </CMP>
+  </omtext>
+  <omdoc xml:id="C778-page31" type="slide">
+    <metadata>
+      <dc:title xml:lang="en">
+        Wrappers
+      </dc:title>
+    </metadata>
+    <omdoc xml:id="C778-Motivation1-1" type="section">
+      <omtext xml:id="C778-Motivation1-txt-2" type="motivation">
+        <CMP xml:lang="en">
+          Given our list classes that we&#x2019;ve presented so far, it&apos;s actually a bit difficult to implement methods that change empty lists into non-empty lists, and vice-versa.
+        </CMP>
+      </omtext>
+      <omtext xml:id="C778-Motivation1-txt-3" type="motivation">
+        <CMP xml:lang="en">
+          The trick is to use a <phrase style="italic"><phrase style="blue">wrapper class</phrase></phrase>
+        </CMP>
+      </omtext>
+      <omtext xml:id="C778-Motivation1-txt-4" type="motivation">
+        <CMP xml:lang="en">
+          (also called a handle in C++).
+        </CMP>
+      </omtext>
+    </omdoc>
+    <omdoc xml:id="C778-notes" type="section">
+    </omdoc>
+  </omdoc>
+</theory>
+<theory xml:id="C779-Theory20">
+  <metadata>
+    <dc:title xml:lang="en">
+      List wrapper
+    </dc:title>
+    <dc:date action="created">
+      20021217
+    </dc:date>
+    <dc:date action="update">
+      20021217
+    </dc:date>
+    <Language>en</Language>
+  </metadata>
+  <omtext xml:id="C779-Theory20-txt-1">
+    <CMP xml:lang="en">
+      List wrapper
+    </CMP>
+  </omtext>
+  <omtext xml:id="C779-Theory20-comment">
+    <CMP xml:lang="en">
+    </CMP>
+  </omtext>
+  <omdoc xml:id="C779-page32" type="slide">
+    <metadata>
+      <dc:title xml:lang="en">
+        List wrapper
+      </dc:title>
+    </metadata>
+    <example xml:id="C779-Example17" for="#C779-Theory20">
+      <metadata>
+        <dc:title xml:lang="en">
+          List wrapper in class; code
+        </dc:title>
+        <dc:date action="created">
+          20021217
+        </dc:date>
+        <dc:date action="update">
+          20021217
+        </dc:date>
+        <Language>en</Language>
+      </metadata>
+      <CMP xml:lang="en">
+        <omlet function="#C779-Example17-code"  type="code" action="none"/>
+        obviously the first line in the code needs to chopped out as a comment
+      </CMP>
+    </example>
+    <omdoc xml:id="C779-notes" type="section">
+    </omdoc>
+  </omdoc>
+  <omdoc xml:id="C794-page33" type="slide">
+    <metadata>
+      <dc:title xml:lang="en">
+        MutableIntList
+      </dc:title>
+    </metadata>
+    <example xml:id="C794-Example18" for="#C779-Theory20">
+      <metadata>
+        <dc:title xml:lang="en">
+          MutableIntList
+        </dc:title>
+        <dc:date action="created">
+          20021217
+        </dc:date>
+        <dc:date action="update">
+          20021217
+        </dc:date>
+        <Language>en</Language>
+      </metadata>
+      <CMP xml:lang="en">
+        MutableIntList
+      </CMP>
+    </example>
+    <assertion xml:id="C794-Theorem3" theory="#C779-Theory20" type="theorem">
+      <metadata>
+        <dc:title xml:lang="en">
+          MutableIntLists contain IntList Interfaces
+        </dc:title>
+        <dc:date action="created">
+          20021217
+        </dc:date>
+        <Language>en</Language>
+      </metadata>
+      <CMP xml:lang="en">
+        So, MutableIntList objects contain within them an IntListInterface object.
+      </CMP>
+    </assertion>
+    <omdoc xml:id="C794-notes" type="section">
+    </omdoc>
+  </omdoc>
+  <omdoc xml:id="C780-page34" type="slide">
+    <metadata>
+      <dc:title xml:lang="en">
+        List wrapper, contd.
+      </dc:title>
+    </metadata>
+    <axiom xml:id="C780-Axiom28">
+      <metadata>
+        <dc:title xml:lang="en">
+          emptying a list
+        </dc:title>
+        <dc:date action="created">
+          20021217
+        </dc:date>
+        <dc:date action="update">
+          20021217
+        </dc:date>
+        <Language>en</Language>
+      </metadata>
+      <CMP xml:lang="en">
+        <ul>
+          <li>
+            In order to change a list from non-empty to empty (and vice-versa), we can do a
+          </li>
+          <li>
+            <ul>
+              <li>
+                <phrase style="bold"><phrase style="blue">il = new EmptyList();</phrase></phrase>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </CMP>
+    </axiom>
+    <omtext xml:id="C780-Question8-txt-1" type="question">
+      <CMP xml:lang="en">
+        Question: What happens to the old list that <phrase style="bold"><phrase style="blue">il</phrase></phrase> referred to?
+      </CMP>
+    </omtext>
+    <omdoc xml:id="C780-notes" type="section">
+    </omdoc>
+  </omdoc>
+</theory>
+<theory xml:id="C789-Theory21">
+  <metadata>
+    <dc:title xml:lang="en">
+      garbage collection
+    </dc:title>
+    <dc:date action="created">
+      20021217
+    </dc:date>
+    <dc:date action="update">
+      20021217
+    </dc:date>
+    <Language>en</Language>
+  </metadata>
+  <omtext xml:id="C789-Theory21-txt-1">
+    <CMP xml:lang="en">
+      Garbage collection
+    </CMP>
+  </omtext>
+  <omtext xml:id="C789-Theory21-comment">
+    <CMP xml:lang="en">
+    </CMP>
+  </omtext>
+  <omdoc xml:id="C789-page35" type="slide">
+    <metadata>
+      <dc:title xml:lang="en">
+        Garbage collection
+      </dc:title>
+    </metadata>
+    <omtext xml:id="C789-Answer3-txt-1" type="answer">
+      <CMP xml:lang="en">
+        This does not actually release the memory at this point, but the <phrase style="italic"><phrase style="blue">garbage collector</phrase></phrase> will take care of it at some point.
+      </CMP>
+    </omtext>
+    <omtext xml:id="C789-Comment4-txt-1" type="comment">
+      <CMP xml:lang="en">
+        More about this later in the course
+      </CMP>
+    </omtext>
+    <omdoc xml:id="C789-notes" type="section">
+    </omdoc>
+  </omdoc>
+</theory>
+<theory xml:id="C781-Theory22">
+  <metadata>
+    <dc:title xml:lang="en">
+      wrapped append
+    </dc:title>
+    <dc:date action="created">
+      20021217
+    </dc:date>
+    <dc:date action="update">
+      20021217
+    </dc:date>
+    <Language>en</Language>
+  </metadata>
+  <omtext xml:id="C781-Theory22-txt-1">
+    <CMP xml:lang="en">
+      Wrapped append
+    </CMP>
+  </omtext>
+  <omtext xml:id="C781-Theory22-comment">
+    <CMP xml:lang="en">
+    </CMP>
+  </omtext>
+  <omdoc xml:id="C781-page36" type="slide">
+    <metadata>
+      <dc:title xml:lang="en">
+        Wrapped append
+      </dc:title>
+    </metadata>
+    <example xml:id="C781-Example19" for="#C781-Theory22">
+      <metadata>
+        <dc:title xml:lang="en">
+          wrapped append in mutable IntList
+        </dc:title>
+        <dc:date action="created">
+          20021217
+        </dc:date>
+        <dc:date action="update">
+          20021217
+        </dc:date>
+        <Language>en</Language>
+      </metadata>
+      <CMP xml:lang="en">
+        <omlet function="#C781-Example19-code"  type="code" action="none"/>
+        obviously the first line needs to be treated separately
+      </CMP>
+    </example>
+    <omtext xml:id="C781-Comment9-txt-1" type="comment">
+      <CMP xml:lang="en">
+        If il was empty before, this assignment will make it be the non-empty list containing x.
+      </CMP>
+    </omtext>
+    <omdoc xml:id="C781-notes" type="section">
+    </omdoc>
+  </omdoc>
+</theory>
+<theory xml:id="C782-Theory23">
+  <metadata>
+    <dc:title xml:lang="en">
+      wrapped join
+    </dc:title>
+    <dc:date action="created">
+      20021217
+    </dc:date>
+    <dc:date action="update">
+      20021217
+    </dc:date>
+    <Language>en</Language>
+  </metadata>
+  <omtext xml:id="C782-Theory23-txt-1">
+    <CMP xml:lang="en">
+      Wrapped join
+    </CMP>
+  </omtext>
+  <omtext xml:id="C782-Theory23-comment">
+    <CMP xml:lang="en">
+    </CMP>
+  </omtext>
+  <omdoc xml:id="C782-page37" type="slide">
+    <metadata>
+      <dc:title xml:lang="en">
+        Wrapped join
+      </dc:title>
+    </metadata>
+    <example xml:id="C782-Example20" for="#C782-Theory23">
+      <metadata>
+        <dc:title xml:lang="en">
+          wrapped join implemented
+        </dc:title>
+        <dc:date action="created">
+          20021217
+        </dc:date>
+        <dc:date action="update">
+          20021217
+        </dc:date>
+        <Language>en</Language>
+      </metadata>
+      <CMP xml:lang="en">
+        <omlet function="#C782-Example20-code"  type="code" action="none"/>
+        obviously the text needs to be treated separately, but at this stage one cannot chop into groups
+      </CMP>
+    </example>
+    <omtext xml:id="C782-Motivation3-txt-1" type="motivation">
+      <CMP xml:lang="en">
+        We could also do things like make sure that both A and B in A.join(B) become empty.
+      </CMP>
+    </omtext>
+    <omdoc xml:id="C782-notes" type="section">
+    </omdoc>
+  </omdoc>
+  <omdoc xml:id="C783-page38" type="slide">
+    <metadata>
+      <dc:title xml:lang="en">
+        But note
+      </dc:title>
+    </metadata>
+    <omtext xml:id="C783-Comment6-txt-1" type="comment">
+      <CMP xml:lang="en">
+        This wrapper class works regardless of how the list join is implemented.
+      </CMP>
+    </omtext>
+    <omtext xml:id="C783-Remark1-txt-1" type="remark">
+      <CMP xml:lang="en">
+        However, there are differences in efficiency.
+      </CMP>
+    </omtext>
+    <omtext xml:id="C783-Question5-txt-1" type="question">
+      <CMP xml:lang="en">
+        <phrase style="italic"><phrase style="blue">Can you see what happens between join1, join2 and join3 ?</phrase></phrase>
+      </CMP>
+    </omtext>
+    <omtext xml:id="C783-Question6-txt-1" type="question">
+      <CMP xml:lang="en">
+        <phrase style="italic"><phrase style="blue">Which is the best choice here</phrase></phrase>
+      </CMP>
+    </omtext>
+    <omdoc xml:id="C783-notes" type="section">
+    </omdoc>
+  </omdoc>
+</theory>
+<omdoc xml:id="C628-page39" type="slide">
+  <metadata>
+    <dc:title xml:lang="en">
+      Wisdom
+    </dc:title>
+  </metadata>
+  <omdoc xml:id="C628-Comment7-1" type="section">
+    <omtext xml:id="C628-Comment7-txt-2" type="comment">
+      <CMP xml:lang="en">
+        Always worry about special cases, degenerate situations.
+      </CMP>
+    </omtext>
+    <omtext xml:id="C628-Comment7-txt-4" type="comment">
+      <CMP xml:lang="en">
+        You may have to spend more time getting the strange cases right than the &quot;real&quot; part of the code.
+      </CMP>
+    </omtext>
+  </omdoc>
+  <omdoc xml:id="C628-notes" type="section">
+  </omdoc>
+</omdoc>
+<omdoc xml:id="C892-page40" type="slide">
+  <omtext xml:id="C892-Text-Box-2-txt-1">
+    <CMP xml:lang="en">
+      <phrase style="italic"><phrase style="red">Reminders</phrase></phrase>
+    </CMP>
+  </omtext>
+  <omdoc xml:id="C892-notes" type="section">
+  </omdoc>
+</omdoc>
+<omdoc xml:id="C893-page41" type="slide">
+  <metadata>
+    <dc:title xml:lang="en">
+      Reminder
+    </dc:title>
+  </metadata>
+  <omdoc xml:id="C893-Rectangle-3-1" type="itemize">
+    <omtext xml:id="C893-Rectangle-3-txt-2">
+      <CMP xml:lang="en">
+        Homework 1 due on Sunday night!
+      </CMP>
+    </omtext>
+    <omtext xml:id="C893-Rectangle-3-txt-3">
+      <CMP xml:lang="en">
+        Homework 2 available on Monday.
+      </CMP>
+    </omtext>
+  </omdoc>
+  <omdoc xml:id="C893-notes" type="section">
+  </omdoc>
+</omdoc>
+<omdoc xml:id="C894-page42" type="slide">
+  <omtext xml:id="C894-Text-Box-2-txt-1">
+    <CMP xml:lang="en">
+      <phrase style="italic"><phrase style="red">Back to Lists</phrase></phrase>
+    </CMP>
+  </omtext>
+  <omdoc xml:id="C894-notes" type="section">
+  </omdoc>
+</omdoc>
+<theory xml:id="C872-Theory24">
+  <metadata>
+    <dc:title xml:lang="en">
+      Lists continued
+    </dc:title>
+    <dc:date action="created">
+      20021217
+    </dc:date>
+    <dc:date action="update">
+      20021217
+    </dc:date>
+    <Language>en</Language>
+  </metadata>
+  <omtext xml:id="C872-Theory24-txt-1">
+    <CMP xml:lang="en">
+      Back to Lists
+    </CMP>
+  </omtext>
+  <omtext xml:id="C872-Theory24-comment">
+    <CMP xml:lang="en">
+      this should really still be in the range of theory 15
+    </CMP>
+  </omtext>
+  <omdoc xml:id="C872-page43" type="slide">
+    <metadata>
+      <dc:title xml:lang="en">
+        Back to Lists
+      </dc:title>
+    </metadata>
+    <omdoc xml:id="C872-Motivation2-1" type="itemize">
+      <omtext xml:id="C872-Motivation2-txt-2" type="motivation">
+        <CMP xml:lang="en">
+          Recall the problem with head() and tail(): don&apos;t really make sense for empty lists.
+        </CMP>
+      </omtext>
+      <omdoc xml:id="C872-Motivation2-3" type="itemize">
+        <metadata>
+          <dc:title xml:lang="en">
+            Should inform the user when an empty list is asked to return its tail.
+          </dc:title>
+        </metadata>
+        <omtext xml:id="C872-Motivation2-txt-4" type="motivation">
+          <CMP xml:lang="en">
+            crashing would do it &#x2026;
+          </CMP>
+        </omtext>
+        <omtext xml:id="C872-Motivation2-txt-5" type="motivation">
+          <CMP xml:lang="en">
+            but there is a better way.
+          </CMP>
+        </omtext>
+      </omdoc>
+    </omdoc>
+    <omdoc xml:id="C872-notes" type="section">
+    </omdoc>
+  </omdoc>
+  <omdoc xml:id="C873-page44" type="slide">
+    <metadata>
+      <dc:title xml:lang="en">
+        The Culprits
+      </dc:title>
+    </metadata>
+    <example xml:id="C873-Example21" for="#C872-Theory24">
+      <metadata>
+        <dc:title xml:lang="en">
+          schematic code for EmptyList
+        </dc:title>
+        <dc:date action="created">
+          20021217
+        </dc:date>
+        <dc:date action="update">
+          20021217
+        </dc:date>
+        <Language>en</Language>
+      </metadata>
+      <CMP xml:lang="en">
+        <omlet function="#C873-Example21-code"  type="code" action="none"/>
+        this should really be annotated as something like "problem"
+      </CMP>
+    </example>
+    <omdoc xml:id="C873-notes" type="section">
+    </omdoc>
+  </omdoc>
+  <omdoc xml:id="C874-page45" type="slide">
+    <metadata>
+      <dc:title xml:lang="en">
+        What to Do???
+      </dc:title>
+    </metadata>
+    <omtext xml:id="C874-Question7-txt-1" type="question">
+      <CMP xml:lang="en">
+        What to Do???
+      </CMP>
+    </omtext>
+    <omdoc xml:id="C874-Answer4-1" type="section">
+      <omtext xml:id="C874-Answer4-txt-2" type="answer">
+        <CMP xml:lang="en">
+          Whenever a bad invocation
+        </CMP>
+      </omtext>
+      <omtext xml:id="C874-Answer4-txt-3" type="answer">
+        <CMP xml:lang="en">
+          <phrase style="bold">int x = il.head(); </phrase>
+        </CMP>
+      </omtext>
+      <omtext xml:id="C874-Answer4-txt-4" type="answer">
+        <CMP xml:lang="en">
+          is made, an error signal should be sent
+        </CMP>
+      </omtext>
+      <omtext xml:id="C874-Answer4-txt-5" type="answer">
+        <CMP xml:lang="en">
+          (<phrase style="blue">throw an exception</phrase>).
+        </CMP>
+      </omtext>
+      <omtext xml:id="C874-Answer4-txt-7" type="answer">
+        <CMP xml:lang="en">
+          The user can intercept that signal and fix the problem (<phrase style="blue">catch an exception</phrase>).
+        </CMP>
+      </omtext>
+    </omdoc>
+    <omdoc xml:id="C874-notes" type="section">
+    </omdoc>
+  </omdoc>
+</theory>
+<theory xml:id="C872-Theory25">
+  <metadata>
+    <dc:title xml:lang="en">
+      exceptions
+    </dc:title>
+    <dc:date action="created">
+      20021217
+    </dc:date>
+    <dc:date action="update">
+      20021218
+    </dc:date>
+    <Language>en</Language>
+  </metadata>
+  <omtext xml:id="C872-Theory25-txt-1">
+    <CMP xml:lang="en">
+      <phrase style="bold"><phrase style="yellow">exceptions</phrase></phrase>
+    </CMP>
+  </omtext>
+  <omtext xml:id="C872-Theory25-comment">
+    <CMP xml:lang="en">
+    </CMP>
+  </omtext>
+  <omdoc xml:id="C875-page46" type="slide">
+    <metadata>
+      <dc:title xml:lang="en">
+        Euphemism
+      </dc:title>
+    </metadata>
+    <symbol name="exception" scope="global">
+      <metadata><dc:subject>Java exception</dc:subject></metadata>
+    </symbol>
+    <definition xml:id="C875-Definition4" for="exception" type="simple">
+      <metadata>
+        <dc:title xml:lang="en">
+          definition of exception
+        </dc:title>
+        <dc:date action="created">
+          20021217
+        </dc:date>
+        <dc:date action="update">
+          20021217
+        </dc:date>
+        <Language>en</Language>
+      </metadata>
+      <CMP xml:lang="en">
+        <ul>
+          <li>
+            The book calls exceptions &#x2026;
+          </li>
+          <li>
+            &quot;unexpected <phrase style="blue">events</phrase> that occur during the
+          </li>
+          <li>
+            execution of a program.&quot;
+          </li>
+          <li>
+            Right.
+          </li>
+        </ul>
+      </CMP>
+    </definition>
+    <omdoc xml:id="C875-notes" type="section">
+    </omdoc>
+  </omdoc>
+  <omdoc xml:id="C876-page47" type="slide">
+    <metadata>
+      <dc:title xml:lang="en">
+        Important
+      </dc:title>
+    </metadata>
+    <omdoc xml:id="C876-Warning3-1" type="section">
+      <omtext xml:id="C876-Warning3-txt-2" type="warning">
+        <CMP xml:lang="en">
+          If you never catch an exception, it will propagate up to main(), where the Java interpreter deals with it (error message, exit).
+        </CMP>
+      </omtext>
+      <omtext xml:id="C876-Warning3-txt-3" type="warning">
+        <CMP xml:lang="en">
+          Better than the permissive approach, but not by much.
+        </CMP>
+      </omtext>
+      <omtext xml:id="C876-Warning3-txt-5" type="warning">
+        <CMP xml:lang="en">
+          The user has to be proactive.
+        </CMP>
+      </omtext>
+    </omdoc>
+    <omdoc xml:id="C876-notes" type="section">
+    </omdoc>
+  </omdoc>
+  <omdoc xml:id="C877-page48" type="slide">
+    <metadata>
+      <dc:title xml:lang="en">
+        The Benefits
+      </dc:title>
+    </metadata>
+    <axiom xml:id="C877-Axiom29">
+      <metadata>
+        <dc:title xml:lang="en">
+          advantage of exceptions
+        </dc:title>
+        <dc:date action="created">
+          20021217
+        </dc:date>
+        <dc:date action="update">
+          20021217
+        </dc:date>
+        <Language>en</Language>
+      </metadata>
+      <CMP xml:lang="en">
+        Exceptions make error handling more logical and organized.
+      </CMP>
+    </axiom>
+    <axiom xml:id="C877-Axiom30">
+      <metadata>
+        <dc:title xml:lang="en">
+          error handling code
+        </dc:title>
+        <dc:date action="created">
+          20021217
+        </dc:date>
+        <dc:date action="update">
+          20021217
+        </dc:date>
+        <Language>en</Language>
+      </metadata>
+      <CMP xml:lang="en">
+        Error handling code is nicely clustered in one place and easy to find.
+      </CMP>
+    </axiom>
+    <omtext xml:id="C877-Comment8-txt-1" type="comment">
+      <CMP xml:lang="en">
+        Plus, it forces you to <phrase style="bold"><phrase style="red">think</phrase></phrase>
+      </CMP>
+    </omtext>
+    <omdoc xml:id="C877-notes" type="section">
+    </omdoc>
+  </omdoc>
+  <omdoc xml:id="C878-page49" type="slide">
+    <metadata>
+      <dc:title xml:lang="en">
+        But How?
+      </dc:title>
+    </metadata>
+    <axiom xml:id="C878-Axiom31">
+      <metadata>
+        <dc:title xml:lang="en">
+          try-catch code
+        </dc:title>
+        <dc:date action="created">
+          20021217
+        </dc:date>
+        <dc:date action="update">
+          20021217
+        </dc:date>
+        <Language>en</Language>
+      </metadata>
+      <CMP xml:lang="en">
+        <omlet function="#C878-Axiom31-code"  type="code" action="none"/>
+      </CMP>
+    </axiom>
+    <omdoc xml:id="C878-notes" type="section">
+    </omdoc>
+  </omdoc>
+  <omdoc xml:id="C879-page50" type="slide">
+    <metadata>
+      <dc:title xml:lang="en">
+        Can Handle Different Excpts.
+      </dc:title>
+    </metadata>
+    <axiom xml:id="C879-Axiom32">
+      <metadata>
+        <dc:title xml:lang="en">
+          catching two exceptions
+        </dc:title>
+        <dc:date action="created">
+          20021217
+        </dc:date>
+        <dc:date action="update">
+          20021217
+        </dc:date>
+        <Language>en</Language>
+      </metadata>
+      <CMP xml:lang="en">
+        <ul>
+          <li>
+            <phrase style="bold"><phrase style="blue">try</phrase> { </phrase>
+          </li>
+          <li>
+            <phrase style="bold"> &#x2026; // problematic code </phrase>
+          </li>
+          <li>
+            <phrase style="bold">} <phrase style="blue">catch</phrase>( someExcpt e1 ) { </phrase>
+          </li>
+          <li>
+            <phrase style="bold"> &#x2026; // deal with it </phrase>
+          </li>
+          <li>
+            <phrase style="bold">} <phrase style="blue">catch</phrase>( otherExcpt e2 ) { </phrase>
+          </li>
+          <li>
+            <phrase style="bold"> &#x2026; // deal with it </phrase>
+          </li>
+          <li>
+            <phrase style="bold">} </phrase>
+          </li>
+        </ul>
+      </CMP>
+    </axiom>
+    <omdoc xml:id="C879-notes" type="section">
+    </omdoc>
+  </omdoc>
+  <omdoc xml:id="C880-page51" type="slide">
+    <metadata>
+      <dc:title xml:lang="en">
+        &#x2026; and General Cleanup
+      </dc:title>
+    </metadata>
+    <axiom xml:id="C880-Axiom33">
+      <metadata>
+        <dc:title xml:lang="en">
+          extended try-catch code
+        </dc:title>
+        <dc:date action="created">
+          20021217
+        </dc:date>
+        <dc:date action="update">
+          20021217
+        </dc:date>
+        <Language>en</Language>
+      </metadata>
+      <CMP xml:lang="en">
+        <omlet function="#C880-Axiom33-code"  type="code" action="none"/>
+      </CMP>
+    </axiom>
+    <omdoc xml:id="C880-notes" type="section">
+    </omdoc>
+  </omdoc>
+  <omdoc xml:id="C881-page52" type="slide">
+    <metadata>
+      <dc:title xml:lang="en">
+        Who&apos;s Responsible?
+      </dc:title>
+    </metadata>
+    <example xml:id="C881-Example22" for="#C872-Theory25">
+      <metadata>
+        <dc:title xml:lang="en">
+          code throwing exceptions
+        </dc:title>
+        <dc:description xml:lang="en">
+          illustrates specification of which exceptions are thrown
+        </dc:description>
+        <dc:date action="created">
+          20021217
+        </dc:date>
+        <dc:date action="update">
+          20021217
+        </dc:date>
+        <Language>en</Language>
+      </metadata>
+      <CMP xml:lang="en">
+        <omlet function="#C881-Example22-code"  type="code" action="none"/>
+      </CMP>
+    </example>
+    <axiom xml:id="C881-Axiom34">
+      <metadata>
+        <dc:title xml:lang="en">
+          responsibility for exceptions
+        </dc:title>
+        <dc:date action="created">
+          20021217
+        </dc:date>
+        <dc:date action="update">
+          20021217
+        </dc:date>
+        <Language>en</Language>
+      </metadata>
+      <CMP xml:lang="en">
+        <ul>
+          <li>
+            Must either catch an exception, or announce that you won&apos;t.
+          </li>
+          <li>
+            But not for the super-common ones (RuntimeException, Error).
+          </li>
+        </ul>
+      </CMP>
+    </axiom>
+    <omdoc xml:id="C881-notes" type="section">
+    </omdoc>
+  </omdoc>
+  <omdoc xml:id="C882-page53" type="slide">
+    <metadata>
+      <dc:title xml:lang="en">
+        What Exception?
+      </dc:title>
+    </metadata>
+    <omtext xml:id="C882-Question10-txt-1" type="question">
+      <CMP xml:lang="en">
+        What Exception?
+      </CMP>
+    </omtext>
+    <axiom xml:id="C882-Axiom36">
+      <metadata>
+        <dc:title xml:lang="en">
+          built-in exceptions
+        </dc:title>
+        <dc:date action="created">
+          20021218
+        </dc:date>
+        <dc:date action="update">
+          20021218
+        </dc:date>
+        <Language>en</Language>
+      </metadata>
+      <CMP xml:lang="en">
+        <ul>
+          <li>
+            Some are built-in (e.g., <phrase style="bold">ArrayIndexOutOfBoundsException</phrase>),
+          </li>
+          <li>
+            but the user can also define her own.
+          </li>
+        </ul>
+      </CMP>
+    </axiom>
+    <omdoc xml:id="C882-notes" type="section">
+    </omdoc>
+  </omdoc>
+  <omdoc xml:id="C883-page54" type="slide">
+    <metadata>
+      <dc:title xml:lang="en">
+        What Exception?
+      </dc:title>
+    </metadata>
+    <axiom xml:id="C883-Axiom37">
+      <metadata>
+        <dc:title xml:lang="en">
+          use of 'throws'
+        </dc:title>
+        <dc:date action="created">
+          20021218
+        </dc:date>
+        <dc:date action="update">
+          20021218
+        </dc:date>
+        <Language>en</Language>
+      </metadata>
+      <CMP xml:lang="en">
+        <ul>
+          <li>
+            - informs the compiler
+          </li>
+          <li>
+            - as well as the user (documentation)
+          </li>
+        </ul>
+      </CMP>
+    </axiom>
+    <omdoc xml:id="C883-notes" type="section">
+    </omdoc>
+  </omdoc>
+  <omdoc xml:id="C884-page55" type="slide">
+    <metadata>
+      <dc:title xml:lang="en">
+        You guessed right
+      </dc:title>
+    </metadata>
+    <axiom xml:id="C884-Axiom38">
+      <metadata>
+        <dc:title xml:lang="en">
+          exceptions are objects
+        </dc:title>
+        <dc:date action="created">
+          20021218
+        </dc:date>
+        <dc:date action="update">
+          20021218
+        </dc:date>
+        <Language>en</Language>
+      </metadata>
+      <CMP xml:lang="en">
+        Exceptions are just objects, and there is a little hierarchy:
+      </CMP>
+    </axiom>
+    <omtext xml:id="C884-Text-Box-7-txt-1">
+      <CMP xml:lang="en">
+        <phrase style="bold">RuntimeException</phrase>
+      </CMP>
+    </omtext>
+    <axiom xml:id="C884-Axiom39">
+      <metadata>
+        <dc:title xml:lang="en">
+          inheritance tree for exceptions
+        </dc:title>
+        <dc:date action="created">
+          20021218
+        </dc:date>
+        <dc:date action="update">
+          20021218
+        </dc:date>
+        <Language>en</Language>
+      </metadata>
+      <CMP xml:lang="en">
+        <omlet function="C884-Axiom39-prv" style="embed" type="image" action="none" width="534" height="228"/>
+      </CMP>
+    </axiom>
+    <omdoc xml:id="C884-notes" type="section">
+    </omdoc>
+  </omdoc>
+</theory>
+<theory xml:id="C885-Theory26">
+  <metadata>
+    <dc:title xml:lang="en">
+      exception classes
+    </dc:title>
+    <dc:date action="created">
+      20021218
+    </dc:date>
+    <dc:date action="update">
+      20021218
+    </dc:date>
+    <Language>en</Language>
+  </metadata>
+  <omtext xml:id="C885-Theory26-txt-1">
+    <CMP xml:lang="en">
+      ExceptionsClasses
+    </CMP>
+  </omtext>
+  <omtext xml:id="C885-Theory26-comment">
+    <CMP xml:lang="en">
+    </CMP>
+  </omtext>
+  <omdoc xml:id="C885-page56" type="slide">
+    <metadata>
+      <dc:title xml:lang="en">
+        ExceptionsClasses
+      </dc:title>
+    </metadata>
+    <example xml:id="C885-Example27" for="#C885-Theory26">
+      <metadata>
+        <dc:title xml:lang="en">
+          inheritance for exceptions (code)
+        </dc:title>
+        <dc:date action="created">
+          20021218
+        </dc:date>
+        <dc:date action="update">
+          20021218
+        </dc:date>
+        <Language>en</Language>
+      </metadata>
+      <CMP xml:lang="en">
+        <omlet function="#C885-Example27-code"  type="code" action="none"/>
+      </CMP>
+    </example>
+    <omtext xml:id="C885-Comment10-txt-1" type="comment">
+      <CMP xml:lang="en">
+        The string is good for useful little messages.
+      </CMP>
+    </omtext>
+    <omdoc xml:id="C885-notes" type="section">
+    </omdoc>
+  </omdoc>
+</theory>
+<theory xml:id="C886-Theory27">
+  <metadata>
+    <dc:title xml:lang="en">
+      empty lists
+    </dc:title>
+    <dc:date action="created">
+      20021218
+    </dc:date>
+    <dc:date action="update">
+      20021218
+    </dc:date>
+    <Language>en</Language>
+  </metadata>
+  <omtext xml:id="C886-Theory27-txt-1">
+    <CMP xml:lang="en">
+      Empty Lists
+    </CMP>
+  </omtext>
+  <omtext xml:id="C886-Theory27-comment">
+    <CMP xml:lang="en">
+    </CMP>
+  </omtext>
+  <omdoc xml:id="C886-page57" type="slide">
+    <metadata>
+      <dc:title xml:lang="en">
+        Empty Lists
+      </dc:title>
+    </metadata>
+    <example xml:id="C886-Example28" for="#C886-Theory27">
+      <metadata>
+        <dc:title xml:lang="en">
+          class EmpryList
+        </dc:title>
+        <dc:date action="created">
+          20021218
+        </dc:date>
+        <dc:date action="update">
+          20021218
+        </dc:date>
+        <Language>en</Language>
+      </metadata>
+      <CMP xml:lang="en">
+        <omlet function="#C886-Example28-code"  type="code" action="none"/>
+      </CMP>
+    </example>
+    <omtext xml:id="C886-Comment11-txt-1" type="comment">
+      <CMP xml:lang="en">
+        The string is good for useful little messages.
+      </CMP>
+    </omtext>
+    <omdoc xml:id="C886-notes" type="section">
+      <omtext xml:id="C886-Rectangle-3-txt-1">
+        <CMP xml:lang="en">
+          and this ain&apos;t one!
+        </CMP>
+      </omtext>
+    </omdoc>
+  </omdoc>
+  <omdoc xml:id="C887-page58" type="slide">
+    <metadata>
+      <dc:title xml:lang="en">
+        Empty Lists
+      </dc:title>
+    </metadata>
+    <example xml:id="C887-Example29" for="#C886-Theory27">
+      <metadata>
+        <dc:title xml:lang="en">
+          class EmptyList, tail exception
+        </dc:title>
+        <dc:date action="created">
+          20021218
+        </dc:date>
+        <dc:date action="update">
+          20021218
+        </dc:date>
+        <Language>en</Language>
+      </metadata>
+      <CMP xml:lang="en">
+        <omlet function="#C887-Example29-code"  type="code" action="none"/>
+      </CMP>
+    </example>
+    <omtext xml:id="C887-Comment12-txt-1" type="comment">
+      <CMP xml:lang="en">
+        The string is good for useful little messages.
+      </CMP>
+    </omtext>
+    <omdoc xml:id="C887-notes" type="section">
+      <omtext xml:id="C887-Rectangle-3-txt-1">
+        <CMP xml:lang="en">
+          and this ain&apos;t one!
+        </CMP>
+      </omtext>
+    </omdoc>
+  </omdoc>
+  <omdoc xml:id="C888-page59" type="slide">
+    <metadata>
+      <dc:title xml:lang="en">
+        Alternatively &#x2026;
+      </dc:title>
+    </metadata>
+    <example xml:id="C888-Example30" for="#C886-Theory27">
+      <metadata>
+        <dc:title xml:lang="en">
+          alternative for exception throwing in lists
+        </dc:title>
+        <dc:date action="created">
+          20021218
+        </dc:date>
+        <dc:date action="update">
+          20021218
+        </dc:date>
+        <Language>en</Language>
+      </metadata>
+      <CMP xml:lang="en">
+        <omlet function="#C888-Example30-code"  type="code" action="none"/>
+      </CMP>
+    </example>
+    <omdoc xml:id="C888-Comment13-1" type="section">
+      <omtext xml:id="C888-Comment13-txt-2" type="comment">
+        <CMP xml:lang="en">
+          Could throw either one.
+        </CMP>
+      </omtext>
+      <omtext xml:id="C888-Comment13-txt-3" type="comment">
+        <CMP xml:lang="en">
+          (may save lots of typing)
+        </CMP>
+      </omtext>
+    </omdoc>
+    <omdoc xml:id="C888-notes" type="section">
+      <omtext xml:id="C888-Rectangle-3-txt-1">
+        <CMP xml:lang="en">
+          and this ain&apos;t one!
+        </CMP>
+      </omtext>
+    </omdoc>
+  </omdoc>
+</theory>
+<theory xml:id="C889-Theory28">
+  <metadata>
+    <dc:title xml:lang="en">
+      usage of exceptions
+    </dc:title>
+    <dc:date action="created">
+      20021218
+    </dc:date>
+    <dc:date action="update">
+      20021218
+    </dc:date>
+    <Language>en</Language>
+  </metadata>
+  <omtext xml:id="C889-Theory28-txt-1">
+    <CMP xml:lang="en">
+      Usage
+    </CMP>
+  </omtext>
+  <omtext xml:id="C889-Theory28-comment">
+    <CMP xml:lang="en">
+    </CMP>
+  </omtext>
+  <omdoc xml:id="C889-page60" type="slide">
+    <metadata>
+      <dc:title xml:lang="en">
+        Usage
+      </dc:title>
+    </metadata>
+    <example xml:id="C889-Example31" for="#C889-Conjecture1">
+      <metadata>
+        <dc:title xml:lang="en">
+          method throwing exception
+        </dc:title>
+        <dc:date action="created">
+          20021218
+        </dc:date>
+        <dc:date action="update">
+          20021218
+        </dc:date>
+        <Language>en</Language>
+      </metadata>
+      <CMP xml:lang="en">
+        <omlet function="#C889-Example31-code"  type="code" action="none"/>
+      </CMP>
+    </example>
+    <assertion xml:id="C889-Conjecture1" theory="#C889-Theory28" type="conjecture">
+      <metadata>
+        <dc:title xml:lang="en">
+          methods and exceptions
+        </dc:title>
+        <dc:date action="created">
+          20021218
+        </dc:date>
+        <dc:date action="update">
+          20021218
+        </dc:date>
+        <Language>en</Language>
+      </metadata>
+      <CMP xml:lang="en">
+        Using methods that throw exceptions is a bit more laborious.
+        I would have preferred to annotate this as a 'claim'
+      </CMP>
+    </assertion>
+    <omdoc xml:id="C889-notes" type="section">
+    </omdoc>
+  </omdoc>
+  <omdoc xml:id="C890-page61" type="slide">
+    <metadata>
+      <dc:title xml:lang="en">
+        Usage &#x2026;
+      </dc:title>
+    </metadata>
+    <example xml:id="C890-Example32" for="#C890-Remark2">
+      <metadata>
+        <dc:title xml:lang="en">
+          method throwing exception
+        </dc:title>
+        <dc:date action="created">
+          20021218
+        </dc:date>
+        <dc:date action="update">
+          20021218
+        </dc:date>
+        <Language>en</Language>
+      </metadata>
+      <CMP xml:lang="en">
+        <omlet function="#C890-Example32-code"  type="code" action="none"/>
+      </CMP>
+    </example>
+    <omtext xml:id="C890-Remark2-txt-1" type="remark">
+      <CMP xml:lang="en">
+        Compiler forces us to deal with head/tail exceptions. But we could be lazy and let someone else worry about it:
+      </CMP>
+    </omtext>
+    <omtext xml:id="C890-Comment14-txt-1" type="comment">
+      <CMP xml:lang="en">
+        <phrase style="red">pop is dangerous</phrase>
+      </CMP>
+    </omtext>
+    <omdoc xml:id="C890-notes" type="section">
+    </omdoc>
+  </omdoc>
+  <omdoc xml:id="C891-page62" type="slide">
+    <metadata>
+      <dc:title xml:lang="en">
+        Wisdom
+      </dc:title>
+    </metadata>
+    <omdoc xml:id="C891-Motivation4-1" type="itemize">
+      <omtext xml:id="C891-Motivation4-txt-2" type="motivation">
+        <CMP xml:lang="en">
+          Think ahead about possible errors
+        </CMP>
+      </omtext>
+      <omtext xml:id="C891-Motivation4-txt-3" type="motivation">
+        <CMP xml:lang="en">
+          Define appropriate exception classes
+        </CMP>
+      </omtext>
+      <omtext xml:id="C891-Motivation4-txt-4" type="motivation">
+        <CMP xml:lang="en">
+          Make sure exceptions are caught in the right place
+        </CMP>
+      </omtext>
+      <omtext xml:id="C891-Motivation4-txt-5" type="motivation">
+        <CMP xml:lang="en">
+          Deal with them in a reasonable way
+        </CMP>
+      </omtext>
+    </omdoc>
+    <omdoc xml:id="C891-notes" type="section">
+    </omdoc>
+  </omdoc>
+</theory>
+<omdoc xml:id="C895-page63" type="slide">
+  <omtext xml:id="C895-Text-Box-2-txt-1">
+    <CMP xml:lang="en">
+      <phrase style="italic"><phrase style="red">Stacks and Queues</phrase></phrase>
+    </CMP>
+  </omtext>
+  <omdoc xml:id="C895-notes" type="section">
+  </omdoc>
+</omdoc>
+<theory xml:id="C896-Theory29">
+  <metadata>
+    <dc:title xml:lang="en">
+      stack interface
+    </dc:title>
+    <dc:date action="created">
+      20021218
+    </dc:date>
+    <dc:date action="update">
+      20021218
+    </dc:date>
+    <Language>en</Language>
+  </metadata>
+  <omtext xml:id="C896-Theory29-txt-1">
+    <CMP xml:lang="en">
+      A Stack interface
+    </CMP>
+  </omtext>
+  <omtext xml:id="C896-Theory29-comment">
+    <CMP xml:lang="en">
+    </CMP>
+  </omtext>
+  <omdoc xml:id="C896-page64" type="slide">
+    <metadata>
+      <dc:title xml:lang="en">
+        A Stack interface
+      </dc:title>
+    </metadata>
+    <axiom xml:id="C896-Axiom40">
+      <metadata>
+        <dc:title xml:lang="en">
+          code for stack interface
+        </dc:title>
+        <dc:date action="created">
+          20021218
+        </dc:date>
+        <dc:date action="update">
+          20021218
+        </dc:date>
+        <Language>en</Language>
+      </metadata>
+      <CMP xml:lang="en">
+        <omlet function="#C896-Axiom40-code"  type="code" action="none"/>
+      </CMP>
+    </axiom>
+    <omdoc xml:id="C896-notes" type="section">
+    </omdoc>
+  </omdoc>
+</theory>
+<theory xml:id="C897-Theory30">
+  <metadata>
+    <dc:title xml:lang="en">
+      queue interface
+    </dc:title>
+    <dc:date action="created">
+      20021218
+    </dc:date>
+    <dc:date action="update">
+      20021218
+    </dc:date>
+    <Language>en</Language>
+  </metadata>
+  <omtext xml:id="C897-Theory30-txt-1">
+    <CMP xml:lang="en">
+      A Queue interface
+    </CMP>
+  </omtext>
+  <omtext xml:id="C897-Theory30-comment">
+    <CMP xml:lang="en">
+    </CMP>
+  </omtext>
+  <omdoc xml:id="C897-page65" type="slide">
+    <metadata>
+      <dc:title xml:lang="en">
+        A Queue interface
+      </dc:title>
+    </metadata>
+    <axiom xml:id="C897-Axiom41">
+      <metadata>
+        <dc:title xml:lang="en">
+          code for queue interface
+        </dc:title>
+        <dc:date action="created">
+          20021218
+        </dc:date>
+        <dc:date action="update">
+          20021218
+        </dc:date>
+        <Language>en</Language>
+      </metadata>
+      <CMP xml:lang="en">
+        <omlet function="#C897-Axiom41-code"  type="code" action="none"/>
+      </CMP>
+    </axiom>
+    <omdoc xml:id="C897-notes" type="section">
+    </omdoc>
+  </omdoc>
+</theory>
+<theory xml:id="C898-Theory31">
+  <metadata>
+    <dc:title xml:lang="en">
+      implementation of stacks and queues
+    </dc:title>
+    <dc:date action="created">
+      20021218
+    </dc:date>
+    <dc:date action="update">
+      20021218
+    </dc:date>
+    <Language>en</Language>
+  </metadata>
+  <omtext xml:id="C898-Theory31-txt-1">
+    <CMP xml:lang="en">
+      Implementing stacks and queues
+    </CMP>
+  </omtext>
+  <omtext xml:id="C898-Theory31-comment">
+    <CMP xml:lang="en">
+    </CMP>
+  </omtext>
+  <omdoc xml:id="C898-page66" type="slide">
+    <metadata>
+      <dc:title xml:lang="en">
+        Implementing stacks and queues
+      </dc:title>
+    </metadata>
+    <omtext xml:id="C898-Question11-txt-1" type="question">
+      <CMP xml:lang="en">
+        How would you use a J2SE List class to implement the Stack interface? The Queue interface?
+      </CMP>
+    </omtext>
+    <omdoc xml:id="C898-notes" type="section">
+    </omdoc>
+  </omdoc>
+  <omdoc xml:id="C899-page67" type="slide">
+    <metadata>
+      <dc:title xml:lang="en">
+        Implementation
+      </dc:title>
+    </metadata>
+    <omtext xml:id="C899-Question12-txt-1" type="question">
+      <CMP xml:lang="en">
+        Question: How would you use an implementation of the Stack interface to implement the Queue interface?
+      </CMP>
+    </omtext>
+    <omtext xml:id="C899-Question13-txt-1" type="question">
+      <CMP xml:lang="en">
+        What would be the running time of the operations
+      </CMP>
+    </omtext>
+    <omdoc xml:id="C899-notes" type="section">
+    </omdoc>
+  </omdoc>
+</theory>
+  <code xml:id="C864-Theory5-code" pto="0" pto-version="||Java Compiler|>=1.6">
+    <metadata>
+      <dc:title xml:lang="en">
+        Java code for classes
+      </dc:title>
+      <dc:date action="created">
+        20021216
+      </dc:date>
+      <dc:date action="update">
+        20021216
+      </dc:date>
+      <Language>en</Language>
+    </metadata>
+    <data format="Java">
+      In Java:
+    </data>
+    <input>
+      <CMP>incomplete</CMP>
+    </input>
+    <output>
+      <CMP>incomplete</CMP>
+    </output>
+    <effect>
+      <CMP>declaration of classes, inheritance </CMP>
+    </effect>
+  </code>
+  <code xml:id="C864-Example1-code" pto="0" pto-version="||Java Compiler|>= 1.3">
+    <metadata>
+      <dc:title xml:lang="en">
+        class declaration
+      </dc:title>
+      <dc:description xml:lang="en">
+        class animal
+      </dc:description>
+      <dc:date action="created">
+        20021216
+      </dc:date>
+      <dc:date action="update">
+        20021216
+      </dc:date>
+      <Language>en</Language>
+    </metadata>
+    <data format="Java">
+      <phrase style="bold">public class Animal { &#x2026; }</phrase>
+    </data>
+    <input>
+      <CMP>incomplete</CMP>
+    </input>
+    <output>
+      <CMP>incomplete</CMP>
+    </output>
+    <effect>
+      <CMP>class declaration</CMP>
+    </effect>
+  </code>
+  <code xml:id="C864-Example2-code" pto="0" pto-version="||Java Compiler|>=1.3">
+    <metadata>
+      <dc:title xml:lang="en">
+        class declaration and extension 1
+      </dc:title>
+      <dc:date action="created">
+        20021216
+      </dc:date>
+      <dc:date action="update">
+        20021216
+      </dc:date>
+      <Language>en</Language>
+    </metadata>
+    <data format="Java">
+      <phrase style="bold">public class Mammal extends Animal { &#x2026; }</phrase>
+    </data>
+    <input>
+      <CMP>incomplete</CMP>
+    </input>
+    <output>
+      <CMP>incomplete</CMP>
+    </output>
+    <effect>
+      <CMP>class declaration and inheritance specification</CMP>
+    </effect>
+  </code>
+  <code xml:id="C864-Example3-code" pto="0" pto-version="||Java Compiler|>=1.3">
+    <metadata>
+      <dc:title xml:lang="en">
+        class declaration and extension 2
+      </dc:title>
+      <dc:date action="created">
+        20021216
+      </dc:date>
+      <dc:date action="update">
+        20021216
+      </dc:date>
+      <Language>en</Language>
+    </metadata>
+    <data format="Java">
+      <phrase style="bold">public class Human extends Mammal { &#x2026; }</phrase>
+    </data>
+    <input>
+      <CMP>incomplete</CMP>
+    </input>
+    <output>
+      <CMP>incomplete</CMP>
+    </output>
+    <effect>
+      <CMP>class declaration and specification of inheritance</CMP>
+    </effect>
+  </code>
+  <code xml:id="C864-Example4-code" pto="0" pto-version="||Java Compiler|>=1.3">
+    <metadata>
+      <dc:title xml:lang="en">
+        class declaration and extension 3
+      </dc:title>
+      <dc:date action="created">
+        20021216
+      </dc:date>
+      <Language>en</Language>
+    </metadata>
+    <data format="Java">
+      <phrase style="bold">public class Professor extends Human { &#x2026; }</phrase>
+    </data>
+    <input>
+      <CMP>incomplete</CMP>
+    </input>
+    <output>
+      <CMP>incomplete</CMP>
+    </output>
+    <effect>
+      <CMP>class declaration and specification of inheritance</CMP>
+    </effect>
+  </code>
+  <code xml:id="C864-Example25-code" pto="0" pto-version="||Java Compiler|>=1.3">
+    <metadata>
+      <dc:title xml:lang="en">
+        instatiation
+      </dc:title>
+      <dc:date action="created">
+        20021217
+      </dc:date>
+      <dc:date action="update">
+        20021217
+      </dc:date>
+      <Language>en</Language>
+    </metadata>
+    <data format="Java">
+      <phrase style="bold">public class MyClass {</phrase>
+    </data>
+    <effect>
+      <CMP>class declaration and instatiation of professor class</CMP>
+    </effect>
+  </code>
+  <code xml:id="C865-Example5-code" pto="0" pto-version="||Java Compiler|>=1.3">
+    <metadata>
+      <dc:title xml:lang="en">
+        class-instance-inheritance
+      </dc:title>
+      <dc:description xml:lang="en">
+        detailed example
+      </dc:description>
+      <dc:date action="created">
+        20021216
+      </dc:date>
+      <dc:date action="update">
+        20021216
+      </dc:date>
+      <Language>en</Language>
+    </metadata>
+    <data format="Java">
+      <phrase style="bold">public class Animal {
+  <phrase style="explicitBreak"/>
+   private int age;
+  <phrase style="explicitBreak"/>
+   &#x2026;
+  <phrase style="explicitBreak"/>
+  }
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  public class Mammal
+  <phrase style="explicitBreak"/>
+   extends Animal {
+  <phrase style="explicitBreak"/>
+   private Mammal father;
+  <phrase style="explicitBreak"/>
+   private Mammal mother;
+  <phrase style="explicitBreak"/>
+   private List children;
+  <phrase style="explicitBreak"/>
+   &#x2026;
+  <phrase style="explicitBreak"/>
+  }
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  public class Human
+  <phrase style="explicitBreak"/>
+   extends Mammal {
+  <phrase style="explicitBreak"/>
+   private String name;
+  <phrase style="explicitBreak"/>
+   private Race race;
+  <phrase style="explicitBreak"/>
+   private boolean hasMate;
+  <phrase style="explicitBreak"/>
+   &#x2026;
+  <phrase style="explicitBreak"/>
+  }</phrase>
+    </data>
+    <input>
+      <CMP>incomplete</CMP>
+    </input>
+    <output>
+      <CMP>incomplete</CMP>
+    </output>
+    <effect>
+      <CMP>class declaration, instance declaration</CMP>
+    </effect>
+  </code>
+  <code xml:id="C865-Example6-code" pto="0" pto-version="||Java Compiler|>= 1.3">
+    <metadata>
+      <dc:title xml:lang="en">
+        class, instance, inheritance contd.
+      </dc:title>
+      <dc:date action="created">
+        20021216
+      </dc:date>
+      <dc:date action="update">
+        20021216
+      </dc:date>
+      <Language>en</Language>
+    </metadata>
+    <data format="Java">
+      <phrase style="bold">public class Professor
+  <phrase style="explicitBreak"/>
+   extends Human {
+  <phrase style="explicitBreak"/>
+   private Department dept;
+  <phrase style="explicitBreak"/>
+   &#x2026;
+  <phrase style="explicitBreak"/>
+  }
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  public class MyClass {
+  <phrase style="explicitBreak"/>
+   Public static main () {
+  <phrase style="explicitBreak"/>
+   Professor danny = new Professor();
+  <phrase style="explicitBreak"/>
+   &#x2026;
+  <phrase style="explicitBreak"/>
+   }
+  <phrase style="explicitBreak"/>
+  }</phrase>
+    </data>
+    <input>
+      <CMP>incomplete</CMP>
+    </input>
+    <output>
+      <CMP>incomplete</CMP>
+    </output>
+    <effect>
+      <CMP>class declaration, inheritance, instatiation</CMP>
+    </effect>
+  </code>
+  <code xml:id="C867-Example7-code" pto="0" pto-version="||Java Compiler|>=1.3">
+    <metadata>
+      <dc:title xml:lang="en">
+        Java constructors and inheritance
+      </dc:title>
+      <dc:date action="created">
+        20021216
+      </dc:date>
+      <Language>en</Language>
+    </metadata>
+    <data format="Java">
+      <phrase style="bold">public class Animal {
+  <phrase style="explicitBreak"/>
+   private int age;
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+   public Animal (int howOld) {
+  <phrase style="explicitBreak"/>
+   age = howOld;
+  <phrase style="explicitBreak"/>
+   }
+  <phrase style="explicitBreak"/>
+  }
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  public class Mammal extends Animal {
+  <phrase style="explicitBreak"/>
+   private Mammal father;
+  <phrase style="explicitBreak"/>
+   private Mammal mother;
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+   public Mammal(Mammal dad,
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+   Mammal mom,
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+   int years) {
+  <phrase style="explicitBreak"/>
+   super(years);
+  <phrase style="explicitBreak"/>
+   father = dad;
+  <phrase style="explicitBreak"/>
+   mother = mom;
+  <phrase style="explicitBreak"/>
+   }
+  <phrase style="explicitBreak"/>
+  }</phrase>
+    </data>
+    <input>
+      <CMP>incomplete</CMP>
+    </input>
+    <output>
+      <CMP>incomplete</CMP>
+    </output>
+    <effect>
+      <CMP>declaration of classes and instances, specification of inheritance</CMP>
+    </effect>
+  </code>
+  <code xml:id="C853-Example8-code" pto="0" pto-version="||Java compiler|>=1.3">
+    <metadata>
+      <dc:title xml:lang="en">
+        shape interface
+      </dc:title>
+      <dc:date action="created">
+        20021216
+      </dc:date>
+      <dc:date action="update">
+        20021216
+      </dc:date>
+      <Language>en</Language>
+    </metadata>
+    <data format="Java">
+      <phrase style="bold">public interface Shape {
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  public void draw();
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  public double area();
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  public Point upperLeft();
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  public void moveTo(Point );
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  public void setColor(Color );
+  <phrase style="explicitBreak"/>
+   public double perimeter();
+  <phrase style="explicitBreak"/>
+  }</phrase>
+    </data>
+    <effect>
+      <CMP>specification of (abstract) methods that any class that implements this interface must provide </CMP>
+    </effect>
+  </code>
+  <code xml:id="C868-Example9-code" pto="0" pto-version="||Java Compiler|>=1.3">
+    <metadata>
+      <dc:title xml:lang="en">
+        abstract class: shape
+      </dc:title>
+      <dc:date action="created">
+        20021216
+      </dc:date>
+      <dc:date action="update">
+        20021216
+      </dc:date>
+      <Language>en</Language>
+    </metadata>
+    <data format="Java">
+      <phrase style="bold">public abstract class Shape {
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  abstract public void draw();
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  abstract public double area();
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  abstract public Point upperLeft();
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  abstract public void moveTo(Point );
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  abstract public void setColor(Color );
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  abstract public void setColor(Color );
+  <phrase style="explicitBreak"/>
+   
+  <phrase style="explicitBreak"/>
+  abstract public double perimeter();
+  <phrase style="explicitBreak"/>
+  }</phrase>
+    </data>
+    <effect>
+      <CMP>interface specification: definition of methods for implementation</CMP>
+    </effect>
+  </code>
+  <code xml:id="C856-Example10-code" pto="0" pto-version="||Java Compiler|>=1.3">
+    <metadata>
+      <dc:title xml:lang="en">
+        abstract class example
+      </dc:title>
+      <dc:date action="created">
+        20021216
+      </dc:date>
+      <dc:date action="update">
+        20021216
+      </dc:date>
+      <Language>en</Language>
+    </metadata>
+    <data format="Java">
+      <phrase style="bold">abstract class Shape {
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  abstract public void draw();
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  abstract public double area();
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  abstract public Point upperLeft();
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  abstract public void moveTo(Point );
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  abstract public void setColor(Color );
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  abstract public double perimeter();
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  public double semiperimeter() {
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+   return perimeter() / 2;
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  }
+  <phrase style="explicitBreak"/>
+  }</phrase>
+    </data>
+    <effect>
+      <CMP>specification of abstract class; definition of methods for implementation</CMP>
+    </effect>
+  </code>
+  <code xml:id="C857-Example11-code" pto="0" pto-version="||Java Compiler|>=1.3">
+    <metadata>
+      <dc:title xml:lang="en">
+        example: definition of subclasses
+      </dc:title>
+      <dc:date action="created">
+        20021216
+      </dc:date>
+      <dc:date action="update">
+        20021216
+      </dc:date>
+      <Language>en</Language>
+    </metadata>
+    <data format="Java">
+      <phrase style="bold">public class Rectangle <phrase style="red">extends Shape</phrase> {
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  public Rectangle(Point ul, Point lr,
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+   Color c) { <phrase style="red">&#x2026;</phrase> }
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  public void draw() { <phrase style="red">&#x2026;</phrase> }
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  public double area() { <phrase style="red">&#x2026;</phrase> }
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  public Point upperLeft() { <phrase style="red">&#x2026;</phrase> }
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  public void moveTo(Point ) { <phrase style="red">&#x2026;</phrase> }
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  public void setColor(Color ) { <phrase style="red">&#x2026;</phrase> }
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  public double perimeter() { <phrase style="red">&#x2026;</phrase> }
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  private Point ul;
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  private Color color;
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  private Point lr; 
+  <phrase style="explicitBreak"/>
+  }</phrase>
+    </data>
+    <input>
+      <CMP>none, incomplete</CMP>
+    </input>
+    <output>
+      <CMP>none, incomplete</CMP>
+    </output>
+    <effect>
+      <CMP>definition of abstract class and subclass</CMP>
+    </effect>
+  </code>
+  <code xml:id="C838-Example23-code" pto="0" pto-version="||Java Compiler|>=1.3">
+    <metadata>
+      <dc:title xml:lang="en">
+        code for interface inheritance
+      </dc:title>
+      <dc:date action="created">
+        20021217
+      </dc:date>
+      <dc:date action="update">
+        20021217
+      </dc:date>
+      <Language>en</Language>
+    </metadata>
+    <data format="Java">
+      <phrase style="blue">public class LinkedList implements List, Cloneable {&#x2026;}</phrase>
+    </data>
+    <input>
+      <CMP>none, incomplete</CMP>
+    </input>
+    <output>
+      <CMP>none, incomplete</CMP>
+    </output>
+    <effect>
+      <CMP>specifies inheritance of interface</CMP>
+    </effect>
+  </code>
+  <code xml:id="C839-Example24-code" pto="0" pto-version="||Java Compiler|>=1.3">
+    <metadata>
+      <dc:title xml:lang="en">
+        sample code for class inheritance
+      </dc:title>
+      <dc:date action="created">
+        20021217
+      </dc:date>
+      <dc:date action="update">
+        20021217
+      </dc:date>
+      <Language>en</Language>
+    </metadata>
+    <data format="Java">
+      <phrase style="blue">public class LinkedList extends AbstractSequentialList {&#x2026;}</phrase>
+    </data>
+    <input>
+      <CMP>none, incomplete code</CMP>
+    </input>
+    <output>
+      <CMP>none, incomplete code</CMP>
+    </output>
+    <effect>
+      <CMP>specifies inheritance of class</CMP>
+    </effect>
+  </code>
+  <code xml:id="C793-Example26-code" pto="0" pto-version="||Java Compiler|>=1.3">
+    <metadata>
+      <dc:title xml:lang="en">
+        changing from empty to non-empty list
+      </dc:title>
+      <dc:date action="created">
+        20021218
+      </dc:date>
+      <dc:date action="update">
+        20021218
+      </dc:date>
+      <Language>en</Language>
+    </metadata>
+    <data format="Java">
+      <phrase style="bold">public class EmptyIntList {
+  <phrase style="explicitBreak"/>
+   &#x2026;
+  <phrase style="explicitBreak"/>
+   public IntListInterface append (int x) {
+  <phrase style="explicitBreak"/>
+   return new IntList(x);
+  <phrase style="explicitBreak"/>
+   }
+  <phrase style="explicitBreak"/>
+   &#x2026;
+  <phrase style="explicitBreak"/>
+  }</phrase>
+    </data>
+    <input>
+      <CMP>int x, incomplete code</CMP>
+    </input>
+    <output>
+      <CMP>IntList with one element, incomplete code</CMP>
+    </output>
+    <effect>
+      <CMP>changes an empty list (EmptyIntList) to an Intlist with one element</CMP>
+    </effect>
+  </code>
+  <code xml:id="C779-Example17-code" pto="0" pto-version="||Java Compiler|>=1.3">
+    <metadata>
+      <dc:title xml:lang="en">
+        List wrapper in class; code
+      </dc:title>
+      <dc:date action="created">
+        20021217
+      </dc:date>
+      <dc:date action="update">
+        20021217
+      </dc:date>
+      <Language>en</Language>
+    </metadata>
+    <data format="Java">
+      Place one of our lists inside a new class:
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  <phrase style="bold">public class MutableIntList {
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  private IntListInterface il;
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  public boolean isEmpty() {&#x2026;}
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  public int head(){&#x2026;}
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  &#x2026;
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  public MutableIntList join(
+  <phrase style="explicitBreak"/>
+   MutableIntList l){ &#x2026; } 
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  &#x2026;
+  <phrase style="explicitBreak"/>
+  }</phrase>
+    </data>
+    <input>
+      <CMP>incomplete</CMP>
+    </input>
+    <output>
+      <CMP>incomplete</CMP>
+    </output>
+    <effect>
+      <CMP>location of wrapper in class</CMP>
+    </effect>
+  </code>
+  <code xml:id="C781-Example19-code" pto="0" pto-version="||Java Compiler|>=1.3">
+    <metadata>
+      <dc:title xml:lang="en">
+        wrapped append in mutable IntList
+      </dc:title>
+      <dc:date action="created">
+        20021217
+      </dc:date>
+      <dc:date action="update">
+        20021217
+      </dc:date>
+      <Language>en</Language>
+    </metadata>
+    <data format="Java">
+      In MutableIntList:
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  <phrase style="bold"><phrase style="blue">public void add(int x) {
+  <phrase style="explicitBreak"/>
+   il = il.append(x);
+  <phrase style="explicitBreak"/>
+  }</phrase></phrase>
+    </data>
+    <input>
+      <CMP>integer x</CMP>
+    </input>
+    <effect>
+      <CMP>appends x to the list 'il'</CMP>
+    </effect>
+  </code>
+  <code xml:id="C782-Example20-code" pto="0" pto-version="||Java Compiler|>=1.3">
+    <metadata>
+      <dc:title xml:lang="en">
+        wrapped join implemented
+      </dc:title>
+      <dc:date action="created">
+        20021217
+      </dc:date>
+      <dc:date action="update">
+        20021217
+      </dc:date>
+      <Language>en</Language>
+    </metadata>
+    <data format="Java">
+      In MutableIntList:
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  <phrase style="bold"><phrase style="blue">public MutableIntList join(MutableIntList l) {
+  <phrase style="explicitBreak"/>
+   MutableIntList res = new MutableIntList();
+  <phrase style="explicitBreak"/>
+   res.il = il.join( W.il );
+  <phrase style="explicitBreak"/>
+   il = new EmptyIntList();
+  <phrase style="explicitBreak"/>
+   W.il = new EmptyIntList();
+  <phrase style="explicitBreak"/>
+   return res;
+  <phrase style="explicitBreak"/>
+  }</phrase></phrase>
+    </data>
+    <input>
+      <CMP>MutableIntList il</CMP>
+    </input>
+    <output>
+      <CMP>MutableIntList res</CMP>
+    </output>
+    <effect>
+      <CMP>joins two MutableIntLists</CMP>
+    </effect>
+  </code>
+  <code xml:id="C873-Example21-code" pto="0" pto-version="||Java Compiler|>=1.3">
+    <metadata>
+      <dc:title xml:lang="en">
+        schematic code for EmptyList
+      </dc:title>
+      <dc:date action="created">
+        20021217
+      </dc:date>
+      <dc:date action="update">
+        20021217
+      </dc:date>
+      <Language>en</Language>
+    </metadata>
+    <data format="Java">
+      <phrase style="bold">public class EmptyList extends List {
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  &#x2026;
+  <phrase style="explicitBreak"/>
+   public int head() {return 0;}
+  <phrase style="explicitBreak"/>
+   public List tail() {return this;}
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  }</phrase>
+    </data>
+    <effect>
+      <CMP>schematic code illustrating the source of the problem with EmptyLists</CMP>
+    </effect>
+  </code>
+  <code xml:id="C878-Axiom31-code" pto="0" pto-version="||Java Compiler|>=1.3">
+    <metadata>
+      <dc:title xml:lang="en">
+        try-catch code
+      </dc:title>
+      <dc:date action="created">
+        20021217
+      </dc:date>
+      <dc:date action="update">
+        20021217
+      </dc:date>
+      <Language>en</Language>
+    </metadata>
+    <data format="Java">
+      <phrase style="bold"><phrase style="blue">try</phrase> {
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  &#x2026;
+  <phrase style="explicitBreak"/>
+  // problematic code
+  <phrase style="explicitBreak"/>
+  } <phrase style="blue">catch</phrase>( someExcpt exc ) {
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  &#x2026;
+  <phrase style="explicitBreak"/>
+  // deal with it
+  <phrase style="explicitBreak"/>
+  }</phrase>
+    </data>
+    <effect>
+      <CMP>schematic code illustrating how exceptions are caught in Java</CMP>
+    </effect>
+  </code>
+  <code xml:id="C880-Axiom33-code" pto="0" pto-version="||Java Compiler|>=1.3">
+    <metadata>
+      <dc:title xml:lang="en">
+        extended try-catch code
+      </dc:title>
+      <dc:date action="created">
+        20021217
+      </dc:date>
+      <dc:date action="update">
+        20021217
+      </dc:date>
+      <Language>en</Language>
+    </metadata>
+    <data format="Java">
+      <phrase style="bold"><phrase style="blue">try</phrase> {
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  &#x2026;
+  <phrase style="explicitBreak"/>
+  // problematic code
+  <phrase style="explicitBreak"/>
+  } <phrase style="blue">catch</phrase>( someExcpt e1 ) {
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  &#x2026;
+  <phrase style="explicitBreak"/>
+  // deal with it
+  <phrase style="explicitBreak"/>
+  } <phrase style="blue">catch</phrase>( otherExcpt e2 ) {
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  &#x2026;
+  <phrase style="explicitBreak"/>
+  // deal with it
+  <phrase style="explicitBreak"/>
+  } <phrase style="blue">finally</phrase> {
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  &#x2026;
+  <phrase style="explicitBreak"/>
+  // clean up messes
+  <phrase style="explicitBreak"/>
+  }</phrase>
+    </data>
+    <effect>
+      <CMP>schematic code to catch and deal with exceptions</CMP>
+    </effect>
+  </code>
+  <code xml:id="C881-Example22-code" pto="0" pto-version="||Java Compiler|>=1.3">
+    <metadata>
+      <dc:title xml:lang="en">
+        code throwing exceptions
+      </dc:title>
+      <dc:description xml:lang="en">
+        illustrates specification of which exceptions are thrown
+      </dc:description>
+      <dc:date action="created">
+        20021217
+      </dc:date>
+      <dc:date action="update">
+        20021217
+      </dc:date>
+      <Language>en</Language>
+    </metadata>
+    <data format="Java">
+      <phrase style="bold">public void open_file() <phrase style="blue">throws</phrase> IOException {&#x2026;}
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  public void myFunc() <phrase style="blue">throws</phrase> MyExcpt, HisExcpt {&#x2026;} 
+  <phrase style="explicitBreak"/>
+  </phrase>
+    </data>
+    <effect>
+      <CMP>throws exceptions</CMP>
+    </effect>
+  </code>
+  <code xml:id="C885-Example27-code" pto="0" pto-version="||Java Compiler|>=1.3">
+    <metadata>
+      <dc:title xml:lang="en">
+        inheritance for exceptions (code)
+      </dc:title>
+      <dc:date action="created">
+        20021218
+      </dc:date>
+      <dc:date action="update">
+        20021218
+      </dc:date>
+      <Language>en</Language>
+    </metadata>
+    <data format="Java">
+      <phrase style="bold">class MyException extends <phrase style="blue">Exception</phrase> {
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  public MyException() {super()};
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  public MyException(String s){super(s);}
+  <phrase style="explicitBreak"/>
+   <phrase style="blue">
+  <phrase style="explicitBreak"/>
+  </phrase>}</phrase>
+    </data>
+    <effect>
+      <CMP>incomplete code, specifying the inheritance of the exception class</CMP>
+    </effect>
+  </code>
+  <code xml:id="C886-Example28-code" pto="0" pto-version="||Java Compiler|>=1.3">
+    <metadata>
+      <dc:title xml:lang="en">
+        class EmpryList
+      </dc:title>
+      <dc:date action="created">
+        20021218
+      </dc:date>
+      <dc:date action="update">
+        20021218
+      </dc:date>
+      <Language>en</Language>
+    </metadata>
+    <data format="Java">
+      <phrase style="bold">class EmptyList implements List {
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  public int head() <phrase style="blue">throws</phrase> EmptyLExcp {
+  <phrase style="explicitBreak"/>
+   <phrase style="blue">throw</phrase> new EmptyLExcp(&quot;head() on nil&quot;); }
+  <phrase style="explicitBreak"/>
+   <phrase style="blue">
+  <phrase style="explicitBreak"/>
+  </phrase>}</phrase>
+    </data>
+    <effect>
+      <CMP>incomplete code, specifying how classes can throw exceptions</CMP>
+    </effect>
+  </code>
+  <code xml:id="C887-Example29-code" pto="0" pto-version="||Java Compiler|>=1.3">
+    <metadata>
+      <dc:title xml:lang="en">
+        class EmptyList, tail exception
+      </dc:title>
+      <dc:date action="created">
+        20021218
+      </dc:date>
+      <dc:date action="update">
+        20021218
+      </dc:date>
+      <Language>en</Language>
+    </metadata>
+    <data format="Java">
+      <phrase style="bold">class EmptyList implements List {
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+   public List tail() <phrase style="blue">throws</phrase> EmptyLExcp {
+  <phrase style="explicitBreak"/>
+   <phrase style="blue">throw</phrase> new EmptyLExcp(&quot;tail() on nil&quot;); }
+  <phrase style="explicitBreak"/>
+   <phrase style="blue">
+  <phrase style="explicitBreak"/>
+  </phrase>}</phrase>
+    </data>
+    <effect>
+      <CMP>incomplete code, example of tail exception for lists</CMP>
+    </effect>
+  </code>
+  <code xml:id="C888-Example30-code" pto="0" pto-version="||Java Compiler|>=1.3">
+    <metadata>
+      <dc:title xml:lang="en">
+        alternative for exception throwing in lists
+      </dc:title>
+      <dc:date action="created">
+        20021218
+      </dc:date>
+      <dc:date action="update">
+        20021218
+      </dc:date>
+      <Language>en</Language>
+    </metadata>
+    <data format="Java">
+      <phrase style="bold">class <phrase style="blue">EmptyLExcp</phrase> extends <phrase style="blue">Exception</phrase> {}
+  <phrase style="explicitBreak"/>
+  class <phrase style="blue">EmptyLHeadExcp</phrase> extends EmptyLExcp {}
+  <phrase style="explicitBreak"/>
+  class <phrase style="blue">EmptyLTailExcp</phrase> extends EmptyLExcp {}
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+   public void foolist() <phrase style="blue">throws</phrase> EmptyLExcp {
+  <phrase style="explicitBreak"/>
+   <phrase style="blue">&#x2026;
+  <phrase style="explicitBreak"/>
+  </phrase>}</phrase>
+    </data>
+    <effect>
+      <CMP>incomplete code; illustration of exception inheritance made useful in lists</CMP>
+    </effect>
+  </code>
+  <code xml:id="C889-Example31-code" pto="0" pto-version="||Java Compiler|>=1.3">
+    <metadata>
+      <dc:title xml:lang="en">
+        method throwing exception
+      </dc:title>
+      <dc:date action="created">
+        20021218
+      </dc:date>
+      <dc:date action="update">
+        20021218
+      </dc:date>
+      <Language>en</Language>
+    </metadata>
+    <data format="Java">
+      <phrase style="bold">public class ILStack implements StackIF {
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  public int pop() {
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  int res = 0; // initialize
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  <phrase style="blue">try</phrase> {
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  res = il.head(); il = il.tail();
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  } <phrase style="blue">catch</phrase>( EmptyListExcp ele ) {
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  println( &quot;error: &quot; + ele );
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  }
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  return res;
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  }
+  <phrase style="explicitBreak"/>
+  } </phrase>
+    </data>
+    <output>
+      <CMP>integer</CMP>
+    </output>
+    <effect>
+      <CMP>returns the integer at the top of the stack if the stack is non-empty, otherwise it throws and catches an exception</CMP>
+    </effect>
+  </code>
+  <code xml:id="C890-Example32-code" pto="0" pto-version="||Java Compiler|>=1.3">
+    <metadata>
+      <dc:title xml:lang="en">
+        method throwing exception
+      </dc:title>
+      <dc:date action="created">
+        20021218
+      </dc:date>
+      <dc:date action="update">
+        20021218
+      </dc:date>
+      <Language>en</Language>
+    </metadata>
+    <data format="Java`">
+      <phrase style="bold">
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  public int pop() <phrase style="blue">throws EmptyListExcp</phrase> {
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  int res = 0;
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  res = il.head(); 
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  il = il.tail();
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  return res;
+  <phrase style="explicitBreak"/>
+  
+  <phrase style="explicitBreak"/>
+  }
+  <phrase style="explicitBreak"/>
+  </phrase>
+    </data>
+    <output>
+      <CMP>integer</CMP>
+    </output>
+    <effect>
+      <CMP>returns integer at the top of the stack if there is one, otherwise throws exception</CMP>
+    </effect>
+  </code>
+  <code xml:id="C896-Axiom40-code" pto="0" pto-version="||Java compiler|>=1.3">
+    <metadata>
+      <dc:title xml:lang="en">
+        code for stack interface
+      </dc:title>
+      <dc:date action="created">
+        20021218
+      </dc:date>
+      <dc:date action="update">
+        20021218
+      </dc:date>
+      <Language>en</Language>
+    </metadata>
+    <data format="Java">
+      <phrase style="bold">public interface Stack {
+  <phrase style="explicitBreak"/>
+   public void push(Object x);
+  <phrase style="explicitBreak"/>
+   public void pop();
+  <phrase style="explicitBreak"/>
+   public Object top();
+  <phrase style="explicitBreak"/>
+   public boolean isEmpty();
+  <phrase style="explicitBreak"/>
+   public void makeEmpty();
+  <phrase style="explicitBreak"/>
+  }</phrase>
+    </data>
+    <effect>
+      <CMP>defines methods for stacks</CMP>
+    </effect>
+  </code>
+  <code xml:id="C897-Axiom41-code" pto="0" pto-version="||Java compiler|>=1.3">
+    <metadata>
+      <dc:title xml:lang="en">
+        code for queue interface
+      </dc:title>
+      <dc:date action="created">
+        20021218
+      </dc:date>
+      <dc:date action="update">
+        20021218
+      </dc:date>
+      <Language>en</Language>
+    </metadata>
+    <data format="Java">
+      <phrase style="bold">public interface Queue {
+  <phrase style="explicitBreak"/>
+   public void enqueue(Object x);
+  <phrase style="explicitBreak"/>
+   public Object dequeue();
+  <phrase style="explicitBreak"/>
+   public boolean isEmpty();
+  <phrase style="explicitBreak"/>
+   public void makeEmpty();
+  <phrase style="explicitBreak"/>
+  }</phrase>
+    </data>
+    <effect>
+      <CMP>defines methods for queues</CMP>
+    </effect>
+  </code>
+  <omstyle element="with" style="bold">
+    <style format="html|pmml">
+      <element name="b"><recurse/></element>
+    </style>
+    <style format="TeX">
+      <text>{\bf{</text><recurse/><text>}}</text>
+    </style>
+  </omstyle>
+  <omstyle element="with" style="italic">
+    <style format="html|pmml">
+      <element name="em"><recurse/></element>
+    </style>
+    <style format="TeX">
+      <text>{\em{</text><recurse/><text>}}</text>
+    </style>
+  </omstyle>
+  <omstyle element="with" style="red">
+    <style format="html|pmml">
+      <element name="span">
+        <attribute name="style"><value-of select="'color:red'"/></attribute>
+        <recurse/>
+      </element>
+    </style>
+    <style format="TeX">
+      <text>{\red{</text><recurse/><text>}}</text>
+    </style>
+  </omstyle>
+  <omstyle element="with" style="blue">
+    <style format="html|pmml">
+      <element name="span">
+        <attribute name="style">
+          <value-of select="'color:blue'"/>
+        </attribute>
+        <recurse/>
+      </element>
+    </style>
+    <style format="TeX">
+      <text>{\blue{</text>
+      <recurse/>
+      <text>}}</text>
+    </style>
+  </omstyle>
+  <omstyle element="with" style="green">
+    <style format="html|pmml">
+      <element name="span">
+        <attribute name="style">
+          <value-of select="'color:green'"/>
+        </attribute>
+        <recurse/>
+      </element>
+    </style>
+    <style format="TeX">
+      <text>{\green{</text>
+      <recurse/>
+      <text>}}</text>
+    </style>
+  </omstyle>
+  <omstyle element="with" style="yellow">
+    <style format="html|pmml">
+      <element name="span">
+        <attribute name="style">
+          <value-of select="'color:yellow'"/>
+        </attribute>
+        <recurse/>
+      </element>
+    </style>
+    <style format="TeX">
+      <text>{\yellow{</text>
+      <recurse/>
+      <text>}}</text>
+    </style>
+  </omstyle>
+  <omstyle element="with" style="brown">
+    <style format="html|pmml">
+      <element name="span">
+        <attribute name="style">
+          <value-of select="'color:brown'"/>
+        </attribute>
+        <recurse/>
+      </element>
+    </style>
+    <style format="TeX">
+      <text>{\brown{</text>
+      <recurse/>
+      <text>}}</text>
+    </style>
+  </omstyle>
+  <omstyle element="with" style="white">
+    <style format="html|pmml">
+      <element name="span">
+        <attribute name="style">
+          <value-of select="'color:white'"/>
+        </attribute>
+        <recurse/>
+      </element>
+    </style>
+    <style format="TeX">
+      <text>{\white{</text>
+      <recurse/>
+      <text>}}</text>
+    </style>
+  </omstyle>
+  <omstyle element="with" style="invisible">
+    <style format="html|pmml">
+      <element name="invisible">
+      </element>
+    </style>
+  </omstyle>
+  <omstyle element="with" style="explicitBreak">
+    <style format="html|pmml">
+      <element name="br">
+      </element>
+    </style>
+  </omstyle>
+  <private xml:id="slide-256" for="C256-page1">
+    <data format="image/jpg" href="slide-256.jpg">
+    </data>
+  </private>
+  <private xml:id="slide-339" for="C339-page2">
+    <data format="image/jpg" href="slide-339.jpg">
+    </data>
+  </private>
+  <private xml:id="slide-861" for="C861-page3">
+    <data format="image/jpg" href="slide-861.jpg">
+    </data>
+  </private>
+  <private xml:id="slide-709" for="C709-page4">
+    <data format="image/jpg" href="slide-709.jpg">
+    </data>
+  </private>
+  <private xml:id="C847-Picture-2082-prv">
+    <data format="image/jpg" href="slide-847-Picture-2082.jpg">
+    </data>
+  </private>
+  <private xml:id="slide-847" for="C847-page5">
+    <data format="image/jpg" href="slide-847.jpg">
+    </data>
+  </private>
+  <private xml:id="slide-862" for="C862-page6">
+    <data format="image/jpg" href="slide-862.jpg">
+    </data>
+  </private>
+  <private xml:id="slide-863" for="C863-page7">
+    <data format="image/jpg" href="slide-863.jpg">
+    </data>
+  </private>
+  <private xml:id="slide-864" for="C864-page8">
+    <data format="image/jpg" href="slide-864.jpg">
+    </data>
+  </private>
+  <private xml:id="slide-865" for="C865-page9">
+    <data format="image/jpg" href="slide-865.jpg">
+    </data>
+  </private>
+  <private xml:id="slide-866" for="C866-page10">
+    <data format="image/jpg" href="slide-866.jpg">
+    </data>
+  </private>
+  <private xml:id="slide-867" for="C867-page11">
+    <data format="image/jpg" href="slide-867.jpg">
+    </data>
+  </private>
+  <private xml:id="C850-Axiom9-prv" style="image" type="image">
+    <metadata>
+      <dc:title xml:lang="en">
+        java inheritance tree
+      </dc:title>
+      <dc:date action="created">
+        20021216
+      </dc:date>
+      <dc:date action="update">
+        20021217
+      </dc:date>
+      <Language>en</Language>
+    </metadata>
+    <data format="image/jpg" href="slide-850-Axiom9.jpg">
+    </data>
+  </private>
+  <private xml:id="slide-850" for="C850-page12">
+    <data format="image/jpg" href="slide-850.jpg">
+    </data>
+  </private>
+  <private xml:id="slide-852" for="C852-page13">
+    <data format="image/jpg" href="slide-852.jpg">
+    </data>
+  </private>
+  <private xml:id="C848-Axiom11-prv" style="image" type="image">
+    <metadata>
+      <dc:title xml:lang="en">
+        inheritance tree for shapes
+      </dc:title>
+      <dc:date action="created">
+        20021216
+      </dc:date>
+      <dc:date action="update">
+        20021217
+      </dc:date>
+      <Language>en</Language>
+    </metadata>
+    <data format="image/jpg" href="slide-848-Axiom11.jpg">
+    </data>
+  </private>
+  <private xml:id="slide-848" for="C848-page14">
+    <data format="image/jpg" href="slide-848.jpg">
+    </data>
+  </private>
+  <private xml:id="slide-853" for="C853-page15">
+    <data format="image/jpg" href="slide-853.jpg">
+    </data>
+  </private>
+  <private xml:id="slide-870" for="C870-page16">
+    <data format="image/jpg" href="slide-870.jpg">
+    </data>
+  </private>
+  <private xml:id="C868-Axiom17-prv" style="image" type="image">
+    <metadata>
+      <dc:title xml:lang="en">
+        inheritance from abstract class
+      </dc:title>
+      <dc:date action="created">
+        20021216
+      </dc:date>
+      <dc:date action="update">
+        20021217
+      </dc:date>
+      <Language>en</Language>
+    </metadata>
+    <data format="image/jpg" href="slide-868-Axiom17.jpg">
+    </data>
+  </private>
+  <private xml:id="slide-868" for="C868-page17">
+    <data format="image/jpg" href="slide-868.jpg">
+    </data>
+  </private>
+  <private xml:id="slide-871" for="C871-page18">
+    <data format="image/jpg" href="slide-871.jpg">
+    </data>
+  </private>
+  <private xml:id="slide-869" for="C869-page19">
+    <data format="image/jpg" href="slide-869.jpg">
+    </data>
+  </private>
+  <private xml:id="slide-856" for="C856-page20">
+    <data format="image/jpg" href="slide-856.jpg">
+    </data>
+  </private>
+  <private xml:id="slide-857" for="C857-page21">
+    <data format="image/jpg" href="slide-857.jpg">
+    </data>
+  </private>
+  <private xml:id="C858-Example12-prv" style="image" type="image">
+    <metadata>
+      <dc:title xml:lang="en">
+        subclass diagram
+      </dc:title>
+      <dc:date action="created">
+        20021217
+      </dc:date>
+      <dc:date action="update">
+        20021217
+      </dc:date>
+      <Language>en</Language>
+    </metadata>
+    <data format="image/jpg" href="slide-858-Example12.jpg">
+    </data>
+  </private>
+  <private xml:id="slide-858" for="C858-page22">
+    <data format="image/jpg" href="slide-858.jpg">
+    </data>
+  </private>
+  <private xml:id="slide-786" for="C786-page23">
+    <data format="image/jpg" href="slide-786.jpg">
+    </data>
+  </private>
+  <private xml:id="C836-Axiom25-prv" style="image" type="image">
+    <metadata>
+      <dc:title xml:lang="en">
+        implementation and inheritance graph
+      </dc:title>
+      <dc:date action="created">
+        20021217
+      </dc:date>
+      <dc:date action="update">
+        20021218
+      </dc:date>
+      <Language>en</Language>
+    </metadata>
+    <data format="image/jpg" href="slide-836-Axiom25.jpg">
+    </data>
+  </private>
+  <private xml:id="slide-836" for="C836-page24">
+    <data format="image/jpg" href="slide-836.jpg">
+    </data>
+  </private>
+  <private xml:id="slide-838" for="C838-page25">
+    <data format="image/jpg" href="slide-838.jpg">
+    </data>
+  </private>
+  <private xml:id="slide-839" for="C839-page26">
+    <data format="image/jpg" href="slide-839.jpg">
+    </data>
+  </private>
+  <private xml:id="slide-788" for="C788-page27">
+    <data format="image/jpg" href="slide-788.jpg">
+    </data>
+  </private>
+  <private xml:id="C790-Example16-prv" style="image" type="image">
+    <metadata>
+      <dc:title xml:lang="en">
+        illustration of example 15
+      </dc:title>
+      <dc:date action="created">
+        20021217
+      </dc:date>
+      <dc:date action="update">
+        20021218
+      </dc:date>
+      <Language>en</Language>
+    </metadata>
+    <data format="image/jpg" href="slide-790-Example16.jpg">
+    </data>
+  </private>
+  <private xml:id="slide-790" for="C790-page28">
+    <data format="image/jpg" href="slide-790.jpg">
+    </data>
+  </private>
+  <private xml:id="slide-791" for="C791-page29">
+    <data format="image/jpg" href="slide-791.jpg">
+    </data>
+  </private>
+  <private xml:id="C793-Warning2-prv" style="image" type="image">
+    <metadata>
+      <dc:title xml:lang="en">
+        illustration of warning 1
+      </dc:title>
+      <dc:date action="created">
+        20021217
+      </dc:date>
+      <dc:date action="update">
+        20021218
+      </dc:date>
+      <Language>en</Language>
+    </metadata>
+    <data format="image/jpg" href="slide-793-Warning2.jpg">
+    </data>
+  </private>
+  <private xml:id="slide-793" for="C793-page30">
+    <data format="image/jpg" href="slide-793.jpg">
+    </data>
+  </private>
+  <private xml:id="slide-778" for="C778-page31">
+    <data format="image/jpg" href="slide-778.jpg">
+    </data>
+  </private>
+  <private xml:id="slide-779" for="C779-page32">
+    <data format="image/jpg" href="slide-779.jpg">
+    </data>
+  </private>
+  <private xml:id="slide-794" for="C794-page33">
+    <data format="image/jpg" href="slide-794.jpg">
+    </data>
+  </private>
+  <private xml:id="slide-780" for="C780-page34">
+    <data format="image/jpg" href="slide-780.jpg">
+    </data>
+  </private>
+  <private xml:id="slide-789" for="C789-page35">
+    <data format="image/jpg" href="slide-789.jpg">
+    </data>
+  </private>
+  <private xml:id="slide-781" for="C781-page36">
+    <data format="image/jpg" href="slide-781.jpg">
+    </data>
+  </private>
+  <private xml:id="slide-782" for="C782-page37">
+    <data format="image/jpg" href="slide-782.jpg">
+    </data>
+  </private>
+  <private xml:id="slide-783" for="C783-page38">
+    <data format="image/jpg" href="slide-783.jpg">
+    </data>
+  </private>
+  <private xml:id="slide-628" for="C628-page39">
+    <data format="image/jpg" href="slide-628.jpg">
+    </data>
+  </private>
+  <private xml:id="slide-892" for="C892-page40">
+    <data format="image/jpg" href="slide-892.jpg">
+    </data>
+  </private>
+  <private xml:id="slide-893" for="C893-page41">
+    <data format="image/jpg" href="slide-893.jpg">
+    </data>
+  </private>
+  <private xml:id="slide-894" for="C894-page42">
+    <data format="image/jpg" href="slide-894.jpg">
+    </data>
+  </private>
+  <private xml:id="slide-872" for="C872-page43">
+    <data format="image/jpg" href="slide-872.jpg">
+    </data>
+  </private>
+  <private xml:id="slide-873" for="C873-page44">
+    <data format="image/jpg" href="slide-873.jpg">
+    </data>
+  </private>
+  <private xml:id="slide-874" for="C874-page45">
+    <data format="image/jpg" href="slide-874.jpg">
+    </data>
+  </private>
+  <private xml:id="slide-875" for="C875-page46">
+    <data format="image/jpg" href="slide-875.jpg">
+    </data>
+  </private>
+  <private xml:id="slide-876" for="C876-page47">
+    <data format="image/jpg" href="slide-876.jpg">
+    </data>
+  </private>
+  <private xml:id="slide-877" for="C877-page48">
+    <data format="image/jpg" href="slide-877.jpg">
+    </data>
+  </private>
+  <private xml:id="slide-878" for="C878-page49">
+    <data format="image/jpg" href="slide-878.jpg">
+    </data>
+  </private>
+  <private xml:id="slide-879" for="C879-page50">
+    <data format="image/jpg" href="slide-879.jpg">
+    </data>
+  </private>
+  <private xml:id="slide-880" for="C880-page51">
+    <data format="image/jpg" href="slide-880.jpg">
+    </data>
+  </private>
+  <private xml:id="slide-881" for="C881-page52">
+    <data format="image/jpg" href="slide-881.jpg">
+    </data>
+  </private>
+  <private xml:id="slide-882" for="C882-page53">
+    <data format="image/jpg" href="slide-882.jpg">
+    </data>
+  </private>
+  <private xml:id="slide-883" for="C883-page54">
+    <data format="image/jpg" href="slide-883.jpg">
+    </data>
+  </private>
+  <private xml:id="C884-Axiom39-prv" style="image" type="image">
+    <metadata>
+      <dc:title xml:lang="en">
+        inheritance tree for exceptions
+      </dc:title>
+      <dc:date action="created">
+        20021218
+      </dc:date>
+      <dc:date action="update">
+        20021218
+      </dc:date>
+      <Language>en</Language>
+    </metadata>
+    <data format="image/jpg" href="slide-884-Axiom39.jpg">
+    </data>
+  </private>
+  <private xml:id="slide-884" for="C884-page55">
+    <data format="image/jpg" href="slide-884.jpg">
+    </data>
+  </private>
+  <private xml:id="slide-885" for="C885-page56">
+    <data format="image/jpg" href="slide-885.jpg">
+    </data>
+  </private>
+  <private xml:id="slide-886" for="C886-page57">
+    <data format="image/jpg" href="slide-886.jpg">
+    </data>
+  </private>
+  <private xml:id="slide-887" for="C887-page58">
+    <data format="image/jpg" href="slide-887.jpg">
+    </data>
+  </private>
+  <private xml:id="slide-888" for="C888-page59">
+    <data format="image/jpg" href="slide-888.jpg">
+    </data>
+  </private>
+  <private xml:id="slide-889" for="C889-page60">
+    <data format="image/jpg" href="slide-889.jpg">
+    </data>
+  </private>
+  <private xml:id="slide-890" for="C890-page61">
+    <data format="image/jpg" href="slide-890.jpg">
+    </data>
+  </private>
+  <private xml:id="slide-891" for="C891-page62">
+    <data format="image/jpg" href="slide-891.jpg">
+    </data>
+  </private>
+  <private xml:id="slide-895" for="C895-page63">
+    <data format="image/jpg" href="slide-895.jpg">
+    </data>
+  </private>
+  <private xml:id="slide-896" for="C896-page64">
+    <data format="image/jpg" href="slide-896.jpg">
+    </data>
+  </private>
+  <private xml:id="slide-897" for="C897-page65">
+    <data format="image/jpg" href="slide-897.jpg">
+    </data>
+  </private>
+  <private xml:id="slide-898" for="C898-page66">
+    <data format="image/jpg" href="slide-898.jpg">
+    </data>
+  </private>
+  <private xml:id="slide-899" for="C899-page67">
+    <data format="image/jpg" href="slide-899.jpg">
+    </data>
+  </private>
+</omdoc>

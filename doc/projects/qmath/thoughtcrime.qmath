@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<?QMath
+:en
+Context: "Mathematics/Arithmetic"
+?>
+<omdoc xmlns='http://omdoc.org/ns' version='1.2'
+       xmlns:dc='http://purl.org/dc/elements/1.1/'>
+ <metadata>
+  <dc:language>en</dc:language>
+  <dc:title>Diary</dc:title>
+  <dc:creator role='aut'>W. Smith</dc:creator>
+  <dc:date>1984-04-04T18:43:00</dc:date>
+ </metadata>
+ <theory xml:id='thoughtcrime'>
+  <omtext>
+   <metadata><dc:title>Down with Big Brother</dc:title></metadata>
+   <CMP>
+    Freedom is the freedom to say $2+2=4$.
+    If that is granted, all else follows. 
+   </CMP>
+  </omtext>
+ </theory>
+</omdoc>

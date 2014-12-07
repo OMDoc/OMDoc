@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  xmlns="http://omdoc.org/ns"
+xml:id="polysts-omdoc">
+
+
+  <dc:title>The OpenMath Content Dictionary polysts.ocd  in OMDoc form</dc:title>
+  <dc:creator role="trl">Michael Kohlhase</dc:creator>
+  <dc:creator role="ant">James Davenport</dc:creator>
+  <dc:date> 1999-12-10T00:00:00</dc:date>
+  <dc:source>Derived from the OpenMath CD http://www.openmath.org/cd/polysts.ocd.</dc:source>
+  <dc:type>Text</dc:type>
+  <dc:format>application/omdoc+xml</dc:format>
+  <dc:rights>Copyright (c) 2000-2002 Michael Kohlhase;
+    This OMDoc content dictionary is released under the OpenMath license:
+    http://monet.nag.co.uk/openmath/cdfiles/license.html
+  </dc:rights>
+  <dc:description> 
+    This CD holds the polynomial symbols used by the OpenMath Small Type System.
+    PolynomialRing is the equivalent of an Axiom category, whereas 
+    PolynomialRingD and PolynomialRingR are functors returning elements of that
+    category, polynomial rings with a specific representation (at the abstract
+    OMtree level)
+  </dc:description>
+
+
+<theory xml:id="polysts" cdbase="http://www.openmath.org/cd">
+  <symbol name="polynomial_ring" xml:id="polynomial_ring">
+    
+  <dc:description>The type of all polynomial rings, e.g. from polyr or polyd OCDs</dc:description><dc:subject>polynomial ring</dc:subject>
+    <type>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	<OMV name="Ring"/>
+      </OMOBJ>
+    </type>
+  </symbol>
+</theory>
+</omdoc>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xml:id="richtext.omdoc"
+  xmlns="http://omdoc.org/ns"
+  xmlns:cc="http://creativecommons.org/ns"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  version="1.6">
+<metadata>
+  <dc:date action="created"> 2004-10-08T12:49:18Z </dc:date>
+  <dc:title xml:lang="en"> richtext </dc:title>
+  <dc:creator role="aut"> Michael Kohlhase </dc:creator>
+  <dc:source>  </dc:source>
+  <dc:date action="updated"> 2004-10-08T12:49:18Z </dc:date>
+  <dc:type> Text </dc:type>
+  <dc:format> application/omdoc+xml </dc:format>
+  <dc:rights>Copyright (c) 2004 Michael Kohlhase</dc:rights>
+  <cc:license>
+    <cc:permissions reproduction="permitted" distribution="permitted" derivative_works="permitted"/>
+    <cc:prohibitions commercial_use="permitted"/>
+    <cc:requirements notice="required" copyleft="required" attribution="required"/>
+  </cc:license>
+</metadata>
+
+<omtext xml:id="test">
+  <CMP>
+  <p xml:id="p1">All animals are dangerous </p>
+  (which is a highly <phrase class="emphasis">unfounded</phrase> 
+  statement). In reality only some animals are, for instance
+  <ul xml:id="l1">
+    <li>sharks (they bite) and </li>
+    <li>bees (they sting).</li>
+  </ul>
+  <p>If we measure danger by the number of deaths, we obtain</p>
+  <table>
+    <tr>         <th>Culprits</th> <th>Deaths</th> <th>Action</th></tr>
+    <tr>         <td>sharks</td>   <td>312</td>    <td>bite</td></tr>
+    <tr xml:id="bn"> <td>bees</td>     <td>23</td>     <td>sting</td></tr>
+    <tr>         <td>cars</td>     <td>7500</td>   <td>crash</td></tr>
+  </table>
+  So, if we do the numbers <note xml:id="n1" type="ednote">check the
+  numbers again</note> we see that animals are dangerous, but they are 
+  less so than cars but much more photogenic as we can see
+  <link href="http://www.yellowpress.com/killerbee.jpg">here</link>.
+
+  <note type="footnote">From the International Journal of Beekeeping; numbers only
+  available for 2002.</note> 
+</CMP>
+</omtext>
+</omdoc>

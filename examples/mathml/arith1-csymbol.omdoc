@@ -1,0 +1,1101 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  xmlns="http://omdoc.org/ns"
+xml:id="arith1-omdoc">
+
+   <metadata>
+      <dc:title>The OpenMath Content Dictionary arith1.ocd  in OMDoc form with
+      content MathML encoding</dc:title>
+      <dc:creator role="trl">Michael Kohlhase</dc:creator>
+      <dc:date> 2002-04-23T00:00:00</dc:date>
+      <dc:description>This CD defines symbols for common arithmetic functions.</dc:description>
+   </metadata>
+
+   <theory xml:id="arith1">
+      <symbol name="lcm" role="object" scope="global">
+	<metadata>
+	  <dc:description> 
+	    The symbol to represent the n-ary function to return the least common
+	    multiple of its arguments.
+	  </dc:description>
+	  <dc:description xml:lang="de"> 
+          Das Symbol f"ur das kleinste gemeinsame Vielfache.
+	</dc:description>
+	<dc:subject>lcm</dc:subject>
+	<dc:subject  xml:lang="de">kgV</dc:subject>
+      </metadata>
+      <type system="sts">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+               <m:apply>
+                  <m:csymbol definitionURL="../omstd/sts.omdoc#mapsto"/>
+                  <m:apply>
+                     <m:csymbol definitionURL="../omstd/sts.omdoc#nassoc"/>
+                     <m:ci>SemiGroup</m:ci>
+                  </m:apply>
+                  <m:ci>SemiGroup</m:ci>
+               </m:apply>
+            </m:math>
+         </type>
+      </symbol>
+      <presentation xml:id="pr_lcm" for="lcm">
+         <use  format="default"><![CDATA[lcm]]></use>
+         <use  format="default" xml:lang="de"><![CDATA[kgV]]></use>
+      </presentation>
+      <assertion xml:id="lcm-prop-1" type="lemma">
+         <CMP> lcm(a,b) = a*b/gcd(a,b) </CMP>
+         <FMP>
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+               <m:apply>
+                  <m:csymbol definitionURL="../omstd/relation1.omdoc#eq"/>
+                  <m:apply>
+                     <m:csymbol definitionURL="../omstd/arith1.omdoc#lcm"/>
+                     <m:ci>a</m:ci>
+                     <m:ci>b</m:ci>
+                  </m:apply>
+                  <m:apply>
+                     <m:csymbol definitionURL="../omstd/arith1.omdoc#divide"/>
+                     <m:apply>
+                        <m:csymbol definitionURL="../omstd/arith1.omdoc#times"/>
+                        <m:ci>a</m:ci>
+                        <m:ci>b</m:ci>
+                     </m:apply>
+                     <m:apply>
+                        <m:csymbol definitionURL="../omstd/arith1.omdoc#gcd"/>
+                        <m:ci>a</m:ci>
+                        <m:ci>b</m:ci>
+                     </m:apply>
+                  </m:apply>
+               </m:apply>
+            </m:math>
+         </FMP>
+      </assertion>
+      <assertion xml:id="lcm-prop-3" type="lemma">
+         <CMP>
+for all integers a,b |
+There does not exist a c&gt;0 such that c/a is an Integer and c/b is an
+Integer and lcm(a,b) &gt; c.
+</CMP>
+         <FMP>
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+               <m:apply>
+                  <m:csymbol definitionURL="../omstd/quant1.omdoc#forall"/>
+                  <m:bvar>
+                     <m:ci>a</m:ci>
+                     <m:ci>b</m:ci>
+                  </m:bvar>
+                  <m:apply>
+                     <m:csymbol definitionURL="../omstd/logic1.omdoc#implies"/>
+                     <m:apply>
+                        <m:csymbol definitionURL="../omstd/logic1.omdoc#and"/>
+                        <m:apply>
+                           <m:csymbol definitionURL="../omstd/set1.omdoc#in"/>
+                           <m:ci>a</m:ci>
+                           <m:csymbol definitionURL="../omstd/setname1.omdoc#Z"/>
+                        </m:apply>
+                        <m:apply>
+                           <m:csymbol definitionURL="../omstd/set1.omdoc#in"/>
+                           <m:ci>b</m:ci>
+                           <m:csymbol definitionURL="../omstd/setname1.omdoc#Z"/>
+                        </m:apply>
+                     </m:apply>
+                     <m:apply>
+                        <m:csymbol definitionURL="../omstd/logic1.omdoc#not"/>
+                        <m:apply>
+                           <m:csymbol definitionURL="../omstd/quant1.omdoc#exists"/>
+                           <m:bvar>
+                              <m:ci>c</m:ci>
+                           </m:bvar>
+                           <m:apply>
+                              <m:csymbol definitionURL="../omstd/logic1.omdoc#and"/>
+                              <m:apply>
+                                 <m:csymbol definitionURL="../omstd/relation1.omdoc#gt"/>
+                                 <m:ci>c</m:ci>
+                                 <m:cn>0</m:cn>
+                              </m:apply>
+                              <m:apply>
+                                 <m:csymbol definitionURL="../omstd/integer1.omdoc#factorof"/>
+                                 <m:ci>a</m:ci>
+                                 <m:ci>c</m:ci>
+                              </m:apply>
+                              <m:apply>
+                                 <m:csymbol definitionURL="../omstd/integer1.omdoc#factorof"/>
+                                 <m:ci>b</m:ci>
+                                 <m:ci>c</m:ci>
+                              </m:apply>
+                              <m:apply>
+                                 <m:csymbol definitionURL="../omstd/relation1.omdoc#lt"/>
+                                 <m:ci>c</m:ci>
+                                 <m:apply>
+                                    <m:csymbol definitionURL="../omstd/arith1.omdoc#lcm"/>
+                                    <m:ci>a</m:ci>
+                                    <m:ci>b</m:ci>
+                                 </m:apply>
+                              </m:apply>
+                           </m:apply>
+                        </m:apply>
+                     </m:apply>
+                  </m:apply>
+               </m:apply>
+            </m:math>
+         </FMP>
+      </assertion>
+      <symbol name="gcd" role="object" scope="global">
+	<metadata>
+	  <dc:description> 
+	    The symbol to represent the n-ary function to return the gcd (greatest
+	    common divisor) of its arguments.
+	  </dc:description>
+	</metadata>
+	<type system="sts">
+	  <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+	    <m:apply>
+	      <m:csymbol definitionURL="../omstd/sts.omdoc#mapsto"/>
+	      <m:apply>
+		<m:csymbol definitionURL="../omstd/sts.omdoc#nassoc"/>
+		<m:ci>SemiGroup</m:ci>
+	      </m:apply>
+	      <m:ci>SemiGroup</m:ci>
+	    </m:apply>
+	  </m:math>
+	</type>
+      </symbol>
+      <presentation xml:id="arith1_pr_gcd" for="gcd">
+         <use  format="default"><![CDATA[gcd]]></use>
+         <use  format="default" xml:lang="de"><![CDATA[ggT]]></use>
+      </presentation>
+      <assertion xml:id="gcd-prop-1" type="lemma">
+         <CMP>
+	   for all integers a,b |
+	   There does not exist a c such that a/c is an Integer and b/c is an
+	   Integer and c &gt; gcd(a,b).
+	   
+	   Note that this implies that gcd(a,b) &gt; 0
+	 </CMP>
+         <FMP>
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+               <m:apply>
+                  <m:csymbol definitionURL="../omstd/quant1.omdoc#forall"/>
+                  <m:bvar>
+                     <m:ci>a</m:ci>
+                     <m:ci>b</m:ci>
+                  </m:bvar>
+                  <m:apply>
+                     <m:csymbol definitionURL="../omstd/logic1.omdoc#implies"/>
+                     <m:apply>
+                        <m:csymbol definitionURL="../omstd/logic1.omdoc#and"/>
+                        <m:apply>
+                           <m:csymbol definitionURL="../omstd/set1.omdoc#in"/>
+                           <m:ci>a</m:ci>
+                           <m:csymbol definitionURL="../omstd/setname1.omdoc#Z"/>
+                        </m:apply>
+                        <m:apply>
+                           <m:csymbol definitionURL="../omstd/set1.omdoc#in"/>
+                           <m:ci>b</m:ci>
+                           <m:csymbol definitionURL="../omstd/setname1.omdoc#Z"/>
+                        </m:apply>
+                     </m:apply>
+                     <m:apply>
+                        <m:csymbol definitionURL="../omstd/logic1.omdoc#not"/>
+                        <m:apply>
+                           <m:csymbol definitionURL="../omstd/quant1.omdoc#exists"/>
+                           <m:bvar>
+                              <m:ci>c</m:ci>
+                           </m:bvar>
+                           <m:apply>
+                              <m:csymbol definitionURL="../omstd/logic1.omdoc#and"/>
+                              <m:apply>
+                                 <m:csymbol definitionURL="../omstd/set1.omdoc#in"/>
+                                 <m:apply>
+                                    <m:csymbol definitionURL="../omstd/arith1.omdoc#divide"/>
+                                    <m:ci>a</m:ci>
+                                    <m:ci>c</m:ci>
+                                 </m:apply>
+                                 <m:csymbol definitionURL="../omstd/setname1.omdoc#Z"/>
+                              </m:apply>
+                              <m:apply>
+                                 <m:csymbol definitionURL="../omstd/set1.omdoc#in"/>
+                                 <m:apply>
+                                    <m:csymbol definitionURL="../omstd/arith1.omdoc#divide"/>
+                                    <m:ci>b</m:ci>
+                                    <m:ci>c</m:ci>
+                                 </m:apply>
+                                 <m:csymbol definitionURL="../omstd/setname1.omdoc#Z"/>
+                              </m:apply>
+                              <m:apply>
+                                 <m:csymbol definitionURL="../omstd/relation1.omdoc#gt"/>
+                                 <m:ci>c</m:ci>
+                                 <m:apply>
+                                    <m:csymbol definitionURL="../omstd/arith1.omdoc#gcd"/>
+                                    <m:ci>a</m:ci>
+                                    <m:ci>b</m:ci>
+                                 </m:apply>
+                              </m:apply>
+                           </m:apply>
+                        </m:apply>
+                     </m:apply>
+                  </m:apply>
+               </m:apply>
+            </m:math>
+         </FMP>
+      </assertion>
+      <example xml:id="gcd-ex-3" type="for" for="gcd">
+         <CMP>gcd(6,9) = 3</CMP>
+         <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+               <m:apply>
+                  <m:csymbol definitionURL="../omstd/relation1.omdoc#eq"/>
+                  <m:apply>
+                     <m:csymbol definitionURL="../omstd/arith1.omdoc#gcd"/>
+                     <m:cn> 6 </m:cn>
+                     <m:cn> 9 </m:cn>
+                  </m:apply>
+                  <m:cn> 3 </m:cn>
+               </m:apply>
+            </m:math>
+      </example>
+      <symbol name="plus" role="object" scope="global">
+	<metadata>
+	  <dc:description>
+	    The symbol representing an n-ary commutative function plus.
+	  </dc:description>
+	</metadata>
+         <type system="sts">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+               <m:apply>
+                  <m:csymbol definitionURL="../omstd/sts.omdoc#mapsto"/>
+                  <m:apply>
+                     <m:csymbol definitionURL="../omstd/sts.omdoc#nassoc"/>
+                     <m:ci>AbelianSemiGroup</m:ci>
+                  </m:apply>
+                  <m:ci>AbelianSemiGroup</m:ci>
+               </m:apply>
+            </m:math>
+         </type>
+      </symbol>
+      <presentation xml:id="pr-plus" for="plus" role="applied" fixity="assoc" 
+		    precedence="500" bracket-style="lisp">
+         <use  format="default"><![CDATA[+]]></use>
+      </presentation>
+      <presentation xml:id="pr2-plus" for="plus">
+         <use  format="default"><![CDATA[+]]></use>
+      </presentation>
+      <assertion xml:id="plus-prop-1" type="lemma">
+         <CMP> for all a,b | a + b = b + a </CMP>
+         <FMP>
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+               <m:apply>
+                  <m:csymbol definitionURL="../omstd/quant1.omdoc#forall"/>
+                  <m:bvar>
+                     <m:ci>a</m:ci>
+                     <m:ci>b</m:ci>
+                  </m:bvar>
+                  <m:apply>
+                     <m:csymbol definitionURL="../omstd/relation1.omdoc#eq"/>
+                     <m:apply>
+                        <m:csymbol definitionURL="../omstd/arith1.omdoc#plus"/>
+                        <m:ci>a</m:ci>
+                        <m:ci>b</m:ci>
+                     </m:apply>
+                     <m:apply>
+                        <m:csymbol definitionURL="../omstd/arith1.omdoc#plus"/>
+                        <m:ci>b</m:ci>
+                        <m:ci>a</m:ci>
+                     </m:apply>
+                  </m:apply>
+               </m:apply>
+            </m:math>
+         </FMP>
+      </assertion>
+      <symbol name="unary_minus" role="object" scope="global">
+	<metadata>
+	  <dc:description> 
+	    This symbol denotes unary minus, i.e. the additive inverse.
+	  </dc:description>
+	</metadata>
+         <type system="sts">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+               <m:apply>
+                  <m:csymbol definitionURL="../omstd/sts.omdoc#mapsto"/>
+                  <m:ci>AbelianGroup</m:ci>
+                  <m:ci>AbelianGroup</m:ci>
+               </m:apply>
+            </m:math>
+         </type>
+      </symbol>
+      <presentation xml:id="pr-unary-minus" for="unary_minus" role="applied" precedence="200">
+         <use  format="default"><![CDATA[-]]></use>
+      </presentation>
+      <presentation xml:id="prr-unary-minus" for="unary_minus">
+         <use  format="default"><![CDATA[-]]></use>
+      </presentation>
+      <assertion xml:id="unary_minus-prop-1" type="lemma">
+         <CMP> for all a | a + (-a) = 0 </CMP>
+         <FMP>
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+               <m:apply>
+                  <m:csymbol definitionURL="../omstd/quant1.omdoc#forall"/>
+                  <m:bvar>
+                     <m:ci>a</m:ci>
+                  </m:bvar>
+                  <m:apply>
+                     <m:csymbol definitionURL="../omstd/relation1.omdoc#eq"/>
+                     <m:apply>
+                        <m:csymbol definitionURL="../omstd/arith1.omdoc#plus"/>
+                        <m:ci>a</m:ci>
+                        <m:apply>
+                           <m:csymbol definitionURL="../omstd/arith1.omdoc#unary_minus"/>
+                           <m:ci>a</m:ci>
+                        </m:apply>
+                     </m:apply>
+                     <m:csymbol definitionURL="../omstd/alg1.omdoc#zero"/>
+                  </m:apply>
+               </m:apply>
+            </m:math>
+         </FMP>
+      </assertion>
+      <symbol name="minus" role="object" scope="global">
+	<metadata>
+	  <dc:description> 
+	    The symbol representing a binary minus function. This is equivalent to
+	    adding the additive inverse.
+	  </dc:description>
+	</metadata>
+         <type system="sts">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+               <m:apply>
+                  <m:csymbol definitionURL="../omstd/sts.omdoc#mapsto"/>
+                  <m:ci>AbelianGroup</m:ci>
+                  <m:ci>AbelianGroup</m:ci>
+                  <m:ci>AbelianGroup</m:ci>
+               </m:apply>
+            </m:math>
+         </type>
+      </symbol>
+      <presentation xml:id="pr-minus" for="minus" role="applied" fixity="infix" precedence="500">
+         <use  format="default"><![CDATA[-]]></use>
+      </presentation>
+      <presentation xml:id="prr-minus" for="minus">
+         <use  format="default"><![CDATA[-]]></use>
+      </presentation>
+      <assertion xml:id="minus-prop-1" type="lemma">
+         <CMP> for all a,b | a - b = a + (-b) </CMP>
+         <FMP>
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+               <m:apply>
+                  <m:csymbol definitionURL="../omstd/quant1.omdoc#forall"/>
+                  <m:bvar>
+                     <m:ci>a</m:ci>
+                     <m:ci>b</m:ci>
+                  </m:bvar>
+                  <m:apply>
+                     <m:csymbol definitionURL="../omstd/relation1.omdoc#eq"/>
+                     <m:apply>
+                        <m:csymbol definitionURL="../omstd/arith1.omdoc#minus"/>
+                        <m:ci>a</m:ci>
+                        <m:ci>b</m:ci>
+                     </m:apply>
+                     <m:apply>
+                        <m:csymbol definitionURL="../omstd/arith1.omdoc#plus"/>
+                        <m:ci>a</m:ci>
+                        <m:apply>
+                           <m:csymbol definitionURL="../omstd/arith1.omdoc#unary_minus"/>
+                           <m:ci>b</m:ci>
+                        </m:apply>
+                     </m:apply>
+                  </m:apply>
+               </m:apply>
+            </m:math>
+         </FMP>
+      </assertion>
+      <symbol name="times" role="object" scope="global">
+         <metadata>
+  <dc:description> The symbol representing an n-ary multiplication function.</dc:description><dc:subject>times</dc:subject></metadata>
+         <type system="sts">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+               <m:apply>
+                  <m:csymbol definitionURL="../omstd/sts.omdoc#mapsto"/>
+                  <m:apply>
+                     <m:csymbol definitionURL="../omstd/sts.omdoc#nassoc"/>
+                     <m:ci>SemiGroup</m:ci>
+                  </m:apply>
+                  <m:ci>SemiGroup</m:ci>
+               </m:apply>
+            </m:math>
+         </type>
+      </symbol>
+      <presentation xml:id="pr-times" for="times" role="applied" fixity="assoc" precedence="400">
+         <use  format="html"><![CDATA[*]]></use>
+         <use  format="TeX"><![CDATA[\cdot]]></use>
+         <use  format="pmml" crossref-symbol="no"/>
+      </presentation>
+      <example xml:id="times-ex-1" type="for" for="times">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+               <m:apply>
+                  <m:csymbol definitionURL="../omstd/relation1.omdoc#eq"/>
+                  <m:apply>
+                     <m:csymbol definitionURL="../omstd/arith1.omdoc#times"/>
+                     <m:apply>
+                        <m:csymbol definitionURL="../omstd/linalg2.omdoc#matrix"/>
+                        <m:apply>
+                           <m:csymbol definitionURL="../omstd/linalg2.omdoc#matrixrow"/>
+                           <m:cn> 1 </m:cn>
+                           <m:cn> 2 </m:cn>
+                        </m:apply>
+                        <m:apply>
+                           <m:csymbol definitionURL="../omstd/linalg2.omdoc#matrixrow"/>
+                           <m:cn> 3 </m:cn>
+                           <m:cn> 4 </m:cn>
+                        </m:apply>
+                     </m:apply>
+                     <m:apply>
+                        <m:csymbol definitionURL="../omstd/linalg2.omdoc#matrix"/>
+                        <m:apply>
+                           <m:csymbol definitionURL="../omstd/linalg2.omdoc#matrixrow"/>
+                           <m:cn> 5 </m:cn>
+                           <m:cn> 6 </m:cn>
+                        </m:apply>
+                        <m:apply>
+                           <m:csymbol definitionURL="../omstd/linalg2.omdoc#matrixrow"/>
+                           <m:cn> 7 </m:cn>
+                           <m:cn> 8 </m:cn>
+                        </m:apply>
+                     </m:apply>
+                  </m:apply>
+                  <m:apply>
+                     <m:csymbol definitionURL="../omstd/linalg2.omdoc#matrix"/>
+                     <m:apply>
+                        <m:csymbol definitionURL="../omstd/linalg2.omdoc#matrixrow"/>
+                        <m:cn> 19 </m:cn>
+                        <m:cn> 20 </m:cn>
+                     </m:apply>
+                     <m:apply>
+                        <m:csymbol definitionURL="../omstd/linalg2.omdoc#matrixrow"/>
+                        <m:cn> 43 </m:cn>
+                        <m:cn> 50 </m:cn>
+                     </m:apply>
+                  </m:apply>
+               </m:apply>
+            </m:math>
+      </example>
+      <assertion xml:id="times-prop-2" type="lemma">
+         <CMP> for all a,b | a * 0 = 0 and a * b = a * (b - 1) + a </CMP>
+         <FMP>
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+               <m:apply>
+                  <m:csymbol definitionURL="../omstd/quant1.omdoc#forall"/>
+                  <m:bvar>
+                     <m:ci>a</m:ci>
+                     <m:ci>b</m:ci>
+                  </m:bvar>
+                  <m:apply>
+                     <m:csymbol definitionURL="../omstd/logic1.omdoc#and"/>
+                     <m:apply>
+                        <m:csymbol definitionURL="../omstd/relation1.omdoc#eq"/>
+                        <m:apply>
+                           <m:csymbol definitionURL="../omstd/arith1.omdoc#times"/>
+                           <m:ci>a</m:ci>
+                           <m:csymbol definitionURL="../omstd/alg1.omdoc#zero"/>
+                        </m:apply>
+                        <m:csymbol definitionURL="../omstd/alg1.omdoc#zero"/>
+                     </m:apply>
+                     <m:apply>
+                        <m:csymbol definitionURL="../omstd/relation1.omdoc#eq"/>
+                        <m:apply>
+                           <m:csymbol definitionURL="../omstd/arith1.omdoc#times"/>
+                           <m:ci>a</m:ci>
+                           <m:ci>b</m:ci>
+                        </m:apply>
+                        <m:apply>
+                           <m:csymbol definitionURL="../omstd/arith1.omdoc#plus"/>
+                           <m:apply>
+                              <m:csymbol definitionURL="../omstd/arith1.omdoc#times"/>
+                              <m:ci>a</m:ci>
+                              <m:apply>
+                                 <m:csymbol definitionURL="../omstd/arith1.omdoc#minus"/>
+                                 <m:ci>b</m:ci>
+                                 <m:csymbol definitionURL="../omstd/alg1.omdoc#one"/>
+                              </m:apply>
+                           </m:apply>
+                           <m:ci>a</m:ci>
+                        </m:apply>
+                     </m:apply>
+                  </m:apply>
+               </m:apply>
+            </m:math>
+         </FMP>
+      </assertion>
+      <assertion xml:id="times-prop-4" type="lemma">
+         <CMP> for all a,b,c | a*(b+c) = a*b + a*c </CMP>
+         <FMP>
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+               <m:apply>
+                  <m:csymbol definitionURL="../omstd/quant1.omdoc#forall"/>
+                  <m:bvar>
+                     <m:ci>a</m:ci>
+                     <m:ci>b</m:ci>
+                     <m:ci>c</m:ci>
+                  </m:bvar>
+                  <m:apply>
+                     <m:csymbol definitionURL="../omstd/relation1.omdoc#eq"/>
+                     <m:apply>
+                        <m:csymbol definitionURL="../omstd/arith1.omdoc#times"/>
+                        <m:ci>a</m:ci>
+                        <m:apply>
+                           <m:csymbol definitionURL="../omstd/arith1.omdoc#plus"/>
+                           <m:ci>b</m:ci>
+                           <m:ci>c</m:ci>
+                        </m:apply>
+                     </m:apply>
+                     <m:apply>
+                        <m:csymbol definitionURL="../omstd/arith1.omdoc#plus"/>
+                        <m:apply>
+                           <m:csymbol definitionURL="../omstd/arith1.omdoc#times"/>
+                           <m:ci>a</m:ci>
+                           <m:ci>b</m:ci>
+                        </m:apply>
+                        <m:apply>
+                           <m:csymbol definitionURL="../omstd/arith1.omdoc#times"/>
+                           <m:ci>a</m:ci>
+                           <m:ci>c</m:ci>
+                        </m:apply>
+                     </m:apply>
+                  </m:apply>
+               </m:apply>
+            </m:math>
+         </FMP>
+      </assertion>
+      <symbol name="divide" role="object" scope="global">
+	<metadata>
+	  <dc:description>
+	    This symbol represents a (binary) division function denoting the first argument
+	    right-divided by the second, i.e. divide(a,b)=a*inverse(b). It is the
+	    inverse of the multiplication function defined by the symbol times in this CD.
+	  </dc:description>
+	</metadata>
+         <type system="sts">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+               <m:apply>
+                  <m:csymbol definitionURL="../omstd/sts.omdoc#mapsto"/>
+                  <m:ci>AbelianGroup</m:ci>
+                  <m:ci>AbelianGroup</m:ci>
+                  <m:ci>AbelianGroup</m:ci>
+               </m:apply>
+            </m:math>
+         </type>
+      </symbol>
+      <presentation xml:id="pr-divide" for="divide" role="applied" fixity="infix" precedence="400"  bracket-style="lisp">
+         <use  format="default"><![CDATA[/]]></use>
+         <use  format="pmml" element="mfrac" crossref-symbol="no" lbrack="" rbrack=""/>
+         <use  format="TeX" lbrack="{" rbrack="}" crossref-symbol="no"><![CDATA[\over]]></use>
+      </presentation>
+      <assertion xml:id="divide-prop-1" type="lemma">
+         <CMP> whenever not(a=0) then a/a = 1 </CMP>
+         <FMP>
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+               <m:apply>
+                  <m:csymbol definitionURL="../omstd/quant1.omdoc#forall"/>
+                  <m:bvar>
+                     <m:ci>a</m:ci>
+                  </m:bvar>
+                  <m:apply>
+                     <m:csymbol definitionURL="../omstd/logic1.omdoc#implies"/>
+                     <m:apply>
+                        <m:csymbol definitionURL="../omstd/relation1.omdoc#neq"/>
+                        <m:ci>a</m:ci>
+                        <m:csymbol definitionURL="../omstd/alg1.omdoc#zero"/>
+                     </m:apply>
+                     <m:apply>
+                        <m:csymbol definitionURL="../omstd/relation1.omdoc#eq"/>
+                        <m:apply>
+                           <m:csymbol definitionURL="../omstd/arith1.omdoc#divide"/>
+                           <m:ci>a</m:ci>
+                           <m:ci>a</m:ci>
+                        </m:apply>
+                        <m:csymbol definitionURL="../omstd/alg1.omdoc#one"/>
+                     </m:apply>
+                  </m:apply>
+               </m:apply>
+            </m:math>
+         </FMP>
+      </assertion>
+      <symbol name="power" role="object" scope="global">
+	<metadata>
+	  <dc:description>
+	    This symbol represents a power function. The first argument is raised
+	    to the power of the second argument. When the second argument is not
+	    an integer, powering is defined in terms of exponentials and 
+	    logarithms for the complex and real numbers.
+	    This operator can represent general powering.
+	  </dc:description>
+	</metadata>
+         <type system="sts">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+               <m:apply>
+                  <m:csymbol definitionURL="../omstd/sts.omdoc#mapsto"/>
+                  <m:csymbol definitionURL="../omstd/sts.omdoc#NumericalValue"/>
+                  <m:csymbol definitionURL="../omstd/sts.omdoc#NumericalValue"/>
+                  <m:csymbol definitionURL="../omstd/sts.omdoc#NumericalValue"/>
+               </m:apply>
+            </m:math>
+         </type>
+      </symbol>
+      <presentation for="power" role="applied" crossref-symbol="no" precedence="200" separator="">
+         <style format="html">
+          <recurse select="*[2]"/>
+          <element name="sup"><recurse select="*[3]"/></element>
+         </style>
+         <use format="TeX" fixity="infix"><![CDATA[^]]></use>
+         <use format="pmml" element="msup"/>
+      </presentation>
+      <assertion xml:id="power-prop-1" type="lemma">
+         <CMP>x\in C implies x^a = exp(a ln x)</CMP>
+         <FMP>
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+               <m:apply>
+                  <m:csymbol definitionURL="../omstd/logic1.omdoc#implies"/>
+                  <m:apply>
+                     <m:csymbol definitionURL="../omstd/set1.omdoc#in"/>
+                     <m:ci>x</m:ci>
+                     <m:csymbol definitionURL="../omstd/setname1.omdoc#C"/>
+                  </m:apply>
+                  <m:apply>
+                     <m:csymbol definitionURL="../omstd/relation1.omdoc#eq"/>
+                     <m:apply>
+                        <m:csymbol definitionURL="../omstd/arith1.omdoc#power"/>
+                        <m:ci>x</m:ci>
+                        <m:ci>a</m:ci>
+                     </m:apply>
+                     <m:apply>
+                        <m:csymbol definitionURL="../omstd/transc1.omdoc#exp"/>
+                        <m:apply>
+                           <m:csymbol definitionURL="../omstd/arith1.omdoc#times"/>
+                           <m:ci>a</m:ci>
+                           <m:apply>
+                              <m:csymbol definitionURL="../omstd/transc1.omdoc#ln"/>
+                              <m:ci>x</m:ci>
+                           </m:apply>
+                        </m:apply>
+                     </m:apply>
+                  </m:apply>
+               </m:apply>
+            </m:math>
+         </FMP>
+      </assertion>
+      <assertion xml:id="power-prop-3" type="lemma">
+         <CMP>
+  if n is an integer then
+  x^0 = 1,
+  x^n = x * x^(n-1)
+</CMP>
+         <FMP>
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+               <m:apply>
+                  <m:csymbol definitionURL="../omstd/logic1.omdoc#implies"/>
+                  <m:apply>
+                     <m:csymbol definitionURL="../omstd/set1.omdoc#in"/>
+                     <m:ci>n</m:ci>
+                     <m:csymbol definitionURL="../omstd/setname1.omdoc#Z"/>
+                  </m:apply>
+                  <m:apply>
+                     <m:csymbol definitionURL="../omstd/logic1.omdoc#and"/>
+                     <m:apply>
+                        <m:csymbol definitionURL="../omstd/relation1.omdoc#eq"/>
+                        <m:apply>
+                           <m:csymbol definitionURL="../omstd/arith1.omdoc#power"/>
+                           <m:ci>x</m:ci>
+                           <m:cn>0</m:cn>
+                        </m:apply>
+                        <m:csymbol definitionURL="../omstd/alg1.omdoc#one"/>
+                     </m:apply>
+                     <m:apply>
+                        <m:csymbol definitionURL="../omstd/relation1.omdoc#eq"/>
+                        <m:apply>
+                           <m:csymbol definitionURL="../omstd/arith1.omdoc#power"/>
+                           <m:ci>x</m:ci>
+                           <m:ci>n</m:ci>
+                        </m:apply>
+                        <m:apply>
+                           <m:csymbol definitionURL="../omstd/arith1.omdoc#times"/>
+                           <m:ci>x</m:ci>
+                           <m:apply>
+                              <m:csymbol definitionURL="../omstd/arith1.omdoc#power"/>
+                              <m:ci>x</m:ci>
+                              <m:apply>
+                                 <m:csymbol definitionURL="../omstd/arith1.omdoc#minus"/>
+                                 <m:ci>n</m:ci>
+                                 <m:cn>1</m:cn>
+                              </m:apply>
+                           </m:apply>
+                        </m:apply>
+                     </m:apply>
+                  </m:apply>
+               </m:apply>
+            </m:math>
+         </FMP>
+      </assertion>
+      <example xml:id="power-ex-5" type="for" for="power">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+               <m:apply>
+                  <m:csymbol definitionURL="../omstd/relation1.omdoc#eq"/>
+                  <m:apply>
+                     <m:csymbol definitionURL="../omstd/arith1.omdoc#power"/>
+                     <m:apply>
+                        <m:csymbol definitionURL="../omstd/linalg2.omdoc#matrix"/>
+                        <m:apply>
+                           <m:csymbol definitionURL="../omstd/linalg2.omdoc#matrixrow"/>
+                           <m:cn> 1 </m:cn>
+                           <m:cn> 2 </m:cn>
+                        </m:apply>
+                        <m:apply>
+                           <m:csymbol definitionURL="../omstd/linalg2.omdoc#matrixrow"/>
+                           <m:cn> 3 </m:cn>
+                           <m:cn> 4 </m:cn>
+                        </m:apply>
+                     </m:apply>
+                     <m:cn>3</m:cn>
+                  </m:apply>
+                  <m:apply>
+                     <m:csymbol definitionURL="../omstd/linalg2.omdoc#matrix"/>
+                     <m:apply>
+                        <m:csymbol definitionURL="../omstd/linalg2.omdoc#matrixrow"/>
+                        <m:cn> 37 </m:cn>
+                        <m:cn> 54 </m:cn>
+                     </m:apply>
+                     <m:apply>
+                        <m:csymbol definitionURL="../omstd/linalg2.omdoc#matrixrow"/>
+                        <m:cn> 81 </m:cn>
+                        <m:cn> 118 </m:cn>
+                     </m:apply>
+                  </m:apply>
+               </m:apply>
+            </m:math>
+      </example>
+      <example xml:id="power-ex-6" type="for" for="power">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+               <m:apply>
+                  <m:csymbol definitionURL="../omstd/relation1.omdoc#eq"/>
+                  <m:apply>
+                     <m:csymbol definitionURL="../omstd/arith1.omdoc#power"/>
+                     <m:csymbol definitionURL="../omstd/nums1.omdoc#e"/>
+                     <m:apply>
+                        <m:csymbol definitionURL="../omstd/arith1.omdoc#times"/>
+                        <m:csymbol definitionURL="../omstd/nums1.omdoc#i"/>
+                        <m:csymbol definitionURL="../omstd/nums1.omdoc#pi"/>
+                     </m:apply>
+                  </m:apply>
+                  <m:apply>
+                     <m:csymbol definitionURL="../omstd/arith1.omdoc#unary_minus"/>
+                     <m:csymbol definitionURL="../omstd/alg1.omdoc#one"/>
+                  </m:apply>
+               </m:apply>
+            </m:math>
+      </example>
+      <symbol name="abs" role="object" scope="global">
+<metadata>
+<dc:description> 
+A unary operator which represents the absolute value of its
+argument. The argument should be numerically valued.
+In the complex case this is often referred to as the modulus.
+</dc:description>
+</metadata>
+
+         <type system="sts">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+               <m:apply>
+                  <m:csymbol definitionURL="../omstd/sts.omdoc#mapsto"/>
+                  <m:csymbol definitionURL="../omstd/setname1.omdoc#C"/>
+                  <m:csymbol definitionURL="../omstd/setname1.omdoc#R"/>
+               </m:apply>
+            </m:math>
+         </type>
+      </symbol>
+      <presentation xml:id="pr-abs" for="abs" role="applied" lbrack="|" rbrack="|" bracket-style="lisp" crossref-symbol="brackets">
+         <use  format="default"/>
+      </presentation>
+      <assertion xml:id="abs-prop-1" type="lemma">
+         <CMP> for all x,y | abs(x) + abs(y) &gt;= abs(x+y) </CMP>
+         <FMP>
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+               <m:apply>
+                  <m:csymbol definitionURL="../omstd/quant1.omdoc#forall"/>
+                  <m:bvar>
+                     <m:ci>x</m:ci>
+                     <m:ci>y</m:ci>
+                  </m:bvar>
+                  <m:apply>
+                     <m:csymbol definitionURL="../omstd/relation1.omdoc#geq"/>
+                     <m:apply>
+                        <m:csymbol definitionURL="../omstd/arith1.omdoc#plus"/>
+                        <m:apply>
+                           <m:csymbol definitionURL="../omstd/arith1.omdoc#abs"/>
+                           <m:ci>x</m:ci>
+                           <m:ci>y</m:ci>
+                        </m:apply>
+                        <m:apply>
+                           <m:csymbol definitionURL="../omstd/arith1.omdoc#abs"/>
+                           <m:ci>x</m:ci>
+                           <m:ci>y</m:ci>
+                        </m:apply>
+                     </m:apply>
+                     <m:apply>
+                        <m:csymbol definitionURL="../omstd/arith1.omdoc#abs"/>
+                        <m:apply>
+                           <m:csymbol definitionURL="../omstd/arith1.omdoc#plus"/>
+                           <m:ci>x</m:ci>
+                           <m:ci>y</m:ci>
+                        </m:apply>
+                     </m:apply>
+                  </m:apply>
+               </m:apply>
+            </m:math>
+         </FMP>
+      </assertion>
+      <symbol name="root" role="object" scope="global">
+<metadata>
+<dc:description> 
+A binary operator which represents its first argument "lowered" to its
+n'th root where n is the second argument. This is the inverse of the operation
+represented by the power symbol defined in this CD.
+
+Care should be taken as to the precise meaning of this operator, in
+particular which root is represented, however it is here to represent
+the general notion of taking n'th roots. As inferred by the signature
+relevant to this symbol, the function represented by this symbol is
+the single valued function, the specific root returned is the one
+indicated by the first CMP. Note also that the converse of the second
+CMP is not valid in general.
+</dc:description>
+</metadata>
+
+         <type system="sts">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+               <m:apply>
+                  <m:csymbol definitionURL="../omstd/sts.omdoc#mapsto"/>
+                  <m:csymbol definitionURL="../omstd/sts.omdoc#NumericalValue"/>
+                  <m:csymbol definitionURL="../omstd/sts.omdoc#NumericalValue"/>
+                  <m:csymbol definitionURL="../omstd/sts.omdoc#NumericalValue"/>
+               </m:apply>
+            </m:math>
+         </type>
+      </symbol>
+      <presentation xml:id="pr-root" for="root" role="applied" separator="">
+         <style  format="TeX">
+          <text>{\root{</text><recurse select="*[3]"/>
+          <text>}\of</text><recurse select="*[2]"/><text>}</text>
+         </style>
+         <style format="html">
+           <element name="sup"><recurse select="*[3]"/></element>
+           <text>&#8730;</text><recurse select="*[2]"/>
+         </style>
+         <use  format="pmml" element="mroot" bracket-style="lisp"/>
+      </presentation>
+      <assertion xml:id="root-prop-1" type="lemma">
+         <CMP> x\in C implies root(x,n) = exp(ln(x)/n) </CMP>
+         <FMP>
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+               <m:apply>
+                  <m:csymbol definitionURL="../omstd/logic1.omdoc#implies"/>
+                  <m:apply>
+                     <m:csymbol definitionURL="../omstd/set1.omdoc#in"/>
+                     <m:ci>x</m:ci>
+                     <m:csymbol definitionURL="../omstd/setname1.omdoc#C"/>
+                  </m:apply>
+                  <m:apply>
+                     <m:csymbol definitionURL="../omstd/relation1.omdoc#eq"/>
+                     <m:apply>
+                        <m:csymbol definitionURL="../omstd/arith1.omdoc#root"/>
+                        <m:ci>x</m:ci>
+                        <m:ci>n</m:ci>
+                     </m:apply>
+                     <m:apply>
+                        <m:csymbol definitionURL="../omstd/transc1.omdoc#exp"/>
+                        <m:apply>
+                           <m:csymbol definitionURL="../omstd/arith1.omdoc#divide"/>
+                           <m:apply>
+                              <m:csymbol definitionURL="../omstd/transc1.omdoc#ln"/>
+                              <m:ci>x</m:ci>
+                           </m:apply>
+                           <m:ci>n</m:ci>
+                        </m:apply>
+                     </m:apply>
+                  </m:apply>
+               </m:apply>
+            </m:math>
+         </FMP>
+      </assertion>
+      <assertion xml:id="root-prop-3" type="lemma">
+         <CMP> for all a,n | power(root(a,n),n) = a (if the root exists!) </CMP>
+         <FMP>
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+               <m:apply>
+                  <m:csymbol definitionURL="../omstd/quant1.omdoc#forall"/>
+                  <m:bvar>
+                     <m:ci>a</m:ci>
+                     <m:ci>n</m:ci>
+                  </m:bvar>
+                  <m:apply>
+                     <m:csymbol definitionURL="../omstd/relation1.omdoc#eq"/>
+                     <m:apply>
+                        <m:csymbol definitionURL="../omstd/arith1.omdoc#power"/>
+                        <m:apply>
+                           <m:csymbol definitionURL="../omstd/arith1.omdoc#root"/>
+                           <m:ci>a</m:ci>
+                           <m:ci>n</m:ci>
+                        </m:apply>
+                        <m:ci>n</m:ci>
+                     </m:apply>
+                     <m:ci>a</m:ci>
+                  </m:apply>
+               </m:apply>
+            </m:math>
+         </FMP>
+      </assertion>
+      <symbol name="sum" role="object" scope="global">
+<metadata>
+<dc:description>
+An operator taking two arguments, the first being the range of summation,
+e.g. an integral interval, the second being the function to be
+summed. Note that the sum may be over an infinite interval.
+</dc:description>
+</metadata>
+
+         <type system="sts">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+               <m:apply>
+                  <m:csymbol definitionURL="../omstd/sts.omdoc#mapsto"/>
+                  <m:ci>IntegerRange</m:ci>
+                  <m:apply>
+                     <m:csymbol definitionURL="../omstd/sts.omdoc#mapsto"/>
+                     <m:csymbol definitionURL="../omstd/setname1.omdoc#Z"/>
+                     <m:ci>AbelianMonoid</m:ci>
+                  </m:apply>
+                  <m:ci>AbelianMonoid</m:ci>
+               </m:apply>
+            </m:math>
+         </type>
+      </symbol>
+      <presentation xml:id="arith1_pr_sum" for="sum" role="applied">
+         <style format="html">
+           <text>&#8721;</text>
+           <element name="sub">
+            <recurse select="*[3]/*[2]/*[1]/@name"/>
+            <text>&#8712;</text><recurse select="*[2]"/>
+           </element>
+           <recurse select="*[3]/*[3]"/>
+         </style>
+         <style format="TeX">
+         <text>\Sigma_{</text>
+           <value-of select="*[3]/*[2]/*[1]/@name"/>
+           <text>\in</text><recurse select="*[2]"/><text>}</text>
+          <recurse select="*[3]/*[3]"/>
+         </style>
+         <style format="pmml">
+          <element name="mrow" crid=".">
+            <element name="msub" cr="yes">
+              <text>&#x02211;</text>
+              <element name="mrow"><recurse select="*[2]"/></element>
+            </element>
+            <recurse select="*[3]"/>
+          </element>
+          </style>
+      </presentation>
+      <example xml:id="sum-ex-1" type="for" for="sum">
+         <CMP>
+           This represents the summation of the reciprocals of all the integers between
+          1 and 10 inclusive.
+         </CMP>
+          <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+               <m:apply>
+                  <m:csymbol definitionURL="../omstd/arith1.omdoc#sum"/>
+                  <m:apply>
+                     <m:csymbol definitionURL="../omstd/interval1.omdoc#integer_interval"/>
+                     <m:cn> 1 </m:cn>
+                     <m:cn> 10 </m:cn>
+                  </m:apply>
+                  <m:apply>
+                     <m:csymbol definitionURL="../omstd/fns1.omdoc#lambda"/>
+                     <m:bvar>
+                        <m:ci>x</m:ci>
+                     </m:bvar>
+                     <m:apply>
+                        <m:csymbol definitionURL="../omstd/arith1.omdoc#divide"/>
+                        <m:cn> 1 </m:cn>
+                        <m:ci>x</m:ci>
+                     </m:apply>
+                  </m:apply>
+               </m:apply>
+            </m:math>
+      </example>
+      <symbol name="product" role="object" scope="global">
+<metadata>
+<dc:description>
+An operator taking two arguments, the first being the range of multiplication
+e.g. an integral interval, the second being the function to
+be multiplied. Note that the product may be over an infinite interval. 
+</dc:description>
+</metadata>
+
+         <type system="sts">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+               <m:apply>
+                  <m:csymbol definitionURL="../omstd/sts.omdoc#mapsto"/>
+                  <m:ci>IntegerRange</m:ci>
+                  <m:apply>
+                     <m:csymbol definitionURL="../omstd/sts.omdoc#mapsto"/>
+                     <m:csymbol definitionURL="../omstd/setname1.omdoc#Z"/>
+                     <m:ci>AbelianMonoid</m:ci>
+                  </m:apply>
+                  <m:ci>AbelianMonoid</m:ci>
+               </m:apply>
+            </m:math>
+         </type>
+      </symbol>
+      <presentation xml:id="arith_pr_product" for="product" role="applied">
+         <style format="html">
+           <text>&#8719;</text>
+           <element name="sub">
+            <recurse select="*[3]/*[2]/*[1]/@name"/>
+            <text>&#8712;</text>
+            <recurse select="*[2]"/>
+           </element>
+           <recurse select="*[3]/*[3]"/>
+         </style>
+         <style format="TeX">
+           <text>\Pi_{</text><value-of select="*[3]/*[2]/*[1]/@name"/>
+           <text>\in</text><recurse select="*[2]"/><text>}</text>
+           <recurse select="*[3]/*[3]"/>
+         </style>
+         <use  format="pmml" element="msubsup">&#x0220F;</use>
+      </presentation>
+      <example xml:id="product-ex-1" type="for" for="product">
+         <CMP> 
+           This represents the statement that the factorial of n is equal to the product
+           of all the integers between 1 and n inclusive.
+         </CMP>
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+               <m:apply>
+                  <m:csymbol definitionURL="../omstd/relation1.omdoc#eq"/>
+                  <m:apply>
+                     <m:csymbol definitionURL="../omstd/integer1.omdoc#factorial"/>
+                     <m:ci>n</m:ci>
+                  </m:apply>
+                  <m:apply>
+                     <m:csymbol definitionURL="../omstd/arith1.omdoc#product"/>
+                     <m:apply>
+                        <m:csymbol definitionURL="../omstd/interval1.omdoc#integer_interval"/>
+                        <m:cn> 1 </m:cn>
+                        <m:ci>n</m:ci>
+                     </m:apply>
+                     <m:apply>
+                        <m:csymbol definitionURL="../omstd/fns1.omdoc#lambda"/>
+                        <m:bvar>
+                           <m:ci>i</m:ci>
+                        </m:bvar>
+                        <m:ci>i</m:ci>
+                     </m:apply>
+                  </m:apply>
+               </m:apply>
+            </m:math>
+      </example>
+   </theory>
+</omdoc>

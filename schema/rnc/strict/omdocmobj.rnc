@@ -1,0 +1,43 @@
+# A RelaxNG schema for Open Mathematical documents (OMDoc 1.6) Module MOBJ  
+# $Id: omdocmobj.rnc 8937 2011-08-08 07:26:52Z kohlhase $
+# $HeadURL: https://svn.omdoc.org/repos/omdoc/trunk/schema/rnc/strict/omdocmobj.rnc $
+# See the documentation and examples at http://www.omdoc.org
+# Copyright (c) 2009 Michael Kohlhase, released under the GNU Public License (GPL) 
+
+default namespace omdoc = "http://omdoc.org/ns"
+namespace om = "http://www.openmath.org/OpenMath"
+
+# the legacy element, it can encapsulate the non-migrated formats
+legacy.attribs = id.attribs &  attribute formalism {xsd:anyURI}?
+legacy.textformat = "TeX" | "LaTeX" | "ASCII"
+legacy.text = legacy.attribs & attribute format {legacy.textformat} & text
+legacy.any = legacy.attribs & attribute format {xsd:anyURI} & Anything
+legacy.model = legacy.text | legacy.any
+
+legacy = element legacy {tref|legacy.model}
+
+OMel = grammar {include "../../openmath/openmath3.rnc" 
+		              {start = omel}
+			      common.attributes &= parent idrest.attribs & parent  nonlocal.attribs}
+
+OMS =  grammar {include "openmath/openmath3.rnc" 
+                              {start = OMS}
+			      common.attributes  &= parent idrest.attribs & parent nonlocal.attribs}
+
+cmml = grammar {include "../../mathml3/mathml3-common.rnc"
+                             include "../../mathml3/mathml3-strict-content.rnc"}
+
+# ****** do something about the cdbase of mmt. 
+mmtcd = attribute cdbase {""}? & attribute cd {"mmt"}
+identity = element om:OMS {mmtcd &  attribute name {"identity"}}
+composition = element om:OMS {mmtcd &  attribute name {"composition"}}
+morphismapplication = element om:OMS {mmtcd &  attribute name {"morphismapplication"}}
+
+morphism = OMS
+                 | element om:OMA {identity, theo}
+                 | element om:OMA {composition, morphism*}
+
+theo = OMS
+
+mobj = legacy | OMel | cmml
+

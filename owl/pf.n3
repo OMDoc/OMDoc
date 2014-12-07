@@ -1,0 +1,253 @@
+@prefix dct:      <http://purl.org/dc/terms/> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix oo:     <http://omdoc.org/ontology#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix sdoc:	 <http://salt.semanticauthoring.org/onto/abstract-document-ontology#> .
+
+# Declare them as OWL property types, as DCMI Terms is RDFS only (see http://bloody-byte.net/rdf/dc_owl2dl/)
+dct:creator
+	a	owl:AnnotationProperty .
+dct:contributor
+	a	owl:AnnotationProperty .
+dct:subject
+	a	owl:AnnotationProperty .
+dct:title
+	a	owl:AnnotationProperty .
+
+<>
+	a	 owl:Ontology ;
+    dct:title "OMDoc document ontology, module PF" ;
+	rdfs:comment """OMDoc document ontology in OWL-DL, proof module.  See chapter 17 (Representing Proofs) of the OMDoc specification.
+This file is designed to be imported from the main module `omdoc'.""" ;
+	dct:creator "Gordan Ristovski <g.ristovski@jacobs-university.de>" , "Christoph Lange <ch.lange@jacobs-university.de>" ;
+	dct:contributor "Krzysztof Retel <retel@macs.hw.ac.uk>", "Nikita Zhiltsov (Никита Жильцов) <nikita.zhiltsov@gmail.com>" ;
+	# Contributors, please add your name here, and in the main file omdoc.n3. --Christoph Lange
+
+	dct:subject "Semantic Mathematical Markup, Mathematical Proofs" ;
+	owl:imports <file:st.n3> .
+	
+oo:ProofStep
+	a	owl:Class ;
+	rdfs:subClassOf oo:MathKnowledgeItem ;
+	rdfs:comment """A placeholder for all proofsteps, designed according to the specifications in the OMDoc 1.2 manual, chapter 17 (Representing Proofs).""" ;
+	rdfs:label "Beweisschritt"@de ,
+                "Proof Step"@en ,
+                "Шаг доказательства"@ru ;
+	rdfs:isDefinedBy oo: .
+	
+oo:ProofLocalStatement
+	a	owl:Class ;
+	rdfs:subClassOf	  oo:Statement, oo:ProofStep ;
+	rdfs:comment """A statement that is local to a proof and given as a proof step""" ;
+	rdfs:label "Beweis-lokale Aussage"@de ,
+                "Proof-local Statement"@en ,
+                "Локальное предложение"@ru ;
+	owl:disjointWith oo:StatementInTheory, oo:SequentPart ;
+	rdfs:isDefinedBy oo: .
+
+oo:DerivationStep
+	a	owl:Class ;
+	rdfs:subClassOf oo:ProofLocalStatement , oo:RigorousKnowledgeItem, sdoc:Composite ;
+	rdfs:comment """A derivation step inside a proof, as defined in the OMDoc 1.2 manual, chapter 17 (Representing Proofs).""" ;
+	rdfs:label "Ableitungsschritt"@de ,
+                "Derivation Step"@en ,
+                "Шаг вывода"@ru ;
+	rdfs:isDefinedBy oo: .
+	
+oo:DerivedConclusion
+	a	owl:Class ;
+	rdfs:subClassOf oo:DerivationStep ;
+	rdfs:comment """Concluding step of the proof, the one that derives the assertion made in the corresponding theorem, as defined in the OMDoc 1.2 manual, chapter 17 (Representing Proofs).""" ;
+	rdfs:label "Schlussfolgerung"@de ,
+                "Conclusion"@en ,
+                "Выводимое заключение"@ru ;
+	rdfs:isDefinedBy oo: .
+	
+oo:Gap
+	a	owl:Class ;
+	rdfs:subClassOf oo:DerivationStep ;
+	rdfs:comment """Proof steps that are not justifed yet, as defined in the OMDoc 1.2 manual, chapter 17 (Representing Proofs). The presence of gaps allows OMDoc to specify incomplete proofs as proofs with gap steps.""" ;
+	rdfs:label "Lücke"@de ,
+                "Gap"@en ,
+                "Пропуск"@ru ;
+	owl:disjointWith oo:DerivedConclusion ;
+	rdfs:isDefinedBy oo: .
+
+oo:GeneralProof
+	a	owl:Class ;
+	rdfs:subClassOf	  oo:AnyLevelStatement ;
+	rdfs:comment """A proof, both as statement within a theory and as a nested proof (within one step of another proof)""" ;
+	rdfs:label "Beweis (allgemein)"@de ,
+                "Proof (general)"@en ,
+                "Общее доказательство"@ru ;
+	owl:disjointWith oo:GeneralSymbol, oo:GeneralDefinition, oo:GeneralAxiom ;
+	rdfs:isDefinedBy oo: .
+
+oo:Proof
+	a	owl:Class ;
+	rdfs:subClassOf oo:NonConstitutiveStatement, oo:GeneralProof ;
+	rdfs:comment """A proof, as defined in the OMDoc 1.2 manual, chapter 17 (Representing Proofs).  This comprises both the proof and proofobject elements.""" ;
+	rdfs:label "Beweis"@de ,
+                "Proof"@en ,
+                "Доказательство"@ru ;
+	owl:disjointWith oo:Assertion , oo:Axiom , oo:Definition , oo:Example , oo:Assertion , oo:Example , oo:AlternativeDefinition ;
+	rdfs:isDefinedBy oo: .
+
+oo:NestedProof
+	a	owl:Class ;
+	rdfs:subClassOf oo:GeneralProof ;
+        # TODO adjust relation to assertion and maybe revise whole class according to
+        # http://trac.omdoc.org/OMDoc/ticket/1580
+	rdfs:comment """A proof nested into a proof step (in order to realize substeps), often without an explicit pointer to an assertion""" ;
+	rdfs:label "Unterbeweis"@de ,
+                "Nested Proof"@en ,
+                "Поддоказательство"@ru ;
+	owl:disjointWith oo:StatementInTheory, oo:ProofLocalStatement, oo:SequentPart ;
+	rdfs:isDefinedBy oo: .
+
+oo:Hypothesis
+	a	owl:Class ;
+	rdfs:subClassOf oo:ProofLocalStatement ,
+			oo:GeneralAxiom,
+			oo:RigorousKnowledgeItem ;
+	rdfs:comment """Local assumptions that allow hypothetical reasoning, as defined in the OMDoc 1.2 manual, chapter 17 (Representing Proofs).""" ;
+	rdfs:label "Hypothese"@de ,
+                "Hypothesis"@en ,
+                "Гипотеза"@ru ;
+	owl:disjointWith oo:DerivationStep ;
+	rdfs:isDefinedBy oo: .
+
+oo:ProofLocalSymbol
+	a	owl:Class ;
+	rdfs:subClassOf oo:ProofLocalStatement, oo:GeneralSymbol ;
+	rdfs:comment """Proof-local symbol, as defined in the OMDoc 1.2 manual, chapter 17 (Representing Proofs).""" ;
+	rdfs:label "Beweis-lokales Symbol"@de ,
+                "Proof-local Symbol"@en ;
+	owl:disjointWith oo:DerivationStep, oo:Hypothesis ;
+	rdfs:isDefinedBy oo: .
+
+oo:ProofLocalDefinition
+	a	owl:Class ;
+	rdfs:subClassOf oo:ProofLocalStatement, oo:GeneralDefinition ;
+	rdfs:comment """Proof-local definition, as defined in the OMDoc 1.2 manual, chapter 17 (Representing Proofs).""" ;
+	rdfs:label "Beweis-lokale Definition"@de ,
+                "Proof-local Definition"@en ;
+	owl:disjointWith oo:DerivationStep, oo:Hypothesis, oo:ProofLocalSymbol ;
+	rdfs:isDefinedBy oo: .
+	
+oo:ProofText
+	a	owl:Class ;
+	rdfs:subClassOf oo:ProofStep, oo:InformalKnowledgeItem ;
+	rdfs:comment """Intermediate text in proofs that does not have to have a logical correspondence to a proof step, but guides the reader through the proof.""" ;
+	rdfs:label "Beweistext"@de ,
+                "Proof Text"@en ,
+                "Текст доказательства"@ru ;
+	owl:disjointWith oo:ProofLocalStatement ;
+	rdfs:isDefinedBy oo: .
+	
+oo:proves
+      # TODO clarify if this is functional, cf. http://trac.omdoc.org/OMDoc/ticket/1573
+      a       owl:FunctionalProperty ,
+      	      owl:ObjectProperty ;
+      # TODO depending on http://trac.omdoc.org/OMDoc/ticket/1580, make the domain
+      # GeneralProof
+      rdfs:domain oo:Proof ;
+      rdfs:range oo:ProvenAssertion ;
+      # TODO Note that omdoc:proof/omdoc:derive elements can also be proved, but we already have stepJustifiedBySubProof for that; not sure if we also need proves for that. --Christoph Lange
+      # Is this a kind of dependency? Please see the discussion on http://mathweb.org/wiki/Talk:OMDoc/document_ontology --Christoph Lange
+      rdfs:comment """The statement (assertion or derivation; at most one) that is proven by this proof; see chapter 17.1 (Proof Structure) of the OMDoc1.2 specification.
+In OMDoc/XML, this is represented by the omdoc:proof/@for attribute.""" ;
+	rdfs:label "beweist"@de ,
+                "proves"@en ,
+                "доказывает"@ru ;
+	rdfs:isDefinedBy oo: .
+
+oo:provedBy
+	# TODO also InverseFunctionalProperty?  See oo:proves
+	a	owl:ObjectProperty ;
+	owl:inverseOf		   oo:proves ;
+	rdfs:label "bewiesen durch"@de ,
+                "proved by"@en ,
+                "доказывается посредством"@ru ;
+	rdfs:isDefinedBy oo: .
+	
+oo:hasStep
+	a	owl:ObjectProperty, owl:InverseFunctionalProperty ;
+	rdfs:subPropertyOf oo:hasDirectPart ;
+	rdfs:domain oo:Proof ;
+	rdfs:range oo:ProofStep ;
+	rdfs:comment """hasStep is a more concrete subproperty of hasDirectPart which is only valid within Proofs.""";
+	rdfs:label "hat Schritt"@de ,
+                "has step"@en ,
+                "имеет шаг"@ru ;
+	rdfs:isDefinedBy oo: .
+
+oo:hasConclusion
+	a	owl:ObjectProperty, owl:FunctionalProperty ;
+	rdfs:subPropertyOf oo:hasStep ;
+	rdfs:range oo:DerivedConclusion ;
+	rdfs:comment """A proof can have at most one conclusion step.""" ;
+	rdfs:label "hat Schlussfolgerung"@de ,
+                "has step"@en ,
+                "имеет заключение"@ru ;
+	rdfs:isDefinedBy oo: .
+
+# TODO method/@xref (= inference rule) is not yet covered
+	
+oo:stepJustifiedBy
+	a	owl:ObjectProperty ;
+	rdfs:subPropertyOf oo:justifiedBy ;
+	rdfs:domain oo:DerivationStep ;
+	rdfs:comment """Points from a derivation step in a proof to its justification(s).""" ;
+	rdfs:label "begründet durch"@de ,
+                "justified by"@en ,
+                "обоснован посредством"@ru ;
+	rdfs:isDefinedBy oo: .
+
+oo:stepLocallyJustifiedBy
+	a	owl:ObjectProperty ;
+	rdfs:subPropertyOf oo:stepJustifiedBy ;
+	rdfs:range [ owl:unionOf ( oo:NestedProof oo:ProofLocalStatement ) ];
+	rdfs:comment """Points from a derivation step in a proof to (an)other local proof step(s) or to a nested proof (i.e. to substeps) giving its justification""" ;
+        rdfs:label "begründet durch"@de ,
+                "justified by"@en ;
+	rdfs:isDefinedBy oo: .
+
+oo:stepJustifiedByPrecedingStep
+	a	owl:ObjectProperty ;
+	rdfs:subPropertyOf oo:stepLocallyJustifiedBy ;
+	rdfs:range oo:ProofLocalStatement ;
+	rdfs:comment """Points from a derivation step in a proof to a preceding derivation step giving its justification""" ;
+        rdfs:label "begründet durch vorherigen Schritt"@de ,
+                "justified by preceding step"@en ;
+	rdfs:isDefinedBy oo: .
+
+oo:stepJustifiedBySubProof
+	a	owl:ObjectProperty ;
+	rdfs:subPropertyOf oo:stepLocallyJustifiedBy ;
+	rdfs:range oo:NestedProof ;
+        owl:propertyDisjointWith oo:stepJustifiedByPrecedingStep ;
+	rdfs:comment """Points from a derivation step to a subproof nested into this step, which gives the justification for this step""" ;
+        rdfs:label "begründet durch Unterbeweis"@de ,
+                "justified by subproof"@en ;
+	rdfs:isDefinedBy oo: .	
+
+oo:stepExternallyJustifiedBy
+	a	owl:ObjectProperty ;
+	rdfs:subPropertyOf oo:stepJustifiedBy ;
+	rdfs:range [ owl:unionOf(oo:Definition oo:Axiom oo:Assertion) ] ;
+        owl:propertyDisjointWith oo:stepLocallyJustifiedBy ;
+	rdfs:comment """Points from a derivation step in a proof to an external statement giving its justification""" ;
+        rdfs:label "begründet durch externe Aussage"@de ,
+                "justified by external statement"@en ;
+	rdfs:isDefinedBy oo: .
+
+oo:validityDependsOn
+	a	owl:ObjectProperty ;
+	rdfs:subPropertyOf	oo:dependsOn ;
+	owl:propertyChainAxiom (oo:hasStep oo:stepJustifiedBy) ;
+	rdfs:comment """Currently: the validity of a proof depends on a statement provided externally or on a local subproof or step; may be extended to other truth-related dependencies""" ;
+        rdfs:label "Gültigkeit hängt ab von"@de ,
+                "validity depends on"@en ;
+	rdfs:isDefinedBy oo: .
+

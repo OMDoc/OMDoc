@@ -1,0 +1,545 @@
+<?xml version="1.0"?>
+<notations xmlns="http://www.w3.org/ns/mathml-cd" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:om="http://www.openmath.org/OpenMath" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+  <notation cdbase="FIXME" cd="vafp" name="function">
+    <prototype>
+      <om:OMBIND>
+        <om:OMS cd="vafp" name="function"/>
+        <om:OMBVAR>
+          <exprlist name="bvars">
+            <expr name="bvar"/>
+          </exprlist>
+        </om:OMBVAR>
+        <om:OMC>
+          <expr name="condition"/>
+        </om:OMC>
+        <expr name="scope"/>
+      </om:OMBIND>
+    </prototype>
+    <prototype>
+      <m:bind>
+        <m:csymbol cd="vafp">function</m:csymbol>
+        <m:bvar>
+          <exprlist name="bvars">
+            <expr name="bvar"/>
+          </exprlist>
+        </m:bvar>
+        <m:condition>
+          <expr name="condition"/>
+        </m:condition>
+        <expr name="scope"/>
+      </m:bind>
+    </prototype>
+    <rendering precedence="1000">
+      <m:mrow>
+        <m:mo>λ</m:mo>
+        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
+        <m:mo mcd:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+    <prototype>
+      <om:OMBIND>
+        <om:OMS cd="vafp" name="function"/>
+        <om:OMBVAR>
+          <exprlist name="bvars">
+            <expr name="bvar"/>
+          </exprlist>
+        </om:OMBVAR>
+        <expr name="scope"/>
+      </om:OMBIND>
+    </prototype>
+    <prototype>
+      <m:bind>
+        <m:csymbol cd="vafp">function</m:csymbol>
+        <m:bvar>
+          <exprlist name="bvars">
+            <expr name="bvar"/>
+          </exprlist>
+        </m:bvar>
+        <expr name="scope"/>
+      </m:bind>
+    </prototype>
+    <rendering precedence="1000">
+      <m:mrow>
+        <m:mo>λ</m:mo>
+        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
+        <m:mo mcd:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="vafp" name="let">
+    <prototype>
+      <om:OMBIND>
+        <om:OMS cd="vafp" name="let"/>
+        <om:OMBVAR>
+          <exprlist name="bvars">
+            <expr name="bvar"/>
+          </exprlist>
+        </om:OMBVAR>
+        <om:OMC>
+          <expr name="condition"/>
+        </om:OMC>
+        <expr name="scope"/>
+      </om:OMBIND>
+    </prototype>
+    <prototype>
+      <m:bind>
+        <m:csymbol cd="vafp">let</m:csymbol>
+        <m:bvar>
+          <exprlist name="bvars">
+            <expr name="bvar"/>
+          </exprlist>
+        </m:bvar>
+        <m:condition>
+          <expr name="condition"/>
+        </m:condition>
+        <expr name="scope"/>
+      </m:bind>
+    </prototype>
+    <!--REPLACEME: This is just copied for manual intervention:-->
+    <text xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">let </text>
+    <recurse xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath" select="OMBVAR/*"/>
+    <text xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">in 
+</text>
+<recurse xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath" select="*[3]"/>
+<text xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">end</text>
+    <!--/REPLACEME-->
+    <prototype>
+      <om:OMBIND>
+        <om:OMS cd="vafp" name="let"/>
+        <om:OMBVAR>
+          <exprlist name="bvars">
+            <expr name="bvar"/>
+          </exprlist>
+        </om:OMBVAR>
+        <expr name="scope"/>
+      </om:OMBIND>
+    </prototype>
+    <prototype>
+      <m:bind>
+        <m:csymbol cd="vafp">let</m:csymbol>
+        <m:bvar>
+          <exprlist name="bvars">
+            <expr name="bvar"/>
+          </exprlist>
+        </m:bvar>
+        <expr name="scope"/>
+      </m:bind>
+    </prototype>
+    <!--REPLACEME: This is just copied for manual intervention:-->
+    <text xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">let </text>
+    <recurse xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath" select="OMBVAR/*"/>
+    <text xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">in 
+</text>
+<recurse xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath" select="*[3]"/>
+<text xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">end</text>
+    <!--/REPLACEME-->
+  </notation>
+  <notation cdbase="FIXME" cd="vafp" name="let-value">
+    <prototype>
+      <om:OMATTR>
+        <om:OMATP>
+          <om:OMS cd="vafp" name="let-value"/>
+          <expr name="val"/>
+        </om:OMATP>
+        <expr name="scope"/>
+      </om:OMATTR>
+    </prototype>
+    <prototype>
+      <m:semantics>
+        <expr name="scope"/>
+        <m:annotation-xml cd="vafp" name="let-value">
+          <expr name="val"/>
+        </m:annotation-xml>
+      </m:semantics>
+    </prototype>
+    <rendering>
+      <m:msub>
+        <render name="scope"/>
+        <render name="val"/>
+      </m:msub>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="vafp" name="if">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="vafp" name="if"/>
+        <expr name="arg"/>
+        <expr name="arg"/>
+        <expr name="arg"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="vafp">if</m:csymbol>
+        <expr name="arg"/>
+      </m:apply>
+    </prototype>
+    <!--REPLACEME: This is just copied for manual intervention:-->
+    <text xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath"> if </text>
+    <recurse xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath" select="*[2]"/>
+    <text xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath"> then </text>
+    <recurse xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath" select="*[3]"/>
+    <text xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath"> else </text>
+    <recurse xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath" select="*[4]"/>
+    <text xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath"> fi </text>
+    <!--/REPLACEME-->
+  </notation>
+  <notation cdbase="FIXME" cd="vafp" name="unknown">
+    <prototype>
+      <om:OMS cd="vafp" name="unknown"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="vafp">unknown</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en">
+      <m:mo>*</m:mo>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="vafp" name="equal">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="vafp" name="equal"/>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="vafp">equal</m:csymbol>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </m:apply>
+    </prototype>
+    <rendering precedence="1000">
+      <m:mrow>
+        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
+        <render name="arg1" precedence="1000"/>
+        <m:mo>=</m:mo>
+        <render name="arg2" precedence="1000"/>
+        <m:mo mcd:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="vafp" name="bool">
+    <prototype>
+      <om:OMS cd="vafp" name="bool"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="vafp">bool</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en">
+      <m:mo>Bool</m:mo>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="vafp" name="true">
+    <prototype>
+      <om:OMS cd="vafp" name="true"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="vafp">true</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en">
+      <m:mo>T</m:mo>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="vafp" name="false">
+    <prototype>
+      <om:OMS cd="vafp" name="false"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="vafp">false</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en">
+      <m:mo>F</m:mo>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="vafp" name="is_zero">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="vafp" name="is_zero"/>
+        <expr name="arg"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="vafp">is_zero</m:csymbol>
+        <expr name="arg"/>
+      </m:apply>
+    </prototype>
+    <rendering precedence="1000">
+      <m:mrow>
+        <m:mo>?0</m:mo>
+        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
+        <render name="arg"/>
+        <m:mo mcd:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="vafp" name="is_succ">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="vafp" name="is_succ"/>
+        <expr name="arg"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="vafp">is_succ</m:csymbol>
+        <expr name="arg"/>
+      </m:apply>
+    </prototype>
+    <rendering precedence="1000">
+      <m:mrow>
+        <m:mo>?succ</m:mo>
+        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
+        <render name="arg"/>
+        <m:mo mcd:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="vafp" name="nat">
+    <prototype>
+      <om:OMS cd="vafp" name="nat"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="vafp">nat</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en">
+      <m:mo>N</m:mo>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="vafp" name="zero">
+    <prototype>
+      <om:OMS cd="vafp" name="zero"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="vafp">zero</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en">
+      <m:mo>0</m:mo>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="vafp" name="succ">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="vafp" name="succ"/>
+        <expr name="arg"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="vafp">succ</m:csymbol>
+        <expr name="arg"/>
+      </m:apply>
+    </prototype>
+    <rendering precedence="1000">
+      <m:mrow>
+        <m:mo>s</m:mo>
+        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
+        <render name="arg"/>
+        <m:mo mcd:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="vafp" name="pred">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="vafp" name="pred"/>
+        <expr name="arg"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="vafp">pred</m:csymbol>
+        <expr name="arg"/>
+      </m:apply>
+    </prototype>
+    <rendering precedence="1000">
+      <m:mrow>
+        <m:mo>p</m:mo>
+        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
+        <render name="arg"/>
+        <m:mo mcd:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="vafp" name="greater">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="vafp" name="greater"/>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="vafp">greater</m:csymbol>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </m:apply>
+    </prototype>
+    <rendering precedence="1000">
+      <m:mrow>
+        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
+        <render name="arg1" precedence="1000"/>
+        <m:mo>&gt;</m:mo>
+        <render name="arg2" precedence="1000"/>
+        <m:mo mcd:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="vafp" name="greater.dom">
+    <prototype>
+      <om:OMS cd="vafp" name="greater.dom"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="vafp">greater.dom</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en">
+      <m:mo>&gt;$</m:mo>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="vafp" name="equal_transitive">
+    <prototype>
+      <om:OMS cd="vafp" name="equal_transitive"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="vafp">equal_transitive</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en">
+      <m:mo>=_transitive</m:mo>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="vafp" name="greater_transitive">
+    <prototype>
+      <om:OMS cd="vafp" name="greater_transitive"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="vafp">greater_transitive</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en">
+      <m:mo>&gt;_transitive</m:mo>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="vafp" name="greater_irreflexive">
+    <prototype>
+      <om:OMS cd="vafp" name="greater_irreflexive"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="vafp">greater_irreflexive</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en">
+      <m:mo>&gt;_irreflexive*</m:mo>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="vafp" name="greater_neg_transitive">
+    <prototype>
+      <om:OMS cd="vafp" name="greater_neg_transitive"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="vafp">greater_neg_transitive</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en">
+      <m:mo>&gt;_neg_transitive</m:mo>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="vafp" name="greater_total">
+    <prototype>
+      <om:OMS cd="vafp" name="greater_total"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="vafp">greater_total</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en">
+      <m:mo>&gt;_total</m:mo>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="vafp" name="greater_pred">
+    <prototype>
+      <om:OMS cd="vafp" name="greater_pred"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="vafp">greater_pred</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en">
+      <m:mo>&gt;_pred*</m:mo>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="vafp" name="greater_succ">
+    <prototype>
+      <om:OMS cd="vafp" name="greater_succ"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="vafp">greater_succ</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en">
+      <m:mo>&gt;_succ*</m:mo>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="vafp" name="greater_pred_estimation">
+    <prototype>
+      <om:OMS cd="vafp" name="greater_pred_estimation"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="vafp">greater_pred_estimation</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en">
+      <m:mo>&gt;_pred_estimation</m:mo>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="vafp" name="greater_pred_weak_estimation">
+    <prototype>
+      <om:OMS cd="vafp" name="greater_pred_weak_estimation"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="vafp">greater_pred_weak_estimation</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en">
+      <m:mo>&gt;_pred_weak_estimation*</m:mo>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="vafp" name="greater_entails_not_zero">
+    <prototype>
+      <om:OMS cd="vafp" name="greater_entails_not_zero"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="vafp">greater_entails_not_zero</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en">
+      <m:mo>&gt;_entails_not_zero</m:mo>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="vafp" name="greater_asymmetric">
+    <prototype>
+      <om:OMS cd="vafp" name="greater_asymmetric"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="vafp">greater_asymmetric</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en">
+      <m:mo>&gt;_asymmetric</m:mo>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="vafp" name="not_zero_entails_greater_zero">
+    <prototype>
+      <om:OMS cd="vafp" name="not_zero_entails_greater_zero"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="vafp">not_zero_entails_greater_zero</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en">
+      <m:mo>not_zero_entails_&gt;_zero</m:mo>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="vafp" name="pred_weak_greater_monotone">
+    <prototype>
+      <om:OMS cd="vafp" name="pred_weak_greater_monotone"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="vafp">pred_weak_greater_monotone</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en">
+      <m:mo>pred_weak_&gt;_monotone</m:mo>
+    </rendering>
+  </notation>
+</notations>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  A RelaxNG for Open Mathematical documents (OMDoc 1.6) Module META
+  $Id: omdocdc.rnc 8423 2009-07-17 11:52:11Z kohlhase $
+  $HeadURL: https://svn.omdoc.org/repos/omdoc/trunk/schema/rnc/omdocdc.rnc $
+  See the documentation and examples at http://www.omdoc.org
+  Copyright (c) 2007-2008 Michael Kohlhase, released under the GNU Public License (GPL) 
+-->
+<grammar xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  <!-- we include the dublin core and MARC elements, filling them with our content types -->
+  <define name="dublincore">
+    <grammar>
+      <include href="MARCRelators.rng"/>
+      <include href="dublincore.rng">
+        <define name="dc.date">
+          <interleave>
+            <parentRef name="nonlocal.attribs"/>
+            <optional>
+              <attribute name="action">
+                <data type="NMTOKEN"/>
+              </attribute>
+            </optional>
+            <optional>
+              <attribute name="who">
+                <data type="anyURI"/>
+              </attribute>
+            </optional>
+            <choice>
+              <data type="date"/>
+              <data type="dateTime"/>
+            </choice>
+          </interleave>
+        </define>
+        <define name="dc.identifier">
+          <interleave>
+            <parentRef name="nonlocal.attribs"/>
+            <attribute name="scheme">
+              <data type="NMTOKEN"/>
+            </attribute>
+            <text/>
+          </interleave>
+        </define>
+        <define name="dc.type">
+          <interleave>
+            <parentRef name="nonlocal.attribs"/>
+            <choice>
+              <value>Dataset</value>
+              <value>Text</value>
+              <value>Collection</value>
+            </choice>
+          </interleave>
+        </define>
+        <define name="dc.text">
+          <interleave>
+            <parentRef name="nonlocal.attribs"/>
+            <parentRef name="p.model"/>
+          </interleave>
+        </define>
+        <define name="dc.person">
+          <interleave>
+            <parentRef name="nonlocal.attribs"/>
+            <optional>
+              <attribute name="role">
+                <ref name="MARCRelators"/>
+              </attribute>
+            </optional>
+            <parentRef name="p.model"/>
+          </interleave>
+        </define>
+        <define name="dc.rights">
+          <interleave>
+            <parentRef name="nonlocal.attribs"/>
+            <parentRef name="p.model"/>
+          </interleave>
+        </define>
+      </include>
+    </grammar>
+  </define>
+  <define name="metadata.class" combine="interleave">
+    <ref name="dublincore"/>
+  </define>
+</grammar>

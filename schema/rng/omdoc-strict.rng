@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  A RelaxNG schema for Open Mathematical documents (OMDoc 1.6)           
+  $Id: omdoc-strict.rnc 8423 2009-07-17 11:52:11Z kohlhase $
+  $HeadURL: https://svn.omdoc.org/repos/omdoc/trunk/schema/rnc/omdoc-strict.rnc $
+  See the documentation and examples at http://www.omdoc.org
+  Copyright (c) 2004-2007 Michael Kohlhase, released under the GNU Public License (GPL) 
+-->
+<grammar xmlns:omdoc="http://omdoc.org/ns" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  <start>
+    <ref name="omdoc"/>
+  </start>
+  <!-- whenever we want to leave the models open -->
+  <define name="Anything">
+    <zeroOrMore>
+      <choice>
+        <ref name="AnyElement"/>
+        <text/>
+      </choice>
+    </zeroOrMore>
+  </define>
+  <define name="AnyElement">
+    <element>
+      <anyName/>
+      <zeroOrMore>
+        <choice>
+          <attribute>
+            <anyName/>
+          </attribute>
+          <ref name="AnyElement"/>
+          <text/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <!-- all the explicitly namespaced attributes, except xml:lang, which  handled explicitly -->
+  <define name="nonlocal.attribs">
+    <zeroOrMore>
+      <attribute>
+        <anyName>
+          <except>
+            <nsName ns=""/>
+            <nsName ns="http://www.w3.org/XML/1998/namespace"/>
+          </except>
+        </anyName>
+      </attribute>
+    </zeroOrMore>
+  </define>
+  <define name="id.attribs">
+    <interleave>
+      <optional>
+        <attribute name="xml:id">
+          <data type="ID"/>
+        </attribute>
+      </optional>
+      <ref name="nonlocal.attribs"/>
+    </interleave>
+  </define>
+  <define name="idrest.attribs">
+    <empty/>
+  </define>
+  <define name="MMTURI">
+    <a:documentation>MMT URIs</a:documentation>
+    <choice>
+      <ref name="MURI"/>
+      <ref name="DURI"/>
+      <ref name="SURI"/>
+    </choice>
+  </define>
+  <define name="DURI">
+    <a:documentation>Document URI:  DURI ::= URI without Fragment</a:documentation>
+    <data type="anyURI"/>
+  </define>
+  <define name="MURI">
+    <a:documentation>Module URI: MURI ::= DURI?QName | ?/QName</a:documentation>
+    <data type="anyURI"/>
+  </define>
+  <define name="SURI">
+    <a:documentation>Symbol URI: SURI ::= MURI?QName | ??/QName</a:documentation>
+    <data type="anyURI"/>
+  </define>
+  <define name="name.attrib">
+    <attribute name="name">
+      <data type="string"/>
+    </attribute>
+  </define>
+  <define name="from.attrib">
+    <attribute name="from">
+      <ref name="MMTURI"/>
+    </attribute>
+  </define>
+  <define name="to.attrib">
+    <attribute name="to">
+      <ref name="MMTURI"/>
+    </attribute>
+  </define>
+  <include href="omdocmobj.rng"/>
+  <include href="meta-strict.rng"/>
+  <include href="doc-strict.rng"/>
+  <include href="mtxt-strict.rng"/>
+  <include href="st-strict.rng"/>
+  <include href="biform.rng"/>
+  <include href="notation-strict.rng"/>
+</grammar>

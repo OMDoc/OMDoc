@@ -1,0 +1,276 @@
+<?xml version="1.0"?>
+<!--This OMDoc document is generated from an sTeX-encoded one via LaTeXML, you may want to reconsider editing it.-->
+<omdoc xmlns="http://omdoc.org/ns" 
+       xmlns:dc="http://purl.org/dc/elements/1.1/"
+       xmlns:om="http://www.openmath.org/OpenMath"
+       xmlns:m="http://www.w3.org/1998/Math/MathML"
+       xmlns:v="http://omdoc.org/ontology/versioning#"
+       xmlns:p="http://omdoc.org/ontology/project#"
+       xmlns:ch="http://omdoc.org/ontology/changes#">
+  <metadata>
+    <!--
+    My new syntax will be close to RDFa; therefore I introduce completely new element and attribute names.  I will reuse the XHTML element names <meta/> for literal-valued metadata, and <link/> for object-valued ones.  Christoph Lange, 2008/11/01
+    -->
+    <!-- @property creates literal-valued properties -->
+    <meta property="dc:title">Konzeptpapier Bremsmodell</meta>
+    <!--
+    Actually we can also point to a proper resource that further describes this person.  The FOAF and SIOC ontologies would be helpful here.
+    -->
+    <meta property="dc:creator">taeubig</meta>
+    <meta property="dc:description">Dieses Dokument beschreibt das Konzept des im SAMS Projekt verwendeten und
+entwickelten Bremsmodells, d.h. eine formale Beschreibung des Verhaltes des EUC bei
+einer Notbremsung. Dieses Modell bildet die Basis der Schutzfeldberechnung.</meta>
+    <!--
+    Hier erfinde ich erstmal eine OMDoc-/SAMS-eigene Versionierungs-Ontologie.  Später gucken wir dann, aus welchen vorhandenen Versionierungs-Ontologien wir Konzepte wiederverwerten können.
+    -->
+    <meta property="v:version">1.5</meta>
+    <!--
+    example for a formal metadata value that differs from the label that is displayed – if I may assume that we want to use an English term internally, but use the German "i.B." for display.
+    For more conceptual clarity we might actually want to turn this into an "object property" (something which is a resource), whose range is a class v:DocState, of which v:Draft and others may be subclasses.  Such metadata would also be easy to write down in an RDFa way.
+    -->
+    <meta property="v:docState" content="draft">i.B.</meta>
+    <!--
+    <dc:date action="...">date</dc:date> is tricky.  RDF does not easily allow for "properties of properties" (here: an additional property of the date of our resource.  I will therefore treat the act of creation as a resource of its own, which then has a date.  A presentation algorithm could still be configured to present this as "created on ...".
+    We could also retain dc:date/@action as a "pragmatic" syntax, whereas the following, more verbose RDFa syntax would be the "strict" one.
+    Note that for linking this resource to its creation, we need an object property.  Such properties are indicated by @rel.  In order to be able to embed the target of this link right here into the document, we don't model it as something that has a URI, but as a "blank node", which is something like an anonymous resource.
+    -->
+    <link rel="v:created">
+	<!-- For creating a blank node, RDFa requires us to either give it an ID (which is unique throughout the document), or to say that it is a resource of a certain type. -->
+	<resource typeof="v:Creation">
+	    <!-- Now we can assign metadata to this resource -->
+	    <meta property="dc:date">28.01.2008</meta>
+	</resource>
+    </link>
+    <!--
+    This is not really related to the versioning ontology, so I'll introduce yet another "project" ontology.  Note that this is just a draft.  Actually we may be able to reuse concepts from existing project ontologies like DOAP.
+    See dc:creator above for making this person more semantic.
+    -->
+    <meta property="p:responsible">taeubig</meta>
+    <!--
+    Now we model the version history of this resource as a set of blank nodes.  We may want to introduce a pragmatic syntax, i.e. syntactic sugar, for this, e.g. an element <revision/>.
+    -->
+    <link rel="v:hasRevision">
+	<!--
+	Let's assume that the domain of v:hasRevision is a class v:Revision, which has, among others, a subclass v:Change.
+	-->
+	<resource about="_:initial">
+	  <meta property="dc:date">07.02.08</meta>
+	  <meta property="v:revisionId">1.0</meta>
+	  <meta property="dc:creator">taeubig</meta>
+	  <meta property="dc:description">Initiale Version 1.0 erstellt.</meta>
+	</resource>
+	<resource typeof="v:Revision" about="_:revision1.1">
+	  <link rel="v:previous" href="_:initial"/>
+	  <link rel="v:change" href="ch:extension"/>
+	  <meta property="dc:date">07.02.08</meta>
+	  <meta property="v:revisionId">1.1</meta>
+	  <link rel="dc:creator" href="../users.omdoc#taeubig"/>
+	  <meta property="dc:description">Abschnitt Wortbedeutungen, Konventionen, Variablen nur noch hier.</meta>
+	</resource>
+	<resource typeof="v:Revision">
+	    <meta property="dc:date">12.02.08</meta>
+	    <meta property="v:revisionId">1.2</meta>
+	    <meta property="dc:creator">cxl</meta>
+	    <meta property="dc:description">Einige Formulierungen vereinfacht und/oder präzisiert.</meta>
+	</resource>
+	<resource typeof="v:Revision">
+	    <meta property="dc:date">12.02.08</meta>
+	    <meta property="v:revisionId">1.3</meta>
+	    <meta property="dc:creator">taeubig</meta>
+	    <meta property="dc:description">Handskizzen durch ordentliche Zeichnungen ersetzt.</meta>
+	</resource>
+	<resource typeof="v:Revision">
+	    <meta property="dc:date">02.05.08</meta>
+	    <meta property="v:revisionId">1.4</meta>
+	    <meta property="dc:creator">cxl</meta>
+	    <!--
+	    Note that an RDFa processor must recognize that there are XML elements in the value of this property, and that, therefore, the property should not be treated as being of type string, but of type rdf:XMLLiteral.  That allows us for preserving the OMOBJ during extraction.
+	    -->
+	    <meta property="dc:description">Abschnitt über das Absschätzung des Bremsweges oberhalb <om:OMOBJ><om:OMA><om:OMV name=""/><om:OMV name="v"/><om:OMA><om:OMS cd="arith1" name="times"/><om:OMV name="m"/><om:OMV name="a"/><om:OMV name="x"/></om:OMA></om:OMA></om:OMOBJ> hinzugefügt.</meta>
+	</resource>
+	<resource typeof="v:Revision">
+	    <meta property="dc:date">01.10.08</meta>
+	    <meta property="v:revisionId">1.5</meta>
+	    <meta property="dc:creator">taeubig</meta>
+	    <meta property="dc:description">Änderungen zur neuen Berechnung der Bremskonfiguration <om:OMOBJ><om:OMA><om:OMV name="open_interval"/><om:OMV name="s"/><om:OMV name="phi"/></om:OMA></om:OMOBJ> begonnen.</meta>
+	</resource>
+    </link>
+    <!--
+	v:Certification would not be another subclass of v:Revision.  But I'm not sure if
+	I get this right; you would have to explain your workflow to me. Christoph Lange, 2008/11/01.
+	-->
+    <link rel="v:hasCertification">
+	<resource typeof="v:Certification">
+	  <link rel="v:certifies" href="_:revision1.1"/>
+	  <meta property="dc:date">12.02.08</meta>
+	  <meta property="v:docState" content="draft">i.B.</meta>
+	  <meta property="dc:creator">cxl</meta>
+	  <meta property="dc:description">Einige Formulierungen noch unklar, sonst korrekt.</meta>
+	</resource>
+	<resource typeof="v:Certification">
+	    <meta property="dc:date">12.02.08</meta>
+	    <meta property="v:revisionId">1.2</meta>
+	    <!--
+	    Here I don't know what you mean.
+	    -->
+	    <meta property="v:docState" content="WHATEVER">vg.(T&#xDC;V)</meta>
+	    <meta property="dc:creator">walter</meta>
+	    <meta property="dc:description">foo</meta>
+	</resource>
+	<resource typeof="v:Certification">
+	    <meta property="dc:date">13.05.08</meta>
+	    <meta property="v:revisionId">1.4</meta>
+	    <meta property="v:docState" content="WHATEVER">vg.(T&#xDC;V)</meta>
+	    <meta property="dc:creator">taeubig</meta>
+	    <meta property="dc:description">foo</meta>
+	</resource>
+    </link>
+  </metadata>
+  <theory xml:id="bremsmodell">
+    <symbol name="VEC"/>
+    <notation>
+      <prototype>
+        <om:OMS cd="bremsmodell" name="VEC"/>
+      </prototype>
+      <rendering>
+        <m:munder accent="true">
+          <m:mi>pres_arg:2</m:mi>
+          <m:mo>¯</m:mo>
+        </m:munder>
+      </rendering>
+    </notation>
+    <symbol name="VECC"/>
+    <notation>
+      <prototype>
+        <om:OMS cd="bremsmodell" name="VECC"/>
+      </prototype>
+      <rendering>
+        <m:mfenced open="(" close=")">
+          <m:mtable rowspacing="0.2ex" columnspacing="0.4em">
+            <m:mtr>
+              <m:mtd columnalign="center">
+                <m:mi>pres_arg:2</m:mi>
+              </m:mtd>
+            </m:mtr>
+            <m:mtr>
+              <m:mtd columnalign="center">
+                <m:mi>pres_arg:3</m:mi>
+              </m:mtd>
+            </m:mtr>
+          </m:mtable>
+        </m:mfenced>
+      </rendering>
+    </notation>
+    <symbol name="VECCC"/>
+    <notation>
+      <prototype>
+        <om:OMS cd="bremsmodell" name="VECCC"/>
+      </prototype>
+      <rendering>
+        <m:mfenced open="(" close=")">
+          <m:mtable rowspacing="0.2ex" columnspacing="0.4em">
+            <m:mtr>
+              <m:mtd columnalign="center">
+                <m:mi>pres_arg:2</m:mi>
+              </m:mtd>
+            </m:mtr>
+            <m:mtr>
+              <m:mtd columnalign="center">
+                <m:mi>pres_arg:3</m:mi>
+              </m:mtd>
+            </m:mtr>
+            <m:mtr>
+              <m:mtd columnalign="center">
+                <m:mi>pres_arg:4</m:mi>
+              </m:mtd>
+            </m:mtr>
+          </m:mtable>
+        </m:mfenced>
+      </rendering>
+    </notation>
+    <symbol name="sinc"/>
+    <notation>
+      <prototype>
+        <om:OMS cd="bremsmodell" name="sinc"/>
+      </prototype>
+      <rendering>
+        <m:mrow>
+          <m:mtext>sinc</m:mtext>
+          <m:mo>⁢</m:mo>
+          <m:mi>pres_arg:2</m:mi>
+        </m:mrow>
+      </rendering>
+    </notation>
+    <symbol name="weg"/>
+    <notation>
+      <prototype>
+        <om:OMS cd="bremsmodell" name="weg"/>
+      </prototype>
+      <rendering>
+        <m:mi>s</m:mi>
+      </rendering>
+    </notation>
+    <symbol name="wega"/>
+    <notation>
+      <prototype>
+        <om:OMS cd="bremsmodell" name="wega"/>
+      </prototype>
+      <rendering>
+        <m:mover accent="true">
+          <m:mi>s</m:mi>
+          <m:mo>^</m:mo>
+        </m:mover>
+      </rendering>
+    </notation>
+    <omgroup xml:id="bremsmodell.p1">
+      <metadata>
+        <meta property="dc:title">Kurzbeschreibung</meta>
+      </metadata>
+      <omtext xml:id="bremsmodell.p1.p1">
+        <CMP xml:id="bremsmodell.p1.p1.p1">
+          <p xml:id="bremsmodell.p1.p1.p1.p1">
+Das Bremsmodell beschreibt das Verhalten des Fahrzeuges im Falle einer Notbremsung, wie
+sie von der Sicherungskomponente ausgelöst wird. Es dient dazu, abschätzen zu können,
+welche Fläche bei einer solchen Notbremsung überstrichen wird, bevor das Fahrzeug zum
+Stillstand kommt; diese ist die Basis der Berechnung der Schutzfelder (siehe dazu das
+Konzeptpapier <ref type="cite" xref="sams:konzept-schutzfelder"/>).  Zu diesem Zweck werden die Bewegung
+eines Referenzpunktes sowie die Orientierung des Fahrzeuges, welches sich in einer Ebene
+bewegt, modelliert.  Seine Lage und damit auch die Lage aller seiner Konturpunkte ist
+durch den Vektor <om:OMOBJ><om:OMA><om:OMV name=""/><om:OMA><om:OMV name="vector"/><om:OMA><om:OMS cd="arith1" name="times"/><om:OMV name="x"/><om:OMV name="t"/></om:OMA><om:OMA><om:OMS cd="arith1" name="times"/><om:OMV name="y"/><om:OMV name="t"/></om:OMA><om:OMA><om:OMS cd="arith1" name="times"/><om:OMV name="Theta"/><om:OMV name="t"/></om:OMA></om:OMA><om:OMV name="T"/></om:OMA></om:OMOBJ>, bestehend aus Position des Referenzpunktes
+<om:OMOBJ><om:OMA><om:OMV name="open_interval"/><om:OMV name="x"/><om:OMV name="y"/></om:OMA></om:OMOBJ> und Orientierung des Fahrzeuges <om:OMOBJ><om:OMV name="Theta"/></om:OMOBJ>, zu jedem Zeitpunkt <om:OMOBJ><om:OMV name="t"/></om:OMOBJ> vollständig
+beschrieben.
+</p>
+        </CMP>
+      </omtext>
+      <omtext xml:id="bremsmodell.p1.p2">
+        <CMP xml:id="bremsmodell.p1.p2.p1">
+          <p xml:id="bremsmodell.p1.p2.p1.p1">
+Das in SAMS verwendete Bremsmodell betrachtet sowohl die Distanz als auch die Kurve, die
+während des Bremsvorganges gefahren wird.  Dem Bremsmodell liegt die Annahme zugrunde,
+dass das Fahrzeug während des gesamten Bremsvorganges den Lenkwinkel konstant hält.
+Es kann sich dann als Ortskurve des Referenzpunktes eine Gerade oder ein Kreis
+ergeben. Im Fall einer Geradeausfahrt bei Auslösung der Notbremsung ergibt sich als
+Ortskurve die Gerade. Befand sich bei Auslösung der Notbremsung das Fahrzeug in einer
+Kurve, so entsteht eine kreisförmige Bremstrajektorie. Der Radius dieses Kreises ist
+vom Lenkwinkel bei Bremsbeginn abhängig.
+</p>
+        </CMP>
+      </omtext>
+      <omtext xml:id="bremsmodell.p1.p3">
+        <CMP xml:id="bremsmodell.p1.p3.p1">
+          <p xml:id="bremsmodell.p1.p3.p1.p1">
+Zur Berechnung des Weges der auf der Ortskurve bis zum Stillstand des Fahrzeuges
+zurückgelegt wird, wird eine Überabschätzung <om:OMOBJ><om:OMA><om:OMS cd="arith1" name="times"/><om:OMA><om:OMV name=""/><om:OMS cd="bremsmodell" name="wega"/><om:OMV name="G"/></om:OMA><om:OMV name="v"/></om:OMA></om:OMOBJ> angegeben, die die
+Konvexität der Funktion <om:OMOBJ><om:OMA><om:OMS cd="arith1" name="times"/><om:OMA><om:OMV name=""/><om:OMS cd="bremsmodell" name="weg"/><om:OMV name="G"/></om:OMA><om:OMV name="v"/></om:OMA></om:OMOBJ> verwendet. <om:OMOBJ><om:OMA><om:OMS cd="arith1" name="times"/><om:OMA><om:OMV name=""/><om:OMS cd="bremsmodell" name="weg"/><om:OMV name="G"/></om:OMA><om:OMV name="v"/></om:OMA></om:OMOBJ> ist dabei der in
+Abhängigkeit von der Geschwindigkeit benötigete Bremsweg für Geradeausfahrten. Weil
+diese obere Grenze nur für den Bremsweg bei Geradeausfahrt gültig ist, wird daraus
+durch eine energetische Betrachtung eine Überabschätzung des Bremsweges auf der
+Kreisbahn berechnet.
+</p>
+        </CMP>
+      </omtext>
+    </omgroup>
+  </theory>
+  <bibliography xmlns="http://dlmf.nist.gov/LaTeXML" files="../SAMS-alt/bib/sams,../SAMS-alt/bib/references" xml:id="bib"/>
+  <!--The data elements-->
+</omdoc>

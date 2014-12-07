@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  A RelaxNG schema for Open Mathematical documents (OMDoc 1.6) Module PF 
+  $Id: omdocpf.rnc 8432 2009-07-19 13:18:40Z kohlhase $
+  $HeadURL: https://svn.omdoc.org/repos/omdoc/trunk/schema/rnc/omdocpf.rnc $
+  See the documentation and examples at http://www.omdoc.org
+  Copyright (c) 2004-2007 Michael Kohlhase, released under the GNU Public License (GPL) 
+-->
+<grammar ns="http://omdoc.org/ns" xmlns:omdoc="http://omdoc.org/ns" xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  <define name="omdoc.class" combine="interleave">
+    <interleave>
+      <zeroOrMore>
+        <ref name="proof"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="proofobject"/>
+      </zeroOrMore>
+    </interleave>
+  </define>
+  <define name="proof.attrib">
+    <interleave>
+      <ref name="omdoc.toplevel.attribs"/>
+      <ref name="fori.attrib"/>
+    </interleave>
+  </define>
+  <define name="proof.model">
+    <interleave>
+      <zeroOrMore>
+        <ref name="omtext"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="symbol"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="definition"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="derive"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="hypothesis"/>
+      </zeroOrMore>
+    </interleave>
+  </define>
+  <define name="proof">
+    <element name="proof">
+      <interleave>
+        <ref name="proof.attrib"/>
+        <group>
+          <optional>
+            <ref name="metadata"/>
+          </optional>
+          <ref name="proof.model"/>
+        </group>
+      </interleave>
+    </element>
+  </define>
+  <define name="proofobject.model">
+    <optional>
+      <ref name="metadata"/>
+    </optional>
+    <ref name="mobj"/>
+  </define>
+  <define name="proofobject">
+    <element name="proofobject">
+      <interleave>
+        <ref name="proof.attrib"/>
+        <ref name="proofobject.model"/>
+      </interleave>
+    </element>
+  </define>
+  <define name="derive.attrib">
+    <interleave>
+      <ref name="id.attribs"/>
+      <optional>
+        <attribute name="type">
+          <choice>
+            <value>conclusion</value>
+            <value>gap</value>
+          </choice>
+        </attribute>
+      </optional>
+    </interleave>
+  </define>
+  <define name="derive.model">
+    <optional>
+      <ref name="metadata"/>
+    </optional>
+    <zeroOrMore>
+      <ref name="p"/>
+    </zeroOrMore>
+    <optional>
+      <ref name="method"/>
+    </optional>
+  </define>
+  <define name="derive">
+    <element name="derive">
+      <interleave>
+        <ref name="derive.attrib"/>
+        <ref name="derive.model"/>
+      </interleave>
+    </element>
+  </define>
+  <define name="hypothesis.attrib">
+    <interleave>
+      <ref name="id.attribs"/>
+      <optional>
+        <attribute name="inductive">
+          <choice>
+            <value>yes</value>
+            <value>no</value>
+          </choice>
+        </attribute>
+      </optional>
+    </interleave>
+  </define>
+  <define name="hypothesis.model">
+    <optional>
+      <ref name="metadata"/>
+    </optional>
+    <zeroOrMore>
+      <ref name="p"/>
+    </zeroOrMore>
+  </define>
+  <define name="hypothesis">
+    <element name="hypothesis">
+      <ref name="hypothesis.attrib"/>
+      <ref name="hypothesis.model"/>
+    </element>
+  </define>
+  <define name="method.attrib">
+    <interleave>
+      <optional>
+        <ref name="id.attribs"/>
+      </optional>
+      <optional>
+        <ref name="xref.attrib"/>
+      </optional>
+    </interleave>
+  </define>
+  <define name="method.model">
+    <interleave>
+      <zeroOrMore>
+        <ref name="mobj"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="premise"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="proof"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="proofobject"/>
+      </zeroOrMore>
+    </interleave>
+  </define>
+  <define name="method">
+    <element name="method">
+      <interleave>
+        <ref name="method.attrib"/>
+        <ref name="method.model"/>
+      </interleave>
+    </element>
+  </define>
+  <!-- 'xref' is a pointer to the element defining the method -->
+  <define name="premise.model">
+    <empty/>
+  </define>
+  <define name="premise.attrib">
+    <interleave>
+      <ref name="xref.attrib"/>
+      <optional>
+        <attribute name="rank">
+          <data type="string">
+            <param name="pattern">0|[1-9][0-9*]</param>
+          </data>
+        </attribute>
+      </optional>
+    </interleave>
+  </define>
+  <define name="premise">
+    <element name="premise">
+      <interleave>
+        <ref name="premise.attrib"/>
+        <ref name="premise.model"/>
+      </interleave>
+    </element>
+  </define>
+</grammar>
+<!--
+  The rank of a premise specifies its importance in the inference rule. 
+  Rank 0 (the default) is a real premise, whereas positive rank signifies 
+  sideconditions of varying degree.
+-->

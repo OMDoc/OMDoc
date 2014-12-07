@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  xmlns="http://omdoc.org/ns"
+xml:id="polyr-omdoc">
+
+
+  <dc:title>The OpenMath Content Dictionary polyr.ocd  in OMDoc form</dc:title>
+  <dc:creator role="trl">Michael Kohlhase</dc:creator>
+  <dc:creator role="ant">The OpenMath Society</dc:creator>
+  <dc:date> 1999-11-19T00:00:00</dc:date>
+  <dc:source>Derived from the OpenMath CD http://www.openmath.org/cd/polyr.ocd.</dc:source>
+  <dc:type>Text</dc:type>
+  <dc:format>application/omdoc+xml</dc:format>
+  <dc:rights>Copyright (c) 2000-2002 Michael Kohlhase;
+    This OMDoc content dictionary is released under the OpenMath license:
+    http://monet.nag.co.uk/openmath/cdfiles/license.html
+  </dc:rights>
+  <dc:description>
+    This CD contains operators to deal with polynomials and more precisely 
+    Recursive Polynomials.
+    Note that polynomials are regarded as univariates in their most
+    significant variable (as defined by the order in PolynomialRingR:
+    the first variable to appear is the most significant),
+    with monomials in decreasing order of exponent, and coefficients
+    being polynomials in the rest of the variables. This means that 
+    polynomials have a unique representation, except for the fact that
+    <legacy format="mocktex">yz \in Z[x,y,z]</legacy> could also be represented as
+    <legacy format="mocktex">x^0yz</legacy>. This latter is
+    discouraged, but currently not expressly forbidden.
+  </dc:description>
+
+
+<theory xml:id="polyr" cdbase="http://www.openmath.org/cd">
+  <include from="sts.omdoc#sts"/>
+  <include from="setname1.omdoc#setname1"/>
+
+<omtext xml:id="CDComment-10" type="introduction">
+  <CMP>
+    Original OpenMath v1.1 Poly 1997
+    Update to Current Format 1999-07-07 DPC
+    Move the names of rings to setname1.ocd 1999-11-09 JHD
+    Delete those items moved to the new poly.ocd 1999-11-14 JHD
+    Convert to recursive polynomials 1999-11-20 JHD
+  </CMP>
+</omtext>
+<omtext xml:id="CDComment-11" type="introduction">
+  <CMP>
+    Definition of data-structure constructors
+  </CMP>
+</omtext>
+<omtext xml:id="CDComment-12" type="introduction">
+  <CMP>
+    The polynomial <legacy format="mocktex">x^2*y^6 + 3*y^5</legacy> can be conceptually encoded as
+    <legacy format="mocktex">poly_r_rep(x,term(2,poly_r_rep(y,term(6,1))),term(0,poly_r_rep(y,term(5,3))))</legacy>
+    It lies in <legacy format="mocktex">polynomial_ring_r(Z,x,y)</legacy> (and other rings, of course)
+
+    The polynomial <legacy format="mocktex">2*y^3*z^5 + x + 1</legacy> can be conceptually encoded as
+    <legacy format="mocktex">poly_r_rep(x,term(1,1),term(0,poly_r_rep(y,term(3,poly_r_rep(z,term(5,2))),term(0,1))))</legacy>
+</CMP>
+</omtext>
+
+<symbol name="term" xml:id="term">
+
+<dc:description>
+    A constructor for monomials, that is products of powers and
+    elements of the base ring.
+    First argument is from N (the exponent of the variable
+    implied by an outer <legacy format="mocktex">poly_r_rep</legacy>)
+    second argument is a coefficient (from the ground field, or a
+    polynomial in lesser variables).
+</dc:description>
+
+<type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMS name="N" cd="setname1"/>
+	<OMV name="PolynomialR"/>
+	<OMV name="MonomialR"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+
+<symbol name="poly_r_rep" xml:id="poly_r_rep">
+
+<dc:description>
+    A constructor for the representation of polynomials.
+    The first argument is the polynomial variable, the rest are
+    monomials (in decreasing order of exponent). 
+</dc:description>
+
+</symbol>
+
+<presentation for="#poly_r_rep">
+  <use format="TeX">polyrrep</use>
+</presentation>
+
+<example xml:id="poly_r_rep-ex-1" type="for" for="#poly_r_rep">
+  <CMP>
+    The polynomial <legacy format="mocktex">x^2*y^6 + 3*x^0*y^5 = x^2*y^6 + 3*y^5</legacy> may be 
+    encoded as:
+  </CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS name="poly_r_rep" cd="polyr"/>
+      <OMV name="x"/>
+      <OMA>
+	<OMS name="term" cd="polyr"/>
+	<OMI> 2 </OMI>
+	<OMA>
+	  <OMS name="poly_r_rep" cd="polyr"/>
+	  <OMV name="y"/>
+	  <OMA>
+	    <OMS name="term" cd="polyr"/>
+	    <OMI> 6 </OMI>
+	    <OMI> 1 </OMI>
+	  </OMA>
+	</OMA>
+      </OMA>
+      <OMA>
+	<OMS name="term" cd="polyr"/>
+	<OMI> 0 </OMI>
+	<OMA>
+	  <OMS name="poly_r_rep" cd="polyr"/>
+	  <OMV name="y"/>
+	  <OMA>
+	    <OMS name="term" cd="polyr"/>
+	    <OMI> 5 </OMI>
+	    <OMI> 3 </OMI>
+	  </OMA>
+	</OMA>
+      </OMA>
+    </OMA>
+  </OMOBJ>
+</example>
+
+<symbol name="polynomial_r" xml:id="polynomial_r">
+
+<dc:description>
+    The constructor of Recursive Polynomials. The first argument
+    is the polynomial ring containing the polynomial and the second
+    is a <legacy format="mocktex">poly_r_rep</legacy>.
+</dc:description>
+
+</symbol>
+
+<presentation for="#polynomial_r">
+  <use format="TeX">polynomialr</use>
+</presentation>
+
+<example xml:id="polynomial_r-ex-1" type="for" for="#polynomial_r">
+  <CMP>
+    The polynomial <legacy format="mocktex">x^2*y^6 + 3*x^0*y^5 = x^2*y^6 + 3*y^5</legacy> in the 
+    polynomial ring with the integers as the coefficient ring and 
+    variables x,y in that order may be encoded as:</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS name="polynomial_r" cd="polyr"/>
+      <OMA>
+	<OMS name="polynomial_ring_r" cd="polyr"/>
+	<OMS name="Z" cd="setname1"/>
+	<OMV name="x"/>
+	<OMV name="y"/>
+      </OMA>
+      <OMA>
+	<OMS name="poly_r_rep" cd="polyr"/>
+	<OMV name="x"/>
+	<OMA>
+	  <OMS name="term" cd="polyr"/>
+	  <OMI> 2 </OMI>
+	  <OMA>
+	    <OMS name="poly_r_rep" cd="polyr"/>
+	    <OMV name="y"/>
+	    <OMA>
+	      <OMS name="term" cd="polyr"/>
+	      <OMI> 6 </OMI>
+	      <OMI> 1 </OMI>
+	    </OMA>
+	  </OMA>
+	</OMA>
+	<OMA>
+	  <OMS name="term" cd="polyr"/>
+	  <OMI> 0 </OMI>
+	  <OMA>
+	    <OMS name="poly_r_rep" cd="polyr"/>
+	    <OMV name="y"/>
+	    <OMA>
+	      <OMS name="term" cd="polyr"/>
+	      <OMI> 5 </OMI>
+	      <OMI> 3 </OMI>
+	    </OMA>
+	  </OMA>
+	</OMA>
+      </OMA>
+    </OMA>
+  </OMOBJ>
+</example>
+<omtext xml:id="CDComment-16" type="introduction">
+  <CMP>
+    Polynomial ring constructor
+  </CMP>
+</omtext>
+
+<symbol name="polynomial_ring_r" xml:id="polynomial_ring_r">
+
+<dc:description> 
+    The constructor of a recursive polynomial ring. The first argument
+    is a ring (the ring of the coefficients), the rest are the 
+    variables (in order).
+</dc:description>
+
+</symbol>
+
+<presentation for="#polynomial_ring_r">
+  <use format="TeX">polynomialringr</use>
+</presentation>
+
+<example xml:id="polynomial_ring_r-ex-1" type="for" for="#polynomial_ring_r">
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS name="polynomial_ring_r" cd="polyr"/>
+      <OMS name="Z" cd="setname1"/>
+      <OMV name="x"/>
+      <OMV name="y"/>
+    </OMA>
+  </OMOBJ>
+</example>
+</theory>
+</omdoc>

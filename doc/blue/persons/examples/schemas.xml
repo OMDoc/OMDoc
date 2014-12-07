@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<locatingRules xmlns="http://thaiopensource.com/ns/locating-rules/1.0">
+  <documentElement localName="person" typeId="OMDocPerson"/>
+  <typeId id="OMDocPerson" uri="../rnc/omdocPER.rnc"/>
+</locatingRules>

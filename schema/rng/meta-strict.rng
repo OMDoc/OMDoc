@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  A RelaxNG for Open Mathematical documents (OMDoc 1.6) Module META
+  $Id: meta-strict.rnc 8540 2009-10-20 10:14:01Z kohlhase $
+  $HeadURL: https://svn.omdoc.org/repos/omdoc/trunk/schema/rnc/meta-strict.rnc $
+  See the documentation and examples at http://www.omdoc.org
+  Copyright (c) 2007-2008 Michael Kohlhase, released under the GNU Public License (GPL) 
+-->
+<grammar ns="http://omdoc.org/ns" xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  <!-- for the moment, we may get regexp at some point. -->
+  <define name="curie">
+    <data type="string"/>
+  </define>
+  <define name="content.att">
+    <attribute name="content">
+      <data type="string"/>
+    </attribute>
+  </define>
+  <define name="meta.attribs">
+    <interleave>
+      <attribute name="property">
+        <ref name="curie"/>
+      </attribute>
+      <optional>
+        <attribute name="datatype">
+          <ref name="curie"/>
+        </attribute>
+      </optional>
+      <zeroOrMore>
+        <ref name="nonlocal-attribs"/>
+      </zeroOrMore>
+    </interleave>
+  </define>
+  <define name="meta.children">
+    <choice>
+      <ref name="content.att"/>
+      <ref name="Anything"/>
+      <group>
+        <ref name="content.att"/>
+        <ref name="Anything"/>
+      </group>
+    </choice>
+  </define>
+  <define name="meta">
+    <element name="meta">
+      <ref name="meta.attribs"/>
+      <ref name="meta.children"/>
+    </element>
+  </define>
+  <define name="mlink.attribs">
+    <interleave>
+      <attribute name="rel">
+        <ref name="curie"/>
+      </attribute>
+      <zeroOrMore>
+        <ref name="nonlocal-attribs"/>
+      </zeroOrMore>
+    </interleave>
+  </define>
+  <define name="mlink.class">
+    <interleave>
+      <zeroOrMore>
+        <ref name="resource"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="mlink"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="meta"/>
+      </zeroOrMore>
+    </interleave>
+  </define>
+  <define name="mlink.children">
+    <choice>
+      <attribute name="href">
+        <ref name="curie"/>
+      </attribute>
+      <ref name="mlink.class"/>
+    </choice>
+  </define>
+  <define name="mlink">
+    <element name="link">
+      <ref name="mlink.attribs"/>
+      <ref name="mlink.children"/>
+    </element>
+  </define>
+  <define name="resource.attribs">
+    <interleave>
+      <optional>
+        <attribute name="typeof">
+          <ref name="curie"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="about">
+          <ref name="curie"/>
+        </attribute>
+      </optional>
+      <zeroOrMore>
+        <ref name="nonlocal-attribs"/>
+      </zeroOrMore>
+    </interleave>
+  </define>
+  <define name="resource.class">
+    <interleave>
+      <zeroOrMore>
+        <ref name="meta"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="mlink"/>
+      </zeroOrMore>
+    </interleave>
+  </define>
+  <define name="resource">
+    <element name="resource">
+      <interleave>
+        <ref name="resource.attribs"/>
+        <ref name="resource.class"/>
+      </interleave>
+    </element>
+  </define>
+  <define name="metadata.class">
+    <interleave>
+      <zeroOrMore>
+        <ref name="meta"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="mlink"/>
+      </zeroOrMore>
+    </interleave>
+  </define>
+  <define name="metadata.attribs">
+    <interleave>
+      <ref name="id.attribs"/>
+      <optional>
+        <attribute name="inherits">
+          <ref name="MMTURI"/>
+        </attribute>
+      </optional>
+    </interleave>
+  </define>
+  <define name="metadata">
+    <element name="metadata">
+      <interleave>
+        <ref name="metadata.attribs"/>
+        <ref name="metadata.class"/>
+      </interleave>
+    </element>
+  </define>
+</grammar>

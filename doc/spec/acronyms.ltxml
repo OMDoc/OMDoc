@@ -1,0 +1,282 @@
+# -*- CPERL -*-
+# /=======================================================\ #
+# |  acronyms.sty - Implementation for LaTeXML           | #
+# |                                                       | #
+# |=======================================================| #
+# |  Part of LaTeXML : http://dlmf.nist.gov/LaTeXML/      | #
+# | Copyright (c) 2006 arXMLiv group                      | #
+# | Released under the GNU Public License                 | #
+# \=======================================================/ #
+
+package LaTeXML::Package::Pool;
+use strict;
+use LaTeXML::Package;
+
+DefConstructor('\@sys{}','<omdoc:phrase class="systemname">#1</omdoc:phrase>',
+	       mode=>'text',bounded=>1,
+	       font=>{family=>'serif',series=>'medium',shape=>'upright'});
+DefConstructor('\@scsys{}','<omdoc:phrase class="systemname">#1</omdoc:phrase>',
+	       mode=>'text',bounded=>1,font=>{shape=>'smallcaps'});
+DefConstructor('\@ttsys{}','<omdoc:phrase class="systemname">#1</omdoc:phrase>',
+	       mode=>'text',bounded=>1,font=>{family=>'typewriter'});
+
+DefMacro('\sys{}','\@idx{\@idt{\@sys{#1}}\@ide{\@idp{#1}}}');
+DefMacro('\scsys{}','\@idx{\@idt{\@scsys{#1}}\@ide{\@idp{#1}}}');
+DefMacro('\ssys{}{}','\@idx{\@idt{\@sys{#1 #2}}\@ide{\@idp{#1}\@idp{#2}}}');
+
+DefMacro('\vomdoc{}',
+	 '\@idx{\@idt{Version {#1} of \@sys{OMDoc}}\@ide[OMDoc]{\@idp{OMDoc}\@idp{version #1}}}');
+DefMacro('\omdocv{}',
+	 '\@idx{\@idt{OMDoc #1}\@ide[OMDoc]{\@idp{OMDoc}\@idp{version #1}}}');
+
+#\def\leo{{\mbox{$\cal LEO$}}\index{LEO@$\cal LEO$}}
+#\def\LOUI{\loui\index{LOUI@\loui}}
+#\def\pds{\mbox{$\cal PDS$}\index{pds@$\cal PDS$}}
+#\def\post{\mbox{$\cal POST$}\index{POST@$\cal POST$}}
+#\def\prex{\mbox{\itshape P\hspace{-2pt}.\hspace{1pt}rex\/}\index{Prex@P.Rex}}
+DefMacro('\netscape','\ssys{Netscape}{Navigator}');
+DefMacro('\msie','\ssys{MS}{Internet Explorer}');
+DefMacro('\cmathml','\ssys{content}{MathML}');
+DefMacro('\pmathml','\ssys{presentation}{MathML}');
+DefMacro('\ppt','\sys{PPT}');
+DefMacro('\stex','\sys{sTEX}');
+
+RawTeX('\def\mbase{\scsys{MBase}}
+\def\tramp{\scsys{Tramp}}
+\def\mkrp{\sys{MKRP}}
+\def\OMEGA{\scsys{$\Omega${\sc mega}}}
+\def\proverb{\scsys{ProVerb}}
+\def\mathweb{\scsys{MathWeb}}
+\def\mathwebsb{\scsys{MathWeb-SB}}
+\def\mathwebws{\scsys{MathWeb-WS}}
+\def\mosh{\scsys{Mosh}}
+\def\multi{\scsys{Multi}}
+\def\mycas{\scsys{$\mu$CAS}}
+\def\octopus{\scsys{OctOpus}}
+\def\loui{\mbox{${\cal L}\Omega\cal UI$}}
+\def\inka{\scsys{InKa}}
+\def\maya{\scsys{Maya}}
+\def\dgrl{\scsys{Dgrl}}
+\def\vse{\scsys{VSE}}
+\def\vsesl{\scsys{VSE-SL}}
+\def\lima{\scsys{Lima}}
+\def\activemath{\scsys{ActiveMath}}
+\def\connexions{\scsys{ConneXions}}
+\def\rhaptos{\scsys{Rhaptos}}
+\def\cnx{\scsys{CNX}}
+\def\qmath{\scsys{QMath}}
+\def\ccaps{\scsys{CCaps}}
+\def\oants{\scsys{$\Omega$-{\sc Ants}}}
+\def\OANTS{\oants}
+\def\cosie{${\cal C}o{\cal SIE}$}
+\def\sapper{\scsys{Sapper}}
+\def\DIALOG{\scsys{Dialog}}
+\def\CORE{\scsys{Core}}
+\newcommand{\texmacs}{\textsc{\TeX$_{\textsc{\normalsize macs}}$}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% External Deduction Systems
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\def\nuprl{\scsys{NuPrL}}
+\def\automath{\scsys{AutoMath}}
+\def\theorema{\scsys{Theorema}}
+\def\nqthm{\scsys{NqThm}}
+\def\hot{\scsys{Hot}}
+\def\hol{\scsys{Hol}}
+\def\gandalf{\scsys{Gandalf}}
+\def\setheo{\scsys{SeTheo}}
+\def\otter{\scsys{Otter}}
+\def\spass{\scsys{Spass}}
+\def\tps{\scsys{TPS}}
+\def\cpt{\scsys{Cpt}}
+\def\coq{\scsys{CoQ}}
+\def\protein{\scsys{ProTeIn}}
+\def\waldmeister{\scsys{WaldMeister}}
+\def\eqp{\sys{EQP}}
+\def\bliksem{\scsys{Bliksem}}
+\def\satchmo{\scsys{Satchmo}}
+\def\isabelle{\scsys{Isabelle}}
+\def\clam{\scsys{Clam}}
+\def\twelf{\scsys{Twelf}}
+\def\oyster{\scsys{Oyster}}
+\def\lambdaclam{\sys{$\lambda${\sl Clam}}}
+\def\imps{\scsys{Imps}}
+\def\pvs{\scsys{Pvs}}
+\def\sem{\scsys{SEM}}
+\def\acltwo{\scsys{ACL2}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Computer Algebra Systems
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\maple{\scsys{Maple}}
+\def\mathematica{\scsys{Mathematica}}
+\def\magma{\scsys{MagMa}}
+\def\gap{\sys{GAP}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Other Software Systems
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\wiki{\sys{Wiki}}
+\def\oracle{\scsys{Oracle}}
+\def\mozilla{\scsys{Mozilla}}
+\def\firefox{\scsys{FireFox}}
+\def\bugzilla{\scsys{BugZilla}}
+\def\unix{\scsys{Unix}}
+\def\windows{\scsys{Windows}}
+\def\svn{\scsys{svn}}
+\def\subversion{\scsys{Subversion}}
+\def\cvs{\scsys{CVS}}
+\def\amaya{\scsys{Amaya}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Programming Languages
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\oz{\scsys{Oz}}
+\def\mozart{\scsys{mOZart}}
+\def\lisp{\scsys{Lisp}}
+\def\commonlisp{\scsys{CommonLisp}}
+\def\prolog{\scsys{ProLog}}
+\def\java{\scsys{Java}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Protocols
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\ascii{\scsys{ASCII}}
+\def\html{\scsys{HTML}}
+\def\http{\scsys{HTTP}}
+\def\xhtml{\scsys{XHTML}}
+\def\svg{\scsys{svg}}
+\def\docbook{\scsys{DocBook}}
+\def\postscript{\scsys{PostScript}}
+\def\pdf{\scsys{PDF}}
+\def\sgml{\scsys{SGML}}
+\def\dsssl{\scsys{DSSSL}}
+\def\dssl{\dsssl}
+\def\mathml{\scsys{MathML}}
+\def\mathplayer{\scsys{MathPlayer}}
+\def\codeml{\protect\scsys{CodeML}}
+\def\chemml{\scsys{ChemML}}
+\def\openmath{\scsys{OpenMath}}
+\def\xmlrpc{\scsys{XML-RPC}}
+\def\xml{\scsys{XML}}
+\def\cnxml{\scsys{CNXML}}
+\def\relaxng{\scsys{RelaxNG}}
+\def\rdf{\scsys{RDF}}
+\def\rdfa{\scsys{RDFa}}
+\def\owl{{\scsys{Owl}}}
+\def\owldl{{\scsys{Owl-DL}}}
+\def\xmi{{\scsys{XMI}}}
+\def\soap{\scsys{Soap}}
+\def\xsl{\scsys{XSL}}
+\def\xslfo{\scsys{XSL-FO}}
+\def\xslt{\scsys{XSLT}}
+\def\css{\scsys{CSS}}
+\def\xlink{\scsys{XLink}}
+\def\xpointer{\scsys{XPointer}}
+\def\xpath{\scsys{XPath}}
+\def\omdoc{\scsys{OMDoc}}
+\def\titleomdoc{\omdoc}
+\def\Titleomdoc{\omdoc}
+\def\chapteromdoc{\omdoc}
+\def\kqml{\scsys{Kqml}}
+\def\casl{\scsys{Casl}}
+\def\physml{\scsys{PhysML}}
+\def\sciml{\scsys{SCiML}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Management of Change
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\dms{\scsys{DMS}}
+\def\moc{\scsys{MoC}}
+\def\dag{\scsys{DAG}}
+\def\narcon{\scsys{NarCon}}
+\def\infom{\scsys{Infom}}
+\def\cdet{\scsys{CDET}}
+\def\mmiss{\scsys{MM{\scriptsize{I}}SS}}
+\def\hetcasl{\scsys{HetCasl}}
+\def\hets{\scsys{Hets}}
+%\def\locutor{\scsys{lo\-cu\-tor}}
+\def\locutor{\texttt{{\emph{locutor}}}}
+\def\harmony{\scsys{Harmony}}
+\def\xmldiff{\scsys{xmldiff}}
+\def\subversion{\scsys{Sub\-ver\-sion}}
+\def\so{\sc{SysOnto}}
+\def\protege{\sc{Prot\'eg\'e}}
+\def\racer{\sc{Racer}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Communities of Practices
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\mkm{\scsys{MKM}}
+\def\mkmlong{\scsys{Mathematical Knowledge Management}}
+\def\cop{\scsys{CoP}}
+\def\comprac{\scsys{Community of Practice}}
+\def\compracs{\scsys{Communities of Practice}}
+\def\mathcop{\scsys{mathematical CoP}}
+\def\mathcops{\scsys{mathematical CoPs}}
+\def\mathprac{\scsys{mathematical practice}}
+\def\mathpracs{\scsys{mathematical practices}}
+\def\mocop{\sys{mocop}}
+\def\eLearning{\sys{eLearning}}
+\def\cocoma{\sys{cocoma}}
+\def\lectora{\scsys{le\-c\-tora}}
+\def\lectlight{\scsys{le\-c\-tora light}}
+\def\casamiento{\scsys{casa\-mien\-to}}
+\def\annotea{\sys{Annotea}}
+\def\cream{\sys{CREAM}}
+\def\mspace{\sys{mSpace}}
+\def\jem{\sys{JEM}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Various
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\kwarc{\sys{KWARC}}
+\def\iub{\sys{IUB}}
+\def\tptp{\sys{TPTP}}
+\def\doris{\scsys{Doris}}
+\def\mizar{\scsys{Mizar}}
+\def\omrs{\scsys{OmRS}}
+\def\IDA{\scsys{IDA}}
+\def\cpoint{\scsys{{\bf C}Point}}
+\def\cword{\scsys{{\bf C}Word}}
+\def\texpoint{\scsys{{\TeX}Point}}
+\def\ccaps{\scsys{CCaps}}
+\def\vba{\scsys{VBA}}
+\def\emacs{\scsys{Emacs}}
+\def\rxp{\sys{RXP}}
+\def\nsgmls{\sys{nsgmls}}
+\def\latexml{\scsys{LaTeXML}}
+\def\sax{\sys{Sax}}
+\def\jome{\sys{JOME}}
+\def\emacs{\scsys{Emacs}}
+\def\nb2om{{\scsys{nb2omdoc}}}
+\def\unicode{\scsys{Unicode}}
+\def\swim{\scsys{SWiM}}
+\def\LNCS{LNCS}
+\def\@stex{s\kern-.5ex\TeX}
+\def\sTeX{\stex}
+\def\uml{\scsys{UML}}
+\def\dtd{\scsys{DTD}}
+\def\cms{\scsys{CMS}}
+\def\ecms{\scsys{ECMS}}
+\def\plone{\scsys{Plone}}
+\def\zope{\scsys{Zope}}
+\def\cmf{\scsys{CMF}}
+\def\php{\scsys{PHP}}
+\def\velocity{\scsys{Velocity}}
+\def\servelts{\scsys{Servelts}}
+\def\python{\scsys{Python}}
+\def\swe{\scsys{SWE}}
+\def\dockon{\scsys{DockON}}
+'); 
+
+
+#**********************************************************************
+1;

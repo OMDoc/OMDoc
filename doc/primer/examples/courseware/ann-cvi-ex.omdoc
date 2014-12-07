@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xml:id="ann-cvi-ex.omdoc"
+  xmlns="http://omdoc.org/ns"
+  xmlns:cc="http://creativecommons.org/ns"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  version="1.6">
+<metadata>
+  <dc:date action="created"> 2004-10-05T11:03:52Z </dc:date>
+  <dc:title xml:lang="en"> ann-cvi-ex </dc:title>
+  <dc:creator role="aut"> Michael Kohlhase </dc:creator>
+  <dc:source>  </dc:source>
+  <dc:date action="updated"> 2004-10-05T11:03:52Z </dc:date>
+  <dc:type> Text </dc:type>
+  <dc:format> application/omdoc+xml </dc:format>
+  <dc:rights>Copyright (c) 2004 Michael Kohlhase</dc:rights>
+  <cc:license>
+    <cc:permissions reproduction="permitted" distribution="permitted" derivative_works="permitted"/>
+    <cc:prohibitions commercial_use="permitted"/>
+    <cc:requirements notice="required" copyleft="required" attribution="required"/>
+  </cc:license>
+</metadata>
+<theory xml:id="cvi-examples">
+  <imports from="ann-tax.omdoc#animals-taxonomy"/><imports from="ann-oo.omdoc#cvi"/>
+
+  <symbol name="danny" xml:id="cvi-examples.danny">
+    <metadata><dc:description>Danny Sleator</dc:description></metadata>
+  </symbol>
+
+  <axiom xml:id="danny-professor" for="ann-oo.omdoc#cvi.class ann-oo.omdoc#cvi.instance ann-oo.omdoc#cvi-examples.danny">
+    <CMP><phrase style="font-style:italic;color:blue">Danny Sleator</phrase>
+      is an <phrase style="font-style:italic;color:red">instance</phrase> 
+      of the <phrase style="font-style:italic;color:blue">Professor</phrase> 
+      class.
+    </CMP>
+  </axiom>
+
+  <assertion xml:id="dannys-classes" type="theorem">
+    <CMP>He is therefore also an instance of the 
+      <phrase style="font-style:italic;color:blue">Human</phrase>, 
+      <phrase style="font-style:italic;color:blue">Mammal</phrase>, 
+      <phrase style="font-style:italic;color:blue">Animal</phrase> classes.
+    </CMP>
+  </assertion>
+
+  <symbol name="is_a" scope="global">
+    <metadata><dc:subject>'is a' relation</dc:subject></metadata>
+  </symbol>
+
+  <definition xml:id="is_a-def" for="#is_a" type="informal">
+     <CMP>Sometimes we say that Danny Sleator 
+       &#x201C;<phrase style="font-style:italic;color:red">is a</phrase>&#x201D; 
+       Professor (or Human or Mammal&#x2026;)
+     </CMP>
+  </definition>
+</theory>
+
+</omdoc>

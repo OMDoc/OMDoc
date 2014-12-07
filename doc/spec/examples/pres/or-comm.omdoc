@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xml:id="or-comm.omdoc"
+  xmlns="http://omdoc.org/ns"
+  xmlns:cc="http://creativecommons.org/ns"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  version="1.6">
+<metadata>
+  <dc:date action="created"> 2004-10-08T11:45:50Z </dc:date>
+  <dc:title xml:lang="en"> or-comm </dc:title>
+  <dc:creator role="aut"> Michael Kohlhase </dc:creator>
+  <dc:source>  </dc:source>
+  <dc:date action="updated"> 2004-10-08T11:45:50Z </dc:date>
+  <dc:type> Text </dc:type>
+  <dc:format> application/omdoc+xml </dc:format>
+  <dc:rights>Copyright (c) 2004 Michael Kohlhase</dc:rights>
+  <cc:license>
+    <cc:permissions reproduction="permitted" distribution="permitted" derivative_works="permitted"/>
+    <cc:prohibitions commercial_use="permitted"/>
+    <cc:requirements notice="required" copyleft="required" attribution="required"/>
+  </cc:license>
+</metadata>
+<omtext xml:id="test">
+  <CMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMBIND>
+	<OMS cd="quant1" name="forall"/>
+	<OMBVAR><OMV name="P"/><OMV name="Q"/></OMBVAR>
+	<OMA>
+	  <OMS cd="logic1" name="implies"/>
+	  <OMA><OMS cd="logic1" name="or"/><OMV name="P"/><OMV name="Q"/></OMA>
+	  <OMA><OMS cd="logic1" name="or"/><OMV name="Q"/><OMV name="P"/></OMA>
+	</OMA>
+      </OMBIND>
+    </OMOBJ>
+  </CMP>
+</omtext>
+</omdoc>

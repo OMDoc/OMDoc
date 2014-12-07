@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/" 
+       xmlns="http://omdoc.org/ns"
+       xmlns:om="http://www.openmath.org/OpenMath"
+       xmlns:m="http://www.w3.org/1998/Math/MathML"
+       xml:id="truth-table.omdoc">
+
+ <metadata>
+  <dc:title>Truth Tables.</dc:title>
+  <dc:creator role="aut">Michael Kohlhase</dc:creator>
+  <dc:date>2002-04-11T00:00:00</dc:date>
+  <dc:rights>Copyright (c) 2008 Michael Kohlhase</dc:rights>
+  <license xmlns="http://creativecommons.org/ns">
+    <permissions reproduction="permitted" distribution="permitted" derivative_works="permitted"/>
+    <prohibitions commercial_use="permitted"/>
+    <requirements notice="required" copyleft="required" attribution="required"/>
+  </license>
+ </metadata>
+
+ <theory xml:id="truth-tables">
+ <metadata>
+  <dc:title>Truth Tables.</dc:title>
+  <dc:description>
+   This theory provides a content markup infrastructure for truth tables.
+  </dc:description>
+ </metadata>
+  <symbol name="tt">
+<metadata>
+<dc:description> The truth table constructor for a binary (n x m) operator.  It takes n +
+   2 arguments. The first one is the symbol for the defined operator. Then come n
+   values of the second argument (the first row), and finally n rows using the
+   ttrow symbols.</dc:description>
+</metadata>
+</symbol>
+
+
+  <presentation for="#tt" role="applied">
+   <style format="html">
+    <element name="table">
+     <element name="tr">
+      <element name="th"><recurse select="*[2]"/></element>
+      <recurse select="*[3]"/>
+     </element>
+     <recurse select="*[position() &gt; 3]"/>
+    </element>
+   </style>
+   <style format="pmml">
+    <element name="mtable" cr="yes">
+     <attribute name="columnlines"><text>solid</text></attribute>
+     <attribute name="rowlines"><text>solid</text></attribute>
+     <element name="mtr">
+      <element name="mtd"><recurse select="*[2]"/></element>
+      <recurse select="*[3]"/>
+     </element>
+     <recurse select="*[position() &gt; 3]"/>
+    </element>
+   </style>
+   <xslt format="TeX" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+    <xsl:text>\begin{array}{c|c</xsl:text>
+    <xsl:for-each select="*[3]/*[position()&gt;2]">
+     <xsl:text>c</xsl:text>
+    </xsl:for-each>
+    <xsl:text>}&#xA;</xsl:text>
+    <xsl:apply-templates select="*[2]"/><xsl:text> &amp; </xsl:text>
+    <xsl:apply-templates select="*[3]"/><xsl:text>\\\hline&#xA;</xsl:text>
+    <xsl:apply-templates select="*[position() &gt; 3]"/>
+    <xsl:text>\end{array}&#xA;</xsl:text>
+   </xslt>
+  </presentation>
+
+  <symbol name="ttrow">
+<metadata>
+<dc:description> A row in a (n x m) truth table, the first argument is the first argument,
+   and the rest of the arguments are the m values
+   </dc:description>
+</metadata>
+</symbol>
+
+  <presentation for="#ttrow" role="applied">
+   <xslt format="html" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+    <xsl:element name="th" namespace="http://www.w3.org/1999/xhtml">
+      <xsl:apply-templates select="*[2]"/>
+    </xsl:element>
+    <xsl:for-each select="*[position() &gt; 2]">
+     <xsl:element name="td" namespace="http://www.w3.org/1999/xhtml">
+       <xsl:apply-templates select="."/>
+     </xsl:element>
+    </xsl:for-each>
+   </xslt>
+   <xslt format="pmml" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+   <xsl:element name="mtr" namespace="http://www.w3.org/1998/Math/MathML">
+    <xsl:for-each select="*[position() &gt; 1]">
+        <xsl:element name="mtd" namespace="http://www.w3.org/1998/Math/MathML">
+	  <xsl:apply-templates select="."/>
+	</xsl:element>
+    </xsl:for-each>
+    </xsl:element>
+   </xslt>
+   <xslt format="TeX" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+    <xsl:for-each select="*[position() &gt; 1]">
+     <xsl:apply-templates select="."/>
+     <xsl:if test="position()!=last()"><xsl:text> &amp; </xsl:text></xsl:if>
+    </xsl:for-each>
+    <xsl:text>\\&#xA;</xsl:text>
+   </xslt>
+  </presentation>
+
+  <symbol name="ttargs">
+<metadata>
+<dc:description> The vector of second arguments for a binary truth tables.</dc:description>
+</metadata>
+</symbol>
+
+   <presentation for="#ttargs" role="applied">
+    <xslt format="html" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+    <xsl:for-each select="*[position() &gt; 1]">
+     <xsl:element name="td" namespace="http://www.w3.org/1999/xhtml">
+       <xsl:apply-templates select="."/>
+     </xsl:element>
+    </xsl:for-each>
+   </xslt>
+   <xslt format="pmml" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+    <xsl:for-each select="*[position() &gt; 1]">
+      <xsl:element name="mtd" namespace="http://www.w3.org/1998/Math/MathML">
+        <xsl:apply-templates select="."/>
+     	</xsl:element>
+    </xsl:for-each>
+   </xslt>
+   <xslt format="TeX" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+    <xsl:for-each select="*[position() &gt; 1]">
+     <xsl:apply-templates select="."/>
+     <xsl:if test="position()!=last()"><xsl:text> &amp; </xsl:text></xsl:if>
+    </xsl:for-each>
+   </xslt>
+  </presentation>
+
+<theory xml:id="and-table.thy">
+<imports from="pl0.omdoc#pl0"/>
+<example xml:id="and-table" for="#tt ttrow ttargs">
+  <CMP>The following is the truth table for conjunction</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath" style="display:block">
+   <OMA>
+    <OMS cd="truth-tables" name="tt"/>
+    <OMS cd="pl0" name="and"/>
+    <OMA>
+     <OMS cd="truth-tables" name="ttargs"/>
+     <OMS cd="truthval" name="true"/>
+     <OMS cd="truthval" name="false"/>
+    </OMA>
+    <OMA>
+     <OMS cd="truth-tables" name="ttrow"/>
+     <OMS cd="truthval" name="true"/>
+     <OMS cd="truthval" name="true"/>
+     <OMS cd="truthval" name="false"/>
+    </OMA>   
+    <OMA>
+     <OMS cd="truth-tables" name="ttrow"/>
+     <OMS cd="truthval" name="false"/>
+     <OMS cd="truthval" name="false"/>
+     <OMS cd="truthval" name="false"/>
+    </OMA>   
+   </OMA>
+  </OMOBJ>
+</example>
+</theory>
+
+</theory>
+</omdoc>

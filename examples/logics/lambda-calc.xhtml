@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html id="lambda-calc-omdoc" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <link rel="stylesheet" type="text/css" href="omdoc-default.css"/>
+    <title>Lambda Calculus</title>
+  </head>
+  <body>
+    <div class="dc-titleblock">
+      <div class="dc-title">Lambda Calculus</div>
+      <div class="dc-authors">Michael Kohlhase</div>
+      <div class="dc-date">2002-04-16</div>
+    </div>
+    <div class="theory" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="http://purl.org/dc/elements/1.1/">
+      <h1 id="lambda-calc">1. Lambda Calculus</h1>
+      <div class="imports">imports from: 
+        <a href="substitution.xhtml#substitution">substitution</a>
+      </div>
+      <div class="omdoc-symbol" id="lambda" role="Symbol" about="#lambda-calc.lambda" xml:id="lambda-calc.lambda">
+        <a class="omdoc" rel="oso:homeTheory" href="#lambda-calc"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>lambda
+        </div>
+        <span id="MCRd20e27" class="displaymath" xmlns="">
+          <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:mcd="http://www.w3.org/ns/mathml-cd">Œª</m:math>
+        </span> is used to represent anonymous functions as lambda expansions. It is used in a binder that takes two further arguments, the first of which is a list of variables, and the second of which is an expression, and it forms the function which is the lambda extraction of the expression 
+      </div>
+      <div class="omdoc-example" id="lambda-id-ex" role="Example" about="#lambda-calc.lambda" xml:id="lambda-id-ex">
+        <a class="omdoc" rel="oso:exemplifies" href="#lambda-calc.lambda"/>
+        <a class="omdoc" rel="oso:homeTheory" href="#lambda-calc.lambda"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Example</span>
+        </div>
+        <p>The following is a representation of the identity function: 
+          <span id="MCRd20e41" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+              <m:mrow>Œª
+                <m:mi>X</m:mi>
+                <m:mo mcd:egroup="separator" separator="true">.</m:mo>
+                <m:mi>X</m:mi>
+              </m:mrow>
+            </m:math>
+          </span>
+        </p>
+      </div>
+      <div class="omdoc-symbol" id="alpha-equal" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#lambda-calc"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>alpha-equal
+        </div>
+        <span id="MCRd20e53" class="displaymath" xmlns="">
+          <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+            <m:mo>alpha-equal</m:mo>
+          </m:math>
+        </span> is the relation of alphabetic equality.
+      </div>
+      <div class="omdoc-axiom" id="alpha-ax" role="Axiom" about="#alpha-ax" xml:id="alpha-ax">
+        <a class="omdoc" rel="oso:homeTheory" href="#lambda-calc"/>
+        <span class="omdoc-titleword">Axiom</span>
+        <p>Bound Variables can be renamed, i.e. 
+          <span id="MCRd20e86" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+              <m:mrow>
+                <m:mrow>Œª
+                  <m:mi>X</m:mi>
+                  <m:mo mcd:egroup="separator" separator="true">.</m:mo>
+                  <m:mi>X</m:mi>
+                </m:mrow>
+                <m:msub>
+                  <m:mo>=</m:mo>
+                  <m:mo>Œ±</m:mo>
+                </m:msub>
+                <m:mrow>Œª
+                  <m:mi>Y</m:mi>
+                  <m:mo mcd:egroup="separator" separator="true">.</m:mo>
+                  <m:mi>Y</m:mi>
+                </m:mrow>
+              </m:mrow>
+            </m:math>
+          </span>. 
+        </p>
+      </div>
+      <div class="omdoc-symbol" id="beta-equal" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#lambda-calc"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>beta-equal
+        </div>
+        <span id="MCRd20e113" class="displaymath" xmlns="">
+          <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+            <m:mo>beta-equal</m:mo>
+          </m:math>
+        </span>is the relation of beta equality.
+      </div>
+      <div class="omdoc-axiom" id="beta-axiom" role="Axiom" about="#beta-axiom" xml:id="beta-axiom">
+        <a class="omdoc" rel="oso:homeTheory" href="#lambda-calc"/>
+        <span class="omdoc-titleword">Axiom</span>
+        <p>For all lambda-terms 
+          <span id="MCRd20e146" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+              <m:mi>A</m:mi>
+            </m:math>
+          </span> and 
+          <span id="MCRd20e150" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+              <m:mi>B</m:mi>
+            </m:math>
+          </span> we have 
+          <span id="MCRd20e154" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+              <m:mrow>
+                <m:mrow>
+                  <m:mrow>Œª
+                    <m:mi>X</m:mi>
+                    <m:mo mcd:egroup="separator" separator="true">.</m:mo>
+                    <m:mi>B</m:mi>
+                  </m:mrow>
+                  <m:mo fence="true" mcd:egroup="fence">(</m:mo>
+                  <m:mi>A</m:mi>
+                  <m:mo fence="true" mcd:egroup="fence">)</m:mo>
+                </m:mrow>
+                <m:msub>
+                  <m:mo>=</m:mo>
+                  <m:mo>Œ±</m:mo>
+                </m:msub>
+                <m:mrow>
+                  <m:mo fence="true" mcd:egroup="fence">(</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence">)</m:mo>
+                </m:mrow>
+              </m:mrow>
+            </m:math>
+          </span>. 
+        </p>
+      </div>
+      <div class="omdoc-example" id="beta-axiom-ex" role="Example" about="#beta-axiom" xml:id="beta-axiom-ex">
+        <a class="omdoc" rel="oso:exemplifies" href="#beta-axiom"/>
+        <a class="omdoc" rel="oso:homeTheory" href="#beta-axiom"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Example</span>
+        </div>
+        <p>
+          <span id="MCRd20e185" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+              <m:mrow>Œª
+                <m:mi>X</m:mi>
+                <m:mo mcd:egroup="separator" separator="true">.</m:mo>
+                <m:mi>X</m:mi>
+              </m:mrow>
+            </m:math>
+          </span> acts as the identity function: 
+          <span id="MCRd20e195" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+              <m:mrow>
+                <m:mrow>
+                  <m:mrow>Œª
+                    <m:mi>X</m:mi>
+                    <m:mo mcd:egroup="separator" separator="true">.</m:mo>
+                    <m:mi>X</m:mi>
+                  </m:mrow>
+                  <m:mo fence="true" mcd:egroup="fence">(</m:mo>
+                  <m:mi>Y</m:mi>
+                  <m:mo fence="true" mcd:egroup="fence">)</m:mo>
+                </m:mrow>
+                <m:msub>
+                  <m:mo>=</m:mo>
+                  <m:mo>Œ±</m:mo>
+                </m:msub>
+                <m:mi>Y</m:mi>
+              </m:mrow>
+            </m:math>
+          </span>
+        </p>
+      </div>
+      <div class="omdoc-symbol" id="beta-reduces" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#lambda-calc"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>beta-reduces
+        </div>
+        <span id="MCRd20e222" class="displaymath" xmlns="">
+          <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+            <m:mo>beta-reduces</m:mo>
+          </m:math>
+        </span> is the beta reduction relation.
+      </div>
+      <div class="omdoc-axiom" id="beta-reduction-axiom" role="Axiom" about="#beta-reduction-axiom" xml:id="beta-reduction-axiom">
+        <a class="omdoc" rel="oso:homeTheory" href="#lambda-calc"/>
+        <span class="omdoc-titleword">Axiom</span>
+        <p>For all lambda-terms 
+          <span id="MCRd20e255" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+              <m:mi>A</m:mi>
+            </m:math>
+          </span> and 
+          <span id="MCRd20e259" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+              <m:mi>B</m:mi>
+            </m:math>
+          </span> we have 
+          <span id="MCRd20e263" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+              <m:mrow>
+                <m:mrow>
+                  <m:mrow>Œª
+                    <m:mi>X</m:mi>
+                    <m:mo mcd:egroup="separator" separator="true">.</m:mo>
+                    <m:mi>B</m:mi>
+                  </m:mrow>
+                  <m:mo fence="true" mcd:egroup="fence">(</m:mo>
+                  <m:mi>A</m:mi>
+                  <m:mo fence="true" mcd:egroup="fence">)</m:mo>
+                </m:mrow>
+                <m:msub>
+                  <m:mo>→</m:mo>
+                  <m:mo>β</m:mo>
+                </m:msub>
+                <m:mrow>
+                  <m:mo fence="true" mcd:egroup="fence">(</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence">)</m:mo>
+                </m:mrow>
+              </m:mrow>
+            </m:math>
+          </span>. 
+        </p>
+      </div>
+      <div class="omdoc-example" id="beta-reduces-id" role="Example" about="#beta-reduces" xml:id="beta-reduces-id">
+        <a class="omdoc" rel="oso:exemplifies" href="#beta-reduces"/>
+        <a class="omdoc" rel="oso:homeTheory" href="#beta-reduces"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Example</span>
+        </div>
+        <p>Beta equality need not be terminating in general: 
+          <span id="MCRd20e294" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+              <m:mrow>
+                <m:mrow>
+                  <m:mrow>Œª
+                    <m:mi>X</m:mi>
+                    <m:mo mcd:egroup="separator" separator="true">.</m:mo>
+                    <m:mrow>
+                      <m:mi>X</m:mi>
+                      <m:mo fence="true" mcd:egroup="fence">(</m:mo>
+                      <m:mi>X</m:mi>
+                      <m:mo fence="true" mcd:egroup="fence">)</m:mo>
+                    </m:mrow>
+                  </m:mrow>
+                  <m:mo fence="true" mcd:egroup="fence">(</m:mo>
+                  <m:mrow>Œª
+                    <m:mi>X</m:mi>
+                    <m:mo mcd:egroup="separator" separator="true">.</m:mo>
+                    <m:mrow>
+                      <m:mi>X</m:mi>
+                      <m:mo fence="true" mcd:egroup="fence">(</m:mo>
+                      <m:mi>X</m:mi>
+                      <m:mo fence="true" mcd:egroup="fence">)</m:mo>
+                    </m:mrow>
+                  </m:mrow>
+                  <m:mo fence="true" mcd:egroup="fence">)</m:mo>
+                </m:mrow>
+                <m:msub>
+                  <m:mo>→</m:mo>
+                  <m:mo>β</m:mo>
+                </m:msub>
+                <m:mrow>
+                  <m:mrow>Œª
+                    <m:mi>X</m:mi>
+                    <m:mo mcd:egroup="separator" separator="true">.</m:mo>
+                    <m:mrow>
+                      <m:mi>X</m:mi>
+                      <m:mo fence="true" mcd:egroup="fence">(</m:mo>
+                      <m:mi>X</m:mi>
+                      <m:mo fence="true" mcd:egroup="fence">)</m:mo>
+                    </m:mrow>
+                  </m:mrow>
+                  <m:mo fence="true" mcd:egroup="fence">(</m:mo>
+                  <m:mrow>Œª
+                    <m:mi>X</m:mi>
+                    <m:mo mcd:egroup="separator" separator="true">.</m:mo>
+                    <m:mrow>
+                      <m:mi>X</m:mi>
+                      <m:mo fence="true" mcd:egroup="fence">(</m:mo>
+                      <m:mi>X</m:mi>
+                      <m:mo fence="true" mcd:egroup="fence">)</m:mo>
+                    </m:mrow>
+                  </m:mrow>
+                  <m:mo fence="true" mcd:egroup="fence">)</m:mo>
+                </m:mrow>
+              </m:mrow>
+            </m:math>
+          </span>
+        </p>
+      </div>
+      <div class="omdoc-symbol" id="eta-equal" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#lambda-calc"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>eta-equal
+        </div>
+        <span id="MCRd20e374" class="displaymath" xmlns="">
+          <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+            <m:mo>eta-equal</m:mo>
+          </m:math>
+        </span> is the eta equality relation, this is a restricted form of extensionality.
+      </div>
+      <div class="omdoc-axiom" id="eta-axiom" role="Axiom" about="#eta-axiom" xml:id="eta-axiom">
+        <a class="omdoc" rel="oso:homeTheory" href="#lambda-calc"/>
+        <span class="omdoc-titleword">Axiom</span>
+        <p>For all lambda-terms 
+          <span id="MCRd20e407" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+              <m:mi>B</m:mi>
+            </m:math>
+          </span> such that 
+          <span id="MCRd20e411" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+              <m:mi>X</m:mi>
+            </m:math>
+          </span> is not free in 
+          <span id="MCRd20e415" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+              <m:mi>B</m:mi>
+            </m:math>
+          </span> we have 
+          <span id="MCRd20e419" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+              <m:mrow>
+                <m:mrow>Œª
+                  <m:mi>X</m:mi>
+                  <m:mo mcd:egroup="separator" separator="true">.</m:mo>
+                  <m:mrow>
+                    <m:mi>B</m:mi>
+                    <m:mo fence="true" mcd:egroup="fence">(</m:mo>
+                    <m:mi>X</m:mi>
+                    <m:mo fence="true" mcd:egroup="fence">)</m:mo>
+                  </m:mrow>
+                </m:mrow>
+                <m:msub>
+                  <m:mo>=</m:mo>
+                  <m:mo>Œ±</m:mo>
+                </m:msub>
+                <m:mi>B</m:mi>
+              </m:mrow>
+            </m:math>
+          </span>. 
+        </p>
+      </div>
+      <div class="omdoc-symbol" id="eta-reduces" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#lambda-calc"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>eta-reduces
+        </div>
+        <span id="MCRd20e447" class="displaymath" xmlns="">
+          <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+            <m:mo>eta-reduces</m:mo>
+          </m:math>
+        </span> is the eta reduction relation.
+      </div>
+      <div class="omdoc-axiom" id="eta-reduction-axiom" role="Axiom" about="#eta-reduction-axiom" xml:id="eta-reduction-axiom">
+        <a class="omdoc" rel="oso:homeTheory" href="#lambda-calc"/>
+        <span class="omdoc-titleword">Axiom</span>
+        <p>For all lambda-terms 
+          <span id="MCRd20e480" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+              <m:mi>B</m:mi>
+            </m:math>
+          </span> such that 
+          <span id="MCRd20e484" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+              <m:mi>X</m:mi>
+            </m:math>
+          </span> is not free in 
+          <span id="MCRd20e488" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+              <m:mi>B</m:mi>
+            </m:math>
+          </span> we have 
+          <span id="MCRd20e492" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+              <m:mrow>
+                <m:mrow>Œª
+                  <m:mi>X</m:mi>
+                  <m:mo mcd:egroup="separator" separator="true">.</m:mo>
+                  <m:mrow>
+                    <m:mi>B</m:mi>
+                    <m:mo fence="true" mcd:egroup="fence">(</m:mo>
+                    <m:mi>X</m:mi>
+                    <m:mo fence="true" mcd:egroup="fence">)</m:mo>
+                  </m:mrow>
+                </m:mrow>
+                <m:mo> ‚Üí Œ∑ </m:mo>
+                <m:mi>B</m:mi>
+              </m:mrow>
+            </m:math>
+          </span>. 
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

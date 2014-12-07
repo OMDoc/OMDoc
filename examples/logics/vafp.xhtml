@@ -1,0 +1,746 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html id="vfap.omdoc" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <link rel="stylesheet" type="text/css" href="omdoc-default.css"/>
+    <title>The Verifun logic language</title>
+  </head>
+  <body>
+    <div class="dc-titleblock">
+      <div class="dc-title">The Verifun logic language</div>
+      <div class="dc-authors">Michael Kohlhase, Normen M"uller</div>
+      <div class="dc-date">2008-06-29</div>
+    </div>
+    <div class="omdoc-omtext" id="intro">
+      <p>This document contains and defines the constants used in the Verifun to OMDoc translation.</p>
+    </div>
+    <div class="theory" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="http://purl.org/dc/elements/1.1/">
+      <h1 id="vafp">1. The Verifun logic language</h1>
+      <div class="imports">imports from: 
+        <a href="pl1.xhtml#pl1">pl1</a>, 
+        <a href="cases.xhtml#cases">cases</a>
+      </div>
+      <div class="omdoc-symbol" id="function" role="Symbol" about="#vafp.function" xml:id="vafp.function">
+        <a class="omdoc" rel="oso:homeTheory" href="#vafp"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>function
+        </div> This symbol is used to represent anonymous functions as lambda expansions. It is used in a binder that takes two further arguments, the first of which is a list of variables, and the second of which is an expression, and it forms the function which is the lambda extraction of the expression 
+      </div>
+      <div class="omdoc-example" id="function-id-ex" role="Example" about="#vafp.function" xml:id="function-id-ex">
+        <a class="omdoc" rel="oso:exemplifies" href="#vafp.function"/>
+        <a class="omdoc" rel="oso:homeTheory" href="#vafp.function"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Example</span>
+        </div>
+        <p>The following is a representation of the identity function:</p>
+        <span id="MCRd20e42" class="displaymath" xmlns="">
+          <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+            <m:mrow>
+              <m:mo>Œª</m:mo>
+            </m:mrow>
+          </m:math>
+        </span>
+      </div>
+      <div class="omdoc-symbol" id="let" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#vafp"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>let
+        </div>The unary let binder
+      </div>
+      <div class="omdoc-symbol" id="let-value" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#vafp"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>let-value
+        </div>The attribute for the value of a variable under a let binding
+      </div>
+      <div class="omdoc-example" role="Example" about="#let #let-value" xml:id="">
+        <a class="omdoc" rel="oso:exemplifies" href="#let #let-value"/>
+        <a class="omdoc" rel="oso:homeTheory" href="#let #let-value"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Example</span>
+        </div>
+        <p>The following is an example for function constructed with the help of a let binding</p>
+        <span id="MCRd20e82" class="displaymath" xmlns="">
+          <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+            <m:mrow>
+              <m:mi>plus</m:mi>
+              <m:mo>=</m:mo>
+              <m:mrow>
+                <m:mo>Œª</m:mo>
+                <m:mo mcd:egroup="fence" fence="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                <m:mo mcd:egroup="fence" fence="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+              </m:mrow>
+            </m:mrow>
+          </m:math>
+        </span>
+      </div>
+      <div class="omdoc-symbol" id="if" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#vafp"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>if
+        </div>This symbol is the ternary if/then/else operator. 
+        <div class="omdoc-type" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>(simpletypes.omdoc#simpletypes) 
+            <span id="MCRd20e103" class="displaymath" xmlns="">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+                <m:mrow>
+                  <m:mo>‚àÄ</m:mo>
+                  <m:mi>a</m:mi>
+                  <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">.</m:mo>
+                  <m:mrow>
+                    <m:mo>Bool</m:mo>
+                    <m:mo>‚Üí</m:mo>
+                    <m:mi>a</m:mi>
+                    <m:mo>‚Üí</m:mo>
+                    <m:mi>a</m:mi>
+                    <m:mo>‚Üí</m:mo>
+                    <m:mi>a</m:mi>
+                  </m:mrow>
+                </m:mrow>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-symbol" id="unknown" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#vafp"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>unknown
+        </div>The unknown value 
+        <div class="omdoc-type" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>(simpletypes.omdoc#simpletypes) 
+            <span id="MCRd20e147" class="displaymath" xmlns="">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+                <m:mrow>
+                  <m:mo>‚àÄ</m:mo>
+                  <m:mi>a</m:mi>
+                  <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">.</m:mo>
+                  <m:mrow>
+                    <m:mi>a</m:mi>
+                  </m:mrow>
+                </m:mrow>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-symbol" id="equal" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#vafp"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>equal
+        </div>
+        <div class="omdoc-type" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>(simpletypes.omdoc#simpletypes) 
+            <span id="MCRd20e166" class="displaymath" xmlns="">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+                <m:mrow>
+                  <m:mo>‚àÄ</m:mo>
+                  <m:mi>a</m:mi>
+                  <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">.</m:mo>
+                  <m:mrow>
+                    <m:mi>a</m:mi>
+                    <m:mo>‚Üí</m:mo>
+                    <m:mi>a</m:mi>
+                    <m:mo>‚Üí</m:mo>
+                    <m:mo>Bool</m:mo>
+                  </m:mrow>
+                </m:mrow>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-symbol" id="is_zero" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#vafp"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>is_zero
+        </div>
+        <div class="omdoc-type" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>(simpletypes.omdoc#simpletypes) 
+            <span id="MCRd20e224" class="displaymath" xmlns="">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+                <m:mrow>
+                  <m:mo>N</m:mo>
+                  <m:mo>‚Üí</m:mo>
+                  <m:mo>Bool</m:mo>
+                </m:mrow>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-symbol" id="is_succ" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#vafp"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>is_succ
+        </div>
+        <div class="omdoc-type" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>(simpletypes.omdoc#simpletypes) 
+            <span id="MCRd20e234" class="displaymath" xmlns="">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+                <m:mrow>
+                  <m:mo>N</m:mo>
+                  <m:mo>‚Üí</m:mo>
+                  <m:mo>Bool</m:mo>
+                </m:mrow>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-symbol" id="greater" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#vafp"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>greater
+        </div>The greater than relation on natural numbers 
+        <div class="omdoc-type" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>(simpletypes.omdoc#simpletypes) 
+            <span id="MCRd20e279" class="displaymath" xmlns="">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+                <m:mrow>
+                  <m:mo>N</m:mo>
+                  <m:mo>‚Üí</m:mo>
+                  <m:mo>N</m:mo>
+                  <m:mo>‚Üí</m:mo>
+                  <m:mo>Bool</m:mo>
+                </m:mrow>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-symbol" id="greater.dom" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#vafp"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>greater.dom
+        </div>
+        <div class="omdoc-type" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>(simpletypes.omdoc#simpletypes) 
+            <span id="MCRd20e298" class="displaymath" xmlns="">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+                <m:mrow>
+                  <m:mo>N</m:mo>
+                  <m:mo>‚Üí</m:mo>
+                  <m:mo>N</m:mo>
+                  <m:mo>‚Üí</m:mo>
+                  <m:mo>Bool</m:mo>
+                </m:mrow>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-lemma" id="equal_transitive" role="Assertion" about="#equal_transitive" xml:id="equal_transitive">
+        <a class="omdoc" rel="oso:homeTheory" href="#vafp"/>
+        <span class="omdoc-titleword">Lemma</span>
+        <span class="omdoc-FMP">
+          <span id="MCRd20e318" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+              <m:mrow>
+                <m:mo>‚àÄ</m:mo>
+                <m:mrow>
+                  <m:mi>x</m:mi>
+                  <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">:</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mo>type</m:mo>
+                  <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">,</m:mo>
+                  <m:mi>item</m:mi>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+                <m:mo>,</m:mo>
+                <m:mrow>
+                  <m:mi>y</m:mi>
+                  <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">:</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mo>type</m:mo>
+                  <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">,</m:mo>
+                  <m:mi>item</m:mi>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+                <m:mo>,</m:mo>
+                <m:mrow>
+                  <m:mi>z</m:mi>
+                  <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">:</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mo>type</m:mo>
+                  <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">,</m:mo>
+                  <m:mi>item</m:mi>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+                <m:mrow>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+              </m:mrow>
+            </m:math>
+          </span>
+        </span>
+      </div>
+      <div class="omdoc-lemma" id="greater_transitive" role="Assertion" about="#greater_transitive" xml:id="greater_transitive">
+        <a class="omdoc" rel="oso:homeTheory" href="#vafp"/>
+        <span class="omdoc-titleword">Lemma</span>
+        <span class="omdoc-FMP">
+          <span id="MCRd20e385" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+              <m:mrow>
+                <m:mo>‚àÄ</m:mo>
+                <m:mrow>
+                  <m:mi>x</m:mi>
+                  <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">:</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mo>type</m:mo>
+                  <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">,</m:mo>
+                  <m:mo>N</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+                <m:mo>,</m:mo>
+                <m:mrow>
+                  <m:mi>y</m:mi>
+                  <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">:</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mo>type</m:mo>
+                  <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">,</m:mo>
+                  <m:mo>N</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+                <m:mo>,</m:mo>
+                <m:mrow>
+                  <m:mi>z</m:mi>
+                  <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">:</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mo>type</m:mo>
+                  <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">,</m:mo>
+                  <m:mo>N</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+                <m:mrow>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+              </m:mrow>
+            </m:math>
+          </span>
+        </span>
+      </div>
+      <div class="omdoc-lemma" id="greater_irreflexive" role="Assertion" about="#greater_irreflexive" xml:id="greater_irreflexive">
+        <a class="omdoc" rel="oso:homeTheory" href="#vafp"/>
+        <span class="omdoc-titleword">Lemma</span>
+        <span class="omdoc-FMP">
+          <span id="MCRd20e451" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+              <m:mrow>
+                <m:mo>‚àÄ</m:mo>
+                <m:mrow>
+                  <m:mi>x</m:mi>
+                  <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">:</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mo>type</m:mo>
+                  <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">,</m:mo>
+                  <m:mo>N</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+                <m:mo>,</m:mo>
+                <m:mrow>
+                  <m:mi>y</m:mi>
+                  <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">:</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mo>type</m:mo>
+                  <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">,</m:mo>
+                  <m:mo>N</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+                <m:mrow>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+              </m:mrow>
+            </m:math>
+          </span>
+        </span>
+      </div>
+      <div class="omdoc-lemma" id="greater_neg_transitive" role="Assertion" about="#greater_neg_transitive" xml:id="greater_neg_transitive">
+        <a class="omdoc" rel="oso:homeTheory" href="#vafp"/>
+        <span class="omdoc-titleword">Lemma</span>
+        <span class="omdoc-FMP">
+          <span id="MCRd20e500" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+              <m:mrow>
+                <m:mo>‚àÄ</m:mo>
+                <m:mrow>
+                  <m:mi>z</m:mi>
+                  <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">:</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mo>type</m:mo>
+                  <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">,</m:mo>
+                  <m:mo>N</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+                <m:mo>,</m:mo>
+                <m:mrow>
+                  <m:mi>x</m:mi>
+                  <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">:</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mo>type</m:mo>
+                  <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">,</m:mo>
+                  <m:mo>N</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+                <m:mo>,</m:mo>
+                <m:mrow>
+                  <m:mi>y</m:mi>
+                  <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">:</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mo>type</m:mo>
+                  <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">,</m:mo>
+                  <m:mo>N</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+                <m:mrow>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+              </m:mrow>
+            </m:math>
+          </span>
+        </span>
+      </div>
+      <div class="omdoc-lemma" id="greater_total" role="Assertion" about="#greater_total" xml:id="greater_total">
+        <a class="omdoc" rel="oso:homeTheory" href="#vafp"/>
+        <span class="omdoc-titleword">Lemma</span>
+        <span class="omdoc-FMP">
+          <span id="MCRd20e566" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+              <m:mrow>
+                <m:mo>‚àÄ</m:mo>
+                <m:mrow>
+                  <m:mi>x</m:mi>
+                  <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">:</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mo>type</m:mo>
+                  <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">,</m:mo>
+                  <m:mo>N</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+                <m:mo>,</m:mo>
+                <m:mrow>
+                  <m:mi>y</m:mi>
+                  <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">:</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mo>type</m:mo>
+                  <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">,</m:mo>
+                  <m:mo>N</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+                <m:mrow>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+              </m:mrow>
+            </m:math>
+          </span>
+        </span>
+      </div>
+      <div class="omdoc-lemma" id="greater_pred" role="Assertion" about="#greater_pred" xml:id="greater_pred">
+        <a class="omdoc" rel="oso:homeTheory" href="#vafp"/>
+        <span class="omdoc-titleword">Lemma</span>
+        <span class="omdoc-FMP">
+          <span id="MCRd20e616" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+              <m:mrow>
+                <m:mo>‚àÄ</m:mo>
+                <m:mrow>
+                  <m:mi>x</m:mi>
+                  <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">:</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mo>type</m:mo>
+                  <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">,</m:mo>
+                  <m:mo>N</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+                <m:mo>,</m:mo>
+                <m:mrow>
+                  <m:mi>y</m:mi>
+                  <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">:</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mo>type</m:mo>
+                  <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">,</m:mo>
+                  <m:mo>N</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+                <m:mrow>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+              </m:mrow>
+            </m:math>
+          </span>
+        </span>
+      </div>
+      <div class="omdoc-lemma" id="greater_succ" role="Assertion" about="#greater_succ" xml:id="greater_succ">
+        <a class="omdoc" rel="oso:homeTheory" href="#vafp"/>
+        <span class="omdoc-titleword">Lemma</span>
+        <span class="omdoc-FMP">
+          <span id="MCRd20e665" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+              <m:mrow>
+                <m:mo>‚àÄ</m:mo>
+                <m:mrow>
+                  <m:mi>x</m:mi>
+                  <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">:</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mo>type</m:mo>
+                  <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">,</m:mo>
+                  <m:mo>N</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+                <m:mo>,</m:mo>
+                <m:mrow>
+                  <m:mi>y</m:mi>
+                  <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">:</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mo>type</m:mo>
+                  <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">,</m:mo>
+                  <m:mo>N</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+                <m:mrow>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+              </m:mrow>
+            </m:math>
+          </span>
+        </span>
+      </div>
+      <div class="omdoc-lemma" id="greater_pred_estimation" role="Assertion" about="#greater_pred_estimation" xml:id="greater_pred_estimation">
+        <a class="omdoc" rel="oso:homeTheory" href="#vafp"/>
+        <span class="omdoc-titleword">Lemma</span>
+        <span class="omdoc-FMP">
+          <span id="MCRd20e714" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+              <m:mrow>
+                <m:mo>‚àÄ</m:mo>
+                <m:mrow>
+                  <m:mi>x</m:mi>
+                  <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">:</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mo>type</m:mo>
+                  <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">,</m:mo>
+                  <m:mo>N</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+                <m:mo>,</m:mo>
+                <m:mrow>
+                  <m:mi>y</m:mi>
+                  <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">:</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mo>type</m:mo>
+                  <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">,</m:mo>
+                  <m:mo>N</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+                <m:mrow>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+              </m:mrow>
+            </m:math>
+          </span>
+        </span>
+      </div>
+      <div class="omdoc-lemma" id="greater_pred_weak_estimation" role="Assertion" about="#greater_pred_weak_estimation" xml:id="greater_pred_weak_estimation">
+        <a class="omdoc" rel="oso:homeTheory" href="#vafp"/>
+        <span class="omdoc-titleword">Lemma</span>
+        <span class="omdoc-FMP">
+          <span id="MCRd20e763" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+              <m:mrow>
+                <m:mo>‚àÄ</m:mo>
+                <m:mrow>
+                  <m:mi>x</m:mi>
+                  <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">:</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mo>type</m:mo>
+                  <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">,</m:mo>
+                  <m:mo>N</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+                <m:mo>,</m:mo>
+                <m:mrow>
+                  <m:mi>y</m:mi>
+                  <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">:</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mo>type</m:mo>
+                  <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">,</m:mo>
+                  <m:mo>N</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+                <m:mrow>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+              </m:mrow>
+            </m:math>
+          </span>
+        </span>
+      </div>
+      <div class="omdoc-lemma" id="greater_entails_not_zero" role="Assertion" about="#greater_entails_not_zero" xml:id="greater_entails_not_zero">
+        <a class="omdoc" rel="oso:homeTheory" href="#vafp"/>
+        <span class="omdoc-titleword">Lemma</span>
+        <span class="omdoc-FMP">
+          <span id="MCRd20e813" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+              <m:mrow>
+                <m:mo>‚àÄ</m:mo>
+                <m:mrow>
+                  <m:mi>x</m:mi>
+                  <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">:</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mo>type</m:mo>
+                  <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">,</m:mo>
+                  <m:mo>N</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+                <m:mo>,</m:mo>
+                <m:mrow>
+                  <m:mi>y</m:mi>
+                  <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">:</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mo>type</m:mo>
+                  <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">,</m:mo>
+                  <m:mo>N</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+                <m:mrow>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+              </m:mrow>
+            </m:math>
+          </span>
+        </span>
+      </div>
+      <div class="omdoc-lemma" id="greater_asymmetric" role="Assertion" about="#greater_asymmetric" xml:id="greater_asymmetric">
+        <a class="omdoc" rel="oso:homeTheory" href="#vafp"/>
+        <span class="omdoc-titleword">Lemma</span>
+        <span class="omdoc-FMP">
+          <span id="MCRd20e862" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+              <m:mrow>
+                <m:mo>‚àÄ</m:mo>
+                <m:mrow>
+                  <m:mi>x</m:mi>
+                  <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">:</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mo>type</m:mo>
+                  <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">,</m:mo>
+                  <m:mo>N</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+                <m:mo>,</m:mo>
+                <m:mrow>
+                  <m:mi>y</m:mi>
+                  <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">:</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mo>type</m:mo>
+                  <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">,</m:mo>
+                  <m:mo>N</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+                <m:mrow>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+              </m:mrow>
+            </m:math>
+          </span>
+        </span>
+      </div>
+      <div class="omdoc-lemma" id="not_zero_entails_greater_zero" role="Assertion" about="#not_zero_entails_greater_zero" xml:id="not_zero_entails_greater_zero">
+        <a class="omdoc" rel="oso:homeTheory" href="#vafp"/>
+        <span class="omdoc-titleword">Lemma</span>
+        <span class="omdoc-FMP">
+          <span id="MCRd20e911" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+              <m:mrow>
+                <m:mo>‚àÄ</m:mo>
+                <m:mrow>
+                  <m:mi>x</m:mi>
+                  <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">:</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mo>type</m:mo>
+                  <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">,</m:mo>
+                  <m:mo>N</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+                <m:mo>,</m:mo>
+                <m:mrow>
+                  <m:mi>y</m:mi>
+                  <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">:</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mo>type</m:mo>
+                  <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">,</m:mo>
+                  <m:mo>N</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+                <m:mrow>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+              </m:mrow>
+            </m:math>
+          </span>
+        </span>
+      </div>
+      <div class="omdoc-lemma" id="pred_weak_greater_monotone" role="Assertion" about="#pred_weak_greater_monotone" xml:id="pred_weak_greater_monotone">
+        <a class="omdoc" rel="oso:homeTheory" href="#vafp"/>
+        <span class="omdoc-titleword">Lemma</span>
+        <span class="omdoc-FMP">
+          <span id="MCRd20e960" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+              <m:mrow>
+                <m:mo>‚àÄ</m:mo>
+                <m:mrow>
+                  <m:mi>x</m:mi>
+                  <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">:</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mo>type</m:mo>
+                  <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">,</m:mo>
+                  <m:mo>N</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+                <m:mo>,</m:mo>
+                <m:mrow>
+                  <m:mi>y</m:mi>
+                  <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">:</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mo>type</m:mo>
+                  <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">,</m:mo>
+                  <m:mo>N</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+                <m:mrow>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+              </m:mrow>
+            </m:math>
+          </span>
+        </span>
+      </div>
+    </div>
+  </body>
+</html>

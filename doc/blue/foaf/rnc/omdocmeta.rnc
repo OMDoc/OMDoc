@@ -1,0 +1,18 @@
+# A variant OMDoc metadata schema
+# $Id: omdoc.rnc 7877 2008-07-28 04:52:46Z kohlhase $
+# $HeadURL: https://svn.omdoc.org/repos/omdoc/trunk/rnc/omdoc.rnc $
+# See the documentation and examples at http://www.omdoc.org
+# Copyright (c) 2008 Michael Kohlhase, released under the GNU Public License (GPL) 
+
+default namespace omdoc = "http://omdoc.org/ns"
+
+curie = xsd:string
+content.att = attribute content {xsd:string}
+
+meta = element meta {attribute property {curie}, attribute datatype {curie}?,
+		     (content.att|Anything|(content.att,Anything))}
+
+mlink = element link {attribute rel {curie},(attribute href {curie}|(resource|mlink|meta)*)}
+
+resource = element resource {attribute typeof {curie}?,attribute about {curie}?,
+	   	   	     (meta|mlink)*}

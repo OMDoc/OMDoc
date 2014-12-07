@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<locatingRules xmlns="http://thaiopensource.com/ns/locating-rules/1.0">
+  <namespace xmlns="http://dlmf.nist.gov/LaTeXML"
+	     uri="vc/svn/kwarc.eecs/kwarc/content/GenCs/rnc/mikoslides.rnc"/>
+  <namespace xmlns="http://kwarc.eecs.iu-bremen.de/ws"
+             uri="vc/svn/kwarc.eecs/kwarc/www/ws.rnc"/>
+
+  <namespace ns="http://www.mathweb.org/omdoc" typeId="OMDoc1"/>
+  <namespace ns="http://omdoc.org/ns" typeId="OMDoc2"/>
+  <documentElement localName="omdoc" typeId="OMDoc1"/>
+  <typeId id="OMDoc1" uri="../../../../../omdoc-1.2/rnc/omdoc.rnc"/>
+  <typeId id="OMDoc2" uri="../rnc/omdoc.rnc"/>
+
+  <uri pattern="*.codeml" typeId="CodeML"/>
+  <namespace ns="http://www.mathweb.org/codeml" typeId="CodeML"/>
+  <documentElement localName="code" typeId="CodeML"/>
+  <typeId id="CodeML" uri="vc/svn/omdoc.org/codeml/RelaxNG/codeml.rnc"/>
+  
+</locatingRules>

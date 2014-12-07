@@ -1,0 +1,10 @@
+# the path where you have Jena (the Java RDF API) installed
+JENA_LIB		= $(HOME)/svn/kwarc.info/swim/trunk/WEB-INF/lib
+
+# the Java classpath where info.kwarc.semweb.OWLMerge can be found
+# OWLMerge is currently part of the SWiM sources at 
+# https://svn.salzburgresearch.at/svn/kiwi/IkeWiki/branches/SWiM/trunk/
+OWLMERGE_CLASSPATH	= $(HOME)/svn/kwarc.info/swim/trunk/build/dest/WEB-INF/classes
+
+# command name to use for Subversion operations
+SUBVERSION = locutor

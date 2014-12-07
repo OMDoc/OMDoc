@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xml:id="var-cvi-ex.omdoc"
+  xmlns="http://omdoc.org/ns"
+  xmlns:cc="http://creativecommons.org/ns"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  version="1.6">
+<metadata>
+  <dc:date action="created"> 2004-10-05T11:04:45Z </dc:date>
+  <dc:title xml:lang="en"> var-cvi-ex </dc:title>
+  <dc:creator role="aut"> Michael Kohlhase </dc:creator>
+  <dc:source>  </dc:source>
+  <dc:date action="updated"> 2004-10-05T11:04:45Z </dc:date>
+  <dc:type> Text </dc:type>
+  <dc:format> application/omdoc+xml </dc:format>
+  <dc:rights>Copyright (c) 2004 Michael Kohlhase</dc:rights>
+  <cc:license>
+    <cc:permissions reproduction="permitted" distribution="permitted" derivative_works="permitted"/>
+    <cc:prohibitions commercial_use="permitted"/>
+    <cc:requirements notice="required" copyleft="required" attribution="required"/>
+  </cc:license>
+</metadata>
+
+<example xml:id="danny-mammal" type="for" assertion="dannys-mammal-thm"
+         for="#cvi.instance #cvi.class #animal-taxonomy.mammal">
+  <CMP>Danny Sleator is an instance of the 
+    <phrase style="font-style:italic;color:blue">Mammal</phrase> class. 
+  </CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="cvi-examples" name="danny"/></OMOBJ>
+</example>
+
+<assertion xml:id="dannys-mammal-thm" type="theorem" just-by="danny-mammal-pf">
+  <CMP>Danny Sleator is an instance of the Human class.</CMP>
+</assertion>
+
+<proof xml:id="danny-human-pf" for="#dannys-mammal-thm">
+  <derive xml:id="d1">
+    <CMP>Danny Sleator is an instance of the human class.</CMP>
+    <method>
+      <premise xref="#danny-professor"/>
+      <premise xref="#cvi.ax3"/>
+      <premise xref="#animal-tax.human-extends-professor"/>
+    </method>
+  </derive>
+  <derive xml:id="concl">
+    <CMP>Therefore he is an instance of the human class.</CMP>
+    <method>
+      <premise xref="#d1"/>
+      <premise xref="#cvi.ax3"/>
+      <premise xref="#animal-tax.mammal-extends-human"/>
+    </method>
+  </derive>
+</proof>
+
+</omdoc>

@@ -1,0 +1,202 @@
+\documentclass{article}
+\usepackage{a4wide,url}
+\usepackage{lstomdoc,xmlindex}
+\usepackage[hyper]{acronyms}
+\usepackage[eso-foot,today]{svninfo}
+\usepackage[show]{ed}
+\usepackage{hyperref}
+\svnInfo $Id: note.tex 9312 2013-08-15 06:40:25Z kohlhase $
+\svnKeyword $HeadURL: https://svn.omdoc.org/repos/omdoc/trunk/doc/blue/pres-pragmatic/note.tex $
+\lstset{language=[1.6]OMDoc,basicstyle=\scriptsize,mathescape}
+\def\stex{{\raisebox{-.5ex}S\kern-.5ex\TeX}}
+\def\llquote#1{\ensuremath{\langle\kern-.25em\langle{#1}\rangle\kern-.25em\rangle}}
+\title{Proposal for a set of pragmatic notation definitions}
+\author{Michael Kohlhase}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+  In this note, we propose abbreviations of notation definitions that are simpler to write
+  and more declarative as well.
+\end{abstract}
+\tableofcontents\newpage
+\section{Introduction}
+
+The notation definitions presented in~\cite{KMR:NoLMD08} allow to represent a
+comprehensive set of notations by pattern matching and has been implemented in the JOMDoc
+system~\cite{JOMDoc:webpage}. One of the advantages of this system is that gives common
+tasks like bracket elision a straightforward transformation interpretation. However, in
+many cases, the notation definitions become unwieldy and clumsy for simple tasks like
+specifying that addition is associative with precedence 500; for such cases, we would like
+introduce syntactic shortcuts that are simpler to write and maintain. Here the
+strict/pragmatic distincition introduced in {\omdocv{1.6}} comes to the rescue, we
+consider the notation definitions of~\cite{KMR:NoLMD08} as {\emph{strict OMDoc}} and the
+ones we propose here as {\emph{pragmatic OMDoc}}. The idea is that the pragmatic notation
+definitions are translated into strict ones via the rules given below during the
+presentation process, so that the translation is the only extension necessary to the
+presentation process.
+
+\section{Declarative Notation Declarations}
+
+The concrete proposal is based on extensive practice in the {\stex} presentation
+package~\cite{Kohlhase:ipsmsl08} that has been used to mark up more than 1700 symbols in
+the context of slides and notes for lectures and talks given by the KWARC group.
+Surprisingly the proposal in this note comes out relatively close to the notation proposal
+of OMDoc1.2~\cite{Kohlhase:OMDoc1.2} and the notation proposal we made earlier
+in~\cite{KohLanRab:pmcfe07}.
+
+In a nutshell we use mixfix declarations for symbols referenced by the OpenMath triple
+({\attribute{cd}{mixfix}}, {\attribute{name}{mixfix}}, and
+{\attribute{cdbase}{mixfix}}). The attribute {\attribute{args}{mixfix}} specifies the
+number of arguments, and the attribute {\attribute{assoc}{mixfix}} allows us to specify
+one argument as associative.
+
+ the attributes
+@p @pi @pii @piii, ...  give outer and argument precedences. Finally, the role is the OM
+symbol role. The pragmatic elements are called mixfix* where * is a specification of the
+arities of the argumunds, i.e. a string of characters 'i' (arity 1 argument) and one
+character 'a' an associative sequence of arguments. Here is the strict-pragmatic
+translation for <mixfixai>, which is e.g. used for funtype (I will make the concrete
+example later).
+
+\begin{center}\lstset{frame=none,numbers=none,lineskip=-.7ex,aboveskip=-.5em,belowskip=-1em}
+  \begin{tabular}{|p{4cm}|p{8.4cm}|}\hline
+    pragmatic & strict\\\hline
+{
+\begin{lstlisting}
+<mixfix format="$\llquote{foo}$" 
+  args="$\llquote{n}$" assoc="$\llquote{m}$"
+  name="$\llquote{nam}$" cd="$\llquote{cd}$" 
+  cdbase="$\llquote{URI}$"
+  role="application" 
+  precedence="$\llquote{p}$">
+  $\llquote{rendering}$
+</mixfix>
+\end{lstlisting}
+}&{
+\begin{lstlisting}
+<notation>
+ <prototype>
+  <OMA>
+   <OMS cd="$\llquote{cd}$" name="$\llquote{nam}$" cdbase="$\llquote{URI}$"/>
+   <expr name="arg1"/>$\ldots$<expr name="arg$\llquote{m-1}$"/>
+   <exprlist name="arg$\llquote{m}$">
+    <expr name="aargs"/>
+   </exprlist>
+   <expr name="arg$\llquote{m+1}$"/>$\ldots$<expr name="arg$\llquote{n}$"/>
+  </OMA>
+ </prototype>
+ <rendering format="$\llquote{foo}$" precedence="$\llquote{p}$">
+  $\llquote{rendering}$
+  </rendering>
+</notation>      
+\end{lstlisting}
+}\\\hline 
+\end{tabular}
+\end{center}
+\ednote{@Florian, you had something about implicit arguments. I am not sure how this needs
+  to be integrated here; probably for the stuff below only.}
+
+The next level of pragmatism would be another abbreviation, e.g. {\element{infix}} for
+{\element{mixfix}}, in general
+
+\begin{center}\lstset{frame=none,numbers=none,lineskip=-.7ex,aboveskip=-.5em,belowskip=-1em}
+  \begin{tabular}{|p{4cm}|p{6.5cm}|}\hline
+    pragmatic & strict\\\hline
+{
+\begin{lstlisting}
+<infix format="$\llquote{foo}$" 
+  name="$\llquote{nam}$" cd="$\llquote{cd}$" 
+  cdbase="$\llquote{URI}$"
+  precedence="$\llquote{n}$"
+  [elide="$\llquote{e}$"]>
+  $\llquote{op}$
+</infix>
+\end{lstlisting}
+}&{
+\begin{lstlisting}
+<mixfix format="$\llquote{foo}$" args="2"
+  name="$\llquote{nam}$" cd="$\llquote{cd}$" cdbase="$\llquote{URI}$"
+  precedence="$\llquote{n}$" role="application">
+  $\llquote{foo-group-open}$
+  <render name="arg1" precedence="$\llquote{l}$/>
+  $\llquote{op}$
+  <render name="arg2" precedence="$\llquote{r}$/>
+  $\llquote{foo-group-close}$
+</mixfix>
+\end{lstlisting}
+}\\\hline 
+\end{tabular}
+\end{center}
+Where the {\attributeshort{elide}} attribute is optional and can take the values
+{\attvalveryshort{left}} and {\attvalveryshort{right}}. If no {\attributeshort{elide}} is
+given, then $\llquote{n}=\llquote{l}=\llquote{r}$, if {\attributeshort{elide}} has the
+value {\attvalveryshort{left}}, then $\llquote{l}=\llquote{n}-1$ and
+$\llquote{r}=\llquote{n}$ and if if {\attributeshort{elide}} has the value
+{\attvalveryshort{right}}, then $\llquote{r}=\llquote{n}-1$ and
+$\llquote{l}=\llquote{n}$.\ednote{or the other way around, I am a bit confused at the
+  moment.}
+
+This would allow to specifiy the presentation for a binary plus operator that elides
+brackets to the left (sometimes called an 'infixl' operator) as 
+
+\begin{lstlisting}
+<infix format="TeX" cd="arith1" name="plus" precedence="500" elide="left">+</infix>
+\end{lstlisting}
+
+which is really much more pragmatic than the strict verion. Here we made use of the idea
+that the argument precedences are inherited from the {\attributeshort{precedence}}
+attribute. For prefix operators we have another abbreviation:
+
+\begin{center}\lstset{frame=none,numbers=none,lineskip=-.7ex,aboveskip=-.5em,belowskip=-1em}
+  \begin{tabular}{|p{4cm}|p{6.7cm}|}\hline
+    pragmatic & strict\\\hline
+{
+\begin{lstlisting}
+<prefix format="$\llquote{foo}$" 
+  name="$\llquote{nam}$" cd="$\llquote{cd}$" 
+  cdbase="$\llquote{URI}$"
+  precedence="$\llquote{n}$" 
+  precargs="$\llquote{m}$">
+  $\llquote{op}$
+</infix>
+\end{lstlisting}
+}&{
+\begin{lstlisting}
+<mixfix format="$\llquote{foo}$" args="1" assoc="1"
+  name="$\llquote{nam}$" cd="$\llquote{cd}$" cdbase="$\llquote{URI}$"
+  precedence="$\llquote{n}$" role="application">
+  $\llquote{foo-group-open}$
+  $\llquote{op}$
+  <iterate name="arg1">
+    <render name="aargs"/>
+  </iterate>
+  $\llquote{foo-group-close}$
+</mixfix>
+\end{lstlisting}
+}\\\hline 
+\end{tabular}
+\end{center}
+and analogously for postfix operators. 
+
+\newpage
+\section{Examples}\label{sec:examples}
+The example below is mainly used to show some pragmatic notation elememnts and test the
+schema. 
+
+ \lstinputlisting{examples/mixfix.omdoc}
+
+\newpage
+\section{An extension for the {\omdoc} RelaxNG Schema}\label{sec:rnc}
+\lstinputlisting[language=RNC,nolol]{pragpres.rnc}
+
+% \newpage
+% \begin{appendix}
+%   \section{ The {\omdoc} RelaxNG Schema for Notation Definitions}\label{sec:presrnc}
+% We reprint the RelaxNG schema for notation definitions for reference
+% \lstinputlisting[language=RNC,nolol]{../../../rnc/omdocpres.rnc}
+
+% \end{appendix}
+\bibliographystyle{alphahurl}
+\bibliography{kwarc}
+\end{document}

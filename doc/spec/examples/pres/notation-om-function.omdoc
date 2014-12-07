@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xml:id="notation-om-function.omdoc"
+  xmlns="http://omdoc.org/ns"
+  xmlns:cc="http://creativecommons.org/ns"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  version="1.6">
+<metadata>
+  <dc:date action="created"> 2004-10-08T11:56:44Z </dc:date>
+  <dc:title xml:lang="en"> notation-om-function </dc:title>
+  <dc:creator role="aut"> Michael Kohlhase </dc:creator>
+  <dc:source>  </dc:source>
+  <dc:date action="updated"> 2004-10-08T11:56:44Z </dc:date>
+  <dc:type> Text </dc:type>
+  <dc:format> application/omdoc+xml </dc:format>
+  <dc:rights>Copyright (c) 2004 Michael Kohlhase</dc:rights>
+  <cc:license>
+    <cc:permissions reproduction="permitted" distribution="permitted" derivative_works="permitted"/>
+    <cc:prohibitions commercial_use="permitted"/>
+    <cc:requirements notice="required" copyleft="required" attribution="required"/>
+  </cc:license>
+</metadata>
+
+<omtext xml:id="test">
+  <CMP>
+<OMOBJ xmlns="http://www.openmath.org/OpenMath">
+  <OMBIND>                          
+    <OMS cd="quant1" name="forall"/> 
+    <OMBVAR>                         
+      <OMATTR>                        
+        <OMATP>                        
+          <OMS cd="omdoc" name="notation"/>
+          <OMFOREIGN encoding="application/omdoc+xml">
+            <presentation xmlns="http://omdoc.org/ns"
+			  for="#R" role="applied" precedence="500" fixity="infix"> 
+              <use format="TeX">\prec</use>
+              <use format="pmml|html">&#x022DE;</use>
+            </presentation>
+            <presentation xmlns="http://omdoc.org/ns" for="#R"> 
+              <use format="TeX">{}\prec{}</use>
+              <use format="pmml|html">&#x022DE;</use>
+            </presentation>
+          </OMFOREIGN>
+        </OMATP>
+        <OMV name="R"/>                
+      </OMATTR>
+      <OMV name="X4"/>
+    </OMBVAR>
+    <OMA><OMV name="R"/><OMV name="X4"/><OMV name="X4"/></OMA>
+  </OMBIND>                         
+</OMOBJ>
+</CMP>
+</omtext>
+</omdoc>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xml:id="omlet2.omdoc"
+  xmlns="http://omdoc.org/ns"
+  xmlns:cc="http://creativecommons.org/ns"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  version="1.6">
+<metadata>
+  <dc:date action="created"> 2004-10-05T11:44:36Z </dc:date>
+  <dc:title xml:lang="en"> omlet2 </dc:title>
+  <dc:creator role="aut"> Michael Kohlhase </dc:creator>
+  <dc:source>  </dc:source>
+  <dc:date action="updated"> 2004-10-05T11:44:36Z </dc:date>
+  <dc:type> Text </dc:type>
+  <dc:format> application/omdoc+xml </dc:format>
+  <dc:rights>Copyright (c) 2004 Michael Kohlhase</dc:rights>
+  <cc:license>
+    <cc:permissions reproduction="permitted" distribution="permitted" derivative_works="permitted"/>
+    <cc:prohibitions commercial_use="permitted"/>
+    <cc:requirements notice="required" copyleft="required" attribution="required"/>
+  </cc:license>
+</metadata>
+
+<omtext xml:id="test">
+  <CMP> Let us prove it interactively
+  <omlet data="#sendtoTP" action="display">
+    <param name="timeout" value="30" valuetype="data"/>
+    <param name="performative" value="prove"/>
+    <param name="problem" value="#ALGX0" valuetype="object"/>
+    <param name="description" value="http://example.org/prob17.html" valuetype="ref"/>
+    <param name="instance">
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA><OMS name="root" cd="arith1"/>
+          <OMI>3</OMI><OMI>3</OMI>
+        </OMA>
+      </OMOBJ>
+    </param>   
+    Sorry, no Theorem Prover available!
+  </omlet>. 
+</CMP>
+</omtext>
+
+</omdoc>

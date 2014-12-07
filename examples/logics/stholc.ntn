@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<notations xmlns="http://www.w3.org/ns/mathml-cd" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:om="http://www.openmath.org/OpenMath" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+  <notation cdbase="FIXME" cd="stholc" name="choose">
+    <prototype>
+      <om:OMS cd="stholc" name="choose"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="stholc">choose</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en">℩</rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="stholc" name="choice-op">
+    <prototype>
+      <om:OMS cd="stholc" name="choice-op"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="stholc">choice-op</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en">ι</rendering>
+  </notation>
+</notations>

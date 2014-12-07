@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xml:id="wordnet.omdoc" version="1.6"
+       xmlns:dc="http://purl.org/dc/elements/1.1/" 
+       xmlns:cc="http://creativecommons.org/ns" 
+       xmlns="http://omdoc.org/ns"
+       xmlns:oo="http://omdoc.org/ontology#"
+       xmlns:om="http://www.openmath.org/OpenMath"
+       xmlns:m="http://www.w3.org/1998/Math/MathML">
+
+<theory xml:id="wordnet">
+  <metadata>
+    <dc:description>The Wordnet ontology, rewritten in OMDoc</dc:description>
+    <link rel="oo:semWebBase" href="http://xmlns.com/wordnet/1.6/"/>
+ </metadata>
+
+<imports from="../logics/owl.omdoc#owl"/>
+
+<symbol name="Agent-3">
+  <type system="owl">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMS cd="owl" name="Class"/>
+    </OMOBJ>
+  </type>
+</symbol>
+ <!-- TODO describe more of the vocabulary; so far we just have this file for obtaining correct URIs for DC terms -->
+</theory>
+</omdoc>
+<!--
+vim:sw=2:sts=2
+-->

@@ -1,0 +1,41 @@
+# A RelaxNG for Open Mathematical documents (OMDoc 1.6) Module META
+# $Id: meta-strict.rnc 8540 2009-10-20 10:14:01Z kohlhase $
+# $HeadURL: https://svn.omdoc.org/repos/omdoc/trunk/schema/rnc/meta-strict.rnc $
+# See the documentation and examples at http://www.omdoc.org
+# Copyright (c) 2007-2008 Michael Kohlhase, released under the GNU Public License (GPL) 
+
+default namespace omdoc = "http://omdoc.org/ns"
+
+# for the moment, we may get regexp at some point. 
+curie = xsd:string
+curies = xsd:string 
+safecurie = xsd:string
+
+rel.attrib = attribute rel {curies} 
+rev.attrib = attribute rev {curies} 
+content.attrib = attribute content {xsd:string}
+about.attrib =  attribute about {xsd:anyURI|safecurie} 
+resource.attrib =  attribute resource {xsd:anyURI|safecurie} 
+property.attrib =  attribute property {curies} 
+datatype.attrib = attribute datatype {curie}
+typeof.attrib = attribute typeof {curies}
+
+meta.attribs = id.attribs & property.attrib?& datatype.attrib? 
+meta.model = content.attrib | Anything | (content.attrib & Anything)
+meta = element meta {tref|(meta.attribs & meta.model)}
+
+mlink.attribs = id.attribs & rel.attrib? & rev.attrib? & resource.attrib?
+mlink.class = resource* & mlink* &  meta*
+mlink.model = attribute href {curie}|mlink.class
+mlink = element link {tref|(mlink.attribs,mlink.model)}
+
+resource.attribs = id.attribs & typeof.attrib? & about.attrib?
+resource.class = meta* & mlink* 
+resource = element resource {tref|(resource.attribs & resource.class)}
+
+metadata.class = meta* & mlink*
+rdfa.attribs = rel.attrib? & rev.attrib? & content.attrib?  & about.attrib?
+	     	      & resource.attrib? & property.attrib? & datatype.attrib?	
+		      & typeof.attrib?
+ 
+id.attribs &= rdfa.attribs

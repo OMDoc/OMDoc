@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xml:id="ann-narrative.omdoc"
+  xmlns="http://omdoc.org/ns"
+  xmlns:cc="http://creativecommons.org/ns"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  version="1.6">
+<metadata>
+  <dc:date action="created"> 2004-10-05T11:07:34Z </dc:date>
+  <dc:title xml:lang="en"> ann-narrative </dc:title>
+  <dc:creator role="aut"> Michael Kohlhase </dc:creator>
+  <dc:source>  </dc:source>
+  <dc:date action="updated"> 2004-10-05T11:07:34Z </dc:date>
+  <dc:type> Text </dc:type>
+  <dc:format> application/omdoc+xml </dc:format>
+  <dc:rights>Copyright (c) 2004 Michael Kohlhase</dc:rights>
+  <cc:license>
+    <cc:permissions reproduction="permitted" distribution="permitted" derivative_works="permitted"/>
+    <cc:prohibitions commercial_use="permitted"/>
+    <cc:requirements notice="required" copyleft="required" attribution="required"/>
+  </cc:license>
+</metadata>
+
+<omdoc xml:id="slide-847" type="slide">
+  <metadata>
+    <dc:title class="15-211-title">Inheritance: Taxonomy metaphor</dc:title>
+  </metadata>
+  
+  <omtext xml:id="the-tax">
+    <CMP>
+      <omlet data="#tax-image" style="width:540;height:366" action="display" show="embed"/>
+    </CMP>
+  </omtext>
+</omdoc>
+
+<omdoc xml:id="slide-848" type="slide">
+  <metadata><dc:title class="15-211-title">Classes vs. instances</dc:title></metadata>
+  <omdoc type="itemize" style="list-style-type:url(square.gif)">
+    <ref style="position:30% 10%" xml:id="obj" xref="slide1_content.omdoc#ax1"/>
+    <ref style="position:55% 10%" xml:id="class" xref="slide1_content.omdoc#ax2"/>
+    <ref style="position:80% 10%" xml:id="inh" xref="slide1_content.omdoc#ax3"/>
+  </omdoc>
+</omdoc>
+
+<omdoc xml:id="slide-849" type="slide">
+  <metadata><dc:title class="15-211-title">Classes vs. instances</dc:title></metadata>
+  <omdoc type="itemize" style="list-style-type:url(square.gif)">
+    <omtext style="position:30% 10%" xml:id="ex"><CMP>Example:</CMP></omtext>
+    <omdoc type="itemize" style="list-style-type:url(triangle.gif)">
+      <ref style="position:400% 15%" 
+           xml:id="danny" xref="slide1_content.omdoc#danny-professor"/>
+      <ref style="position:55% 15%" 
+           xml:id="inst" xref="slide1_content.omdoc#dannys-classes"/>
+      <ref style="position:70% 15%" xml:id="is_a" xref="slide1_content.omdoc#is_a-def"/>
+    </omdoc>
+    <omtext style="position:83% 10%" xml:id="has_a">
+      <CMP>
+        Danny also &#x201C;<phrase style="font-style:italic;color:red">has
+        a</phrase>&#x201D; wife and son, who are also instances of the Human class
+      </CMP>
+    </omtext>
+  </omdoc>
+</omdoc>
+
+<omdoc xml:id="slide-850" type="slide">
+  <metadata><dc:title class="15-211-title">In Java</dc:title></metadata>
+  <omdoc type="itemize">
+    <omtext xml:id="slide-850.t1" style="position:80% 10%;color:red">
+      <CMP>Implicitly extends class object</CMP>
+    </omtext>
+    <omtext xml:id="slide-850.t2">
+      <CMP><omlet data="#cvic-code1" action="display" show="embed"/></CMP>
+    </omtext>
+    <omtext xml:id="slide-850.t3">
+      <CMP><omlet data="#cvic-code2" action="display" show="embed"/></CMP>  
+    </omtext>
+  </omdoc>
+</omdoc>
+
+</omdoc>

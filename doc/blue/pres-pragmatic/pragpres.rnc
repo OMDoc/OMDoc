@@ -1,0 +1,28 @@
+# A RelaxNG for Open Mathematical documents (OMDoc 1.6) Module PRES (pragmatic extensions)
+# $Id: pragpres.rnc 8056 2008-09-20 05:31:30Z kohlhase $
+# $HeadURL: https://svn.omdoc.org/repos/omdoc/trunk/doc/blue/pres-pragmatic/pragpres.rnc $
+# See the documentation and examples at http://www.omdoc.org
+# Copyright (c) 2004-2008 Michael Kohlhase, released under the GNU Public License (GPL) 
+
+default namespace omdoc = "http://omdoc.org/ns"
+include "../../../rnc/omdoc.rnc"
+
+omdoc.class |= mixfix | infix | prefix | postfix
+	    
+args.att = attribute args {xsd:positiveInteger},
+	   attribute assoc {xsd:positiveInteger}?
+synrole = "constant" | "application" | "binder" | "attribution" | "error"
+role.att = attribute role {synrole}
+
+mixfix =  element mixfix {triple.att,args.att,role.att,rendering.att,renderexp}
+
+elide.att = attribute elide {"left" | "right"}
+
+infix = element infix {triple.att,rendering.att,elide.att?,opexp}
+
+prefix = element prefix {triple.att,rendering.att,opexp}
+postfix = element postfix {triple.att,rendering.att,opexp}
+
+opexp = grammar{include "../../../rnc/mathml3/mathml3-presentation.rnc" {start = PresExp}}|text
+
+

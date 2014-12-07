@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xml:id="derive.omdoc"
+  xmlns="http://omdoc.org/ns"
+  xmlns:cc="http://creativecommons.org/ns"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  version="1.6">
+<metadata>
+  <dc:date action="created"> 2004-10-08T12:36:32Z </dc:date>
+  <dc:title xml:lang="en"> derive </dc:title>
+  <dc:creator role="aut"> Michael Kohlhase </dc:creator>
+  <dc:source>  </dc:source>
+  <dc:date action="updated"> 2004-10-08T12:36:32Z </dc:date>
+  <dc:type> Text </dc:type>
+  <dc:format> application/omdoc+xml </dc:format>
+  <dc:rights>Copyright (c) 2004 Michael Kohlhase</dc:rights>
+  <cc:license>
+    <cc:permissions reproduction="permitted" distribution="permitted" derivative_works="permitted"/>
+    <cc:prohibitions commercial_use="permitted"/>
+    <cc:requirements notice="required" copyleft="required" attribution="required"/>
+  </cc:license>
+</metadata>
+
+<proof xml:id="proof.2.1.2.proof.D2.1" for="#assertion.2.1.2">
+  <!-- ... -->
+  <derive xml:id="D2.1">
+    <CMP>By <ref type="cite" xref="#A2"/>, <ref type="cite" xref="#A4"/>, 
+       and <ref type="cite" xref="#A5"/> we have $z+(a+(-a))=(z+a)+(-a)$.</CMP>
+    <FMP><legacy format="TeX">$z+(a+(-a))=(z+a)+(-a)$</legacy></FMP>
+    <method xref="nk-sorts.omdoc#NK-Sorts.forallistar">
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="z"/></OMOBJ>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="a"/></OMOBJ>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMSTR>$-a$</OMSTR></OMOBJ>
+      <premise xref="#A2"/><premise xref="#A4"/><premise xref="#A5"/>
+    </method>
+  </derive>
+  <!-- ... -->
+</proof>
+<!-- ... -->
+<theory xml:id="NK-Sorts">
+  <metadata>
+    <dc:title>Natural Deduction for Sorted Logic</dc:title>
+  </metadata>
+  
+  <symbol name="forallistar">
+    <metadata>
+      <dc:description>Repeated Universal Instantiation></dc:description>
+    </metadata>
+  </symbol>
+  <definition xml:id="forallistar.def" for="#forallistar" type="informal">
+    <CMP>Given $n$ parameters, the inference rule $\forall{I}^*$ instantiates 
+      the first $n$ universal quantifications in the antecedent with them.</CMP>
+  </definition>
+  <!-- ... -->
+</theory>
+
+</omdoc>

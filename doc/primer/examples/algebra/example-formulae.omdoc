@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xml:id="example-formulae.omdoc"
+  xmlns="http://omdoc.org/ns"
+  xmlns:cc="http://creativecommons.org/ns"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xmlns:om="http://www.openmath.org/OpenMath"
+  version="1.6">
+<metadata>
+  <dc:date action="created"> 2004-10-04T17:47:21Z </dc:date>
+  <dc:title xml:lang="en"> example-formulae </dc:title>
+  <dc:creator role="aut"> Michael Kohlhase </dc:creator>
+  <dc:source>  </dc:source>
+  <dc:date action="updated"> 2004-10-04T17:47:21Z </dc:date>
+  <dc:type> Text </dc:type>
+  <dc:format> application/omdoc+xml </dc:format>
+  <dc:rights>Copyright (c) 2004 Michael Kohlhase</dc:rights>
+  <cc:license>
+    <cc:permissions reproduction="permitted" distribution="permitted" derivative_works="permitted"/>
+    <cc:prohibitions commercial_use="permitted"/>
+    <cc:requirements notice="required" copyleft="required" attribution="required"/>
+  </cc:license>
+</metadata>
+<theory xml:id="magmas-examples">
+  <metadata><dc:title>Examples</dc:title></metadata>
+
+   <imports xml:id="imp4" 
+       from="https://svn.omdoc.org/repos/omdoc/trunk/examples/omstd/fns1.omdoc#fns1"/>
+   <imports xml:id="imp5" from="background.omdoc#nat"/>
+   <imports xml:id="imp6" from="background.omdoc#functions"/>
+   <imports xml:id="imp8" from="#magmas"/>
+   
+  <omdoc xml:id="magma-ex" type="enumeration">
+    <metadata><dc:title>Examples</dc:title></metadata>
+
+    <example xml:id="e1.magma" for="#law_of_composition" type="for">
+      <CMP>The mappings 
+        <om:OMOBJ>
+          <om:OMBIND><om:OMS cd="fns1" name="lambda"/>
+            <om:OMBVAR><om:OMV name="X"/><om:OMV name="Y"/></om:OMBVAR>
+            <om:OMA><om:OMS cd="functions" name="pattern-defined"/>
+              <om:OMA><om:OMS cd="products" name="pair"/>
+                <om:OMV name="X"/>
+                <om:OMV name="Y"/>
+              </om:OMA>
+              <om:OMA><om:OMS cd="sets" name="union"/>
+                <om:OMV name="X"/>
+                <om:OMV name="Y"/>
+              </om:OMA>
+            </om:OMA>
+          </om:OMBIND>
+        </om:OMOBJ> and 
+        <om:OMOBJ>
+          <om:OMBIND><om:OMS cd="fns1" name="lambda"/>
+            <om:OMBVAR><om:OMV name="X"/><om:OMV name="Y"/></om:OMBVAR>  
+            <om:OMA><om:OMS cd="functions" name="pattern-defined"/>
+              <om:OMA><om:OMS cd="products" name="pair"/>
+                <om:OMV name="X"/>
+                <om:OMV name="Y"/>
+              </om:OMA>
+              <om:OMA><om:OMS cd="sets" name="intersection"/>
+                <om:OMV name="X"/>
+                <om:OMV name="Y"/>
+              </om:OMA>
+            </om:OMA>
+          </om:OMBIND>
+        </om:OMOBJ>
+        are laws of composition on the set of subsets of a set 
+        <om:OMOBJ><om:OMS cd="magmas" name="E"/></om:OMOBJ>.
+      </CMP>
+    </example>
+    
+    <example xml:id="e2.magma" for="#law_of_composition" type="for">
+      <CMP>On the set <om:OMOBJ><om:OMS cd="nat" name="Nat"/></om:OMOBJ> 
+           of natural numbers, addition, multiplication, and 
+           exponentiation are \ldots
+      </CMP>
+    </example>
+  </omdoc>
+</theory>
+
+</omdoc>

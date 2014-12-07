@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/" 
+       xmlns="http://omdoc.org/ns"
+       xmlns:om="http://www.openmath.org/OpenMath"
+       xmlns:m="http://www.w3.org/1998/Math/MathML"
+       xml:id="sthold.omdoc">
+
+ <metadata>
+  <dc:title>Simply Typed Higher-Order Logic with Descriptions.</dc:title>
+  <dc:creator role="aut">Michael Kohlhase</dc:creator>
+  <dc:date>2008-07-04T18:28:06</dc:date>
+  <dc:rights>Copyright (c) 2008 Michael Kohlhase</dc:rights>
+  <license xmlns="http://creativecommons.org/ns">
+    <permissions reproduction="permitted" distribution="permitted" derivative_works="permitted"/>
+    <prohibitions commercial_use="permitted"/>
+    <requirements notice="required" copyleft="required" attribution="required"/>
+  </license>
+ </metadata>
+
+<theory xml:id="sthold">
+  <metadata>
+    <dc:title>Higher-order logic with descriptions</dc:title>
+    <dc:description>The theory of higher-order logic with descriptions.</dc:description>
+  </metadata>
+
+  <imports from="stholif.omdoc#stholif"/>
+  
+  <symbol name="that" xml:id="sthold.that">
+    <metadata>
+      <dc:subject>that</dc:subject>
+      <dc:description>
+	<OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="sthold"
+	name="that"/></OMOBJ> is the binding symbol for definite descriptions.
+      </dc:description>
+    </metadata>
+  </symbol>
+
+  <notation>
+    <prototype>
+      <om:OMS cd="sthold" name="that"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="sthold">that</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en">℩</rendering>
+  </notation>
+
+  <example xml:id="that-ex-1" type="for" for="#sthold.that">
+    <CMP>For any <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="x"/></OMOBJ>,
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="that-ex-1.1"/></OMOBJ>
+    returns <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="x"/></OMOBJ>.
+   </CMP>
+   <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+     <OMBIND>
+     <OMS cd="sthol" name="forall"/>
+     <OMBVAR><OMV name="x"/></OMBVAR>
+     <OMA>
+       <OMS cd="sthol" name="eq"/>
+       <OMBIND id="that-ex-1.1">
+	 <OMS cd="sthold" name="that"/>
+	 <OMBVAR><OMV name="y"/></OMBVAR>
+	 <OMA>
+	   <OMS cd="indeq" name="eq"/>
+	   <OMV name="x"/>
+	   <OMV name="y"/>
+	 </OMA>
+       </OMBIND>
+       <OMV name="x"/>
+     </OMA>
+    </OMBIND>
+   </OMOBJ>
+  </example>
+</theory>
+</omdoc>

@@ -1,0 +1,37 @@
+# -*- CPERL -*-
+# /=======================================================\ #
+# |  myindex.sty - Implementation for LaTeXML+OMDoc       | #
+# |                                                       | #
+# |=======================================================| #
+# | Not Part of LaTeXML : http://dlmf.nist.gov/LaTeXML/   | #
+# | Copyright (c) 2006 arXMLiv group                      | #
+# | Released under the GNU Public License                 | #
+# \=======================================================/ #
+
+package LaTeXML::Package::Pool;
+use strict;
+use LaTeXML::Package;
+
+DefConstructor('\@idx[]{}','<omdoc:idx>#2</omdoc:idx>');
+DefConstructor('\@idt[]{}',"<omdoc:idt ?#1(sort-by='#1')()>#2</omdoc:idt>");
+DefConstructor('\@ide[]{}','<omdoc:ide>#2</omdoc:ide>');
+DefConstructor('\@idp[]{}','<omdoc:idp>#2</omdoc:idp>');
+
+DefMacro('\indextoo{}','\@idx{\@idt{#1}\@ide{\@idp{#1}}}');
+DefMacro('\emin{}','{\emph{\indextoo{#1}}}');
+
+DefConstructor('\defemph{}',"<omdoc:term role='definiendum'>#1</omdoc:term>");
+DefMacro('\defin{}','\defemph{\@idx{\@idt{#1}\@ide{\@idp{#1}}}}');
+
+DefMacro('\twin{}{}','\@idx{\@ide{\@idp{#1}\@idp{#2}}\@ide{\@idp{#2}\@idp{#1}}}');
+DefMacro('\twintoo{}{}','\@idx{\@idt{#1 #2}\@ide{\@idp{#1}\@idp{#2}}\@ide{\@idp{#2}\@idp{#1}}}');
+DefMacro('\twinemph{}{}','\emph{\twintoo{#1}{#2}}');
+DefMacro('\twindef{}{}','\defemph{\twintoo{#1}{#2}}');
+
+DefMacro('\atwin{}{}','\@idx{\@ide{\@idp{#1}\@idp{#2}\@idp{#3}}\@ide{\@idp{#3}\@idp{#2}\@idp{(#1)}}}');
+DefMacro('\atwintoo{}{}','\@idx{\@idt{#1 #2 #3}\@ide{\@idp{#1}\@idp{#2}\@idp{#3}}\@ide{\@idp{#3}\@idp{#2}\@idp{(#1)}}}');
+
+DefMacro('\atwindef{}{}{}','\defemph{\atwintoo{#1}{#2}{#3}}');
+
+#**********************************************************************
+1;

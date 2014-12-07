@@ -1,0 +1,20 @@
+# A RelaxNG schema for Open Mathematical documents (OMDoc 1.6) Module DC
+# $Id: omdocdc.rnc 8812 2011-01-13 15:07:34Z kohlhase $
+# $HeadURL: https://svn.omdoc.org/repos/omdoc/trunk/schema/rnc/pragmatic/omdocdc.rnc $
+# See the documentation and examples at http://www.omdoc.org
+# Copyright (c) 2004-2010 Michael Kohlhase, released under the GNU Public License (GPL) 
+
+# we include the dublin core and MARC elements, filling them with our content types
+dublincore = grammar {include "MARCRelators.rnc" 
+      include "dublincore.rnc"      
+	   {dc.date = parent nonlocal.attribs &
+	                    attribute action {xsd:NMTOKEN}? &
+                            attribute who {xsd:anyURI}? &
+			    (xsd:date|xsd:dateTime)
+	    dc.identifier = parent tref|(parent nonlocal.attribs & attribute scheme {xsd:NMTOKEN} & text)
+	    dc.type = parent tref|(parent nonlocal.attribs & ("Dataset" | "Text" | "Collection"))
+	    dc.text = parent tref|(parent nonlocal.attribs & parent p.model)
+	    dc.person = parent tref|(parent nonlocal.attribs &  attribute role {MARCRelators}? & parent p.model)
+           dc.rights = parent tref|(parent nonlocal.attribs &  parent p.model)}}
+
+metadata.class &= dublincore 

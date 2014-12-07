@@ -1,0 +1,774 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  
+       xmlns="http://omdoc.org/ns"
+       xmlns:om="http://www.openmath.org/OpenMath"
+       xmlns:m="http://www.w3.org/1998/Math/MathML"
+       xmlns:o="http://omdoc.org/ns"
+       xml:id="fns1-omdoc">
+
+<metadata>
+  <dc:title>The OpenMath Content Dictionary fns1.ocd  in OMDoc form</dc:title>
+  <dc:creator role="trl">Michael Kohlhase</dc:creator>
+  <dc:creator role="ant">The OpenMath Society</dc:creator>
+  <dc:date> 2001-03-12T00:00:00</dc:date>
+  <dc:source>Derived from the OpenMath CD http://www.openmath.org/cd/fns1.ocd.</dc:source>
+  <dc:type>Text</dc:type>
+  <dc:format>application/omdoc+xml</dc:format>
+  <dc:rights>Copyright (c) 2000-2002 Michael Kohlhase;
+    This OMDoc content dictionary is released under the OpenMath license:
+    http://monet.nag.co.uk/openmath/cdfiles/license.html
+  </dc:rights>
+  <dc:description>
+    This CD is intended to be `compatible' with the corresponding
+    elements in Content MathML.
+
+In this CD we give a set of functions concerning functions
+themselves. Functions can be constructed from expressions via a
+lambda expression. Also there are basic function functions like
+compose, etc.
+</dc:description>
+</metadata>
+
+<theory xml:id="fns1">
+<imports from="sts.omdoc#sts"/>
+
+<symbol name="domainofapplication" xml:id="domainofapplication">
+<metadata>
+<dc:description> 
+    The domainofapplication element denotes the domain over which a given 
+    function is being applied. It is intended in MathML to be a more general 
+    alternative to specification of this domain using
+    such quantifier elements as bvar, lowlimit or condition. 
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMA>
+	  <OMS name="mapsto" cd="sts"/>
+	  <OMV name="Set"/>
+	  <OMV name="Set"/>
+	</OMA>
+	<OMV name="Set"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+
+<symbol name="domain" xml:id="domain">
+<metadata>
+<dc:description> This symbol denotes the domain of a given function, which is the set of
+    values it is defined over.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMA>
+	  <OMS name="mapsto" cd="sts"/>
+	  <OMV name="Set"/>
+	  <OMV name="Set"/>
+	</OMA>
+	<OMV name="Set"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+
+  <notation>
+    <prototype>
+      <om:OMS cd="fns1" name="domain"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="fns1">domain</m:csymbol>
+    </prototype>
+    <rendering>
+      <m:mo>Dom</m:mo>
+    </rendering>
+  </notation>
+
+<theory xml:id="fns1-domain">
+<imports from="logic1.omdoc#logic1"/>
+<imports from="set1.omdoc#set1"/>
+<imports from="quant1.omdoc#quant1"/>
+<imports from="relation1.omdoc#relation1"/>
+
+<assertion xml:id="domain-prop-1" type="lemma">
+  <CMP>
+    x is in the domain of f if and only if 
+    there exists a y in the range of f and f(x) = y
+  </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="logic1" name="equivalent"/>
+	<OMA>
+	  <OMS cd="set1" name="in"/>
+	  <OMV name="x"/>
+	  <OMA>
+	    <OMS cd="fns1" name="domain"/>
+	    <OMV name="f"/>
+	  </OMA>
+	</OMA>
+	<OMBIND>
+	  <OMS cd="quant1" name="exists"/>
+	  <OMBVAR>
+	    <OMV name="y"/>
+	  </OMBVAR>
+	  <OMA>
+	    <OMS cd="logic1" name="and"/>
+	    <OMA>
+	      <OMS cd="set1" name="in"/>
+	      <OMV name="y"/>
+	      <OMA>
+		<OMS cd="fns1" name="range"/>
+		<OMV name="f"/>
+	      </OMA>
+	    </OMA>
+	    <OMA>
+	      <OMS cd="relation1" name="eq"/>
+	      <OMA>
+		<OMV name="f"/>
+		<OMV name="x"/>
+	      </OMA>
+	      <OMV name="y"/>
+	    </OMA>
+	  </OMA>
+	</OMBIND>
+      </OMA>
+    </OMOBJ>
+  </FMP>
+</assertion>
+</theory>
+
+<symbol name="range" xml:id="range">
+<metadata>
+<dc:description>
+    This symbol denotes the range of a function, that is a set that the
+    function will map to. The single argument should be the function whos
+    range is being queried. It should be noted that this is not necessarily
+    equal to the image, it is merely required to contain the image.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMA>
+	  <OMS name="mapsto" cd="sts"/>
+	  <OMV name="Set"/>
+	  <OMV name="Set"/>
+	</OMA>
+	<OMV name="Set"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+  <notation>
+    <prototype>
+      <om:OMS cd="fns1" name="range"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="fns1">range</m:csymbol>
+    </prototype>
+    <rendering>
+      <m:mo>Ran</m:mo>
+    </rendering>
+  </notation>
+
+<theory xml:id="fns1-range">
+<imports from="logic1.omdoc#logic1"/>
+<imports from="set1.omdoc#set1"/>
+<imports from="quant1.omdoc#quant1"/>
+<imports from="relation1.omdoc#relation1"/>
+
+<assertion xml:id="range-prop-1" type="lemma">
+  <CMP>the range of f is a subset of the image of f</CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="set1" name="subset"/>
+	<OMA>
+	  <OMS cd="fns1" name="range"/>
+	  <OMV name="f"/>
+	</OMA>
+	<OMA>
+	  <OMS cd="fns1" name="image"/>
+	  <OMV name="f"/>
+	</OMA>
+      </OMA>
+    </OMOBJ>
+  </FMP>
+</assertion>
+</theory>
+
+<symbol name="image" xml:id="image">
+<metadata>
+<dc:description> 
+    This symbol denotes the image of a given function, which is the set of
+    values the domain of the given function maps to.
+</dc:description>
+</metadata>
+</symbol>
+  <notation>
+    <prototype>
+      <om:OMS cd="fns1" name="image"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="fns1">image</m:csymbol>
+    </prototype>
+    <rendering>
+      <m:mo>Im</m:mo>
+    </rendering>
+  </notation>
+
+<theory xml:id="fns1-image">
+<imports from="logic1.omdoc#logic1"/>
+<imports from="set1.omdoc#set1"/>
+<imports from="quant1.omdoc#quant1"/>
+<imports from="relation1.omdoc#relation1"/>
+<assertion xml:id="image-prop-1" type="lemma">
+  <CMP> x in the domain of f implies f(x) is in the image f </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="logic1" name="implies"/>
+	<OMA>
+	  <OMS cd="set1" name="in"/>
+	  <OMV name="x"/>
+	  <OMA>
+	    <OMS cd="fns1" name="domain"/>
+	    <OMV name="f"/>
+	  </OMA>
+	</OMA>
+	<OMA>
+	  <OMS cd="set1" name="in"/>
+	  <OMA>
+	    <OMV name="f"/>
+	    <OMV name="x"/>
+	  </OMA>
+	  <OMA>
+	    <OMS cd="fns1" name="image"/>
+	    <OMV name="f"/>
+	  </OMA>
+	</OMA>
+      </OMA>
+    </OMOBJ>
+  </FMP>
+</assertion>
+</theory>
+
+<symbol name="identity" xml:id="identity">
+  <metadata>
+  <dc:description> The identity function, it takes one argument and returns the same value.</dc:description><dc:subject>identity</dc:subject></metadata>
+  <type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMS name="Object" cd="sts"/>
+	<OMS name="Object" cd="sts"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+
+  <notation>
+    <prototype>
+      <om:OMS cd="fns1" name="identity"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="fns1">identity</m:csymbol>
+    </prototype>
+    <rendering>
+      <m:mo>Id</m:mo>
+    </rendering>
+  </notation>
+  
+<theory xml:id="fns1-identity">
+<imports from="logic1.omdoc#logic1"/>
+<imports from="set1.omdoc#set1"/>
+<imports from="quant1.omdoc#quant1"/>
+<imports from="relation1.omdoc#relation1"/>
+<assertion xml:id="identity-prop-1" type="lemma">
+  <CMP> for all <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="x"/></OMOBJ> we have <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="#identity-prop-1.1"/></OMOBJ>.</CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMBIND>
+	<OMS cd="quant1" name="forall"/>
+	<OMBVAR><OMV name="x"/></OMBVAR>
+	<OMA id="identity-prop-1.1">
+	  <OMS cd="relation1" name="eq"/>
+	  <OMA>
+	    <OMS cd="fns1" name="identity"/>
+	    <OMV name="x"/>
+	  </OMA>
+	  <OMV name="x"/>
+	</OMA>
+      </OMBIND>
+    </OMOBJ>
+  </FMP>
+</assertion>
+</theory>
+
+<symbol name="left_inverse" xml:id="left_inverse">
+<metadata>
+<dc:description> 
+    This symbol is used to describe the left inverse of its argument (a
+    function). This inverse may only be partially defined because the
+    function may not have been surjective. If the function is not
+    surjective the left inverse function is
+    ill-defined without further stipulations. No other assumptions are made on
+    the semantics of this left inverse.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMA>
+	  <OMS name="mapsto" cd="sts"/>
+	  <OMV name="Set"/>
+	  <OMV name="Set"/>
+	</OMA>
+	<OMA>
+	  <OMS name="mapsto" cd="sts"/>
+	  <OMV name="Set"/>
+	  <OMV name="Set"/>
+	</OMA>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="fns1" name="left_inverse" o:cr="fun"/>
+        <expr name="arg"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="fns1" o:cr="fun">inverse</m:csymbol>
+        <expr name="arg"/>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <m:msup>
+        <render name="arg" precedence="900"/>
+        <m:mo o:cr="fun">-1</m:mo>
+      </m:msup>
+    </rendering>
+  </notation>
+
+<symbol name="right_inverse" xml:id="right_inverse">
+<metadata>
+<dc:description> 
+    This symbol is used to describe the right inverse of its argument (a function). This
+    inverse may only be partially defined because the function may not have been
+    surjective. If the function is not surjective the right inverse function is
+    ill-defined without further stipulations. No other assumptions are made on the
+    semantics of this right inverse.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMA>
+	  <OMS name="mapsto" cd="sts"/>
+	  <OMV name="Set"/>
+	  <OMV name="Set"/>
+	</OMA>
+	<OMA>
+	  <OMS name="mapsto" cd="sts"/>
+	  <OMV name="Set"/>
+	  <OMV name="Set"/>
+	</OMA>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="fns1" name="right_inverse" o:cr="fun"/>
+        <expr name="arg"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="fns1" o:cr="fun">inverse</m:csymbol>
+        <expr name="arg"/>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <m:msup>
+        <render name="args" precedence="900"/>
+        <m:mo o:cr="fun">-1</m:mo>
+      </m:msup>
+    </rendering>
+  </notation>
+
+<symbol name="inverse" xml:id="inverse">
+<metadata>
+<dc:description> 
+    This symbol is used to describe the inverse of its argument (a function). This inverse
+    may only be partially defined because the function may not have been surjective. If
+    the function is not surjective the inverse function is ill-defined without further
+    stipulations. No assumptions are made on the semantics of this inverse.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMA>
+	  <OMS name="mapsto" cd="sts"/>
+	  <OMV name="Set"/>
+	  <OMV name="Set"/>
+	</OMA>
+	<OMA>
+	  <OMS name="mapsto" cd="sts"/>
+	  <OMV name="Set"/>
+	  <OMV name="Set"/>
+	</OMA>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="fns1" name="inverse" o:cr="fun"/>
+        <expr name="arg"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="fns1" o:cr="fun">inverse</m:csymbol>
+        <expr name="arg"/>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <m:msup>
+        <render name="args" precedence="900"/>
+        <m:mo o:cr="fun">-1</m:mo>
+      </m:msup>
+    </rendering>
+  </notation>
+
+<theory xml:id="fns1-inverse">
+<imports from="logic1.omdoc#logic1"/>
+<imports from="set1.omdoc#set1"/>
+<imports from="quant1.omdoc#quant1"/>
+<imports from="relation1.omdoc#relation1"/>
+<assertion xml:id="inverse-prop-1" type="lemma">
+  <CMP> 
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="#inverse-prop-1.1"/></OMOBJ> if
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="f"/></OMOBJ> is injective,
+    that is
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath" style="display:block"><OMR href="#inverse-prop-1.2"/></OMOBJ>.
+  </CMP>
+
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA id="inverse-prop-1.2">
+	<OMS cd="logic1" name="implies"/>
+	<OMBIND>
+	  <OMS cd="quant1" name="forall"/>
+	  <OMBVAR>
+	    <OMV name="x"/>
+	    <OMV name="y"/>
+	  </OMBVAR>
+	  <OMA>
+	    <OMS cd="logic1" name="implies"/>
+	    <OMA>
+	      <OMS cd="relation1" name="eq"/>
+	      <OMA>
+		<OMV name="f"/>
+		<OMV name="x"/>
+	      </OMA>
+	      <OMA>
+		<OMV name="f"/>
+		<OMV name="y"/>
+	      </OMA>
+	    </OMA>
+	    <OMA>
+	      <OMS cd="relation1" name="eq"/>
+	      <OMV name="x"/>
+	      <OMV name="y"/>
+	    </OMA>
+	  </OMA>
+	</OMBIND>
+	<OMA id="inverse-prop-1.1">
+	  <OMS cd="relation1" name="eq"/>
+	  <OMA>
+	    <OMA>
+	      <OMS cd="fns1" name="inverse"/>
+	      <OMV name="f"/>
+	    </OMA>
+	    <OMA>
+	      <OMV name="f"/>
+	      <OMV name="z"/>
+	    </OMA>
+	  </OMA>
+	  <OMV name="z"/>
+	</OMA>
+      </OMA>
+    </OMOBJ>
+  </FMP>
+</assertion>
+
+<assertion xml:id="inverse-prop-3" type="lemma">
+  <CMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="#inverse-prop-3.1"/></OMOBJ> if
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="f"/></OMOBJ> is defined at
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="#inverse-prop-3.2"/></OMOBJ>
+    that is, 
+    if there exists an <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="x"/></OMOBJ> such hat
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="#inverse-prop-3.3"/></OMOBJ> then this implies
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="#inverse-prop-3.1"/></OMOBJ>
+  </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMBIND>
+	<OMS cd="quant1" name="forall"/>
+	<OMBVAR><OMV name="y"/></OMBVAR>
+	<OMA>
+	  <OMS cd="logic1" name="implies"/>
+	  <OMBIND>
+	    <OMS cd="quant1" name="exists"/>
+	    <OMBVAR><OMV name="x"/></OMBVAR>
+	    <OMA id="inverse-prop-3.3">
+	      <OMS cd="relation1" name="eq"/>
+	      <OMA id="inverse-prop-3.2">
+		<OMA>
+		  <OMS cd="fns1" name="inverse"/>
+		  <OMV name="f"/>
+		</OMA>
+		<OMV name="y"/>
+	      </OMA>
+	      <OMV name="x"/>
+	    </OMA>
+	  </OMBIND>
+	  <OMA id="inverse-prop-3.1">
+	    <OMS cd="relation1" name="eq"/>
+	    <OMA>
+	      <OMV name="f"/>
+	      <OMA>
+		<OMA>
+		  <OMS cd="fns1" name="inverse"/>
+		  <OMV name="f"/>
+		</OMA>
+		<OMV name="y"/>
+	      </OMA>
+	    </OMA>
+	    <OMV name="y"/>
+	  </OMA>
+	</OMA>
+      </OMBIND>
+    </OMOBJ>
+  </FMP>
+</assertion>
+</theory>
+
+<symbol name="left_compose" xml:id="left_compose">
+<metadata>
+<dc:description> 
+    This symbol represents the function which forms the left-composition
+    of its two (function) arguments.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMA>
+	  <OMS name="mapsto" cd="sts"/>
+	  <OMV name="Set"/>
+	  <OMV name="Set"/>
+	</OMA>
+	<OMA>
+	  <OMS name="mapsto" cd="sts"/>
+	  <OMV name="Set"/>
+	  <OMV name="Set"/>
+	</OMA>
+	<OMA>
+	  <OMS name="mapsto" cd="sts"/>
+	  <OMV name="Set"/>
+	  <OMV name="Set"/>
+	</OMA>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="fns1" name="left_compose" o:cr="fun"/>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="fns1" o:cr="fun">left_compose</m:csymbol>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <m:mrow>
+        <m:mo o:egroup="fence" fence="true">(</m:mo>
+        <render name="arg1"/>
+        <m:mo o:cr="fun">∘</m:mo>
+        <render name="arg2"/>
+        <m:mo o:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+  <notation>
+    <prototype>
+      <om:OMS cd="fns1" name="left_compose"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="fns1">left_compose</m:csymbol>
+    </prototype>
+    <rendering>
+      <m:mo>left_compose</m:mo>
+    </rendering>
+  </notation>
+  
+<theory xml:id="fns1-lcompose">
+
+<imports from="logic1.omdoc#logic1"/>
+<imports from="set1.omdoc#set1"/>
+<imports from="quant1.omdoc#quant1"/>
+<imports from="relation1.omdoc#relation1"/>
+<assertion xml:id="left_compose-prop-1" type="lemma">
+  <CMP><OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="#left_compose-prop-1.1"/></OMOBJ></CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMBIND id="left_compose-prop-1.1">
+	<OMS cd="quant1" name="forall"/>
+	<OMBVAR>
+	  <OMV name="f"/>
+	  <OMV name="g"/>
+	  <OMV name="x"/>
+	</OMBVAR>
+	<OMA>
+	  <OMS cd="relation1" name="eq"/>
+	  <OMA>
+	    <OMA>
+	      <OMS cd="fns1" name="left_compose"/>
+	      <OMV name="f"/>
+	      <OMV name="g"/>
+	    </OMA>
+	    <OMV name="x"/>
+	  </OMA>
+	  <OMA>
+	    <OMV name="f"/>
+	    <OMA>
+	      <OMV name="g"/>
+	      <OMV name="x"/>
+	    </OMA>
+	  </OMA>
+	</OMA>
+      </OMBIND>
+    </OMOBJ>
+  </FMP>
+</assertion>
+</theory>
+
+<symbol name="lambda" xml:id="lambda">
+<metadata>
+<dc:description>
+    This symbol is used to represent anonymous functions as lambda expansions. 
+    It is used in a binder that takes two further arguments, the first of which
+    is a list of variables, and the second of which is an expression, and it
+    forms the function which is the lambda extraction of the expression
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMS name="binder" cd="sts"/>
+    </OMOBJ>
+  </type>
+</symbol>
+
+  <notation>
+    <prototype>
+      <om:OMS cd="fns1" name="lambda"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="fns1">lambda</m:csymbol>
+    </prototype>
+    <rendering>
+      <m:mo>λ</m:mo>
+    </rendering>
+  </notation>
+
+<theory xml:id="fns1-lambda">
+<imports from="logic1.omdoc#logic1"/>
+<imports from="set1.omdoc#set1"/>
+<imports from="quant1.omdoc#quant1"/>
+<imports from="relation1.omdoc#relation1"/>
+<example xml:id="lambda-ex-1" type="for" for="#lambda">
+  <CMP>
+    An example to show the connection between curried and uncurried applications of a
+    binary function <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV
+    name="f"/></OMOBJ> <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR
+    href="#lambda-ex-1.1"/></OMOBJ>.
+  </CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMBIND id="lambda-ex-1.1">
+      <OMS cd="quant1" name="forall"/>
+      <OMBVAR>
+	<OMV name="a"/>
+	<OMV name="b"/>
+      </OMBVAR>
+      <OMA>
+	<OMS cd="relation1" name="eq"/>
+	<OMA>
+	  <OMBIND>
+	    <OMS cd="fns1" name="lambda"/>
+	    <OMBVAR>
+	      <OMV name="x"/>
+	      <OMV name="y"/>
+	    </OMBVAR>
+	    <OMV name="f"/>
+	  </OMBIND>
+	  <OMV name="a"/>
+	  <OMV name="b"/>
+	</OMA>
+	<OMA>
+	  <OMBIND>
+	    <OMS cd="fns1" name="lambda"/>
+	    <OMBVAR>
+	      <OMV name="x"/>
+	    </OMBVAR>
+	    <OMA>
+	      <OMBIND>
+		<OMS cd="fns1" name="lambda"/>
+		<OMBVAR>
+		  <OMV name="y"/>
+		</OMBVAR>
+		<OMV name="f"/>
+	      </OMBIND>
+	      <OMV name="b"/>
+	    </OMA>
+	  </OMBIND>
+	  <OMV name="a"/>
+	</OMA>
+      </OMA>
+    </OMBIND>
+  </OMOBJ>
+</example>
+</theory>
+</theory>
+</omdoc>
+

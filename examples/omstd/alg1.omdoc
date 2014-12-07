@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  
+       xmlns="http://omdoc.org/ns"
+       xmlns:om="http://www.openmath.org/OpenMath"
+       xmlns:m="http://www.w3.org/1998/Math/MathML"
+       xmlns:o="http://omdoc.org/ns"
+       xml:id="alg1-omdoc">
+
+<metadata>
+  <dc:title>The OpenMath Content Dictionary alg1.ocd  in OMDoc form</dc:title>
+  <dc:creator role="trl">Michael Kohlhase</dc:creator>
+  <dc:creator role="ant">The OpenMath Society</dc:creator>
+  <dc:date> 2001-03-12T00:00:00</dc:date>
+  <dc:source>Derived from the OpenMath CD http://www.openmath.org/cd/alg1.ocd.</dc:source>
+  <dc:type>Text</dc:type>
+  <dc:format>application/omdoc+xml</dc:format>
+  <dc:rights>Copyright (c) 2000-2002 Michael Kohlhase;
+    This OMDoc content dictionary is released under the OpenMath license:
+    http://monet.nag.co.uk/openmath/cdfiles/license.html
+  </dc:rights>
+  <dc:description> 
+    A CD of basic algebraic concepts
+
+At present this CD only holds definitions of zero and one. They are
+deliberately defined here without specifying any particular structure
+(e.g. a group) to which they correspond.
+</dc:description>
+</metadata>
+
+<theory xml:id="alg1">
+  <imports from="sts.omdoc#sts"/>
+
+
+<symbol name="zero" xml:id="zero">
+  <metadata>
+    <dc:description>This symbol represents the additive identity element.</dc:description>
+    <dc:subject>zero</dc:subject>
+  </metadata>
+  <type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="AbelianMonoid"/></OMOBJ>
+  </type>
+</symbol>
+
+  <notation>
+    <prototype>
+      <om:OMS cd="alg1" name="zero"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="alg1">zero</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en">
+      <m:mo>0</m:mo>
+    </rendering>
+  </notation>
+
+<theory xml:id="alg1-zero.thy">
+<imports from="quant1.omdoc#quant1"/>
+<imports from="arith1.omdoc#arith1"/>
+<imports from="logic1.omdoc#logic1"/>
+<imports from="set1.omdoc#set1"/>
+
+<assertion xml:id="zero-prop-1" type="lemma">
+  <CMP> for all a | a + 0 = a </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMBIND>
+	<OMS cd="quant1" name="forall"/>
+	<OMBVAR>
+	  <OMV name="a"/>
+	</OMBVAR>
+	<OMA>
+	  <OMS cd="relation1" name="eq"/>
+	  <OMA>
+	    <OMS cd="arith1" name="plus"/>
+	    <OMV name="a"/>
+	    <OMS cd="alg1" name="zero"/>
+	  </OMA>
+	  <OMV name="a"/>
+	</OMA>
+      </OMBIND>
+    </OMOBJ>
+  </FMP>
+</assertion>
+<assertion xml:id="zero-prop-3" type="lemma">
+  <CMP> for all a | 0 * a = 0 </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMBIND>
+	<OMS cd="quant1" name="forall"/>
+	<OMBVAR>
+	  <OMV name="a"/>
+	</OMBVAR>
+	<OMA>
+	  <OMS cd="relation1" name="eq"/>
+	  <OMA>
+	    <OMS cd="arith1" name="times"/>
+	    <OMS cd="alg1" name="zero"/>
+	    <OMV name="a"/>
+	  </OMA>
+	  <OMS cd="alg1" name="zero"/>
+	</OMA>
+      </OMBIND>
+    </OMOBJ>
+  </FMP>
+</assertion>
+<assertion xml:id="zero-prop-5" type="lemma">
+  <CMP>The zero of the integers is 0</CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMBIND>
+	<OMS cd="quant1" name="forall"/>
+	<OMBVAR>
+	  <OMV name="x"/>
+	</OMBVAR>
+	<OMA>
+	  <OMS cd="logic1" name="implies"/>
+	  <OMA>
+	    <OMS cd="logic1" name="and"/>
+	    <OMA>
+	      <OMS cd="set1" name="in"/>
+	      <OMV name="x"/>
+	      <OMS cd="setname1" name="Z"/>
+	    </OMA>
+	    <OMA>
+	      <OMS cd="relation1" name="eq"/>
+	      <OMV name="x"/>
+	      <OMS cd="alg1" name="zero"/>
+	    </OMA>
+	  </OMA>
+	  <OMA>
+	    <OMS cd="relation1" name="eq"/>
+	    <OMV name="x"/>
+	    <OMI>0</OMI>
+	  </OMA>
+	</OMA>
+      </OMBIND>
+    </OMOBJ>
+  </FMP>
+</assertion>
+</theory>
+
+<symbol name="one" xml:id="one">
+  <metadata>
+    <dc:description>This symbol represents the multiplicative identity element.</dc:description>
+    <dc:subject>one</dc:subject>
+  </metadata>
+  <type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMV name="Monoid"/>
+    </OMOBJ>
+  </type>
+</symbol>
+  <notation>
+    <prototype>
+      <om:OMS cd="alg1" name="one"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="alg1">one</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en">
+      <m:mo>1</m:mo>
+    </rendering>
+  </notation>
+
+<theory xml:id="alg1-one.thy">
+  <imports from="relation1.omdoc#relation1"/>
+  <imports from="quant1.omdoc#quant1"/>
+  <imports from="set1.omdoc#set1"/>
+  <imports from="arith1.omdoc#arith1"/>
+  <imports from="logic1.omdoc#logic1"/>
+
+  <assertion xml:id="one-prop-1" type="lemma">
+  <CMP> for all a | 1 * a = a </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMBIND>
+	<OMS cd="quant1" name="forall"/>
+	<OMBVAR>
+	  <OMV name="a"/>
+	</OMBVAR>
+	<OMA>
+	  <OMS cd="relation1" name="eq"/>
+	  <OMA>
+	    <OMS cd="arith1" name="times"/>
+	    <OMS cd="alg1" name="one"/>
+	    <OMV name="a"/>
+	  </OMA>
+	  <OMV name="a"/>
+	</OMA>
+      </OMBIND>
+    </OMOBJ>
+  </FMP>
+</assertion>
+<assertion xml:id="one-prop-3" type="lemma">
+  <CMP> for all a | a * 1 = a </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMBIND>
+	<OMS cd="quant1" name="forall"/>
+	<OMBVAR>
+	  <OMV name="a"/>
+	</OMBVAR>
+	<OMA>
+	  <OMS cd="relation1" name="eq"/>
+	  <OMA>
+	    <OMS cd="arith1" name="times"/>
+	    <OMV name="a"/>
+	    <OMS cd="alg1" name="one"/>
+	  </OMA>
+	  <OMV name="a"/>
+	</OMA>
+      </OMBIND>
+    </OMOBJ>
+  </FMP>
+</assertion>
+
+<assertion xml:id="one-prop-5" type="lemma">
+  <CMP>The one of the integers is 1</CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMBIND>
+	<OMS cd="quant1" name="forall"/>
+	<OMBVAR>
+	  <OMV name="x"/>
+	</OMBVAR>
+	<OMA>
+	  <OMS cd="logic1" name="implies"/>
+	  <OMA>
+	    <OMS cd="logic1" name="and"/>
+	    <OMA>
+	      <OMS cd="set1" name="in"/>
+	      <OMV name="x"/>
+	      <OMS cd="setname1" name="Z"/>
+	    </OMA>
+	    <OMA>
+	      <OMS cd="relation1" name="eq"/>
+	      <OMV name="x"/>
+	      <OMS cd="alg1" name="one"/>
+	    </OMA>
+	  </OMA>
+	  <OMA>
+	    <OMS cd="relation1" name="eq"/>
+	    <OMV name="x"/>
+	    <OMI>1</OMI>
+	  </OMA>
+	</OMA>
+      </OMBIND>
+    </OMOBJ>
+  </FMP>
+</assertion>
+</theory>
+</theory>
+</omdoc>
+

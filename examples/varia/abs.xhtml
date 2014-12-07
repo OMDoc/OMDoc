@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html id="abs.omdoc" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <link rel="stylesheet" type="text/css" href="omdoc-default.css"/>
+    <title>Rules for the Absolute Value Function</title>
+  </head>
+  <body>
+    <div class="dc-titleblock">
+      <div class="dc-title">Rules for the Absolute Value Function</div>
+      <div class="dc-authors">Michael Kohlhase</div>
+      <div class="dc-date"> 2002-12-0 2003-01-1</div>
+      <div class="dc-description"> Analytica Rules for the Absolute Value Function in Mathematica -- real case only. </div>
+    </div>
+    <div class="theory" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="http://purl.org/dc/elements/1.1/">
+      <h1 id="simple-abs">1. Simple properties of the absolute value function.</h1>
+      <div class="imports">imports from: 
+        <a href="../omstd/arith1.omdoc#arith1">arith1</a>, 
+        <a href="../omstd/relation1.omdoc#relation1">relation1</a>, 
+        <a href="../logics/pl1.omdoc#pl1">pl1</a>, 
+        <a href="../logics/pl0.omdoc#pl0">pl0</a>, 
+        <a href="../logics/truthval.omdoc#truthval">truthval</a>
+      </div>
+      <div class="omdoc-lemma" id="abs-negative" role="Assertion" about="#abs-negative" xml:id="abs-negative">
+        <a class="omdoc" rel="oso:homeTheory" href="#simple-abs"/>
+        <span class="omdoc-titleword">Lemma</span>
+        <p>The Absolute Value function is non-negative.</p>
+        <span class="omdoc-FMP">
+          <span id="MCRd19e39" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns">
+              <m:mrow>
+                <m:mo>∀</m:mo>
+              </m:mrow>
+            </m:math>
+          </span>
+        </span>
+      </div>
+      <div class="header"/>
+      <div class="omdoc-omtext" id="abs-positive.about.m">
+        <p>This gives rise to the following Mathematica Code, which will be loaded by Analytica: </p>
+        <span class="omdoc-omlet">
+          <pre> Unprotect[Abs]; Abs /: (Abs[a_] &lt; 0) := False; Abs /: (0 &lt;= Abs[a_]) := True; Protect[Abs]; </pre>
+        </span>
+      </div>
+      <div class="omdoc-proof" id="abs-negative.pf" role="Proof" about="#abs-negative" xml:id="abs-negative.pf">
+        <a class="omdoc" rel="oso:proves" href="#abs-negative"/>
+        <a class="omdoc" rel="oso:homeTheory" href="#abs-negative"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Proof</span>
+        </div>
+        <ol>
+          <li id="d1">
+            <p> By definition, 
+              <span id="MCRd19e51" class="displaymath" xmlns="">
+                <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns">
+                  <!--IMPROVEME: the following is just a fallback-->
+                  <m:mo>abs</m:mo>
+                </m:math>
+              </span> is the identity on the positive real numbers and the negative identity on the negative real numbers. 
+            </p>
+          </li>
+          <li id="d2">
+            <p>As both branches are non-negative, we have proven the assertion.</p>
+          </li>
+        </ol>
+      </div>
+      <div class="omdoc-lemma" id="abs-non-negative" role="Assertion" about="#abs-non-negative" xml:id="abs-non-negative">
+        <a class="omdoc" rel="oso:homeTheory" href="#simple-abs"/>
+        <span class="omdoc-titleword">Lemma</span>
+        <p>The Absolute Value function is non-positive only on 
+          <span id="MCRd19e65" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns">
+              <m:mn>0</m:mn>
+            </m:math>
+          </span>.
+        </p>
+        <span class="omdoc-FMP">
+          <span id="MCRd19e70" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns">
+              <m:mrow>
+                <m:mo>∀</m:mo>
+              </m:mrow>
+            </m:math>
+          </span>
+        </span>
+      </div>
+      <div class="omdoc-lemma" id="abs-zero" role="Assertion" about="#abs-zero" xml:id="abs-zero">
+        <a class="omdoc" rel="oso:homeTheory" href="#simple-abs"/>
+        <span class="omdoc-titleword">Lemma</span>
+        <p>The Absolute Value function is zero only on 
+          <span id="MCRd19e81" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns">
+              <m:mn>0</m:mn>
+            </m:math>
+          </span>.
+        </p>
+        <span class="omdoc-FMP">
+          <span id="MCRd19e86" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns">
+              <m:mrow>
+                <m:mo>∀</m:mo>
+              </m:mrow>
+            </m:math>
+          </span>
+        </span>
+      </div>
+      <div class="omdoc-lemma" id="abs-positive" role="Assertion" about="#abs-positive" xml:id="abs-positive">
+        <a class="omdoc" rel="oso:homeTheory" href="#simple-abs"/>
+        <span class="omdoc-titleword">Lemma</span>
+        <p>The Absolute Value function is positive except on 
+          <span id="MCRd19e96" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns">
+              <m:mn>0</m:mn>
+            </m:math>
+          </span>.
+        </p>
+        <span class="omdoc-FMP">
+          <span id="MCRd19e101" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns">
+              <m:mrow>
+                <m:mo>∀</m:mo>
+              </m:mrow>
+            </m:math>
+          </span>
+        </span>
+      </div>
+    </div>
+    <html id="abs-simpl">
+      <head>
+        <link rel="stylesheet" type="text/css" href="omdoc-default.css"/>
+        <title>Rules for the Absolute Value Function</title>
+      </head>
+      <body>
+        <div class="dc-titleblock">
+          <div class="dc-title"> Rules for simplifying expressions involving the absolute value function. </div>
+          <div class="dc-authors">No Author Specified</div>
+        </div>
+        <div class="header"/>
+        <div class="omdoc-omtext" id="abs-simplify.about">
+          <p>From the definition of the absolute value function, we can directly obtain the following simplification rules for Mathematica: </p>
+          <span class="omdoc-omlet">
+            <pre> Abs[a_ b_] := Abs[a] Abs[b]; Abs[a_^n_] := Abs[a]^n; </pre>
+          </span>
+        </div>
+      </body>
+    </html>
+    <html id="local">
+      <head>
+        <link rel="stylesheet" type="text/css" href="omdoc-default.css"/>
+        <title>Rules for the Absolute Value Function</title>
+      </head>
+      <body>
+        <div class="dc-titleblock">
+          <div class="dc-title">Local rule used in simplification.</div>
+          <div class="dc-authors">No Author Specified</div>
+        </div>
+        <div class="header"/>
+        <div class="omdoc-omtext" id="abs-rule.docu">
+          <p>We need some documentation for the simplification rule </p>
+          <span class="omdoc-omlet">
+            <pre> AbsRule = { Abs[a_] :&gt; If[TrueQ[WeakSimplify[a &gt;= 0]], a, If[TrueQ[WeakSimplify[a &lt;= 0]], -a, Abs[Factor1[a]]]] }; </pre>
+          </span>
+          <p>. </p>
+        </div>
+      </body>
+    </html>
+  </body>
+</html>

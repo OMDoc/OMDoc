@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  xmlns="http://omdoc.org/ns"
+       xml:id="arith2-omdoc" 
+       xmlns:om="http://www.openmath.org/OpenMath">
+
+
+  <dc:title>The OpenMath Content Dictionary arith2.ocd  in OMDoc form</dc:title>
+  <dc:creator role="trl">Michael Kohlhase</dc:creator>
+  <dc:creator role="ant">The OpenMath Society</dc:creator>
+  <dc:date> 1999-05-10T00:00:00 </dc:date>
+  <dc:source>Derived from the OpenMath CD http://www.openmath.org/cd/arith2.ocd.</dc:source>
+  <dc:type>Text</dc:type>
+  <dc:format>application/omdoc+xml</dc:format>
+  <dc:rights>Copyright (c) 2000-2002 Michael Kohlhase;
+    This OMDoc content dictionary is released under the OpenMath license:
+    http://monet.nag.co.uk/openmath/cdfiles/license.html
+  </dc:rights>
+  <dc:description>
+    Further to the basic arithmetic functions, we define some more common
+    arithmetic operations. This includes a commutative times which
+    exhibits the use of inheritance within the CD's.
+  </dc:description>
+
+
+<theory xml:id="arith2" cdbase="http://www.openmath.org/cd">
+
+<include from="sts.omdoc#sts"/>
+<include from="quant1.omdoc#quant1"/>
+<include from="relation1.omdoc#relation1"/>
+<include from="arith1.omdoc#arith1"/>
+
+<symbol name="times" xml:id="times">
+
+<dc:description>
+    The symbol representing an n-ary multiplication function inheriting
+    from the times in arith1, but with the extra property that here it must
+    be commutative.
+</dc:description>
+
+<type>
+    <om:OMOBJ>
+      <om:OMA>
+	<om:OMS name="mapsto" cd="sts"/>
+	<om:OMA>
+	  <om:OMS name="nassoc" cd="sts"/>
+	  <om:OMV name="AbelianSemiGroup"/>
+	</om:OMA>
+	<om:OMV name="AbelianSemiGroup"/>
+      </om:OMA>
+    </om:OMOBJ>
+  </type>
+</symbol>
+<presentation xml:id="pr-times" for="#times" role="applied" fixity="assoc" precedence="400">
+  <use  format="html">*</use>
+  <use  format="TeX">{\cdot}</use>
+  <use  format="pmml">&#x02062;</use>
+</presentation>
+<presentation for="#times"><use format="cmml" element="times"/></presentation>
+<assertion xml:id="times-prop-1" type="lemma">
+  <CMP> for all a,b | a * b = b * a </CMP>
+  <FMP>
+    <om:OMOBJ>
+      <om:OMBIND>
+	<om:OMS cd="quant1" name="forall"/>
+	<om:OMBVAR>
+	  <om:OMV name="a"/>
+	  <om:OMV name="b"/>
+	</om:OMBVAR>
+	<om:OMA>
+	  <om:OMS cd="relation1" name="eq"/>
+	  <om:OMA>
+	    <om:OMS cd="arith1" name="times"/>
+	    <om:OMV name="a"/>
+	    <om:OMV name="b"/>
+	  </om:OMA>
+	  <om:OMA>
+	    <om:OMS cd="arith1" name="times"/>
+	    <om:OMV name="b"/>
+	    <om:OMV name="a"/>
+	  </om:OMA>
+	</om:OMA>
+      </om:OMBIND>
+    </om:OMOBJ>
+  </FMP>
+</assertion>
+<symbol name="inverse" xml:id="inverse">
+
+<dc:description>
+    A unary operator which represents the inverse of an element of a set. This
+    symbol could be used to represent additive or multiplicative inverses.
+</dc:description>
+
+<type>
+    <om:OMOBJ>
+      <om:OMA>
+	<om:OMS name="mapsto" cd="sts"/>
+	<om:OMV name="Group"/>
+	<om:OMV name="Group"/>
+      </om:OMA>
+    </om:OMOBJ>
+  </type>
+</symbol>
+<presentation xml:id="pres-inverse" for="#inverse" fixity="postfix" role="applied" precedence="200"  arity="1">
+  <use format="html">&lt;sup&gt;-1&lt;/sup&gt;</use>
+  <use format="TeX">^{-1}</use>
+  <use format="pmml" element="msup" bracket-style="lisp">-1</use>
+</presentation>
+<presentation for="#inverse"><use format="cmml" element="inverse"/></presentation>
+<assertion xml:id="inverse-prop-1" type="lemma">
+  <CMP> inverse(inverse(a))=a </CMP>
+  <FMP>
+    <om:OMOBJ>
+      <om:OMBIND>
+	<om:OMS cd="quant1" name="forall"/>
+	<om:OMBVAR>
+	  <om:OMV name="a"/>
+	</om:OMBVAR>
+	<om:OMA>
+	  <om:OMS cd="relation1" name="eq"/>
+	  <om:OMA>
+	    <om:OMS cd="arith2" name="inverse"/>
+	    <om:OMA>
+	      <om:OMS cd="arith2" name="inverse"/>
+	      <om:OMV name="a"/>
+	    </om:OMA>
+	  </om:OMA>
+	  <om:OMV name="a"/>
+	</om:OMA>
+      </om:OMBIND>
+    </om:OMOBJ>
+  </FMP>
+</assertion>
+</theory>
+</omdoc>

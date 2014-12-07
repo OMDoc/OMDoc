@@ -1,0 +1,123 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This file is part of the LaTeX sources of the OMDoc 1.6 specification
+% Copyright (c) 2006 Michael Kohlhase
+% This work is licensed by the Creative Commons Share-Alike license
+% see http://creativecommons.org/licenses/by-sa/2.5/ for details
+\svnInfo $Id: dc.tex 8369 2009-06-07 00:45:48Z kohlhase $
+\svnKeyword $HeadURL: https://svn.omdoc.org/repos/omdoc/trunk/doc/spec/dc.tex $
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{module}[id=genmeta]
+\begin{omgroup}[creators={miko,clange},short={Metadata},id=metadatachap]
+  {Metadata (Module {\METAmodule{spec}})}
+
+\begin{newpart}{@CL, please re-read and expand}
+  \indexalt{Metadata}{metadata} is ``{\twintoo{data}{about data}}'' --- in the case of
+  {\omdoc} data about documents fragments, such as titles, authorship, language usage, or
+  administrative aspects like modification dates, distribution rights, identifiers, or
+  version information. {\omdoc} documents also contain data about realations between
+  mathematical objects, statements, and theories, that other applications would consider
+  as metadata. To ensure interoperability with such applications and the Semantic Web,
+  {\omdoc} supports the extraction of {\omdoc}-specific metadata to the RDF
+  format\ednote{MK@CL write up something about processing in projects or processing and
+    reference it here} and the annotation of many {\omdoc} elements with web-ontology
+  metadata.
+
+  In this section we will introduce the metadata framework for {\twintoo{strict}{omdoc}},
+  which provides a generic, extensible infrastructure for adding metadata based on the
+  recently stabilized RDFa~\cite{AdidaEtAl08:RDFa} a standard for flexibly embedding
+  metadata into X(HT)ML documents. This design decision allows us to separate the
+  {\emph{syntax}} (which is standardized in RDFa) from the {\emph{semantics}}, which we
+  externalize in metadata ontologies, which can be encoded in {\omdoc}; see
+  {\extref{primer}{ontology}}.
+
+
+
+  The {\omdoc} format will incorporate various concrete metadata vocabularies as part of
+  the document format. These are given as documented ontologies encoded as {\omdoc}
+  theories and are normative parts of the format specification. Note that these metadata
+  theories\ednote{MK@MK: reference theory framework (probably the strict one)} can be
+  thought of as the minimal specifications of the metadata: Refinements are admissible, if
+  they are formulated as {\omdoc} theories that entertain {\termref{view}}s into the
+  normative theories.{MK@MK: dream up a framework how to include the ontologies into the
+    spec (probably as the DC and CC chapters; but do not forget the assertion type
+    ontology, see \tracticket{1511}).}
+
+\begin{myfig}{qtmetadata}{Metadata in {\omdoc}}
+  \begin{scriptsize}
+\begin{tabular}{|>{\tt}l|>{\tt}l|>{\tt}l|>{\tt}l|}\hline
+{\rm Element}& \multicolumn{2}{l|}{Attributes\hspace*{2.25cm}} & Content  \\\hline
+                 & {\rm Req.}  & {\rm Optional}   &           \\\hline\hline
+metadata  &             &                     &  (meta|link)*\\\hline
+meta         & property,content         &  datatype               & ANY \\\hline
+link           & rel & href & (resource|mlink|meta)*\\\hline
+resource   & & typeof, about & (meta|link)*\\\hline
+\end{tabular}
+\end{scriptsize}
+\end{myfig}
+
+\begin{definition}[id=metadata.def]
+  The {\eldef{metadta}} element contains content encodings for RDF triples and
+  resources. \ednote{@CL: need to verbalize this.}
+\end{definition}
+\ednote{@CL: explain curies here.}  
+\ednote{@CL: need a simple example here, best DC  metadata that we can take up later. }
+
+\begin{omgroup}{Pragmatic to Strict Translation}
+  Every {\omdoc} element that admits a {\element{metadata}} child can serve as a metadata
+  subject, so we can offer the following pragmatic (abbreviative) syntax:
+\begin{center}\lstset{frame=none,numbers=none,lineskip=-.7ex,aboveskip=-.5em,belowskip=-1em,mathescape}
+ \begin{tabular}{|p{5cm}|p{5cm}|}\hline
+    pragmatic & strict equivalent\\\hline
+\begin{lstlisting}
+<$\llquote{elt}$ rel="$\llquote{r}$" href="$\llquote{h}$">
+  $\llquote{body}$
+</$\llquote{elt}$>
+\end{lstlisting}
+&
+\begin{lstlisting}
+<$\llquote{elt}$>
+  <metadata>
+    <link rel="$\llquote{r}$" href="$\llquote{h}$"/>
+  </metadata>
+  $\llquote{body}$
+</$\llquote{elt}$>
+\end{lstlisting}
+\\\hline 
+\begin{lstlisting}
+<$\llquote{elt}$ rel="$\llquote{r}$" href="$\llquote{h}$">
+  <metadata>
+   $\llquote{meta}$
+  </metadata>
+  $\llquote{body}$
+</$\llquote{elt}$>
+\end{lstlisting}
+&
+\begin{lstlisting}
+<$\llquote{elt}$>
+  <metadata>
+    <link rel="$\llquote{r}$" href="$\llquote{h}$"/>
+    $\llquote{meta}$
+ </metadata>
+  $\llquote{body}$
+</$\llquote{elt}$>
+\end{lstlisting}
+\\\hline 
+\end{tabular}
+\end{center}
+\end{omgroup}
+
+
+{\omdocv{1.2}} had some descriptions of metadata inhertance for Dublin Core Metadata. In
+the new metadata framework we do not need to explicitly present this, since it is part of
+the metadata ontology: If a metadatum can be inferred it is defined to be
+present. \ednote{@CL, make a simple concrete example.}
+\end{newpart}
+\end{omgroup}
+\end{module}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "main"
+%%% End: 
+

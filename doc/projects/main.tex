@@ -1,0 +1,60 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This file is part of the LaTeX sources of the OMDoc 1.6 project descriptions
+% Copyright (c) 2009 Michael Kohlhase
+% This work is licensed by the Creative Commons Share-Alike license
+% see http://creativecommons.org/licenses/by-sa/2.5/ for details
+% $Id: main.tex 8904 2011-01-25 06:37:12Z kohlhase $
+% $HeadURL: https://svn.omdoc.org/repos/omdoc/trunk/doc/projects/main.tex $
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[extrefs,report]{omdocspec}
+\usepackage[show]{ed}     %../macros set to [hide] when publishing
+\usepackage{include}
+\usepackage[backref=true,hyperref=auto,style=alphabetic]{biblatex}
+\bibliography{../bibs/kwarc}
+\input{../macros/dcmcontributors}
+\makeindex
+\projectstrue
+\makeextrefs{projects} 
+\inputrefs{../spec/main}
+\extrefstyle{spec}{\cite[\protect{\theextref}]{Kohlhase:OMDoc1.6spec}}
+% \inputrefs{../processing/main}
+% \extrefstyle{processing}{\cite[\protect{\theextref}]{Kohlhase:OMDoc1.6processing}}
+
+\svnInfo $Id: main.tex 8904 2011-01-25 06:37:12Z kohlhase $
+\svnKeyword $HeadURL: https://svn.omdoc.org/repos/omdoc/trunk/doc/projects/main.tex $
+\begin{document}
+\begin{DCmetadata}[spechead]
+  \DCMtitle{{\omdoc} Projects and Applications [Version 1.6 (pre-2.0)]}
+  \DCMcreators{miko}
+  \DCMdate{\today}
+  \DCMcopyrightnotice{2009}{Michael Kohlhase}
+
+  \DCMlicensenotice{This work is licensed by the Creative Commons Share-Alike license
+    \url{http://creativecommons.org/licenses/by-sa/2.5/}: the contents of this
+    specification or fragments thereof may be copied and distributed freely, as long as
+    they are attributed to the original author and source, derivative works (i.e. modified
+    versions of the material) may be published as long as they are also licenced under the
+    Creative Commons Share-Alike license.}
+
+  \DCMabstract{We present a variety of applications and projects that use the {\omdoc}
+    format or are related to it in a substantive way.}
+\end{DCmetadata}
+\newpage
+\setcounter{tocdepth}{1}\tableofcontents
+\newpage
+\input{preface}
+\ednote{must show the metatdata in project descriptions}
+\Inprojects{toc}
+
+\printbibliography\newpage
+{\small\printindex}
+
+\end{document}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 
+
+% LocalWords:  rnc

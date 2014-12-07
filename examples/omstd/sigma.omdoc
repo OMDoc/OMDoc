@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  xmlns="http://omdoc.org/ns"
+       xml:id="sigma-omdoc">
+
+   
+      <dc:title>The OpenMath Content Dictionary sigma.ocd  in OMDoc form</dc:title>
+      <dc:creator role="trl">Michael Kohlhase</dc:creator>
+      <dc:creator role="ant">Olga Caprotti</dc:creator>
+      <dc:contributor role="aut">Hugo Elbers</dc:contributor>
+      <dc:description> 
+    Sigma Types for OM
+
+    Declaration of symbols for types and objects
+    An OpenMath object which uses any of the symbols here defined,
+    has to use them in accordance with the definitions in ESPRIT 
+    deliverable 1.3.2b .
+    </dc:description>
+   
+
+   <theory xml:id="sigma" cdbase="http://www.openmath.org/cd">
+      <symbol name="SigmaType" xml:id="SigmaType">
+
+<dc:description> The type constructor of cartesian products.
+               It takes a list of type-attributed variables and 
+               an OpenMath object.
+       </dc:description>
+
+</symbol>
+      <symbol name="Pair" xml:id="Pair">
+
+<dc:description> The pairing constructor. It takes two 
+               OpenMath objects as first element and second 
+               element of the pair, and a third optional 
+               OpenMath object that represents the type of 
+               this pair.  
+      </dc:description>
+
+</symbol>
+      <symbol name="PairProj1" xml:id="PairProj1">
+
+<dc:description> The first projection function. It 
+               satisfies sigma-reduction.
+      </dc:description>
+
+</symbol>
+      <symbol name="PairProj2" xml:id="PairProj2">
+
+<dc:description> The second projection function. It
+               satisfies sigma-reduction.
+      </dc:description>
+
+</symbol>
+   </theory>
+</omdoc>

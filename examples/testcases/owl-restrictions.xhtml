@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:krextor="http://kwarc.info/projects/krextor"
+      id="owl.omdoc">
+  <head>
+    <link rel="stylesheet" type="text/css" href="omdoc-default.css"/>
+    <title>Rendering OWL restrictions (things that don't work)</title>
+  </head>
+  <body>
+    <div xmlns:xs="http://www.w3.org/2001/XMLSchema" class="dc-titleblock">
+      <div class="dc-title">Rendering OWL restrictions (things that don't work)</div>
+      <div class="dc-authors">No Author Specified</div>
+    </div>
+
+    <div xmlns:xs="http://www.w3.org/2001/XMLSchema"
+         xmlns:dc="http://purl.org/dc/elements/1.1/"
+         class="omdoc-theory">
+      <h1 id="owl">1. No Title Specified</h1>
+      <div class="omdoc-imports">imports from: <a href="../logics/rdfs.xhtml#rdfs">rdfs</a>, <a href="../logics/xsd.xhtml#xsd">xsd</a>, <a href="../metadata/foaf.xhtml#foaf">foaf</a>
+      </div>
+      <div class="header">introduction</div>
+      <div class="omdoc-omtext salt-introduction">
+        <p>render with "make owl-restrictions.xhtml"</p>
+      </div>
+      <div class="omdoc-example">
+        <span class="omdoc-titleword">Example</span>
+
+        <p>A cardinality restriction (rendered incorrectly, as the notation for quantified property restrictions matches – uncomment the commented notation definitions instead to make it work)</p>
+
+
+        <p>Meaning: an instance of this class knows at least one thing (e.g.
+	a person)</p>
+
+
+        <p>This output would be wrong: <m:math xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns"
+                  xmlns:om="http://www.openmath.org/OpenMath"
+                  xmlns:oo="http://omdoc.org/ontology#"
+                  xmlns:m="http://www.w3.org/1998/Math/MathML"
+                  xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+                  id="MCRd53e22">
+            <m:mrow>
+              <m:mo>≥</m:mo>
+              <m:mo>knows</m:mo>
+              <m:mo>.</m:mo>
+              <m:mn>1</m:mn>
+            </m:mrow>
+          </m:math>
+        </p>
+
+
+        <p>This output would be correct: <m:math xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns"
+                  xmlns:om="http://www.openmath.org/OpenMath"
+                  xmlns:oo="http://omdoc.org/ontology#"
+                  xmlns:m="http://www.w3.org/1998/Math/MathML"
+                  xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+                  id="MCRd53e34">
+            <m:mrow>
+              <m:mo>≥</m:mo>
+              <m:mn>1</m:mn>
+              <m:mo>knows</m:mo>
+            </m:mrow>
+          </m:math>
+        </p>
+
+
+        <p>This is what JOMDoc renders:</p>
+        <m:math xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns"
+                xmlns:om="http://www.openmath.org/OpenMath"
+                xmlns:oo="http://omdoc.org/ontology#"
+                xmlns:m="http://www.w3.org/1998/Math/MathML"
+                xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+                id="MCRd53e44">
+          <m:mrow>
+            <m:mo>≥</m:mo>
+            <m:mn>1</m:mn>
+            <m:mo>knows</m:mo>
+          </m:mrow>
+        </m:math>
+      </div>
+      <div class="omdoc-example">
+        <span class="omdoc-titleword">Example</span>
+
+        <p>A quantified property restriction</p>
+
+
+        <p>Meaning: All things that an instance of this class knows are
+	persons</p>
+        <m:math xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns"
+                xmlns:om="http://www.openmath.org/OpenMath"
+                xmlns:oo="http://omdoc.org/ontology#"
+                xmlns:m="http://www.w3.org/1998/Math/MathML"
+                xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+                id="MCRd53e58">
+          <m:mrow>
+            <m:mo>∀</m:mo>
+            <m:mo>knows</m:mo>
+            <m:mo>.</m:mo>
+            <m:mo>Person</m:mo>
+          </m:mrow>
+        </m:math>
+      </div>
+      <div id="Restriction" class="omdoc-symbol">
+        <span class="omdoc-titleword">Concept</span>Restriction<div class="omdoc-type">
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>
+            <m:math xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns"
+                    xmlns:om="http://www.openmath.org/OpenMath"
+                    xmlns:oo="http://omdoc.org/ontology#"
+                    xmlns:m="http://www.w3.org/1998/Math/MathML"
+                    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+                    id="MCRd53e73">
+              <m:mo>Class</m:mo>
+            </m:math>
+          </div>
+        </div>
+      </div>
+      <div id="allValuesFrom" class="omdoc-symbol">
+        <span class="omdoc-titleword">Concept</span>allValuesFrom<div class="omdoc-type">
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>
+            <m:math xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns"
+                    xmlns:om="http://www.openmath.org/OpenMath"
+                    xmlns:oo="http://omdoc.org/ontology#"
+                    xmlns:m="http://www.w3.org/1998/Math/MathML"
+                    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+                    id="MCRd53e117">
+              <m:mrow>
+                <m:mo>Property</m:mo>
+                <m:mo xmlns:o="http://omdoc.org/ns" fence="true" o:egroup="fence">(</m:mo>
+                <m:mo>Restriction</m:mo>
+                <m:mo separator="true">,</m:mo>
+                <m:mo>Class</m:mo>
+                <m:mo xmlns:o="http://omdoc.org/ns" fence="true" o:egroup="fence">)</m:mo>
+              </m:mrow>
+            </m:math>
+          </div>
+        </div>
+      </div>
+      <div id="hasValue" class="omdoc-symbol">
+        <span class="omdoc-titleword">Concept</span>hasValue<div class="omdoc-type">
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>
+            <m:math xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns"
+                    xmlns:om="http://www.openmath.org/OpenMath"
+                    xmlns:oo="http://omdoc.org/ontology#"
+                    xmlns:m="http://www.w3.org/1998/Math/MathML"
+                    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+                    id="MCRd53e142">
+              <m:mo>Property</m:mo>
+            </m:math>
+          </div>
+        </div>
+      </div>
+      <div id="someValuesFrom" class="omdoc-symbol">
+        <span class="omdoc-titleword">Concept</span>someValuesFrom<div class="omdoc-type">
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>
+            <m:math xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns"
+                    xmlns:om="http://www.openmath.org/OpenMath"
+                    xmlns:oo="http://omdoc.org/ontology#"
+                    xmlns:m="http://www.w3.org/1998/Math/MathML"
+                    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+                    id="MCRd53e156">
+              <m:mrow>
+                <m:mo>Property</m:mo>
+                <m:mo xmlns:o="http://omdoc.org/ns" fence="true" o:egroup="fence">(</m:mo>
+                <m:mo>Restriction</m:mo>
+                <m:mo separator="true">,</m:mo>
+                <m:mo>Class</m:mo>
+                <m:mo xmlns:o="http://omdoc.org/ns" fence="true" o:egroup="fence">)</m:mo>
+              </m:mrow>
+            </m:math>
+          </div>
+        </div>
+      </div>
+      <div id="minCardinality" class="omdoc-symbol">
+        <span class="omdoc-titleword">Concept</span>minCardinality<div class="omdoc-type">
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>
+            <m:math xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns"
+                    xmlns:om="http://www.openmath.org/OpenMath"
+                    xmlns:oo="http://omdoc.org/ontology#"
+                    xmlns:m="http://www.w3.org/1998/Math/MathML"
+                    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+                    id="MCRd53e181">
+              <m:mrow>
+                <m:mo>Property</m:mo>
+                <m:mo xmlns:o="http://omdoc.org/ns" fence="true" o:egroup="fence">(</m:mo>
+                <m:mo>Restriction</m:mo>
+                <m:mo separator="true">,</m:mo>
+                <m:mo>nonNegativeInteger</m:mo>
+                <m:mo xmlns:o="http://omdoc.org/ns" fence="true" o:egroup="fence">)</m:mo>
+              </m:mrow>
+            </m:math>
+          </div>
+        </div>
+      </div>
+      <div id="maxCardinality" class="omdoc-symbol">
+        <span class="omdoc-titleword">Concept</span>maxCardinality<div class="omdoc-type">
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>
+            <m:math xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns"
+                    xmlns:om="http://www.openmath.org/OpenMath"
+                    xmlns:oo="http://omdoc.org/ontology#"
+                    xmlns:m="http://www.w3.org/1998/Math/MathML"
+                    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+                    id="MCRd53e206">
+              <m:mrow>
+                <m:mo>Property</m:mo>
+                <m:mo xmlns:o="http://omdoc.org/ns" fence="true" o:egroup="fence">(</m:mo>
+                <m:mo>Restriction</m:mo>
+                <m:mo separator="true">,</m:mo>
+                <m:mo>nonNegativeInteger</m:mo>
+                <m:mo xmlns:o="http://omdoc.org/ns" fence="true" o:egroup="fence">)</m:mo>
+              </m:mrow>
+            </m:math>
+          </div>
+        </div>
+      </div>
+      <div id="cardinality" class="omdoc-symbol">
+        <span class="omdoc-titleword">Concept</span>cardinality<div class="omdoc-type">
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>
+            <m:math xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns"
+                    xmlns:om="http://www.openmath.org/OpenMath"
+                    xmlns:oo="http://omdoc.org/ontology#"
+                    xmlns:m="http://www.w3.org/1998/Math/MathML"
+                    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+                    id="MCRd53e232">
+              <m:mrow>
+                <m:mo>Property</m:mo>
+                <m:mo xmlns:o="http://omdoc.org/ns" fence="true" o:egroup="fence">(</m:mo>
+                <m:mo>Restriction</m:mo>
+                <m:mo separator="true">,</m:mo>
+                <m:mo>nonNegativeInteger</m:mo>
+                <m:mo xmlns:o="http://omdoc.org/ns" fence="true" o:egroup="fence">)</m:mo>
+              </m:mrow>
+            </m:math>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </body>
+</html>

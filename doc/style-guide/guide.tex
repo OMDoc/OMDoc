@@ -1,0 +1,49 @@
+\documentclass[11pt,twoside,titlepage]{report}
+\usepackage{moreverb,array,alltt,longtable} %standard
+\usepackage{ags-bib,acronyms,urls,ded} %omega
+%\usepackage{draftstamp}
+\usepackage{keyval}
+% here comes the ps/pdftricks stuff, need to run 'pdflatex -shell-escape omdoc'
+%\usepackage[shell]{pdftricks}
+%\begin{psinputs}
+\usepackage{pstricks,pst-node}
+%\end{psinputs}
+\usepackage[a4paper=true,  bookmarks=true, linkcolor=black,
+citecolor=black,urlcolor=black,colorlinks=true,pagecolor=black,
+breaklinks=true, bookmarksopen=true]{hyperref}
+\usepackage{macros}   %local
+\makeindex
+% \includeonly{format}
+%\includeonly{math-markup}
+\edshownotes
+\title{A style guide for {\omdoc}}
+\author{Michael Kohlhase\\
+  Computer Science, Carnegie Mellon University\\
+  Pittsburgh, Pa 15213, USA\\
+  {\url{http://www.cs.cmu.edu/~kohlhase}}}
+
+\begin{document}
+\maketitle
+\setcounter{page}{0}\pagenumbering{roman}
+\begin{abstract}
+  In this report we present a set of guidelines and examples for modeling
+  mathematics in the {\omdoc} format. 
+\end{abstract}
+\newpage
+\setcounter{tocdepth}{2}\tableofcontents
+\newpage\pagenumbering{arabic}
+\include{intro}
+\include{algebra}
+\include{concl}
+\newpage 
+\bibliographystyle{ags-alpha} 
+\bibliography{../omdoc/omdoc} 
+\newpage
+{\small\input{\jobname.ind}}
+%\include{appendix}
+\end{document}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 

@@ -1,0 +1,46 @@
+# A RelaxNG schema for Open Mathematical documents (OMDoc 1.6) Module PHYS
+# $Id: omdocphys.rnc 8432 2009-07-19 13:18:40Z kohlhase $
+# $HeadURL: https://svn.omdoc.org/repos/omdoc/trunk/schema/rnc/omdocphys.rnc $
+# See the documentation and examples at http://www.omdoc.org
+# Copyright (c) 2004-2007 Michael Kohlhase, released under the GNU Public License (GPL) 
+
+system.attribs = id.attrib & attribute type {"ideal" | "real"}
+system.class = observable* & improvement? & algebra? & realization?
+system.model =   metadata?,system.class
+system  = element system {system.attribs & system.model}
+
+observable.attribs = attribute low {xsd:float} & 
+	                         attribute high {xsd:float} & 
+				id.attrib
+observable.model = metadata?,mobj,mobj
+observable = element  observable {observable.attribs & observable.model}
+
+improvement.attribs =id.attrib
+improvement.model = metadata?,p*
+improvement = element improvement {improvement.attribs & improvement.model}
+
+realization.attribs =id.attrib
+realization.model = metadata?,p* 
+realization = element realization {realization.attribs & realization.model}
+
+interpretation.attribs = id.attrib
+interpretation.model = metadata?,p*
+interpretation = element interpretation {interpretation.attribs & interpretation.model}
+
+state.attribs = id.attrib,attribute of {omdocref}
+state.model = metadata?,value*
+state = element state {state.attribs & state.model}
+
+value.attribs = id.attrib & 
+	                attribute for {omdocref} & 
+                        attribute num {xsd:float}
+value-model = metadata?
+value = element value {value.attribs & value.model}                       
+
+experiment.attribs = id.attrib
+experiment.model = metadata?,(p* & state & state)
+experiment = element experiment {experiment.attribs & experiment.model}
+
+evidence.attribs = id.attrib & attribute for {omdocref}
+evidence.model = experiment*,interpretation
+evidence = element evidence {evidence.attribs & evidence.model}

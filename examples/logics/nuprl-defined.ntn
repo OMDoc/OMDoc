@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<notations xmlns="http://www.w3.org/ns/mathml-cd" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:om="http://www.openmath.org/OpenMath" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+  <notation cdbase="FIXME" cd="nuprl-defined" name="and">
+    <prototype>
+      <om:OMS cd="nuprl-defined" name="and"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="nuprl-defined">and</m:csymbol>
+    </prototype>
+    <rendering>
+      <!--IMPROVEME: the following is just a fallback-->
+      <m:mo>and</m:mo>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="nuprl-defined" name="or">
+    <prototype>
+      <om:OMS cd="nuprl-defined" name="or"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="nuprl-defined">or</m:csymbol>
+    </prototype>
+    <rendering>
+      <!--IMPROVEME: the following is just a fallback-->
+      <m:mo>or</m:mo>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="nuprl-defined" name="implies">
+    <prototype>
+      <om:OMS cd="nuprl-defined" name="implies"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="nuprl-defined">implies</m:csymbol>
+    </prototype>
+    <rendering>
+      <!--IMPROVEME: the following is just a fallback-->
+      <m:mo>implies</m:mo>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="nuprl-defined" name="not">
+    <prototype>
+      <om:OMS cd="nuprl-defined" name="not"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="nuprl-defined">not</m:csymbol>
+    </prototype>
+    <rendering>
+      <!--IMPROVEME: the following is just a fallback-->
+      <m:mo>not</m:mo>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="nuprl-defined" name="exists">
+    <prototype>
+      <om:OMS cd="nuprl-defined" name="exists"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="nuprl-defined">exists</m:csymbol>
+    </prototype>
+    <rendering>
+      <!--IMPROVEME: the following is just a fallback-->
+      <m:mo>exists</m:mo>
+    </rendering>
+  </notation>
+</notations>

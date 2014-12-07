@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xml:id="magma-formal-examples.omdoc"
+  xmlns="http://omdoc.org/ns"
+  xmlns:cc="http://creativecommons.org/ns"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xmlns:om="http://www.openmath.org/OpenMath"
+  version="1.6">
+<metadata>
+  <dc:date action="created"> 2004-10-04T17:50:22Z </dc:date>
+  <dc:title xml:lang="en"> Formal Examples for Magmas </dc:title>
+  <dc:creator role="aut"> Michael Kohlhase </dc:creator>
+  <dc:source>  </dc:source>
+  <dc:date action="updated"> 2004-10-04T17:50:22Z </dc:date>
+  <dc:type> Text </dc:type>
+  <dc:format> application/omdoc+xml </dc:format>
+  <dc:rights>Copyright (c) 2004 Michael Kohlhase</dc:rights>
+  <cc:license>
+    <cc:permissions reproduction="permitted" distribution="permitted" derivative_works="permitted"/>
+    <cc:prohibitions commercial_use="permitted"/>
+    <cc:requirements notice="required" copyleft="required" attribution="required"/>
+  </cc:license>
+</metadata>
+
+<theory xml:id="magmas">
+  <imports xml:id="imp3" from="background.omdoc#products"/>
+  <imports xml:id="imp2" 
+      from="https://svn.omdoc.org/repos/trunk/omdoc/examples/omstd/relation1.omdoc#relation1"/>
+
+<example xml:id="e11.magma" for="#law_of_composition" 
+         type="for" assertion="e11.magma.ass">
+  <CMP> The mapping <om:OMOBJ><om:OMR href="#e11.magma.1"/></om:OMOBJ> is 
+    a law of composition on the set of subsets of a set 
+    <om:OMOBJ><om:OMS cd="magmas" name="E"/></om:OMOBJ>.
+  </CMP>
+  <om:OMOBJ>
+    <om:OMA id="e11.magma.2"><om:OMS cd="sets" name="subset"/>
+      <om:OMV name="E"/>
+    </om:OMA>
+  </om:OMOBJ>
+  <om:OMOBJ>
+    <om:OMBIND id="e11.magma.1">
+      <om:OMS cd="fns1" name="lambda"/>
+      <om:OMBVAR><om:OMV name="X"/><om:OMV name="Y"/></om:OMBVAR>
+      <om:OMA>
+        <om:OMS cd="functions" name="pattern-defined"/>
+        <om:OMA><om:OMS cd="products" name="pair"/>
+          <om:OMV name="X"/>
+          <om:OMV name="Y"/>
+        </om:OMA>
+        <om:OMA><om:OMS cd="sets" name="union"/>
+          <om:OMV name="X"/>
+          <om:OMV name="Y"/>
+        </om:OMA>
+      </om:OMA>
+    </om:OMBIND>
+  </om:OMOBJ>
+</example>
+
+<assertion xml:id="e11.magma.ass">
+  <FMP>
+    <om:OMOBJ>
+      <om:OMBIND>
+        <om:OMS cd="pl1" name="forall"/>
+        <om:OMBVAR><om:OMV name="E"/></om:OMBVAR>
+        <om:OMA>
+          <om:OMS cd="magmas" name="law_of_composition"/>
+          <om:OMR href="#e11.magma.2"/>
+          <om:OMR href="#e11.magma.1"/>
+        </om:OMA>
+      </om:OMBIND>
+    </om:OMOBJ>
+  </FMP>
+</assertion>
+</theory>
+</omdoc>

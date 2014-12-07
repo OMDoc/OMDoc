@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grammar ns="http://www.omdoc.org/ns" xmlns:omdoc="http://www.omdoc.org/ns" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  <!-- module level -->
+  <define name="omdoc.class" combine="interleave">
+    <a:documentation/>
+    <zeroOrMore>
+      <ref name="notationset"/>
+    </zeroOrMore>
+  </define>
+  <define name="notationset.attribs">
+    <interleave>
+      <optional>
+        <ref name="name.attrib"/>
+      </optional>
+      <optional>
+        <attribute name="base">
+          <ref name="MMTURI"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="includeDefault">
+          <ref name="bool"/>
+        </attribute>
+      </optional>
+    </interleave>
+  </define>
+  <define name="notationset.model">
+    <zeroOrMore>
+      <choice>
+        <ref name="include"/>
+        <ref name="mmtnotation"/>
+      </choice>
+    </zeroOrMore>
+  </define>
+  <define name="notationset">
+    <element name="notationset">
+      <interleave>
+        <ref name="notationset.attribs"/>
+        <ref name="notationset.model"/>
+      </interleave>
+    </element>
+  </define>
+  <!-- symbol level -->
+  <define name="mmtnotation">
+    <a:documentation/>
+    <element name="notation">
+      <optional>
+        <ref name="name.attrib"/>
+      </optional>
+      <optional>
+        <attribute name="for">
+          <ref name="MMTURI"/>
+        </attribute>
+      </optional>
+      <choice>
+        <ref name="simple"/>
+        <ref name="complex"/>
+      </choice>
+    </element>
+  </define>
+  <define name="simple">
+    <attribute name="role">
+      <ref name="simplerole"/>
+    </attribute>
+    <optional>
+      <attribute name="inherit">
+        <ref name="bool"/>
+      </attribute>
+    </optional>
+    <zeroOrMore>
+      <ref name="pres"/>
+    </zeroOrMore>
+  </define>
+  <define name="complex">
+    <attribute name="role">
+      <ref name="complexrole"/>
+    </attribute>
+    <optional>
+      <attribute name="precedence">
+        <ref name="precedence"/>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="fixity">
+        <ref name="fixity"/>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="application-style">
+        <ref name="applicationstyle"/>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="associativity">
+        <ref name="associativity"/>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="implicit">
+        <ref name="int"/>
+      </attribute>
+    </optional>
+    <interleave>
+      <optional>
+        <element name="main">
+          <zeroOrMore>
+            <ref name="pres"/>
+          </zeroOrMore>
+        </element>
+      </optional>
+      <optional>
+        <element name="separator">
+          <zeroOrMore>
+            <ref name="pres"/>
+          </zeroOrMore>
+        </element>
+      </optional>
+      <optional>
+        <element name="brackets">
+          <zeroOrMore>
+            <ref name="pres"/>
+          </zeroOrMore>
+        </element>
+      </optional>
+      <optional>
+        <element name="nobrackets">
+          <zeroOrMore>
+            <ref name="pres"/>
+          </zeroOrMore>
+        </element>
+      </optional>
+      <optional>
+        <element name="ebrackets">
+          <zeroOrMore>
+            <ref name="pres"/>
+          </zeroOrMore>
+        </element>
+      </optional>
+    </interleave>
+  </define>
+  <define name="fixity">
+    <choice>
+      <value>pre</value>
+      <value>post</value>
+      <value>in</value>
+      <value>inter</value>
+      <value>bind</value>
+      <value>special</value>
+    </choice>
+  </define>
+  <define name="applicationstyle">
+    <choice>
+      <value>math</value>
+      <value>lc</value>
+    </choice>
+  </define>
+  <define name="associativity">
+    <choice>
+      <value>none</value>
+      <value>left</value>
+      <value>right</value>
+    </choice>
+  </define>
+  <!-- presentation items -->
+  <define name="pres">
+    <a:documentation/>
+    <choice>
+      <ref name="text"/>
+      <ref name="element"/>
+      <ref name="newline"/>
+      <ref name="tab"/>
+      <ref name="components"/>
+      <ref name="recurse"/>
+      <ref name="component"/>
+      <ref name="mmtindex"/>
+      <ref name="id"/>
+      <ref name="ifpresent"/>
+      <ref name="nset"/>
+      <ref name="hole"/>
+      <ref name="elevel"/>
+    </choice>
+  </define>
+  <define name="text">
+    <element name="text">
+      <attribute name="value">
+        <data type="string"/>
+      </attribute>
+    </element>
+  </define>
+  <define name="element">
+    <element name="element">
+      <optional>
+        <attribute name="prefix">
+          <data type="string"/>
+        </attribute>
+      </optional>
+      <attribute name="name">
+        <data type="string"/>
+      </attribute>
+      <zeroOrMore>
+        <choice>
+          <ref name="pres"/>
+          <ref name="attribute"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="attribute">
+    <element name="attribute">
+      <optional>
+        <attribute name="prefix">
+          <data type="string"/>
+        </attribute>
+      </optional>
+      <attribute name="name">
+        <data type="string"/>
+      </attribute>
+      <zeroOrMore>
+        <ref name="pres"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="newline">
+    <element name="newline">
+      <empty/>
+    </element>
+  </define>
+  <define name="tab">
+    <element name="tab">
+      <empty/>
+    </element>
+  </define>
+  <define name="components">
+    <element name="components">
+      <optional>
+        <attribute name="begin">
+          <ref name="int"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="end">
+          <ref name="int"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="step">
+          <ref name="int"/>
+        </attribute>
+      </optional>
+      <interleave>
+        <optional>
+          <element name="body">
+            <zeroOrMore>
+              <ref name="pres"/>
+            </zeroOrMore>
+          </element>
+        </optional>
+        <optional>
+          <element name="separator">
+            <zeroOrMore>
+              <ref name="pres"/>
+            </zeroOrMore>
+          </element>
+        </optional>
+        <optional>
+          <element name="pre">
+            <zeroOrMore>
+              <ref name="pres"/>
+            </zeroOrMore>
+          </element>
+        </optional>
+        <optional>
+          <element name="post">
+            <zeroOrMore>
+              <ref name="pres"/>
+            </zeroOrMore>
+          </element>
+        </optional>
+      </interleave>
+    </element>
+  </define>
+  <define name="recurse">
+    <element name="recurse">
+      <optional>
+        <attribute name="offset">
+          <ref name="int"/>
+        </attribute>
+      </optional>
+      <optional>
+        <ref name="prec.attrib"/>
+      </optional>
+    </element>
+  </define>
+  <define name="component">
+    <element name="component">
+      <attribute name="index">
+        <ref name="int"/>
+      </attribute>
+      <optional>
+        <ref name="prec.attrib"/>
+      </optional>
+    </element>
+  </define>
+  <define name="mmtindex">
+    <element name="index">
+      <attribute name="offset">
+        <ref name="int"/>
+      </attribute>
+    </element>
+  </define>
+  <define name="id">
+    <element name="id">
+      <empty/>
+    </element>
+  </define>
+  <define name="ifpresent">
+    <element name="ifpresent">
+      <attribute name="index">
+        <ref name="int"/>
+      </attribute>
+      <element name="then">
+        <zeroOrMore>
+          <ref name="pres"/>
+        </zeroOrMore>
+      </element>
+      <optional>
+        <element name="else">
+          <zeroOrMore>
+            <ref name="pres"/>
+          </zeroOrMore>
+        </element>
+      </optional>
+    </element>
+  </define>
+  <define name="nset">
+    <element name="nset">
+      <empty/>
+    </element>
+  </define>
+  <define name="hole">
+    <element name="hole">
+      <zeroOrMore>
+        <ref name="pres"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="elevel">
+    <element name="elevel">
+      <empty/>
+    </element>
+  </define>
+  <define name="prec.attrib">
+    <attribute name="precedence">
+      <ref name="precedence"/>
+    </attribute>
+  </define>
+  <!-- datatypes -->
+  <define name="int">
+    <a:documentation/>
+    <data type="integer"/>
+  </define>
+  <define name="bool">
+    <choice>
+      <value>yes</value>
+      <value>no</value>
+    </choice>
+  </define>
+  <define name="simplerole.class">
+    <choice>
+      <value>Toplevel</value>
+      <value>Theory</value>
+      <value>View</value>
+      <value>DefinedView</value>
+      <ref name="Constant"/>
+      <value>Structure</value>
+      <value>DefinedStructure</value>
+      <value>Conass</value>
+      <value>Strass</value>
+      <value>toplevel</value>
+      <value>theory</value>
+      <value>view</value>
+      <value>constant</value>
+      <value>structure</value>
+      <value>conass</value>
+      <value>strass</value>
+      <value>variable</value>
+    </choice>
+  </define>
+  <define name="simplerole">
+    <list>
+      <zeroOrMore>
+        <ref name="simplerole.class"/>
+      </zeroOrMore>
+    </list>
+  </define>
+  <define name="Constant">
+    <choice>
+      <value>Element</value>
+      <value>Predicate</value>
+      <value>Sort</value>
+      <value>Proof</value>
+      <value>Axiom</value>
+      <value>Rule</value>
+      <value>Judgment</value>
+      <value>Level</value>
+      <value>Binder</value>
+      <value>Key</value>
+      <value>Error</value>
+    </choice>
+  </define>
+  <define name="complexrole.class">
+    <choice>
+      <value>variable</value>
+      <value>application</value>
+      <value>binding</value>
+      <value>attribution</value>
+      <value>morphism-application</value>
+      <value>identity</value>
+      <value>composition</value>
+    </choice>
+  </define>
+  <define name="complexrole">
+    <list>
+      <zeroOrMore>
+        <ref name="complexrole.class"/>
+      </zeroOrMore>
+    </list>
+  </define>
+  <define name="precedence">
+    <choice>
+      <ref name="int"/>
+      <value>infinity</value>
+      <value>-infinity</value>
+    </choice>
+  </define>
+</grammar>

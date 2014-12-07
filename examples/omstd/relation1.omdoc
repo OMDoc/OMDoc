@@ -1,0 +1,621 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  
+       xmlns="http://omdoc.org/ns"
+       xmlns:om="http://www.openmath.org/OpenMath"
+       xmlns:m="http://www.w3.org/1998/Math/MathML"
+       xmlns:o="http://omdoc.org/ns"
+       xml:id="relation1-omdoc">
+
+<metadata>
+  <dc:title>The OpenMath Content Dictionary relation1.ocd  in OMDoc form</dc:title>
+  <dc:creator role="trl">Michael Kohlhase</dc:creator>
+  <dc:creator role="ant">The OpenMath Society</dc:creator>
+  <dc:date> 2001-03-12T00:00:00</dc:date>
+  <dc:source>Derived from the OpenMath CD http://www.openmath.org/cd/relation1.ocd.</dc:source>
+  <dc:type>Text</dc:type>
+  <dc:format>application/omdoc+xml</dc:format>
+  <dc:rights>Copyright (c) 2000-2002 Michael Kohlhase;
+    This OMDoc content dictionary is released under the OpenMath license:
+    http://monet.nag.co.uk/openmath/cdfiles/license.html
+  </dc:rights>
+  <dc:description>
+    This CD holds the common arithmetic relations. It is intended
+    to be `compatible' with the appropriate MathML elements.
+  </dc:description>
+</metadata>
+
+<theory xml:id="relation1">
+
+<imports xml:id="relation1-imports-sts" from="sts.omdoc#sts"/>
+<imports xml:id="relation1-imports-setname2" from="setname2.omdoc#setname2"/>
+
+<symbol name="eq" xml:id="eq">
+  <metadata>
+  <dc:description>This symbol represents the binary equality function.</dc:description><dc:subject>eq</dc:subject></metadata>
+  <type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMS name="Object" cd="sts"/>
+	<OMS name="Object" cd="sts"/>
+	<OMS cd="setname2" name="Boolean"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="relation1" name="eq" o:cr="fun"/>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="relation1" o:cr="fun">eq</m:csymbol>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </m:apply>
+    </prototype>
+    <rendering precedence="300">
+      <m:mrow>
+        <m:mo o:egroup="fence" fence="true">(</m:mo>
+        <render name="arg1" precedence="300"/>
+        <m:mo o:cr="fun">=</m:mo>
+        <render name="arg2" precedence="300"/>
+        <m:mo o:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+
+<symbol name="lt" xml:id="lt">
+<metadata>
+<dc:description>
+    This symbol represents the binary less than function which returns
+    true if the first argument is less than the second, it returns false
+    otherwise.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMV name="OrderedSet"/>
+	<OMV name="OrderedSet"/>
+	<OMS cd="setname2" name="Boolean"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="relation1" name="lt" o:cr="fun"/>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="relation1" o:cr="fun">lt</m:csymbol>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </m:apply>
+    </prototype>
+    <rendering precedence="300">
+      <m:mrow>
+        <m:mo o:egroup="fence" fence="true">(</m:mo>
+        <render name="arg1" precedence="300"/>
+        <m:mo o:cr="fun">&lt;</m:mo>
+        <render name="arg2" precedence="300"/>
+        <m:mo o:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+
+<symbol name="gt" xml:id="gt">
+<metadata>
+<dc:description> 
+    This symbol represents the binary greater than function which returns
+    true if the first argument is greater than the second, it returns false
+    otherwise.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMV name="OrderedSet"/>
+	<OMV name="OrderedSet"/>
+	<OMS cd="setname2" name="Boolean"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="relation1" name="gt" o:cr="fun"/>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="relation1" o:cr="fun">gt</m:csymbol>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </m:apply>
+    </prototype>
+    <rendering precedence="300">
+      <m:mrow>
+        <m:mo o:egroup="fence" fence="true">(</m:mo>
+        <render name="arg1" precedence="300"/>
+        <m:mo o:cr="fun">&gt;</m:mo>
+        <render name="arg2" precedence="300"/>
+        <m:mo o:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+
+<symbol name="neq" xml:id="neq">
+  <metadata>
+  <dc:description>This symbol represents the binary inequality function.</dc:description><dc:subject>neq</dc:subject></metadata>
+  <type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMS name="Object" cd="sts"/>
+	<OMS name="Object" cd="sts"/>
+	<OMS cd="setname2" name="Boolean"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="relation1" name="neq" o:cr="fun"/>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="relation1" o:cr="fun">neq</m:csymbol>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </m:apply>
+    </prototype>
+    <rendering precedence="300">
+      <m:mrow>
+        <m:mo o:egroup="fence" fence="true">(</m:mo>
+        <render name="arg1" precedence="300"/>
+        <m:mo o:cr="fun">≠</m:mo>
+        <render name="arg2" precedence="300"/>
+        <m:mo o:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+
+<symbol name="leq" xml:id="leq">
+<metadata>
+<dc:description> 
+    This symbol represents the binary less than or equal to function which returns
+    true if the first argument is less than or equal to the second, it
+    returns false otherwise.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMV name="OrderedSet"/>
+	<OMV name="OrderedSet"/>
+	<OMS cd="setname2" name="Boolean"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="relation1" name="leq" o:cr="fun"/>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="relation1" o:cr="fun">leq</m:csymbol>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </m:apply>
+    </prototype>
+    <rendering precedence="300">
+      <m:mrow>
+        <m:mo o:egroup="fence" fence="true">(</m:mo>
+        <render name="arg1" precedence="300"/>
+        <m:mo o:cr="fun">≤</m:mo>
+        <render name="arg2" precedence="300"/>
+        <m:mo o:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+
+<symbol name="geq" xml:id="geq">
+<metadata>
+<dc:description> 
+    This symbol represents the binary greater than or equal to function
+    which returns true if the first argument is greater than or equal to
+    the second, it returns false otherwise.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMV name="OrderedSet"/>
+	<OMV name="OrderedSet"/>
+	<OMS cd="setname2" name="Boolean"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="relation1" name="geq" o:cr="fun"/>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="relation1" o:cr="fun">geq</m:csymbol>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </m:apply>
+    </prototype>
+    <rendering precedence="300">
+      <m:mrow>
+        <m:mo o:egroup="fence" fence="true">(</m:mo>
+        <render name="arg1" precedence="300"/>
+        <m:mo o:cr="fun">≥</m:mo>
+        <render name="arg2" precedence="300"/>
+        <m:mo o:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+
+<symbol name="approx" xml:id="approx">
+<metadata>
+<dc:description> 
+    This symbol is used to denote the approximate equality of its two arguments.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMS name="NumericalValue" cd="sts"/>
+	<OMS name="NumericalValue" cd="sts"/>
+	<OMS cd="setname2" name="Boolean"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="relation1" name="approx" o:cr="fun"/>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="relation1" o:cr="fun">approx</m:csymbol>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </m:apply>
+    </prototype>
+    <rendering precedence="300">
+      <m:mrow>
+        <m:mo o:egroup="fence" fence="true">(</m:mo>
+        <render name="arg1" precedence="300"/>
+        <m:mo o:cr="fun">∼</m:mo>
+        <render name="arg2" precedence="300"/>
+        <m:mo o:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+</theory>
+
+<!-- rolled out to avoid circular imports -->
+<theory xml:id="relation1-nonconstitutive">
+<imports from="#relation1"/>
+<imports from="arith1.omdoc#arith1"/>
+<imports from="logic1.omdoc#logic1"/>
+<imports from="nums1.omdoc#nums1"/>
+
+<assertion xml:id="eq-prop-1" type="lemma">
+  <CMP>a=b and b=c implies a=c</CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="logic1" name="implies"/>
+	<OMA>
+	  <OMS cd="logic1" name="and"/>
+	  <OMA>
+	    <OMS cd="relation1" name="eq"/>
+	    <OMV name="a"/>
+	    <OMV name="b"/>
+	  </OMA>
+	  <OMA>
+	    <OMS cd="relation1" name="eq"/>
+	    <OMV name="b"/>
+	    <OMV name="c"/>
+	  </OMA>
+	</OMA>
+	<OMA>
+	  <OMS cd="relation1" name="eq"/>
+	  <OMV name="a"/>
+	  <OMV name="c"/>
+	</OMA>
+      </OMA>
+    </OMOBJ>
+  </FMP>
+</assertion>
+<example xml:id="eq-ex-3" type="for" for="#eq">
+  <CMP>An example which represents the statement 1 + 2 = 3.</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="relation1" name="eq"/>
+      <OMA>
+	<OMS cd="arith1" name="plus"/>
+	<OMI> 1 </OMI>
+	<OMI> 2 </OMI>
+      </OMA>
+      <OMI> 3 </OMI>
+    </OMA>
+  </OMOBJ>
+</example>
+<assertion xml:id="lt-prop-1" type="lemma">
+  <CMP>a&lt;b and b&lt;c implies a&lt;c</CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="logic1" name="implies"/>
+	<OMA>
+	  <OMS cd="logic1" name="and"/>
+	  <OMA>
+	    <OMS cd="relation1" name="lt"/>
+	    <OMV name="a"/>
+	    <OMV name="b"/>
+	  </OMA>
+	  <OMA>
+	    <OMS cd="relation1" name="lt"/>
+	    <OMV name="b"/>
+	    <OMV name="c"/>
+	  </OMA>
+	</OMA>
+	<OMA>
+	  <OMS cd="relation1" name="lt"/>
+	  <OMV name="a"/>
+	  <OMV name="c"/>
+	</OMA>
+      </OMA>
+    </OMOBJ>
+  </FMP>
+</assertion>
+<example xml:id="lt-ex-3" type="for" for="#lt">
+  <CMP>An example which represents the statement 1 + 2 &lt; 4</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="relation1" name="lt"/>
+      <OMA>
+	<OMS cd="arith1" name="plus"/>
+	<OMI> 1 </OMI>
+	<OMI> 2 </OMI>
+      </OMA>
+      <OMI> 4 </OMI>
+    </OMA>
+  </OMOBJ>
+</example>
+<assertion xml:id="gt-prop-1" type="lemma">
+  <CMP>
+    a&gt;b and b&gt;c implies a&gt;c
+  </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="logic1" name="implies"/>
+	<OMA>
+	  <OMS cd="logic1" name="and"/>
+	  <OMA>
+	    <OMS cd="relation1" name="gt"/>
+	    <OMV name="a"/>
+	    <OMV name="b"/>
+	  </OMA>
+	  <OMA>
+	    <OMS cd="relation1" name="gt"/>
+	    <OMV name="b"/>
+	    <OMV name="c"/>
+	  </OMA>
+	</OMA>
+	<OMA>
+	  <OMS cd="relation1" name="gt"/>
+	  <OMV name="a"/>
+	  <OMV name="c"/>
+	</OMA>
+      </OMA>
+    </OMOBJ>
+  </FMP>
+</assertion>
+<example xml:id="gt-ex-3" type="for" for="#gt">
+  <CMP>An example which represents the statement 1 + 2 &gt; 2</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="relation1" name="gt"/>
+      <OMA>
+	<OMS cd="arith1" name="plus"/>
+	<OMI> 1 </OMI>
+	<OMI> 2 </OMI>
+      </OMA>
+      <OMI> 2 </OMI>
+    </OMA>
+  </OMOBJ>
+</example>
+<assertion xml:id="neq-prop-1" type="lemma">
+  <CMP> it is not true that a=/b and b=/c implies a=/c </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="logic1" name="not"/>
+	<OMA>
+	  <OMS cd="logic1" name="implies"/>
+	  <OMA>
+	    <OMS cd="logic1" name="and"/>
+	    <OMA>
+	      <OMS cd="relation1" name="neq"/>
+	      <OMV name="a"/>
+	      <OMV name="b"/>
+	    </OMA>
+	    <OMA>
+	      <OMS cd="relation1" name="neq"/>
+	      <OMV name="b"/>
+	      <OMV name="c"/>
+	    </OMA>
+	  </OMA>
+	  <OMA>
+	    <OMS cd="relation1" name="neq"/>
+	    <OMV name="a"/>
+	    <OMV name="c"/>
+	  </OMA>
+	</OMA>
+      </OMA>
+    </OMOBJ>
+  </FMP>
+</assertion>
+<example xml:id="neq-ex-3" type="for" for="#neq">
+  <CMP>An example which represents the statement 1 + 2 not = 2</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="relation1" name="neq"/>
+      <OMA>
+	<OMS cd="arith1" name="plus"/>
+	<OMI> 1 </OMI>
+	<OMI> 2 </OMI>
+      </OMA>
+      <OMI> 2 </OMI>
+    </OMA>
+  </OMOBJ>
+</example>
+<assertion xml:id="leq-prop-1" type="lemma">
+  <CMP>
+    a&lt;=b and b&lt;=c implies a&lt;=c
+  </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="logic1" name="implies"/>
+	<OMA>
+	  <OMS cd="logic1" name="and"/>
+	  <OMA>
+	    <OMS cd="relation1" name="leq"/>
+	    <OMV name="a"/>
+	    <OMV name="b"/>
+	  </OMA>
+	  <OMA>
+	    <OMS cd="relation1" name="leq"/>
+	    <OMV name="b"/>
+	    <OMV name="c"/>
+	  </OMA>
+	</OMA>
+	<OMA>
+	  <OMS cd="relation1" name="leq"/>
+	  <OMV name="a"/>
+	  <OMV name="c"/>
+	</OMA>
+      </OMA>
+    </OMOBJ>
+  </FMP>
+</assertion>
+<example xml:id="leq-ex-3" type="for" for="#leq">
+  <CMP>An example which represents the statement 1 + 2 &lt;= 4</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="relation1" name="leq"/>
+      <OMA>
+	<OMS cd="arith1" name="plus"/>
+	<OMI> 1 </OMI>
+	<OMI> 2 </OMI>
+      </OMA>
+      <OMI> 4 </OMI>
+    </OMA>
+  </OMOBJ>
+</example>
+<assertion xml:id="geq-prop-1" type="lemma">
+  <CMP>
+    a&gt;=b and b&gt;=c implies a&gt;=c
+  </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="logic1" name="implies"/>
+	<OMA>
+	  <OMS cd="logic1" name="and"/>
+	  <OMA>
+	    <OMS cd="relation1" name="geq"/>
+	    <OMV name="a"/>
+	    <OMV name="b"/>
+	  </OMA>
+	  <OMA>
+	    <OMS cd="relation1" name="geq"/>
+	    <OMV name="b"/>
+	    <OMV name="c"/>
+	  </OMA>
+	</OMA>
+	<OMA>
+	  <OMS cd="relation1" name="geq"/>
+	  <OMV name="a"/>
+	  <OMV name="c"/>
+	</OMA>
+      </OMA>
+    </OMOBJ>
+  </FMP>
+</assertion>
+<example xml:id="geq-ex-3" type="for" for="#geq">
+  <CMP>An example which represents the statement 1 + 2 &gt;= 3</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="relation1" name="geq"/>
+      <OMA>
+	<OMS cd="arith1" name="plus"/>
+	<OMI> 1 </OMI>
+	<OMI> 2 </OMI>
+      </OMA>
+      <OMI> 3 </OMI>
+    </OMA>
+  </OMOBJ>
+</example>
+<example xml:id="approx-ex-1" type="for" for="#approx">
+  <CMP><legacy format="mocktex">\pi</legacy> is approximately 355/113</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="relation1" name="approx"/>
+      <OMS cd="nums1" name="pi"/>
+      <OMA>
+	<OMS cd="nums1" name="rational"/>
+	<OMI> 355 </OMI>
+	<OMI> 113 </OMI>
+      </OMA>
+    </OMA>
+  </OMOBJ>
+</example>
+</theory>
+</omdoc>
+

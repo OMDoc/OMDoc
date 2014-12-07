@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  
+       xmlns="http://omdoc.org/ns"
+       xmlns:om="http://www.openmath.org/OpenMath"
+       xmlns:m="http://www.w3.org/1998/Math/MathML"
+       xmlns:o="http://omdoc.org/ns"
+       xml:id="list1-omdoc">
+
+<metadata>
+  <dc:title>The OpenMath Content Dictionary list1.ocd  in OMDoc form</dc:title>
+  <dc:creator role="trl">Michael Kohlhase</dc:creator>
+  <dc:creator role="ant">The OpenMath Society</dc:creator>
+  <dc:date> 2001-03-12T00:00:00</dc:date>
+  <dc:source>Derived from the OpenMath CD http://www.openmath.org/cd/list1.ocd.</dc:source>
+  <dc:type>Text</dc:type>
+  <dc:format>application/omdoc+xml</dc:format>
+  <dc:rights>Copyright (c) 2000-2002 Michael Kohlhase;
+    This OMDoc content dictionary is released under the OpenMath license:
+    http://monet.nag.co.uk/openmath/cdfiles/license.html
+  </dc:rights>
+  <dc:description>
+    This CD is intended to be `compatible' with MathML list
+    constructs.
+  </dc:description>
+</metadata>
+
+<theory xml:id="list1">
+
+<imports xml:id="list1-imports-sts" from="sts.omdoc#sts"/>
+<imports xml:id="list1-imports-fns1" from="fns1.omdoc#fns1"/>
+<imports xml:id="list1-imports-arith1" from="arith1.omdoc#arith1"/>
+<imports xml:id="list1-imports-interval1" from="interval1.omdoc#interval1"/>
+<imports xml:id="list1-imports-setname2" from="setname2.omdoc#setname2"/>
+<imports xml:id="list1-imports-setname1" from="setname1.omdoc#setname1"/>
+<imports xml:id="list1-imports-logic1" from="logic1.omdoc#logic1"/>
+<imports xml:id="list1-imports-relation1" from="relation1.omdoc#relation1"/>
+<imports xml:id="list1-imports-alg1" from="alg1.omdoc#alg1"/>
+<imports xml:id="list1-imports-set1" from="set1.omdoc#set1"/>
+
+<symbol name="map" xml:id="map">
+<metadata>
+<dc:description>
+    This symbol represents a mapping function which may be used to
+    construct lists, it takes as arguments a function from X to Y and a
+    list over X in that order. The value that is returned is a list of
+    values in Y. The argument list may be a set or an <legacy format="mocktex">integer_interval</legacy>
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="sts" name="mapsto"/>
+	<OMA>
+	  <OMS cd="sts" name="mapsto"/>
+	  <OMS cd="sts" name="Object"/>
+	  <OMS cd="sts" name="Object"/>
+	</OMA>
+	<OMV name="List"/>
+	<OMV name="List"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+<example xml:id="map-ex-1" type="for" for="#map">
+  <CMP>
+    The list of even values between 0 and 20 in ascending order, that is
+    the values 2x in ascending order, where x ranges over the integral
+    interval [0,10]. </CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="list1" name="map"/>
+      <OMBIND>
+	<OMS cd="fns1" name="lambda"/>
+	<OMBVAR>
+	  <OMV name="x"/>
+	</OMBVAR>
+	<OMA>
+	  <OMS cd="arith1" name="times"/>
+	  <OMI> 2 </OMI>
+	  <OMV name="x"/>
+	</OMA>
+      </OMBIND>
+      <OMA>
+	<OMS cd="interval1" name="integer_interval"/>
+	<OMI> 0 </OMI>
+	<OMI> 10 </OMI>
+      </OMA>
+    </OMA>
+  </OMOBJ>
+</example>
+<symbol name="suchthat" xml:id="suchthat">
+<metadata>
+<dc:description>
+    This symbol represents the suchthat function which may be used to
+    construct lists, it takes two arguments. The first argument should be the
+    set which contains the elements of the list, the second argument should
+    be a predicate, that is a function from the set to the booleans which
+    describes if an element is to be in the list returned.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="sts" name="mapsto"/>
+	<OMA>
+	  <OMS name="structure" cd="sts"/>
+	  <OMV name="Set"/>
+	</OMA>
+	<OMA>
+	  <OMS name="mapsto" cd="sts"/>
+	  <OMV name="Set"/>
+	  <OMS name="Boolean" cd="setname2"/>
+	</OMA>
+	<OMV name="List"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+
+  <notation>
+    <prototype>
+      <om:OMA>
+	<om:OMS cd="list1" name="suchthat" o:cr="fun"/>
+	<expr name="set"/>
+	<om:OMBIND>
+	  <om:OMS cd="fns1" name="lambda"/>
+	  <om:OMBVAR><expr name="var"/></om:OMBVAR>
+	  <expr name="scope"/>
+	</om:OMBIND>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+	<m:csymbol cd="list1" o:cr="fun">suchthat</m:csymbol>
+	<expr name="set"/>
+	<m:bind>
+	  <m:csymbol cd="fns1">lambda</m:csymbol>
+	  <m:bvar><expr name="var"/></m:bvar>
+	  <expr name="scope"/>
+	</m:bind>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <m:mrow>
+	<m:mo o:cr="fun" fence="true">[</m:mo>
+	<m:mrow>
+	  <render name="var"/>
+	  <m:mo o:cr="fun">∈</m:mo>
+	  <render name="set"/>
+	</m:mrow>
+	<m:mo o:cr="fun">|</m:mo>
+	<render name="scope"/>  
+	<m:mo o:cr="fun">]</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+
+<example xml:id="suchthat-ex-1" type="for" for="#suchthat">
+  <CMP>
+    This example shows how to construct the list of even positive integers less
+    than 100, using the suchthat constructor.</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="list1" name="suchthat"/>
+      <OMS cd="setname1" name="Z"/>
+      <OMBIND>
+	<OMS cd="fns1" name="lambda"/>
+	<OMBVAR>
+	  <OMV name="x"/>
+	</OMBVAR>
+	<OMA>
+	  <OMS cd="logic1" name="and"/>
+	  <OMA>
+	    <OMS cd="relation1" name="geq"/>
+	    <OMV name="x"/>
+	    <OMS cd="alg1" name="zero"/>
+	  </OMA>
+	  <OMA>
+	    <OMS cd="relation1" name="lt"/>
+	    <OMV name="x"/>
+	    <OMI> 100 </OMI>
+	  </OMA>
+	  <OMA>
+	    <OMS cd="set1" name="in"/>
+	    <OMA>
+	      <OMS cd="arith1" name="divide"/>
+	      <OMV name="x"/>
+	      <OMI> 2 </OMI>
+	    </OMA>
+	    <OMS cd="setname1" name="Z"/>
+	  </OMA>
+	</OMA>
+      </OMBIND>
+    </OMA>
+  </OMOBJ>
+</example>
+
+<symbol name="list" xml:id="list">
+<metadata>
+<dc:description> 
+    This symbol denotes the list construct which is an n-ary function. The
+    list entries must be given explicitly.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMA>
+	  <OMS name="nary" cd="sts"/>
+	  <OMS name="Object" cd="sts"/>
+	</OMA>
+	<OMS name="Object" cd="sts"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="list1" name="list" o:cr="fun"/>
+        <exprlist name="args"><expr name="arg"/></exprlist>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="list1" o:cr="fun">list</m:csymbol>
+        <exprlist name="args"><expr name="arg"/></exprlist>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <m:mrow>
+        <m:mo o:cr="fun">[</m:mo>
+        <iterate name="args">
+          <separator><m:mo o:cr="fun">,</m:mo></separator>
+          <render name="arg"/>
+        </iterate>
+        <m:mo o:cr="fun">]</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+
+<example xml:id="list-ex-1" type="for" for="#list">
+  <CMP>The list 3, 6, 9.</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="list1" name="list"/>
+      <OMI> 3 </OMI>
+      <OMI> 6 </OMI>
+      <OMI> 9 </OMI>
+    </OMA>
+  </OMOBJ>
+</example>
+</theory>
+</omdoc>
+

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc id="algebra1.omdoc">
+ <metadata>
+  <Title>Laws of Composition</Title>
+  <Creator role="trl">Michael Kohlhase</Creator> 
+  <Date action="created">2002-01-03T0703</Date>
+  <Description>
+   A first migration step for a fragment of Bourbaki's Algebra
+  </Description>
+  <Source>Nicolas Bourbaki, Algebra, Springer Verlag 1974</Source>
+  <Type>Text</Type>
+  <Format>application/omdoc+xml</Format>
+</metadata>
+
+<theory id="magmas">
+<symbol id="magma"/>
+
+<definition id="magma.def" for="magma">
+ <CMP> 
+  Let $E$ be a set. A mapping of $E\times E$ is called a
+  law of composition on $E$. The value $f(x,y)$ of $f$ for an ordered pair
+  $(x,y)\in E\times E$ is called the composition of $x$ and $y$ under this 
+  law. A set with a law of composition is called a magma.
+ </CMP>
+</definition>
+
+<omtext id="t1">
+ <CMP>
+  The composition of $x$ and $y$ is usually denoted by writing $x$ and $y$
+  in a definite order and separating them by a characteristic symbol of the 
+  law in question (a symbol which it may be agreed to omit). Among the 
+  symbols most often used are $+$ and $.$, the usual convention being to omit the 
+  latter if desired; with these symbols the composition of $x$ and $y$ is 
+  written respectively as $x+y$, $x.y$ or $xy$. A law denoted by the symbol 
+  $+$ is usually called {\em addition} (the composition $x+y$ beind called 
+  the {\em sum} of $x$ and $y$) and we say that it is {\em written additively}; 
+  a law denoted by the symbol . is usually called {\em multiplication} (the 
+  composition $x.y=xy$ being called the {\em product} for $x$ and $y$) and we 
+  say that it is {\em written multiplicatively}. 
+ </CMP>
+</omtext>
+
+<omtext id="t2">
+ <CMP>
+  In the general arguments of paragraphs 1 to 3 of this chapter we shall 
+  generally use the symbols $\top$ and $\bot$ to denote arbitrary laws of 
+  composition.
+ </CMP>
+</omtext>
+
+<omtext id="t3">
+ <CMP>
+  By an abuse of language, a mapping of a {\em subset} of $E\times E$ into $E$ 
+  is sometimes called a law of composition {\em not everywhere defined} on $E$.
+ </CMP>
+</omtext> 
+
+<omgroup type="sequence">
+ <metadata><Title>Examples</Title></metadata>
+
+ <example id="e1.magma" for="magma">
+  <CMP>
+   The mappings $(X,Y)\mapsto X\cup Y$ and $(X,Y)\mapsto X\cap Y$ are
+  laws of composition on the set of subsets of a set $E$.
+  </CMP>
+ </example>
+ 
+ <example id="e2.magma" for="magma">
+  <CMP>
+   On the set $\bf N$ of natural numbers, addition, multiplication, and 
+   exponentiation are laws of composition (the compositions of $x\in{\bf N}$ and 
+   $y\in{\bf N}$ under these laws being denoted respectively by $x+y$, $xy$, or 
+   $x.y$ and $x^y$)  ({\em Set Theory}, III, $\P3$, no. 4).
+  </CMP>
+ </example>
+ 
+ <example id="e3.magma" for="magma">
+  <CMP>
+   Let $E$ be a set; the mapping $(X,Y)\mapsto X\circ Y$ is a law of composition 
+   on the set of subsets of $E\times E$ ({\em Set Theory}, II, $\P3$, no. 3, 
+   Definition 6); the mapping $(f,g)\mapsto f\circ g$ is a law of composition on 
+   the set of mappings from  $E$ into $E$ ({\em Set Theory}, II, $\P5$, no. 2).
+  </CMP>
+ </example>
+</omgroup>
+</theory>
+</omdoc>

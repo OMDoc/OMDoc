@@ -1,0 +1,429 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  
+       xmlns="http://omdoc.org/ns"
+       xmlns:om="http://www.openmath.org/OpenMath"
+       xmlns:m="http://www.w3.org/1998/Math/MathML"
+       xmlns:mcd="http://www.w3.org/ns/mathml-cd"
+       xml:id="lambda-calc-omdoc" >
+
+ <metadata>
+  <dc:title>Lambda Calculus</dc:title>
+   <dc:creator role="aut">Michael Kohlhase</dc:creator>
+   <dc:date>2002-04-16T00:00:00</dc:date>
+  <dc:rights>Copyright (c) 2008 Michael Kohlhase</dc:rights>
+  <license xmlns="http://creativecommons.org/ns">
+    <permissions reproduction="permitted" distribution="permitted" derivative_works="permitted"/>
+    <prohibitions commercial_use="permitted"/>
+    <requirements notice="required" copyleft="required" attribution="required"/>
+  </license>
+  </metadata>
+
+ <theory xml:id="lambda-calc">
+   <metadata>
+     <dc:title>Lambda Calculus</dc:title>
+     <dc:description>The Theory of untyped Lambda Calculus.</dc:description>
+   </metadata>
+
+ <imports from="substitution.omdoc#substitution"/>
+ 
+ <symbol name="lambda" xml:id="lambda-calc.lambda" role="object" scope="global">
+  <metadata>
+    <dc:subject>lambda</dc:subject>
+    <dc:description>
+          <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="lambda-calc"
+          name="lambda"/></OMOBJ> is used to represent anonymous functions as lambda
+          expansions.  It is used in a binder that takes two further arguments, the first
+          of which is a list of variables, and the second of which is an expression, and
+          it forms the function which is the lambda extraction of the expression
+    </dc:description>
+  </metadata>
+</symbol>
+
+  <notation cdbase="FIXME" cd="lambda-calc" name="lambda">
+    <prototype>
+      <om:OMS cd="lambda-calc" name="lambda"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="lambda-calc">lambda</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en">λ</rendering>
+  </notation>
+
+<example xml:id="lambda-id-ex" for="#lambda-calc.lambda">
+ <CMP>The following is a representation of the identity function:
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+   <OMBIND>
+    <OMS cd="lambda-calc" name="lambda"/>
+    <OMBVAR><OMV name="X"/></OMBVAR>
+    <OMV name="X"/>
+   </OMBIND>
+  </OMOBJ>
+</CMP>
+</example>
+
+<symbol name="alpha-equal">
+  <metadata>
+    <dc:description>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="lambda-calc"
+    name="alpha-equal"/></OMOBJ> is the relation of alphabetic equality.</dc:description>
+  </metadata>
+</symbol>
+
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="lambda-calc" name="alpha-equal"/>
+        <exprlist name="args"><expr name="arg"/></exprlist>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="lambda-calc">alpha-equal</m:csymbol>
+        <exprlist name="args"><expr name="arg"/></exprlist>
+      </m:apply>
+    </prototype>
+    <rendering precedence="700">
+      <m:mrow>
+	<m:mo mcd:egroup="fence" fence="true">(</m:mo>
+	<iterate name="args">
+	  <separator>
+	    <m:msub>
+	      <m:mo>=</m:mo>
+	      <m:mo>α</m:mo>
+	    </m:msub>
+	  </separator>
+	  <render name="arg" precedence="700"/>
+	</iterate>
+	<m:mo mcd:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+
+<axiom xml:id="alpha-ax">
+ <CMP>Bound Variables can be renamed, i.e. 
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+   <OMA>
+    <OMS cd="lambda-calc" name="alpha-equal"/>
+    <OMBIND>
+     <OMS cd="lambda-calc" name="lambda"/>
+     <OMBVAR><OMV name="X"/></OMBVAR>
+     <OMV name="X"/>
+    </OMBIND>
+    <OMBIND>
+     <OMS cd="lambda-calc" name="lambda"/>
+     <OMBVAR><OMV name="Y"/></OMBVAR>
+     <OMV name="Y"/>
+    </OMBIND>
+   </OMA>
+  </OMOBJ>.
+ </CMP> 
+ </axiom>
+
+<symbol name="beta-equal">
+  <metadata>
+    <dc:description> <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="lambda-calc"
+    name="beta-equal"/></OMOBJ>is the relation of beta equality.</dc:description>
+  </metadata>
+</symbol>
+
+
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="lambda-calc" name="beta-equal"/>
+        <exprlist name="args"><expr name="arg"/></exprlist>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="lambda-calc">beta-equal</m:csymbol>
+        <exprlist name="args"><expr name="arg"/></exprlist>
+      </m:apply>
+    </prototype>
+    <rendering precedence="700">
+      <m:mrow>
+	<m:mo mcd:egroup="fence" fence="true">(</m:mo>
+	<iterate name="args">
+	  <separator>
+	    <m:msub>
+	      <m:mo>=</m:mo>
+	      <m:mo>α</m:mo>
+	    </m:msub>
+	  </separator>
+	  <render name="arg" precedence="700"/>
+	</iterate>
+	<m:mo mcd:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+
+<axiom xml:id="beta-axiom">
+ <CMP>For all lambda-terms <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="A"/></OMOBJ> and
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="B"/></OMOBJ> we have
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+   <OMA>
+    <OMS cd="lambda-calc" name="beta-equal"/>
+    <OMA>
+     <OMBIND>
+      <OMS cd="lambda-calc" name="lambda"/>
+      <OMBVAR><OMV name="X"/></OMBVAR>
+      <OMV name="B"/>
+     </OMBIND>
+     <OMV name="A"/>
+    </OMA>
+    <OMA>
+      <OMS cd="substitution" name="apply"/>
+      <OMA>
+	<OMS cd="substitution" name="substitute"/>
+	<OMV name="A"/>
+	<OMV name="X"/>
+      </OMA>
+      <OMV name="B"/>
+    </OMA>
+   </OMA>
+  </OMOBJ>.
+ </CMP> 
+ </axiom>
+
+<example xml:id="beta-axiom-ex" for="#beta-axiom">
+ <CMP>  
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+   <OMBIND>
+    <OMS cd="lambda-calc" name="lambda"/>
+    <OMBVAR><OMV name="X"/></OMBVAR>
+    <OMV name="X"/>
+   </OMBIND>
+  </OMOBJ>
+   acts as the identity function:
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+   <OMA>
+    <OMS cd="lambda-calc" name="beta-equal"/>
+    <OMA>
+     <OMBIND>
+      <OMS cd="lambda-calc" name="lambda"/>
+      <OMBVAR><OMV name="X"/></OMBVAR>
+      <OMV name="X"/>
+     </OMBIND>
+     <OMV name="Y"/>
+    </OMA>
+    <OMV name="Y"/>
+   </OMA>
+  </OMOBJ>
+ </CMP>
+</example>
+
+<symbol name="beta-reduces">
+<metadata>
+  <dc:description> <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="lambda-calc"
+  name="beta-reduces"/></OMOBJ> is the beta reduction relation.</dc:description>
+</metadata>
+</symbol>
+
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="lambda-calc" name="beta-reduces"/>
+        <exprlist name="args"><expr name="arg"/></exprlist>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="lambda-calc">beta-reduces</m:csymbol>
+        <exprlist name="args"><expr name="arg"/></exprlist>
+      </m:apply>
+    </prototype>
+    <rendering precedence="700">
+      <m:mrow>
+	<m:mo mcd:egroup="fence" fence="true">(</m:mo>
+	<iterate name="args">
+	  <separator>
+	    <m:msub>
+	      <m:mo>&#x02192;</m:mo>
+	      <m:mo>&#x3B2;</m:mo>
+	    </m:msub>
+	  </separator>
+	  <render name="arg" precedence="700"/>
+	</iterate>
+	<m:mo mcd:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+
+<axiom xml:id="beta-reduction-axiom">
+ <CMP>For all lambda-terms <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="A"/></OMOBJ> and
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="B"/></OMOBJ> we have
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+   <OMA>
+    <OMS cd="lambda-calc" name="beta-reduces"/>
+    <OMA>
+     <OMBIND>
+      <OMS cd="lambda-calc" name="lambda"/>
+      <OMBVAR><OMV name="X"/></OMBVAR>
+      <OMV name="B"/>
+     </OMBIND>
+     <OMV name="A"/>
+    </OMA>
+    <OMA>
+     <OMS cd="substitution" name="substitute"/>
+     <OMA>
+       <OMS cd="substitution" name="substitute"/>
+       <OMV name="A"/>
+       <OMV name="X"/>
+     </OMA>
+     <OMV name="B"/>
+    </OMA>
+   </OMA>
+ </OMOBJ>.
+ </CMP> 
+ </axiom>
+
+<example xml:id="beta-reduces-id" for="#beta-reduces">
+ <CMP>Beta equality need not be terminating in general:
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+   <OMA>
+    <OMS cd="lambda-calc" name="beta-reduces"/>
+    <OMA>
+     <OMBIND>
+      <OMS cd="lambda-calc" name="lambda"/>
+      <OMBVAR><OMV name="X"/></OMBVAR>
+      <OMA><OMV name="X"/><OMV name="X"/></OMA>
+     </OMBIND>
+     <OMBIND>
+      <OMS cd="lambda-calc" name="lambda"/>
+      <OMBVAR><OMV name="X"/></OMBVAR>
+      <OMA><OMV name="X"/><OMV name="X"/></OMA>
+     </OMBIND>
+    </OMA>
+    <OMA>
+     <OMBIND>
+      <OMS cd="lambda-calc" name="lambda"/>
+      <OMBVAR><OMV name="X"/></OMBVAR>
+      <OMA><OMV name="X"/><OMV name="X"/></OMA>
+     </OMBIND>
+     <OMBIND>
+      <OMS cd="lambda-calc" name="lambda"/>
+      <OMBVAR><OMV name="X"/></OMBVAR>
+      <OMA><OMV name="X"/><OMV name="X"/></OMA>
+     </OMBIND>
+    </OMA>
+   </OMA>
+  </OMOBJ>
+ </CMP>
+</example>
+
+<symbol name="eta-equal">
+  <metadata>
+    <dc:description>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="lambda-calc"
+        name="eta-equal"/></OMOBJ> is the eta equality relation, this is a restricted form
+        of extensionality.</dc:description>
+  </metadata>
+</symbol>
+
+
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="lambda-calc" name="eta-equal"/>
+        <exprlist name="args"><expr name="arg"/></exprlist>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="lambda-calc">eta-equal</m:csymbol>
+        <exprlist name="args"><expr name="arg"/></exprlist>
+      </m:apply>
+    </prototype>
+    <rendering precedence="700">
+      <m:mrow>
+	<m:mo mcd:egroup="fence" fence="true">(</m:mo>
+	<iterate name="args">
+	  <separator>
+	    <m:msub>
+	      <m:mo>=</m:mo>
+	      <m:mo>&#x3B7;</m:mo>
+	    </m:msub>
+	  </separator>
+	  <render name="arg" precedence="700"/>
+	</iterate>
+	<m:mo mcd:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+
+<axiom xml:id="eta-axiom">
+ <CMP>For all lambda-terms <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="B"/></OMOBJ> such that 
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="X"/></OMOBJ> is not free in <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="B"/></OMOBJ> we have
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+   <OMA>
+    <OMS cd="lambda-calc" name="beta-equal"/>
+    <OMBIND>
+     <OMS cd="lambda-calc" name="lambda"/>
+     <OMBVAR><OMV name="X"/></OMBVAR>
+     <OMA><OMV name="B"/><OMV name="X"/></OMA>
+    </OMBIND>
+    <OMV name="B"/>
+   </OMA>
+  </OMOBJ>.
+ </CMP> 
+ </axiom>
+
+<symbol name="eta-reduces">
+  <metadata>
+    <dc:description> <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="lambda-calc"
+    name="eta-reduces"/></OMOBJ> is the eta reduction relation.</dc:description>
+  </metadata>
+</symbol>
+
+
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="lambda-calc" name="beta-reduces"/>
+        <exprlist name="args"><expr name="arg"/></exprlist>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="lambda-calc">beta-reduces</m:csymbol>
+        <exprlist name="args"><expr name="arg"/></exprlist>
+      </m:apply>
+    </prototype>
+    <rendering precedence="700">
+      <m:mrow>
+	<m:mo mcd:egroup="fence" fence="true">(</m:mo>
+	<iterate name="args">
+	  <separator>
+	    <m:msub>
+	      <m:mo>&#x02192;</m:mo>
+	      <m:mo>&#x3AE;</m:mo>
+	    </m:msub>
+	  </separator>
+	  <render name="arg" precedence="700"/>
+	</iterate>
+	<m:mo mcd:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+
+
+<axiom xml:id="eta-reduction-axiom">
+ <CMP>For all lambda-terms <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="B"/></OMOBJ> such that 
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="X"/></OMOBJ> is not free in <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="B"/></OMOBJ> we have
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+   <OMA>
+    <OMS cd="lambda-calc" name="eta-reduces"/>
+    <OMBIND>
+     <OMS cd="lambda-calc" name="lambda"/>
+     <OMBVAR><OMV name="X"/></OMBVAR>
+     <OMA><OMV name="B"/><OMV name="X"/></OMA>
+    </OMBIND>
+    <OMV name="B"/>
+   </OMA>
+  </OMOBJ>.
+ </CMP> 
+ </axiom>
+
+</theory>
+</omdoc>

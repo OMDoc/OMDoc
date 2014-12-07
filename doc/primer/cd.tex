@@ -1,0 +1,288 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This file is part of the LaTeX sources of the OMDoc 1.6 primer
+% Copyright (c) 2006 Michael Kohlhase
+% This work is licensed by the Creative Commons Share-Alike license
+% see http://creativecommons.org/licenses/by-sa/2.5/ for details
+\svnInfo $Id: cd.tex 8431 2009-07-19 11:33:00Z kohlhase $
+\svnKeyword $HeadURL: https://svn.omdoc.org/repos/omdoc/trunk/doc/primer/cd.tex $
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{omgroup}[id=omcds]{OpenMath Content Dictionaries}
+
+  Content Dictionaries are structured documents used by the {\openmath}
+  standard~\cite{BusCapCar:2oms04} to codify knowledge about mathematical symbols and
+  concepts used in the representation of mathematical formulae. They differ from the
+  mathematical documents discussed in the last chapter in that they are less geared
+  towards introduction of a particular domain, but act as a reference/glossary document
+  for implementing and specifying mathematical software systems. Content Dictionaries are
+  important for the {\omdoc} format, since the {\omdoc} architecture, and in particular
+  the integration of {\openmath} builds on the equivalence of {\openmath} content
+  dictionaries and {\omdoc} theories.
+
+  Concretely, we will look at the content dictionary {\snippet{arith1.ocd}} which defines
+  the {\openmath} symbols {\snippet{abs}}, {\snippet{divide}}, {\snippet{gcd}},
+  {\snippet{lcm}}, {\snippet{minus}}, {\snippet{plus}}, {\snippet{power}},
+  {\snippet{product}}, {\snippet{root}}, {\snippet{sum}}, {\snippet{times}},
+  {\snippet{unary\_minus}} (see~\cite{URL:omcd-core} for the original). We will discuss
+  the transformation of the parts listed below into {\omdoc} and see from this process
+  that the {\openmath} content dictionary format is (isomorphic to) a subset of the
+  {\omdoc} format.  In fact, the {\openmath}2 standard only presents the content
+  dictionary format used here as one of many encodings and specifies abstract conditions
+  on content dictionaries that the {\omdoc} encoding below also meets. Thus {\omdoc} is a
+  valid content dictionary encoding.
+
+\begin{lstlisting}[language=omCD,label=lst:omcd,mathescape,
+    caption={Part of the {\openmath} content dictionary {\snippet{arith1.ocd}}}]
+<CD>
+  <CDName> arith1 </CDName>
+  <CDURL> http://www.openmath.org/cd/arith1.ocd </CDURL>
+  <CDReviewDate> 2003-04-01 </CDReviewDate>
+  <CDStatus> official </CDStatus>
+  <CDDate> 2001-03-12 </CDDate>
+  <CDVersion> 2 </CDVersion>
+  <CDRevision> 0 </CDRevision>
+  <dc:description> 
+    This CD defines symbols for common arithmetic functions.
+  </dc:description>
+
+  <CDDefinition>
+  <Name> lcm </Name>
+  <Description> 
+    The symbol to represent the n-ary function to return the least common
+    multiple of its arguments.
+  </Description>
+
+  <h:p> lcm(a,b) = a*b/gcd(a,b) </h:p>
+  <FMP>$\ldots$ </FMP>
+
+  <h:p>
+    for all integers a,b |
+    There does not exist a c>0 such that c/a is an Integer and c/b is an
+    Integer and lcm(a,b) > c.
+  </h:p>
+  <FMP>$\ldots$</FMP>
+  $\ldots$
+</CD>
+\end{lstlisting}
+
+\noindent Generally, {\openmath} content dictionaries are
+represented as mathematical theories in {\omdoc}. These act as
+containers for sets of symbol declarations and knowledge about them,
+and are marked by {\element{theory}} elements. The result of the
+transformation of the content dictionary in {\mylstref{omcd}} is the
+{\omdoc} document in {\mylstref{omdoccd}}.
+
+The first 25 lines in {\mylstref{omcd}} contain administrative information and
+{\indextoo{metadata}} of the content dictionary, which is mostly incorporated into
+the metadata of the {\element{theory}} element. The translation adds further
+metadata to the {\element{omdoc}} element that were left implicit in the original,
+or are external to the document itself. These data comprise information about the
+translation process, the creator, and the terms of usage, and the source, from
+which this document is derived (the content of the {\element[ns-elt=omcd]{CDURL}} element is
+recycled in Dublin Core metadata element {\element[ns-elt=dc]{source}} in line 12.
+
+The remaining administrative data is specific to the content dictionary per se, and
+therefore belongs to the {\element{theory}} element. In particular, the
+{\element[ns-elt=omcd]{CDName}} goes to the {\attribute[ns-attr=xml]{id}{omdoc}} attribute on the
+{\element{theory}} element in line 36. The {\element[ns-elt=dc]{description}} element is
+directly used in the {\element{metadata}} in line 38.  The remaining information is
+encapsulated into the {\attribute{cd*}{theory}} attributes.
+
+Note that we have used the {\omdoc} sub-language ``{\omdoc} Content Dictionaries''
+described in {\extref{spec}{sub-languages.cd}} since it suffices in this case, this is
+indicated by the {\attribute{modules}{omdoc}} attribute on the {\element{omdoc}} element.
+
+\begin{lstlisting}[label=lst:omdoccd,escapechar=\|,mathescape,
+    caption={The {\openmath} content dictionary {\snippet{arith1}} in {\omdoc} form},
+    index={DOCTYPE,omdoc,metadata,dc:title,dc:creator,dc:date,dc:description,dc:source,dc:type,dc:format,theory
+           omtext,h:p}]
+<?xml version="1.0" encoding="utf-8"?>
+<omdoc xml:id="arith1.omdoc" modules="@cd"
+       xmlns:dc="http://purl.org/dc/elements/1.1/">
+
+<metadata>
+  <dc:title>The OpenMath Content Dictionary arith1.ocd in OMDoc Form</dc:title>
+  <dc:creator role="trl">Michael Kohlhase</dc:creator>
+  <dc:creator role="ant">The OpenMath Society</dc:creator>
+  <dc:date action="updated"> 2004-01-17T09:04:03Z </dc:date>
+  <dc:source>
+    Derived from the OpenMath CD http://www.openmath.org/cd/arith1.ocd.
+  </dc:source>
+  <dc:type>Text</dc:type>
+  <dc:format>application/omdoc+xml</dc:format>
+  <dc:rights>Copyright (c) 2000 Michael Kohlhase;
+    This OMDoc content dictionary is released under the OpenMath license:
+    http://www.openmath.org/cdfiles/license.html
+  </dc:rights>
+</metadata>
+
+<theory xml:id="arith1"
+        cdstatus="official" cdreviewdate="2003-04-01" cdversion="2" cdrevision="0">
+  <metadata>
+    <dc:title>Common Arithmetic Functions</dc:title>
+    <dc:description>This CD defines symbols for common arithmetic functions.</dc:description>
+    <dc:date action="updated"> 2001-03-12 </dc:date>
+  </metadata>
+  <imports from="#sts"/>
+
+  <symbol name="lcm">
+    <metadata>
+      <dc:description>The symbol to represent the $n$-ary function to return the least common
+        multiple of its arguments.
+      </dc:description>
+      <dc:description xml:lang="de"> 
+        Das Symbol f|\"u|r das kleinste gemeinsame Vielfache (als |$n$-\"a|re Funktion).
+      </dc:description>
+      <dc:subject>lcm, least common mean</dc:subject>
+      <dc:subject xml:lang="de">kgV, kleinstes gemeinsames Vielfaches</dc:subject>
+    </metadata>
+    <type system="sts">
+     <OMA><OMS name="mapsto" cd="sts"/>
+        <OMA><OMS name="nassoc" cd="sts"/><OMV name="SemiGroup"/></OMA>
+        <OMV name="SemiGroup"/>
+      </OMA>
+    </type>
+  </symbol>
+
+  <presentation xml:id="pr_lcm" for="#lcm">
+    <use  format="default">lcm</use>
+    <use  format="default" xml:lang="de">kgV</use>
+    <use format="cmml" element="lcm"/>
+  </presentation>
+
+  <definition xml:id="lcm-def" for="#lcm" type="pattern">
+    <h:p>We define <OMR href="#lcm-def.O"/> as <OMR href="#lcm-def.1"/></h:p>
+    <h:p xml:lang="de">
+      Wir definieren <OMR href="#lcm-def.O"/> als <OMR href="#lcm-def.1"/>.
+    </h:p>
+    <requation>
+     <OMA id="lcm-def.O">
+        <OMS cd="arith1" name="lcm"/>
+        <OMV name="a"/><OMV name="b"/>
+     </OMA>
+     <OMA id="lcm-def.1">
+        <OMS cd="arith1" name="divide"/>
+        <OMA><OMS cd="arith1" name="times"/>
+          <OMV name="a"/>
+          <OMV name="b"/>
+        </OMA>
+        <OMA><OMS cd="arith1" name="gcd"/>
+          <OMV name="a"/>
+          <OMV name="b"/>
+        </OMA>
+      </OMA>
+   </requation>
+  </definition>
+
+  <theory>
+    <imports from="#relation1"/>
+    <imports from="#quant1"/>
+    <imports from="#logic1"/>
+
+    <assertion xml:id="lcm-prop-3" type="lemma">
+      <h:p>For all integers <OMV name="a"/>, <OMV name="b"/> there is no 
+        <OMR href="#lcm-prop-3.1"/> such that <OMR href="#lcm-prop-3.2"/> and 
+        <OMR href="#lcm-prop-3.3"/> and <OMR href="#lcm-prop-3.4"/>.
+      </h:p>
+      <h:p xml:lang="de">F|\"u|r alle ganzen Zahlen 
+        <OMV name="a"/>, <OMV name="b"/> 
+        gibt es kein <OMR href="#lcm-prop-3.1"/> mit   
+        <OMR href="#lcm-prop-3.2"/> und 
+        <OMR href="#lcm-prop-3.3"/> und 
+        <OMR href="#lcm-prop-3.4"/>.
+      </h:p>
+      <FMP>
+        <OMBIND><OMS cd="quant1" name="forall"/>
+            <OMBVAR><OMV name="a"/><OMV name="b"/></OMBVAR>
+            <OMA><OMS cd="logic1" name="implies"/>
+              <OMA>$\ldots$</OMA>
+              <OMA><OMS cd="logic1" name="not"/>
+                <OMBIND><OMS cd="quant1" name="exists"/>
+                  <OMBVAR><OMV name="c"/></OMBVAR>
+                  <OMA><OMS cd="logic1" name="and"/>
+                    <OMA id="lcm-prop-3.1">$\ldots$</OMA>
+                    <OMA id="lcm-prop-3.2">$\ldots$</OMA>
+                    <OMA id="lcm-prop-3.3">$\ldots$</OMA>
+                    <OMA id="lcm-prop-3.4">$\ldots$</OMA>
+                  </OMA>
+                </OMBIND>
+              </OMA>
+            </OMA>
+          </OMBIND>
+     </FMP>
+    </assertion> 
+    $\ldots$
+  </theory>
+  $\ldots$
+</theory>
+\end{lstlisting}
+
+\noindent One important difference between the original and the {\omdoc} version of the
+{\openmath} content dictionary is that the latter is intended for machine manipulation,
+and we can transform it into other formats. For instance, the human-oriented presentation
+of the {\omdoc} version might look something like the following\footnote{These
+  presentation was produced by the style sheets discussed in
+  {\extref{processing}{omdoc2pres}}.}:
+
+\begin{myfig}{result}{A human-oriented presentation of the OMDoc CD\vspace{-12pt}}
+\hspace*{-12pt}\fbox{\begin{minipage}{11cm}
+     \begin{center}
+       The OpenMath Content Dictionary arith1.ocd in OMDoc Form\\
+       Michael Kohlhase, The OpenMath Society\\
+       January 17. 2004\\
+       This CD defines symbols for common arithmetic functions.
+     \end{center}
+     
+{\bf Concept 1.} {\tt{lcm}} (lcm, least common mean)\\
+ {\bf Type} (sts): ${{SemiGroup}}^* \rightarrow{{SemiGroup}}$\\
+ The symbol to represent the $n$-ary function to return the least common multiple of its arguments.\\[1ex]
+{\bf Definition 2.}(lcm-def)\\
+  We define ${lcm ({a},{b})}$ as ${{{{a}{\cdot} {b}}\over  gcd ({a},{b})}}$\\[1ex]
+{\bf Lemma 3.} {\emph{For all integers $a$, $b$ there is no $c> 0$ such that
+ $(a|c)$ and $(b|c)$ and $c< lcm (a,b)$.}}
+  \end{minipage}}
+\end{myfig}
+
+\begin{myfig}{result-de}{A human-oriented presentation in German}
+\hspace*{-12pt}\fbox{\begin{minipage}{11cm}
+     \begin{center}
+       The OpenMath Content Dictionary arith1.ocd in OMDoc form\\
+       Michael Kohlhase, The OpenMath Society\\
+       17. Januar 2004\\
+       This CD defines symbols for common arithmetic functions.
+     \end{center}
+     
+{\bf Konzept 1.} {\tt{lcm}} (kgV, kleinstes gemeinsames Vielfaches) \\
+ {\bf Typ} (sts): $SemiGroup^* \rightarrow SemiGroup$\\
+  Das Symbol f\"ur das kleinste gemeinsame Vielfache (als $n$-\"are Funktion).\\[1ex]
+{\bf Definition 2.}(lcm-def)\\
+  Wir definieren $kgV (a,b)$ als $a\cdot b\over  ggT (a,b)$\\[1ex]
+{\bf Lemma 3.} {\emph{F\"ur alle ganzen Zahlen $a$, $b$ gibt es kein $c> 0$ mit
+ $(a|c)$ und $(b|c)$ und $c< kgV(a,b)$.}}
+  \end{minipage}}
+\end{myfig}
+\end{omgroup}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "main"
+%%% End: 
+
+% LocalWords:  arith ocd abs gcd lcm omCD lst omcd CDName CDURL CDReviewDate ur
+% LocalWords:  CDStatus CDDate CDVersion CDRevision CDUses alg fns linalg quant
+% LocalWords:  setname transc omdoccd utf omcddtd trl sts ns elt attr omcd omcd
+% LocalWords:  lang Das das kleinste gemeinsame Vielfache als aere Funktion kgV
+% LocalWords:   kleinstes gemeinsames Vielfaches mapsto cd nassoc pr omcds dc
+% LocalWords:  SemiGroup cmml def eq Fuer escapechar alle ganzen Zahlen es ary
+% LocalWords:  gibt kein mit und Konzept kgv Typ mathescape loc se omcd omcd
+% LocalWords:  catalgoue fco pres PCDATA xmlns OMR href Wir definieren cdstatus
+% LocalWords:  requation cdreviewdate cdversion cdrevision Januar unary h:p FMP
+% LocalWords:  CDDefinition omcd omcd metadata omdoc omcd omcd DOCTYPE omtext
+% LocalWords:  cdstatus cdreviewdate cdversion cdrevision de das OMA OMV
+% LocalWords:  OMBIND forall OMBVAR das ggT omcd omcd omcd omcd cdstatus das
+% LocalWords:  cdreviewdate cdversion cdrevision das omcd omcd omcd omcd das
+% LocalWords:  cdstatus cdreviewdate cdversion cdrevision das omcd omcd omcd
+% LocalWords:  omcd cdstatus cdreviewdate cdversion cdrevision das das cdstatus
+% LocalWords:  cdreviewdate cdversion cdrevision das das omcd omcd omcd omcd
+% LocalWords:  cdstatus cdreviewdate cdversion cdrevision das das omcd omcd das
+% LocalWords:  cdstatus cdreviewdate cdversion cdrevision das

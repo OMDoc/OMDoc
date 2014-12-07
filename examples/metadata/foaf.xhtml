@@ -1,0 +1,875 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html id="foaf.omdoc" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <link rel="stylesheet" type="text/css" href="omdoc-default.css"/>
+    <title>The FOAF Ontology</title>
+  </head>
+  <body>
+    <div class="dc-titleblock">
+      <div class="dc-title">The FOAF Ontology</div>
+      <div class="dc-authors">Christoph Lange</div>
+      <div class="dc-date">2008-09-12</div>
+      <div class="dc-description">This theory defines symbols of the FOAF ontology.</div>
+    </div>
+    <div class="theory" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="http://purl.org/dc/elements/1.1/">
+      <h1 id="foaf">1. Friend of a Friend (FOAF) vocabulary</h1>
+      <div class="imports">imports from: 
+        <a href="wordnet.xhtml#wordnet">wordnet</a>, 
+        <a href="dc.xhtml#dc">dc</a>, 
+        <a href="../logics/owl.xhtml#owl">owl</a>, 
+        <a href="../omstd/quant1.xhtml#quant1">quant1</a>, 
+        <a href="../omstd/logic1.xhtml#logic1">logic1</a>
+      </div>
+      <div class="omdoc-symbol" id="Agent">
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>Agent
+        </div>The foaf:Agent class is the class of agents; things that do stuff.
+        <div class="omdoc-type">
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>
+            <span id="MCRd19e50" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:oo="http://omdoc.org/ontology#" xmlns:om="http://www.openmath.org/OpenMath">
+                <m:semantics>
+                  <m:mo xref="#MMLPROC-aa2587622-8e66-4b1f-90af-aba7a6ff8f72">Class</m:mo>
+                  <m:annotation-xml>
+                    <OMS cd="rdfs" name="Class" id="MMLPROC-aa2587622-8e66-4b1f-90af-aba7a6ff8f72" xmlns="http://www.openmath.org/OpenMath"/>
+                  </m:annotation-xml>
+                </m:semantics>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-axiom">
+        <span class="omdoc-titleword">Axiom</span>
+        <span class="omdoc-FMP">
+          <span id="MCRd19e58" class="displaymath">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:oo="http://omdoc.org/ontology#" xmlns:om="http://www.openmath.org/OpenMath">
+              <m:semantics>
+                <m:mrow xref="#MMLPROC-ac74a9aef-d913-4b90-b3c6-1bb48776eb2f">
+                  <m:mo xref="#MMLPROC-ac74a9aef-d913-4b90-b3c6-1bb48776eb2f-arg1">Agent</m:mo>
+                  <m:mo>⊑</m:mo>
+                  <m:mo xref="#MMLPROC-ac74a9aef-d913-4b90-b3c6-1bb48776eb2f-arg2">Agent-3</m:mo>
+                </m:mrow>
+                <m:annotation-xml>
+                  <OMA id="MMLPROC-ac74a9aef-d913-4b90-b3c6-1bb48776eb2f" xmlns="http://www.openmath.org/OpenMath">
+                    <OMS cd="rdfs" name="subClassOf"/>
+                    <OMS cd="foaf" name="Agent" id="MMLPROC-ac74a9aef-d913-4b90-b3c6-1bb48776eb2f-arg1"/>
+                    <OMS cd="wordnet" name="Agent-3" id="MMLPROC-ac74a9aef-d913-4b90-b3c6-1bb48776eb2f-arg2"/>
+                  </OMA>
+                </m:annotation-xml>
+              </m:semantics>
+            </m:math>
+          </span>
+        </span>
+      </div>
+      <div class="omdoc-axiom">
+        <span class="omdoc-titleword">Axiom</span>
+        <span class="omdoc-FMP">
+          <span id="MCRd19e74" class="displaymath">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:oo="http://omdoc.org/ontology#" xmlns:om="http://www.openmath.org/OpenMath">
+              <m:semantics>
+                <m:mrow xref="#MMLPROC-abf8339f0-867f-4681-931b-d012475b2635">
+                  <m:mo xref="#MMLPROC-abf8339f0-867f-4681-931b-d012475b2635-arg1">Agent</m:mo>
+                  <m:mo>⊓</m:mo>
+                  <m:mo xref="#MMLPROC-abf8339f0-867f-4681-931b-d012475b2635-arg2">Document</m:mo>
+                  <m:mo>=</m:mo>
+                  <m:mo>⊥</m:mo>
+                </m:mrow>
+                <m:annotation-xml>
+                  <OMA id="MMLPROC-abf8339f0-867f-4681-931b-d012475b2635" xmlns="http://www.openmath.org/OpenMath">
+                    <OMS cd="owl" name="disjointWith"/>
+                    <OMS cd="foaf" name="Agent" id="MMLPROC-abf8339f0-867f-4681-931b-d012475b2635-arg1"/>
+                    <OMS cd="foaf" name="Document" id="MMLPROC-abf8339f0-867f-4681-931b-d012475b2635-arg2"/>
+                  </OMA>
+                </m:annotation-xml>
+              </m:semantics>
+            </m:math>
+          </span>
+        </span>
+      </div>
+      <div class="header">elaboration</div>
+      <div class="omdoc-omtext">
+        <p>A well known sub-class of foaf:Agent is foaf:Person, representing people. Other kinds of agents include foaf:Organization and foaf:Group.</p>
+        <p>The foaf:Agent class is useful in a few places in FOAF where foaf:Person would have been overly specific. For example, the IM chat ID properties such as jabberID are typically associated with people, but sometimes belong to software bots.</p>
+      </div>
+      <div class="omdoc-symbol" id="Document">
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>Document
+        </div>The foaf:Document class represents those things which are, broadly conceived, 'documents'.
+        <div class="omdoc-type">
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>
+            <span id="MCRd19e107" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:oo="http://omdoc.org/ontology#" xmlns:om="http://www.openmath.org/OpenMath">
+                <m:semantics>
+                  <m:mo xref="#MMLPROC-ae85c35a9-6a58-48d6-b01d-36e29e018c3a">Class</m:mo>
+                  <m:annotation-xml>
+                    <OMS cd="owl" name="Class" id="MMLPROC-ae85c35a9-6a58-48d6-b01d-36e29e018c3a" xmlns="http://www.openmath.org/OpenMath"/>
+                  </m:annotation-xml>
+                </m:semantics>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-symbol" id="Group">
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>Group
+        </div>The foaf:Group class represents a collection of individual agents (and may itself play the role of a foaf:Agent, i.e. something that can perform actions).
+        <div class="omdoc-type">
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>
+            <span id="MCRd19e122" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:oo="http://omdoc.org/ontology#" xmlns:om="http://www.openmath.org/OpenMath">
+                <m:semantics>
+                  <m:mo xref="#MMLPROC-ae3e1f50e-acec-4cf4-bdfd-daa3e57bd8f4">Class</m:mo>
+                  <m:annotation-xml>
+                    <OMS cd="owl" name="Class" id="MMLPROC-ae3e1f50e-acec-4cf4-bdfd-daa3e57bd8f4" xmlns="http://www.openmath.org/OpenMath"/>
+                  </m:annotation-xml>
+                </m:semantics>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="header">elaboration</div>
+      <div class="omdoc-omtext">
+        <p>This concept is intentionally quite broad, covering informal and ad-hoc groups, long-lived communities, organizational groups within a workplace, etc. Some such groups may have associated characteristics which could be captured in RDF (perhaps a foaf:homepage, foaf:name, mailing list etc.).</p>
+        <p>While a foaf:Group has the characteristics of a foaf:Agent, it is also associated with a number of other foaf:Agents (typically people) who constitute the foaf:Group. FOAF provides a mechanism, the foaf:membershipClass property, which relates a foaf:Group to a sub-class of the class foaf:Agent who are members of the group. This is a little complicated, but allows us to make group membership rules explicit.</p>
+      </div>
+      <div class="omdoc-axiom">
+        <span class="omdoc-titleword">Axiom</span>
+        <span class="omdoc-FMP">
+          <span id="MCRd19e136" class="displaymath">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:oo="http://omdoc.org/ontology#" xmlns:om="http://www.openmath.org/OpenMath">
+              <m:semantics>
+                <m:mrow xref="#MMLPROC-a3676e8e2-9a44-4e9d-824e-8c64cfc4663b">
+                  <m:mo xref="#MMLPROC-a3676e8e2-9a44-4e9d-824e-8c64cfc4663b-arg1">Group</m:mo>
+                  <m:mo>⊑</m:mo>
+                  <m:mo xref="#MMLPROC-a3676e8e2-9a44-4e9d-824e-8c64cfc4663b-arg2">Agent</m:mo>
+                </m:mrow>
+                <m:annotation-xml>
+                  <OMA id="MMLPROC-a3676e8e2-9a44-4e9d-824e-8c64cfc4663b" xmlns="http://www.openmath.org/OpenMath">
+                    <OMS cd="rdfs" name="subClassOf"/>
+                    <OMS cd="foaf" name="Group" id="MMLPROC-a3676e8e2-9a44-4e9d-824e-8c64cfc4663b-arg1"/>
+                    <OMS cd="foaf" name="Agent" id="MMLPROC-a3676e8e2-9a44-4e9d-824e-8c64cfc4663b-arg2"/>
+                  </OMA>
+                </m:annotation-xml>
+              </m:semantics>
+            </m:math>
+          </span>
+        </span>
+      </div>
+      <div class="omdoc-symbol" id="Person">
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>Person
+      </div>The <a href="#">foaf:Person</a> class represents people. Something is a foaf:Person if it is a person. We don't nitpick about whether they're alive, dead, real, or imaginary. The <a href="#">foaf:Person</a> class is a sub-class of the <a href="#">foaf:Agent</a> class, since all people are considered 'agents' in FOAF.
+        <div class="omdoc-type">
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>
+            <span id="MCRd19e161" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:oo="http://omdoc.org/ontology#" xmlns:om="http://www.openmath.org/OpenMath">
+                <m:semantics>
+                  <m:mo xref="#MMLPROC-a018e03f7-4ab8-415c-96dd-60985b5338cd">Class</m:mo>
+                  <m:annotation-xml>
+                    <OMS cd="owl" name="Class" id="MMLPROC-a018e03f7-4ab8-415c-96dd-60985b5338cd" xmlns="http://www.openmath.org/OpenMath"/>
+                  </m:annotation-xml>
+                </m:semantics>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-axiom">
+        <span class="omdoc-titleword">Axiom</span>
+        <span class="omdoc-FMP">
+          <span id="MCRd19e169" class="displaymath">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:oo="http://omdoc.org/ontology#" xmlns:om="http://www.openmath.org/OpenMath">
+              <m:semantics>
+                <m:mrow xref="#MMLPROC-aad8ad3b3-2873-466b-bbb0-4ca5ec6ec351">
+                  <m:mo xref="#MMLPROC-aad8ad3b3-2873-466b-bbb0-4ca5ec6ec351-arg1">Person</m:mo>
+                  <m:mo>⊑</m:mo>
+                  <m:mo xref="#MMLPROC-aad8ad3b3-2873-466b-bbb0-4ca5ec6ec351-arg2">Person</m:mo>
+                </m:mrow>
+                <m:annotation-xml>
+                  <OMA id="MMLPROC-aad8ad3b3-2873-466b-bbb0-4ca5ec6ec351" xmlns="http://www.openmath.org/OpenMath">
+                    <OMS cd="rdfs" name="subClassOf"/>
+                    <OMS cd="foaf" name="Person" id="MMLPROC-aad8ad3b3-2873-466b-bbb0-4ca5ec6ec351-arg1"/>
+                    <OMS cd="wordnet" name="Person" id="MMLPROC-aad8ad3b3-2873-466b-bbb0-4ca5ec6ec351-arg2"/>
+                  </OMA>
+                </m:annotation-xml>
+              </m:semantics>
+            </m:math>
+          </span>
+        </span>
+      </div>
+      <div class="omdoc-axiom">
+        <span class="omdoc-titleword">Axiom</span>
+        <p>The foaf:Person class is a sub-class of the foaf:Agent class, since all people are considered 'agents' in FOAF.</p>
+        <span class="omdoc-FMP">
+          <span id="MCRd19e189" class="displaymath">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:oo="http://omdoc.org/ontology#" xmlns:om="http://www.openmath.org/OpenMath">
+              <m:semantics>
+                <m:mrow xref="#MMLPROC-affe33157-b60d-4e53-ae98-2024a973b8ec">
+                  <m:mo xref="#MMLPROC-affe33157-b60d-4e53-ae98-2024a973b8ec-arg1">Person</m:mo>
+                  <m:mo>⊑</m:mo>
+                  <m:mo xref="#MMLPROC-affe33157-b60d-4e53-ae98-2024a973b8ec-arg2">Agent</m:mo>
+                </m:mrow>
+                <m:annotation-xml>
+                  <OMA id="MMLPROC-affe33157-b60d-4e53-ae98-2024a973b8ec" xmlns="http://www.openmath.org/OpenMath">
+                    <OMS cd="rdfs" name="subClassOf"/>
+                    <OMS cd="foaf" name="Person" id="MMLPROC-affe33157-b60d-4e53-ae98-2024a973b8ec-arg1"/>
+                    <OMS cd="foaf" name="Agent" id="MMLPROC-affe33157-b60d-4e53-ae98-2024a973b8ec-arg2"/>
+                  </OMA>
+                </m:annotation-xml>
+              </m:semantics>
+            </m:math>
+          </span>
+        </span>
+      </div>
+      <div class="omdoc-axiom">
+        <span class="omdoc-titleword">Axiom</span>
+        <span class="omdoc-FMP">
+          <span id="MCRd19e205" class="displaymath">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:oo="http://omdoc.org/ontology#" xmlns:om="http://www.openmath.org/OpenMath">
+              <m:semantics>
+                <m:mrow xref="#MMLPROC-a56e793e6-4d04-49f6-a53b-ae62fa15cd4f">
+                  <m:mo xref="#MMLPROC-a56e793e6-4d04-49f6-a53b-ae62fa15cd4f-arg1">Person</m:mo>
+                  <m:mo>⊓</m:mo>
+                  <m:mo xref="#MMLPROC-a56e793e6-4d04-49f6-a53b-ae62fa15cd4f-arg2">Organization</m:mo>
+                  <m:mo>=</m:mo>
+                  <m:mo>⊥</m:mo>
+                </m:mrow>
+                <m:annotation-xml>
+                  <OMA id="MMLPROC-a56e793e6-4d04-49f6-a53b-ae62fa15cd4f" xmlns="http://www.openmath.org/OpenMath">
+                    <OMS cd="owl" name="disjointWith"/>
+                    <OMS cd="foaf" name="Person" id="MMLPROC-a56e793e6-4d04-49f6-a53b-ae62fa15cd4f-arg1"/>
+                    <OMS cd="foaf" name="Organization" id="MMLPROC-a56e793e6-4d04-49f6-a53b-ae62fa15cd4f-arg2"/>
+                  </OMA>
+                </m:annotation-xml>
+              </m:semantics>
+            </m:math>
+          </span>
+        </span>
+      </div>
+      <div class="omdoc-symbol" id="name">
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>name
+        </div>The name of a thing
+        <div class="omdoc-type">
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>
+            <span id="MCRd19e236" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:oo="http://omdoc.org/ontology#" xmlns:om="http://www.openmath.org/OpenMath">
+                <m:semantics>
+                  <m:mrow xref="#MMLPROC-ab0b87698-b992-4e33-bf10-1c0d14658a40">
+                    <m:mo xref="#MMLPROC-ab0b87698-b992-4e33-bf10-1c0d14658a40-fun">DatatypeProperty</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                    <m:mo xref="#MMLPROC-ab0b87698-b992-4e33-bf10-1c0d14658a40-args-arg1">⊤</m:mo>
+                    <m:mo separator="true">,</m:mo>
+                    <m:mo xref="#MMLPROC-ab0b87698-b992-4e33-bf10-1c0d14658a40-args-arg2">Literal</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                  </m:mrow>
+                  <m:annotation-xml>
+                    <OMA id="MMLPROC-ab0b87698-b992-4e33-bf10-1c0d14658a40" xmlns="http://www.openmath.org/OpenMath">
+                      <OMS cd="owl" name="DatatypeProperty" id="MMLPROC-ab0b87698-b992-4e33-bf10-1c0d14658a40-fun"/>
+                      <OMS cd="owl" name="Thing" id="MMLPROC-ab0b87698-b992-4e33-bf10-1c0d14658a40-args-arg1"/>
+                      <OMS cd="rdfs" name="Literal" id="MMLPROC-ab0b87698-b992-4e33-bf10-1c0d14658a40-args-arg2"/>
+                    </OMA>
+                  </m:annotation-xml>
+                </m:semantics>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-axiom">
+        <span class="omdoc-titleword">Axiom</span>
+        <span class="omdoc-FMP">
+          <span id="MCRd19e258" class="displaymath">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:oo="http://omdoc.org/ontology#" xmlns:om="http://www.openmath.org/OpenMath">
+              <m:semantics>
+                <m:mrow xref="#MMLPROC-abba0710c-cc67-46d2-b7ec-9fcb191c872f">
+                  <m:mo xref="#MMLPROC-abba0710c-cc67-46d2-b7ec-9fcb191c872f-arg1">name</m:mo>
+                  <m:mo>⊑</m:mo>
+                  <m:mo xref="#MMLPROC-abba0710c-cc67-46d2-b7ec-9fcb191c872f-arg2">Label</m:mo>
+                </m:mrow>
+                <m:annotation-xml>
+                  <OMA id="MMLPROC-abba0710c-cc67-46d2-b7ec-9fcb191c872f" xmlns="http://www.openmath.org/OpenMath">
+                    <OMS cd="rdfs" name="subPropertyOf"/>
+                    <OMS cd="foaf" name="name" id="MMLPROC-abba0710c-cc67-46d2-b7ec-9fcb191c872f-arg1"/>
+                    <OMS cd="rdfs" name="Label" id="MMLPROC-abba0710c-cc67-46d2-b7ec-9fcb191c872f-arg2"/>
+                  </OMA>
+                </m:annotation-xml>
+              </m:semantics>
+            </m:math>
+          </span>
+        </span>
+      </div>
+      <div class="omdoc-symbol" id="made">
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>made
+      </div>The <a href="#">foaf:made</a> property relates a foaf:Agent to something foaf:made by it.
+        <div class="omdoc-type">
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>
+            <span id="MCRd19e282" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:oo="http://omdoc.org/ontology#" xmlns:om="http://www.openmath.org/OpenMath">
+                <m:semantics>
+                  <m:mrow xref="#MMLPROC-aac6db1b7-7405-4091-9f35-b0f05a14add8">
+                    <m:mo xref="#MMLPROC-aac6db1b7-7405-4091-9f35-b0f05a14add8-fun">ObjectProperty</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                    <m:mo xref="#MMLPROC-aac6db1b7-7405-4091-9f35-b0f05a14add8-args-arg1">Agent</m:mo>
+                    <m:mo separator="true">,</m:mo>
+                    <m:mo xref="#MMLPROC-aac6db1b7-7405-4091-9f35-b0f05a14add8-args-arg2">⊤</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                  </m:mrow>
+                  <m:annotation-xml>
+                    <OMA id="MMLPROC-aac6db1b7-7405-4091-9f35-b0f05a14add8" xmlns="http://www.openmath.org/OpenMath">
+                      <OMS cd="owl" name="ObjectProperty" id="MMLPROC-aac6db1b7-7405-4091-9f35-b0f05a14add8-fun"/>
+                      <OMS cd="foaf" name="Agent" id="MMLPROC-aac6db1b7-7405-4091-9f35-b0f05a14add8-args-arg1"/>
+                      <OMS cd="owl" name="Thing" id="MMLPROC-aac6db1b7-7405-4091-9f35-b0f05a14add8-args-arg2"/>
+                    </OMA>
+                  </m:annotation-xml>
+                </m:semantics>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-axiom" id="made.maker.inverse.ax">
+        <span class="omdoc-titleword">Axiom</span>
+        <p>As such it is an inverse of the foaf:maker property, which relates a thing to something that made it.</p>
+        <span class="omdoc-FMP">
+          <span id="MCRd19e306" class="displaymath">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:oo="http://omdoc.org/ontology#" xmlns:om="http://www.openmath.org/OpenMath">
+              <m:semantics>
+                <m:mrow xref="#MMLPROC-a25fcc9d8-c424-4150-8c4f-9de27328fb19">
+                  <m:mo xref="#MMLPROC-a25fcc9d8-c424-4150-8c4f-9de27328fb19-arg1">made</m:mo>
+                  <m:mo>=</m:mo>
+                  <m:msup>
+                    <m:mrow>
+                      <m:mo xref="#MMLPROC-a25fcc9d8-c424-4150-8c4f-9de27328fb19-arg2">maker</m:mo>
+                    </m:mrow>
+                    <m:mo>−</m:mo>
+                  </m:msup>
+                </m:mrow>
+                <m:annotation-xml>
+                  <OMA id="MMLPROC-a25fcc9d8-c424-4150-8c4f-9de27328fb19" xmlns="http://www.openmath.org/OpenMath">
+                    <OMS cd="owl" name="inverseOf"/>
+                    <OMS cd="foaf" name="made" id="MMLPROC-a25fcc9d8-c424-4150-8c4f-9de27328fb19-arg1"/>
+                    <OMS cd="foaf" name="maker" id="MMLPROC-a25fcc9d8-c424-4150-8c4f-9de27328fb19-arg2"/>
+                  </OMA>
+                </m:annotation-xml>
+              </m:semantics>
+            </m:math>
+          </span>
+        </span>
+      </div>
+      <div class="omdoc-symbol" id="maker">
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>maker
+        </div>The foaf:maker property relates something to a foaf:Agent that foaf:made it. As such it is an inverse of the foaf:made property. The foaf:name (or other rdfs:label) of the foaf:maker of something can be described as the dc:creator of that thing. For example, if the thing named by the URI http://rdfweb.org/people/danbri/ has a foaf:maker that is a foaf:Person whose foaf:name is 'Dan Brickley', we can conclude that http://rdfweb.org/people/danbri/ has a dc:creator of 'Dan Brickley'. FOAF descriptions are encouraged to use dc:creator only for simple textual names, and to use foaf:maker to indicate creators, rather than risk confusing creators with their names. This follows most Dublin Core usage. See UsingDublinCoreCreator for details.
+      </div>
+      <div class="omdoc-type">
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Type</span>
+          <p>Range and domain of foaf:maker (not declared, but asserted):</p>
+          <span id="MCRd19e336" class="displaymath">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:oo="http://omdoc.org/ontology#" xmlns:om="http://www.openmath.org/OpenMath">
+              <m:semantics>
+                <m:mo xref="#MMLPROC-a34066443-5c1d-4243-8ac3-e4033333a4f3">maker</m:mo>
+                <m:annotation-xml>
+                  <OMS cd="foaf" name="maker" id="MMLPROC-a34066443-5c1d-4243-8ac3-e4033333a4f3" xmlns="http://www.openmath.org/OpenMath"/>
+                </m:annotation-xml>
+              </m:semantics>
+            </m:math>
+          </span>
+          <span id="MCRd19e342" class="displaymath">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:oo="http://omdoc.org/ontology#" xmlns:om="http://www.openmath.org/OpenMath">
+              <m:semantics>
+                <m:mrow xref="#MMLPROC-a64114059-6868-41ad-a96b-2b5133c2df96">
+                  <m:mo xref="#MMLPROC-a64114059-6868-41ad-a96b-2b5133c2df96-fun">ObjectProperty</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mo xref="#MMLPROC-a64114059-6868-41ad-a96b-2b5133c2df96-args-arg1">⊤</m:mo>
+                  <m:mo separator="true">,</m:mo>
+                  <m:mo xref="#MMLPROC-a64114059-6868-41ad-a96b-2b5133c2df96-args-arg2">Agent</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+                <m:annotation-xml>
+                  <OMA id="MMLPROC-a64114059-6868-41ad-a96b-2b5133c2df96" xmlns="http://www.openmath.org/OpenMath">
+                    <OMS cd="owl" name="ObjectProperty" id="MMLPROC-a64114059-6868-41ad-a96b-2b5133c2df96-fun"/>
+                    <OMS cd="owl" name="Thing" id="MMLPROC-a64114059-6868-41ad-a96b-2b5133c2df96-args-arg1"/>
+                    <OMS cd="foaf" name="Agent" id="MMLPROC-a64114059-6868-41ad-a96b-2b5133c2df96-args-arg2"/>
+                  </OMA>
+                </m:annotation-xml>
+              </m:semantics>
+            </m:math>
+          </span>
+        </div>
+      </div>
+      <div class="omdoc-omtext">
+        <p>Now, we have to restate this as an assertion and prove it.</p>
+      </div>
+      <div class="omdoc-lemma" id="maker.domain-range">
+        <span class="omdoc-titleword">Lemma</span>
+        <p>foaf:maker has range 
+          <span id="MCRd19e368" class="displaymath">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:oo="http://omdoc.org/ontology#" xmlns:om="http://www.openmath.org/OpenMath">
+              <m:semantics>
+                <m:mo xref="#MMLPROC-a345c06ac-c186-46e1-b0ed-efaa6c7ad308">⊤</m:mo>
+                <m:annotation-xml>
+                  <om:OMS cd="owl" name="Thing" id="MMLPROC-a345c06ac-c186-46e1-b0ed-efaa6c7ad308"/>
+                </m:annotation-xml>
+              </m:semantics>
+            </m:math>
+          </span>and domain 
+          <span id="MCRd19e375" class="displaymath">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:oo="http://omdoc.org/ontology#" xmlns:om="http://www.openmath.org/OpenMath">
+              <m:semantics>
+                <m:mo xref="#MMLPROC-a9d39775d-0bfb-4441-ba00-fc8210ae309e">Agent</m:mo>
+                <m:annotation-xml>
+                  <om:OMS cd="foaf" name="Agent" id="MMLPROC-a9d39775d-0bfb-4441-ba00-fc8210ae309e"/>
+                </m:annotation-xml>
+              </m:semantics>
+            </m:math>
+          </span>.
+        </p>
+      </div>
+      <div class="omdoc-proof">
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Proof</span>
+        </div>
+        <p>We prove this using the declared type of foaf:made, using the axiom that declares foaf:maker as an inverse of foaf:made (
+          <a href="#made.maker.inverse.ax" class="omdoc">#made.maker.inverse.ax</a>) and the OWL model-theoretic semantics of owl:inverseOf (once the latter has been formalized properly in the OWL theory, which we have not done here ;-)
+        </p>
+      </div>
+      <div class="omdoc-lemma" id="maker.made.inverse.ass">
+        <span class="omdoc-titleword">Lemma</span>
+        <span class="omdoc-FMP">
+          <span id="MCRd19e389" class="displaymath">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:oo="http://omdoc.org/ontology#" xmlns:om="http://www.openmath.org/OpenMath">
+              <m:semantics>
+                <m:mrow xref="#MMLPROC-a4d89f0fe-240c-4594-b8f6-111a8f60403b">
+                  <m:mo xref="#MMLPROC-a4d89f0fe-240c-4594-b8f6-111a8f60403b-arg1">maker</m:mo>
+                  <m:mo>=</m:mo>
+                  <m:msup>
+                    <m:mrow>
+                      <m:mo xref="#MMLPROC-a4d89f0fe-240c-4594-b8f6-111a8f60403b-arg2">made</m:mo>
+                    </m:mrow>
+                    <m:mo>−</m:mo>
+                  </m:msup>
+                </m:mrow>
+                <m:annotation-xml>
+                  <OMA id="MMLPROC-a4d89f0fe-240c-4594-b8f6-111a8f60403b" xmlns="http://www.openmath.org/OpenMath">
+                    <OMS cd="owl" name="inverseOf"/>
+                    <OMS cd="foaf" name="maker" id="MMLPROC-a4d89f0fe-240c-4594-b8f6-111a8f60403b-arg1"/>
+                    <OMS cd="foaf" name="made" id="MMLPROC-a4d89f0fe-240c-4594-b8f6-111a8f60403b-arg2"/>
+                  </OMA>
+                </m:annotation-xml>
+              </m:semantics>
+            </m:math>
+          </span>
+        </span>
+      </div>
+      <div class="omdoc-proof">
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Proof</span>
+        </div>
+        <p/>
+        <ol>
+          <div class="omdoc-omtext">
+            <p>We need to prove 
+              <span id="MCRd19e413" class="displaymath">
+                <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:oo="http://omdoc.org/ontology#" xmlns:om="http://www.openmath.org/OpenMath">
+                  <m:semantics>
+                    <m:mrow xref="#MMLPROC-a00c8cb62-3061-4d8c-84a2-c85f2b1441c9">
+                      <m:mo xref="#MMLPROC-a00c8cb62-3061-4d8c-84a2-c85f2b1441c9-arg1">maker</m:mo>
+                      <m:mo>=</m:mo>
+                      <m:msup>
+                        <m:mrow>
+                          <m:mo xref="#MMLPROC-a00c8cb62-3061-4d8c-84a2-c85f2b1441c9-arg2">made</m:mo>
+                        </m:mrow>
+                        <m:mo>−</m:mo>
+                      </m:msup>
+                    </m:mrow>
+                    <m:annotation-xml>
+                      <OMA id="MMLPROC-a00c8cb62-3061-4d8c-84a2-c85f2b1441c9" xmlns="http://www.openmath.org/OpenMath">
+                        <OMS cd="owl" name="inverseOf"/>
+                        <OMS cd="foaf" name="maker" id="MMLPROC-a00c8cb62-3061-4d8c-84a2-c85f2b1441c9-arg1"/>
+                        <OMS cd="foaf" name="made" id="MMLPROC-a00c8cb62-3061-4d8c-84a2-c85f2b1441c9-arg2"/>
+                      </OMA>
+                    </m:annotation-xml>
+                  </m:semantics>
+                </m:math>
+              </span>.
+            </p>
+          </div>
+          <li id="">
+            <p>We know that 
+              <span id="MCRd19e435" class="displaymath">
+                <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:oo="http://omdoc.org/ontology#" xmlns:om="http://www.openmath.org/OpenMath">
+                  <m:semantics>
+                    <m:mrow xref="#MMLPROC-ad89ef3d9-56a3-432b-ad38-be25fc5051c9">
+                      <m:mo xref="#MMLPROC-ad89ef3d9-56a3-432b-ad38-be25fc5051c9-arg1">made</m:mo>
+                      <m:mo>=</m:mo>
+                      <m:msup>
+                        <m:mrow>
+                          <m:mo xref="#MMLPROC-ad89ef3d9-56a3-432b-ad38-be25fc5051c9-arg2">maker</m:mo>
+                        </m:mrow>
+                        <m:mo>−</m:mo>
+                      </m:msup>
+                    </m:mrow>
+                    <m:annotation-xml>
+                      <OMA id="MMLPROC-ad89ef3d9-56a3-432b-ad38-be25fc5051c9" xmlns="http://www.openmath.org/OpenMath">
+                        <OMS cd="owl" name="inverseOf"/>
+                        <OMS cd="foaf" name="made" id="MMLPROC-ad89ef3d9-56a3-432b-ad38-be25fc5051c9-arg1"/>
+                        <OMS cd="foaf" name="maker" id="MMLPROC-ad89ef3d9-56a3-432b-ad38-be25fc5051c9-arg2"/>
+                      </OMA>
+                    </m:annotation-xml>
+                  </m:semantics>
+                </m:math>
+              </span>.
+            </p>
+          </li>
+          <li id="">
+            <p>Interpreted using the model-theoretic semantics, this means that 
+              <span id="MCRd19e458" class="displaymath">
+                <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:oo="http://omdoc.org/ontology#" xmlns:om="http://www.openmath.org/OpenMath">
+                  <m:semantics>
+                    <m:mrow>
+                      <m:msup>
+                        <m:mo>made</m:mo>
+                        <m:mo>I</m:mo>
+                      </m:msup>
+                      <m:mo>=</m:mo>
+                      <m:msup>
+                        <m:mrow>
+                          <m:mo stretchy="true">(</m:mo>
+                          <m:msup>
+                            <m:mo>maker</m:mo>
+                            <m:mo>-</m:mo>
+                          </m:msup>
+                          <m:mo stretchy="true">)</m:mo>
+                        </m:mrow>
+                        <m:mo>I</m:mo>
+                      </m:msup>
+                      <m:mo>=</m:mo>
+                      <m:msup>
+                        <m:mrow>
+                          <m:mo stretchy="true">(</m:mo>
+                          <m:msup>
+                            <m:mo>maker</m:mo>
+                            <m:mo>I</m:mo>
+                          </m:msup>
+                          <m:mo stretchy="true">)</m:mo>
+                        </m:mrow>
+                        <m:mo>-</m:mo>
+                      </m:msup>
+                    </m:mrow>
+                    <m:annotation-xml>
+                      <m:mrow>
+                        <m:msup>
+                          <m:mo>made</m:mo>
+                          <m:mo>I</m:mo>
+                        </m:msup>
+                        <m:mo>=</m:mo>
+                        <m:msup>
+                          <m:mrow>
+                            <m:mo stretchy="true">(</m:mo>
+                            <m:msup>
+                              <m:mo>maker</m:mo>
+                              <m:mo>-</m:mo>
+                            </m:msup>
+                            <m:mo stretchy="true">)</m:mo>
+                          </m:mrow>
+                          <m:mo>I</m:mo>
+                        </m:msup>
+                        <m:mo>=</m:mo>
+                        <m:msup>
+                          <m:mrow>
+                            <m:mo stretchy="true">(</m:mo>
+                            <m:msup>
+                              <m:mo>maker</m:mo>
+                              <m:mo>I</m:mo>
+                            </m:msup>
+                            <m:mo stretchy="true">)</m:mo>
+                          </m:mrow>
+                          <m:mo>-</m:mo>
+                        </m:msup>
+                      </m:mrow>
+                    </m:annotation-xml>
+                  </m:semantics>
+                </m:math>
+              </span>.
+            </p>
+          </li>
+          <li id="">
+            <p>Now we apply the inverse on both sides, eliminate double inverses, and obtain 
+              <span id="MCRd19e538" class="displaymath">
+                <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:oo="http://omdoc.org/ontology#" xmlns:om="http://www.openmath.org/OpenMath">
+                  <m:semantics>
+                    <m:mrow>
+                      <m:msup>
+                        <m:mrow>
+                          <m:mo stretchy="true">(</m:mo>
+                          <m:msup>
+                            <m:mo>made</m:mo>
+                            <m:mo>I</m:mo>
+                          </m:msup>
+                          <m:mo stretchy="true">)</m:mo>
+                        </m:mrow>
+                        <m:mo>-</m:mo>
+                      </m:msup>
+                      <m:mo>=</m:mo>
+                      <m:msup>
+                        <m:mrow>
+                          <m:mo stretchy="true">(</m:mo>
+                          <m:msup>
+                            <m:mrow>
+                              <m:mo stretchy="true">(</m:mo>
+                              <m:msup>
+                                <m:mo>maker</m:mo>
+                                <m:mo>I</m:mo>
+                              </m:msup>
+                              <m:mo stretchy="true">)</m:mo>
+                            </m:mrow>
+                            <m:mo>-</m:mo>
+                          </m:msup>
+                          <m:mo stretchy="true">)</m:mo>
+                        </m:mrow>
+                        <m:mo>-</m:mo>
+                      </m:msup>
+                      <m:mo>=</m:mo>
+                      <m:msup>
+                        <m:mo>maker</m:mo>
+                        <m:mo>I</m:mo>
+                      </m:msup>
+                    </m:mrow>
+                    <m:annotation-xml>
+                      <m:mrow>
+                        <m:msup>
+                          <m:mrow>
+                            <m:mo stretchy="true">(</m:mo>
+                            <m:msup>
+                              <m:mo>made</m:mo>
+                              <m:mo>I</m:mo>
+                            </m:msup>
+                            <m:mo stretchy="true">)</m:mo>
+                          </m:mrow>
+                          <m:mo>-</m:mo>
+                        </m:msup>
+                        <m:mo>=</m:mo>
+                        <m:msup>
+                          <m:mrow>
+                            <m:mo stretchy="true">(</m:mo>
+                            <m:msup>
+                              <m:mrow>
+                                <m:mo stretchy="true">(</m:mo>
+                                <m:msup>
+                                  <m:mo>maker</m:mo>
+                                  <m:mo>I</m:mo>
+                                </m:msup>
+                                <m:mo stretchy="true">)</m:mo>
+                              </m:mrow>
+                              <m:mo>-</m:mo>
+                            </m:msup>
+                            <m:mo stretchy="true">)</m:mo>
+                          </m:mrow>
+                          <m:mo>-</m:mo>
+                        </m:msup>
+                        <m:mo>=</m:mo>
+                        <m:msup>
+                          <m:mo>maker</m:mo>
+                          <m:mo>I</m:mo>
+                        </m:msup>
+                      </m:mrow>
+                    </m:annotation-xml>
+                  </m:semantics>
+                </m:math>
+              </span>
+            </p>
+          </li>
+          <li id="">
+            <p>This is just the interpretation of 
+              <span id="MCRd19e633" class="displaymath">
+                <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:oo="http://omdoc.org/ontology#" xmlns:om="http://www.openmath.org/OpenMath">
+                  <m:semantics>
+                    <m:mrow xref="#MMLPROC-a252f9559-7620-42f9-a31d-1ef8d665f0af">
+                      <m:mo xref="#MMLPROC-a252f9559-7620-42f9-a31d-1ef8d665f0af-arg1">maker</m:mo>
+                      <m:mo>=</m:mo>
+                      <m:msup>
+                        <m:mrow>
+                          <m:mo xref="#MMLPROC-a252f9559-7620-42f9-a31d-1ef8d665f0af-arg2">made</m:mo>
+                        </m:mrow>
+                        <m:mo>−</m:mo>
+                      </m:msup>
+                    </m:mrow>
+                    <m:annotation-xml>
+                      <OMA id="MMLPROC-a252f9559-7620-42f9-a31d-1ef8d665f0af" xmlns="http://www.openmath.org/OpenMath">
+                        <OMS cd="owl" name="inverseOf"/>
+                        <OMS cd="foaf" name="maker" id="MMLPROC-a252f9559-7620-42f9-a31d-1ef8d665f0af-arg1"/>
+                        <OMS cd="foaf" name="made" id="MMLPROC-a252f9559-7620-42f9-a31d-1ef8d665f0af-arg2"/>
+                      </OMA>
+                    </m:annotation-xml>
+                  </m:semantics>
+                </m:math>
+              </span>, which we had to prove.
+            </p>
+          </li>
+        </ol>
+      </div>
+      <div class="omdoc-symbol" id="member">
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>member
+        </div>The foaf:member property relates a foaf:Group to a foaf:Agent that is a member of that group.
+        <div class="omdoc-type">
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>
+            <span id="MCRd19e661" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:oo="http://omdoc.org/ontology#" xmlns:om="http://www.openmath.org/OpenMath">
+                <m:semantics>
+                  <m:mrow xref="#MMLPROC-ac128f743-dd0f-451f-986b-7abf6c7a0228">
+                    <m:mo xref="#MMLPROC-ac128f743-dd0f-451f-986b-7abf6c7a0228-fun">ObjectProperty</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                    <m:mo xref="#MMLPROC-ac128f743-dd0f-451f-986b-7abf6c7a0228-args-arg1">Group</m:mo>
+                    <m:mo separator="true">,</m:mo>
+                    <m:mo xref="#MMLPROC-ac128f743-dd0f-451f-986b-7abf6c7a0228-args-arg2">Agent</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                  </m:mrow>
+                  <m:annotation-xml>
+                    <OMA id="MMLPROC-ac128f743-dd0f-451f-986b-7abf6c7a0228" xmlns="http://www.openmath.org/OpenMath">
+                      <OMS cd="owl" name="ObjectProperty" id="MMLPROC-ac128f743-dd0f-451f-986b-7abf6c7a0228-fun"/>
+                      <OMS cd="foaf" name="Group" id="MMLPROC-ac128f743-dd0f-451f-986b-7abf6c7a0228-args-arg1"/>
+                      <OMS cd="foaf" name="Agent" id="MMLPROC-ac128f743-dd0f-451f-986b-7abf6c7a0228-args-arg2"/>
+                    </OMA>
+                  </m:annotation-xml>
+                </m:semantics>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-symbol" id="membershipClass">
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>membershipClass
+      </div>The <a href="#">foaf:membershipClass</a> property relates a <a href="#">foaf:Group</a> to an RDF class representing a sub-class of <a href="#">foaf:Agent</a> whose instances are all the agents that are a <a href="#">foaf:member</a> of the <a href="#">foaf:Group</a>. See <a href="#">foaf:Group</a> for details and examples.
+        <div class="omdoc-type">
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>
+            <span id="MCRd19e691" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:oo="http://omdoc.org/ontology#" xmlns:om="http://www.openmath.org/OpenMath">
+                <m:semantics>
+                  <m:mrow xref="#MMLPROC-aad304c87-4642-4610-ac28-3886dbafc948">
+                    <m:mo xref="#MMLPROC-aad304c87-4642-4610-ac28-3886dbafc948-fun">Property</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                    <m:mo xref="#MMLPROC-aad304c87-4642-4610-ac28-3886dbafc948-args-arg1">Group</m:mo>
+                    <m:mo separator="true">,</m:mo>
+                    <m:mo xref="#MMLPROC-aad304c87-4642-4610-ac28-3886dbafc948-args-arg2">Class</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                  </m:mrow>
+                  <m:annotation-xml>
+                    <OMA id="MMLPROC-aad304c87-4642-4610-ac28-3886dbafc948" xmlns="http://www.openmath.org/OpenMath">
+                      <OMS cd="rdf" name="Property" id="MMLPROC-aad304c87-4642-4610-ac28-3886dbafc948-fun"/>
+                      <OMS cd="foaf" name="Group" id="MMLPROC-aad304c87-4642-4610-ac28-3886dbafc948-args-arg1"/>
+                      <OMS cd="owl" name="Class" id="MMLPROC-aad304c87-4642-4610-ac28-3886dbafc948-args-arg2"/>
+                    </OMA>
+                  </m:annotation-xml>
+                </m:semantics>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-axiom">
+        <span class="omdoc-titleword">Axiom</span>
+        <p>Behind the scenes, further RDF statements can be used to express the rules for being a member of this group.</p>
+        <p/>
+        <span class="omdoc-FMP">
+          <span id="MCRd19e718" class="displaymath">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:oo="http://omdoc.org/ontology#" xmlns:om="http://www.openmath.org/OpenMath">
+              <m:semantics>
+                <m:mrow xref="#MMLPROC-a6a7a46bc-1fd0-49a2-bdbf-be9581ab86a9">
+                  <m:mo id="MMLPROC-a6a7a46bc-1fd0-49a2-bdbf-be9581ab86a9-quant">∀</m:mo>
+                  <m:mrow>
+                    <m:mi xref="#MMLPROC-a6a7a46bc-1fd0-49a2-bdbf-be9581ab86a9-bvars-bvar1">m</m:mi>
+                    <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">,</m:mo>
+                    <m:mi xref="#MMLPROC-a6a7a46bc-1fd0-49a2-bdbf-be9581ab86a9-bvars-bvar2">g</m:mi>
+                    <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">,</m:mo>
+                    <m:mi xref="#MMLPROC-a6a7a46bc-1fd0-49a2-bdbf-be9581ab86a9-bvars-bvar3">C</m:mi>
+                  </m:mrow>
+                  <m:mo separator="true">.</m:mo>
+                  <m:mrow xref="#MMLPROC-a6a7a46bc-1fd0-49a2-bdbf-be9581ab86a9-scope">
+                    <m:mo mcd:egroup="fence" fence="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                    <m:mrow xref="#MMLPROC-a6a7a46bc-1fd0-49a2-bdbf-be9581ab86a9-scope-arg1">
+                      <m:mrow xref="#MMLPROC-a6a7a46bc-1fd0-49a2-bdbf-be9581ab86a9-scope-arg1-args-arg1">
+                        <m:mi xref="#MMLPROC-a6a7a46bc-1fd0-49a2-bdbf-be9581ab86a9-scope-arg1-args-arg1-arg11">g</m:mi>
+                        <m:msub>
+                          <m:mo>∋</m:mo>
+                          <m:mi>member</m:mi>
+                        </m:msub>
+                        <m:mi xref="#MMLPROC-a6a7a46bc-1fd0-49a2-bdbf-be9581ab86a9-scope-arg1-args-arg1-arg21">m</m:mi>
+                      </m:mrow>
+                      <m:mo id="MMLPROC-a6a7a46bc-1fd0-49a2-bdbf-be9581ab86a9-scope-arg1-args-fun1">∧</m:mo>
+                      <m:mrow xref="#MMLPROC-a6a7a46bc-1fd0-49a2-bdbf-be9581ab86a9-scope-arg1-args-arg2">
+                        <m:mo xref="#MMLPROC-a6a7a46bc-1fd0-49a2-bdbf-be9581ab86a9-scope-arg1-args-arg2-fun2">membershipClass</m:mo>
+                        <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                        <m:mi xref="#MMLPROC-a6a7a46bc-1fd0-49a2-bdbf-be9581ab86a9-scope-arg1-args-arg2-args2-arg1">g</m:mi>
+                        <m:mo separator="true">,</m:mo>
+                        <m:mi xref="#MMLPROC-a6a7a46bc-1fd0-49a2-bdbf-be9581ab86a9-scope-arg1-args-arg2-args2-arg2">C</m:mi>
+                        <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                      </m:mrow>
+                    </m:mrow>
+                    <m:mo id="MMLPROC-a6a7a46bc-1fd0-49a2-bdbf-be9581ab86a9-scope-fun">⇒</m:mo>
+                    <m:mrow xref="#MMLPROC-a6a7a46bc-1fd0-49a2-bdbf-be9581ab86a9-scope-arg2">
+                      <m:mi xref="#MMLPROC-a6a7a46bc-1fd0-49a2-bdbf-be9581ab86a9-scope-arg2-arg1">m</m:mi>
+                      <m:msub>
+                        <m:mo>:</m:mo>
+                        <m:mi>type</m:mi>
+                      </m:msub>
+                      <m:mi xref="#MMLPROC-a6a7a46bc-1fd0-49a2-bdbf-be9581ab86a9-scope-arg2-arg2">C</m:mi>
+                    </m:mrow>
+                    <m:mo mcd:egroup="fence" fence="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                  </m:mrow>
+                </m:mrow>
+                <m:annotation-xml>
+                  <OMBIND id="MMLPROC-a6a7a46bc-1fd0-49a2-bdbf-be9581ab86a9" xmlns="http://www.openmath.org/OpenMath">
+                    <OMS cd="quant1" name="forall" href="#MMLPROC-a6a7a46bc-1fd0-49a2-bdbf-be9581ab86a9-quant"/>
+                    <OMBVAR>
+                      <!-- Note that we really need not restrict the sets of m, g, and C, as an RDFS reasoner will infer them from the ranges and domains of the properties used. -->
+                      <OMV name="m" id="MMLPROC-a6a7a46bc-1fd0-49a2-bdbf-be9581ab86a9-bvars-bvar1"/>
+                      <OMV name="g" id="MMLPROC-a6a7a46bc-1fd0-49a2-bdbf-be9581ab86a9-bvars-bvar2"/>
+                      <OMV name="C" id="MMLPROC-a6a7a46bc-1fd0-49a2-bdbf-be9581ab86a9-bvars-bvar3"/>
+                    </OMBVAR>
+                    <OMA id="MMLPROC-a6a7a46bc-1fd0-49a2-bdbf-be9581ab86a9-scope">
+                      <OMS cd="logic1" name="implies" href="#MMLPROC-a6a7a46bc-1fd0-49a2-bdbf-be9581ab86a9-scope-fun"/>
+                      <OMA id="MMLPROC-a6a7a46bc-1fd0-49a2-bdbf-be9581ab86a9-scope-arg1">
+                        <OMS cd="logic1" name="and" href="#MMLPROC-a6a7a46bc-1fd0-49a2-bdbf-be9581ab86a9-scope-arg1-args-fun1"/>
+                        <OMA id="MMLPROC-a6a7a46bc-1fd0-49a2-bdbf-be9581ab86a9-scope-arg1-args-arg1">
+                          <OMS cd="foaf" name="member"/>
+                          <OMV name="g" id="MMLPROC-a6a7a46bc-1fd0-49a2-bdbf-be9581ab86a9-scope-arg1-args-arg1-arg11"/>
+                          <OMV name="m" id="MMLPROC-a6a7a46bc-1fd0-49a2-bdbf-be9581ab86a9-scope-arg1-args-arg1-arg21"/>
+                        </OMA>
+                        <OMA id="MMLPROC-a6a7a46bc-1fd0-49a2-bdbf-be9581ab86a9-scope-arg1-args-arg2">
+                          <OMS cd="foaf" name="membershipClass" id="MMLPROC-a6a7a46bc-1fd0-49a2-bdbf-be9581ab86a9-scope-arg1-args-arg2-fun2"/>
+                          <OMV name="g" id="MMLPROC-a6a7a46bc-1fd0-49a2-bdbf-be9581ab86a9-scope-arg1-args-arg2-args2-arg1"/>
+                          <OMV name="C" id="MMLPROC-a6a7a46bc-1fd0-49a2-bdbf-be9581ab86a9-scope-arg1-args-arg2-args2-arg2"/>
+                        </OMA>
+                      </OMA>
+                      <OMA id="MMLPROC-a6a7a46bc-1fd0-49a2-bdbf-be9581ab86a9-scope-arg2">
+                        <OMS cd="rdf" name="type"/>
+                        <OMV name="m" id="MMLPROC-a6a7a46bc-1fd0-49a2-bdbf-be9581ab86a9-scope-arg2-arg1"/>
+                        <OMV name="C" id="MMLPROC-a6a7a46bc-1fd0-49a2-bdbf-be9581ab86a9-scope-arg2-arg2"/>
+                      </OMA>
+                    </OMA>
+                  </OMBIND>
+                </m:annotation-xml>
+              </m:semantics>
+            </m:math>
+          </span>
+        </span>
+      </div>
+    </div>
+  </body>
+</html>

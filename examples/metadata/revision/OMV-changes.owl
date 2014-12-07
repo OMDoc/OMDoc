@@ -1,0 +1,322 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns="http://omv.ontoware.org/2007/10/changes#"
+    xmlns:omv="http://omv.ontoware.org/2005/05/ontology#"
+  xml:base="http://omv.ontoware.org/2007/10/changes">
+  <owl:Ontology rdf:about="">
+    <owl:imports rdf:resource="http://omv.ontoware.org/2005/05/ontology"/>
+  </owl:Ontology>
+  <owl:Class rdf:ID="PropertyChange">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="EntityChange"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="AddDomain">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="DomainChange"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="RemoveSubClassOf">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="SubClassOfChange"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="MoveClass">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="CompositeChange"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="AddLabel">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="LabelChange"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#SubClassOfChange">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="ClassChange"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="SubPropertyOfChange">
+    <rdfs:subClassOf rdf:resource="#PropertyChange"/>
+  </owl:Class>
+  <owl:Class rdf:ID="RemoveDomain">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#DomainChange"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Removal">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="AtomicChange"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Log">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="hasRelatedOntology"/>
+        </owl:onProperty>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="hasLastChange"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Change">
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="hasPreviousChange"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="appliedToOntology"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Addition">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#AtomicChange"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="RemoveProperty">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="OntologyChange"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="AddSubtree">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#CompositeChange"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="MoveSubtree">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#CompositeChange"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="RemoveSubtree">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#CompositeChange"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="IndividualChange">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#EntityChange"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="MoveSiblings">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#CompositeChange"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#CompositeChange">
+    <rdfs:subClassOf rdf:resource="#Change"/>
+  </owl:Class>
+  <owl:Class rdf:ID="CommentChange">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="AnnotationPropertyChange"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="RemoveClass">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#OntologyChange"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="RangeChange">
+    <rdfs:subClassOf rdf:resource="#PropertyChange"/>
+  </owl:Class>
+  <owl:Class rdf:ID="AddClass">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#OntologyChange"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="SplitClass">
+    <rdfs:subClassOf rdf:resource="#CompositeChange"/>
+  </owl:Class>
+  <owl:Class rdf:about="#DomainChange">
+    <rdfs:subClassOf rdf:resource="#PropertyChange"/>
+  </owl:Class>
+  <owl:Class rdf:about="#LabelChange">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#AnnotationPropertyChange"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="AddComment">
+    <rdfs:subClassOf rdf:resource="#CommentChange"/>
+  </owl:Class>
+  <owl:Class rdf:ID="RemoveIndividual">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#OntologyChange"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="RemoveSubPropertyOf">
+    <rdfs:subClassOf rdf:resource="#SubPropertyOfChange"/>
+  </owl:Class>
+  <owl:Class rdf:ID="AddSubPropertyOf">
+    <rdfs:subClassOf rdf:resource="#SubPropertyOfChange"/>
+  </owl:Class>
+  <owl:Class rdf:about="#ClassChange">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#EntityChange"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="AddIndividual">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#OntologyChange"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#EntityChange">
+    <rdfs:subClassOf rdf:resource="#Change"/>
+  </owl:Class>
+  <owl:Class rdf:about="#AnnotationPropertyChange">
+    <rdfs:subClassOf rdf:resource="#EntityChange"/>
+  </owl:Class>
+  <owl:Class rdf:about="#OntologyChange">
+    <rdfs:subClassOf rdf:resource="#EntityChange"/>
+  </owl:Class>
+  <owl:Class rdf:ID="RemoveRange">
+    <rdfs:subClassOf rdf:resource="#RangeChange"/>
+  </owl:Class>
+  <owl:Class rdf:ID="AddProperty">
+    <rdfs:subClassOf rdf:resource="#OntologyChange"/>
+  </owl:Class>
+  <owl:Class rdf:ID="AddSubClassOf">
+    <rdfs:subClassOf rdf:resource="#SubClassOfChange"/>
+  </owl:Class>
+  <owl:Class rdf:ID="MoveSiblingsDown">
+    <rdfs:subClassOf rdf:resource="#MoveSiblings"/>
+  </owl:Class>
+  <owl:Class rdf:ID="MergeSiblings">
+    <rdfs:subClassOf rdf:resource="#CompositeChange"/>
+  </owl:Class>
+  <owl:Class rdf:ID="MoveSiblingsUp">
+    <rdfs:subClassOf rdf:resource="#MoveSiblings"/>
+  </owl:Class>
+  <owl:Class rdf:ID="AddRange">
+    <rdfs:subClassOf rdf:resource="#RangeChange"/>
+  </owl:Class>
+  <owl:Class rdf:about="#AtomicChange">
+    <rdfs:subClassOf rdf:resource="#Change"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="appliedAxiom"/>
+        </owl:onProperty>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="ChangeSpecification"/>
+  <owl:Class rdf:ID="RemoveComment">
+    <rdfs:subClassOf rdf:resource="#CommentChange"/>
+  </owl:Class>
+  <owl:Class rdf:ID="RemoveLabel">
+    <rdfs:subClassOf rdf:resource="#LabelChange"/>
+  </owl:Class>
+  <owl:ObjectProperty rdf:ID="hasAuthor">
+    <rdfs:domain rdf:resource="#Change"/>
+    <rdfs:range rdf:resource="http://omv.ontoware.org/2005/05/ontology#Person"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="hasChange">
+    <rdfs:range rdf:resource="#Change"/>
+    <rdfs:domain rdf:resource="#ChangeSpecification"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#appliedToOntology">
+    <rdfs:domain rdf:resource="#Change"/>
+    <rdfs:range rdf:resource="http://omv.ontoware.org/2005/05/ontology#Ontology"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#hasLastChange">
+    <rdfs:domain rdf:resource="#Log"/>
+    <rdfs:range rdf:resource="#Change"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#hasRelatedOntology">
+    <rdfs:domain rdf:resource="#Log"/>
+    <rdfs:range rdf:resource="http://omv.ontoware.org/2005/05/ontology#Ontology"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="consistsOfAtomicOperation">
+    <rdfs:range rdf:resource="#AtomicChange"/>
+    <rdfs:domain rdf:resource="#EntityChange"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="hasRelatedEntity">
+    <rdfs:domain rdf:resource="#EntityChange"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="changeFromVersion">
+    <rdfs:domain rdf:resource="#ChangeSpecification"/>
+    <rdfs:range rdf:resource="http://omv.ontoware.org/2005/05/ontology#Ontology"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="consistsOf">
+    <rdfs:domain rdf:resource="#CompositeChange"/>
+    <rdfs:range rdf:resource="#Change"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="causeChange">
+    <rdfs:domain rdf:resource="#Change"/>
+    <rdfs:range rdf:resource="#Change"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="changeToVersion">
+    <rdfs:range rdf:resource="http://omv.ontoware.org/2005/05/ontology#Ontology"/>
+    <rdfs:domain rdf:resource="#ChangeSpecification"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#hasPreviousChange">
+    <rdfs:domain rdf:resource="#Change"/>
+    <rdfs:range rdf:resource="#Change"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#appliedAxiom">
+    <rdfs:domain rdf:resource="#AtomicChange"/>
+  </owl:ObjectProperty>
+  <owl:DatatypeProperty rdf:ID="priority">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="#Change"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="cost">
+    <rdfs:domain rdf:resource="#Change"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="version">
+    <rdfs:domain rdf:resource="#Change"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="relevance">
+    <rdfs:domain rdf:resource="#Change"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="date">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+    <rdfs:domain rdf:resource="#Change"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="lastTimestamp">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="#ChangeSpecification"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="initialTimestamp">
+    <rdfs:domain rdf:resource="#ChangeSpecification"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="time">
+    <rdfs:domain rdf:resource="#Change"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#time"/>
+  </owl:DatatypeProperty>
+</rdf:RDF>
+
+<!-- Created with Protege (with OWL Plugin 3.3.1, Build 430)  http://protege.stanford.edu -->

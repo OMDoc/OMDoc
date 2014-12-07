@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  xmlns="http://omdoc.org/ns"
+xml:id="typmml-omdoc">
+
+  <dc:title>OpenMath Content Dictionary in OMDoc form</dc:title>
+  <dc:creator role="trl">Michael Kohlhase.xsl</dc:creator>
+  <dc:creator role="aut">The OpenMath Society</dc:creator>
+  <dc:date>1999-06-03T00:00:00</dc:date>
+  <dc:source>Derived from the OpenMath CD http://www.openmath.org/cd/typmml.ocd.</dc:source>
+  <dc:type>Text</dc:type>
+  <dc:format>application/omdoc+xml</dc:format>
+  <dc:rights>Copyright (c) 2000-2002 Michael Kohlhase;
+    This OMDoc content dictionary is released under the OpenMath license:
+    http://monet.nag.co.uk/openmath/cdfiles/license.html
+  </dc:rights>
+  <dc:description>
+    This CD holds symbols denoting various types of numbers, vectors
+    and similar constructs. Principally these are required for
+    compatibility with MathML.
+  </dc:description>
+
+<theory xml:id="typmml" cdbase="http://www.openmath.org/cd">
+  <symbol name="type" xml:id="type">
+
+<dc:description>
+      A symbol to be used within an OpenMath attribution to convey the type of
+      the object.
+  </dc:description>
+
+</symbol>
+  <presentation for="#type" xref="cc.omdoc#pr-type"/>
+
+<example xml:id="type-ex-1" type="for" for="#type">
+  <CMP>
+    The variable z is attributed with a type for complex numbers.
+  </CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMATTR>
+      <OMATP>
+	<OMS cd="typmml" name="type"/>
+	<OMS cd="typmml" name="complex_cartesian_type"/>
+      </OMATP>
+      <OMV name="z"/>
+    </OMATTR>
+  </OMOBJ>
+</example>
+<symbol name="integer_type" xml:id="integer_type">
+
+<dc:description>
+    Type of an integer.
+</dc:description>
+
+<type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMV name="MathMLNumericType"/>
+    </OMOBJ>
+  </type>
+</symbol>
+<symbol name="real_type" xml:id="real_type">
+
+<dc:description>
+    Type of a real number.
+</dc:description>
+
+<type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMV name="MathMLNumericType"/>
+    </OMOBJ>
+  </type>
+</symbol>
+<symbol name="rational_type" xml:id="rational_type">
+
+<dc:description>
+    Type of a rational number.
+</dc:description>
+
+<type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMV name="MathMLNumericType"/>
+    </OMOBJ>
+  </type>
+</symbol>
+<symbol name="complex_cartesian_type" xml:id="complex_cartesian_type">
+
+<dc:description>
+    Type of a complex number specified in terms of its real and imaginary
+    parts.
+</dc:description>
+
+</symbol>
+<symbol name="complex_polar_type" xml:id="complex_polar_type">
+
+<dc:description>
+    Type of a complex number specified in terms of its modulus and argument.
+</dc:description>
+
+</symbol>
+<symbol name="constant_type" xml:id="constant_type">
+
+<dc:description>
+    A type for the common constants, pi ~= 3.1415, e ~= 2.718, i = square
+    root of -1, gamma ~= .5772, NaN, infinity (all in the nums cd), true
+    and false (in the logic cd). Also for MathML variables declared to
+    have type constant, as in &lt;ci type="constant"&gt;x&lt;/ci&gt;.
+</dc:description>
+
+<type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMV name="MathMLNumericType"/>
+    </OMOBJ>
+  </type>
+</symbol>
+<symbol name="vector_type" xml:id="vector_type">
+
+<dc:description>
+    Type of a (column) vector, an n-tuple of entries.
+</dc:description>
+
+<type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMV name="MathMLType"/>
+    </OMOBJ>
+  </type>
+</symbol>
+<symbol name="list_type" xml:id="list_type">
+
+<dc:description>
+    Type for a list.
+</dc:description>
+
+<type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMV name="MathMLType"/>
+    </OMOBJ>
+  </type>
+</symbol>
+<symbol name="set_type" xml:id="set_type">
+
+<dc:description>
+    Type for a set.
+</dc:description>
+
+<type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMV name="MathMLType"/>
+    </OMOBJ>
+  </type>
+</symbol>
+<symbol name="matrix_type" xml:id="matrix_type">
+
+<dc:description>
+    Type for a matrix (n tuple of rows, each of which are litss of the
+    same number m of entries).
+</dc:description>
+
+<type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMV name="MathMLType"/>
+    </OMOBJ>
+  </type>
+</symbol>
+<symbol name="fn_type" xml:id="fn_type">
+
+<dc:description>
+    Type for a function name.
+</dc:description>
+
+<type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMV name="MathMLType"/>
+    </OMOBJ>
+  </type>
+</symbol>
+<example xml:id="fn_type-ex-1" type="for" for="#fn_type">
+  <CMP>
+    The variable f is attributed to say it represents a function.
+  </CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMATTR>
+      <OMATP>
+	<OMS cd="typmml" name="type"/>
+	<OMS cd="typmml" name="fn_type"/>
+      </OMATP>
+      <OMV name="f"/>
+    </OMATTR>
+  </OMOBJ>
+</example>
+</theory>
+</omdoc>

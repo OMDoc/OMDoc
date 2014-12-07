@@ -1,0 +1,76 @@
+default namespace omdoc = "http://www.omdoc.org/ns"
+datatypes xsd = "http://www.w3.org/2001/XMLSchema-datatypes"
+
+
+################################
+#module level
+
+omdoc.class &= notationset*
+
+notationset.attribs = name.attrib? &  
+		                  attribute base {MMTURI}? &  
+				  attribute includeDefault {bool}?
+notationset.model = (\include | mmtnotation)*
+
+notationset = element notationset {notationset.attribs & notationset.model}
+
+################################
+#symbol level
+
+
+mmtnotation = element notation {name.attrib?, attribute for {MMTURI}?, (simple | complex)}
+simple  = attribute role {simplerole}, attribute inherit {bool}?, pres*
+complex = attribute role {complexrole}, attribute precedence {precedence}?,
+          attribute fixity {fixity}?, attribute application-style {applicationstyle}?, 
+          attribute associativity {associativity}?, attribute implicit {int}?,
+          (element main {pres*}? & element separator {pres*}? &
+          element brackets {pres*}? & element nobrackets {pres*}? & element ebrackets {pres*}?)
+
+fixity = "pre" | "post" | "in" | "inter" | "bind" | "special"
+applicationstyle = "math" | "lc"
+associativity = "none" | "left" | "right"
+
+
+################################
+#presentation items
+pres = \text | \element | newline | tab | components | recurse | component | mmtindex | id | ifpresent | nset | hole | elevel
+
+\text = element text {attribute value {xsd:string}}
+\element = element element {attribute prefix {xsd:string}?, attribute name {xsd:string}, (pres | \attribute)*}
+\attribute = element attribute {attribute prefix {xsd:string}?, attribute name {xsd:string}, pres*}
+newline = element newline {empty}
+tab = element tab {empty}
+components = element components {
+   attribute begin {int}?, attribute end {int}?, attribute step {int}?,
+   (element body {pres*}? & element separator {pres*}? & element pre {pres*}? & element post {pres*}?)
+}
+recurse = element recurse {attribute offset {int}?, prec.attrib?}
+component = element component {attribute index {int}, prec.attrib?}
+mmtindex = element index {attribute offset {int}}
+id = element id {empty}
+ifpresent = element ifpresent {attribute index {int}, element then {pres*}, element else {pres*}?}
+nset = element nset {empty}
+hole = element hole {pres*}
+elevel = element elevel {empty}
+
+prec.attrib = attribute precedence {precedence}
+
+################################
+# datatypes
+
+int = xsd:integer
+bool = "yes" | "no"
+
+simplerole.class = "Toplevel" | "Theory" | "View" | "DefinedView"
+     | Constant | "Structure" | "DefinedStructure" | "Conass" | "Strass"
+     | "toplevel" | "theory" | "view"
+     | "constant" | "structure" | "conass" | "strass"
+     | "variable"
+simplerole = list {simplerole.class*}
+
+Constant = "Element" | "Predicate" | "Sort" | "Proof" | "Axiom" | "Rule" | "Judgment" |
+                   "Level" | "Binder" | "Key" | "Error"
+complexrole.class = "variable" | "application" | "binding" | "attribution" | 
+		                 "morphism-application" | "identity" | "composition" 
+complexrole = list {complexrole.class*}
+precedence = int | "infinity" | "-infinity"

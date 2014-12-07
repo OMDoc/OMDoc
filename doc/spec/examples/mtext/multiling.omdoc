@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xml:id="multiling.omdoc"
+  xmlns="http://omdoc.org/ns"
+  xmlns:cc="http://creativecommons.org/ns"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  version="1.6">
+<metadata>
+  <dc:date action="created"> 2004-10-06T08:45:23Z </dc:date>
+  <dc:title xml:lang="en"> multiling </dc:title>
+  <dc:creator role="aut"> Michael Kohlhase </dc:creator>
+  <dc:source>  </dc:source>
+  <dc:date action="updated"> 2004-10-06T08:45:23Z </dc:date>
+  <dc:type> Text </dc:type>
+  <dc:format> application/omdoc+xml </dc:format>
+  <dc:rights>Copyright (c) 2004 Michael Kohlhase</dc:rights>
+  <cc:license>
+    <cc:permissions reproduction="permitted" distribution="permitted" derivative_works="permitted"/>
+    <cc:prohibitions commercial_use="permitted"/>
+    <cc:requirements notice="required" copyleft="required" attribution="required"/>
+  </cc:license>
+</metadata>
+
+<omtext xml:id="test">
+   <CMP>
+   Let <OMOBJ  xmlns="http://www.openmath.org/OpenMath"><OMV  id="set" name="V"/></OMOBJ> be a set. 
+   A <term cd="ops" name="unary_operation" role="definiens">unary operation</term> on 
+   <OMOBJ xmlns="http://www.openmath.org/OpenMath" ><OMR href="#set"/></OMOBJ> is a function  
+   <OMOBJ  xmlns="http://www.openmath.org/OpenMath"><OMV name="F" id="fun"/></OMOBJ> with
+   <OMOBJ  xmlns="http://www.openmath.org/OpenMath">
+     <OMA id="im">
+       <OMS cd="relations1" name="eq"/>
+       <OMA><OMS cd="fns1" name="domain"/><OMV name="F"/></OMA>
+       <OMV name="V"/>
+     </OMA>
+   </OMOBJ> and 
+   <OMOBJ  xmlns="http://www.openmath.org/OpenMath">
+     <OMA id="ran">
+       <OMS cd="relations1" name="eq"/>
+       <OMA><OMS cd="fns1" name="range"/><OMV name="F"/></OMA>
+       <OMV name="V"/>
+     </OMA>
+   </OMOBJ>.
+ </CMP>
+ <CMP xml:lang="de">
+   Sei <OMOBJ  xmlns="http://www.openmath.org/OpenMath"><OMR href="#set"/></OMOBJ> eine Menge. 
+   Eine <phrase type="definiens">un%\"a%re Operation</phrase> 
+   ist eine Funktion <OMOBJ  xmlns="http://www.openmath.org/OpenMath" ><OMR href="#fun"/></OMOBJ>, so da%{\ss}% 
+   <OMOBJ  xmlns="http://www.openmath.org/OpenMath"><OMR href="#im"/></OMOBJ> und 
+   <OMOBJ  xmlns="http://www.openmath.org/OpenMath"><OMR href="#ran"/></OMOBJ>.
+ </CMP>
+ <CMP xml:lang="fr">
+   Une <phrase type="definiens">operation unaire</phrase> sur
+   <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="#set"/></OMOBJ> est une fonction 
+   <OMOBJ  xmlns="http://www.openmath.org/OpenMath"><OMR href="#fun"/></OMOBJ> avec 
+   <OMOBJ  xmlns="http://www.openmath.org/OpenMath"><OMR href="#im"/></OMOBJ> et 
+   <OMOBJ  xmlns="http://www.openmath.org/OpenMath"><OMR href="#ran"/></OMOBJ>.
+ </CMP>
+</omtext>
+</omdoc>

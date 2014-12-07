@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<omdoc xml:id="segmented-text.omdoc"
+  xmlns="http://omdoc.org/ns"
+  xmlns:cc="http://creativecommons.org/ns"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  version="1.6">
+<metadata>
+  <dc:date action="created"> 2004-10-04T17:45:01Z </dc:date>
+  <dc:title xml:lang="en"> segmented-text </dc:title>
+  <dc:creator role="aut"> Michael Kohlhase </dc:creator>
+  <dc:source>  </dc:source>
+  <dc:date action="updated"> 2004-10-04T17:45:01Z </dc:date>
+  <dc:type> Text </dc:type>
+  <dc:format> application/omdoc+xml </dc:format>
+  <dc:rights>Copyright (c) 2004 Michael Kohlhase</dc:rights>
+  <cc:license>
+    <cc:permissions reproduction="permitted" distribution="permitted" derivative_works="permitted"/>
+    <cc:prohibitions commercial_use="permitted"/>
+    <cc:requirements notice="required" copyleft="required" attribution="required"/>
+  </cc:license>
+</metadata>
+
+<omtext xml:id="magma.def" type="definition">
+  <CMP>Let <legacy format="TeX">$E$</legacy> be a set \ldots called a magma.</CMP>
+</omtext>
+
+<omtext xml:id="t1">
+  <CMP>The composition of <legacy format="TeX">$x$</legacy> \ldots  multiplicatively.</CMP>
+</omtext>
+<omtext xml:id="t2">
+  <CMP>In the general \ldots composition.</CMP>
+</omtext>
+<omtext xml:id="t3">
+  <CMP>By an abuse \ldots on <legacy format="TeX">$E$.</legacy></CMP>
+</omtext> 
+
+<omdoc xml:id="magma-ex" type="enumeration">
+   <metadata><dc:title>Examples</dc:title></metadata>
+
+   <omtext type="example" xml:id="e1.magma">
+     <CMP>
+       The mappings <legacy format="TeX">$(X,Y)$</legacy> 
+       \ldots subsets of a set <legacy format="TeX">$E$</legacy>.
+     </CMP>
+   </omtext>
+   <omtext type="example" xml:id="e2.magma">
+     <CMP>
+       On the set <legacy format="TeX">$\bf N$</legacy> \ldots III, $\S3$, no. 4).
+     </CMP>
+   </omtext>
+   <omtext type="example" xml:id="e3.magma">
+     <CMP>
+       Let <legacy format="TeX">$E$</legacy> be a set; \ldots II, $\S5$, no. 2).
+     </CMP>
+   </omtext>
+</omdoc>
+
+</omdoc>

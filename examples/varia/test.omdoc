@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xml:id="test.omdoc"
+  xmlns="http://omdoc.org/ns"
+  xmlns:cc="http://creativecommons.org/ns"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xmlns:m="http://www.w3.org/1998/Math/MathML"
+  version="1.6">
+
+<metadata>
+  <dc:date action="created"> 2004-10-13T09:28:30Z </dc:date>
+  <dc:title xml:lang="en"> test </dc:title>
+  <dc:creator role="aut"> Michael Kohlhase </dc:creator>
+  <dc:source>  </dc:source>
+  <dc:date action="updated"> 2004-10-13T09:28:30Z </dc:date>
+  <dc:type> Text </dc:type>
+  <dc:format> application/omdoc+xml </dc:format>
+  <dc:rights>Copyright (c) 2004 Michael Kohlhase</dc:rights>
+  <cc:license>
+    <cc:permissions reproduction="permitted" distribution="permitted" derivative_works="permitted"/>
+    <cc:prohibitions commercial_use="permitted"/>
+    <cc:requirements notice="required" copyleft="required" attribution="required"/>
+  </cc:license>
+</metadata>
+
+<theory>
+  <imports from="http://mmt.omdoc.org/mmtws?doc=http://cds.omdoc.org/omstd/arith1;cd=arith1;name=plus"/>
+</theory>
+
+</omdoc>

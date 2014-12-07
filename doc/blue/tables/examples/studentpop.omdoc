@@ -1,0 +1,23 @@
+<!-- Jacobs Student Population
+
+    year | 2000 | 2001 | 2002
+    =========================
+    pop  | 700 | 1100  | 1400
+-->
+
+<table xml:id="jacobs-students" xmlns="http://omdoc.org/ns">
+  <block name="years" range="2:2-4:2" header="2:2"/>
+  <block name="population" range="2:2-4:2" header="1:2"/>
+  <function args1="years" vals="population"/>
+  <sparse>
+    <cell idx="1:1">year</cell>
+    <cell idx="1:2">pop</cell>
+    <cell idx="2:1">2000</cell>
+    <cell idx="2:2">700</cell>
+    <cell idx="3:1">2001</cell>
+    <cell idx="3:2">1100</cell>
+    <cell idx="4:1">2002</cell>
+    <cell idx="4:2">1400</cell>
+  </sparse>
+</table>
+

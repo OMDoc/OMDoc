@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xml:id="omtext-def.omdoc"
+  xmlns="http://omdoc.org/ns"
+  xmlns:cc="http://creativecommons.org/ns"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  version="1.6">
+<metadata>
+  <dc:date action="created"> 2004-10-06T08:47:33Z </dc:date>
+  <dc:title xml:lang="en"> omtext-def </dc:title>
+  <dc:creator role="aut"> Michael Kohlhase </dc:creator>
+  <dc:source>  </dc:source>
+  <dc:date action="updated"> 2004-10-06T08:47:33Z </dc:date>
+  <dc:type> Text </dc:type>
+  <dc:format> application/omdoc+xml </dc:format>
+  <dc:rights>Copyright (c) 2004 Michael Kohlhase</dc:rights>
+  <cc:license>
+    <cc:permissions reproduction="permitted" distribution="permitted" derivative_works="permitted"/>
+    <cc:prohibitions commercial_use="permitted"/>
+    <cc:requirements notice="required" copyleft="required" attribution="required"/>
+  </cc:license>
+</metadata>
+<omtext xml:id="binop-def" type="definition">
+   <CMP>
+   Let <OMOBJ><OMV id="set" name="V"/></OMOBJ> be a set. 
+   A <term cd="ops" name="unary_operation" role="definiens">unary operation</term> on 
+   <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="#set"/></OMOBJ> is a function  
+   <OMOBJ><OMV id="fun" name="F"/></OMOBJ> with
+   <OMOBJ>
+     <OMA id="im">
+       <OMS cd="relations1" name="eq"/>
+       <OMA><OMS cd="fns1" name="domain"/><OMV name="F"/></OMA>
+       <OMV name="V"/>
+     </OMA>
+   </OMOBJ> and 
+   <OMOBJ>
+     <OMA id="ran">
+       <OMS cd="relations1" name="eq"/>
+       <OMA><OMS cd="fns1" name="range"/><OMV name="F"/></OMA>
+       <OMV name="V"/>
+     </OMA>
+   </OMOBJ>.
+ </CMP>
+ <CMP xml:lang="de">
+   Sei <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="#set"/></OMOBJ> eine Menge. 
+   Eine <term cd="ops" name="unary_operation" role="definiens">un%\"a%re Operation</term> 
+   ist eine Funktion <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="#fun"/></OMOBJ>, so da%{\ss}% 
+   <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="#im"/></OMOBJ> und 
+   <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="#ran"/></OMOBJ>.
+ </CMP>
+ <CMP xml:lang="fr">
+   Une <term cd="ops" name="unary_operation" role="definiens">operation unaire</term> sur
+   <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="#set"/></OMOBJ> est une fonction 
+   <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="#fun"/></OMOBJ> avec 
+   <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="#im"/></OMOBJ> et 
+   <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="#ran"/></OMOBJ>.
+ </CMP>
+  <FMP logic="fol">
+    <legacy format="TeX">
+      $\forall{V,F}.binop(F,V)\Leftrightarrow{\bf{Im}}(F)=V\wedge{\bf{Dom}}(F)=V$
+    </legacy>
+  </FMP>
+  <FMP logic="hol">
+    <legacy format="TeX">$binop=\lambda{V,F}.{\bf{Im}}(F)=V\wedge{\bf{Dom}}(F)=V$</legacy>
+  </FMP>
+</omtext>
+
+</omdoc>

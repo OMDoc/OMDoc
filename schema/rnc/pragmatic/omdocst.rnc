@@ -1,0 +1,130 @@
+# A RelaxNG schema for Open Mathematical documents (OMDoc 1.6) Module ST 
+# $Id: omdocst.rnc 8812 2011-01-13 15:07:34Z kohlhase $
+# $HeadURL: https://svn.omdoc.org/repos/omdoc/trunk/schema/rnc/pragmatic/omdocst.rnc $
+# See the documentation and examples at http://www.omdoc.org
+# Copyright (c) 2004-2007 Michael Kohlhase, released under the GNU Public License (GPL) 
+
+default namespace omdoc = "http://omdoc.org/ns"
+
+constitutive.class = symbol* &  axiom* &  definition* & imports*
+nonconstit.class &= assertion* &  type* & alternative* & example* 
+omdoc.class &= nonconstit.class & theory*
+
+constitutive.attribs = id.attribs &  attribute generated-from {SURI}?
+sym.role.attrib = attribute role {"type" | "sort" | "object" |
+		                  "binder" | "attribution" | "application" | "constant" |
+		                  "semantic-attribution" | "error"}
+theory-unique  = xsd:NCName
+scope.attrib = attribute scope {"global" | "local"}?
+symbol.attribs = scope.attrib & 
+                           name.attrib & 
+	  		   constitutive.attribs & 
+          	           sym.role.attrib? 
+symbol.model = metadata.class & type*
+symbol = element symbol {tref|(symbol.attribs & symbol.model)}
+
+axiom.attribs = constitutive.attribs & 
+	                  fori.attrib &  
+                          attribute type {xsd:string}?
+axiom.model = metadata.class & p*
+axiom = element axiom {tref|(axiom.attribs & axiom.model)}
+
+for.attrib = attribute for {SURI}
+
+#simple definitions
+exists.attrib = attribute existence {SURI}
+def.simple.attribs = attribute type {"simple"} & exists.attrib?
+def.simple = def.simple.attribs & mobj
+
+#implicit definitions
+unique.attrib = attribute uniqueness {SURI}
+def.implicit.attribs =  attribute type {"implicit"} &  exists.attrib? &  unique.attrib?
+def.implicit = def.implicit.attribs & mobj
+
+#definitions by (recursive) equations
+exhaust.attrib = attribute exhaustivity {SURI}
+consist.attrib = attribute consistency {SURI}
+def.eq.attribs = attribute type {"pattern"|"inductive"}? & 
+	                  exhaust.attrib? & consist.attrib?
+def.eq.model = requation*,measure?,ordering?
+def.eq = def.eq.attribs & def.eq.model
+
+#all definition forms, add more by extending this.
+defs.all = def.simple|def.implicit|def.eq
+
+# Definitions contain math vernacular,  FMPs and concept specifications. 
+# The latter define the set of concepts defined in this element. 
+# They can be reached under this name in the content dictionary 
+# of the name specified in the theory attribute of the definition.
+definition.attribs =constitutive.attribs &  for.attrib
+definition = element definition {tref|(definition.attribs & defs.all)}
+
+requation.attribs = id.attribs
+requation.model = mobj,mobj
+requation = element requation {tref|(requation.attribs & requation.model)}
+
+measure.attribs = id.attribs
+measure.model = mobj
+measure = element measure {tref|(measure.attribs & measure.model)}
+
+ordering.attribs = id.attribs & attribute terminating {SURI}?
+ordering.model = mobj
+ordering = element ordering {tref|(ordering.attribs & ordering.model)}
+
+# the non-constitutive statements, they need a theory attribute
+toplevel.attribs &= attribute theory {MURI}?
+
+ded.status.class = "satisfiable" | "counter-satisfiable" | "no-consequence" |
+		   "theorem" | "conter-theorem" | "contradictory-axioms" | 
+		   "tautologous-conclusion" | " tautology" | "equivalent" | 
+		   "conunter-equivalent" | "unsatisfiable-conclusion" |  "unsatisfiable"
+
+ just-by.attrib = attribute just-by {SURI}
+assertion.attribs =toplevel.attribs & 
+                              attribute type {assertiontype}? & 
+     			      attribute status {ded.status.class}? & 
+     			      just-by.attrib?
+assertion.model = metadata.class & p*
+assertion = element assertion {tref|(assertion.attribs & assertion.model)}
+# the assertiontype has no formal meaning yet, it is solely for human consumption. 
+# 'just-by' is a list of URIRefs that point to proof objects, etc that justifies the status.
+
+## just-by, points to the theorem justifying well-definedness
+## entailed-by, entails, point to other (equivalent definitions
+## entailed-by-thm, entails-thm point to the theorems justifying
+## the entailment relation)
+alternative.attribs =toplevel.attribs &  for.attrib & 
+		    ((attribute equivalence {SURI},
+ 		    		     attribute equivalence-thm {SURI}) |	
+                                    (attribute entailed-by {SURI} & 
+                                     attribute entails {SURI} & 
+                                     attribute entailed-by-thm {SURI} & 
+                                     attribute entails-thm {SURI}))
+alternative.model = defs.all
+alternative = element alternative {tref|(alternative.attribs & alternative.model)}
+
+example.attribs =toplevel.attribs &  
+		             for.attrib & 
+	  	  	     attribute type {"for" | "against" }? & 
+			     attribute assertion {SURI}?
+example.model  = metadata.class & (p*,mobj)*
+example = element example {tref|(example.attribs & example.model)}
+
+theory.attribs &= id.attribs&
+			 attribute cdurl {xsd:anyURI}?&
+	                 attribute cdbase {xsd:anyURI}?&
+			 attribute cdreviewdate {xsd:date}?&
+			 attribute cdversion {xsd:nonNegativeInteger}?&
+			 attribute cdrevision {xsd:nonNegativeInteger}?&
+			 attribute cdstatus {"official" | "experimental" | "private" |  "obsolete"}?
+
+theory.class &= tgroup*
+
+imports.attribs = id.attribs & from.attrib 
+imports.model = metadata.class
+imports = element imports {tref|(imports.attribs & imports.model)}
+
+tgroup.attribs =constitutive.attribs & ogroup.attribs 
+tgroup.model = metadata.class & theory.class
+tgroup = element omgroup {tref|(tgroup.attribs & tgroup.model)}
+

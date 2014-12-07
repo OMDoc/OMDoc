@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://omdoc.org/ns" xml:id="courseware.omdoc">
+<metadata>
+  <dc:date action="created"> 2003-02-22T16:32:18Z </dc:date>
+  <dc:title xml:lang="en"> courseware </dc:title>
+  <dc:creator role="aut"> Michael Kohlhase </dc:creator>
+  <dc:source>Peter Lee et al. 15-211 Algorithms and  Data Structures</dc:source>
+  <dc:date action="updated"> 2003-02-23T04:15:39Z </dc:date>
+  <dc:type>Dataset</dc:type>
+  <dc:format> application/omdoc+xml </dc:format>
+</metadata>
+
+<theory xml:id="animals-taxonomy">
+  <imports xml:id="tax-imports-taxonomy" from="taxonomies"/>
+  <symbol name="human" xml:id="animals-taxonomy.human">
+    <type system="stlc"><OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="kr" name="concept"/></OMOBJ></type>
+  </symbol>
+  <symbol name="mammal" xml:id="animals-taxonomy.mammal">
+    <type system="stlc"><OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="kr" name="concept"/></OMOBJ></type>
+  </symbol>
+
+  <axiom xml:id="mammal-ext-human">
+      <CMP>Humans are Animals.</CMP>
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMA>
+          <OMS cd="kr" name="extends"/>
+          <OMS cd="animals-taxonomy" name="mammal"/>
+          <OMS cd="animals-taxonomy" name="human"/>
+        </OMA>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+</theory>
+
+<private xml:id="tax-image" for="animals-taxonomy">
+  <data format="image/jpeg" href="animals-taxonomy.jpg"/>
+  <data format="application/postscript" href="animals-taxonomy.ps"/>
+</private>
+<theory xml:id="cvi">
+  <symbol name="object" xml:id="cvi.object"/><symbol name="instance" xml:id="cvi.instance"/><symbol name="class" xml:id="cvi.class"/>
+  <symbol name="inherits" xml:id="cvi.inherits"/><symbol name="superclass" xml:id="cvi.superclass"/>
+
+  <axiom xml:id="ax1" for="object instance class">
+    <CMP>Every <phrase style="font-style:italic;color:blue">object</phrase>
+      is an <phrase style="font-style:italic;colo:red">instance</phrase> 
+      of a <phrase style="font-style:italic;color:blue">class</phrase>.
+    </CMP>
+  </axiom>
+
+  <axiom xml:id="ax2" for="class">
+    <CMP>The characteristics of an object are defined by its class.</CMP>
+  </axiom>
+
+  <axiom xml:id="ax3" for="inherits superclass">
+    <CMP> An object <phrase style="font-style:italic;color:blue">inherits</phrase>
+      characteristics from all of its 
+      <phrase style="font-style:italic;color:red">superclasses</phrase></CMP>
+   </axiom>
+</theory>
+
+<theory xml:id="cvi-examples">
+  <imports xml:id="cvi-ex-imports-animals" from="animals-taxonomy"/>
+  <imports xml:id="cvi-ex-imports-cvi" from="cvi"/>
+
+  <symbol name="danny" xml:id="cvi-examples.danny">
+    <metadata><dc:subject>Danny Sleator</dc:subject></metadata>
+  </symbol>
+
+  <axiom xml:id="danny-professor" for="#cvi.class #cvi.instance #cvi-examples.danny">
+    <CMP><phrase style="font-style:italic;color:blue">Danny Sleator</phrase>
+      is an <phrase style="font-style:italic;colo:red">instance</phrase> 
+      of the <phrase style="font-style:italic;color:blue">Professor</phrase> 
+      class.
+    </CMP>
+  </axiom>
+
+  <assertion xml:id="dannys-classes" type="theorem">
+    <CMP>He is therefore also an instance of the 
+      <phrase style="font-style:italic;color:blue">Human</phrase>, 
+      <phrase style="font-style:italic;color:blue">Mammal</phrase>, 
+      <phrase style="font-style:italic;color:blue">Animal</phrase> classes.
+    </CMP>
+  </assertion>
+
+  <symbol name="isa" xml:id="cvi-examples.isa" scope="global">
+    <metadata><dc:subject>'is a' relation</dc:subject></metadata>
+  </symbol>
+
+  <definition xml:id="isa-def" for="isa" type="informal">
+     <CMP>Sometimes we say that Danny Sleator 
+       &#x201C;<phrase style="font-style:italic;color:red">is a</phrase>&#x201D; 
+       Professor (or Human or Mammal&#x2026;)
+     </CMP>
+  </definition>
+</theory>
+
+<example xml:id="danny-mammal" type="for" assertion="dannys-mammal-thm"
+         for="#cvi.instance #cvi.class 
+              #animal-taxonomy.mammal">
+  <CMP>Danny Sleator is an instance of the 
+    <phrase style="font-style:italic;color:blue">Mammal</phrase> class. 
+  </CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="cvi-examples" name="danny"/></OMOBJ>
+</example>
+
+<assertion xml:id="dannys-mammal-thm" type="theorem" just-by="#danny-mammal-pf">
+  <CMP>Danny Sleator is an instance of the Human class.</CMP>
+</assertion>
+
+<proof xml:id="danny-human-pf" for="dannys-mammal-thm">
+  <derive xml:id="d1">
+    <CMP>Danny Sleator is an instance of the human class.</CMP>
+    <method>
+      <premise xref="danny-professor"/>
+      <premise xref="#cvi.ax3"/>
+      <premise xref="#animal-tax.human-extends-professor"/>
+    </method>
+  </derive>
+  <derive xml:id="concl">
+    <CMP>Therefore he is an instance of the human class.</CMP>
+    <method>
+      <premise xref="d1"/>
+      <premise xref="#cvi.ax3"/>
+      <premise xref="#animal-tax.mammal-extends-human"/>
+    </method>
+  </derive>
+</proof>
+
+<code xml:id="cvic-code1" >
+  <data format="Java" pto="Java" pto-version="1.3">
+    <![CDATA[public class Animal { ... }]]>
+  </data>
+  <effect><CMP>class declaration</CMP></effect>
+</code>
+
+<code xml:id="cvic-code2" requires="864-Example2-code" >
+  <data format="Java"  pto="Java" pto-version="1.3">
+    <![CDATA[public class Mammal extends Animal { ... }]]>
+  </data>
+  <effect><CMP>class extension</CMP></effect>
+</code>
+
+</omdoc>

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  xmlns="http://omdoc.org/ns"
+xml:id="omtypes-omdoc">
+
+
+  <dc:title>The OpenMath Content Dictionary omtypes.ocd  in OMDoc form</dc:title>
+  <dc:creator role="trl">Michael Kohlhase</dc:creator>
+  <dc:creator role="ant">Olga Caprotti</dc:creator>
+  <dc:date> 1999-08-20T00:00:00</dc:date>
+  <dc:source>Derived from the OpenMath CD http://www.openmath.org/cd/omtypes.ocd.</dc:source>
+  <dc:type>Text</dc:type>
+  <dc:format>application/omdoc+xml</dc:format>
+  <dc:rights>Copyright (c) 2000-2002 Michael Kohlhase;
+    This OMDoc content dictionary is released under the OpenMath license:
+    http://monet.nag.co.uk/openmath/cdfiles/license.html
+  </dc:rights>
+  <dc:description> 
+    <p>Types for OM</p>
+
+    <p>Declaration of symbols for names of types of OpenMath objects
+    An OpenMath object which uses any of the symbols here defined,
+    has to use them in accordance with their description.</p>
+</dc:description>
+
+
+<theory xml:id="omtypes" cdbase="http://www.openmath.org/cd">
+
+<include from="cc.omdoc#cc"/>
+
+<symbol name="omtype" xml:id="omtype">
+  
+    <dc:description> The type of symbolic type symtype
+    </dc:description>
+  
+</symbol>
+
+<symbol name="symtype" xml:id="symtype">
+  
+    <dc:description> The type of symbolic types introduced in other CDs
+    </dc:description>
+  
+</symbol>
+
+<symbol name="integer" xml:id="integer">
+  
+    <dc:description> The type of integers
+    </dc:description>
+  
+</symbol>
+
+<presentation xml:id="pr-integer" for="#integer">
+  <use  format="html">OMI</use>
+  <use  format="TeX">OMI</use>
+</presentation>
+
+<example xml:id="integer-ex-1" type="for" for="#integer">
+  <CMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMATTR>
+	<OMATP>
+	  <OMS cd="cc" name="type"/>
+	  <OMS cd="omtypes" name="integer"/>
+	</OMATP>
+	<OMI> 0 </OMI>
+      </OMATTR>
+    </OMOBJ> 
+    is well-typed object. 
+  </CMP>
+</example>
+
+<symbol name="float" xml:id="float">
+  <dc:description> The type of floating point numbers </dc:description>
+</symbol>
+
+<presentation xml:id="pr-float" for="#float">
+  <use  format="html">OMF</use>
+  <use  format="TeX">OMF</use>
+</presentation>
+<example xml:id="float-ex-1" type="for" for="#float">
+  <CMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMATTR>
+	<OMATP>
+	  <OMS cd="cc" name="type"/>
+	  <OMS cd="omtypes" name="float"/>
+	</OMATP>
+	<OMF dec="1.0"/>
+      </OMATTR>
+    </OMOBJ> 
+    is well-typed. 
+  </CMP>
+</example>
+
+<symbol name="string" xml:id="string">
+  
+    <dc:description> The type of character strings</dc:description>
+  
+</symbol>
+
+<presentation xml:id="pr-string" for="#string">
+  <use  format="html">OMSTR</use>
+  <use  format="TeX">OMSTR</use>
+</presentation>
+
+<example xml:id="string-ex-1" type="for" for="#string">
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMATTR>
+      <OMATP>
+	<OMS cd="cc" name="type"/>
+	<OMS cd="omtypes" name="string"/>
+      </OMATP>
+      <OMSTR> hello world </OMSTR>
+    </OMATTR>
+  </OMOBJ>
+</example>
+
+<symbol name="bytearray" xml:id="bytearray">
+  <dc:description> The type of byte arrays</dc:description>
+</symbol>
+
+<presentation xml:id="pr-bytearray" for="#bytearray">
+  <use  format="html">OMB</use>
+  <use  format="TeX">OMB</use>
+</presentation>
+
+<example xml:id="bytearray-ex-1" type="for" for="#bytearray">
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMATTR>
+      <OMATP>
+	<OMS cd="cc" name="type"/>
+	<OMS cd="omtypes" name="bytearray"/>
+      </OMATP>
+      <OMB>Hkw2Hs3Kd9kjasdk</OMB>
+    </OMATTR>
+  </OMOBJ>
+</example>
+
+</theory>
+</omdoc>

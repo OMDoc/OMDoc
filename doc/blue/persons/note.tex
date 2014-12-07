@@ -1,0 +1,81 @@
+\documentclass[12pt]{article}
+\usepackage{a4wide,url}
+\usepackage[hyper]{acronyms}
+\usepackage{lstomdoc,xmlindex,myref}
+\usepackage[show]{ed}
+\usepackage[eso-foot,today]{svninfo}
+\usepackage{hyperref} 
+\svnInfo $Id: note.tex 8487 2009-08-11 22:09:44Z clange $
+\svnKeyword $HeadURL: https://svn.omdoc.org/repos/omdoc/trunk/doc/blue/persons/note.tex $
+\lstset{language=[1.6]OMDoc,basicstyle=\scriptsize}
+\def\llquote#1{\ensuremath{\langle\kern-.25em\langle\hbox{\sl{#1}}\rangle\kern-.25em\rangle}}
+
+\title{Content Markup for Persons in OMDoc 1.6 Metadata} 
+\author{Michael Kohlhase}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+  We propose a semantic representation scheme for Persons in OMDoc 1.6\ednote{continue}
+\end{abstract}
+
+\section{Introduction}
+
+In a content-oriented document format like {\omdoc}~\cite{Kohlhase:omdoc1.2} format, we
+also need a content-oriented representation for metadata and in particular persons, who
+come in as authors, contributors, or maintainers of documents. With persons, we face many
+of the same problems we face with mathematical objects. We want to identify them as
+individuals, we want to reference them in various communicative situations by salient
+properties --- hoping that the interlocutor will be able to identify them from these, and
+we want to have a way of finding out more about them. And we want to achieve all of this
+without overburdening the author of documents. 
+
+Content Markup for Bibliographic referencs is probably best organized as
+BibTeX\ednote{cite it} does it. We have a database for bibliography entries, and have
+citations just reference that. An obvious idea for our problem with persons is to do
+something similar with persons, i.e. keep a database of general person descriptions like
+the one in {\mysecref{example}} and just identify the person by a URI pointing to a
+{\element{person}} element in such a database. Then document presentation applications
+could look up the respective information needed by their document class and style it into
+the result document. 
+
+We propose to integrate this approach into {\omdocv{1.6}}, see {\mysecref{rnc}} for a
+grammar and {\mysecref{example}} for an example.
+
+\section{Related Work and Possible Extensions}\label{sec:relwork}
+
+Another approach would be to use an ontology like FOAF (Friend of a
+Friend~\cite{FOAF:webpage}) and rely on information on the web for describing knowledge
+about persons. This approach is clearly well-suited to find up-to-date information about
+people on the web, but allows the document author very little editorial control.\ednote{continue}
+
+Note that our proposal does not answer the requirement to be able to uniquely identify
+persons. Here an interface to a service like OpenID~\cite{OpenID:webpage} might
+help\ednote{continue}. 
+
+Finally, we could use {\omdoc} content dictionaries themselves to represent persons. We
+would essentially turn people into ``mathematical objects'' and desribe them using
+``mathematical formulae''. While this sounds like an abuse of the format on the first
+glance, it would allow us to use the {\omdoc} technology for multiple ontological views on
+persons as well.\ednote{make this clearer, and maybe generalize to position {\omdoc} as an
+  ontology language.}
+
+Certainly we should take care that the {\omdoc} ontology for persons is compatible with
+external ontologies like FOAF,\ednote{contine; how can we integrate all of these?}
+
+\section{An Example}\label{sec:example}
+\lstinputlisting[language=RNC,nolol]{examples/persons.omdoc}
+
+\section{The RelaxNG Schema Module for Persons}\label{sec:rnc}
+\lstinputlisting[language=RNC,nolol]{rnc/omdocPER.rnc}
+
+\section{Support}
+This setup is supported by {\stex}~\cite{Kohlhase:ulsmf08,sTex:webpage} package for
+bibliographic metadata~\cite{Kohlhase:dcm08}.  
+
+\bibliographystyle{alphahurl}
+\bibliography{kwarc}
+\end{document}
+
+% LocalWords:  ns attr xml byctx cd MMT cdbase mmt arith MMTWS mmtget saxon
+% LocalWords:  Sacerdoti Coen Zacchiroli kwarc

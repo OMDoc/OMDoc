@@ -1,0 +1,52 @@
+# A RelaxNG for Open Mathematical documents (OMDoc 1.6) Module DOC         
+# $Id: omdocdoc.rnc 8740 2010-09-27 09:16:55Z kohlhase $
+# $HeadURL: https://svn.omdoc.org/repos/omdoc/trunk/schema/rnc/pragmatic/omdocdoc.rnc $
+# See the documentation and examples at http://www.omdoc.org
+# Copyright (c) 2004-2007 Michael Kohlhase, released under the GNU Public License (GPL) 
+
+default namespace omdoc = "http://omdoc.org/ns"
+# extend the stuff that can go into a mathematical text
+
+omdoc.class &= ignore* & omgroup* & tableofcontents* 
+
+ignore.attribs = id.attribs & 
+	                  attribute type {xsd:string}? &
+                          attribute comment {xsd:string}?
+ignore.model = Anything 
+ignore = element ignore {tref|(ignore.attribs & ignore.model)}
+
+ogroup.attribs = id.attribs,
+                           attribute type {xsd:anyURI}?, 
+		           attribute modules {xsd:anyURI}?, 
+		           attribute layout {text}?
+
+group.attribs =toplevel.attribs  & ogroup.attribs 
+group.model = metadata.class & omdoc.class
+omgroup = element omgroup {tref|(group.attribs & group.model)}
+
+# rhetoricalblocktype introduced having the same values as the textblocktype 
+# plus abstract and entities, to be used in the type attribute of the 
+# omdoc element, for now commented - until further notice!
+
+# rhetoricalblocktype = textblocktype | "abstract" | "entities"
+
+# ogroup.attribs = (attribute type { rhetoricalblocktype } | attribute typeURI {xsd:anyURI})?,
+#                 attribute modules {xsd:anyURI}?,
+#		 attribute layout {"sequence" | "itemize" | "enumeration" | "sectioning"}?
+
+tableofcontents.attribs = attribute level {xsd:nonNegativeInteger}?
+tableofcontents.model = empty
+tableofcontents = element tableofcontents {tableofcontents.attribs & tableofcontents.model}
+
+index.attribs = id.attribs
+index.model = empty
+index = element index{index.attribs & index.model}
+
+bibliography.attribs = id.attribs, attribute files {text}
+bibliography.model = empty
+bibliography = element bibliography {bibliography.attribs & bibliography.model}
+
+
+# we extend the omdoc element by the group attributes
+omdoc.attribs &=ogroup.attribs
+

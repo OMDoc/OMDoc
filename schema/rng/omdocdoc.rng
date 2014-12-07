@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  A RelaxNG for Open Mathematical documents (OMDoc 1.6) Module DOC         
+  $Id: omdocdoc.rnc 8432 2009-07-19 13:18:40Z kohlhase $
+  $HeadURL: https://svn.omdoc.org/repos/omdoc/trunk/schema/rnc/omdocdoc.rnc $
+  See the documentation and examples at http://www.omdoc.org
+  Copyright (c) 2004-2007 Michael Kohlhase, released under the GNU Public License (GPL) 
+-->
+<grammar ns="http://omdoc.org/ns" xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  <!-- extend the stuff that can go into a mathematical text -->
+  <define name="op.class" combine="interleave">
+    <zeroOrMore>
+      <ref name="ignore"/>
+    </zeroOrMore>
+  </define>
+  <define name="omdoc.class" combine="interleave">
+    <interleave>
+      <zeroOrMore>
+        <ref name="ignore"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="omgroup"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="tableofcontents"/>
+      </zeroOrMore>
+    </interleave>
+  </define>
+  <define name="ignore.attribs">
+    <interleave>
+      <optional>
+        <attribute name="type">
+          <data type="string"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="comment">
+          <data type="string"/>
+        </attribute>
+      </optional>
+    </interleave>
+  </define>
+  <define name="ignore.model">
+    <ref name="Anything"/>
+  </define>
+  <define name="ignore">
+    <element name="ignore">
+      <interleave>
+        <ref name="ignore.attribs"/>
+        <ref name="ignore.model"/>
+      </interleave>
+    </element>
+  </define>
+  <!--
+    rhetoricalblocktype introduced having the same values as the textblocktype 
+    plus abstract and entities, to be used in the type attribute of the 
+    omdoc element, for now commented - until further notice!
+  -->
+  <!-- rhetoricalblocktype = textblocktype | "abstract" | "entities" -->
+  <!--
+    ogroup.attribs = (attribute type { rhetoricalblocktype } | attribute typeURI {xsd:anyURI})?,
+                    attribute modules {xsd:anyURI}?,
+    		 attribute layout {"sequence" | "itemize" | "enumeration" | "sectioning"}?
+  -->
+  <define name="ogroup.attribs">
+    <optional>
+      <attribute name="type">
+        <data type="anyURI"/>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="modules">
+        <data type="anyURI"/>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="layout">
+        <choice>
+          <value>sequence</value>
+          <value>itemize</value>
+          <value>enumeration</value>
+          <value>sectioning</value>
+        </choice>
+      </attribute>
+    </optional>
+  </define>
+  <define name="group.model">
+    <optional>
+      <ref name="metadata"/>
+    </optional>
+    <zeroOrMore>
+      <ref name="omdoc.class"/>
+    </zeroOrMore>
+  </define>
+  <define name="group.attribs">
+    <interleave>
+      <ref name="omdoc.toplevel.attribs"/>
+      <ref name="ogroup.attribs"/>
+    </interleave>
+  </define>
+  <define name="omgroup">
+    <element name="omgroup">
+      <interleave>
+        <ref name="group.attribs"/>
+        <ref name="group.model"/>
+      </interleave>
+    </element>
+  </define>
+  <define name="tableofcontents.attribs">
+    <optional>
+      <attribute name="level">
+        <data type="nonNegativeInteger"/>
+      </attribute>
+    </optional>
+  </define>
+  <define name="tableofcontents.model">
+    <empty/>
+  </define>
+  <define name="tableofcontents">
+    <element name="tableofcontents">
+      <interleave>
+        <ref name="tableofcontents.attribs"/>
+        <ref name="tableofcontents.model"/>
+      </interleave>
+    </element>
+  </define>
+  <define name="index.attribs">
+    <empty/>
+  </define>
+  <define name="index.model">
+    <empty/>
+  </define>
+  <define name="index">
+    <element name="index">
+      <interleave>
+        <ref name="index.attribs"/>
+        <ref name="index.model"/>
+      </interleave>
+    </element>
+  </define>
+  <!-- we extend the omdoc element by the group attributes -->
+  <define name="omdoc.attribs" combine="interleave">
+    <ref name="ogroup.attribs"/>
+  </define>
+</grammar>

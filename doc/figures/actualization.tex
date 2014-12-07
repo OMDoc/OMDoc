@@ -1,0 +1,30 @@
+  \node (natordlist) at (0,2.5) 
+    {\begin{tabular}{|r|}\hline 
+      {\tt{NatOrdList}}\\
+      $cons, nil,$\\
+      $0,s,{\mathbb{N}},<$\\\hline
+    \end{tabular}};
+  \node (natord) at (0,0) 
+    {\begin{tabular}{|r|}\hline 
+      {\tt{NatOrd}}\\
+      $0,s,{\mathbb{N}},<$\\\hline
+    \end{tabular}};
+  \node (toset) at (6,0) 
+    {\begin{tabular}{|r|}\hline 
+      {\tt{TOSet}}\\
+      $Elem,<$\\\hline
+    \end{tabular}};
+  \node (ordlist) at (6,2.5) 
+    {\begin{tabular}{|r|}\hline 
+      {\tt{OrdList}}\\
+      $cons, nil,$\\
+      $Elem,<$\\\hline
+    \end{tabular}};
+  \node[circle,fill] (act1) at (4.5,2.5) {};
+  \node[circle,fill] (act2) at (4.5,0) {};
+  \draw [->,line width=1.5pt] (natord) -- node[right]{imports} (natordlist);
+  \draw [->,line width=1.5pt] (toset) -- node[right]{imports} (ordlist);
+  \draw [->,dashed,line width=1.5pt] (toset) -- node[below]{theory-inclusion} (natord);
+  \draw [->,dashed,line width=1.5pt] (ordlist) -- node[above]{Actualization} (natordlist);
+  \draw [->] (ordlist.south west) -- node[above]{imports} (natordlist.south east);
+  \draw [<-,dotted,near end] (act1) -- node{induces} (act2);

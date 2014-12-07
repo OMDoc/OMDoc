@@ -1,0 +1,145 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This file is part of the LaTeX sources of the OMDoc 1.6 specifiation
+% Copyright (c) 2006 Michael Kohlhase
+% This work is licensed by the Creative Commons Share-Alike license
+% see http://creativecommons.org/licenses/by-sa/2.5/ for details
+\svnInfo $Id: resources.tex 8438 2009-07-25 14:11:14Z kohlhase $
+\svnKeyword $HeadURL: https://svn.omdoc.org/repos/omdoc/trunk/doc/processing/resources.tex $
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{OMDoc resources}\label{chap:resources}
+In this chapter we will describe various public resources for working with the
+{\omdoc} format.
+
+\section{The OMDoc Web Site, Wiki, and Mailing List}\label{sec:website}  The main web site for the {\omdoc} format is \url{http://www.omdoc.org}.  It
+  hosts news about developments, applications, collaborators, and events, provides access
+  to an list of ``\atwintoo{frequently}{asked}{questions}'' ({\indextoo{FAQ}}), and
+  current and old {\omdoc} specifications and provides pre-generated examples from the
+  {\omdoc} distribution.
+  
+  There are two mailing lists for discussion of the {\omdoc} format: 
+  \begin{description}
+  \item[\url{omdoc@omdoc.org}] is for announcements and discussions of the {\omdoc}
+    format on the user level. Direct your questions to this list.
+  \item[\url{omdoc-dev@omdoc.org}] is for developer discussions.
+  \end{description}
+  For subscription and archiving details see the {\omdoc} resources page for mailing
+  lists~\cite{OMDoc-mailinglists:URL}.
+  
+  Finally, the {\omdoc} web site hosts a Wiki~\cite{OMDoc:wiki} for user-driven
+  documentation and discussion.
+
+
+\section{The OMDoc distribution}\label{sec:distribution}  
+All resources on the {\omdoc} web site are available from the {\mathweb} {\subversion}
+repository~\cite{OMDoc:svn} for anonymous download.  {\subversion} ({\svn}) is a
+collaborative version control system -- to support a distributed community of developers
+in accessing and developing the {\omdoc} format, software, and documentation,
+see~\cite{omdoc.org:svn} for a general introduction to the setup. The resources for
+version 1.6 of the {\omdoc} format which is described in this book are accessible on the
+web at \url{https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.6}\ednote{For the moment,
+  this URI is not valid yet, use {\texttt{https://svn.omdoc.org/repos/omdoc/trunk}}} via a
+regular web browser\footnote{Ongoing development of the {\omdoc} format can be accessed
+  via the {\twintoo{head}{revision}} of the repository at
+  \url{https://svn.omdoc.org/repos/omdoc/trunk}.}.  The {\svn} server allows anonymous
+read access to the general public. To check out the {\omdoc} distribution, use\ednote{For
+  the moment, this URI is not valid yet, use
+  {\texttt{https://svn.omdoc.org/repos/omdoc/trunk}}}
+\begin{verbatim}
+svn co https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.6
+\end{verbatim}
+This will create a directory {\snippet{omdoc-1.6}}, with the sub-directories 
+\begin{center}\footnotesize
+\begin{tabular}{|p{2.6cm}|p{7.5cm}|}\hline
+  directories            & content \\\hline\hline
+  {\snippet{bin}}, {\snippet{lib}}, {\snippet{oz}}, {\snippet{thirdParty}} &  
+  programs and third-party software used in the administration and examples\\\hline
+  {\snippet{css}}, {\snippet{xsl}} & style sheets for displaying {\omdoc} documents on
+                           the web, see {\mychapref{transform-xsl}} for a
+  discussion.\\\hline
+  {\snippet{doc}}             & The {\omdoc} documentation, including the
+                           specification, papers about a
+                           the {\omdoc} format and tools.\\\hline
+  {\snippet{dtd}}, {\snippet{rnc}} & The {\omdoc} document type definition and the {\relaxng}
+                            schemata for {\omdoc}\\\hline
+  {\snippet{examples}}        &  Various example documents in {\omdoc} format. \\\hline
+  {\snippet{projects}}        &  various contributed developments for
+                                 {\omdoc}. Documentation is usually in their {\snippet{doc}} 
+                                 sub-directory\\\hline
+\end{tabular}
+\end{center}
+
+After the initial check out, the {\omdoc} distribution can be kept up to date by
+the command {\snippet{svn -q update}} in the top-level directory from time to time. To obtain write
+access contact \url{svnadmin@omdoc.org}.
+
+
+\section{The OMDoc bug tracker}\label{sec:bugzilla}
+\begin{oldpart}{we have a TRAC now, describe that instead}
+  \url{MathWeb.org} supplies a BugZilla bug-tracker~\cite{bugzilla:URL} at
+  \url{http://bugzilla.mathweb.org:8000} to aid the development of the {\omdoc}
+  format. BugZilla is a server-based discussion forum and bug tracking system. We use it
+  to track, archive and discuss tasks, software bugs, and enhancements in our
+  project. Discussions are centered about threads called "bugs" (which need not be
+  software bugs at all), which are numbered, can be searched, and can be referred to by
+  their URL. To use {\bugzilla}, just open an account and visit the {\omdoc} content by
+  querying for the ``product'' {\omdoc}. For offline use of the bug-tracker we recommend
+  the excellent {\scsys{Deskzilla}} application~\cite{deskzilla:URL}, which is free for
+  open-source projects like {\omdoc}.
+
+  Further development of the {\omdoc} format will be public and driven by the discussions
+  on {\bugzilla}, the {\omdoc} mailing list, and the {\omdoc} Wiki
+  (see~\mysecref{website}).
+\end{oldpart}
+
+\section{An XML catalog for OMDoc}\label{sec:catalog}  
+  Many {\xml} processes use {\twintoo{system}{ID}s} (in practice {\indextoo{URL}s}) to
+  locate supporting files like {\indextoo{DTD}s}, {\indextoo{schema}ta},
+  {\indextoo{style sheet}s}. To make them more portable, {\omdoc} documents will often
+  reference the files on the \url{omdoc.org} web server, even in situations, where
+  they are accessible locally e.g. from the {\omdoc} distribution. This practice not only
+  puts considerable load on this server, but also slows down or even blocks document
+  processing, since the {\xml} processors have to retrieve these files over the Internet.
+
+  Many processors can nowadays use \twinalt{{\xml} catalogs}{XML}{catalog} to remap
+  {\twintoo{public}{identifier}s} and {\indextoo{URL}s} as an alternative to explicit
+  {\twintoo{system}{identifier}s}. A catalog can convert public {\snippet{ID}}s like the
+  one for the {\omdoc} DTD ({\snippet{-//OMDoc//DTD OMDoc V1.6//EN}}) into absolute URLs
+  like \url{http://www.omdoc.org/dtd/omdoc.dtd}. Moreover, it can replace remote URLs like
+  this one with local URLs like \url{file:///home/kohlhase/omdoc/dtd/omdoc.dtd}.  This
+  offers fast, reliable access to the DTDs and schemata without making the documents less
+  portable across systems and networks.
+
+To facilitate the use of catalogs, the {\omdoc} distribution provides a catalog file
+\url{lib/omdoc.cat}. This catalog file can either be imported into the system's
+catalog\footnote{This catalog is usually at \url{file:///etc/xml/catalog} on {\unix}
+  systems; unfortunately there is no default location for {\windows} machines.} using a
+{\snippet{nextCatalog}} element of the form
+\begin{lstlisting}[language=XML]
+<nextCatalog xml:id="omdoc.cat" catalog="file:///home/kohlhase/omdoc/lib/omdoc.cat"/>
+\end{lstlisting}
+or by making it known directly to the \twinalt{{\xml} processor}{XML}{processor} by an
+application-specific method. For instance for {\snippetin{libxml2}} based tools like
+{\snippetin{xsltproc}} or {\snippetin{xmllint}}, it is sufficient to include the path to
+{\snippetin{omdoc.cat}} in the value of the {\snippetin{XML\_CATALOG\_FILES}} environment
+variable (it contains a whitespace-separated list of FILES).
+
+
+\section{External Resources}\label{sec:external-resources}
+The {\omdoc} format has been used on a variety of projects. {\Mychapref{projects}}
+gives an overview over some of the projects (use the project home pages given
+there for details), a up to date list of links to {\omdoc} projects can be found
+at \url{http://omdoc.org/projects.html}. These projects have
+contributed tools, code, and documentation to the {\omdoc} format, often stressing
+their special vantage points and applications of the format.
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "main"
+%%% End: 
+
+% LocalWords:  lib thirdParty oz xsl doc dtd nextCatalog rnc svn bugzilla omdoc
+% LocalWords:  libxml xsltproc xmllint website ta Wiki mailinglists Deskzilla
+% LocalWords:  css MathWeb BugZilla BugZilla mathweb mathweb mathweb mathweb
+% LocalWords:  mathweb mathweb

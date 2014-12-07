@@ -1,0 +1,892 @@
+<?xml version="1.0"?>
+<notations xmlns="http://www.w3.org/ns/mathml-cd" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:om="http://www.openmath.org/OpenMath" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+  <notation cdbase="FIXME" cd="nuprl" name="dependent-function-type">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="nuprl" name="dependent-function-type"/>
+        <expr name="arg"/>
+        <expr name="arg"/>
+        <expr name="arg"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="nuprl">dependent-function-type</m:csymbol>
+        <expr name="arg"/>
+      </m:apply>
+    </prototype>
+    <!--REPLACEME: This is just copied for manual intervention:-->
+    <element xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath" name="mrow" cr="yes">
+      <recurse select="*[2]"/>
+      <element name="mo" cr="yes"><text>:</text></element>
+      <recurse select="*[3]"/>
+      <element name="mo" cr="yes"><text>↦</text></element>
+      <recurse select="*[4]"/>
+    </element>
+    <!--/REPLACEME-->
+  </notation>
+  <notation cdbase="FIXME" cd="nuprl" name="function-type">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="nuprl" name="function-type"/>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="nuprl">function-type</m:csymbol>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </m:apply>
+    </prototype>
+    <rendering precedence="1000">
+      <m:mrow>
+        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
+        <render name="arg1" precedence="1000"/>
+        <m:mo>↦</m:mo>
+        <render name="arg2" precedence="1000"/>
+        <m:mo mcd:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="nuprl" name="lambda">
+    <prototype>
+      <om:OMBIND>
+        <om:OMS cd="nuprl" name="lambda"/>
+        <om:OMBVAR>
+          <exprlist name="bvars">
+            <expr name="bvar"/>
+          </exprlist>
+        </om:OMBVAR>
+        <om:OMC>
+          <expr name="condition"/>
+        </om:OMC>
+        <expr name="scope"/>
+      </om:OMBIND>
+    </prototype>
+    <prototype>
+      <m:bind>
+        <m:csymbol cd="nuprl">lambda</m:csymbol>
+        <m:bvar>
+          <exprlist name="bvars">
+            <expr name="bvar"/>
+          </exprlist>
+        </m:bvar>
+        <m:condition>
+          <expr name="condition"/>
+        </m:condition>
+        <expr name="scope"/>
+      </m:bind>
+    </prototype>
+    <rendering precedence="1000">
+      <m:mrow>
+        <m:mo mcd:egroup="fence" fence="true">\</m:mo>
+      </m:mrow>
+    </rendering>
+    <prototype>
+      <om:OMBIND>
+        <om:OMS cd="nuprl" name="lambda"/>
+        <om:OMBVAR>
+          <exprlist name="bvars">
+            <expr name="bvar"/>
+          </exprlist>
+        </om:OMBVAR>
+        <expr name="scope"/>
+      </om:OMBIND>
+    </prototype>
+    <prototype>
+      <m:bind>
+        <m:csymbol cd="nuprl">lambda</m:csymbol>
+        <m:bvar>
+          <exprlist name="bvars">
+            <expr name="bvar"/>
+          </exprlist>
+        </m:bvar>
+        <expr name="scope"/>
+      </m:bind>
+    </prototype>
+    <rendering precedence="1000">
+      <m:mrow>
+        <m:mo mcd:egroup="fence" fence="true">\</m:mo>
+      </m:mrow>
+    </rendering>
+    <prototype>
+      <om:OMS cd="nuprl" name="lambda"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="nuprl">lambda</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en">λ</rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="nuprl" name="dependent-product">
+    <prototype>
+      <om:OMBIND>
+        <om:OMS cd="nuprl" name="dependent-product"/>
+        <om:OMBVAR>
+          <exprlist name="bvars">
+            <expr name="bvar"/>
+          </exprlist>
+        </om:OMBVAR>
+        <om:OMC>
+          <expr name="condition"/>
+        </om:OMC>
+        <expr name="scope"/>
+      </om:OMBIND>
+    </prototype>
+    <prototype>
+      <m:bind>
+        <m:csymbol cd="nuprl">dependent-product</m:csymbol>
+        <m:bvar>
+          <exprlist name="bvars">
+            <expr name="bvar"/>
+          </exprlist>
+        </m:bvar>
+        <m:condition>
+          <expr name="condition"/>
+        </m:condition>
+        <expr name="scope"/>
+      </m:bind>
+    </prototype>
+    <!--REPLACEME: This is just copied for manual intervention:-->
+    <element xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath" name="mrow" cr="yes">
+      <recurse select="*[3]/*[2]"/>
+      <element name="mo" cr="yes"><text>:</text></element>
+      <recurse select="*[2]"/>
+      <element name="mo" cr="yes"><text>×</text></element>
+      <recurse select="*[3]/*[2]"/>
+    </element>
+    <!--/REPLACEME-->
+    <prototype>
+      <om:OMBIND>
+        <om:OMS cd="nuprl" name="dependent-product"/>
+        <om:OMBVAR>
+          <exprlist name="bvars">
+            <expr name="bvar"/>
+          </exprlist>
+        </om:OMBVAR>
+        <expr name="scope"/>
+      </om:OMBIND>
+    </prototype>
+    <prototype>
+      <m:bind>
+        <m:csymbol cd="nuprl">dependent-product</m:csymbol>
+        <m:bvar>
+          <exprlist name="bvars">
+            <expr name="bvar"/>
+          </exprlist>
+        </m:bvar>
+        <expr name="scope"/>
+      </m:bind>
+    </prototype>
+    <!--REPLACEME: This is just copied for manual intervention:-->
+    <element xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath" name="mrow" cr="yes">
+      <recurse select="*[3]/*[2]"/>
+      <element name="mo" cr="yes"><text>:</text></element>
+      <recurse select="*[2]"/>
+      <element name="mo" cr="yes"><text>×</text></element>
+      <recurse select="*[3]/*[2]"/>
+    </element>
+    <!--/REPLACEME-->
+  </notation>
+  <notation cdbase="FIXME" cd="nuprl" name="product">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="nuprl" name="product"/>
+        <exprlist name="args">
+          <expr name="arg"/>
+        </exprlist>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="nuprl">product</m:csymbol>
+        <expr name="arg"/>
+      </m:apply>
+    </prototype>
+    <rendering precedence="1000">
+      <m:mrow>
+        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
+        <render name="arg1" precedence="1000"/>
+        <m:mo>×</m:mo>
+        <render name="arg2" precedence="1000"/>
+        <m:mo mcd:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="nuprl" name="pair">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="nuprl" name="pair"/>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="nuprl">pair</m:csymbol>
+        <expr name="arg"/>
+      </m:apply>
+    </prototype>
+    <rendering precedence="1000">
+      <m:mrow>
+        <m:mo>,</m:mo>
+        <m:mo mcd:egroup="fence" fence="true">&lt;</m:mo>
+        <render name="arg1"/>
+        <render name="arg2"/>
+        <m:mo mcd:egroup="fence" fence="true">&gt;</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="nuprl" name="spread">
+    <prototype>
+      <om:OMBIND>
+        <om:OMS cd="nuprl" name="spread"/>
+        <om:OMBVAR>
+          <exprlist name="bvars">
+            <expr name="bvar"/>
+          </exprlist>
+        </om:OMBVAR>
+        <om:OMC>
+          <expr name="condition"/>
+        </om:OMC>
+        <expr name="scope"/>
+      </om:OMBIND>
+    </prototype>
+    <prototype>
+      <m:bind>
+        <m:csymbol cd="nuprl">spread</m:csymbol>
+        <m:bvar>
+          <exprlist name="bvars">
+            <expr name="bvar"/>
+          </exprlist>
+        </m:bvar>
+        <m:condition>
+          <expr name="condition"/>
+        </m:condition>
+        <expr name="scope"/>
+      </m:bind>
+    </prototype>
+    <!--REPLACEME: This is just copied for manual intervention:-->
+    <element xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath" name="mrow" cr="yes">
+      <element name="mo" cr="yes"><text>let</text></element>
+      <element name="mrow" cr="yes">
+	<element name="mo" cr="yes">
+	  <attribute name="fence"><text>true</text></attribute>
+	  <text>〈</text>
+	</element>
+	<recurse select="*[3]/*[2]/*[1]"/>
+	<element name="mo" cr="yes">
+	  <attribute name="separator"><text>true</text></attribute>
+	  <text>〈</text>
+	</element>
+	<recurse select="*[3]/*[2]/*[1]"/>
+	<element name="mo" cr="yes">
+	  <attribute name="fence"><text>true</text></attribute>
+	  <text>〉</text>
+	</element>
+      </element>
+      <element name="mo" cr="yes"><text>=</text></element>
+      <recurse select="*[2]"/>
+      <element name="mo" cr="yes"><text>in</text></element>
+      <recurse select="*[3]/*[3]"/>
+    </element>
+    <!--/REPLACEME-->
+    <prototype>
+      <om:OMBIND>
+        <om:OMS cd="nuprl" name="spread"/>
+        <om:OMBVAR>
+          <exprlist name="bvars">
+            <expr name="bvar"/>
+          </exprlist>
+        </om:OMBVAR>
+        <expr name="scope"/>
+      </om:OMBIND>
+    </prototype>
+    <prototype>
+      <m:bind>
+        <m:csymbol cd="nuprl">spread</m:csymbol>
+        <m:bvar>
+          <exprlist name="bvars">
+            <expr name="bvar"/>
+          </exprlist>
+        </m:bvar>
+        <expr name="scope"/>
+      </m:bind>
+    </prototype>
+    <!--REPLACEME: This is just copied for manual intervention:-->
+    <element xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath" name="mrow" cr="yes">
+      <element name="mo" cr="yes"><text>let</text></element>
+      <element name="mrow" cr="yes">
+	<element name="mo" cr="yes">
+	  <attribute name="fence"><text>true</text></attribute>
+	  <text>〈</text>
+	</element>
+	<recurse select="*[3]/*[2]/*[1]"/>
+	<element name="mo" cr="yes">
+	  <attribute name="separator"><text>true</text></attribute>
+	  <text>〈</text>
+	</element>
+	<recurse select="*[3]/*[2]/*[1]"/>
+	<element name="mo" cr="yes">
+	  <attribute name="fence"><text>true</text></attribute>
+	  <text>〉</text>
+	</element>
+      </element>
+      <element name="mo" cr="yes"><text>=</text></element>
+      <recurse select="*[2]"/>
+      <element name="mo" cr="yes"><text>in</text></element>
+      <recurse select="*[3]/*[3]"/>
+    </element>
+    <!--/REPLACEME-->
+  </notation>
+  <notation cdbase="FIXME" cd="nuprl" name="disjoint-union">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="nuprl" name="disjoint-union"/>
+        <exprlist name="args">
+          <expr name="arg"/>
+        </exprlist>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="nuprl">disjoint-union</m:csymbol>
+        <expr name="arg"/>
+      </m:apply>
+    </prototype>
+    <rendering precedence="1000">
+      <m:mrow>
+        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
+        <render name="arg1" precedence="1000"/>
+        <m:mo>⊎</m:mo>
+        <render name="arg2" precedence="1000"/>
+        <m:mo mcd:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="nuprl" name="inl">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="nuprl" name="inl"/>
+        <expr name="arg"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="nuprl">inl</m:csymbol>
+        <expr name="arg"/>
+      </m:apply>
+    </prototype>
+    <rendering precedence="1000">
+      <m:mrow>
+        <m:mo>inl</m:mo>
+        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
+        <render name="arg"/>
+        <m:mo mcd:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="nuprl" name="inr">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="nuprl" name="inr"/>
+        <expr name="arg"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="nuprl">inr</m:csymbol>
+        <expr name="arg"/>
+      </m:apply>
+    </prototype>
+    <rendering precedence="1000">
+      <m:mrow>
+        <m:mo>inr</m:mo>
+        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
+        <render name="arg"/>
+        <m:mo mcd:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="nuprl" name="universe-of-level">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="nuprl" name="universe-of-level"/>
+        <expr name="arg"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="nuprl">universe-of-level</m:csymbol>
+        <expr name="arg"/>
+      </m:apply>
+    </prototype>
+    <rendering precedence="1000">
+      <m:mrow>
+        <m:mo>U</m:mo>
+        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
+        <render name="arg"/>
+        <m:mo mcd:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="nuprl" name="eq">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="nuprl" name="eq"/>
+        <exprlist name="args">
+          <expr name="arg"/>
+        </exprlist>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="nuprl">eq</m:csymbol>
+        <expr name="arg"/>
+      </m:apply>
+    </prototype>
+    <!--REPLACEME: This is just copied for manual intervention:-->
+    <element xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath" name="mrow" cr="yes">
+      <recurse select="*[2]"/>
+      <element name="mo" cr="yes"><text>=</text></element>
+      <recurse select="*[3]"/>
+      <element name="mo" cr="yes"><text> in </text></element>
+      <recurse select="*[4]"/>
+    </element>
+    <!--/REPLACEME-->
+  </notation>
+  <notation cdbase="FIXME" cd="nuprl" name="axiom">
+    <prototype>
+      <om:OMS cd="nuprl" name="axiom"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="nuprl">axiom</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en">
+      <m:mo>Ax</m:mo>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="nuprl" name="void">
+    <prototype>
+      <om:OMS cd="nuprl" name="void"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="nuprl">void</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en">
+      <m:mo>void</m:mo>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="nuprl" name="atom">
+    <prototype>
+      <om:OMS cd="nuprl" name="atom"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="nuprl">atom</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en">
+      <m:mo>atom</m:mo>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="nuprl" name="atom-conditional">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="nuprl" name="atom-conditional"/>
+        <expr name="arg"/>
+        <expr name="arg"/>
+        <expr name="arg"/>
+        <expr name="arg"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="nuprl">atom-conditional</m:csymbol>
+        <expr name="arg"/>
+      </m:apply>
+    </prototype>
+    <!--REPLACEME: This is just copied for manual intervention:-->
+    <element xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath" name="mrow" cr="yes">
+      <element name="mo" cr="yes"><text>if</text></element>
+      <recurse select="*[2]"/>
+      <element name="mo" cr="yes"><text>=</text></element>
+      <recurse select="*[3]"/>
+      <element name="mo" cr="yes"><text>then</text></element>
+      <recurse select="*[4]"/>
+      <element name="mo" cr="yes"><text>else</text></element>
+      <recurse select="*[5]"/>
+    </element>
+    <!--/REPLACEME-->
+  </notation>
+  <notation cdbase="FIXME" cd="nuprl" name="Z">
+    <prototype>
+      <om:OMS cd="nuprl" name="Z"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="nuprl">Z</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en">ℤ</rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="nuprl" name="rec-case">
+    <prototype>
+      <om:OMS cd="nuprl" name="rec-case"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="nuprl">rec-case</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en"/>
+  </notation>
+  <notation cdbase="FIXME" cd="nuprl" name="unary-minus">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="nuprl" name="unary-minus"/>
+        <expr name="arg"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="nuprl">unary-minus</m:csymbol>
+        <expr name="arg"/>
+      </m:apply>
+    </prototype>
+    <rendering precedence="200">
+      <m:mrow>
+        <m:mo>-</m:mo>
+        <render name="arg"/>
+      </m:mrow>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="nuprl" name="plus">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="nuprl" name="plus"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="nuprl">plus</m:csymbol>
+        <expr name="arg"/>
+      </m:apply>
+    </prototype>
+    <rendering precedence="500">
+      <m:mrow>
+        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
+        <render name="arg1" precedence="500"/>
+        <m:mo>+</m:mo>
+        <render name="arg2" precedence="500"/>
+        <m:mo mcd:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="nuprl" name="minus">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="nuprl" name="minus"/>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="nuprl">minus</m:csymbol>
+        <expr name="arg"/>
+      </m:apply>
+    </prototype>
+    <rendering precedence="200">
+      <m:mrow>
+        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
+        <render name="arg1" precedence="200"/>
+        <m:mo>-</m:mo>
+        <render name="arg2" precedence="200"/>
+        <m:mo mcd:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="nuprl" name="times">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="nuprl" name="times"/>
+        <exprlist name="args">
+          <expr name="arg"/>
+        </exprlist>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="nuprl">times</m:csymbol>
+        <expr name="arg"/>
+      </m:apply>
+    </prototype>
+    <rendering precedence="400">
+      <m:mrow>
+        <m:mo>⁢</m:mo>
+        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
+        <iterate name="args" precedence="400">
+          <separator>
+            <m:mo mcd:egroup="separator" separator="true">,</m:mo>
+          </separator>
+          <render name="arg"/>
+        </iterate>
+        <m:mo mcd:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="nuprl" name="divide">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="nuprl" name="divide"/>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="nuprl">divide</m:csymbol>
+        <expr name="arg"/>
+      </m:apply>
+    </prototype>
+    <rendering precedence="600">
+      <!--SPECIFYME: elements in non-lisp not supported-->
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="nuprl" name="rem">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="nuprl" name="rem"/>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="nuprl">rem</m:csymbol>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </m:apply>
+    </prototype>
+    <rendering precedence="1000">
+      <m:mrow>
+        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
+        <render name="arg1" precedence="1000"/>
+        <m:mo> rem </m:mo>
+        <render name="arg2" precedence="1000"/>
+        <m:mo mcd:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="nuprl" name="integer-less-conditional">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="nuprl" name="integer-less-conditional"/>
+        <expr name="arg"/>
+        <expr name="arg"/>
+        <expr name="arg"/>
+        <expr name="arg"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="nuprl">integer-less-conditional</m:csymbol>
+        <expr name="arg"/>
+      </m:apply>
+    </prototype>
+    <!--REPLACEME: This is just copied for manual intervention:-->
+    <element xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath" name="mrow" cr="yes">
+      <element name="mo" cr="yes"><text>if</text></element>
+      <recurse select="*[2]"/>
+      <element name="mo" cr="yes"><text>&lt;</text></element>
+      <recurse select="*[3]"/>
+      <element name="mo" cr="yes"><text>then</text></element>
+      <recurse select="*[4]"/>
+      <element name="mo" cr="yes"><text>else</text></element>
+      <recurse select="*[5]"/>
+    </element>
+    <!--/REPLACEME-->
+  </notation>
+  <notation cdbase="FIXME" cd="nuprl" name="less">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="nuprl" name="less"/>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="nuprl">less</m:csymbol>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </m:apply>
+    </prototype>
+    <rendering precedence="1000">
+      <m:mrow>
+        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
+        <render name="arg1" precedence="1000"/>
+        <m:mo>&amp;lt;</m:mo>
+        <render name="arg2" precedence="1000"/>
+        <m:mo mcd:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="nuprl" name="list-type">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="nuprl" name="list-type"/>
+        <expr name="arg"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="nuprl">list-type</m:csymbol>
+        <expr name="arg"/>
+      </m:apply>
+    </prototype>
+    <rendering precedence="1000">
+      <m:mrow>
+        <m:mo> list</m:mo>
+        <render name="arg"/>
+      </m:mrow>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="nuprl" name="nil">
+    <prototype>
+      <om:OMS cd="nuprl" name="nil"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="nuprl">nil</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en">
+      <m:mo>[]</m:mo>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="nuprl" name="cons">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="nuprl" name="cons"/>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="nuprl">cons</m:csymbol>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </m:apply>
+    </prototype>
+    <rendering precedence="1000">
+      <m:mrow>
+        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
+        <render name="arg1" precedence="1000"/>
+        <m:mo>::</m:mo>
+        <render name="arg2" precedence="1000"/>
+        <m:mo mcd:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="nuprl" name="rectype">
+    <prototype>
+      <om:OMS cd="nuprl" name="rectype"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="nuprl">rectype</m:csymbol>
+    </prototype>
+    <rendering>
+      <!--IMPROVEME: the following is just a fallback-->
+      <m:mo>rectype</m:mo>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="nuprl" name="structural-recursion">
+    <prototype>
+      <om:OMS cd="nuprl" name="structural-recursion"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="nuprl">structural-recursion</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en"/>
+  </notation>
+  <notation cdbase="FIXME" cd="nuprl" name="subset-type">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="nuprl" name="subset-type"/>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="nuprl">subset-type</m:csymbol>
+        <expr name="arg"/>
+      </m:apply>
+    </prototype>
+    <!--REPLACEME: This is just copied for manual intervention:-->
+    <element xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath" name="mrow" cr="yes">
+      <element name="mo" cr="yes"><text>{</text></element>
+      <recurse select="*[3]/*[2]/*[1]"/>
+      <element name="mo" cr="yes"><text>:</text></element>
+      <recurse select="*[2]"/>
+      <element name="mo" cr="yes"><text>|</text></element>
+      <recurse select="*[3]/*[3]"/>
+      <element name="mo" cr="yes"><text>}</text></element>
+    </element>
+    <!--/REPLACEME-->
+  </notation>
+  <notation cdbase="FIXME" cd="nuprl" name="independent-subset-type">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="nuprl" name="independent-subset-type"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="nuprl">independent-subset-type</m:csymbol>
+        <expr name="arg"/>
+      </m:apply>
+    </prototype>
+    <rendering precedence="1000">
+      <m:mrow>
+        <m:mo mcd:egroup="fence" fence="true">{</m:mo>
+        <render name="arg1" precedence="1000"/>
+        <m:mo>|</m:mo>
+        <render name="arg2" precedence="1000"/>
+        <m:mo mcd:egroup="fence" fence="true">}</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="nuprl" name="quotient-type">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="nuprl" name="quotient-type"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="nuprl">quotient-type</m:csymbol>
+        <expr name="arg"/>
+      </m:apply>
+    </prototype>
+    <!--REPLACEME: This is just copied for manual intervention:-->
+    <element xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath" name="mrow" cr="yes">
+      <recurse select="*[3]/*[2]/*[1]"/>
+      <element name="mo" cr="yes"><text>,</text></element>
+      <recurse select="*[3]/*[2]/*[2]"/>
+      <element name="mo" cr="yes"><text>:</text></element>
+      <recurse select="*[2]"/>
+      <element name="mo" cr="yes"><text>//</text></element>
+      <recurse select="*[3]/*[3]"/>
+    </element>
+    <!--/REPLACEME-->
+  </notation>
+  <notation cdbase="FIXME" cd="nuprl" name="type-intersection">
+    <prototype>
+      <om:OMS cd="nuprl" name="type-intersection"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="nuprl">type-intersection</m:csymbol>
+    </prototype>
+    <rendering>
+      <!--IMPROVEME: the following is just a fallback-->
+      <m:mo>type-intersection</m:mo>
+    </rendering>
+  </notation>
+</notations>

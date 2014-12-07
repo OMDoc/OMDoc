@@ -1,0 +1,823 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html id="nuprl.omdoc" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <link rel="stylesheet" type="text/css" href="omdoc-default.css"/>
+    <title>The Nuprl logic language</title>
+  </head>
+  <body>
+    <div class="dc-titleblock">
+      <div class="dc-title">The Nuprl logic language</div>
+      <div class="dc-authors">Michael Kohlhase, Christoph Kreitz</div>
+      <div class="dc-date">2002-09-30</div>
+    </div>
+    <div class="omdoc-omtext" id="intro">
+      <p>This document contains and defines the constants used in the Nuprl to OMDoc translation. Some of these may later have to be moved into another theory.</p>
+    </div>
+    <div class="theory" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="http://purl.org/dc/elements/1.1/">
+      <h1 id="nuprl">1. The Nuprl logic language</h1>
+      <div class="omdoc-symbol" id="dependent-function-type" role="Symbol" about="#nuprl.dependent-function-type" xml:id="nuprl.dependent-function-type">
+        <a class="omdoc" rel="oso:homeTheory" href="#nuprl"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>dependent-function-type
+        </div> The dependent function type constructor is a binding operator. The source type is the type of the bound variable X, the target type is represented in the body. 
+      </div>
+      <div class="omdoc-example" id="ex-dependent-function-type" role="Example" about="#nuprl.dependent-function-type" xml:id="ex-dependent-function-type">
+        <a class="omdoc" rel="oso:exemplifies" href="#nuprl.dependent-function-type"/>
+        <a class="omdoc" rel="oso:homeTheory" href="#nuprl.dependent-function-type"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Example</span>
+        </div>
+        <p>A dependent function type</p>
+        <span id="MCRd20e63" class="displaymath" xmlns="">
+          <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+            <m:mrow>
+              <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+              <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+            </m:mrow>
+          </m:math>
+        </span>
+      </div>
+      <div class="omdoc-symbol" id="function-type" role="Symbol" about="#nuprl.function-type" xml:id="nuprl.function-type">
+        <a class="omdoc" rel="oso:homeTheory" href="#nuprl"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>function-type
+        </div>The independent function type constructor. The first argument is the source type S, and the second, the target type T. 
+      </div>
+      <div class="omdoc-example" id="ex-function-type" role="Example" about="#nuprl.function-type" xml:id="ex-function-type">
+        <a class="omdoc" rel="oso:exemplifies" href="#nuprl.function-type"/>
+        <a class="omdoc" rel="oso:homeTheory" href="#nuprl.function-type"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Example</span>
+        </div>
+        <p>An independent function type</p>
+        <span id="MCRd20e82" class="displaymath" xmlns="">
+          <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+            <m:mrow>
+              <m:mi>S</m:mi>
+              <m:mo>‚Ü¶</m:mo>
+              <m:mi>T</m:mi>
+            </m:mrow>
+          </m:math>
+        </span>
+      </div>
+      <div class="omdoc-symbol" id="lambda" role="Symbol" about="#nuprl.lambda" xml:id="nuprl.lambda">
+        <a class="omdoc" rel="oso:homeTheory" href="#nuprl"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>lambda
+        </div>The lambda binding operator
+      </div>
+      <div class="omdoc-example" id="ex-lambda" role="Example" about="#nuprl.lambda" xml:id="ex-lambda">
+        <a class="omdoc" rel="oso:exemplifies" href="#nuprl.lambda"/>
+        <a class="omdoc" rel="oso:homeTheory" href="#nuprl.lambda"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Example</span>
+        </div>
+        <p>The identity function represented as a lambda abstraction.</p>
+        <span id="MCRd20e112" class="displaymath" xmlns="">
+          <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+            <m:mrow/>
+          </m:math>
+        </span>
+      </div>
+      <div class="omdoc-symbol" id="dependent-product" role="Symbol" about="#nuprl.dependent-product" xml:id="nuprl.dependent-product">
+        <a class="omdoc" rel="oso:homeTheory" href="#nuprl"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>dependent-product
+        </div>The dependent product constructor. The first argument is a type 
+        <span id="MCRd20e121" class="displaymath" xmlns="">
+          <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+            <m:mi>S</m:mi>
+          </m:math>
+        </span>, and the second is a function whose value is a type. 
+      </div>
+      <div class="omdoc-example" id="ex-dependent-product" role="Example" about="#nuprl.dependent-product" xml:id="ex-dependent-product">
+        <a class="omdoc" rel="oso:exemplifies" href="#nuprl.dependent-product"/>
+        <a class="omdoc" rel="oso:homeTheory" href="#nuprl.dependent-product"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Example</span>
+        </div>
+        <p>A dependent product.</p>
+        <span id="MCRd20e157" class="displaymath" xmlns="">
+          <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+            <m:mrow>
+              <m:mo>dependent-product</m:mo>
+              <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>‚Ñ§
+              <m:mo separator="true">,</m:mo>
+              <m:mrow/>
+              <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+            </m:mrow>
+          </m:math>
+        </span>
+      </div>
+      <div class="omdoc-symbol" id="product" role="Symbol" about="#nuprl.product" xml:id="nuprl.product">
+        <a class="omdoc" rel="oso:homeTheory" href="#nuprl"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>product
+        </div>The independent product constructor. The two arguments are types S and T. 
+      </div>
+      <div class="omdoc-example" id="ex-product" role="Example" about="#nuprl.product" xml:id="ex-product">
+        <a class="omdoc" rel="oso:exemplifies" href="#nuprl.product"/>
+        <a class="omdoc" rel="oso:homeTheory" href="#nuprl.product"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Example</span>
+        </div>
+        <p>A Cartesian product</p>
+        <span id="MCRd20e183" class="displaymath" xmlns="">
+          <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+            <m:mrow>
+              <m:mo>√ó</m:mo>
+            </m:mrow>
+          </m:math>
+        </span>
+      </div>
+      <div class="omdoc-symbol" id="pair" role="Symbol" about="#nuprl.pair" xml:id="nuprl.pair">
+        <a class="omdoc" rel="oso:homeTheory" href="#nuprl"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>pair
+        </div>The binary pair constructor
+      </div>
+      <div class="omdoc-example" id="ex-pair" role="Example" about="#nuprl.pair" xml:id="ex-pair">
+        <a class="omdoc" rel="oso:exemplifies" href="#nuprl.pair"/>
+        <a class="omdoc" rel="oso:homeTheory" href="#nuprl.pair"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Example</span>
+        </div>
+        <p>A pair of natural numbers</p>
+        <span id="MCRd20e200" class="displaymath" xmlns="">
+          <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+            <m:mrow>
+              <m:mo>,</m:mo>
+              <m:mn>1</m:mn>
+              <m:mn>2</m:mn>
+            </m:mrow>
+          </m:math>
+        </span>
+      </div>
+      <div class="omdoc-symbol" id="spread" role="Symbol" about="#nuprl.spread" xml:id="nuprl.spread">
+        <a class="omdoc" rel="oso:homeTheory" href="#nuprl"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>spread
+        </div> The uniform projection constructor (officially "spread"). It takes two arguments; a term 
+        <span id="MCRd20e213" class="displaymath" xmlns="">
+          <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+            <m:mi>t</m:mi>
+          </m:math>
+        </span> and a binary function 
+        <span id="MCRd20e217" class="displaymath" xmlns="">
+          <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+            <m:mrow/>
+          </m:math>
+        </span>. 
+      </div>
+      <div class="omdoc-example" id="ex-spread" role="Example" about="#nuprl.spread" xml:id="ex-spread">
+        <a class="omdoc" rel="oso:exemplifies" href="#nuprl.spread"/>
+        <a class="omdoc" rel="oso:homeTheory" href="#nuprl.spread"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Example</span>
+        </div>
+        <p>A spread</p>
+        <span id="MCRd20e300" class="displaymath" xmlns="">
+          <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+            <m:mrow>
+              <m:mo>spread</m:mo>
+              <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+              <m:mi>t</m:mi>
+              <m:mo separator="true">,</m:mo>
+              <m:mrow/>
+              <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+            </m:mrow>
+          </m:math>
+        </span>
+      </div>
+      <div class="omdoc-symbol" id="disjoint-union" role="Symbol" about="#nuprl.disjoint-union" xml:id="nuprl.disjoint-union">
+        <a class="omdoc" rel="oso:homeTheory" href="#nuprl"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>disjoint-union
+        </div>The disjoint union type constructor.
+      </div>
+      <div class="omdoc-example" id="ex-disjoint-union" role="Example" about="#nuprl.disjoint-union" xml:id="ex-disjoint-union">
+        <a class="omdoc" rel="oso:exemplifies" href="#nuprl.disjoint-union"/>
+        <a class="omdoc" rel="oso:homeTheory" href="#nuprl.disjoint-union"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Example</span>
+        </div>
+        <p>The disjoint union of integers contains two copies of the integers.</p>
+        <span id="MCRd20e328" class="displaymath" xmlns="">
+          <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+            <m:mrow>
+              <m:mo>‚äé</m:mo>
+            </m:mrow>
+          </m:math>
+        </span>
+      </div>
+      <div class="omdoc-symbol" id="inl" role="Symbol" about="#nuprl.inl" xml:id="nuprl.inl">
+        <a class="omdoc" rel="oso:homeTheory" href="#nuprl"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>inl
+        </div>The left injection into a disjoint union type.
+      </div>
+      <div class="omdoc-example" id="ex-inl" role="Example" about="#nuprl) #byctx(list-type@nuprl.inl" xml:id="ex-inl">
+        <a class="omdoc" rel="oso:exemplifies" href="#nuprl) #byctx(list-type@nuprl.inl"/>
+        <a class="omdoc" rel="oso:homeTheory" href="#nuprl) #byctx(list-type@nuprl.inl"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Example</span>
+        </div>
+        <p>The left injection of a dijoint union</p>
+        <span id="MCRd20e343" class="displaymath" xmlns="">
+          <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+            <m:mrow>
+              <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+              <m:mrow>
+                <m:mo>inl</m:mo>
+                <m:mrow>
+                  <m:mo mcd:egroup="fence" fence="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mo>‚äé</m:mo>
+                  <m:mo mcd:egroup="fence" fence="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+              </m:mrow>
+              <m:mo separator="true">,</m:mo>‚Ñ§
+              <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+            </m:mrow>
+          </m:math>
+        </span>
+      </div>
+      <div class="omdoc-symbol" id="inr" role="Symbol" about="#nuprl.inr" xml:id="nuprl.inr">
+        <a class="omdoc" rel="oso:homeTheory" href="#nuprl"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>inr
+        </div>The right injection into a disjoint union type.
+      </div>
+      <div class="omdoc-example" id="ex-inr" role="Example" about="#nuprl.inr" xml:id="ex-inr">
+        <a class="omdoc" rel="oso:exemplifies" href="#nuprl.inr"/>
+        <a class="omdoc" rel="oso:homeTheory" href="#nuprl.inr"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Example</span>
+        </div>
+        <p>The right injection of a dijoint union</p>
+        <span id="MCRd20e374" class="displaymath" xmlns="">
+          <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+            <m:mrow>
+              <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+              <m:mrow>
+                <m:mo>inl</m:mo>
+                <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                <m:mrow>
+                  <m:mo>‚äé</m:mo>
+                </m:mrow>
+                <m:mo separator="true">,</m:mo>
+                <m:mrow>
+                  <m:mo> list</m:mo>‚Ñ§
+                </m:mrow>
+                <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+              </m:mrow>
+              <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+            </m:mrow>
+          </m:math>
+        </span>
+      </div>
+      <div class="omdoc-symbol" id="case" role="Symbol" about="#nuprl.case" xml:id="nuprl.case">
+        <a class="omdoc" rel="oso:homeTheory" href="#nuprl"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>case
+        </div>
+      </div>
+      <div class="omdoc-symbol" id="universe-of-level" role="Symbol" about="#nuprl.universe-of-level" xml:id="nuprl.universe-of-level">
+        <a class="omdoc" rel="oso:homeTheory" href="#nuprl"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>universe-of-level
+        </div>The Universe of a given level.
+      </div>
+      <div class="omdoc-example" id="ex-universe-of-level" role="Example" about="#nuprl.universe-of-level" xml:id="ex-universe-of-level">
+        <a class="omdoc" rel="oso:exemplifies" href="#nuprl.universe-of-level"/>
+        <a class="omdoc" rel="oso:homeTheory" href="#nuprl.universe-of-level"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Example</span>
+        </div>
+        <p>The universe of level 3 is denoted by </p>
+        <span id="MCRd20e416" class="displaymath" xmlns="">
+          <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+            <m:mrow>
+              <m:mo>U</m:mo>
+              <m:mn>3</m:mn>
+            </m:mrow>
+          </m:math>
+        </span>
+      </div>
+      <div class="omdoc-symbol" id="eq" role="Symbol" about="#nuprl.eq" xml:id="nuprl.eq">
+        <a class="omdoc" rel="oso:homeTheory" href="#nuprl"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>eq
+        </div>Typed Equality.
+      </div>
+      <div class="omdoc-example" id="ex-eq" role="Example" about="#nuprl.eq" xml:id="ex-eq">
+        <a class="omdoc" rel="oso:exemplifies" href="#nuprl.eq"/>
+        <a class="omdoc" rel="oso:homeTheory" href="#nuprl.eq"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Example</span>
+        </div>
+        <p>An equality among integers</p>
+        <span id="MCRd20e451" class="displaymath" xmlns="">
+          <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+            <m:mrow>
+              <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+              <m:mn>3</m:mn>
+              <m:mo separator="true">,</m:mo>
+              <m:mn>3</m:mn>
+              <m:mo separator="true">,</m:mo>‚Ñ§
+              <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+            </m:mrow>
+          </m:math>
+        </span>
+      </div>
+      <div class="omdoc-symbol" id="axiom" role="Symbol" about="#nuprl.axiom" xml:id="nuprl.axiom">
+        <a class="omdoc" rel="oso:homeTheory" href="#nuprl"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>axiom
+        </div>The axiom element
+      </div>
+      <div class="omdoc-symbol" id="void" role="Symbol" about="#nuprl.void" xml:id="nuprl.void">
+        <a class="omdoc" rel="oso:homeTheory" href="#nuprl"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>void
+        </div>The empty type.
+      </div>
+      <div class="omdoc-symbol" id="atom" role="Symbol" about="#nuprl.atom" xml:id="nuprl.atom">
+        <a class="omdoc" rel="oso:homeTheory" href="#nuprl"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>atom
+        </div>The atom (string) type
+      </div>
+      <div class="omdoc-symbol" id="atom-conditional" role="Symbol" about="#nuprl.atom-conditional" xml:id="nuprl.atom-conditional">
+        <a class="omdoc" rel="oso:homeTheory" href="#nuprl"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>atom-conditional
+        </div>The conditional on atoms. It takes four arguments: The first two are supposed to be atoms, the last two are arbitrary terms. If the first two are equal, then the value of the complex expression is that the third, else the fourth argument.
+      </div>
+      <div class="omdoc-symbol" id="Z" role="Symbol" about="#nuprl.Z" xml:id="nuprl.Z">
+        <a class="omdoc" rel="oso:homeTheory" href="#nuprl"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>Z
+        </div>The type of integers.
+      </div>
+      <div class="omdoc-symbol" id="rec-case" role="Symbol" about="#nuprl.rec-case" xml:id="nuprl.rec-case">
+        <a class="omdoc" rel="oso:homeTheory" href="#nuprl"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>rec-case
+        </div>
+      </div>
+      <div class="omdoc-symbol" id="unary-minus" role="Symbol" about="#nuprl.unary-minus" xml:id="nuprl.unary-minus">
+        <a class="omdoc" rel="oso:homeTheory" href="#nuprl"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>unary-minus
+        </div>Negation.
+      </div>
+      <div class="omdoc-example" id="ex-unary-minus" role="Example" about="#nuprl.unary-minus" xml:id="ex-unary-minus">
+        <a class="omdoc" rel="oso:exemplifies" href="#nuprl.unary-minus"/>
+        <a class="omdoc" rel="oso:homeTheory" href="#nuprl.unary-minus"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Example</span>
+        </div>
+        <p>A negative integer</p>
+        <span id="MCRd20e571" class="displaymath" xmlns="">
+          <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+            <m:mrow>
+              <m:mo>-</m:mo>
+              <m:mn>1</m:mn>
+            </m:mrow>
+          </m:math>
+        </span>
+      </div>
+      <div class="omdoc-symbol" id="plus" role="Symbol" about="#nuprl.plus" xml:id="nuprl.plus">
+        <a class="omdoc" rel="oso:homeTheory" href="#nuprl"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>plus
+        </div>The addition operator.
+      </div>
+      <div class="omdoc-example" id="ex-plus" role="Example" about="#nuprl.plus" xml:id="ex-plus">
+        <a class="omdoc" rel="oso:exemplifies" href="#nuprl.plus"/>
+        <a class="omdoc" rel="oso:homeTheory" href="#nuprl.plus"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Example</span>
+        </div>
+        <span id="MCRd20e587" class="displaymath" xmlns="">
+          <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+            <m:mrow>
+              <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+              <m:mrow>
+                <m:mo>plus</m:mo>
+                <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                <m:mrow>
+                  <m:mo>-</m:mo>
+                  <m:mn>1</m:mn>
+                </m:mrow>
+                <m:mo separator="true">,</m:mo>
+                <m:mn>2</m:mn>
+                <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+              </m:mrow>
+              <m:mo separator="true">,</m:mo>
+              <m:mn>1</m:mn>
+              <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+            </m:mrow>
+          </m:math>
+        </span>
+      </div>
+      <div class="omdoc-symbol" id="minus" role="Symbol" about="#nuprl.minus" xml:id="nuprl.minus">
+        <a class="omdoc" rel="oso:homeTheory" href="#nuprl"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>minus
+        </div>The subtraction operator.
+      </div>
+      <div class="omdoc-example" id="ex-minus" role="Example" about="#nuprl.minus" xml:id="ex-minus">
+        <a class="omdoc" rel="oso:exemplifies" href="#nuprl.minus"/>
+        <a class="omdoc" rel="oso:homeTheory" href="#nuprl.minus"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Example</span>
+        </div>
+        <span id="MCRd20e622" class="displaymath" xmlns="">
+          <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+            <m:mrow>
+              <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+              <m:mrow>
+                <m:mn>2</m:mn>
+                <m:mo>-</m:mo>
+                <m:mrow>
+                  <m:mo>-</m:mo>
+                  <m:mn>1</m:mn>
+                </m:mrow>
+              </m:mrow>
+              <m:mo separator="true">,</m:mo>
+              <m:mn>3</m:mn>
+              <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+            </m:mrow>
+          </m:math>
+        </span>
+      </div>
+      <div class="omdoc-symbol" id="times" role="Symbol" about="#nuprl.times" xml:id="nuprl.times">
+        <a class="omdoc" rel="oso:homeTheory" href="#nuprl"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>times
+        </div>The multiplication Operator
+      </div>
+      <div class="omdoc-example" id="ex-times" role="Example" about="#nuprl.times" xml:id="ex-times">
+        <a class="omdoc" rel="oso:exemplifies" href="#nuprl.times"/>
+        <a class="omdoc" rel="oso:homeTheory" href="#nuprl.times"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Example</span>
+        </div>
+        <span id="MCRd20e657" class="displaymath" xmlns="">
+          <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+            <m:mrow>
+              <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+              <m:mrow>
+                <m:mo>‚Å¢</m:mo>
+                <m:mrow>
+                  <m:mo>-</m:mo>
+                  <m:mn>1</m:mn>
+                </m:mrow>
+                <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">,</m:mo>
+                <m:mn>2</m:mn>
+              </m:mrow>
+              <m:mo separator="true">,</m:mo>
+              <m:mrow>
+                <m:mo>-</m:mo>
+                <m:mn>2</m:mn>
+              </m:mrow>
+              <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+            </m:mrow>
+          </m:math>
+        </span>
+      </div>
+      <div class="omdoc-symbol" id="divide" role="Symbol" about="#nuprl.divide" xml:id="nuprl.divide">
+        <a class="omdoc" rel="oso:homeTheory" href="#nuprl"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>divide
+        </div>The division operator.
+      </div>
+      <div class="omdoc-example" id="ex-divide" role="Example" about="#nuprl.divide" xml:id="ex-divide">
+        <a class="omdoc" rel="oso:exemplifies" href="#nuprl.divide"/>
+        <a class="omdoc" rel="oso:homeTheory" href="#nuprl.divide"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Example</span>
+        </div>
+        <span id="MCRd20e694" class="displaymath" xmlns="">
+          <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+            <m:mrow>
+              <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+              <!--SPECIFYME: elements in non-lisp not supported-->
+              <m:mo separator="true">,</m:mo>
+              <m:mn>2</m:mn>
+              <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+            </m:mrow>
+          </m:math>
+        </span>
+      </div>
+      <div class="omdoc-symbol" id="rem" role="Symbol" about="#nuprl.rem" xml:id="nuprl.rem">
+        <a class="omdoc" rel="oso:homeTheory" href="#nuprl"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>rem
+        </div>The operator for quotient remainder.
+      </div>
+      <div class="omdoc-example" id="ex-rem" role="Example" about="#nuprl.rem" xml:id="ex-rem">
+        <a class="omdoc" rel="oso:exemplifies" href="#nuprl.rem"/>
+        <a class="omdoc" rel="oso:homeTheory" href="#nuprl.rem"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Example</span>
+        </div>
+        <span id="MCRd20e714" class="displaymath" xmlns="">
+          <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+            <m:mrow>
+              <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+              <m:mrow>
+                <m:mn>4</m:mn>
+                <m:mo> rem </m:mo>
+                <m:mn>2</m:mn>
+              </m:mrow>
+              <m:mo separator="true">,</m:mo>
+              <m:mn>0</m:mn>
+              <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+            </m:mrow>
+          </m:math>
+        </span>
+      </div>
+      <div class="omdoc-symbol" id="integer-eq-conditional" role="Symbol" about="#nuprl.integer-eq-conditional" xml:id="nuprl.integer-eq-conditional">
+        <a class="omdoc" rel="oso:homeTheory" href="#nuprl"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>integer-eq-conditional
+        </div>The conditional on integers. It takes four arguments: The first two are integers, the last two are arbitrary terms. If the first two are equal, then the value of the complex expression is that the third, else the fourth argument.
+      </div>
+      <div class="omdoc-example" id="ex-integer-eq-conditional" role="Example" about="#nuprl.integer-eq-conditional" xml:id="ex-integer-eq-conditional">
+        <a class="omdoc" rel="oso:exemplifies" href="#nuprl.integer-eq-conditional"/>
+        <a class="omdoc" rel="oso:homeTheory" href="#nuprl.integer-eq-conditional"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Example</span>
+        </div>
+        <span id="MCRd20e739" class="displaymath" xmlns="">
+          <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+            <m:mrow>
+              <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+              <m:mrow>
+                <m:mo>integer-eq-conditional</m:mo>
+                <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                <m:mn>1</m:mn>
+                <m:mo separator="true">,</m:mo>
+                <m:mn>2</m:mn>
+                <m:mo separator="true">,</m:mo>
+                <m:mn>3</m:mn>
+                <m:mo separator="true">,</m:mo>
+                <m:mn>4</m:mn>
+                <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+              </m:mrow>
+              <m:mo separator="true">,</m:mo>
+              <m:mn>4</m:mn>
+              <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+            </m:mrow>
+          </m:math>
+        </span>
+      </div>
+      <div class="omdoc-symbol" id="integer-less-conditional" role="Symbol" about="#nuprl.integer-less-conditional" xml:id="nuprl.integer-less-conditional">
+        <a class="omdoc" rel="oso:homeTheory" href="#nuprl"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>integer-less-conditional
+        </div>The inequality conditional on integers. It takes four arguments: The first two are integers, the last two are arbitrary terms. If the first is less than the second one, then the value of the complex expression is that the third, else the fourth argument. 
+      </div>
+      <div class="omdoc-example" id="ex-integer-less-conditional" role="Example" about="#nuprl.integer-less-conditional" xml:id="ex-integer-less-conditional">
+        <a class="omdoc" rel="oso:exemplifies" href="#nuprl.integer-less-conditional"/>
+        <a class="omdoc" rel="oso:homeTheory" href="#nuprl.integer-less-conditional"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Example</span>
+        </div>
+        <span id="MCRd20e808" class="displaymath" xmlns="">
+          <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+            <m:mrow>
+              <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+              <m:mrow>
+                <m:mo>integer-eq-conditional</m:mo>
+                <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                <m:mn>1</m:mn>
+                <m:mo separator="true">,</m:mo>
+                <m:mn>2</m:mn>
+                <m:mo separator="true">,</m:mo>
+                <m:mn>3</m:mn>
+                <m:mo separator="true">,</m:mo>
+                <m:mn>4</m:mn>
+                <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+              </m:mrow>
+              <m:mo separator="true">,</m:mo>
+              <m:mn>4</m:mn>
+              <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+            </m:mrow>
+          </m:math>
+        </span>
+      </div>
+      <div class="omdoc-symbol" id="less" role="Symbol" about="#nuprl.less" xml:id="nuprl.less">
+        <a class="omdoc" rel="oso:homeTheory" href="#nuprl"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>less
+        </div>The inequality type constructor for two integers, it is inhabited, iff the first is less than the other. 
+      </div>
+      <div class="omdoc-example" id="ex-less" role="Example" about="#nuprl.less" xml:id="ex-less">
+        <a class="omdoc" rel="oso:exemplifies" href="#nuprl.less"/>
+        <a class="omdoc" rel="oso:homeTheory" href="#nuprl.less"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Example</span>
+        </div>
+        <p>The following type is not inhabited</p>
+        <span id="MCRd20e852" class="displaymath" xmlns="">
+          <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+            <m:mrow>
+              <m:mn>1</m:mn>
+              <m:mo>&amp;lt;</m:mo>
+              <m:mn>0</m:mn>
+            </m:mrow>
+          </m:math>
+        </span>
+      </div>
+      <div class="omdoc-symbol" id="list-type" role="Symbol" about="#nuprl.list-type" xml:id="nuprl.list-type">
+        <a class="omdoc" rel="oso:homeTheory" href="#nuprl"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>list-type
+        </div>The list type constructor
+      </div>
+      <div class="omdoc-symbol" id="nil" role="Symbol" about="#nuprl.nil" xml:id="nuprl.nil">
+        <a class="omdoc" rel="oso:homeTheory" href="#nuprl"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>nil
+        </div>The empty list.
+      </div>
+      <div class="omdoc-symbol" id="cons" role="Symbol" about="#nuprl.cons" xml:id="nuprl.cons">
+        <a class="omdoc" rel="oso:homeTheory" href="#nuprl"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>cons
+        </div>The list construction operator. Its first argument is an element, and the second one a list. 
+      </div>
+      <div class="omdoc-example" id="ex-cons" role="Example" about="#nuprl) #byctx(nil@nuprl.cons" xml:id="ex-cons">
+        <a class="omdoc" rel="oso:exemplifies" href="#nuprl) #byctx(nil@nuprl.cons"/>
+        <a class="omdoc" rel="oso:homeTheory" href="#nuprl) #byctx(nil@nuprl.cons"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Example</span>
+        </div>
+        <p>A construction of a sigleton list</p>
+        <span id="MCRd20e888" class="displaymath" xmlns="">
+          <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+            <m:mrow>
+              <m:mi>E</m:mi>
+              <m:mo>::</m:mo>
+              <m:mo>[]</m:mo>
+            </m:mrow>
+          </m:math>
+        </span>
+      </div>
+      <div class="omdoc-symbol" id="rectype" role="Symbol" about="#nuprl.rectype" xml:id="nuprl.rectype">
+        <a class="omdoc" rel="oso:homeTheory" href="#nuprl"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>rectype
+        </div>The inductive type constructor, its first argument is a variable, its second one a type 
+      </div>
+      <div class="omdoc-symbol" id="structural-recursion" role="Symbol" about="#nuprl.structural-recursion" xml:id="nuprl.structural-recursion">
+        <a class="omdoc" rel="oso:homeTheory" href="#nuprl"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>structural-recursion
+        </div>
+      </div>
+      <div class="omdoc-symbol" id="subset-type" role="Symbol" about="#nuprl.subset-type" xml:id="nuprl.subset-type">
+        <a class="omdoc" rel="oso:homeTheory" href="#nuprl"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>subset-type
+        </div>The dependent subset type constructor. It takes two arguments: The first one is a type 
+        <span id="MCRd20e938" class="displaymath" xmlns="">
+          <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+            <m:mi>S</m:mi>
+          </m:math>
+        </span>, the second one is a unary predicate 
+        <span id="MCRd20e942" class="displaymath" xmlns="">
+          <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+            <m:mi>P</m:mi>
+          </m:math>
+        </span> on type 
+        <span id="MCRd20e946" class="displaymath" xmlns="">
+          <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+            <m:mi>S</m:mi>
+          </m:math>
+        </span>. The value is the type of all objects of type 
+        <span id="MCRd20e950" class="displaymath" xmlns="">
+          <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+            <m:mi>S</m:mi>
+          </m:math>
+        </span> that satisfy 
+        <span id="MCRd20e954" class="displaymath" xmlns="">
+          <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+            <m:mi>P</m:mi>
+          </m:math>
+        </span>.
+      </div>
+      <div class="omdoc-example" id="ex-subset-type" role="Example" about="#nuprl.subset-type" xml:id="ex-subset-type">
+        <a class="omdoc" rel="oso:exemplifies" href="#nuprl.subset-type"/>
+        <a class="omdoc" rel="oso:homeTheory" href="#nuprl.subset-type"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Example</span>
+        </div>
+        <p>The type of singleton lists of integers containing 1.</p>
+        <span id="MCRd20e1005" class="displaymath" xmlns="">
+          <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+            <m:mrow>
+              <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+              <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+            </m:mrow>
+          </m:math>
+        </span>
+      </div>
+      <div class="omdoc-symbol" id="independent-subset-type" role="Symbol" about="#nuprl.independent-subset-type" xml:id="nuprl.independent-subset-type">
+        <a class="omdoc" rel="oso:homeTheory" href="#nuprl"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>independent-subset-type
+        </div>The independent subset type constructor.
+      </div>
+      <div class="omdoc-symbol" id="quotient-type" role="Symbol" about="#nuprl.quotient-type" xml:id="nuprl.quotient-type">
+        <a class="omdoc" rel="oso:homeTheory" href="#nuprl"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>quotient-type
+        </div>The quotient type constructor. It takes two arguments, the first is a type 
+        <span id="MCRd20e1028" class="displaymath" xmlns="">
+          <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+            <m:mi>S</m:mi>
+          </m:math>
+        </span>, the second is a binary relation 
+        <span id="MCRd20e1032" class="displaymath" xmlns="">
+          <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+            <m:mi>R</m:mi>
+          </m:math>
+        </span> on 
+        <span id="MCRd20e1036" class="displaymath" xmlns="">
+          <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+            <m:mi>S</m:mi>
+          </m:math>
+        </span>. The value is the type of equivalence classes of 
+        <span id="MCRd20e1040" class="displaymath" xmlns="">
+          <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+            <m:mi>S</m:mi>
+          </m:math>
+        </span>. 
+      </div>
+      <div class="omdoc-example" id="ex-quotient-type" role="Example" about="#nuprl.quotient-type" xml:id="ex-quotient-type">
+        <a class="omdoc" rel="oso:exemplifies" href="#nuprl.quotient-type"/>
+        <a class="omdoc" rel="oso:homeTheory" href="#nuprl.quotient-type"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Example</span>
+        </div>
+        <p>The following is a quotient type of 
+          <span id="MCRd20e1077" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">‚Ñ§</m:math>
+          </span> by ****
+        </p>
+        <span id="MCRd20e1080" class="displaymath" xmlns="">
+          <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+            <m:mrow>
+              <m:mo>quotient-type</m:mo>
+              <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>‚Ñ§
+              <m:mo separator="true">,</m:mo>
+              <m:mrow/>
+              <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+            </m:mrow>
+          </m:math>
+        </span>
+      </div>
+      <div class="omdoc-symbol" id="type-intersection" role="Symbol" about="#nuprl.type-intersection" xml:id="nuprl.type-intersection">
+        <a class="omdoc" rel="oso:homeTheory" href="#nuprl"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>type-intersection
+        </div>The type intersection constructor. The first argument is a type 
+        <span id="MCRd20e1097" class="displaymath" xmlns="">
+          <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+            <m:mi>S</m:mi>
+          </m:math>
+        </span>, and the second is a function whose value is a type. 
+      </div>
+      <div class="omdoc-example" id="ex-type-intersection" role="Example" about="#nuprl.type-intersection" xml:id="ex-type-intersection">
+        <a class="omdoc" rel="oso:exemplifies" href="#nuprl.type-intersection"/>
+        <a class="omdoc" rel="oso:homeTheory" href="#nuprl.type-intersection"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Example</span>
+        </div>
+        <p>The intersection of all values of the type constructor 
+          <span id="MCRd20e1130" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+              <m:mrow/>
+            </m:math>
+          </span> on the integers is 
+        </p>
+        <span id="MCRd20e1133" class="displaymath" xmlns="">
+          <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+            <m:mrow>
+              <!--IMPROVEME: the following is just a fallback-->
+              <m:mo>type-intersection</m:mo>
+              <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>‚Ñ§
+              <m:mo separator="true">,</m:mo>
+              <m:mrow/>
+              <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+            </m:mrow>
+          </m:math>
+        </span>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xml:id="private-simplify.omdoc"
+  xmlns="http://omdoc.org/ns"
+  xmlns:cc="http://creativecommons.org/ns"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  version="1.6">
+<metadata>
+  <dc:date action="created"> 2004-10-05T11:40:41Z </dc:date>
+  <dc:title xml:lang="en"> private-simplify </dc:title>
+  <dc:creator role="aut"> Michael Kohlhase </dc:creator>
+  <dc:source>  </dc:source>
+  <dc:date action="updated"> 2004-10-05T11:40:41Z </dc:date>
+  <dc:type> Text </dc:type>
+  <dc:format> application/omdoc+xml </dc:format>
+  <dc:rights>Copyright (c) 2004 Michael Kohlhase</dc:rights>
+  <cc:license>
+    <cc:permissions reproduction="permitted" distribution="permitted" derivative_works="permitted"/>
+    <cc:prohibitions commercial_use="permitted"/>
+    <cc:requirements notice="required" copyleft="required" attribution="required"/>
+  </cc:license>
+</metadata>
+
+<assertion xml:id="ALGX0">
+    <CMP>If $a,b,c,d$ are numbers, then we have $a+b(c+d)=a+bc+bd$</CMP>
+  </assertion>
+  <private xml:id="alg-expr-1" reformulates="ALGX0">
+   <data format="mathematica-5.0" pto="Analytica">
+     <![CDATA[SIMPLIFYRULES[a_ + b_*(c_ + d_) :> a + b*c + b*d /; NumberQ[b]]]]>
+   </data>
+  </private>
+
+</omdoc>

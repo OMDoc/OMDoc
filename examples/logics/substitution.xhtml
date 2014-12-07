@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html id="substitution-omdoc" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <link rel="stylesheet" type="text/css" href="omdoc-default.css"/>
+    <title>Substitution</title>
+  </head>
+  <body>
+    <div class="dc-titleblock">
+      <div class="dc-title">Substitution</div>
+      <div class="dc-authors">Michael Kohlhase</div>
+      <div class="dc-date">2002-04-16</div>
+      <div class="dc-description">The Theory of Substitutions.</div>
+    </div>
+    <div class="theory" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="http://purl.org/dc/elements/1.1/">
+      <h1 id="substitution">1. Substitution</h1>
+      <div class="omdoc-symbol" id="substitute" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#substitution"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>substitute
+        </div>The elementary substitution constructor, it takes two arguments: the replacement term, the variable.
+      </div>
+      <div class="omdoc-symbol" id="apply" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#substitution"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>apply
+        </div> The applicatio operator for substitutions, it takes two arguments: a substitution and a term. 
+      </div>
+      <div class="omdoc-example" id="substitute-ex" role="Example" about="#substitute #apply" xml:id="substitute-ex">
+        <a class="omdoc" rel="oso:exemplifies" href="#substitute #apply"/>
+        <a class="omdoc" rel="oso:homeTheory" href="#substitute #apply"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Example</span>
+        </div>
+        <p> The expression 
+          <span id="MCRd20e36" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+              <m:mrow>
+                <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+              </m:mrow>
+            </m:math>
+          </span> is the substitution operator that substitutes the term 
+          <span id="MCRd20e43" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+              <m:mi>B</m:mi>
+            </m:math>
+          </span> for the variable 
+          <span id="MCRd20e47" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+              <m:mi>X</m:mi>
+            </m:math>
+          </span>. It can be applied to a term by the substitution application operator. 
+          <span id="MCRd20e51" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+              <m:mrow>
+                <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+              </m:mrow>
+            </m:math>
+          </span> this denotes the term that is obtained by replacing all free occurrences of the variable 
+          <span id="MCRd20e58" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+              <m:mi>X</m:mi>
+            </m:math>
+          </span> with 
+          <span id="MCRd20e63" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+              <m:mi>B</m:mi>
+            </m:math>
+          </span> in 
+          <span id="MCRd20e67" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+              <m:mi>A</m:mi>
+            </m:math>
+          </span>. 
+        </p>
+      </div>
+      <div class="omdoc-symbol" id="substlist" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#substitution"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>substlist
+        </div>The constructor for complex substitutions: it takes n arguments that are elementary substitutions.
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xml:id="NNat"
+  xmlns="http://omdoc.org/ns"
+  xmlns:cc="http://creativecommons.org/ns"
+  version="1.6"
+  xmlns:dc="http://purl.org/dc/elements/1.1/">
+<metadata>
+  <dc:date action="created"> 2004-10-05T11:14:47Z </dc:date>
+  <dc:title>Natural Numbers</dc:title>   
+  <dc:creator role="aut"> Michael Kohlhase </dc:creator>
+  <dc:source>  </dc:source>
+  <dc:date action="updated"> 2004-10-05T11:14:47Z </dc:date>
+  <dc:type> Text </dc:type>
+  <dc:format> application/omdoc+xml </dc:format>
+  <dc:rights>Copyright (c) 2004 Michael Kohlhase</dc:rights>
+  <cc:license>
+    <cc:permissions reproduction="permitted" distribution="permitted" derivative_works="permitted"/>
+    <cc:prohibitions commercial_use="permitted"/>
+    <cc:requirements notice="required" copyleft="required" attribution="required"/>
+  </cc:license>
+</metadata>
+
+  <!-- ... -->
+  <theory xml:id="NNat.thy">
+    <metadata>
+      <dc:title>Natural Numbers</dc:title>
+      <dc:creator role="aut">$R$</dc:creator>
+      <dc:contributor role="ant">$A$</dc:contributor>
+      <dc:source>$B$</dc:source>
+    </metadata>
+    <!-- ... -->
+  </theory>
+  <!-- ... -->
+</omdoc>
+

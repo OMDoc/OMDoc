@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html id="stholc.omdoc" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <link rel="stylesheet" type="text/css" href="omdoc-default.css"/>
+    <title>Simply Typed Higher-Order Logic with Choice.</title>
+  </head>
+  <body>
+    <div class="dc-titleblock">
+      <div class="dc-title">Simply Typed Higher-Order Logic with Choice.</div>
+      <div class="dc-authors">Michael Kohlhase</div>
+      <div class="dc-date">2008-07-04</div>
+    </div>
+    <div class="theory" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="http://purl.org/dc/elements/1.1/">
+      <h1 id="stholc">1. Higher-order logic with Choice</h1>
+      <div class="imports">imports from: 
+        <a href="sthold.xhtml#sthold">sthold</a>
+      </div>
+      <div class="omdoc-symbol" id="choose" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#stholc"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>choose
+        </div>This symbol is the binding symbol for choice operator.
+      </div>
+      <div class="omdoc-axiom" id="choice-ax" role="Axiom" about="#choice-ax" xml:id="choice-ax">
+        <a class="omdoc" rel="oso:homeTheory" href="#stholc"/>
+        <span class="omdoc-titleword">Axiom</span> (The axiom of choice for ‚Ñ©.) 
+        <p>For any property 
+          <span id="MCRd20e42" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+              <m:mi>P</m:mi>
+            </m:math>
+          </span>, that can be satisfied by some 
+          <span id="MCRd20e46" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+              <m:mi>x</m:mi>
+            </m:math>
+          </span>, 
+          <span id="MCRd20e50" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+              <m:mrow>‚Ñ©
+                <m:mi>y</m:mi>
+                <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">.</m:mo>
+                <m:mi>S</m:mi>
+              </m:mrow>
+            </m:math>
+          </span> chooses a concrete witness. 
+        </p>
+        <span class="omdoc-FMP">
+          <span id="MCRd20e61" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+              <m:mrow>
+                <m:mo>‚àÄ</m:mo>
+                <m:mi>P</m:mi>
+                <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">.</m:mo>
+                <m:mrow>
+                  <m:mrow>
+                    <m:mo>‚àÉ</m:mo>
+                    <m:mi>X</m:mi>
+                    <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">.</m:mo>
+                    <m:mrow>
+                      <m:mi>P</m:mi>
+                      <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                      <m:mi>x</m:mi>
+                      <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                    </m:mrow>
+                  </m:mrow>
+                  <m:mo>‚áí</m:mo>
+                  <m:mrow>
+                    <m:mi>P</m:mi>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                    <m:mrow>‚Ñ©
+                      <m:mi>y</m:mi>
+                      <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">.</m:mo>
+                      <m:mi>S</m:mi>
+                    </m:mrow>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                  </m:mrow>
+                </m:mrow>
+              </m:mrow>
+            </m:math>
+          </span>
+        </span>
+      </div>
+      <div class="omdoc-symbol" id="choice-op" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#stholc"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>choice-op
+        </div>This symbol is a choice function.
+      </div>
+      <div class="omdoc-axiom" id="choice-op-ax" role="Axiom" about="#choice-op-ax" xml:id="choice-op-ax">
+        <a class="omdoc" rel="oso:homeTheory" href="#stholc"/>
+        <span class="omdoc-titleword">Axiom</span> (The axiom of choice for Œπ.) 
+        <p>For any non-empty set 
+          <span id="MCRd20e123" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+              <m:mi>S</m:mi>
+            </m:math>
+          </span>, 
+          <span id="MCRd20e127" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">Œπ</m:math>
+          </span> returns a member of 
+          <span id="MCRd20e130" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+              <m:mi>S</m:mi>
+            </m:math>
+          </span>. 
+        </p>
+        <span class="omdoc-FMP">
+          <span id="MCRd20e135" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+              <m:mrow>
+                <m:mo>‚àÄ</m:mo>
+                <m:mi>S</m:mi>
+                <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">.</m:mo>
+                <m:mrow>
+                  <m:mrow>
+                    <m:mo>‚àÉ</m:mo>
+                    <m:mi>X</m:mi>
+                    <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">.</m:mo>
+                    <m:mrow>
+                      <m:mi>S</m:mi>
+                      <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                      <m:mi>x</m:mi>
+                      <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                    </m:mrow>
+                  </m:mrow>
+                  <m:mo>‚áí</m:mo>
+                  <m:mrow>
+                    <m:mi>S</m:mi>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                    <m:mrow>‚Ñ©
+                      <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                      <m:mi>S</m:mi>
+                      <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                    </m:mrow>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                  </m:mrow>
+                </m:mrow>
+              </m:mrow>
+            </m:math>
+          </span>
+        </span>
+      </div>
+    </div>
+  </body>
+</html>

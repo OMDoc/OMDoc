@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  A RelaxNG schema for Open Mathematical documents (OMDoc 1.6) Module MOBJ  
+  $Id: omdocmobj.rnc 8533 2009-09-28 05:16:15Z kohlhase $
+  $HeadURL: https://svn.omdoc.org/repos/omdoc/trunk/schema/rnc/omdocmobj.rnc $
+  See the documentation and examples at http://www.omdoc.org
+  Copyright (c) 2009 Michael Kohlhase, released under the GNU Public License (GPL) 
+-->
+<grammar ns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  <!-- the legacy element, it can encapsulate the non-migrated formats -->
+  <define name="legacy.attribs">
+    <interleave>
+      <ref name="id.attribs"/>
+      <optional>
+        <attribute name="formalism">
+          <data type="anyURI"/>
+        </attribute>
+      </optional>
+    </interleave>
+  </define>
+  <define name="legacy.textformat">
+    <choice>
+      <value>TeX</value>
+      <value>LaTeX</value>
+      <value>ASCII</value>
+    </choice>
+  </define>
+  <define name="legacy.text">
+    <interleave>
+      <ref name="legacy.attribs"/>
+      <attribute name="format">
+        <ref name="legacy.textformat"/>
+      </attribute>
+      <text/>
+    </interleave>
+  </define>
+  <define name="legacy.any">
+    <interleave>
+      <ref name="legacy.attribs"/>
+      <attribute name="format">
+        <data type="anyURI"/>
+      </attribute>
+      <ref name="Anything"/>
+    </interleave>
+  </define>
+  <define name="legacy.model">
+    <choice>
+      <ref name="legacy.text"/>
+      <ref name="legacy.any"/>
+    </choice>
+  </define>
+  <define name="legacy">
+    <element name="legacy">
+      <ref name="legacy.model"/>
+    </element>
+  </define>
+  <define name="OMel">
+    <grammar>
+      <include href="openmath3.rng">
+        <start>
+          <ref name="omel"/>
+        </start>
+      </include>
+      <define name="common.attributes" combine="interleave">
+        <interleave>
+          <parentRef name="idrest.attribs"/>
+          <parentRef name="nonlocal.attribs"/>
+        </interleave>
+      </define>
+    </grammar>
+  </define>
+  <define name="OMS">
+    <grammar>
+      <include href="openmath3.rng">
+        <start>
+          <ref name="OMS"/>
+        </start>
+      </include>
+      <define name="common.attributes" combine="interleave">
+        <interleave>
+          <parentRef name="idrest.attribs"/>
+          <parentRef name="nonlocal.attribs"/>
+        </interleave>
+      </define>
+    </grammar>
+  </define>
+  <define name="cmml">
+    <grammar>
+      <include href="mathml3-common.rng"/>
+      <include href="mathml3-strict-content.rng"/>
+    </grammar>
+  </define>
+  <!-- ****** do something about the cdbase of mmt. -->
+  <define name="mmtcd">
+    <interleave>
+      <optional>
+        <attribute name="cdbase">
+          <value/>
+        </attribute>
+      </optional>
+      <attribute name="cd">
+        <value>mmt</value>
+      </attribute>
+    </interleave>
+  </define>
+  <define name="identity">
+    <element name="om:OMS">
+      <interleave>
+        <ref name="mmtcd"/>
+        <attribute name="name">
+          <value>identity</value>
+        </attribute>
+      </interleave>
+    </element>
+  </define>
+  <define name="composition">
+    <element name="om:OMS">
+      <interleave>
+        <ref name="mmtcd"/>
+        <attribute name="name">
+          <value>composition</value>
+        </attribute>
+      </interleave>
+    </element>
+  </define>
+  <define name="morphismapplication">
+    <element name="om:OMS">
+      <interleave>
+        <ref name="mmtcd"/>
+        <attribute name="name">
+          <value>morphismapplication</value>
+        </attribute>
+      </interleave>
+    </element>
+  </define>
+  <define name="morphism">
+    <choice>
+      <ref name="OMS"/>
+      <element name="om:OMA">
+        <ref name="identity"/>
+        <ref name="theo"/>
+      </element>
+      <element name="om:OMA">
+        <ref name="composition"/>
+        <zeroOrMore>
+          <ref name="morphism"/>
+        </zeroOrMore>
+      </element>
+    </choice>
+  </define>
+  <define name="theo">
+    <ref name="OMS"/>
+  </define>
+  <define name="mobj">
+    <choice>
+      <ref name="legacy"/>
+      <ref name="OMel"/>
+      <ref name="cmml"/>
+    </choice>
+  </define>
+</grammar>

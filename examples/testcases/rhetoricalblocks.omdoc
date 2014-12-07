@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+
+<!-- This example is no longer valid according to the new RelaxNG grammar. The changes were performed in the omgroup and omtext elements! -->
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  xmlns="http://omdoc.org/ns"
+xml:id="rhetoricalblocks.omdoc">
+
+<metadata>
+<dc:title>test</dc:title>
+<dc:creator role="aut">hf</dc:creator>
+<dc:date>2001-12-12T00:00:00</dc:date>
+</metadata>
+
+<!-- correct inputs -->
+<!-- 1.all attributes present -->
+
+<omgroup xml:id="gr1.1" type="introduction" layout="itemize">
+	<omtext xml:id="txt1.1" type="motivation">
+	  <CMP xml:id="text1.1">This is a motivation in introduction</CMP>
+	</omtext>
+</omgroup>
+
+<!-- 2.layout attribute missing in omgroup element -->
+
+<omgroup xml:id="gr1.2" type="contribution">
+	<omtext xml:id="txt1.2" type="scenario">
+	  <CMP xml:id="text1.2">This is a scenario in contribution. This is a scenario in contribution. This is a scenario in contribution. This is a scenario in contribution. This is a scenario in contribution. This is a scenario in contribution. This is a scenario in contribution.</CMP>
+	</omtext>
+</omgroup>
+
+
+<!-- 3.type attribute missing in omtext element -->
+
+<omgroup xml:id="gr1.3" layout="slide">
+	<omtext xml:id="txt1.3">
+	  <CMP xml:id="text1.3">This is a motivation.</CMP>
+	</omtext>
+</omgroup>
+
+<!-- 4.several omtext elemtents combined in one omgroup -->
+
+<omgroup xml:id="gr1.4" type="introduction">
+	<omtext xml:id="txt1.4" type="motivation">
+	  <CMP xml:id="text1.4">This is a motivation in introduction</CMP>
+	</omtext>
+	<omtext xml:id="txt1.5" type="scenario">
+	  <CMP xml:id="text1.5">This is a scenario in introduction</CMP>
+	</omtext>
+</omgroup>
+
+</omdoc>

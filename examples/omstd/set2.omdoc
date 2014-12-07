@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  xmlns="http://omdoc.org/ns"
+xml:id="set2-omdoc">
+
+
+  <dc:title>The OpenMath Content Dictionary set2.ocd  in OMDoc form</dc:title>
+  <dc:creator role="trl">Michael Kohlhase</dc:creator>
+  <dc:creator role="ant">The OpenMath Society</dc:creator>
+  <dc:date> 1999-05-10T00:00:00</dc:date>
+  <dc:source>Derived from the OpenMath CD http://www.openmath.org/cd/set2.ocd.</dc:source>
+  <dc:type>Text</dc:type>
+  <dc:format>application/omdoc+xml</dc:format>
+  <dc:rights>Copyright (c) 2000-2002 Michael Kohlhase;
+    This OMDoc content dictionary is released under the OpenMath license:
+    http://monet.nag.co.uk/openmath/cdfiles/license.html
+  </dc:rights>
+  <dc:description>
+    This CD defines more set functions; at present this only includes
+    the size of a set.
+  </dc:description>
+
+
+<theory xml:id="set2" cdbase="http://www.openmath.org/cd">
+
+<include from="sts.omdoc#sts"/>
+<include from="relation1.omdoc#relation1"/>
+<include from="set1.omdoc#set1"/>
+<include from="setname1.omdoc#setname1"/>
+<include from="nums1.omdoc#nums1"/>
+
+<symbol name="size" xml:id="size">
+
+<dc:description> 
+    This symbol is used to denote the number of elements in a set. It is
+    either a non-negative integer, or an infinite cardinal number. The
+    symbol infinity may be used for an unspecified infinite cardinal.
+</dc:description>
+
+<type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMV name="Set"/>
+	<OMV name="CardinalNumber"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+<presentation xml:id="pres-size" for="#size" xref="multiset1.omdoc#pr-size"/>
+<example xml:id="size-ex-1" type="for" for="#size">
+  <CMP>The size of the set{3,6,9} = 3</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="relation1" name="eq"/>
+      <OMA>
+	<OMS cd="set2" name="size"/>
+	<OMA>
+	  <OMS cd="set1" name="set"/>
+	  <OMI> 3 </OMI>
+	  <OMI> 6 </OMI>
+	  <OMI> 9 </OMI>
+	</OMA>
+      </OMA>
+      <OMI> 3 </OMI>
+    </OMA>
+  </OMOBJ>
+</example>
+<example xml:id="size-ex-2" type="for" for="#size">
+  <CMP>The size of the set of integers is infinite</CMP>
+
+<OMOBJ xmlns="http://www.openmath.org/OpenMath">
+  <OMA>
+    <OMS cd="relation1" name="eq"/>
+    <OMA>
+      <OMS cd="set2" name="size"/>
+      <OMS cd="setname1" name="Z"/>
+    </OMA>
+    <OMS cd="nums1" name="infinity"/>
+  </OMA>
+</OMOBJ>
+</example>
+</theory>
+</omdoc>

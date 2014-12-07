@@ -1,0 +1,544 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  xmlns="http://omdoc.org/ns"
+xml:id="combinat1-omdoc">
+
+
+  <dc:title>The OpenMath Content Dictionary combinat1.ocd  in OMDoc form</dc:title>
+  <dc:creator role="trl">Michael Kohlhase</dc:creator>
+  <dc:creator role="ant">Stephane Dalmas</dc:creator>
+  <dc:date> 1999-05-17T00:00:00</dc:date>
+  <dc:source>Derived from the OpenMath CD http://www.openmath.org/cd/combinat.ocd.</dc:source>
+  <dc:type>Text</dc:type>
+  <dc:format>application/omdoc+xml</dc:format>
+  <dc:rights>Copyright (c) 2000-2002 Michael Kohlhase;
+    This OMDoc content dictionary is released under the OpenMath license:
+    http://monet.nag.co.uk/openmath/cdfiles/license.html
+  </dc:rights>
+  <dc:description>This CD defines some basic combinatorics definitions.</dc:description>
+
+
+<theory xml:id="combinat1" cdbase="http://www.openmath.org/cd">
+
+<include from="relation1.omdoc#relation1"/>
+<include from="arith1.omdoc#arith1"/>
+<include from="integer1.omdoc#integer1"/>
+<include from="logic1.omdoc#logic1"/>
+<include from="fns2.omdoc#fns2"/>
+<include from="list2.omdoc#list2"/>
+<include from="linalg1.omdoc#linalg1"/>
+<include from="linalg2.omdoc#linalg2"/>
+<include from="interval1.omdoc#interval1"/>
+<include from="alg1.omdoc#alg1"/>
+<include from="fns1.omdoc#fns1"/>
+
+<symbol name="binomial" xml:id="binomial">
+
+<dc:description>
+    The binomial coefficients. binomial(n, m) is the number of ways of choosing m
+    objects from a collection of n distinct objects without regard to the order.
+</dc:description>
+
+</symbol>
+
+<presentation xml:id="pres-binomial" for="#binomial" role="applied" fixity="infix" arity="2">
+  <use format="TeX" lbrack="\left(" rbrack="\right)">\atop</use>
+  <style format="TeX" xml:lang="ru">
+    <text>{\cal C}^{</text><recurse select="*[3]"/><text>}_{</text><recurse select="*[2]"/><text>}</text>
+  </style>
+  <style format="TeX" xml:lang="fr">
+    <text>{\cal C}^{</text><recurse select="*[2]"/><text>}_{</text><recurse select="*[3]"/><text>}</text>
+  </style>
+  <style format="pmml">
+    <element name="mfenced" ns="http://www.w3.org/1998/Math/MathML">
+      <attribute name="open" select="'('"/>
+      <attribute name="close" select="')'"/>
+      <element name="mfrac" ns="http://www.w3.org/1998/Math/MathML">
+        <attribute name="linethickness">
+          <text>0</text>
+        </attribute>
+        <recurse select="*[2]"/>
+        <recurse select="*[3]"/>
+      </element>
+    </element>
+  </style>
+</presentation>
+
+<assertion xml:id="binomial-prop-1" type="lemma">
+  <CMP>
+    binomial(n,m) = n!/(m!*(n-m)!)
+  </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="relation1" name="eq"/>
+	<OMA>
+	  <OMS cd="combinat1" name="binomial"/>
+	  <OMV name="n"/>
+	  <OMV name="m"/>
+	</OMA>
+	<OMA>
+	  <OMS cd="arith1" name="divide"/>
+	  <OMA>
+	    <OMS cd="integer1" name="factorial"/>
+	    <OMV name="n"/>
+	  </OMA>
+	  <OMA>
+	    <OMS cd="arith1" name="times"/>
+	    <OMA>
+	      <OMS cd="integer1" name="factorial"/>
+	      <OMV name="m"/>
+	    </OMA>
+	    <OMA>
+	      <OMS cd="integer1" name="factorial"/>
+	      <OMA>
+		<OMS cd="arith1" name="minus"/>
+		<OMV name="n"/>
+		<OMV name="m"/>
+	      </OMA>
+	    </OMA>
+	  </OMA>
+	</OMA>
+      </OMA>
+    </OMOBJ>
+  </FMP>
+</assertion>
+<example xml:id="binomial-ex-3" type="for" for="#binomial">
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="relation1" name="eq"/>
+      <OMA>
+	<OMS cd="combinat1" name="binomial"/>
+	<OMI> 4 </OMI>
+	<OMI> 2 </OMI>
+      </OMA>
+      <OMI> 6 </OMI>
+    </OMA>
+  </OMOBJ>
+</example>
+<symbol name="multinomial" xml:id="multinomial">
+
+<dc:description>
+    The multinomial coefficients. multinomial(n, n1, ... nk) is the number of
+    ways of choosing ni objects of type i (i from 1 to k) without regard to
+    order, in such a way that the total number of objects chosen is n.
+    multimomial(n, n1, ... nk) is equal to n!/(n1!*n2! ...*nk!).
+</dc:description>
+
+</symbol>
+<assertion xml:id="multinomial-prop-1" type="lemma">
+  <CMP>
+    multimomial(n, n1, ... nk) is equal to n!/(n1!*n2! ...*nk!) where n=n1+...+nk
+  </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="logic1" name="and"/>
+	<OMA>
+	  <OMS cd="relation1" name="eq"/>
+	  <OMA>
+	    <OMS cd="fns2" name="apply_to_list"/>
+	    <OMS cd="combinat1" name="multinomial"/>
+	    <OMA>
+	      <OMS cd="list2" name="cons"/>
+	      <OMV name="n"/>
+	      <OMV name="nList"/>
+	    </OMA>
+	  </OMA>
+	  <OMA>
+	    <OMS cd="arith1" name="divide"/>
+	    <OMA>
+	      <OMS cd="integer1" name="factorial"/>
+	      <OMV name="n"/>
+	    </OMA>
+	    <OMS cd="fns2" name="apply_to_list"/>
+	    <OMS cd="arith1" name="times"/>
+	    <OMV name="nList2"/>
+	  </OMA>
+	</OMA>
+	<OMA>
+	  <OMS cd="relation1" name="eq"/>
+	  <OMA>
+	    <OMS cd="linalg1" name="vector_selector"/>
+	    <OMA>
+	      <OMS cd="fns2" name="apply_to_list"/>
+	      <OMS cd="linalg2" name="vector"/>
+	      <OMV name="nlist2"/>
+	    </OMA>
+	    <OMV name="i"/>
+	  </OMA>
+	  <OMA>
+	    <OMS cd="integer1" name="factorial"/>
+	    <OMA>
+	      <OMS cd="linalg1" name="vector_selector"/>
+	      <OMA>
+		<OMS cd="fns2" name="apply_to_list"/>
+		<OMS cd="linalg2" name="vector"/>
+		<OMV name="nList"/>
+	      </OMA>
+	      <OMV name="i"/>
+	    </OMA>
+	  </OMA>
+	</OMA>
+	<OMA>
+	  <OMS cd="relation1" name="eq"/>
+	  <OMV name="n"/>
+	  <OMA>
+	    <OMS cd="fns2" name="apply_to_list"/>
+	    <OMS cd="arith1" name="plus"/>
+	    <OMV name="nList"/>
+	  </OMA>
+	</OMA>
+      </OMA>
+    </OMOBJ>
+  </FMP>
+</assertion>
+<example xml:id="multinomial-ex-3" type="for" for="#multinomial">
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="relation1" name="eq"/>
+      <OMA>
+	<OMS cd="combinat1" name="multinomial"/>
+	<OMI> 8 </OMI>
+	<OMI> 2 </OMI>
+	<OMI> 3 </OMI>
+	<OMI> 3 </OMI>
+      </OMA>
+      <OMI> 560 </OMI>
+    </OMA>
+  </OMOBJ>
+</example>
+<symbol name="Stirling1" xml:id="Stirling1">
+
+<dc:description>
+    The Stirling numbers of the first kind. <legacy format="mocktex">(-1)^(n-m)*Stirling1(n,m)</legacy> is the
+    number of permutations of n symbols which have exactly m cycles. 
+    Note that there are a few slightly different definitions of these numbers.
+</dc:description>
+
+</symbol>
+<assertion xml:id="Stirling1-prop-1" type="lemma">
+  <CMP><OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="#Stirling1-prop-1.1"/></OMOBJ></CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA id="Stirling1-prop-1.1">
+	<OMS cd="relation1" name="eq"/>
+	<OMA>
+	  <OMS cd="combinat1" name="Stirling1"/>
+	  <OMV name="n"/>
+	  <OMV name="m"/>
+	</OMA>
+	<OMA>
+	  <OMS cd="arith1" name="sum"/>
+	  <OMA>
+	    <OMS cd="interval1" name="integer_interval"/>
+	    <OMS cd="alg1" name="zero"/>
+	    <OMA>
+	      <OMS cd="arith1" name="minus"/>
+	      <OMV name="n"/>
+	      <OMV name="m"/>
+	    </OMA>
+	  </OMA>
+	  <OMBIND>
+	    <OMS cd="fns1" name="lambda"/>
+	    <OMBVAR><OMV name="k"/></OMBVAR>
+	    <OMA>
+	      <OMS cd="arith1" name="times"/>
+	      <OMA>
+		<OMS cd="arith1" name="power"/>
+		<OMA>
+		  <OMS cd="arith1" name="unary_minus"/>
+		  <OMS cd="alg1" name="one"/>
+		</OMA>
+		<OMV name="k"/>
+	      </OMA>
+	      <OMA>
+		<OMS cd="combinat1" name="binomial"/>
+		<OMA>
+		  <OMS cd="arith1" name="plus"/>
+		  <OMA>
+		    <OMS cd="arith1" name="minus"/>
+		    <OMV name="n"/>
+		    <OMS cd="alg1" name="one"/>
+		  </OMA>
+		  <OMV name="k"/>
+		</OMA>
+		<OMA>
+		  <OMS cd="arith1" name="plus"/>
+		  <OMA>
+		    <OMS cd="arith1" name="minus"/>
+		    <OMV name="n"/>
+		    <OMV name="m"/>
+		  </OMA>
+		  <OMV name="k"/>
+		</OMA>
+	      </OMA>
+	      <OMA>
+		<OMS cd="combinat1" name="binomial"/>
+		<OMA>
+		  <OMS cd="arith1" name="minus"/>
+		  <OMA>
+		    <OMS cd="arith1" name="times"/>
+		    <OMI> 2 </OMI>
+		    <OMV name="n"/>
+		  </OMA>
+		  <OMV name="m"/>
+		</OMA>
+		<OMA>
+		  <OMS cd="arith1" name="minus"/>
+		  <OMA>
+		    <OMS cd="arith1" name="minus"/>
+		    <OMV name="n"/>
+		    <OMV name="m"/>
+		  </OMA>
+		  <OMV name="k"/>
+		</OMA>
+	      </OMA>
+	      <OMA>
+		<OMS cd="combinat1" name="Stirling2"/>
+		<OMV name="n"/>
+		<OMV name="m"/>
+	      </OMA>
+	    </OMA>
+	  </OMBIND>
+	</OMA>
+      </OMA>
+    </OMOBJ>
+  </FMP>
+</assertion>
+<example xml:id="Stirling1-ex-3" type="for" for="#Stirling1">
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="relation1" name="eq"/>
+      <OMA>
+	<OMS cd="combinat1" name="Stirling1"/>
+	<OMI> 10 </OMI>
+	<OMI>  7 </OMI>
+      </OMA>
+      <OMI> -9450 </OMI>
+    </OMA>
+  </OMOBJ>
+</example>
+<symbol name="Stirling2" xml:id="Stirling2">
+
+<dc:description>
+    The Stirling numbers of the second kind. Stirling2(n, m) is the number of
+    partitions of a set with n elements into m non empty subsets. 
+    Note that there are a few slightly different definitions of these numbers.
+</dc:description>
+
+</symbol>
+<assertion xml:id="Stirling2-prop-1" type="lemma">
+  <CMP><OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="#Stirling2-prop-1.1"/></OMOBJ></CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA id="Stirling2-prop-1.1">
+	<OMS cd="relation1" name="eq"/>
+	<OMA>
+	  <OMS cd="combinat1" name="Stirling2"/>
+	  <OMV name="n"/>
+	  <OMV name="m"/>
+	</OMA>
+	<OMA>
+	  <OMS cd="arith1" name="times"/>
+	  <OMA>
+	    <OMS cd="arith1" name="divide"/>
+	    <OMS cd="alg1" name="one"/>
+	    <OMA>
+	      <OMS cd="integer1" name="factorial"/>
+	      <OMV name="m"/>
+	    </OMA>
+	  </OMA>
+	  <OMA>
+	    <OMS cd="arith1" name="sum"/>
+	    <OMA>
+	      <OMS cd="interval1" name="integer_interval"/>
+	      <OMS cd="alg1" name="zero"/>
+	      <OMV name="m"/>
+	    </OMA>
+	    <OMBIND>
+	      <OMS cd="fns1" name="lambda"/>
+	      <OMBVAR>
+		<OMV name="k"/>
+	      </OMBVAR>
+	      <OMA>
+		<OMS cd="arith1" name="times"/>
+		<OMA>
+		  <OMS cd="arith1" name="power"/>
+		  <OMA>
+		    <OMS cd="arith1" name="unary_minus"/>
+		    <OMS cd="alg1" name="one"/>
+		  </OMA>
+		  <OMA>
+		    <OMS cd="arith1" name="minus"/>
+		    <OMV name="m"/>
+		    <OMV name="k"/>
+		  </OMA>
+		</OMA>
+		<OMA>
+		  <OMS cd="combinat1" name="binomial"/>
+		  <OMV name="m"/>
+		  <OMV name="k"/>
+		</OMA>
+		<OMA>
+		  <OMS cd="arith1" name="power"/>
+		  <OMV name="k"/>
+		  <OMV name="n"/>
+		</OMA>
+	      </OMA>
+	    </OMBIND>
+	  </OMA>
+	</OMA>
+      </OMA>
+    </OMOBJ>
+  </FMP>
+</assertion>
+<example xml:id="Stirling2-ex-3" type="for" for="#Stirling2">
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="relation1" name="eq"/>
+      <OMA>
+	<OMS cd="combinat1" name="Stirling2"/>
+	<OMI> 7 </OMI>
+	<OMI> 3 </OMI>
+      </OMA>
+      <OMI> 301 </OMI>
+    </OMA>
+  </OMOBJ>
+</example>
+<symbol name="Fibonacci" xml:id="Fibonacci">
+
+<dc:description>
+    The Fibonacci numbers, defined by the linear recurrence:
+    Fibonacci(0) = 0, Fibonacci(1) = 1, and 
+    Fibonacci(n + 1) = Fibonacci(n) + Fibonacci(n - 1).
+    Note that some authors define Fibonacci(0) = 1.
+</dc:description>
+
+</symbol>
+<presentation xml:id="pres-Fibonacci" for="#Fibonacci">
+  <use  format="default">Fib</use>
+</presentation>
+<assertion xml:id="Fibonacci-prop-1" type="lemma">
+  <CMP>
+    Fibonacci(0) = 0, Fibonacci(1) = 1, and 
+    Fibonacci(n + 1) = Fibonacci(n) + Fibonacci(n - 1)
+  </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="logic1" name="and"/>
+	<OMA>
+	  <OMS cd="relation1" name="eq"/>
+	  <OMA>
+	    <OMS cd="combinat1" name="Fibonacci"/>
+	    <OMS cd="alg1" name="zero"/>
+	  </OMA>
+	  <OMS cd="alg1" name="zero"/>
+	</OMA>
+	<OMA>
+	  <OMS cd="relation1" name="eq"/>
+	  <OMA>
+	    <OMS cd="combinat1" name="Fibonacci"/>
+	    <OMS cd="alg1" name="one"/>
+	  </OMA>
+	  <OMS cd="alg1" name="one"/>
+	</OMA>
+	<OMA>
+	  <OMS cd="relation1" name="eq"/>
+	  <OMA>
+	    <OMS cd="combinat1" name="Fibonacci"/>
+	    <OMA>
+	      <OMS cd="arith1" name="plus"/>
+	      <OMV name="n"/>
+	      <OMS cd="alg1" name="one"/>
+	    </OMA>
+	  </OMA>
+	  <OMA>
+	    <OMS cd="arith1" name="plus"/>
+	    <OMA>
+	      <OMS cd="combinat1" name="Fibonacci"/>
+	      <OMV name="n"/>
+	    </OMA>
+	    <OMA>
+	      <OMS cd="combinat1" name="Fibonacci"/>
+	      <OMA>
+		<OMS cd="arith1" name="minus"/>
+		<OMV name="n"/>
+		<OMS cd="alg1" name="one"/>
+	      </OMA>
+	    </OMA>
+	  </OMA>
+	</OMA>
+      </OMA>
+    </OMOBJ>
+  </FMP>
+</assertion>
+<example xml:id="Fibonacci-ex-3" type="for" for="#Fibonacci">
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="relation1" name="eq"/>
+      <OMA>
+	<OMS cd="combinat1" name="Fibonacci"/>
+	<OMI> 10 </OMI>
+      </OMA>
+      <OMI> 55 </OMI>
+    </OMA>
+  </OMOBJ>
+</example>
+<symbol name="Bell" xml:id="Bell">
+
+<dc:description>
+    The Bell numbers: Bell(n) is the total number of possible partitions of a set
+    of n elements. 
+</dc:description>
+
+</symbol>
+<assertion xml:id="Bell-prop-1" type="lemma">
+  <CMP><OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="#Bell-prop-1.1"/></OMOBJ></CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA id="Bell-prop-1.1">
+	<OMS cd="relation1" name="eq"/>
+	<OMA>
+	  <OMS cd="combinat1" name="Bell"/>
+	  <OMV name="n"/>
+	</OMA>
+	<OMA>
+	  <OMS cd="arith1" name="sum"/>
+	  <OMA>
+	    <OMS cd="interval1" name="integer_interval"/>
+	    <OMS cd="alg1" name="zero"/>
+	    <OMV name="n"/>
+	  </OMA>
+	  <OMBIND>
+	    <OMS cd="fns1" name="lambda"/>
+	    <OMBVAR>
+	      <OMV name="k"/>
+	    </OMBVAR>
+	    <OMA><!--	  <OMS cd="combinat1" name="Sterling2"/> -->
+	    <OMV name="n"/>
+	    <OMV name="k"/>
+	  </OMA>
+	</OMBIND>
+      </OMA>
+    </OMA>
+  </OMOBJ>
+</FMP>
+</assertion>
+<example xml:id="Bell-ex-3" type="for" for="#Bell">
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="relation1" name="eq"/>
+      <OMA>
+	<OMS cd="combinat1" name="Bell"/>
+	<OMI> 7 </OMI>
+      </OMA>
+      <OMI> 877 </OMI>
+    </OMA>
+  </OMOBJ>
+</example>
+</theory>
+</omdoc>

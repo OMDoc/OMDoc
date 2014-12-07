@@ -1,0 +1,147 @@
+<?xml version="1.0"?>
+<notations xmlns="http://www.w3.org/ns/mathml-cd" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:om="http://www.openmath.org/OpenMath" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+  <notation cdbase="FIXME" cd="qbf" name="forall">
+    <prototype>
+      <om:OMBIND>
+        <om:OMS cd="qbf" name="forall"/>
+        <om:OMBVAR>
+          <exprlist name="bvars">
+            <expr name="bvar"/>
+          </exprlist>
+        </om:OMBVAR>
+        <om:OMC>
+          <expr name="condition"/>
+        </om:OMC>
+        <expr name="scope"/>
+      </om:OMBIND>
+    </prototype>
+    <prototype>
+      <m:bind>
+        <m:csymbol cd="qbf">forall</m:csymbol>
+        <m:bvar>
+          <exprlist name="bvars">
+            <expr name="bvar"/>
+          </exprlist>
+        </m:bvar>
+        <m:condition>
+          <expr name="condition"/>
+        </m:condition>
+        <expr name="scope"/>
+      </m:bind>
+    </prototype>
+    <!--REPLACEME: This is just copied for manual intervention:-->
+    <element xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath" name="mrow" cr="yes">
+	  <element name="mo" cr="yes"><text>∀</text></element>
+	  <recurse select="*[2]"/>
+	  <element name="mo" cr="yes">
+	    <attribute name="separator">
+	      <text>true</text>
+	    </attribute>
+	    <text>.</text>
+	  </element>
+	  <recurse select="*[3]"/>
+	</element>
+    <!--/REPLACEME-->
+    <prototype>
+      <om:OMBIND>
+        <om:OMS cd="qbf" name="forall"/>
+        <om:OMBVAR>
+          <exprlist name="bvars">
+            <expr name="bvar"/>
+          </exprlist>
+        </om:OMBVAR>
+        <expr name="scope"/>
+      </om:OMBIND>
+    </prototype>
+    <prototype>
+      <m:bind>
+        <m:csymbol cd="qbf">forall</m:csymbol>
+        <m:bvar>
+          <exprlist name="bvars">
+            <expr name="bvar"/>
+          </exprlist>
+        </m:bvar>
+        <expr name="scope"/>
+      </m:bind>
+    </prototype>
+    <!--REPLACEME: This is just copied for manual intervention:-->
+    <element xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath" name="mrow" cr="yes">
+	  <element name="mo" cr="yes"><text>∀</text></element>
+	  <recurse select="*[2]"/>
+	  <element name="mo" cr="yes">
+	    <attribute name="separator">
+	      <text>true</text>
+	    </attribute>
+	    <text>.</text>
+	  </element>
+	  <recurse select="*[3]"/>
+	</element>
+    <!--/REPLACEME-->
+  </notation>
+  <notation cdbase="FIXME" cd="qbf" name="exists">
+    <prototype>
+      <om:OMBIND>
+        <om:OMS cd="qbf" name="exists"/>
+        <om:OMBVAR>
+          <exprlist name="bvars">
+            <expr name="bvar"/>
+          </exprlist>
+        </om:OMBVAR>
+        <om:OMC>
+          <expr name="condition"/>
+        </om:OMC>
+        <expr name="scope"/>
+      </om:OMBIND>
+    </prototype>
+    <prototype>
+      <m:bind>
+        <m:csymbol cd="qbf">exists</m:csymbol>
+        <m:bvar>
+          <exprlist name="bvars">
+            <expr name="bvar"/>
+          </exprlist>
+        </m:bvar>
+        <m:condition>
+          <expr name="condition"/>
+        </m:condition>
+        <expr name="scope"/>
+      </m:bind>
+    </prototype>
+    <rendering precedence="1000">
+      <m:mrow>
+        <m:mo>∃</m:mo>
+        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
+        <m:mo mcd:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+    <prototype>
+      <om:OMBIND>
+        <om:OMS cd="qbf" name="exists"/>
+        <om:OMBVAR>
+          <exprlist name="bvars">
+            <expr name="bvar"/>
+          </exprlist>
+        </om:OMBVAR>
+        <expr name="scope"/>
+      </om:OMBIND>
+    </prototype>
+    <prototype>
+      <m:bind>
+        <m:csymbol cd="qbf">exists</m:csymbol>
+        <m:bvar>
+          <exprlist name="bvars">
+            <expr name="bvar"/>
+          </exprlist>
+        </m:bvar>
+        <expr name="scope"/>
+      </m:bind>
+    </prototype>
+    <rendering precedence="1000">
+      <m:mrow>
+        <m:mo>∃</m:mo>
+        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
+        <m:mo mcd:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+</notations>

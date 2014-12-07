@@ -1,0 +1,293 @@
+<?xml version="1.0"?>
+<notations xmlns="http://www.w3.org/ns/mathml-cd" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:om="http://www.openmath.org/OpenMath" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+  <notation cdbase="FIXME" cd="skl0" name="threebool">
+    <prototype>
+      <om:OMS cd="skl0" name="threebool"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="skl0">threebool</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en">
+      <m:mo>o</m:mo>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="skl0" name="undefined">
+    <prototype>
+      <om:OMS cd="skl0" name="undefined"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="skl0">undefined</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en">
+      <m:mo>U</m:mo>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="skl0" name="eq">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="skl0" name="eq"/>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="skl0">eq</m:csymbol>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </m:apply>
+    </prototype>
+    <rendering precedence="700">
+      <m:mrow>
+        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
+        <render name="arg1" precedence="700"/>
+        <m:mo>=</m:mo>
+        <render name="arg2" precedence="700"/>
+        <m:mo mcd:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="skl0" name="neq">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="skl0" name="neq"/>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="skl0">neq</m:csymbol>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </m:apply>
+    </prototype>
+    <rendering precedence="700">
+      <m:mrow>
+        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
+        <render name="arg1" precedence="700"/>
+        <m:mo>≠</m:mo>
+        <render name="arg2" precedence="700"/>
+        <m:mo mcd:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+    <prototype>
+      <om:OMS cd="skl0" name="neq"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="skl0">neq</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en">≠</rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="skl0" name="not">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="skl0" name="not"/>
+        <expr name="arg"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="skl0">not</m:csymbol>
+        <expr name="arg"/>
+      </m:apply>
+    </prototype>
+    <rendering precedence="200">
+      <m:mrow>
+        <m:mo>¬</m:mo>
+        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
+        <render name="arg"/>
+        <m:mo mcd:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+    <prototype>
+      <om:OMS cd="skl0" name="not"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="skl0">not</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en">¬</rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="skl0" name="and">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="skl0" name="and"/>
+        <exprlist name="args">
+          <expr name="arg"/>
+        </exprlist>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="skl0">and</m:csymbol>
+        <exprlist name="args">
+          <expr name="arg"/>
+        </exprlist>
+      </m:apply>
+    </prototype>
+    <rendering precedence="500">
+      <m:mrow>
+        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
+        <iterate name="args" precedence="500">
+          <separator>
+            <m:mo>∧</m:mo>
+          </separator>
+          <render name="arg"/>
+        </iterate>
+        <m:mo mcd:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+    <prototype>
+      <om:OMS cd="skl0" name="and"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="skl0">and</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en">∧</rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="skl0" name="xor">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="skl0" name="xor"/>
+        <exprlist name="args">
+          <expr name="arg"/>
+        </exprlist>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="skl0">xor</m:csymbol>
+        <exprlist name="args">
+          <expr name="arg"/>
+        </exprlist>
+      </m:apply>
+    </prototype>
+    <rendering precedence="500">
+      <m:mrow>
+        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
+        <iterate name="args" precedence="500">
+          <separator>
+            <m:mo>!</m:mo>
+          </separator>
+          <render name="arg"/>
+        </iterate>
+        <m:mo mcd:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+    <prototype>
+      <om:OMS cd="skl0" name="xor"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="skl0">xor</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en">
+      <m:mo>!</m:mo>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="skl0" name="or">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="skl0" name="or"/>
+        <exprlist name="args">
+          <expr name="arg"/>
+        </exprlist>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="skl0">or</m:csymbol>
+        <exprlist name="args">
+          <expr name="arg"/>
+        </exprlist>
+      </m:apply>
+    </prototype>
+    <rendering precedence="500">
+      <m:mrow>
+        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
+        <iterate name="args" precedence="500">
+          <separator>
+            <m:mo>∨</m:mo>
+          </separator>
+          <render name="arg"/>
+        </iterate>
+        <m:mo mcd:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+    <prototype>
+      <om:OMS cd="skl0" name="or"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="skl0">or</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en">∨</rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="skl0" name="implies">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="skl0" name="implies"/>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="skl0">implies</m:csymbol>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </m:apply>
+    </prototype>
+    <rendering precedence="1000">
+      <m:mrow>
+        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
+        <render name="arg1" precedence="1000"/>
+        <m:mo>⇒</m:mo>
+        <render name="arg2" precedence="1000"/>
+        <m:mo mcd:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+    <prototype>
+      <om:OMS cd="skl0" name="implies"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="skl0">implies</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en">⇒</rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="skl0" name="equivalent">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="skl0" name="equivalent"/>
+        <exprlist name="args">
+          <expr name="arg"/>
+        </exprlist>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="skl0">equivalent</m:csymbol>
+        <exprlist name="args">
+          <expr name="arg"/>
+        </exprlist>
+      </m:apply>
+    </prototype>
+    <rendering precedence="700">
+      <m:mrow>
+        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
+        <iterate name="args" precedence="700">
+          <separator>
+            <m:mo>≡</m:mo>
+          </separator>
+          <render name="arg"/>
+        </iterate>
+        <m:mo mcd:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+    <prototype>
+      <om:OMS cd="skl0" name="equivalent"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="skl0">equivalent</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en">≡</rendering>
+  </notation>
+</notations>

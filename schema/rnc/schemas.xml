@@ -1,0 +1,6 @@
+<locatingRules xmlns="http://thaiopensource.com/ns/locating-rules/1.0">
+  <namespace ns="http://omdoc.org/ns" typeId="OMDoc2"/>
+  <documentElement localName="omdoc" typeId="OMDoc2"/>
+
+  <typeId id="OMDoc2" uri="omdoc.rnc"/>
+</locatingRules>

@@ -1,0 +1,72 @@
+@prefix dct:      <http://purl.org/dc/terms/> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix oo:      <http://omdoc.org/ontology#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+
+# Declare them as OWL property types, as DCMI Terms is RDFS only (see http://bloody-byte.net/rdf/dc_owl2dl/)
+dct:creator
+	a	owl:AnnotationProperty .
+dct:contributor
+	a	owl:AnnotationProperty .
+dct:subject
+	a	owl:AnnotationProperty .
+dct:title
+	a	owl:AnnotationProperty .
+
+<>
+	a	 owl:Ontology ;
+    dct:title "OMDoc document ontology, module PRES" ;
+	rdfs:comment """OMDoc document ontology in OWL-DL, proof module.  See chapter 19 (Notation and Presentation) of the OMDoc specification.
+This file is designed to be imported from the main module `omdoc'.""" ;
+	dct:creator "Christoph Lange <ch.lange@jacobs-university.de>" ;
+        dct:contributor "Nikita Zhiltsov (Никита Жильцов) <nikita.zhiltsov@gmail.com>" ;
+	# Contributors, please add your name here, and in the main file omdoc.n3. --Christoph Lange
+
+	dct:subject "Semantic Mathematical Markup, Mathematical Proofs" ;
+	owl:imports <file:st.n3> .
+	
+oo:NotationDefinition
+	a	owl:Class ;
+	rdfs:subClassOf oo:NonConstitutiveStatement ;
+	rdfs:comment """A notation definition for a symbol""" ;
+	rdfs:label "Notationsdefinition"@de ,
+                "Notation Definition"@en ,
+                "Определение обозначения"@ru ;
+	rdfs:isDefinedBy oo: .
+	
+oo:rendersSymbol
+	a	owl:ObjectProperty, owl:FunctionalProperty ;
+	rdfs:domain oo:NotationDefinition ;
+	rdfs:range  oo:Symbol ;
+	rdfs:comment "The relationship of a notation definition to the symbol it specifies" ;
+	rdfs:label "stellt Symbol dar"@de ,
+                "renders symbol"@en ,
+                "представляет"@ru ;
+	rdfs:isDefinedBy oo: .
+
+oo:hasNotationDefinition
+	a	owl:ObjectProperty, owl:InverseFunctionalProperty ;
+        rdfs:label "hat Notationsdefinition"@de ,
+                "has notation definition"@en ;
+	owl:inverseOf		   oo:rendersSymbol ;
+	rdfs:isDefinedBy oo: .
+
+oo:presentationDependsOn
+	a	owl:TransitiveProperty ;
+	rdfs:subPropertyOf  oo:dependsOn ;
+	rdfs:comment """Dependency in terms of presentation, i.e. the presentation of the source of this link depends on the target.""" ;
+        rdfs:label "Präsentation hängt ab von"@de ,
+                "presentation depends on"@en ;
+	rdfs:isDefinedBy oo: .
+
+oo:possiblyUsesNotation
+	a	owl:ObjectProperty ;
+	rdfs:subPropertyOf	   oo:presentationDependsOn ;
+        # We don't declare a domain here, as it's redundant anyway, and as the domain of usesSymbol is a union of lots of classes
+	rdfs:range		   oo:NotationDefinition ;
+	owl:propertyChainAxiom	   (oo:usesSymbol oo:hasNotationDefinition) ;
+	rdfs:comment """A formula (e.g. a Property) that uses a symbol possibly also uses (when presented) a notation defined for that symbol.  We say ‘possibly’ because one symbol can have multiple notations, depending on the context in which it is represented.""" ;
+	rdfs:label "verwendet möglicherweise Notation"@de ,
+                "possibly uses notation"@en ;
+	rdfs:isDefinedBy oo: .
+

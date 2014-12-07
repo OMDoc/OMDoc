@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  
+       xmlns="http://omdoc.org/ns"
+       xmlns:om="http://www.openmath.org/OpenMath"
+       xmlns:m="http://www.w3.org/1998/Math/MathML"
+       xmlns:o="http://omdoc.org/ns"
+       xml:id="piece1-omdoc">
+
+<metadata>
+  <dc:title>The OpenMath Content Dictionary piece1.ocd  in OMDoc form</dc:title>
+  <dc:creator role="trl">Michael Kohlhase</dc:creator>
+  <dc:creator role="ant">The OpenMath Society</dc:creator>
+  <dc:date> 2001-03-12T00:00:00</dc:date>
+  <dc:source>Derived from the OpenMath CD http://www.openmath.org/cd/piece1.ocd.</dc:source>
+  <dc:type>Text</dc:type>
+  <dc:format>application/omdoc+xml</dc:format>
+  <dc:rights>Copyright (c) 2000-2002 Michael Kohlhase;
+    This OMDoc content dictionary is released under the OpenMath license:
+    http://monet.nag.co.uk/openmath/cdfiles/license.html
+  </dc:rights>
+  <dc:description>
+    This CD is intended to be compatible with the corresponding
+    elements in Content MathML 2.
+
+In this CD we give a set of operators for piece-wise defined expressions.
+</dc:description>
+</metadata>
+
+<theory xml:id="piece1">
+  <imports xml:id="piece1-imports-sts" from="sts.omdoc#sts"/>
+  <imports xml:id="piece1-imports-relation1" from="relation1.omdoc#relation1"/>
+  <imports xml:id="piece1-imports-arith1" from="arith1.omdoc#arith1"/>
+  <imports xml:id="piece1-imports-setname2" from="setname2.omdoc#setname2"/>
+
+<symbol name="piecewise" xml:id="piecewise">
+<metadata>
+<dc:description> 
+    This operator heads an expression that is being defined piecewise. Its 
+    arguments are n objects built with the piece constructor, optionally
+    followed by one built with otherwise constructor.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMA>
+	  <OMS name="nary" cd="sts"/>
+	  <OMV name="Piece"/>
+	</OMA>
+	<OMS name="Object" cd="sts"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="piece1" name="piecewise" o:cr="pw"/>
+        <exprlist name="pieces">
+	  <om:OMA>
+	    <om:OMS cd="piece1" name="piece" o:cr="pi"/>
+	    <expr name="value"/>
+	    <expr name="condition"/>
+	  </om:OMA>
+	</exprlist>
+	<om:OMA><om:OMS cd="piece1" name="otherwise" o:cr="ot"/><expr name="ow"/></om:OMA>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="piece1" o:cr="pw">piecewise</m:csymbol>
+        <exprlist name="pieces">
+	  <m:apply>
+	    <m:csymbol cd="piece1" o:cr="pi">piece</m:csymbol>
+	    <expr name="value"/>
+	    <expr name="condition"/>
+	  </m:apply>
+	</exprlist>
+	<m:apply><m:csymbol cd="piece1" o:cr="ot">otherwise</m:csymbol><expr name="ow"/></m:apply>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <m:mrow>
+	<m:mo o:cr="pw">{</m:mo>
+	<m:mtable>
+	  <iterate name="pieces">
+	    <separator/>
+	    <m:mtr>
+	      <m:mtd><render name="value"/></m:mtd>
+	      <m:mtd><m:mtext o:cr="pi">if</m:mtext><render name="condition"/></m:mtd>
+	    </m:mtr>
+	  </iterate>
+	  <m:mtr>
+	    <m:mtd><render name="ow"/></m:mtd>
+	    <m:mtd><m:mtext o:cr="ot">otherwise</m:mtext></m:mtd>
+	  </m:mtr>
+	</m:mtable>
+      </m:mrow>
+    </rendering>
+  </notation>
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="piece1" name="piecewise" o:cr="pw"/>
+        <exprlist name="pieces">
+	  <om:OMA>
+	    <om:OMS cd="piece1" name="piece" o:cr="pi"/>
+	    <expr name="value"/>
+	    <expr name="condition"/>
+	  </om:OMA>
+	</exprlist>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="piece1" o:cr="pw">piecewise</m:csymbol>
+        <exprlist name="pieces">
+	  <m:apply>
+	    <m:csymbol cd="piece1" o:cr="pi">piece</m:csymbol>
+	    <expr name="value"/>
+	    <expr name="condition"/>
+	  </m:apply>
+	</exprlist>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <m:mrow>
+	<m:mo o:cr="pw">{</m:mo>
+	<m:mtable>
+	  <iterate name="pieces">
+	    <separator/>
+	    <m:mtr>
+	      <m:mtd><render name="value"/></m:mtd>
+	      <m:mtd><m:mtext o:cr="pi">if</m:mtext><render name="condition"/></m:mtd>
+	    </m:mtr>
+	  </iterate>
+	</m:mtable>
+      </m:mrow>
+    </rendering>
+  </notation>
+  	 
+<symbol name="piece" xml:id="piece">
+  <metadata>
+    <dc:description> 
+    This introduces an individual component of a piecewise definition. It has
+    precisely two arguments: the first is the value, and the second is a Boolean
+    (meant to be a predicate) which is true if and only if this piece is to
+    provide the value of the piecewise construct.
+    </dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMS name="Object" cd="sts"/>
+	<OMS name="Boolean" cd="setname2"/>
+	<OMS name="Object" cd="sts"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+
+   
+<symbol name="otherwise" xml:id="otherwise">
+<metadata>
+<dc:description>
+    This symbol introduces the 'default' value of a piecewise construct.
+    If none of the previous piece constructs can provide the value, this will.
+    It has a single child, the value.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMS name="Object" cd="sts"/>
+	<OMS name="Object" cd="sts"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+
+<example xml:id="otherwise-ex-1" type="for" for="#otherwise">
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="relation1" name="eq"/>
+      <OMA>
+	<OMS cd="arith1" name="abs"/>
+	<OMV name="x"/>
+      </OMA>
+      <OMA>
+	<OMS cd="piece1" name="piecewise"/>
+	<OMA>
+	  <OMS cd="piece1" name="piece"/>
+	  <OMA>
+	    <OMS cd="arith1" name="unary_minus"/>
+	    <OMV name="x"/>
+	  </OMA>
+	  <OMA>
+	    <OMS cd="relation1" name="lt"/>
+	    <OMV name="x"/>
+	    <OMI> 0 </OMI>
+	  </OMA>
+	</OMA>
+	<OMA>
+	  <OMS cd="piece1" name="piece"/>
+	  <OMI> 0 </OMI>
+	  <OMA>
+	    <OMS cd="relation1" name="eq"/>
+	    <OMV name="x"/>
+	    <OMI> 0 </OMI>
+	  </OMA>
+	</OMA>
+	<OMA>
+	  <OMS cd="piece1" name="otherwise"/>
+	  <OMV name="x"/>
+	</OMA>
+      </OMA>
+    </OMA>
+  </OMOBJ>
+</example>
+</theory>
+</omdoc>
+

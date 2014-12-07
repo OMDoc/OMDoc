@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html id="andcom" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <link rel="stylesheet" type="text/css" href="omdoc-default.css"/>
+    <title>A proof of the commutativity of conjunction</title>
+  </head>
+  <body>
+    <div class="dc-titleblock">
+      <div class="dc-title">A proof of the commutativity of conjunction</div>
+      <div class="dc-authors">Michael Kohlhase</div>
+      <div class="dc-date">1999-09-01</div>
+    </div>
+    <div class="header">introduction</div>
+    <div class="omdoc-omtext salt-introduction" id="intro">
+      <p> This document shows a simple formal proof in Gentzens natural deduction calculus, as an example for the communication of theorems and proofs between deduction systems. </p>
+    </div>
+    <div class="omdoc-theorem" id="t1" role="Assertion" about="#t1" xml:id="t1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="http://purl.org/dc/elements/1.1/">
+      <a class="omdoc" rel="oso:homeTheory" href="#"/>
+      <span class="omdoc-titleword">Theorem</span>
+      <span class="omdoc-FMP">
+        <span id="MCRd19e15" class="displaymath" xmlns="">
+          <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns">
+            <m:mrow>
+              <m:mo>forall</m:mo>
+              <m:mi>X</m:mi>
+              <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">,</m:mo>
+              <m:mi>Y</m:mi>
+              <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">.</m:mo>
+              <m:mrow>
+                <m:mo>implies</m:mo>
+                <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                <m:mrow>
+                  <m:mo>and</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mi>X</m:mi>
+                  <m:mo separator="true">,</m:mo>
+                  <m:mi>Y</m:mi>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+                <m:mo separator="true">,</m:mo>
+                <m:mrow>
+                  <m:mo>and</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mi>Y</m:mi>
+                  <m:mo separator="true">,</m:mo>
+                  <m:mi>X</m:mi>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+                <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+              </m:mrow>
+            </m:mrow>
+          </m:math>
+        </span>
+      </span>
+    </div>
+    <div class="omdoc-proof" id="p1" role="Proof" about="#t1" xml:id="p1">
+      <a class="omdoc" rel="oso:proves" href="#t1"/>
+      <a class="omdoc" rel="oso:homeTheory" href="#t1"/>
+      <div class="omdoc-titlebox">
+        <span class="omdoc-titleword">Proof</span>
+      </div>
+      <ol>
+        <li id="D2">
+          <span class="omdoc-FMP">
+            <span id="MCRd19e65" class="displaymath" xmlns="">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:dc="http://purl.org/dc/elements/1.1/">
+                <m:mrow>
+                  <m:mo>implies</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mrow>
+                    <m:mo>and</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                    <m:mi>X</m:mi>
+                    <m:mo separator="true">,</m:mo>
+                    <m:mi>Y</m:mi>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                  </m:mrow>
+                  <m:mo separator="true">,</m:mo>
+                  <m:mrow>
+                    <m:mo>and</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                    <m:mi>Y</m:mi>
+                    <m:mo separator="true">,</m:mo>
+                    <m:mi>X</m:mi>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                  </m:mrow>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+              </m:math>
+            </span>
+          </span> by (on 
+          <div class="omdoc-proof" id="t11" role="Proof" about="#t11" xml:id="t11">
+            <a class="omdoc" rel="oso:proves" href="#t11"/>
+            <a class="omdoc" rel="oso:homeTheory" href="#"/>
+            <span class="omdoc-titleword">Proof</span>
+            <ol>
+              <li id="H1">
+                <span class="omdoc-FMP">
+                  <span id="MCRd19e105" class="displaymath" xmlns="">
+                    <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:dc="http://purl.org/dc/elements/1.1/">
+                      <m:mrow>
+                        <m:mo>and</m:mo>
+                        <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                        <m:mi>X</m:mi>
+                        <m:mo separator="true">,</m:mo>
+                        <m:mi>Y</m:mi>
+                        <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                      </m:mrow>
+                    </m:math>
+                  </span>
+                </span>
+              </li>
+              <li id="t111">
+                <span class="omdoc-FMP">
+                  <span id="MCRd19e121" class="displaymath" xmlns="">
+                    <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:dc="http://purl.org/dc/elements/1.1/">
+                      <m:mi>X</m:mi>
+                    </m:math>
+                  </span>
+                </span> by (on 
+                <a href="##H1" class="omdoc">d19e125</a>)
+              </li>
+              <li id="t112">
+                <span class="omdoc-FMP">
+                  <span id="MCRd19e128" class="displaymath" xmlns="">
+                    <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:dc="http://purl.org/dc/elements/1.1/">
+                      <m:mi>Y</m:mi>
+                    </m:math>
+                  </span>
+                </span> by (on 
+                <a href="##H1" class="omdoc">d19e132</a>)
+              </li>
+              <li id="t113">
+                <span class="omdoc-FMP">
+                  <span id="MCRd19e135" class="displaymath" xmlns="">
+                    <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:dc="http://purl.org/dc/elements/1.1/">
+                      <m:mrow>
+                        <m:mo>and</m:mo>
+                        <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                        <m:mi>Y</m:mi>
+                        <m:mo separator="true">,</m:mo>
+                        <m:mi>X</m:mi>
+                        <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                      </m:mrow>
+                    </m:math>
+                  </span>
+                </span> by (on 
+                <a href="#D1.1" class="omdoc">d19e150</a>, 
+                <a href="#D1.8" class="omdoc">d19e151</a>)
+              </li>
+            </ol>
+          </div> )
+        </li>
+        <li id="C"> by (on 
+          <span id="MCRd19e154" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:dc="http://purl.org/dc/elements/1.1/">
+              <m:mi>X</m:mi>
+            </m:math>
+          </span>, 
+          <span id="MCRd19e157" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:dc="http://purl.org/dc/elements/1.1/">
+              <m:mi>Y</m:mi>
+            </m:math>
+          </span>, 
+          <a href="#D2" class="omdoc">D2</a>)
+        </li>
+      </ol>
+    </div>
+    <div class="header">conclusion</div>
+    <div class="omdoc-omtext salt-conclusion" id="concl">
+      <p>The examples shows, that even though the OMDoc format is rather verbose, the structure of proofs is equivalent to other proof representations. In particular, the explicit management of proof structure by premise links allows to encode the proof as a directed acyclic graph rather than a tree. Note that the restriction to ND calculus is arbitrary for this example, the method slots could contain arbitrary tactics. </p>
+    </div>
+  </body>
+</html>

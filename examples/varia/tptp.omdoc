@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  xmlns="http://omdoc.org/ns"
+xml:id="fortptp" >
+
+<metadata>
+  <dc:date>2001-06-23T00:00:00</dc:date>
+</metadata>
+
+<theory xml:id="tptp">
+  <symbol name="type"/>
+  <symbol name="int"/>
+</theory>
+
+<theory xml:id="test">
+
+<symbol name="q"/>
+<symbol name="p"/>
+<symbol name="f"/>
+
+<assertion xml:id="testass" type="conjecture">
+  <FMP>
+   <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMBIND>
+      <OMS cd="quant1" name="forall"/>
+      <OMBVAR>
+        <OMATTR>
+          <OMATP>
+            <OMS name="type" cd="tptp"/>
+            <OMS name="int" cd="tptp"/>
+          </OMATP>
+          <OMV name="X"/>
+        </OMATTR>
+        <OMV name="Y"/>
+      </OMBVAR>
+      <OMBIND>
+        <OMS cd="quant1" name="forall"/>
+        <OMBVAR>
+          <OMV name="Z"/>
+          <OMV name="W"/>
+        </OMBVAR>
+        <OMA>
+          <OMS cd="logic1" name="implies"/>
+          <OMA>
+            <OMS cd="test" name="p"/>
+            <OMV name="X"/>
+            <OMA>
+              <OMS cd="test" name="f"/>
+              <OMV name="Y"/>
+            </OMA>
+          </OMA>
+          <OMA>
+            <OMS cd="test" name="q"/>
+            <OMV name="Z"/>
+            <OMV name="W"/>
+          </OMA>
+        </OMA>
+      </OMBIND>
+    </OMBIND>
+  </OMOBJ>
+</FMP>
+</assertion>
+
+</theory>
+</omdoc>

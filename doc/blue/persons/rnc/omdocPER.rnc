@@ -1,0 +1,41 @@
+# A RelaxNG schema for Open Mathematical documents (OMDoc 1.6) Module DOC 
+# $Id: omdocTAB.rnc 7985 2008-08-31 13:47:05Z kohlhase $
+# $HeadURL: https://svn.omdoc.org/repos/omdoc/trunk/doc/blue/tables/rnc/omdocTAB.rnc $
+# See the documentation and examples at http://www.omdoc.org
+# Copyright (c) 2008 Michael Kohlhase, released under the GNU Public License (GPL) 
+
+default namespace omdoc = "http://omdoc.org/ns"
+
+start = person|persons
+
+id.attrib = attribute xml:id {xsd:ID}
+
+persons = element persons {person*}
+
+person = element person {id.attrib & personalname & affiliation* & address* & email* & homepage*}
+
+personalname= element personalname {honorific*,firstname,other*,surname, lineage?}
+
+honorific = element honorific {text}
+firstname = element firstname {text}
+surname = element surname {text}
+lineage = element lineage {text}
+email = element  email {xsd:anyURI}
+homepage = element homepage {xsd:anyURI}
+
+address = element address {residence,town,zip?,country?}
+residence = element residence {name?,street*,number,other*}
+name = element name {text}    
+street = element street {text}
+number = element number {text}
+other = element other {text}			   
+country = element country {text}
+town = element town {text}			   
+zip = element zip {text}			   
+
+affiliation = element affiliation {title,division*,institution,address}
+title = element title {text}
+division = element division {text}
+institution = element institution {text}
+
+#add telephone-like stuff

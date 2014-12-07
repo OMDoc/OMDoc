@@ -1,0 +1,155 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This file is part of the LaTeX sources of the OMDoc 1.6 specification
+% Copyright (c) 2006 Michael Kohlhase
+% This work is licensed by the Creative Commons Share-Alike license
+% see http://creativecommons.org/licenses/by-sa/2.5/ for details
+\svnInfo $Id: rnc.tex 8904 2011-01-25 06:37:12Z kohlhase $
+\svnKeyword $HeadURL: https://svn.omdoc.org/repos/omdoc/trunk/doc/spec/rnc.tex $
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{omgroup}[id=rnc]{The RelaxNG Schema for OMDoc}
+
+We reprint the modularized {\relaxng} schema for {\omdoc} here. It is available at
+\url{http://www.omdoc.org/rnc} and consists of separate files for the {\omdoc} modules,
+which are loaded by the schema driver {\snippet{omdoc.rnc}} in this directory. We will use
+the abbreviated syntax for {\relaxng} here, since the {\xml} syntax, \indexalt{document
+  typedefinitions}{DTD} and even \twinalt{{\xml} schemata}{XML}{schema} can be generated
+from it by standard tools.
+
+The {\relaxng} schema consists of the grammar fragments for the modules (see
+{\sref{rnc.math} to \sref{rnc.quiz}}).
+
+\begin{omgroup}[id=rnc.drivers]{The Sub-Language Drivers}
+
+The Schema comes in two parts: strict {\omdoc}
+
+\lstinputlisting[language=RNC,nolol]{../../schema/rnc/strict/omdoc-strict.rnc}
+ 
+and pragmatic {\omdoc}
+
+\lstinputlisting[language=RNC,nolol]{../../schema/rnc/omdoc.rnc}
+\end{omgroup}
+
+\begin{omgroup}[id=rnc.math]{Module {\MOBJmodule{RNC}}: Mathematical Objects and Text}
+
+The RNC module {\MOBJmodule{RNC}} includes the representations for mathematical objects
+and defines the {\element{legacy}} element (see {\sref{mobj}} for a discussion). It
+includes the standard {\relaxng} schema for {\openmath} (we have reprinted it in
+{\myappsecref{rnc.openmath}}) adding the {\omdoc} identifier and {\css}
+\twinalt{attributes}{CSS}{attribute} to all elements. If also includes a schema for
+{\mathml} (see {\myappsecref{rnc.mathml}}).
+
+\lstinputlisting[language=RNC,index={legacy},nolol]{../../schema/rnc/strict/omdocmobj.rnc}
+\end{omgroup}
+
+\begin{omgroup}[id=rnc.mtxt]{Module {\MTXTmodule{RNC}}: Mathematical Text}
+  The RNC module {\MTXTmodule{RNC}} provides infrastructure for mathematical vernacular
+  (see {\sref{mtext}} for a discussion).
+  \lstinputlisting[language=RNC,index={omtext},nolol]
+  {../../schema/rnc/strict/mtxt-strict.rnc}
+
+  And now the pragmatic language
+  \lstinputlisting[language=RNC,index={omtext},nolol]
+                          {../../schema/rnc/pragmatic/omdocmtxt.rnc}
+\end{omgroup}
+
+\begin{omgroup}[id=rnc.meta]{Module {\DOCmodule{META}}: Metadata}
+
+  For the treatment of metadata we include a generic version of the Dublin Core vocabulary
+  for bibliographic metadata (see the schema at {\sref{rnc.dc}}), and extend it with MARC
+  relator roles (see {\srefs{dc-elements}{dc-roles}} for a discussion and
+  {\sref{rnc.marc}} for the schema) and a content-oriented version of Creative Commons
+  License specifications (see {\sref{rnc.cc}} for the schema).
+
+\lstinputlisting[language=RNC,index={metadata,link,resource},nolol]{../../schema/rnc/strict/meta-strict.rnc}
+\end{omgroup}
+
+\begin{omgroup}[id=rnc.dc]{Dublin Core Metadata}
+\lstinputlisting[language=RNC,nolol,index={}]{../../schema/rnc/pragmatic/omdocdc.rnc}
+\lstinputlisting[language=RNC,nolol,
+index={contributor,creator,title,subject,description,publisher,type,
+  format,source,language,relation,rights,date,identifier}]{../../schema/rnc/pragmatic/dublincore.rnc}
+\end{omgroup}
+
+\begin{omgroup}[id=rnc.marc]{MARC Relators for Bibliographic Roles}
+\lstinputlisting[language=RNC,nolol]{../../schema/rnc/pragmatic/MARCRelators.rnc}
+\end{omgroup}
+
+\begin{omgroup}[id=rnc.cc]{Creative Commons Licenses}
+\lstinputlisting[language=RNC,nolol,index={license,permissions,prohibitions,requirements}]
+  {../../schema/rnc/pragmatic/omdoccc.rnc}
+\lstinputlisting[language=RNC,nolol,index={license,permissions,prohibitions,requirements}]
+  {../../schema/rnc/pragmatic/creativecommons.rnc}
+\end{omgroup}
+
+\begin{omgroup}[id=rnc.doc]{Module {\DOCmodule{RNC}}: Document Infrastructure}
+  The RNC module {\DOCmodule{RNC}} specifies the document infrastructure of {\omdoc}
+  documents (see {\sref{omdoc-infrastructure}} for a discussion).
+  \lstinputlisting[language=RNC, index={omdoc},nolol]{../../schema/rnc/strict/doc-strict.rnc}
+  \lstinputlisting[language=RNC, index={},nolol]{../../schema/rnc/pragmatic/omdocdoc.rnc}
+\end{omgroup}
+
+\begin{omgroup}[id=rnc.st]{Module {\STmodule{RNC}}: Mathematical Statements}
+
+The RNC module {\STmodule{RNC}} deals with mathematical statements like assertions and
+examples in {\omdoc} and provides an infrastructure for mathematical theories as contexts,
+for the {\omdoc} elements that fix the meaning for symbols, see {\sref{statements}}
+for a discussion.
+\lstinputlisting[language=RNC,nolol,
+index={theory,constant,definition,type,include}] {../../schema/rnc/strict/st-strict.rnc}
+\lstinputlisting[language=RNC,nolol,
+index={assertion,alternative,example,imports}] {../../schema/rnc/pragmatic/omdocst.rnc}
+\end{omgroup}
+
+\begin{omgroup}[id=rnc.adt]{Module {\ADTmodule{RNC}}: Abstract Data Types}
+The RNC module {\ADTmodule{RNC}} specifies the grammar for abstract data types in 
+{\omdoc}, see {\sref{adt}} for a discussion.
+\lstinputlisting[language=RNC,nolol,
+index={adt,sortdef,insort,constructor,recognizer,argument,destructor}]
+{../../schema/rnc/pragmatic/omdocadt.rnc}
+\end{omgroup}
+
+\begin{omgroup}[id=rnc.proof]{Module {\PFmodule{RNC}}: Proofs and Proof objects}
+The RNC module {\PFmodule{RNC}} deals with mathematical argumentations and proofs in
+{\omdoc}, see {\sref{proofs}} for a discussion.
+\lstinputlisting[language=RNC,nolol,
+index={proof,proofobject,derive,hypothesis,method,premise}]
+{../../schema/rnc/pragmatic/omdocpf.rnc}
+\end{omgroup}
+
+\begin{omgroup}[id=rnc.ext]{Module {\EXTmodule{RNC}}: Applets and non-XML data}
+The RNC module {\EXTmodule{RNC}} provides an infrastructure for applets, program code, and
+non-{\xml} data like images or measurements (see {\sref{ext}} for a discussion).
+\lstinputlisting[language=RNC,nolol,
+index={omlet,private,code,input,output,effect,data}] {../../schema/rnc/pragmatic/omdocext.rnc}
+\end{omgroup}
+
+\begin{omgroup}[id=rnc.pres]{Module {\PRESmodule{RNC}}: Adding Presentation Information}
+The RNC module {\PRESmodule{RNC}} provides a sub-language for defining notations for
+mathematical symbols and for styling {\omdoc} elements (see {\sref{pres}} for a
+discussion).
+\lstinputlisting[language=RNC,nolol]
+{../../schema/rnc/strict/notation-strict.rnc}
+
+\lstinputlisting[language=RNC,nolol]
+{../../schema/rnc/pragmatic/notation-mmt.rnc}
+\end{omgroup}
+
+\begin{omgroup}[id=rnc.quiz]{Module {\QUIZmodule{RNC}}: Infrastructure for Assessments}
+The RNC module {\QUIZmodule{RNC}} provides a basic infrastructure for various kinds of
+exercises (see {\sref{quiz}} for a discussion).
+ \lstinputlisting[language=RNC,nolol,index={exercise,hint,solution,mc,choice,answer}]
+  {../../schema/rnc/pragmatic/omdocquiz.rnc}
+\end{omgroup}
+\end{omgroup}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "main"
+%%% End: 
+
+% LocalWords:  rnc MOBJ lstlistings lstomdoc fullflexible OMB OMSTR OMF OME RT
+% LocalWords:  OMATP ol ul li tr td mtxt doc dc adt sortdef insort mc nolol
+% LocalWords:  proofobject cth ext omlet pres omstyle xslt omdoc mobj openmath
+% LocalWords:  mathml omtext OMS OMV OMI OMA OMBIND OMBVAR OMATTR
+% LocalWords:  rt mobj metadata destructor recurse mobj  mobj

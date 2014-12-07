@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  xmlns="http://omdoc.org/ns"
+       xml:id="indnat-omdoc">
+
+   
+      <dc:title>The OpenMath Content Dictionary indnat.ocd  in OMDoc form</dc:title>
+      <dc:creator role="trl">Michael Kohlhase</dc:creator>
+      <dc:creator role="ant">Olga Caprotti</dc:creator>
+      <dc:description> Inductive definition of natural numbers </dc:description>
+   
+
+   <theory xml:id="indnat" cdbase="http://www.openmath.org/cd">
+
+<include from="relation1.omdoc#relation1"/>
+
+<symbol name="indNat" xml:id="indNat">
+
+<dc:description> Attribution tag to denote the
+    type of inductively defined natural numbers. It is also denoted as
+    setname1:N.
+  </dc:description>
+
+</symbol>
+      <symbol name="zero" xml:id="zero">
+
+<dc:description> The natural number 0, also constant base function
+          for the inductive definition of the type of natural numbers
+      </dc:description>
+
+</symbol>
+      <presentation xml:id="pres-zero" for="#zero">
+         <use  format="default">0</use>
+      </presentation>
+      <symbol name="succ" xml:id="succ">
+
+<dc:description> Successor function on the natural number. 
+           Constructor for the inductively defined natural numbers. 
+           Takes argument a a natural number and returns a natural
+           number.
+      </dc:description>
+
+</symbol>
+      <presentation xml:id="pres-succ" for="#succ">
+         <use  format="default">s</use>
+      </presentation>
+      <symbol name="plus" xml:id="plus">
+
+<dc:description> Addition of natural numbers defined recursively
+           by using the successor.
+      </dc:description>
+
+</symbol>
+      <presentation xml:id="pres-plus" for="#plus" role="applied" fixity="infix">
+         <use  format="default">+</use>
+      </presentation>
+      <example xml:id="plus-ex-1" type="for" for="#plus">
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+               <OMA>
+                  <OMS name="eq" cd="relation1"/>
+                  <OMA>
+                     <OMS cd="indnat" name="plus"/>
+                     <OMV name="n"/>
+                     <OMA>
+                        <OMS name="succ" cd="indnat"/>
+                        <OMV name="m"/>
+                     </OMA>
+                  </OMA>
+                  <OMA>
+                     <OMS name="succ" cd="indnat"/>
+                     <OMA>
+                        <OMS cd="indnat" name="plus"/>
+                        <OMV name="n"/>
+                        <OMV name="m"/>
+                     </OMA>
+                  </OMA>
+               </OMA>
+            </OMOBJ>
+      </example>
+      <symbol name="times" xml:id="times">
+
+<dc:description> Multiplication of natural numbers defined recursively
+           by using the successor and plus.
+      </dc:description>
+
+</symbol>
+      <presentation xml:id="pres-times" for="#times" role="applied" fixity="infix">
+         <use  format="default"/>
+         <use  format="html|pmml">&#x02062;</use>
+      </presentation>
+      <example xml:id="times-ex-1" type="for" for="#times">
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+               <OMA>
+                  <OMS name="eq" cd="relation1"/>
+                  <OMA>
+                     <OMS cd="indnat" name="times"/>
+                     <OMV name="n"/>
+                     <OMA>
+                        <OMS name="succ" cd="indnat"/>
+                        <OMV name="m"/>
+                     </OMA>
+                  </OMA>
+                  <OMA>
+                     <OMS cd="indnat" name="plus"/>
+                     <OMA>
+                        <OMS cd="indnat" name="times"/>
+                        <OMV name="n"/>
+                        <OMV name="m"/>
+                     </OMA>
+                     <OMV name="n"/>
+                  </OMA>
+               </OMA>
+            </OMOBJ>
+      </example>
+   </theory>
+</omdoc>

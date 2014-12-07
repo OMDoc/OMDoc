@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<omdoc xml:id="proof.omdoc" version="1.6" xmlns="http://omdoc.org/ns" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <metadata>
+    <dc:date action="created"> 2003-07-01T13:07:41Z </dc:date>
+    <dc:title xml:lang="en"> proof </dc:title>
+    <dc:creator role="aut"> Michael Kohlhase </dc:creator>
+    <dc:source> </dc:source>
+    <dc:date action="updated"> 2004-07-14T17:15:35Z </dc:date>
+    <dc:type> Text </dc:type>
+    <dc:format> application/omdoc+xml </dc:format>
+  </metadata>
+  <omtext xml:id="intro">
+    <CMP>This is the Apros-ASCII representation of the proof that Clinton sent me: 
+      <omlet style="display:block" action="display" data="ascii"/>
+    </CMP>
+  </omtext>
+  <code xml:id="ascii">
+    <data format="text/plain"> Proof: 1. (Ax)((P(x) v Q(x)) &amp; ~Q(x)) Prem 2. ((P(w) v Q(w)) &amp; ~Q(w)) AllE 1 3. (P(w) v Q(w)) AndEl 2 4. |P(w) Assum 5. |Q(w) Assum 6. |!~P(w) Assum 7. |!((P(w) v Q(w)) &amp; ~Q(w)) AllE 1 8. |!~Q(w) AndEr 7 9. |!_|_ NotQ 5, 8 10. |P(w) NotE 9 11. P(w) OrE 3, 4, 10 12. (Ex)P(x) ExI 11 </data>
+  </code>
+  <omtext xml:id="test">
+    <CMP>And this is the Fitch-style proof that was generated from the OMDoc he generated.</CMP>
+  </omtext>
+  <assertion xml:id="assert2" type="theorem">
+    <CMP><![CDATA[(Ax)((P(x) v Q(x)) & ~Q(x)) |= (Ex)P(x)]]></CMP>
+    <FMP>
+      <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+        <m:mrow>
+          <m:mo>implies</m:mo>
+          <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+          <m:mrow>
+            <m:mo>forall</m:mo>
+            <m:mi>x</m:mi>
+            <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">.</m:mo>
+            <m:mrow>
+              <m:mo>and</m:mo>
+              <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+              <m:mrow>
+                <m:mo>or</m:mo>
+                <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                <m:mrow>
+                  <m:mo>P</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mi>x</m:mi>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+                <m:mo separator="true">,</m:mo>
+                <m:mrow>
+                  <m:mo>Q</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mi>x</m:mi>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+                <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+              </m:mrow>
+              <m:mo separator="true">,</m:mo>
+              <m:mrow>
+                <m:mo>not</m:mo>
+                <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                <m:mrow>
+                  <m:mo>Q</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mi>x</m:mi>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+                <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+              </m:mrow>
+              <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+            </m:mrow>
+          </m:mrow>
+          <m:mo separator="true">,</m:mo>
+          <m:mrow>
+            <m:mo>exists</m:mo>
+            <m:mi>x</m:mi>
+            <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">.</m:mo>
+            <m:mrow>
+              <m:mo>P</m:mo>
+              <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+              <m:mi>x</m:mi>
+              <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+            </m:mrow>
+          </m:mrow>
+          <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+        </m:mrow>
+      </m:math>
+    </FMP>
+  </assertion>
+  <proof xml:id="pr1" for="#assert2" class="Fitch-style">
+    <derive xml:id="conc">
+      <method xref="ImpI@apros-nd">
+        <proof>
+          <hypothesis xml:id="hyp3">
+            <FMP>
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+                <m:mrow>
+                  <m:mo>forall</m:mo>
+                  <m:mi>x</m:mi>
+                  <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">.</m:mo>
+                  <m:mrow>
+                    <m:mo>and</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                    <m:mrow>
+                      <m:mo>or</m:mo>
+                      <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                      <m:mrow>
+                        <m:mo>P</m:mo>
+                        <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                        <m:mi>x</m:mi>
+                        <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                      </m:mrow>
+                      <m:mo separator="true">,</m:mo>
+                      <m:mrow>
+                        <m:mo>Q</m:mo>
+                        <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                        <m:mi>x</m:mi>
+                        <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                      </m:mrow>
+                      <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                    </m:mrow>
+                    <m:mo separator="true">,</m:mo>
+                    <m:mrow>
+                      <m:mo>not</m:mo>
+                      <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                      <m:mrow>
+                        <m:mo>Q</m:mo>
+                        <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                        <m:mi>x</m:mi>
+                        <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                      </m:mrow>
+                      <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                    </m:mrow>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                  </m:mrow>
+                </m:mrow>
+              </m:math>
+            </FMP>
+          </hypothesis>
+          <derive xml:id="der5">
+            <FMP>
+              <OMOBJ>
+                <OMA id="inst">
+                  <OMS cd="pl0" name="and"/>
+                  <OMA id="inst1">
+                    <OMS cd="pl0" name="or"/>
+                    <OMA id="inst11">
+                      <OMS cd="dummy" name="P"/>
+                      <OMV name="w"/>
+                    </OMA>
+                    <OMA id="inst12">
+                      <OMS cd="dummy" name="Q"/>
+                      <OMV name="w"/>
+                    </OMA>
+                  </OMA>
+                  <OMA id="inst2">
+                    <OMS cd="pl0" name="not"/>
+                    <OMA>
+                      <OMS cd="dummy" name="Q"/>
+                      <OMV name="w"/>
+                    </OMA>
+                  </OMA>
+                </OMA>
+              </OMOBJ>
+            </FMP>
+            <method xref="AllE@apros-nd">
+              <premise xref="hyp3"/>
+            </method>
+          </derive>
+          <derive xml:id="der6">
+            <FMP>
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+                <m:mrow>
+                  <m:mo>or</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mrow>
+                    <m:mo>P</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                    <m:mi>w</m:mi>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                  </m:mrow>
+                  <m:mo separator="true">,</m:mo>
+                  <m:mrow>
+                    <m:mo>Q</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                    <m:mi>w</m:mi>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                  </m:mrow>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+              </m:math>
+            </FMP>
+            <method xref="AndEl@apros-nd">
+              <premise xref="der5"/>
+            </method>
+          </derive>
+          <derive xml:id="der8">
+            <FMP>
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+                <m:mrow>
+                  <m:mo>P</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mi>w</m:mi>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+              </m:math>
+            </FMP>
+            <method xref="OrE@apros-nd">
+              <premise xref="der6"/>
+              <proof>
+                <hypothesis xml:id="hyp7">
+                  <FMP>
+                    <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+                      <m:mrow>
+                        <m:mo>P</m:mo>
+                        <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                        <m:mi>w</m:mi>
+                        <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                      </m:mrow>
+                    </m:math>
+                  </FMP>
+                </hypothesis>
+              </proof>
+              <proof>
+                <hypothesis xml:id="hyp9">
+                  <FMP>
+                    <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+                      <m:mrow>
+                        <m:mo>Q</m:mo>
+                        <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                        <m:mi>w</m:mi>
+                        <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                      </m:mrow>
+                    </m:math>
+                  </FMP>
+                </hypothesis>
+                <derive xml:id="der11">
+                  <FMP>
+                    <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+                      <m:mrow>
+                        <m:mo>P</m:mo>
+                        <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                        <m:mi>w</m:mi>
+                        <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                      </m:mrow>
+                    </m:math>
+                  </FMP>
+                  <method xref="NotE@apros-nd">
+                    <proof>
+                      <hypothesis xml:id="hyp10">
+                        <FMP>
+                          <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+                            <m:mrow>
+                              <m:mo>not</m:mo>
+                              <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                              <m:mrow>
+                                <m:mo>Q</m:mo>
+                                <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                                <m:mi>w</m:mi>
+                                <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                              </m:mrow>
+                              <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                            </m:mrow>
+                          </m:math>
+                        </FMP>
+                      </hypothesis>
+                      <derive xml:id="der12">
+                        <FMP>
+                          <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+                            <m:mrow>
+                              <m:mo>and</m:mo>
+                              <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                              <m:mrow>
+                                <m:mo>or</m:mo>
+                                <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                                <m:mrow>
+                                  <m:mo>P</m:mo>
+                                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                                  <m:mi>w</m:mi>
+                                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                                </m:mrow>
+                                <m:mo separator="true">,</m:mo>
+                                <m:mrow>
+                                  <m:mo>Q</m:mo>
+                                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                                  <m:mi>w</m:mi>
+                                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                                </m:mrow>
+                                <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                              </m:mrow>
+                              <m:mo separator="true">,</m:mo>
+                              <m:mrow>
+                                <m:mo>not</m:mo>
+                                <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                                <m:mrow>
+                                  <m:mo>Q</m:mo>
+                                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                                  <m:mi>w</m:mi>
+                                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                                </m:mrow>
+                                <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                              </m:mrow>
+                              <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                            </m:mrow>
+                          </m:math>
+                        </FMP>
+                        <method xref="AllE@apros-nd">
+                          <premise xref="hyp3"/>
+                        </method>
+                      </derive>
+                      <derive xml:id="der13">
+                        <FMP>
+                          <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+                            <m:mrow>
+                              <m:mo>not</m:mo>
+                              <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                              <m:mrow>
+                                <m:mo>Q</m:mo>
+                                <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                                <m:mi>w</m:mi>
+                                <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                              </m:mrow>
+                              <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                            </m:mrow>
+                          </m:math>
+                        </FMP>
+                        <method xref="AndEr@apros-nd">
+                          <premise xref="der12"/>
+                        </method>
+                      </derive>
+                      <derive xml:id="der14">
+                        <FMP>
+                          <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+                            <m:mo>FALSUM</m:mo>
+                          </m:math>
+                        </FMP>
+                        <method xref="NotQ@apros-nd">
+                          <premise xref="hyp9"/>
+                          <premise xref="der13"/>
+                        </method>
+                      </derive>
+                    </proof>
+                  </method>
+                </derive>
+              </proof>
+            </method>
+          </derive>
+          <derive xml:id="der4">
+            <FMP>
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+                <m:mrow>
+                  <m:mo>exists</m:mo>
+                  <m:mi>x</m:mi>
+                  <m:mo mcd:egroup="separator" separator="true" xmlns:mcd="http://www.w3.org/ns/mathml-cd">.</m:mo>
+                  <m:mrow>
+                    <m:mo>P</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                    <m:mi>x</m:mi>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                  </m:mrow>
+                </m:mrow>
+              </m:math>
+            </FMP>
+            <method xref="ExI@apros-nd">
+              <premise xref="der8"/>
+            </method>
+          </derive>
+        </proof>
+      </method>
+    </derive>
+  </proof>
+</omdoc>

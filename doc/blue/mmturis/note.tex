@@ -1,0 +1,203 @@
+\documentclass[12pt]{article}
+\usepackage{a4wide,url}
+\usepackage[hyper]{acronyms}
+\usepackage{lstomdoc,xmlindex}
+\usepackage[show]{ed}
+\usepackage[eso-foot,today]{svninfo}
+\usepackage{hyperref}
+\svnInfo $Id: note.tex 8059 2008-09-22 09:18:28Z kohlhase $
+\svnKeyword $HeadURL: https://svn.omdoc.org/repos/omdoc/trunk/doc/blue/mmturis/note.tex $
+\lstset{language=[1.6]OMDoc,basicstyle=\scriptsize}
+\def\llquote#1{\ensuremath{\langle\kern-.25em\langle\hbox{\sl{#1}}\rangle\kern-.25em\rangle}}
+
+\title{MMT URIs for OMDoc 1.6}
+\author{Michael Kohlhase}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+  We propose a new URI scheme tailored to referencing semantic objects in the {\omdocv2}
+  format and discuss implementation issues.
+\end{abstract}
+
+\section{Introduction}
+
+Uniform Resource Identifiers (URI~\cite{BerFie:uri98}\footnote{Actually --- following
+  general W3C practice --- we use IRIs (Internationalized Resource
+  Identifiers~\cite{DueSui:iri05}) which extend the URI character set to almost all of
+  {\unicode} throughout this note without explicitly saying so. IRIs us to use more
+  sensible names in {\omdoc}. The only processing overhead involved in this is that IRIs
+  must be URI-encoded before being sent over the wire.}) are sometimes called the
+``plumbing of the web'', and indeed, the ability to identify and retrieve resources via a
+universal reference is one of the key innovations that made the world wide web
+possible. This is even more true for the ``Semantic Web''~\cite{Berners-Lee:SemanticWeb},
+where relations between resources are made explicit. So it is no surprise that the
+foundations RDF~\cite{manola04:rdfprimer} and OWL~\cite{McGvHa:owl04} use URIs as
+identifiers of semantic objects.
+
+The main utility of URIs comes from the the fact that they can be used to locate resources
+deployed by a large set of methods, ranging from static files on web servers to virtual
+resources that are created by web services upon requests: static files on web servers
+lower the entry barrier for authors participating in web content creation and web services
+allow for much of the richness of the data web environment.
+
+In this note we propose a new URI scheme tailored to referencing semantic objects in the
+{\omdocv2} format and discuss implementation issues.
+
+\section{Reference in {\omdocv1}}
+
+In {\omdocv{1.2}}~\cite{Kohlhase:omdoc1.2}, we also make use of URIs for identifying
+objects, e.g. in the {\attribute{for}{imports}} attribute in {\element{imports}}
+elements. Implicitly we restricted the use of URIs in {\omdocv{1.2}} to URLs (Uniform
+Resource Locators; i.e. they actually locate a resource that can be retrieved); basically
+restricting ourselves to the {\texttt{html}} web, where document fragments are identified
+by {\attributeshort[ns-attr=xml]{id}} attributes and identified by fragment identifiers of
+the form {\texttt{\#foo}}.  In {\omdocv{1.1}} we even had special URI fragment identifiers
+the form {\texttt{\#byctx(cd,name)}} that allowed to reference --- i.e. identify; not
+necessarily locate --- any {\omdoc} element that has a {\attributeshort{name}} attribute
+(basically only the {\element{symbol}}). Reference ``by context'' is attractive, since
+\begin{itemize}
+\item the uniqueness conditions on {\attributeshort{name}} attributes are less severe than
+  those of {\attributeshort[ns-attr=xml]{id}} attributes which must be document-unique,
+  leading to more composable documents
+\item the referencing scheme is more semantic and thus less brittle against moving
+  document fragments around.
+\end{itemize}
+But as ``reference by context'' this was slightly under-defined, of limited utility, and
+difficult to implement, this proposal was dropped in {\omdocv{1.2}}.
+
+\section{Semantic Reference in {\omdocv2}} 
+
+For {\omdocv{2}}, we are fundamentally rethinking how we want to reference semantic
+objects in {\omdoc}. In particular, in the MMT module system~\cite{RabKoh:WSMSML08} --- a
+new and improved version of the development graph model~\cite{MosAutHut:edgwh01} that
+underlies {\omdocv{1.2}} --- we have extended the objects that have
+{\attributeshort{name}} attributes to all semantic objects, including theory
+morphisms. This leads to totally new application of semantic reference. We can identify
+{\omdoc} document fragments that are not explicitly represented in the {\omdoc} document
+(collection), but only virtually induced by the surface representation as part of the
+``flattened document (collection)''. Note that flattening can lead to an exponential
+increase in size of the document, conversely MMT modularization can lead to extended
+theory reuse and to much more concise documents. Moreover, non-explicit versions of this
+technique have been used extensively in developments of mathematics like the Bourbaki
+collection~\cite{Bourbaki:a68,Bourbaki:a74}; see~\cite{Laubner:utgmm07} for a discussion.
+
+The ability to reference the whole flattened document collection considerably increases
+the utility of semantic referencing in {\omdoc}, but also highlights the implementation
+problems. I claim that the the latter are aggravated by our attempts to get by with
+Uniform Resource {\emph{Locators}} rather than fully embracing the the idea to use URIs to
+{\emph{identify resources}} and leave the retrieval of the resources to another part of
+the information architecture.
+
+\section{A new Resource Identification Scheme or {\omdoc}}
+
+I propose a new URI scheme for identifying semantic objects in {\omdocv2}, based on the
+MMT system, which will be a central organizing principle in {\omdocv2}. The MMT system
+uses triples $\langle g,t,n\rangle$ for referencing, where $g$ is the URI of a document,
+$t$ is a theory path, and $n$ is a complex name. These correspond to, but greatly extend
+the {\openmath}~\cite{BusCapCar:2oms04} referencing triple given by the
+{\attribute{cdbase}{OMS}}\ednote{There is still a mismatch here between the use of
+  {\tt{cdbase}} in {\openmath} and the MMT usage. This should be taken care of before
+  deploying.}, {\attribute{cd}{OMS}}, and {\attribute{name}{OMS}} attributes on
+{\element{OMS}} elements. {\cite{RabKoh:WSMSML08}} also suggests a scheme for encoding
+these as regular URIs, but the scheme has the serious drawback that the MMT triple cannot
+be parsed back from URIs. BTW, the URI encoding of {\openmath} triples currently proposed
+in the MathML3 specification has the same problem.
+
+The new URI scheme for a MMT triple $\langle g,t,n\rangle$ is
+{\texttt{mmt-$\llquote{g}$?cd=$\llquote{t}$;name=$\llquote{n}$}} for instance, the MMT URI
+for the symbol {\texttt{plus}} in the {\texttt{arith1}} content dictionary would be 
+
+\begin{verbatim}
+  mmt-http://cds.omdoc.org/omstd/arith1?cd=arith1;name=plus
+\end{verbatim}
+
+which is still quite manageable to write by hand. The beauty of this approach which puts
+the semantic information into the query part of a URI is that we can add other
+specification items to it. Most importantly for us: version information, e.e. 
+
+\begin{verbatim}
+  mmt-http://cds.omdoc.org/omstd/arith1?cd=arith1;name=plus;revision=4711
+\end{verbatim}
+
+Of course, we can have relative URIs as well: if $g$ (the ``cdbase'') is known, then we
+just have {\texttt{mmt:?cd=arith1;name=plus}}. We might even go the extra mile and define
+{\texttt{mmt:plus@arith1}} as a synonym of the above.
+
+\section{Retrieval of MMT URIs}
+
+A great problem of using URIs is that it becomes totally unclear how to retrieve them. For
+some URI schemes, this can be solved by a simple cataloging service. In the {\omdoc}
+context this is much more difficult, since referencing the flattened collection requires
+non-trivial transformations. On the web services side, this functionality can be offered
+by the {\jomdoc} library~\cite{JOMDoc:webpage} or --- based on that --- by the {\ombase}
+system~\cite{OMBase:webpage}. But for a low entry barrier into {\omdoc} publication, we
+also want to accommodate for a way to deploy static {\omdoc} documents on simple web
+servers. On the other hand to achieve a low entry barrier for application developers mmt
+URIs should be easy to handle in applications like {\xslt} style sheets.
+
+The main idea to achieve this is to externalize the flattening from the retrieval process
+which is relegated to regular retrieval methods. In the simplest case, we have a MMT web
+service MMTWS running at \url{http://mmt.omdoc.org/mmtws}. Then we can process the MMT URL
+above by rewriting it to
+
+\begin{verbatim}
+  http://mmt.omdoc.org/mmtws?
+     doc=http://cds.omdoc.org/omstd/arith1;cd=arith1;name=plus
+\end{verbatim}
+
+by dropping the {\texttt{mmt}} prefix and moving the URI part before the query into the
+query\ednote{I am not sure here, do we need to URI-encode the URI here? I think now}. This
+URI the MMTWS processes by loading \url{http://cds.omdoc.org/omstd/arith1.omdoc},
+flattening the theory {\texttt{arith1}} --- possibly loading imported theories, and
+returning the element with name {\texttt{plus}} from the flattened theory as an {\omdoc}
+fragment\ednote{we need to specify how to transport {\omdoc} fragments over the wire, so
+  that they remain contextualized}. The beauty of this setup is that
+\begin{itemize}
+\item the rewriting step is the only think that needs to be done by the application
+  developer. Any URI library or just raw string processing should this a relatively simple
+  task.
+\item {\omdoc} authors can still deploy {\omdoc} documents or collections as static files
+  on web servers without losing MMT modularity.
+\end{itemize}
+Thus it satisfies the ``low entry barrier'' requirement stated above.
+
+\section{Building MMTWS with the KWARC Toolkit}
+
+The MMTWS should be a relatively simple extension of the {\jomdoc} library once it can do
+theory flattening. Probably Florian already has a {\scala} implementation that is close to
+working for this, and he has been playing with the {\scala} web services toolkit I hear. 
+
+The MMTWS functionality could be enhanced in two ways in the future. The first idea is
+that we can just export a {\texttt{mmtget}} function from the {\jomdoc} library that can
+be directly called from say the {\texttt{saxon}} {\xslt} processor. This would probably be
+a good interface function for building MMTWS anyway. 
+
+The MMTWS web service could be based on {\ombase} instead of just {\jomdoc}, then it would
+have a caching facility and the web service would not have to load the relevant files over
+and over again. Assuming that most of the URIs used in the {\omdoc} documents are MMT URIs
+that are hosted by {\ombase} knowledge base services, most of the load operations will be
+{\svn} update operations that only move diffs over the wire. I can see this as the
+beginning of a very effective and attractive {\ombase} cache network and I imagine always
+running a MMTWS/{\ombase} on my laptop, which would make me relatively independent of the
+network when I write {\omdoc} while traveling. 
+
+\section{Caveats and Text Roadmap}
+
+This note is still in a very early stage, and is intended mainly as a vehicle or
+discussion between {\omdoc} developers. In particular, the URI scheme and all names are
+provisional and will probably evolve over time. At a later and more mature stage, part of
+the text might go into~\cite{RabKoh:WSMSML08} and/or the {\omdocv{1.6}} specification.
+
+\section{Acknowledgements}
+This proposal has been greatly influenced by the HTTP Getter utility~\cite{getter:webpage}
+developed by Claudio Sacerdoti Coen and Stefano Zacchiroli for the HELM
+project~\cite{AspPad:hsmw01} at Bologna. Though I have been collaborating with them for
+years, I have never quite understood the relevance of the HTTP Getter until now.
+
+\bibliographystyle{alphahurl} 
+\bibliography{kwarc}
+\end{document}
+
+% LocalWords:  ns attr xml byctx cd MMT cdbase mmt arith MMTWS mmtget saxon
+% LocalWords:  Sacerdoti Coen Zacchiroli kwarc

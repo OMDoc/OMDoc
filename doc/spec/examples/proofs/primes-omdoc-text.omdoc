@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xml:id="primes-omdoc-text.omdoc"
+  xmlns="http://omdoc.org/ns"
+  xmlns:cc="http://creativecommons.org/ns"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  version="1.6">
+<metadata>
+  <dc:date action="created"> 2004-10-08T11:59:38Z </dc:date>
+  <dc:title xml:lang="en"> primes-omdoc-text </dc:title>
+  <dc:creator role="aut"> Michael Kohlhase </dc:creator>
+  <dc:source>  </dc:source>
+  <dc:date action="updated"> 2004-10-08T11:59:38Z </dc:date>
+  <dc:type> Text </dc:type>
+  <dc:format> application/omdoc+xml </dc:format>
+  <dc:rights>Copyright (c) 2004 Michael Kohlhase</dc:rights>
+  <cc:license>
+    <cc:permissions reproduction="permitted" distribution="permitted" derivative_works="permitted"/>
+    <cc:prohibitions commercial_use="permitted"/>
+    <cc:requirements notice="required" copyleft="required" attribution="required"/>
+  </cc:license>
+</metadata>
+
+<assertion xml:id="a1">
+  <CMP>There are infinitely many prime numbers.</CMP>
+</assertion>
+<proof xml:id="p" for="#a1">
+  <omtext xml:id="intro">
+    <CMP>We need to prove that the set $P$ of all prime numbers is not finite.</CMP>
+  </omtext>
+  <derive xml:id="d1">
+    <CMP>We proceed by assuming that $P$ is finite and reaching a contradiction.</CMP>
+    <method>
+      <proof xml:id="p1">
+        <hypothesis xml:id="h2"><CMP>Let $P$ be finite.</CMP></hypothesis>
+        <derive xml:id="d3">
+          <CMP>Then $P=\{p_1,\ldots,p_n\}$ for some $p_i$.</CMP>
+          <method><premise xref="#h2"/></method>
+        </derive>
+        <symbol name="q"/>
+        <definition xml:id="d4" for="q" type="informal">
+          <CMP>Let $q \stackrel{def}{=} p_1 \cdots p_n + 1$</CMP>
+        </definition>
+        <derive xml:id="d5">
+          <CMP> Since for each $p_i\in P$ we have $q>p_i$, we conclude $q\notin P$.</CMP>
+        </derive>  
+        <omtext xml:id="c6">
+          <CMP>We prove the absurdity by showing that $q$ is prime:</CMP>
+        </omtext>  
+        <derive xml:id="d7">
+          <CMP>For each $p_i \in P$ we have $q = p_i k + 1$ for some
+            natural number $k$, so $p_i$ can not divide $q$;</CMP>
+          <method><premise xref="#d4"/></method>
+        </derive>
+        <derive xml:id="d8">
+          <CMP>$q$ must be prime as $P$ is the set of all prime numbers.</CMP> 
+          <method><premise xref="#d7"/></method>
+        </derive>
+        <derive xml:id="d9">
+          <CMP>Thus we have contradicted our assumption</CMP>
+          <method><premise xref="#d5"/><premise xref="#d8"/></method>
+        </derive>  
+      </proof>
+    </method>
+  </derive>  
+  <derive xml:id="d10" type="conclusion">
+    <CMP>This proves the assertion.</CMP>
+  </derive>  
+</proof>
+
+</omdoc>

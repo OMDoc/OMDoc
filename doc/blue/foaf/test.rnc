@@ -1,0 +1,5 @@
+typeof-revision = attribute typeof {"rev:Revision"}
+
+resource-revision = element resource {typeof-revision,link-content|link-created}
+
+

@@ -1,0 +1,565 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  
+       xmlns="http://omdoc.org/ns"
+       xmlns:om="http://www.openmath.org/OpenMath"
+       xmlns:m="http://www.w3.org/1998/Math/MathML"
+       xmlns:o="http://omdoc.org/ns"
+       xml:id="nums1-omdoc">
+
+<metadata>
+  <dc:title>The OpenMath Content Dictionary nums1.ocd  in OMDoc form</dc:title>
+  <dc:creator role="trl">Michael Kohlhase</dc:creator>
+  <dc:creator role="ant">The OpenMath Society</dc:creator>
+  <dc:date> 2001-03-12T00:00:00</dc:date>
+  <dc:source>Derived from the OpenMath CD http://www.openmath.org/cd/nums1.ocd.</dc:source>
+  <dc:type>Text</dc:type>
+  <dc:format>application/omdoc+xml</dc:format>
+  <dc:rights>Copyright (c) 2000-2002 Michael Kohlhase;
+    This OMDoc content dictionary is released under the OpenMath license:
+    http://monet.nag.co.uk/openmath/cdfiles/license.html
+  </dc:rights>
+  <dc:description>
+    This CD is intended to be `compatible' with the MathML view of
+    constructors for numbers (integers to an arbitrary base,
+    rationals) and symbols for some common numerical constants.
+
+This CD holds a set of symbols for creating numbers, including
+some defined constants (i.e. nullary constructors).
+</dc:description>
+</metadata>
+
+<theory xml:id="nums1">
+  <imports from="sts.omdoc#sts"/>
+  <imports from="setname1.omdoc#setname1"/>
+
+<symbol name="based_integer" xml:id="based_integer">
+<metadata>
+<dc:description> 
+    This symbol represents the constructor function for integers,
+    specifying the base. It takes two arguments, the first is a positive 
+    integer to denote the base to which the number is represented, the
+    second argument is a string which contains an optional sign and the
+    digits of the integer, using 0-9a-z (as a consequence of this no radix
+    greater than 35 is supported). Base 16 and base 10 are already
+    covered in the encodings of integers.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMV name="PositiveInteger"/>
+	<OMV name="DigitString"/>
+	<OMV name="BasedInteger"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+
+<theory xml:id="nums1-bi">
+<imports from="transc1.omdoc#transc1"/>
+<imports from="limit1.omdoc#limit1"/>
+<imports from="integer1.omdoc#integer1"/>
+<imports from="fns1.omdoc#fns1"/>
+<imports from="interval1.omdoc#interval1"/>
+<imports from="alg1.omdoc#alg1"/>
+<imports from="arith1.omdoc#arith1"/>
+<imports from="set1.omdoc#set1"/>
+<imports from="logic1.omdoc#logic1"/>
+<imports from="relation1.omdoc#relation1"/>
+
+<example xml:id="based_integer-ex-1" type="for" for="#based_integer">
+  <CMP> A representation of 8 (radix 10) base 8</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="relation1" name="eq"/>
+      <OMI> 8 </OMI>
+      <OMA>
+	<OMS cd="nums1" name="based_integer"/>
+	<OMI> 8 </OMI>
+	<OMSTR> 10 </OMSTR>
+      </OMA>
+    </OMA>
+  </OMOBJ>
+</example>
+</theory>
+
+<symbol name="rational" xml:id="rational">
+<metadata>
+<dc:description> 
+    This symbol represents the constructor function for rational numbers.
+    It takes two arguments, the first is an integer p to denote the
+    numerator and the second a nonzero integer q to denote the denominator
+    of the rational p/q.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMS name="Z" cd="setname1"/>
+	<OMV name="NonZeroInteger"/>
+	<OMS name="Q" cd="setname1"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="nums1" name="rational" o:cr="fun"/>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="nums1" o:cr="fun">rational</m:csymbol>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <m:mfrac>
+        <render name="arg1" precedence="600"/>
+        <render name="arg2" precedence="600"/>
+      </m:mfrac>
+    </rendering>
+  </notation>
+
+<theory xml:id="nums1-rational">
+<imports from="transc1.omdoc#transc1"/>
+<imports from="limit1.omdoc#limit1"/>
+<imports from="integer1.omdoc#integer1"/>
+<imports from="fns1.omdoc#fns1"/>
+<imports from="interval1.omdoc#interval1"/>
+<imports from="alg1.omdoc#alg1"/>
+<imports from="arith1.omdoc#arith1"/>
+<imports from="set1.omdoc#set1"/>
+<imports from="logic1.omdoc#logic1"/>
+<imports from="relation1.omdoc#relation1"/>
+
+<example xml:id="rational-ex-1" type="for" for="#rational">
+  <CMP>A representation of the rational number 1/2</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="nums1" name="rational"/>
+      <OMI> 1 </OMI>
+      <OMI> 2 </OMI>
+    </OMA>
+  </OMOBJ>
+</example>
+</theory>
+
+<symbol name="infinity" xml:id="infinity">
+  <metadata>
+  <dc:description>A symbol to represent the notion of infinity.</dc:description><dc:subject>infinity</dc:subject></metadata>
+  <type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="Infinity"/></OMOBJ>
+  </type>
+</symbol>
+  <notation>
+    <prototype>
+      <om:OMS cd="nums1" name="infinity"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="nums1">infinity</m:csymbol>
+    </prototype>
+    <rendering>
+      <m:mo>∞</m:mo>
+    </rendering>
+  </notation>
+
+<theory xml:id="nums1-infinity">
+<imports from="transc1.omdoc#transc1"/>
+<imports from="limit1.omdoc#limit1"/>
+<imports from="integer1.omdoc#integer1"/>
+<imports from="fns1.omdoc#fns1"/>
+<imports from="interval1.omdoc#interval1"/>
+<imports from="alg1.omdoc#alg1"/>
+<imports from="arith1.omdoc#arith1"/>
+<imports from="set1.omdoc#set1"/>
+<imports from="logic1.omdoc#logic1"/>
+<imports from="relation1.omdoc#relation1"/>
+
+<assertion xml:id="infinity-prop-1" type="lemma">
+  <CMP> if x is a real number then x &lt; infinity </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="logic1" name="implies"/>
+	<OMA>
+	  <OMS cd="set1" name="in"/>
+	  <OMV name="x"/>
+	  <OMS cd="setname1" name="R"/>
+	</OMA>
+	<OMA>
+	  <OMS cd="relation1" name="lt"/>
+	  <OMV name="x"/>
+	  <OMS cd="nums1" name="infinity"/>
+	</OMA>
+      </OMA>
+    </OMOBJ>
+  </FMP>
+</assertion>
+</theory>
+
+<symbol name="e" xml:id="e">
+<metadata>
+<dc:description> 
+    This symbol represents the base of the natural logarithm, approximately 2.718.
+    See Abramowitz and Stegun, Handbook of Mathematical Functions,
+    section 4.1.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMS name="R" cd="setname1"/>
+    </OMOBJ>
+  </type>
+</symbol>
+
+<theory xml:id="nums1-e">
+<imports from="transc1.omdoc#transc1"/>
+<imports from="limit1.omdoc#limit1"/>
+<imports from="integer1.omdoc#integer1"/>
+<imports from="fns1.omdoc#fns1"/>
+<imports from="interval1.omdoc#interval1"/>
+<imports from="alg1.omdoc#alg1"/>
+<imports from="arith1.omdoc#arith1"/>
+<imports from="set1.omdoc#set1"/>
+<imports from="logic1.omdoc#logic1"/>
+<imports from="relation1.omdoc#relation1"/>
+
+<assertion xml:id="e-prop-1" type="lemma">
+  <CMP> e = the sum as j ranges  from 0 to infinity of 1/(j!) </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="relation1" name="eq"/>
+	<OMS cd="nums1" name="e"/>
+	<OMA>
+	  <OMS cd="arith1" name="sum"/>
+	  <OMA>
+	    <OMS cd="interval1" name="integer_interval"/>
+	    <OMS cd="alg1" name="zero"/>
+	    <OMS cd="nums1" name="infinity"/>
+	  </OMA>
+	  <OMBIND>
+	    <OMS cd="fns1" name="lambda"/>
+	    <OMBVAR>
+	      <OMV name="j"/>
+	    </OMBVAR>
+	    <OMA>
+	      <OMS cd="arith1" name="divide"/>
+	      <OMS cd="alg1" name="one"/>
+	      <OMA>
+		<OMS cd="integer1" name="factorial"/>
+		<OMV name="j"/>
+	      </OMA>
+	    </OMA>
+	  </OMBIND>
+	</OMA>
+      </OMA>
+    </OMOBJ>
+  </FMP>
+</assertion>
+<example xml:id="e-ex-3" type="for" for="#e">
+  <CMP> 2.718 = The decimal approximation to 3 significant places of e</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="relation1" name="approx"/>
+      <OMF dec="2.718"/>
+      <OMS cd="nums1" name="e"/>
+    </OMA>
+  </OMOBJ>
+</example>
+</theory>
+
+<symbol name="i" xml:id="i">
+<metadata>
+<dc:description> 
+    This symbol represents the square root of -1.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMS name="C" cd="setname1"/>
+    </OMOBJ>
+  </type>
+</symbol>
+
+<theory xml:id="nums1-i">
+<imports from="transc1.omdoc#transc1"/>
+<imports from="limit1.omdoc#limit1"/>
+<imports from="integer1.omdoc#integer1"/>
+<imports from="fns1.omdoc#fns1"/>
+<imports from="interval1.omdoc#interval1"/>
+<imports from="alg1.omdoc#alg1"/>
+<imports from="arith1.omdoc#arith1"/>
+<imports from="set1.omdoc#set1"/>
+<imports from="logic1.omdoc#logic1"/>
+<imports from="relation1.omdoc#relation1"/>
+
+<assertion xml:id="i-prop-1" type="lemma">
+  <CMP>
+    <legacy format="mocktex">i^2 = -1</legacy>
+  </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="relation1" name="eq"/>
+	<OMA>
+	  <OMS cd="arith1" name="power"/>
+	  <OMS cd="nums1" name="i"/>
+	  <OMI> 2 </OMI>
+	</OMA>
+	<OMA>
+	  <OMS cd="arith1" name="unary_minus"/>
+	  <OMS cd="alg1" name="one"/>
+	</OMA>
+      </OMA>
+    </OMOBJ>
+  </FMP>
+</assertion>
+</theory>
+
+<symbol name="pi" xml:id="pi">
+<metadata>
+<dc:description> A symbol to convey the notion of pi, approximately 3.142.
+    The ratio of the circumference of a circle to its diameter.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMS name="R" cd="setname1"/>
+    </OMOBJ>
+  </type>
+</symbol>
+  <notation>
+    <prototype>
+      <om:OMS cd="nums1" name="pi"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="nums1">pi</m:csymbol>
+    </prototype>
+    <rendering>
+      <m:mo>π</m:mo>
+    </rendering>
+  </notation>
+  
+<theory xml:id="nums1-pi">
+<imports from="transc1.omdoc#transc1"/>
+<imports from="limit1.omdoc#limit1"/>
+<imports from="integer1.omdoc#integer1"/>
+<imports from="fns1.omdoc#fns1"/>
+<imports from="interval1.omdoc#interval1"/>
+<imports from="alg1.omdoc#alg1"/>
+<imports from="arith1.omdoc#arith1"/>
+<imports from="set1.omdoc#set1"/>
+<imports from="logic1.omdoc#logic1"/>
+<imports from="relation1.omdoc#relation1"/>
+
+<assertion xml:id="pi-prop-1" type="lemma">
+  <CMP> pi = 4 * the sum as j ranges from 0 to infinity of ((1/(4j+1))-(1/(4j+3))) </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="relation1" name="eq"/>
+	<OMS cd="nums1" name="pi"/>
+	<OMA>
+	  <OMS cd="arith1" name="times"/>
+	  <OMI> 4 </OMI>
+	  <OMA>
+	    <OMS cd="arith1" name="sum"/>
+	    <OMA>
+	      <OMS cd="interval1" name="integer_interval"/>
+	      <OMS cd="alg1" name="zero"/>
+	      <OMS cd="nums1" name="infinity"/>
+	    </OMA>
+	    <OMBIND>
+	      <OMS cd="fns1" name="lambda"/>
+	      <OMBVAR>
+		<OMV name="j"/>
+	      </OMBVAR>
+	      <OMA>
+		<OMS cd="arith1" name="minus"/>
+		<OMA>
+		  <OMS cd="arith1" name="divide"/>
+		  <OMS cd="alg1" name="one"/>
+		  <OMA>
+		    <OMS cd="arith1" name="plus"/>
+		    <OMA>
+		      <OMS cd="arith1" name="times"/>
+		      <OMI> 4 </OMI>
+		      <OMV name="j"/>
+		    </OMA>
+		    <OMS cd="alg1" name="one"/>
+		  </OMA>
+		</OMA>
+		<OMA>
+		  <OMS cd="arith1" name="divide"/>
+		  <OMS cd="alg1" name="one"/>
+		  <OMA>
+		    <OMS cd="arith1" name="plus"/>
+		    <OMA>
+		      <OMS cd="arith1" name="times"/>
+		      <OMI> 4 </OMI>
+		      <OMV name="j"/>
+		    </OMA>
+		    <OMI> 3 </OMI>
+		  </OMA>
+		</OMA>
+	      </OMA>
+	    </OMBIND>
+	  </OMA>
+	</OMA>
+      </OMA>
+    </OMOBJ>
+  </FMP>
+</assertion>
+<example xml:id="pi-ex-3" type="for" for="#pi">
+  <CMP> 3.142 = The decimal approximation to 3 significant places of
+    pi</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="relation1" name="approx"/>
+      <OMF dec="3.142"/>
+      <OMS cd="nums1" name="pi"/>
+    </OMA>
+  </OMOBJ>
+</example>
+</theory>
+
+<symbol name="gamma" xml:id="gamma">
+<metadata>
+<dc:description> 
+    A symbol to convey the notion of the gamma constant
+    as defined in Abramowitz and Stegun, Handbook of Mathematical
+    Functions, section 6.1.3. It is the limit of
+    1 + 1/2 + 1/3 + ... + 1/m - ln m
+    as m tends to infinity, this is approximately 0.5772 15664.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMS name="R" cd="setname1"/>
+    </OMOBJ>
+  </type>
+</symbol>
+<theory xml:id="nums1-gamma">
+<imports from="transc1.omdoc#transc1"/>
+<imports from="limit1.omdoc#limit1"/>
+<imports from="integer1.omdoc#integer1"/>
+<imports from="fns1.omdoc#fns1"/>
+<imports from="interval1.omdoc#interval1"/>
+<imports from="alg1.omdoc#alg1"/>
+<imports from="arith1.omdoc#arith1"/>
+<imports from="set1.omdoc#set1"/>
+<imports from="logic1.omdoc#logic1"/>
+<imports from="relation1.omdoc#relation1"/>
+
+<assertion xml:id="gamma-prop-1" type="lemma">
+  <CMP><legacy format="mocktex">gamma = limit_(m -&gt; infinity)(sum_(j ranges from 1 to m)(1/j) - ln m)</legacy></CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="relation1" name="eq"/>
+	<OMS cd="nums1" name="gamma"/>
+	<OMA>
+	  <OMS cd="limit1" name="limit"/>
+	  <OMS cd="nums1" name="infinity"/>
+	  <OMS cd="limit1" name="below"/>
+	  <OMBIND>
+	    <OMS cd="fns1" name="lambda"/>
+	    <OMBVAR>
+	      <OMV name="m"/>
+	    </OMBVAR>
+	    <OMA>
+	      <OMS cd="arith1" name="minus"/>
+	      <OMA>
+		<OMS cd="arith1" name="sum"/>
+		<OMA>
+		  <OMS cd="interval1" name="integer_interval"/>
+		  <OMS cd="alg1" name="one"/>
+		  <OMV name="m"/>
+		</OMA>
+		<OMBIND>
+		  <OMS cd="fns1" name="lambda"/>
+		  <OMBVAR>
+		    <OMV name="j"/>
+		  </OMBVAR>
+		  <OMA>
+		    <OMS cd="arith1" name="divide"/>
+		    <OMI> 1 </OMI>
+		    <OMV name="j"/>
+		  </OMA>
+		</OMBIND>
+	      </OMA>
+	      <OMA>
+		<OMS cd="transc1" name="ln"/>
+		<OMV name="m"/>
+	      </OMA>
+	    </OMA>
+	  </OMBIND>
+	</OMA>
+      </OMA>
+    </OMOBJ>
+  </FMP>
+</assertion>
+<example xml:id="gamma-ex-3" type="for" for="#gamma">
+  <CMP> 0.577 = The decimal approximation to 3 significant places of gamma</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="relation1" name="approx"/>
+      <OMF dec="0.577"/>
+      <OMS cd="nums1" name="gamma"/>
+    </OMA>
+  </OMOBJ>
+</example>
+</theory>
+
+<symbol name="NaN" xml:id="NaN">
+<metadata>
+<dc:description> 
+    A symbol to convey the notion of not-a-number.
+    The result of an ill-posed floating computation.
+    See IEEE standard for floating point representations.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMV name="IEEEFloat"/>
+    </OMOBJ>
+  </type>
+</symbol>
+
+<theory xml:id="nums1-NaN">
+<imports from="transc1.omdoc#transc1"/>
+<imports from="limit1.omdoc#limit1"/>
+<imports from="integer1.omdoc#integer1"/>
+<imports from="fns1.omdoc#fns1"/>
+<imports from="interval1.omdoc#interval1"/>
+<imports from="alg1.omdoc#alg1"/>
+<imports from="arith1.omdoc#arith1"/>
+<imports from="set1.omdoc#set1"/>
+<imports from="logic1.omdoc#logic1"/>
+<imports from="relation1.omdoc#relation1"/>
+
+<assertion xml:id="NaN-prop-1" type="lemma">
+  <CMP> NaN is not equal to NaN </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="relation1" name="neq"/>
+	<OMS cd="nums1" name="NaN"/>
+	<OMS cd="nums1" name="NaN"/>
+      </OMA>
+    </OMOBJ>
+  </FMP>
+</assertion>
+</theory>
+</theory>
+</omdoc>
+

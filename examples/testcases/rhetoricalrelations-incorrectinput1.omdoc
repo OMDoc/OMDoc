@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+
+<!-- This example is no longer valid according to the new RelaxNG grammar. The changes were performed in the omgroup and omtext elements! -->
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  xmlns="http://omdoc.org/ns"
+xml:id="rhetoricalrelations-incorrectinput1.omdoc">
+
+<metadata>
+<dc:title>test</dc:title>
+<dc:creator role="aut">hf</dc:creator>
+<dc:date>2001-12-12T00:00:00</dc:date>
+</metadata>
+<!-- incorrect inputs -->
+
+<!-- 1. adding a not-supported attribute to the nucleus phrase -->
+
+<omgroup xml:id="gr2.2" type="introduction" layout="enumeration">
+	<omtext xml:id="txt2.2" type="motivation">
+	  <CMP xml:id="text2.2">
+		<phrase xml:id="sat2.3" type="satellite" relation="antithesis" for="#nuc2.2">Motivation</phrase>
+		<phrase xml:id="nuc2.2" type="nucleus" for="#test3">Nucleus</phrase>
+		<phrase xml:id="sat2.4" type="satellite" relation="elaboration" for="#nuc2.2">Introduction</phrase>
+	  </CMP>
+	</omtext>
+</omgroup>
+
+</omdoc>

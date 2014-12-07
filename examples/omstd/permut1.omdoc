@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  xmlns="http://omdoc.org/ns"
+xml:id="permut1-omdoc">
+
+
+  <dc:title>The OpenMath Content Dictionary permut1.ocd  in OMDoc form</dc:title>
+  <dc:creator role="trl">Michael Kohlhase</dc:creator>
+  <dc:creator role="ant">The OpenMath Society</dc:creator>
+  <dc:date> 1999-05-19T00:00:00</dc:date>
+  <dc:source>Derived from the OpenMath CD http://www.openmath.org/cd/permut1.ocd.</dc:source>
+  <dc:type>Text</dc:type>
+  <dc:format>application/omdoc+xml</dc:format>
+  <dc:rights>Copyright (c) 2000-2002 Michael Kohlhase;
+    This OMDoc content dictionary is released under the OpenMath license:
+    http://monet.nag.co.uk/openmath/cdfiles/license.html
+  </dc:rights>
+  <dc:description> A CD of functions for permutations </dc:description>
+
+
+<theory xml:id="permut1" cdbase="http://www.openmath.org/cd">
+
+<include from="sts.omdoc#sts"/>
+<include from="logic1.omdoc#logic1"/>
+<include from="relation1.omdoc#relation1"/>
+<include from="fns2.omdoc#fns2"/>
+<include from="set1.omdoc#set1"/>
+<include from="interval1.omdoc#interval1"/>
+<include from="alg1.omdoc#alg1"/>
+<include from="arith1.omdoc#arith1"/>
+<include from="linalg1.omdoc#linalg1"/>
+<include from="linalg2.omdoc#linalg2"/>
+<include from="linalg4.omdoc#linalg4"/>
+
+<omtext xml:id="CDComment-10" type="introduction">
+  <CMP>
+    Written by A. Solomon on 1998-11-19
+    Modified by David Carlisle 1999-04-28
+    Renamed from comb to permut1 1999-05-19
+    Modified by A. Solomon to remove ambiguity from definition 
+    of Permutation as reported by JHD 2000-02-05.
+  </CMP>
+</omtext>
+<symbol name="permutation" xml:id="permutation">
+
+<dc:description>
+    The n-ary constructor permutation. The arguments are the integers 
+    1 .. n in some order.  permutation(p1, ..., pn) is the function 
+    which takes 1 to p1, 2 to p2 and so on.
+</dc:description>
+
+<type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMA>
+	  <OMS name="nary" cd="sts"/>
+	  <OMV name="PositiveInteger"/>
+	</OMA>
+	<OMV name="Permutation"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+<assertion xml:id="permutation-prop-1" type="lemma">
+  <CMP><legacy format="mocktex">permutation(2,3,...,n, 1)^n = permutation()</legacy></CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="logic1" name="and"/>
+	<OMA>
+	  <OMS cd="relation1" name="eq"/>
+	  <OMA>
+	    <OMS cd="fns2" name="apply_to_list"/>
+	    <OMS cd="permut1" name="permutation"/>
+	    <OMV name="l"/>
+	  </OMA>
+	  <OMA>
+	    <OMS cd="permut1" name="permutation"/>
+	  </OMA>
+	</OMA>
+	<OMA>
+	  <OMS cd="logic1" name="implies"/>
+	  <OMA>
+	    <OMS cd="set1" name="in"/>
+	    <OMV name="i"/>
+	    <OMA>
+	      <OMS cd="interval1" name="integer_interval"/>
+	      <OMS cd="alg1" name="one"/>
+	      <OMA>
+		<OMS cd="arith1" name="minus"/>
+		<OMV name="n"/>
+		<OMS cd="alg1" name="one"/>
+	      </OMA>
+	    </OMA>
+	  </OMA>
+	  <OMA>
+	    <OMS cd="relation1" name="eq"/>
+	    <OMA>
+	      <OMS cd="linalg1" name="vector_selector"/>
+	      <OMA>
+		<OMS cd="fns2" name="apply_to_list"/>
+		<OMS cd="linalg2" name="vector"/>
+		<OMV name="l"/>
+	      </OMA>
+	      <OMV name="i"/>
+	    </OMA>
+	    <OMA>
+	      <OMS cd="arith1" name="plus"/>
+	      <OMV name="i"/>
+	      <OMS cd="alg1" name="one"/>
+	    </OMA>
+	  </OMA>
+	</OMA>
+	<OMA>
+	  <OMS cd="relation1" name="eq"/>
+	  <OMA>
+	    <OMS cd="linalg1" name="vector_selector"/>
+	    <OMA>
+	      <OMS cd="fns2" name="apply_to_list"/>
+	      <OMS cd="linalg2" name="vector"/>
+	      <OMV name="l"/>
+	    </OMA>
+	    <OMV name="n"/>
+	  </OMA>
+	  <OMS cd="alg1" name="one"/>
+	</OMA>
+	<OMA>
+	  <OMS cd="relation1" name="eq"/>
+	  <OMV name="n"/>
+	  <OMA>
+	    <OMS cd="linalg4" name="size"/>
+	    <OMA>
+	      <OMS cd="fns2" name="apply_to_list"/>
+	      <OMS cd="linalg2" name="vector"/>
+	      <OMV name="l"/>
+	    </OMA>
+	  </OMA>
+	</OMA>
+      </OMA>
+    </OMOBJ>
+  </FMP>
+</assertion>
+<example xml:id="permutation-ex-3" type="for" for="#permutation">
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="relation1" name="eq"/>
+      <OMA>
+	<OMS cd="arith1" name="power"/>
+	<OMA>
+	  <OMS cd="permut1" name="permutation"/>
+	  <OMI> 2 </OMI>
+	  <OMI> 3 </OMI>
+	  <OMI> 1 </OMI>
+	</OMA>
+	<OMI> 3 </OMI>
+      </OMA>
+      <OMA>
+	<OMS cd="permut1" name="permutation"/><!-- The identity permutation -->
+      </OMA>
+    </OMA>
+  </OMOBJ>
+</example>
+</theory>
+</omdoc>

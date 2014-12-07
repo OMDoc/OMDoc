@@ -1,0 +1,89 @@
+# -*- CPERL -*-
+# /=======================================================\ #
+# |      myref.sty - Implementation for LaTeXML           | #
+# |                                                       | #
+# |=======================================================| #
+# |  Part of LaTeXML : http://dlmf.nist.gov/LaTeXML/      | #
+# | Copyright (c) 2006 arXMLiv group                      | #
+# | Released under the GNU Public License                 | #
+# \=======================================================/ #
+
+package LaTeXML::Package::Pool;
+use strict;
+use LaTeXML::Package;
+RequirePackage('keyval');
+
+DefKeyVal('sectioning','id','Semiverbatim');
+DefKeyVal('sectioning','short','Semiverbatim');
+
+DefEnvironment('{tpart} OptionalKeyVals:sectioning {}',
+	                  "<ltx:part ?&KeyVal(#1,'id')(label='&KeyVal(#1,'id')')()>"
+	                  . "<ltx:title>#2</ltx:title>\n"
+	                  . "#body\n"
+	                 . "</ltx:part>");
+
+DefEnvironment('{tchapter} OptionalKeyVals:sectioning {}',
+	                  "<ltx:chapter ?&KeyVal(#1,'id')(label='&KeyVal(#1,'id')')()>"
+	                  . "<ltx:title>#2</ltx:title>\n"
+	                  . "#body\n"
+	                 . "</ltx:chapter>");
+
+DefEnvironment('{tsection} OptionalKeyVals:sectioning {}',
+	                  "<ltx:section ?&KeyVal(#1,'id')(label='&KeyVal(#1,'id')')()>"
+	                  . "<ltx:title>#2</ltx:title>\n"
+	                  . "#body\n"
+	                 . "</ltx:section>");
+
+
+DefEnvironment('{tsubsection} OptionalKeyVals:sectioning {}',
+	                  "<ltx:subsection ?&KeyVal(#1,'id')(label='&KeyVal(#1,'id')')()>"
+	                  . "<ltx:title>#2</ltx:title>\n"
+	                  . "#body\n"
+	                 . "</ltx:subsection>");
+
+DefMacro('\mockpart','\part*{}');
+DefMacro('\mockchapter','\chapter*{}');
+
+DefConstructor('\my@ref{}{}{}',"#1 <omdoc:ref type='cite' xref='#2:#3'/>");
+DefConstructor('\my@sref{}{}{}{}',"#1 <omdoc:ref type='cite' xref='#2:#3'/> and <omdoc:ref type='cite' xref='#2:#4'/>");
+DefConstructor('\my@lref{}{}{}{}',"#1 <omdoc:ref type='cite' xref='#2:#3'/> to <omdoc:ref type='cite' xref='#2:#4'/>");
+
+
+RawTeX('\def\mypartref#1{\my@ref{Part}{part}{#1}}
+\def\mypartsref#1#2{\my@sref{Parts}{part}{#1}{#2}}
+\def\mypartlref#1#2{\my@lref{Parts}{part}{#1}{#2}}
+\def\Mypartlref#1#2{\my@lref{Parts}{part}{#1}{#2}}
+\def\Mypartref#1{\my@ref{Part}{part}{#1}}
+
+\def\mychapref#1{\my@ref{Chapter}{chap}{#1}}
+\def\mychapsref#1#2{\my@sref{Chapters}{chap}{#1}{#2}}
+\def\mychaplref#1#2{\my@lref{Chapters}{chap}{#1}{#2}}
+\def\Mychaplref#1#2{\my@lref{Chapters}{chap}{#1}{#2}}
+\def\Mychapref#1{\my@ref{Chapter}{chap}{#1}}
+
+\def\mysecref#1{\my@ref{Section}{sec}{#1}}
+\def\mysecsref#1#2{\my@sref{Sections}{sec}{#1}{#2}}
+\def\myseclref#1#2{\my@lref{Sections}{sec}{#1}{#2}}
+\def\Mysecref#1{\my@ref{Section}{sec}{#1}}
+
+\def\mysubsecref#1{\my@ref{Subsection}{subsec}{#1}}
+\def\mysubsecsref#1#2{\my@sref{Subsections}{subsec}{#1}{#2}}
+\def\mysubseclref#1#2{\my@lref{Subsections}{subsec}{#1}{#2}}
+\def\Mysubsecref#1{\my@ref{Subsection}{subsec}{#1}}
+
+\def\myappchapref#1{\my@ref{Appendix}{chap}{#1}}
+\def\myappchapsref#1#2{\my@sref{Appendices}{chap}{#1}{#2}}
+\def\myappsecref#1{\my@ref{Appendix}{sec}{#1}}
+\def\myappsecsref#1#2{\my@sref{Appendices}{sec}{#1}{#2}}
+\def\myappseclref#1#2{\my@lref{Appendices}{sec}{#1}{#2}}
+
+\newenvironment{myfig}[2]% label, caption
+{\begin{figure}[!htb]\def\myfiglabel{#1}\def\myfigcaption{{#2}}\begin{center}}
+{\end{center}\caption{\myfigcaption}\label{fig:\myfiglabel}\end{figure}}
+
+\def\myfigref#1{\my@ref{Figure}{fig}{#1}}
+\def\myfigsref#1#2{\my@sref{Figures}{fig}{#1}{#2}}
+\def\myfiglref#1#2{\my@lref{Figures}{fig}{#1}{#2}}
+\def\Myfigref#1{\my@ref{Figure}{fig}{#1}}');
+#**********************************************************************
+1;

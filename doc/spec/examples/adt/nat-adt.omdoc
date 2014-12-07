@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xml:id="nat-adt.omdoc"
+  xmlns="http://omdoc.org/ns"
+  xmlns:cc="http://creativecommons.org/ns"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  version="1.6">
+<metadata>
+  <dc:date action="created"> 2004-10-04T17:34:53Z </dc:date>
+  <dc:title xml:lang="en"> nat-adt </dc:title>
+  <dc:creator role="aut"> Michael Kohlhase </dc:creator>
+  <dc:source>  </dc:source>
+  <dc:date action="updated"> 2004-10-04T17:34:53Z </dc:date>
+  <dc:type> Dataset </dc:type>
+  <dc:format> application/omdoc+xml </dc:format>
+  <dc:rights>Copyright (c) 2004 Michael Kohlhase</dc:rights>
+  <cc:license>
+    <cc:permissions reproduction="permitted" distribution="permitted" derivative_works="permitted"/>
+    <cc:prohibitions commercial_use="permitted"/>
+    <cc:requirements notice="required" copyleft="required" attribution="required"/>
+  </cc:license>
+</metadata>
+
+<theory xml:id="Nat">
+  <adt xml:id="nat-adt">
+    <metadata>
+      <dc:title>Natural Numbers as an Abstract Data Type</dc:title>
+      <dc:description>The Peano Axiomatization of Natural Numbers</dc:description>
+    </metadata>
+    
+    <sortdef name="pos-nats" type="free">
+      <metadata>
+        <dc:description>The set of positive natural numbers</dc:description>
+      </metadata>
+      <constructor name="succ">
+        <metadata><dc:description>The successor function</dc:description></metadata>
+        <argument>
+	  <type system='simpletypes'><OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd='Nat' name="nats"/></OMOBJ></type>
+          <selector name="pred" total="yes">
+            <metadata><dc:description>The predecessor function</dc:description></metadata>
+          </selector>
+        </argument>
+      </constructor>
+      <recognizer name="positive">
+        <metadata>
+          <dc:description>
+            The recognizer predicate for positive natural numbers.
+          </dc:description>
+        </metadata>
+      </recognizer>
+    </sortdef>
+    
+    <sortdef name="nats"  type="free">
+      <metadata><dc:description>The set of natural numbers</dc:description></metadata>
+      <constructor name="zero">
+        <metadata><dc:description>The number zero</dc:description></metadata>
+      </constructor>
+      <insort for="#pos-nats"/>
+    </sortdef>
+  </adt>
+</theory>
+
+</omdoc>

@@ -1,0 +1,501 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  
+       xmlns="http://omdoc.org/ns"
+       xmlns:om="http://www.openmath.org/OpenMath"
+       xmlns:m="http://www.w3.org/1998/Math/MathML"
+       xmlns:o="http://omdoc.org/ns"
+       xml:id="integer1-omdoc">
+
+<metadata>
+  <dc:title>The OpenMath Content Dictionary integer1.ocd  in OMDoc form</dc:title>
+  <dc:creator role="trl">Michael Kohlhase</dc:creator>
+  <dc:creator role="ant">The OpenMath Society</dc:creator>
+  <dc:date> 2001-03-12T00:00:00</dc:date>
+  <dc:source>Derived from the OpenMath CD http://www.openmath.org/cd/integer1.ocd.</dc:source>
+  <dc:type>Text</dc:type>
+  <dc:format>application/omdoc+xml</dc:format>
+  <dc:rights>Copyright (c) 2000-2002 Michael Kohlhase;
+    This OMDoc content dictionary is released under the OpenMath license:
+    http://monet.nag.co.uk/openmath/cdfiles/license.html
+  </dc:rights>
+  <dc:description>
+    This CD holds a collection of basic integer functions.
+
+This CD is intended to be `compatible' with the corresponding elements
+in Content MathML.
+</dc:description>
+</metadata>
+
+<theory xml:id="integer1">
+  <imports xml:id="integer1-imports-sts" from="sts.omdoc#sts"/>
+  <imports xml:id="integer1-imports-setname1" from="setname1.omdoc#setname1"/>
+  <imports xml:id="integer1-imports-setname2" from="setname2.omdoc#setname2"/>
+
+<symbol name="factorof" xml:id="factorof">
+<metadata>
+<dc:description>
+    This is the binary OpenMath operator that is used to indicate the
+    mathematical relationship a "is a factor of" b, where a is the
+    first argument and b is the second. This relationship is
+    true if and only if b mod a = 0.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="sts" name="mapsto"/>
+	<OMS name="Z" cd="setname1"/>
+	<OMS name="Z" cd="setname1"/>
+	<OMS name="Boolean" cd="setname2"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="integer1" name="factorof" o:cr="fun"/>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="integer1" o:cr="fun">factorof</m:csymbol>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </m:apply>
+    </prototype>
+    <rendering precedence="300">
+      <m:mrow>
+        <m:mo o:egroup="fence" fence="true">(</m:mo>
+        <render name="arg1" precedence="300"/>
+        <m:mo o:cr="fun">|</m:mo>
+        <render name="arg2" precedence="300"/>
+        <m:mo o:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+
+  <notation>
+    <prototype>
+      <om:OMS cd="integer1" name="factorof"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="integer1">factorof</m:csymbol>
+    </prototype>
+    <rendering>
+      <!--IMPROVEME: the following is just a fallback-->
+      <m:mo>factorof</m:mo>
+    </rendering>
+  </notation>
+
+<symbol name="factorial" xml:id="factorial">
+  <metadata>
+  <dc:description>The symbol to represent a unary factorial function on non-negative integers.</dc:description><dc:subject>factorial</dc:subject></metadata>
+  <type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMS name="N" cd="setname1"/>
+	<OMS name="N" cd="setname1"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="integer1" name="factorial" o:cr="fun"/>
+        <expr name="arg"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="integer1" o:cr="fun">factorial</m:csymbol>
+        <expr name="arg"/>
+      </m:apply>
+    </prototype>
+    <rendering precedence="900">
+      <m:mrow>
+        <m:mo o:egroup="fence" fence="true">(</m:mo>
+        <render name="arg" precedence="900"/>
+        <m:mo o:cr="fun">!</m:mo>
+        <m:mo o:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+
+  <notation>
+    <prototype>
+      <om:OMS cd="integer1" name="factorial"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="integer1">factorial</m:csymbol>
+    </prototype>
+    <rendering>
+      <!--IMPROVEME: the following is just a fallback-->
+      <m:mo>factorial</m:mo>
+    </rendering>
+  </notation>
+
+<symbol name="quotient" xml:id="quotient">
+<metadata>
+<dc:description>
+    The symbol to represent the integer (binary) division operator. That is,
+    for integers a and b, quotient(a,b) denotes q such that a=b*q+r, with |r|
+    less than |b| and a*r positive.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMS name="Z" cd="setname1"/>
+	<OMS name="Z" cd="setname1"/>
+	<OMS name="Z" cd="setname1"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+
+
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="integer1" name="quotient" o:cr="fun"/>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="integer1" o:cr="fun">quotient</m:csymbol>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <m:mrow>
+        <m:mo o:egroup="fence" fence="true">(</m:mo>
+        <render name="arg1"/>
+        <m:mo o:cr="fun">div</m:mo>
+        <render name="arg2"/>
+        <m:mo o:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+  
+  <notation>
+    <prototype>
+    <om:OMS cd="integer1" name="quotient"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="integer1">quotient</m:csymbol>
+    </prototype>
+    <rendering>
+      <!--IMPROVEME: the following is just a fallback-->
+      <m:mo>quotient</m:mo>
+    </rendering>
+  </notation>
+
+<symbol name="remainder" xml:id="remainder">
+<metadata>
+<dc:description> 
+    The symbol to represent the integer remainder after (binary) division.
+    For integers a and b, remainder(a,b) denotes r such that a=b*q+r, with |r| less
+    than |b| and a*r positive.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMS name="Z" cd="setname1"/>
+	<OMS name="Z" cd="setname1"/>
+	<OMS name="Z" cd="setname1"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="integer1" name="remainder" o:cr="fun"/>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="integer1" o:cr="fun">remainder</m:csymbol>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <m:mrow>
+        <m:mo o:egroup="fence" fence="true">(</m:mo>
+        <render name="arg1"/>
+        <m:mo o:cr="fun">mod</m:mo>
+        <render name="arg2"/>
+        <m:mo o:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+
+<notation>
+    <prototype>
+      <om:OMS cd="integer1" name="remainder"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="integer1">remainder</m:csymbol>
+    </prototype>
+    <rendering>
+      <!--IMPROVEME: the following is just a fallback-->
+      <m:mo>remainder</m:mo>
+    </rendering>
+  </notation>
+
+<theory xml:id="integer1-factorof">
+  <imports from="alg1.omdoc#alg1"/>
+  <imports from="arith1.omdoc#arith1"/>
+  <imports from="fns1.omdoc#fns1"/>
+  <imports from="interval1.omdoc#interval1"/>
+  <imports from="logic1.omdoc#logic1"/>
+  <imports from="quant1.omdoc#quant1"/>
+  <imports from="relation1.omdoc#relation1"/>
+  <imports from="set1.omdoc#set1"/>
+
+<assertion xml:id="factorof-prop-1" type="lemma">
+  <CMP> b is a factor of a iff remainder of a divided by b = 0 </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="logic1" name="implies"/>
+	<OMA>
+	  <OMS cd="integer1" name="factorof"/>
+	  <OMV name="b"/>
+	  <OMV name="a"/>
+	</OMA>
+	<OMA>
+	  <OMS cd="relation1" name="eq"/>
+	  <OMA>
+	    <OMS cd="integer1" name="remainder"/>
+	    <OMV name="a"/>
+	    <OMV name="b"/>
+	  </OMA>
+	  <OMS cd="alg1" name="zero"/>
+	</OMA>
+      </OMA>
+    </OMOBJ>
+  </FMP>
+</assertion>
+<assertion xml:id="factorial-prop-1" type="lemma">
+  <CMP>factorial n = product [1..n]</CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="relation1" name="eq"/>
+	<OMA>
+	  <OMS cd="integer1" name="factorial"/>
+	  <OMV name="n"/>
+	</OMA>
+	<OMA>
+	  <OMS cd="arith1" name="product"/>
+	  <OMA>
+	    <OMS cd="interval1" name="integer_interval"/>
+	    <OMI> 1 </OMI>
+	    <OMV name="n"/>
+	  </OMA>
+	  <OMBIND>
+	    <OMS cd="fns1" name="lambda"/>
+	    <OMBVAR>
+	      <OMV name="i"/>
+	    </OMBVAR>
+	    <OMV name="i"/>
+	  </OMBIND>
+	</OMA>
+      </OMA>
+    </OMOBJ>
+  </FMP>
+</assertion>
+<assertion xml:id="quotient-prop-1" type="lemma">
+  <CMP>
+    for all a,b with a,b Integers |
+    a = b * quotient(a,b) + remainder(a,b) and abs(remainder(a,b)) is less than abs(b) and 
+    a*remainder(a,b) &gt;= 0
+  </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMBIND>
+	<OMS cd="quant1" name="forall"/>
+	<OMBVAR>
+	  <OMV name="a"/>
+	  <OMV name="b"/>
+	</OMBVAR>
+	<OMA>
+	  <OMS cd="logic1" name="implies"/>
+	  <OMA>
+	    <OMS cd="logic1" name="and"/>
+	    <OMA>
+	      <OMS cd="set1" name="in"/>
+	      <OMV name="a"/>
+	      <OMS cd="setname1" name="Z"/>
+	    </OMA>
+	    <OMA>
+	      <OMS cd="set1" name="in"/>
+	      <OMV name="b"/>
+	      <OMS cd="setname1" name="Z"/>
+	    </OMA>
+	  </OMA>
+	  <OMA>
+	    <OMS cd="logic1" name="and"/>
+	    <OMA>
+	      <OMS cd="relation1" name="eq"/>
+	      <OMV name="a"/>
+	      <OMA>
+		<OMS cd="arith1" name="plus"/>
+		<OMA>
+		  <OMS cd="arith1" name="times"/>
+		  <OMV name="b"/>
+		  <OMA>
+		    <OMS cd="integer1" name="quotient"/>
+		    <OMV name="a"/>
+		    <OMV name="b"/>
+		  </OMA>
+		</OMA>
+		<OMA>
+		  <OMS cd="integer1" name="remainder"/>
+		  <OMV name="a"/>
+		  <OMV name="b"/>
+		</OMA>
+	      </OMA>
+	    </OMA>
+	    <OMA>
+	      <OMS cd="relation1" name="lt"/>
+	      <OMA>
+		<OMS cd="arith1" name="abs"/>
+		<OMA>
+		  <OMS cd="integer1" name="remainder"/>
+		  <OMV name="a"/>
+		  <OMV name="b"/>
+		</OMA>
+	      </OMA>
+	      <OMA>
+		<OMS cd="arith1" name="abs"/>
+		<OMV name="b"/>
+	      </OMA>
+	    </OMA>
+	    <OMA>
+	      <OMS cd="relation1" name="geq"/>
+	      <OMA>
+		<OMS cd="arith1" name="times"/>
+		<OMV name="a"/>
+		<OMA>
+		  <OMS cd="integer1" name="remainder"/>
+		  <OMV name="a"/>
+		  <OMV name="b"/>
+		</OMA>
+	      </OMA>
+	      <OMS cd="alg1" name="zero"/>
+	    </OMA>
+	  </OMA>
+	</OMA>
+      </OMBIND>
+    </OMOBJ>
+  </FMP>
+</assertion>
+<assertion xml:id="remainder-prop-1" type="lemma">
+  <CMP>
+    for all a,b with a,b Integers | 
+    a = b * quotient(a,b) + remainder(a,b) and abs(remainder(a,b)) is less than abs(b) and a*remainder(a,b) &gt;= 0
+  </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMBIND>
+	<OMS cd="quant1" name="forall"/>
+	<OMBVAR>
+	  <OMV name="a"/>
+	  <OMV name="b"/>
+	</OMBVAR>
+	<OMA>
+	  <OMS cd="logic1" name="implies"/>
+	  <OMA>
+	    <OMS cd="logic1" name="and"/>
+	    <OMA>
+	      <OMS cd="set1" name="in"/>
+	      <OMV name="a"/>
+	      <OMS cd="setname1" name="Z"/>
+	    </OMA>
+	    <OMA>
+	      <OMS cd="set1" name="in"/>
+	      <OMV name="b"/>
+	      <OMS cd="setname1" name="Z"/>
+	    </OMA>
+	  </OMA>
+	  <OMA>
+	    <OMS cd="logic1" name="and"/>
+	    <OMA>
+	      <OMS cd="relation1" name="eq"/>
+	      <OMV name="a"/>
+	      <OMA>
+		<OMS cd="arith1" name="plus"/>
+		<OMA>
+		  <OMS cd="arith1" name="times"/>
+		  <OMV name="b"/>
+		  <OMA>
+		    <OMS cd="integer1" name="quotient"/>
+		    <OMV name="a"/>
+		    <OMV name="b"/>
+		  </OMA>
+		</OMA>
+		<OMA>
+		  <OMS cd="integer1" name="remainder"/>
+		  <OMV name="a"/>
+		  <OMV name="b"/>
+		</OMA>
+	      </OMA>
+	    </OMA>
+	    <OMA>
+	      <OMS cd="relation1" name="lt"/>
+	      <OMA>
+		<OMS cd="arith1" name="abs"/>
+		<OMA>
+		  <OMS cd="integer1" name="remainder"/>
+		  <OMV name="a"/>
+		  <OMV name="b"/>
+		</OMA>
+	      </OMA>
+	      <OMA>
+		<OMS cd="arith1" name="abs"/>
+		<OMV name="b"/>
+	      </OMA>
+	    </OMA>
+	    <OMA>
+	      <OMS cd="relation1" name="geq"/>
+	      <OMA>
+		<OMS cd="arith1" name="times"/>
+		<OMV name="a"/>
+		<OMA>
+		  <OMS cd="integer1" name="remainder"/>
+		  <OMV name="a"/>
+		  <OMV name="b"/>
+		</OMA>
+	      </OMA>
+	      <OMS cd="alg1" name="zero"/>
+	    </OMA>
+	  </OMA>
+	</OMA>
+      </OMBIND>
+    </OMOBJ>
+  </FMP>
+</assertion>
+</theory>
+</theory>
+</omdoc>
+

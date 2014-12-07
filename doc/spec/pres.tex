@@ -1,0 +1,454 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This file is part of the LaTeX sources of the OMDoc 1.6 specification
+% Copyright (c) 2006 Michael Kohlhase
+% This work is licensed by the Creative Commons Share-Alike license
+% see http://creativecommons.org/licenses/by-sa/2.5/ for details
+\svnInfo $Id: pres.tex 8465 2009-08-05 06:10:25Z kohlhase $
+\svnKeyword $HeadURL: https://svn.omdoc.org/repos/omdoc/trunk/doc/spec/pres.tex $
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{omgroup}[creators=miko,short={Notation and Presentation},id=pres]
+                          {Notation and Presentation (Module {\PRESmodule{spec}})}
+
+\begin{module}[id=presintro]
+\begin{oldpart}{All the material in this chapter is obsolete and will be replaced by the
+    new notation definition system presented in~\cite{KMR:NoLMD08}}
+  As we have seen, {\omdoc} is concerned mainly with the content and structure of
+  mathematical documents, and offers a complex infrastructure for dealing with that.
+  However, mathematical texts often carry typographic conventions that cannot be
+  determined by general principles alone. Moreover, non-standard presentations of
+  fragments of mathematical texts sometimes carry meanings that do not correspond to the
+  mathematical content or structure proper. In order to accommodate this, {\omdoc}
+  provides a limited functionality for embedding style information into the document.
+
+\begin{presonly}
+\begin{myfig}{qtpres}{The {\omdoc} Elements for Notation Information}
+\begin{scriptsize}
+\begin{tabular}{|>{\tt}l|>{\tt}l|>{\tt}p{4.7truecm}|>{\tt}p{2truecm}|}\hline
+{\rm Element}& \multicolumn{2}{l|}{Attributes\hspace*{2.25cm}} & Content  \\\hline
+             & {\rm Required}  & {\rm Optional}     &           \\\hline\hline
+ omstyle    & element & for, xml:id, xref, class, style & (style|xslt)* \\\hline
+\end{tabular}
+\end{scriptsize}
+\end{myfig}
+\end{presonly}
+
+The normal (but of course not the only) way to generate presentation from {\xml} documents
+is to use {\xslt} style sheets (see {\extref{processing}{transform-xsl}} for other
+applications).  {\xslt}~\cite{Clark:xslt99} is a general transformation language for
+{\xml}.  {\xslt} programs (\inlinedef{often called {\defin{style sheet}s}}) consist of a
+set of \inlinedef{{\defin{template}s} (rules for the transformation of certain nodes in
+  the {\xml} tree)}. These templates are recursively applied to the input tree to produce
+the desired output.
+
+The general approach to presentation and notation in {\omdoc} is not to provide
+general-purpose presentational primitives that can be sprinkled over the document, since
+that would distract the author from the mathematical content, but to support the
+specification of general style information for {\omdoc} elements and mathematical symbols
+in separate elements.
+
+In the case of a single {\omdoc} document it is possible to write a specialized style
+sheet that transforms the content-oriented markup used in the document into mathematical
+notation. However, if we have to deal with a large collection of {\omdoc} representations,
+then we can either write a specialized style sheet for each document (this is clearly
+infeasible to do by hand), or we can develop a style sheet for the whole collection (such
+style sheets tend to get large and unmanageable).
+
+The {\omdoc} format allows to generate specialized style sheets that are tailored to the
+presentation of (collections of) {\omdoc} documents. The mechanism will be discussed in
+{\extref{processing}{transform-xsl}}, here we only concern ourselves with the {\omdoc}
+primitives for representing the necessary data. In the next section, we will address the
+specification of style information for {\omdoc} elements by {\element{omstyle}} elements,
+and then the question of the specification of notation for mathematical symbols in
+{\element{presentation}} elements.
+\end{oldpart}
+\end{module}
+
+\begin{omgroup}[creators={miko,frabe},id=sec:ntn-definition]{Defining Notations}
+\newcommand{\oms}[3]{\sigma(#1\ifthenelse{\equal{#2}{}}{}{,#2}\ifthenelse{\equal{#3}{}}{}{,#3})} %OMS: name, optional cd, optional base
+\newcommand{\omv}[1]{\upsilon(#1)} %OMV
+\newcommand{\var}[1]{\upsilon(#1)} %OMV
+\newcommand{\oma}[1]{@(#1)} %OMA
+\newcommand{\ombind}[3]{\beta(#1,#2,#3)} %OMBIND without condition
+\newcommand{\ombindc}[4]{\beta(#1,#2,#3,#4)} %OMBIND with condition
+\newcommand{\omattr}[3]{\alpha(#1,#2\mapsto#3)} %OMATTR OMATP #2 #3 /OMATP #1 /OMATTR
+\newcommand{\JSym}[1]{\underline{#1}}
+\newcommand{\JVar}[1]{\underline{#1}}
+\newcommand{\JObj}[2][]{\underline{#2}\ifthenelse{\equal{\noexpand #1}{}}{}{[#1]}}
+\newcommand{\JLst}[2]{\underline{#1}(#2)}
+\newcommand{\ndocdecl}[2]{#1:=\{#2\}}
+\newcommand{\notdecl}[2]{#1\vdash #2}
+\newcommand{\ndinclude}[1]{\op{include}(#1)}
+\newcommand{\arp}[3]{(#1\colon #2)^{#3}}
+\newcommand{\matchdecl}[2]{#1\mapsto #2}
+\newcommand{\ca}[2]%context-annotation; optional paramters: index, context
+    {\ifthenelse{\equal{\noexpand #1}{}}%no index?
+      {\ifthenelse{\equal{\noexpand #2}{}}%no id?
+        {\lambda}
+        {\lambda^{#2}}}
+      {\ifthenelse{\equal{\noexpand #2}{}}%no id?
+        {\lambda_{#1}}
+        {\lambda_{#1}^{#2}}}
+    }
+\newcommand{\RC}[1]%notation context; optional paramters: select-index, mobj
+    {\ifthenelse{\equal{\noexpand #1}{}}%no mobj?
+      {\Lambda}
+      {\Lambda_{#1}}
+    }
+\newcommand{\NC}[1]%notation context; optional paramters: mobj
+    {\ifthenelse{\equal{\noexpand #1}{}}%no mobj?
+      {\Pi}
+      {\Pi_{#1}}
+    }
+\newcommand{\caret}{\hat{\;}}
+\newcommand{\tb}{\hspace*{.5cm}}
+\newcommand{\mathll}[1]{\begin{array}{l}#1\end{array}}
+\newcommand{\Hempty}{\mbox{``''}}
+\newcommand{\PIElement}[2]{\langle#1\rangle#2\langle/\rangle}
+\newcommand{\PIAttribute}[2]{#1="#2"}
+\newcommand{\PIText}[1]{{#1}}
+\newcommand{\PIString}{S}
+\newcommand{\PINameOf}[1]{\underline{#1}}
+\newcommand{\PIRecurse}[2]{\underline{#1}^{#2}}
+%#1: step (optional), #2: joker name, #3: separator, #4: body
+\newcommand{\PIIterate}[4][]{\mathtt{for}(\underline{#2}\ifthenelse{\equal{#1}{}}{}{,#1}\ifthenelse{\equal{#3}{}}{}{,#3})\{#4\}}
+\newcommand{\render}[2]{{#1}^{#2}}
+\newcommand{\op}[1]{\mathop{#1}}
+\newcommand{\sep}{\op{sep}}
+\newcommand{\ntn}{ntn}
+\newcommand{\intg}{\op{int}}
+\newcommand{\sins}{\op{sin}}
+\newcommand{\iv}{\op{iv}}
+\newcommand{\plus}{\op{plus}}
+\newcommand{\power}{\op{pwr}}
+\newcommand{\lam}{\op{lam}}
+\newcommand{\cred}{\op{red}}
+\newcommand{\colr}{\op{color}}
+\newcommand{\jn}[1]{{\mathtt{#1}}}
+% other examples
+\newcommand{\tang}{\op{tan}}
+
+  We propose to encode the presentational characteristics of mathematical objects
+  declaratively in \emph{notation definitions} \ednote{TODO: change ``notation
+    specification'' to ``notation definition'' in the whole paper}, which are part of the
+  representational infrastructure and consist of ``prototypes''
+  \ednote{This is the only occurrence of the term ``prototype'' in the theoretical part.  This doesn't match our implementation well.  I'd use the term ``prototype'' more often. ... we use two terms (``pattern'' and ``prototype'').  Using two terms might confuse the reviewers/readers. --CL\\
+    FR: I think "prototype" is the wrong word anyway and should be replaced with, e.g.,
+    "pattern" everywhere. I think it's OK for the paper though.\\ CM: I agree with Florian
+    (for the first submission)} (patterns that are matched against content
+  representations) and ``renderings'' (that are used to construct the corresponding
+  presentations). Note that since we have reified the notations, we can now devise a
+  flexible management process for notations. For example, we can capture the notation
+  preferences of authors, aggregators, and readers and adapt documents to these. We
+  propose an elaborated mechanism to collect notations from various sources and specify
+  notation preferences below.
+
+\begin{omgroup}[id=sec:nd:syntax]{Syntax of Notation Definitions}%\label{sec:NTN-represent}
+\newcommand{\bnfas}{::=} %bebecomes in BNF
+\newcommand{\bnfalt}{|} %alternative in BNF
+\newcommand{\bnfbracket}[1]{[#1]} %brackets in BNF
+
+  We will now present an abstract version of the presentation starting from the
+  observation that in content markup formalisms for mathematics formulae are represented
+  as ``formula trees''. Concretely, we will concentrate on {\openmath} objects, the
+  conceptual data model of {\openmath} representations, since it is sufficiently general,
+  and work is currently under way to unify the semantics of {\mathml} with the one of
+  {\openmath}. Furthermore, we observe that the target of the presentation process is also
+  a tree expression: a layout tree made of layout primitives and glyphs, e.\,g., a
+  presentation {\mathml} or {\LaTeX} expression.
+  \ednote{@FR: We should not mention {\LaTeX} if our implementations don't support it. --CL; but we can support in in theory, can't we? Isn't it rather a question of input data? --CM\\
+    See JOMDoc mailing list --CL FR: JOMDoc is supposed to support it; the theory
+    does. Anyway I need an ASCII based language to give readable examples.}
+
+To specify notation definitions, we use the one given by the abstract grammar from
+Figure~\ref{fig:nd:grammar}. Here $\bnfalt$, $\bnfbracket{-}$, $-^*$, and $-^+$ denote
+alternative, bracketing, and non-empty and possibly empty repetition, respectively. The
+non-terminal symbol $\omega$ is used for patterns $\phi$ that do not contain
+jokers. Throughout this article, we will use the non-terminal symbols of the grammar as
+meta-variables for objects of the respective syntactic class.
+
+\begin{table}[ht]
+\begin{center}
+\begin{tabular}{|llc@{\tb}l|}\hline
+Notation declarations  & $\ntn$ & $\bnfas$  & $\notdecl{\phi^+}{\bnfbracket{\arp{\ca{}{}}{\rho}{p}}^+}$ \\\hline
+Patterns               & $\phi$     & $\bnfas$  & \\
+\tb Symbols            &            &           & $\oms{n}{n}{n}$\\
+\tb Variables          &            & $\bnfalt$ & $\omv{n}$ \\
+\tb Applications       &            & $\bnfalt$ & $\oma{\phi\bnfbracket{,\phi}^+}$ \\
+\tb Binders            &            & $\bnfalt$ & $\ombind{\phi}{\Upsilon}{\phi}$ \\
+\tb Attributions       &            & $\bnfalt$ & $\omattr{\phi}{\oms{n}{n}{n}}{\phi}$ \\
+\multicolumn{2}{|l}{\tb Symbol/Variable/Object/List jokers} & $\bnfalt$ &
+  $\JSym{s}\;\bnfalt\;\JVar{v}\;\bnfalt\;\JObj[\phi]{o}\;\bnfalt\;\JObj{o}\;\bnfalt\;\JLst{l}{\phi}$\\
+Variable contexts      & $\Upsilon$ & $\bnfas$  & $\phi^+$ \\\hline
+Match contexts         & $M$        & $\bnfas$  & $\bnfbracket{\matchdecl{q}{X}}^*$ \\
+Matches                & $X$        & $\bnfas$  & $\omega^* \bnfalt S^* \bnfalt (X)$ \\
+Empty match contexts   & $\mu$      & $\bnfas$  & $\bnfbracket{\matchdecl{q}{H}}^*$\\ 
+Holes                  & $H$        & $\bnfas$  & $\_ \bnfalt \Hempty \bnfalt
+(H)$ \\
+\hline 
+Context annotation     & $\ca{}{}$  & $\bnfas$  & $C^*$\\\hline
+Renderings             & $\rho$     & $\bnfas$  & \\
+\tb XML elements       &            &           & $\PIElement{\PIString}{\rho^*}$ \\
+\tb XML attributes     &            & $\bnfalt$ & $\PIAttribute{\PIString}{\rho^*}$ \\
+\tb Texts              &            & $\bnfalt$ & $\PIText{\PIString}$ \\
+\tb Symbol or variable names &      & $\bnfalt$ & $\PINameOf{q}$ \\
+\tb Matched objects    &            & $\bnfalt$ & $\PIRecurse{q}{p}$ \\
+\tb Matched lists      &            & $\bnfalt$ & $\PIIterate[I]{q}{\rho^*}{\rho^*}$
+ \\
+\hline
+Precedences            & $p$        & $\bnfas$  & $-\infty \bnfalt I \bnfalt \infty$ \\
+Names                  & $n,s,v,l,o$& $\bnfas$  & $C^+$\\
+Integers               & $I$        & $\bnfas$  & integer\\
+Qualified joker names  & $q$        & $\bnfas$  & $l/q \bnfalt s \bnfalt v \bnfalt o \bnfalt l$\\
+Strings                & $\PIString$& $\bnfas$  & $C^*$\\
+Characters             & $C$        & $\bnfas$  & character except $/$\\
+\hline
+\end{tabular}
+\caption{The Grammar for Notation Definitions}\label{fig:nd:grammar}
+\end{center}
+\end{table}
+
+\paragraph{Intuitions}
+The intuitive meaning of a \emph{notation definition} $\ntn=\notdecl{\phi_1,\ldots,\phi_r}{\arp{\lambda_1}{\rho_1}{p_1},\ldots,\arp{\lambda_s}{\rho_s}{p_s}}$ is the following: If an object matches one of the patterns $\phi_i$, it is rendered by one of the renderings $\rho_i$. Which rendering is chosen, depends on the active rendering context, which is matched against the context annotations $\lambda_i$; context annotations are usually lists of key-value pairs and their precise syntax is given in Section~\ref{sec:nd:rcontext}. The integer values $p_i$ give the output precedences of the renderings, which are used to dynamically determine the placement of brackets.
+
+The \emph{patterns} $\phi_i$ are formed from a formal grammar for a subset of {\openmath} objects extended with named jokers. The jokers $\JObj[\phi]{o}$ and $\JLst{l}{\phi}$ correspond to $\backslash(\phi\backslash)$ (or $\backslash(.\backslash)$ if $\phi$ is omitted) and $\backslash(\phi\backslash)^+$ in Posix regular expression syntax (\cite{posix}) -- except that our patterns are matched against the list of children of an {\openmath} object instead of against a list of characters. Here underlined variables denote names of jokers that can be referred to in the renderings $\rho_i$. We need two special jokers $\JSym{s}$ and $\JVar{v}$, which only match {\openmath} symbols and variables, respectively. The \emph{renderings} $\rho_i$ are formed by a formal syntax for simplified XML extended with means to refer to the jokers used in the patterns. When referring to object jokers, input precedences are given that work together with the output precedences of renderings.
+\ednote{Note, we realized that the JOMDoc implementation is not compatible with this specification of jokers.  It only supports a generic ``object'' joker, as well as a list joker. --CL
+FR: Yes. In my opinion JOMDoc should be changed. Alternatively, if someone's willing to change the specification in this article, they're welcome. CM@FR: Please open a discussion on this in the trac, for the article, we should leave it as given.}
+
+\emph{Match contexts} are used to store the result of matching a pattern against an object. Due to list jokers, jokers may be nested; therefore, we use qualified joker names in the match contexts (which are transparent to the user). Empty match contexts are used to store the structure of a match context induced by a pattern: They contain holes that are filled by matching the pattern against an object.
+
+\paragraph{Example}
+We will use a multiple integral as an example that shows all aspects of our approach in action. 
+\[\int_{a_1}^{b_1}\ldots\int_{a_n}^{b_n} {\color{red}\sin x_1+x_2} \; d x_n \ldots d x_1.\]
+Let $\intg$, $\iv$, $\lam$, $\plus$, and $\sins$ abbreviate symbols for integration, closed
+real intervals, lambda abstraction, addition, and sine. We intend $\intg$, $\lam$, and
+$\plus$ to be flexary symbols, i.\,e., symbols that take an arbitrary finite number of
+arguments. Furthermore, we assume symbols $\colr$ and $\cred$ from a content dictionary for
+style attributions. We want to render into {\LaTeX} the {\openmath} object
+\[\mathll{
+   @\big(\intg,\oma{\iv,a_1,b_1},\ldots,\oma{\iv,a_n,b_n},\\
+   \tb \beta\big(\lam,\omv{x_1},\ldots,\omv{x_n}, \; \omattr{\oma{plus,\oma{\sins,\omv{x_1}},\omv{x_2}}}{\colr}{\cred}\big)\big)
+}\]
+as \verb|\int_{|$a_1$\verb|}^{|$b_1$\verb|}|\ldots\verb|\int_{|$a_n$\verb|}^{|$b_n$\verb|}\color{red}{\sin |$x_1$\verb|+|$x_2$\verb|}d|$x_n$\ldots\verb|d|$x_1$
+
+We can do that with the following notations:
+\[\mathll{
+@(\intg,\JLst{\mathtt{ranges}}{@(\iv,\JObj{\mathtt{a}},\JObj{\mathtt{b}})},\beta(\lam,\JLst{\mathtt{vars}}{\JVar{\mathtt{x}}},\JObj{\mathtt{f}})) \\
+\vdash \;
+ ((format=latex):\\\tb
+  \PIIterate[]
+    {\mathtt{ranges}}
+    {}
+    {\PIText{\mathtt{\backslash int\_\{}\;\PIRecurse{\mathtt{a}}{\infty}\;\PIText{\}\caret\{}\;\PIRecurse{\mathtt{b}}{\infty}\;\PIText{\}}}}\;
+  \PIRecurse{\mathtt{f}}{\infty}\;
+  \PIIterate[-1]
+    {\mathtt{vars}}
+    {}
+    {\PIText{\mathtt{d}}\;\PIRecurse{\mathtt{x}}{\infty}}
+)^{-\infty}
+\\[.2cm]
+
+\omattr{\JObj{a}}{\colr}{\JSym{\mathtt{col}}} \;
+\vdash \;
+ ((format=latex):\;\PIText{\{\backslash color\{}\;\PINameOf{\mathtt{col}}\;\PIText{\}}\;\PIRecurse{\mathtt{a}}{\infty}\;\PIText{\}})^{-\infty}
+\\[.2cm]
+
+@(\plus,\JLst{\mathtt{args}}{\JObj{\mathtt{arg}}}) \;
+\vdash \;
+ ((format=latex):\;\PIIterate{\mathtt{args}}{\PIText{\mathtt{+}}}{\PIRecurse{\mathtt{arg}}{}})^{10}
+\\[.2cm]
+
+@(\sins,\JObj{\mathtt{arg}}) \;
+\vdash \;
+ ((format=latex):\;\backslash sin\; \PIRecurse{\mathtt{arg}}{})^{0}
+\\[.2cm]
+
+%\JVar{\mathtt{v}} \;
+%\vdash \;
+% ((format=latex):\;\PINameOf{\mathtt{v}}),
+%\tb
+%\JSym{\mathtt{s}} \;
+%\vdash \;
+% ((format=latex):\;\PINameOf{\mathtt{s}})
+}
+\]
+
+The first notation matches the application of the symbol $\intg$ to a list of ranges and a lambda abstraction binding a list of variables. The rendering iterates first over the ranges, rendering them as integral signs with bounds, then recurses into the function body $\JObj{\mathtt{f}}$, then iterates over the variables, rendering them in reverse order prefixed with $d$. The second notation is used when $\PIRecurse{\mathtt{f}}{}$ recurses into the presentation of the function body $\omattr{\oma{plus,\oma{\sins,\omv{x_1}},\omv{x_2}}}{\colr}{\cred}$. It matches an attribution of $\colr$, which is rendered using the {\LaTeX} color package. The third notation is used when $\JObj{\mathtt{a}}$ recurses into the attributed object $\oma{plus,\oma{\sins,\omv{x_1}},\omv{x_2}}$. It matches any application of $\plus$, and the rendering iterates over all arguments, placing the separator $+$ in between. Finally, $\sins$ is rendered in a straightforward way. We omit the notation that renders variables by their name.
+
+The output precedence $-\infty$ of $\intg$ makes sure that the integral as a whole is never bracketed. And the input precedences $\infty$ makes sure that the arguments of $\intg$ are never bracketed. Both are reasonable because the integral notation provides its own fencing symbols, namely $\int$ and $d$. The output precedences of $\plus$ and $\sins$ are $10$ and $0$, which means that $\sins$ binds stronger; therefore, the expression $\sin x$ is not bracketed either.  However, an inexperienced user may wish to display these brackets. Therefore, our rendering does not completely suppress them.  Rather, we annotate them with an ``elision level'', which is computed as the difference of the two precedences.
+\ednote{CL@FR:   Actually it is not strictly the difference. FR: I made it the difference in section~\ref{sec:ntn-elision}}
+This information can then be used by active documents (see section~\ref{sec:ntn-elision}).
+
+\paragraph{Well-formed Notations}
+A notation definition $\notdecl{\phi_1,\ldots,\phi_r}{\arp{\lambda_1}{\rho_1}{p_1},\ldots,\arp{\lambda_s}{\rho_s}{p_s}}$ is well-formed if all $\phi_i$ are well-formed patterns that induce the same empty match contexts, and all $\rho_i$ are well-formed renderings with respect to that empty match context.
+
+Every pattern $\phi$ generates an \emph{empty match context} $\mu(\phi)$ as follows:
+\begin{itemize}
+\item For an object joker $\JObj[\phi]{o}$ or $\JObj{o}$ occurring in $\phi$ but not within a list joker,
+  $\mu(\phi)$ contains $\matchdecl{o}{\_}$.
+\item For a symbol or variable with name $n$ occurring in $\phi$ but not within a list
+  joker, $\mu(\phi)$ contains $\matchdecl{n}\Hempty$.
+\item For a list joker $\JLst{l}{\phi'}$ occurring in $\phi$, $\mu(\phi)$ contains
+  \begin{itemize}
+  \item $\matchdecl{l}{(\_)}$, and
+  \item $\matchdecl{l/n}{(H)}$ for every $\matchdecl{n}{H}$ in $\mu(\phi')$.
+  \end{itemize}
+\end{itemize}
+In an empty match context, a hole $\_$ is a placeholder for an object, $\Hempty$ for a
+string, $(\_)$ for a list of objects, $((\_))$ for a list of lists of objects, and so
+on. Thus, symbol, variable, or object joker in $\phi$ produce a single named hole, and
+every list joker and every joker within a list joker produces a named list of holes
+$(H)$. For example, the empty match context induced by the pattern in the notation for
+$\intg$ above is
+ \[\mathll{\matchdecl{\mathtt{ranges}}{(\_)},\;\matchdecl{\mathtt{ranges}/\mathtt{a}}{(\_)},\;\matchdecl{\mathtt{ranges}/\mathtt{b}}{(\_)},\;\matchdecl{\mathtt{f}}{\_},\\[.2cm]
+  \matchdecl{\mathtt{vars}}{(\_)},\;\matchdecl{\mathtt{vars}/\mathtt{x}}{(\Hempty)}}\]
+
+A pattern $\phi$ is well-formed if it satisfies the following conditions:
+\begin{itemize}
+  \item There are no duplicate names in $\mu(\phi)$.
+  \item No jokers occur within object jokers.
+  \item List jokers may not occur as direct children of binders or attributions.
+  \item At most one list joker may occur as a child of the same application, and it may not be the first child.
+  \item At most one list joker may occur in the same variable context.
+\end{itemize}
+These restrictions guarantee that matching an {\openmath} object against a pattern is possible in at most one way. In particular, no backtracking is needed in the matching algorithm.
+
+Assume an empty match context $\mu$. We define well-formed renderings with respect to $\mu$ as follows:
+\begin{itemize}
+        \item $\PIElement{S}{\rho_1,\ldots,\rho_r}$ is well-formed if all $\rho_i$ are well-formed.
+        \item $\PIAttribute{S}{\rho_1,\ldots,\rho_r}$ is well-formed if all $\rho_i$ are well-formed and are of the form $\PIText{S'}$ or $\PINameOf{n}$. Furthermore, $\PIAttribute{S}{\rho_1,\ldots,\rho_r}$ may only occur as a child of an XML element rendering.
+        \item $\PIText{S}$ is well-formed.
+        \item $\PINameOf{n}$ is well-formed if $\matchdecl{n}{\Hempty}$ is in $\mu$.
+        \item $\PIRecurse{o}{p}$ is well-formed if $\matchdecl{o}{\_}$ is in $\mu$.
+        \item $\PIIterate[I]{l}{\sep}{\op{body}}$ is well-formed if $\matchdecl{l}{(\_)}$ or $\matchdecl{l}{(\Hempty)}$ is in $\mu$, all renderings in $\sep$ are well-formed with respect to $\mu$, and all renderings in $\op{body}$ are well-formed with respect to $\mu^l$. The step size $I$ and the separator $\sep$ are optional, and default to $1$ and the empty string, respectively, if omitted.
+\end{itemize}
+Here $\mu^l$ is the empty match context arising from $\mu$ if every $\matchdecl{l/q}{(H)}$
+is replaced with $\matchdecl{q}{H}$ and every previously existing hole named $q$ is
+removed. Replacing $\matchdecl{l/q}{(H)}$ means that jokers occurring within the list
+joker $l$ are only accessible within a corresponding rendering
+$\PIIterate[I]{l}{\rho^*}{\rho^*}$. And removing the previously existing holes means that
+in $@(\JObj{o},\JLst{l}{\JObj{o}})$, the inner object joker shadows the outer one.
+\end{omgroup}
+
+\begin{omgroup}[id=sec:nd:semantics]{Semantics of Notation Definitions}%\label{sec:rendering}
+
+The rendering algorithm has two levels. The high-level takes as input a document $Doc$, a notation database $DB$, and a rendering context $\RC{}{}$.
+\ednote{CL@FR: Is there any intuition behind calling these $\Lambda$ and $\Pi$?
+FR: Upper case lambda is matched against the lower case lambdas. I think the pi is from Christine.}
+The intuition of $DB$ is that it is essentially a set of notation definitions. In practice this set of notation definitions will be large and highly structured; therefore, we assume a database maintaining it. The rendering context $\RC{}{}$ is a list of context annotations that the database uses to select notations, e.\,g., the requested output format and language. The algorithm outputs $Doc$ with {\openmath} objects in it replaced with their rendering. It does so in three steps:
+\begin{enumerate}
+\item In a preprocessing step, $Doc$ is scanned and notation definitions given inside $Doc$ are collected. If $Doc$ imports or includes other documents, these are retrieved and processed recursively. And if $Doc$ references external notation definitions, these are retrieved as well. Together with the notations already present in the database, these notations form the notation context $\NC{}$.
+\item In a second preprocessing step, $\NC{}$ is normalized by grouping together renderings of the same patterns. Then for each pattern, the triples $\arp{\ca{}{}}{\rho}{p}$ pertaining to it are filtered and ordered according to how well $\ca{}{}$ matches $\RC{}{}$. This process can also scan for and store arbitrary other information in $Doc$ or in $DB$: For example, $Doc$ can contain what we call notation tags (see Section~\ref{sec:ntn-tags}) that explicitly relate an {\openmath} object and a rendering.
+\item $Doc$ is traversed, and the low-level algorithm is invoked on every {\openmath} object found.
+\end{enumerate}
+The preprocessing steps are described in detail in Sec.~\ref{sec:nd:configure}. In the following, we describe the low-level algorithm.
+
+The low-level algorithm takes as input an {\openmath} object $\omega$ and the notation context $\NC{}$. It returns the rendering of $\omega$. If the low-level algorithm is invoked recursively to render a subobject of $\omega$, it takes an input precedence $p$, which is used for bracket placement, as an additional argument.
+
+It computes its output in two steps.
+\begin{enumerate}
+ \item $\omega$ is matched against the patterns in the notation definitions in $\NC{}$ until a matching pattern $\phi$ is found.
+ \ednote{FR@all: What happens if $\omega$ matches two patterns?\\
+ CL: Shouldn't be a problem.  Then we just take the renderings associated with those two patterns and prioritize among them.}
+  The notation definition in which $\phi$ occurs induces a list $\arp{\lambda_1}{\rho_1}{p_1},\ldots,\arp{\lambda_n}{\rho_n}{p_n}$ of context-annotations, renderings, and output precedences. The first one of them is chosen unless $\NC{}$ contains a notation tag that selects a different one for $\omega$.
+\item The output is $\render{\rho_j}{M(\phi,\omega)}$, the rendering of $\rho_j$ in context $M(\phi,\omega)$ as defined below. Additionally, if $p_j>p$, the output is enclosed in brackets.
+\end{enumerate}
+
+\paragraph{Semantics of Patterns}
+The semantics of patterns is that they are matched against {\openmath} objects. Naturally, every {\openmath} object matches against itself. Symbol, variable, and object jokers match in the obvious way\ednote{See above: Our implementation only knows object jokers. --CL; @FR: See above, please create a ticket in the trac.}. A list joker $\JLst{l}{\phi}$ matches against a non-empty list of objects all matching $\phi$.
+
+%The jokers match as follows:
+%\begin{center}
+%\begin{tabular}{|l|l|}\hline
+%Joker             & matches \\ \hline
+%$\JSym{s}$        & symbols \\
+%$\JVar{v}$        & variables \\
+%$\JObj{o}$        & any object \\
+%$\JLst{l}{\phi}$  & any list of objects matching $\phi$\\
+%\hline
+%\end{tabular}
+%\end{center}
+
+Let $\phi$ be a pattern and $\omega$ a matching {\openmath} object. We define a match context $M(\phi,\omega)$ as follows.
+\begin{itemize}
+	\item For a symbol or variable joker with name $n$ that matched against the sub-object $\omega'$ of $\omega$, $M(\phi,\omega)$ contains $\matchdecl{n}{S}$ where $S$ is the name of $\omega'$.
+	\item For an object joker $\JObj[\phi']{o}$, $M(\phi,\omega)$ contains $\matchdecl{o}{\phi'}$.
+	\item For an object joker $\JObj{o}$ that matched against the sub-object $\omega'$ of $\omega$, $M(\phi,\omega)$ contains $\matchdecl{o}{\omega}$.
+	\item If a list joker $\JLst{l}{\phi'}$ matched a list $\omega_1,\ldots,\omega_r$, then $M(\phi,\omega)$ contains 
+    \begin{itemize}
+     	\item $\matchdecl{l}{(\omega_1,\ldots,\omega_r)}$, and
+	    \item for every $l/q$ in $\mu(\phi)$: $\matchdecl{l/q}{(X_1,\ldots,X_r)}$ where $\matchdecl{q}{X_i}$ in $M(\phi',\omega_i)$.
+    \end{itemize}
+\end{itemize}
+We omit the precise definition of what it means for a pattern to match against an object. It is, in principle, well-known from regular expressions. Since no backtracking is needed, the computation of $M(\phi,\omega)$ is straightforward. We denote by $M(q)$, the lookup of the match bound to $q$ in a match context $M$.
+%And we use subscripts to access the elements of a list. So if for example $\matchdecl{l/o}{(\omega_1,\ldots,\omega_r)}$ in $M$, then $M(l/o)_i=\omega_i$.
+
+\paragraph{Semantics of Renderings}
+If $\phi$ matches against $\omega$ and the rendering $\rho$ is well formed with respect to $\mu(\phi)$, the intuition of $\render{\rho}{M(\phi,\omega)}$ is that the joker references in $\rho$ are replaced according to $M(\phi,\omega)=:M$. Formally, $\render{\rho}{M}$ is defined as follows.
+
+The rendering is either a string or a sequence of XML elements. We will use $O + O'$ to denote the concatenation of two outputs $O$ and $O'$. By that, we mean a concatenation of sequences of XML elements or of strings if $O$ and $O'$ have the same type (string or XML). Otherwise, $O+O'$ is a sequence of XML elements treating a string as an XML text node. This operation is associative since consecutive text nodes can always be merged.
+
+\begin{itemize}
+	\item $\PIElement{S}{\rho_1\;\ldots\;\rho_r}$ is rendered as an XML element with name $S$. The attributes are those $\render{\rho_i}{M}$ that are rendered as attributes. The children are the concatenation of the remaining $\render{\rho_i}{M}$ preserving their order.
+	\item $\PIAttribute{S}{\rho_1\;\ldots\;\rho_r}$ is rendered as an attribute with label $S$ and value $\render{\rho_1}{M}+\ldots +\render{\rho_n}{M}$ (which has type text due to the well-formedness).
+	\item $\PIText{S}$ is rendered as the text $S$.
+	\item $\PINameOf{s}$ and $\PINameOf{v}$ are rendered as the text $M(s)$ or $M(v)$, respectively.
+	\item $\PIRecurse{o}{p}$ is rendered by applying the rendering algorithm recursively to $M(o)$ and $p$.
+	\item $\PIIterate[I]{l}{\rho_1\;\ldots\;\rho_r}{\rho'_1\;\ldots\;\rho'_s}$ is rendered by the following algorithm:
+	  \begin{enumerate}
+	    \item Let $\sep:=\render{\rho_1}{M}+\ldots+\render{\rho_r}{M}$ and $t$ be the length of $M(l)$.
+	    \item For $i=1,\ldots,t$, let $R_i:=\render{\rho'_1}{M^l_i}+\ldots+\render{\rho'_s}{M^l_i}$.
+	    \item If $I=0$, return nothing and stop. If $I$ is negative, reverse the list $R$, and invert the sign of $I$.
+	    \item Return $R_{I}+\sep+R_{2*I}\ldots+\sep+R_{T}$ where $T$ is the greatest multiple of $I$ smaller than or equal to $t$.
+    \end{enumerate}
+\end{itemize}
+Here the match context $M^l_i$ arises from $M$ as follows
+\begin{itemize}
+	\item replace $\matchdecl{l}{(X_1\;\ldots\;X_t)}$ with $\matchdecl{l}{X_i}$,
+	\item for every $\matchdecl{l/q}{(X_1\;\ldots\;X_t)}$ in $M$: replace it with $\matchdecl{q}{X_i}$, and remove a possible previously defined match for $q$.
+\end{itemize}
+
+\paragraph{Example}
+Consider the example introduced in Section~\ref{sec:nd:syntax}. There we have
+\[\mathll{ \omega = \;
+   @\big(\intg,\oma{\iv,a_1,b_1},\ldots,\oma{\iv,a_n,b_n},\\
+   \tb \beta\big(\lam,\omv{x_1},\ldots,\omv{x_n}, \; \omattr{\oma{plus,\oma{\sins,\omv{x_1}},\omv{x_2}}}{\colr}{\cred}\big)\big)
+}\]
+And $\NC{}$ is the given list of notation definitions. Let $\RC{}{}=(format=latex)$. Matching $\omega$ against the patterns in $\NC{}$ succeeds for the first notation definitions and yields the following match context $M$:
+\[\mathll{\matchdecl{\jn{ranges}}{(\oma{\iv,a_1,b_1},\ldots,\oma{\iv,a_n,b_n})},\;\matchdecl{\jn{ranges}/\jn{a}}{(a_1,\ldots,a_n)},\\[.2cm]\matchdecl{\jn{ranges}/\jn{b}}{(b_1,\ldots,b_n)},\;
+\matchdecl{\jn{f}}{\omattr{\oma{plus,\oma{\sins,\omv{x_1}},\omv{x_2}}}{\colr}{\cred}},\\[.2cm] \matchdecl{\jn{vars}}{(\omv{x_1},\ldots,\omv{x_n})},\; \matchdecl{\jn{vars}/\jn{x}}{(x_1,\ldots,x_n)}}\]
+
+In the second step, a specific rendering is chosen. In our case, there is only one rendering, which matches the required rendering context $\RC{}{}$, namely
+\[\rho = \PIIterate[]
+    {\mathtt{ranges}}
+    {}
+    {\PIText{\mathtt{\backslash int\_\{}\;\PIRecurse{\mathtt{a}}{\infty}\;\PIText{\}\caret\{}\;\PIRecurse{\mathtt{b}}{\infty}\;\PIText{\}}}}\;\;
+  \PIRecurse{\mathtt{f}}{\infty}\;\;
+  \PIIterate[-1]
+    {\mathtt{vars}}
+    {}
+    {\PIText{\mathtt{d}}\;\PIRecurse{\mathtt{x}}{\infty}}
+)^{-\infty}
+\]
+
+To render $\rho$ in match context $M$, we have to render the three components and
+concatenate the results. Only the iterations are interesting. In both iterations, the
+separator $\sep$ is empty; in the second case, the step size $I$ is $-1$ to render the
+variables in reverse order.
+\end{omgroup}
+\end{omgroup}
+\end{omgroup}
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "main"
+%%% End: 
+
+% LocalWords:  xsl omstyle xref  xslt pmml cmml mathematica tex lang en PCDATA
+% LocalWords:  lst linebreak OMSTR em br href om omlet cd quant comm qtpres gr
+% LocalWords:  ter gemeinsamer Teiler sen ta tion ombind arith lbrack rbrack mi
+% LocalWords:  crossref hyperref sty dvips mathml mfrac linethickness omclass
+% LocalWords:  frac lt gt msup pres mroot var bvar ci OMATP msub mn eq attribs
+% LocalWords:  csymbol definitionURL cn mathescape sem OMFOREIGN qtstylen crid
+% LocalWords:  cr ns mrow xlink rt mo xmlns attr elt infixl infixr CDATA
+% LocalWords:  recurse omdoc html qtstyle OMBVAR forall OMV OMA gcd
+% LocalWords:  ggT OMATTR Prolog OMI

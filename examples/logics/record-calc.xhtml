@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html id="record-calc-omdoc" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <link rel="stylesheet" type="text/css" href="omdoc-default.css"/>
+    <title>Record Calculus Types</title>
+  </head>
+  <body>
+    <div class="dc-titleblock">
+      <div class="dc-title">Record Calculus Types</div>
+      <div class="dc-authors">Michael Kohlhase</div>
+      <div class="dc-date">2002-04-16</div>
+    </div>
+    <div class="theory" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="http://purl.org/dc/elements/1.1/">
+      <h1 id="record-calc">1. Record Calculus Types</h1>
+      <div class="omdoc-symbol" id="record" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#record-calc"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>record
+        </div>The record expression constructor. It takes an even number of arguments, the ones at even position are the record fields and the ones at the odd positions their values.
+      </div>
+      <div class="omdoc-symbol" id="select" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#record-calc"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>select
+        </div>The record selector constant. The first argument is a record, the second a record, from which the value for this feature is selected.
+      </div>
+      <div class="omdoc-symbol" id="record-beta-equal" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#record-calc"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>record-beta-equal
+        </div>Record beta equaltiy
+      </div>
+      <div class="omdoc-axiom" id="record-beta-ax" role="Axiom" about="#record-beta-ax" xml:id="record-beta-ax">
+        <a class="omdoc" rel="oso:homeTheory" href="#record-calc"/>
+        <span class="omdoc-titleword">Axiom</span>
+        <p>Selecting a feature from a record gives the appropriate value: 
+          <span id="MCRd20e55" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+              <m:mrow>
+                <m:mo>record-beta-equal</m:mo>
+                <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                <m:mrow>
+                  <m:mo>.</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mrow>
+                    <m:mo>record</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                    <m:mo>...</m:mo>
+                    <m:mo separator="true">,</m:mo>
+                    <m:mo>...</m:mo>
+                    <m:mo separator="true">,</m:mo>
+                    <m:mi>F</m:mi>
+                    <m:mo separator="true">,</m:mo>
+                    <m:mi>V</m:mi>
+                    <m:mo separator="true">,</m:mo>
+                    <m:mo>...</m:mo>
+                    <m:mo separator="true">,</m:mo>
+                    <m:mo>...</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                  </m:mrow>
+                  <m:mo separator="true">,</m:mo>
+                  <m:mi>F</m:mi>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+                <m:mo separator="true">,</m:mo>
+                <m:mi>V</m:mi>
+                <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+              </m:mrow>
+            </m:math>
+          </span>
+        </p>
+      </div>
+      <div class="omdoc-symbol" id="ellipsis" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#record-calc"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>ellipsis
+        </div>This is a meta-symbol that is used for record ellipsis, it should not be used in formal content.
+      </div>
+      <div class="omdoc-symbol" id="tuple" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#record-calc"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>tuple
+        </div>The tuple expression constructor.
+      </div>
+      <div class="omdoc-symbol" id="proj" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#record-calc"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>proj
+        </div>The tuple projection function. It takes a number expression N and a tuple as input and returns the N-th component, if the first argument evaluates to N.
+      </div>
+    </div>
+  </body>
+</html>

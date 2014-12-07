@@ -1,0 +1,180 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This file is part of the LaTeX sources of the OMDoc 1.6 specification
+% Copyright (c) 2006 Michael Kohlhase
+% This work is licensed by the Creative Commons Share-Alike license
+% see http://creativecommons.org/licenses/by-sa/2.5/ for details
+\svnInfo $Id: dc.tex 8369 2009-06-07 00:45:48Z kohlhase $
+\svnKeyword $HeadURL: https://svn.omdoc.org/repos/omdoc/trunk/doc/spec/dc.tex $
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{module}[id=cc]
+\begin{omgroup}[id=creativecommons,short=Managing Rights]
+                           {Managing Rights by Creative Commons Licenses}
+
+The Dublin Core vocabulary provides the {\element[ns-elt=dc]{rights}} element for
+information about rights held in and over the document or element content, but leaves the
+content model unspecified. While it is legally sufficient to describe this information in
+natural language, a content markup format like {\omdoc} should support a
+machine-understandable format. As one of the purposes of the {\omdoc} format is to support
+the sharing and re-use of mathematical content, {\omdoc} provides markup for rights
+management via the {\twinalt{Creative Commons}{Creative Commons}{license}}
+({\twinalt{CC}{CC}{license}}) licenses.  \atwinalt{Digital rights
+  management}{digital}{rights}{management} (\indextoo{DRM}) and licensing of
+{\twintoo{intellectual}{property}} has become a hotly debated topic in the last years. We
+feel that the {\twintoo{Creative Commons}{license}s} that encourage sharing of content and
+enhance the (scientific) public domain while giving authors some control over their
+intellectual property establish a good middle ground. Specifying rights is important,
+since in the absence of an explicit or implicit (via inheritance)
+{\element[ns-elt=dc]{rights}} element no assumptions can be made about the status of the
+document or fragment.  Therefore {\omdoc} adds another child to the {\element{metadata}}
+element.  
+
+This {\element[ns-elt=cc]{license}} element is a symbolic representation of the Creative
+Commons legal framework, adapted to the {\omdoc} setting: The Creative Commons Metadata
+Initiative specifies various ways of embedding {\twintoo{CC}{metadata}} into documents and
+{\twintoo{electronic}{artefacts}} like {\indextoo{picture}s} or
+{\twintoo{MP3}{recording}s}. As {\omdoc} is a source format, from which various
+presentation formats are generated, we need a content representation of the CC metadata
+from which the end-user representations for the respective formats can be generated.
+
+\begin{presonly}
+\begin{myfig}{cctable}{The {\omdoc} Elements for Creative Commons Metadata}
+\begin{scriptsize}
+\begin{tabular}{|>{\tt}l|>{\tt}l|>{\tt}p{2.2truecm}|>{\tt}l|}\hline
+{\rm Element}& \multicolumn{2}{l|}{Attributes\hspace*{2.25cm}} & Content  \\\hline
+             & {\rm Req.}  & {\rm Optional}    &          \\\hline\hline
+ cc:license      & & jurisdiction    &  permissions, prohibitions, requirements,h:p*  \\\hline
+ cc:permissions  & & reproduction, distribution, derivative\_works & h:p*\\\hline
+ cc:prohibitions & & commercial\_use & h:p* \\\hline
+ cc:requirements & & notice, copyleft,  attribution & h:p* \\\hline
+\end{tabular}
+\end{scriptsize}
+\end{myfig}
+\end{presonly}
+
+\begin{definition}[id=cc.license.def]
+  The Creative Commons Metadata Initiative~\cite{URL:creativecommons} divides the license
+  characteristics in three types: {\defin{permissions}}, {\defin{prohibitions}} and
+  {\defin{requirements}}, which are represented by the three elements, which can occur as
+  children of the {\eldef[ns-elt=cc]{license}} element. After these, a a natural language
+  explanation of the license grant in a math text (see {\sref{mtext}}). The {\element[ns-elt=cc]{license}}
+  element has two optional arguments:
+\begin{description}
+\item[{\attribute[ns-elt=cc]{jurisdiction}{license}}] which allows to specify the country
+  in whose jurisdiction the license will be enforced\footnote{The {\twintoo{Creative
+        Commons}{Initiative}} is currently in the process of adapting their licenses to
+    jurisdictions other than the USA, where the licenses
+    originated. See~\cite{URL:creativecommonsworldwide} for details and to check for
+    progress.}. It's value is one of the {\twintoo{top-level}{domain}} codes of the
+  ``Internet Assigned Names Authority (IANA)''~\cite{IANA:TLD}. If this attribute is
+  absent, then the original US version of the license is assumed.
+\item[{\attribute[ns-elt=cc]{version}{license}}] which allows to specify the version of the
+  license. If the attribute is not present, then the newest released version is assumed
+  (version 2.0 at the time of writing this {\report})
+\end{description}
+\end{definition}
+
+The following three elements can occur as children of the {\element[ns-elt=cc]{license}}
+element; their attribute specify the rights bestowed on the user by the license.  All
+these elements have the {\twinalt{namespace}{Creative Commons}{namespace}}
+\url{http://creativecommons.org/ns}, for which we traditionally use the
+{\twintoo{namespace}{prefix}} {\snippetin{cc:}}. All three elements can contain a natural
+language explanation of their particular contribution to the license grant in a sequence
+of {\element[ns-elt=h]{p}} elements.
+
+\begin{definition}[id=cc.permissions.def,title=Permissions]
+  {\eldef[ns-elt=cc]{permissions}} are the rights granted by the license, to model them
+  the element has three attributes, which can have the values
+  {\attvalveryshort{permitted}} (the permission is granted by the license) and
+  {\attvalveryshort{prohibited}} (the permission isn't):
+\begin{scriptsize}
+  \begin{center}
+    \begin{tabular}{|l|p{6truecm}|>{\tt}l|}\hline
+      Attribute & Permission & Default\\\hline\hline
+      {\attribute[ns-elt=cc]{reproduction}{permissions}} 
+      & the work may be reproduced & permitted\\\hline
+      {\attribute[ns-elt=cc]{distribution}{permissions}}  
+      & the work may be distributed, publicly displayed, and
+      publicly performed & permitted \\\hline
+      {\attribute[ns-elt=cc]{derivative\_works}{permissions}}  
+      & derivative works may be created and reproduced & permitted \\\hline
+    \end{tabular}
+  \end{center}
+\end{scriptsize}
+\end{definition}
+
+\begin{definition}[id=cc.prohibitions.def,title=Prohibitions]
+  {\eldef[ns-elt=cc]{prohibitions}} are the things the license prohibits.
+ \begin{scriptsize}
+   \begin{center}
+    \begin{tabular}{|l|p{6truecm}|>{\tt}l|}\hline
+      Attribute & Prohibition & Default\\\hline\hline
+      {\attribute[ns-elt=cc]{commercial\_use}{permission}} 
+      &  stating that rights may be exercised for commercial purposes.
+      & permitted \\\hline
+    \end{tabular}
+  \end{center}
+\end{scriptsize}
+\end{definition}
+
+\begin{definition}[id=cc.requirements.def,title=Requirements]
+  {\eldef[ns-elt=cc]{requirements}} are restrictions imposed by the license.
+   \begin{scriptsize}
+     \begin{center}
+      \begin{tabular}{|l|p{6.5truecm}|>{\tt}l|}\hline
+      Attribute & Requirement & Default\\\hline\hline
+      {\attribute[ns-elt=cc]{notice}{requirements}}  
+      & copyright and license notices must be kept intact & required \\\hline
+      {\attribute[ns-elt=cc]{attribution}{requirements}}  
+      & credit must be given to copyright holder and/or author & required\\\hline
+      {\attribute[ns-elt=cc]{copyleft}{requirements}}  
+      & derivative works, if authorized, must be licensed under the same terms as
+      the work & required \\\hline
+    \end{tabular}
+  \end{center}
+\end{scriptsize}
+\end{definition}
+
+This vocabulary is directly modeled after the Creative Commons
+Metadata~\cite{URL:creativecommonsMetadata} which defines the meaning, and provides an
+{\rdf}~\cite{LasSwi:rdf99} based implementation. As we have discussed in
+{\sref{docmetadata}}, {\omdoc} follows an approach that specifies metadata in the document
+itself; thus we have provided the elements described here. In contrast to many other
+situations in {\omdoc}, the rights model is not extensible, since only the current model
+is backed by legal licenses provided by the creative commons initiative.
+
+{\Mylstref{ccc-copyleft}} specifies a license grant using the Creative Commons
+``share-alike'' license: The copyright is retained by the author, who licenses the content
+to the world, allowing others to reproduce and distribute it without restrictions as long
+as the copyright notice is kept intact. Furthermore, it allows others to create derivative
+works based on the content as long as it attributes the original work of the author and
+licenses the derived work under the identical license (i.e. the Creative Commons
+``share-alike'' as well).
+\begin{lstlisting}[label=lst:ccc-copyleft,caption={A Creative Commons License},
+  index={metadata,dc:rights,license,permissions,reproduction,distribution,
+%         derivative_works,commercial_use,
+         notice,copyleft,attribution,prohibitions,requirements}]
+<metadata>
+  <dc:rights>Copyright (c) 2004 Michael Kohlhase</dc:rights>
+  <license jurisdiction="de" xmlns="http://creativecommons.org/ns">
+    <permissions reproduction="permitted" distribution="permitted" 
+                 derivative_works="permitted"/>
+    <prohibitions commercial_use="permitted"/>
+    <requirements notice="required" copyleft="required" attribution="required"/>
+  </license>
+</metadata>
+\end{lstlisting}
+\end{omgroup}
+\end{module}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "main"
+%%% End: 
+
+% LocalWords: DCperson trl dateTime CC YY DD hh ss sss ISBN ISSN isbn IPR dc LocalWords:
+% MiKo aut clb edt ths trc lst sec qtmetadata lang mathescape Req LocalWords: mtext
+% camelcase natlist en fr nl creativecommons DRM LocalWords: cctable comercial RDF CNX
+% NNat mtxt ref xmlns inheritancea ns un LocalWords: inheritanceb elt attr Dataset
+% omdoc metadata YYYY de eBook LocalWords: creativecommons dc CC DRM cc Req IANA RDF ccc
+% lst xmlns LocalWords: th

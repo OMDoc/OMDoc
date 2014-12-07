@@ -1,0 +1,41 @@
+         [Apologies, if you receive this more than once]
+
+      +----------------------------------------------------+
+      |                                                    |
+      |       OMDoc: Open Mathematical Documents!          |
+      |                                                    |
+      +----------------------------------------------------+
+      |                                                    |
+      |   OMDoc 1.0 has been released November 1. 2000     |
+      |                                                    |
+      +----------------------------------------------------+
+
+OMDoc is a content-based markup format for communicating mathematics on the
+Internet. It is intended both for the presentation of the material for
+human readers and to mathematical software systems. 
+
+Since OMDoc builds on OpenMath and XML, OMDoc can be directly converted
+into MathML, which can be rendered in Mozilla and IE5.
+
+OMDoc is an extention of the OpenMath standard [1] to the document level,
+it supplies structured content-markup for things like axoims, theorems,
+proofs, definitions, texts (mixing formal content with mathematical
+text). Furthermore it supplies syntax for a notion of a structured theory
+hierarchy known from albraic specification formalisms like CASL [2]. 
+
+To find out more about OMDoc, join the OMDoc mailing list [3] or view [4].
+
+[1] http://www.openmath.org   
+[2] http://www.brics.dk/Projects/CoFI
+[3] omdoc@mathweb.org; archived at http://www.mathweb.org/~mailists/omdoc
+[4] http:/www.mathweb.org/omdoc
+
+-------------------------------------------------------------------------
+   Dr. Michael Kohlhase,                 School of Computer Science (LTI)
+   FB Informatik,  Bau 36, Zi. 220.1     Carnegie Mellon University
+   Universit"at des Saarlandes,          5000 Forbes Avenue
+   66041 Saarbr"ucken, Germany           Pittsburgh, Pa  15213-3891
+   tel/fax: (49)-681-302-4628/5076       tel/fax (1) 412-268-5749/6298
+   net: <kohlhase@cs.uni-sb.de>	         net: <kohlhase@cs.cmu.edu>
+   http://www.ags.uni-sb.de/~kohlhase    http://www.cs.cmu.edu/~kohlhase
+--------------------------------------------------------------------------

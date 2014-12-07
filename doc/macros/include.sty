@@ -1,0 +1,39 @@
+\def\figuresPath#1{../figures/#1}
+\def\infigures#1{\input{\figuresPath{#1}}}
+
+% we customize the |\stex@defs| macro from the  |omdoc| package to also write to the refs
+% file. 
+
+% model the |\primerref| macro after |\sref| from the |omdoc| package
+\newcommand{\incl@ref}[3][]{\def\@test{#1}\@ifundefined{stex@#3@#2@label}%
+{\protect\G@refundefinedtrue\@latex@warning{reference #2 undefined in the #3}??}%
+{\stex@hlink@ifh{stex@#2@target}{\ifx\@test\@empty\csname stex@#3@#2@label\endcsname\else #1\fi}}}
+
+\newif\ifbook\bookfalse
+\def\bookPath#1{../book/#1}
+\def\inbook#1{\input{\bookPath{#1}}}
+\def\Inbook#1{\newpage\input{\bookPath{#1}}}
+
+\newif\ifprimer\primerfalse
+\def\primerPath#1{../primer/#1}
+\def\inprimer#1{\input{../primer/#1}}
+\def\Inprimer#1{\newpage\input{../primer/#1}}
+\newcommand{\primerref}[2][]{\incl@ref[#1]{#2}{primer}}
+
+\newif\ifspec\specfalse
+\def\specPath#1{../spec/#1}
+\def\inspec#1{\input{../spec/#1}}
+\def\Inspec#1{\newpage\input{../spec/#1}}
+\newcommand{\specref}[2][]{\incl@ref[#1]{#2}{primer}}
+
+\newif\ifprocessing\processingfalse
+\def\processingPath#1{../processing/#1}
+\def\inprocessing#1{\input{../processing/#1}}
+\def\Inprocessing#1{\newpage\input{../processing/#1}}
+\newcommand{\processingref}[2][]{\incl@ref[#1]{#2}{primer}}
+
+\newif\ifprojects\projectsfalse
+\def\projectsPath#1{../projects/#1}
+\def\inprojects#1{\input{../projects/#1}}
+\def\Inprojects#1{\newpage\input{../projects/#1}}
+\newcommand{\projectsref}[2][]{\incl@ref[#1]{#2}{primer}}

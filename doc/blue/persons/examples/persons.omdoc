@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<person xml:id="miko" xmlns="http://omdoc.org/ns">
+  <personalname>
+    <honorific>Prof.</honorific>
+    <honorific>Dr.</honorific>
+    <firstname>Michael</firstname>
+    <surname>Kohlhase</surname>
+  </personalname>
+  <affiliation>
+    <title>Professor of Computer Science</title>
+    <division>Computer Science</division>
+    <division>School of Engineering and Science</division>
+    <institution>Jacobs University, Bremen</institution>
+    <address>
+      <residence>
+	<name>Research 1</name>
+	<street>Campus Ring</street>
+	<number>1</number>
+      </residence>
+      <town>Bremen</town>
+      <zip>28759</zip>
+    </address>
+  </affiliation>
+  <affiliation>
+    <title>Vice Director</title>
+    <division>Safe and Secure Cognitive Systems</division>
+    <institution>German Research Center for Artificial Intelligence</institution>
+    <address>
+      <residence>
+	<street>Enrique-Schmidt-Straße</street>
+	<number>5</number>
+	<other>Cartesium</other>
+      </residence>
+      <town>Bremen</town>
+      <zip>28353</zip>
+      <country>Germany</country>
+    </address>
+  </affiliation>
+  <address>
+    <residence>
+      <street>M&#xFC;hlental</street>
+      <number>5</number>
+    </residence>
+    <town>Bremen</town>
+    <zip>28717</zip>
+  </address>
+</person>

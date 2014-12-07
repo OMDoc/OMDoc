@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  
+       xmlns="http://omdoc.org/ns"
+       xmlns:om="http://www.openmath.org/OpenMath"
+       xmlns:m="http://www.w3.org/1998/Math/MathML"
+       xmlns:mcd="http://www.w3.org/ns/mathml-cd"
+       xml:id="truthval-omdoc" >
+
+ <metadata>
+  <dc:title>Classical Truth Values</dc:title>
+  <dc:creator role="aut">Michael Kohlhase</dc:creator>
+  <dc:date>2008-07-04T18:28:06</dc:date>
+  <dc:rights>Copyright (c) 2008 Michael Kohlhase</dc:rights>
+  <license xmlns="http://creativecommons.org/ns">
+    <permissions reproduction="permitted" distribution="permitted" derivative_works="permitted"/>
+    <prohibitions commercial_use="permitted"/>
+    <requirements notice="required" copyleft="required" attribution="required"/>
+  </license>
+ </metadata>
+
+ <theory xml:id="truthval">
+ <metadata>
+  <dc:title>Classical Truth Values</dc:title>
+  <dc:description>
+    This theory provides the two  classical truth values. 
+  </dc:description>
+ </metadata>
+  <symbol name="bool" role="type">
+   <metadata><dc:subject>bool</dc:subject>
+     <dc:description>The type of truth values.</dc:description>
+   </metadata>
+  </symbol>
+
+  <notation>
+    <prototype>
+      <om:OMS cd="truthval" name="bool"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="truthval">bool</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en">
+      <m:mo>o</m:mo>
+    </rendering>
+  </notation>
+
+  <symbol name="true">
+   <metadata>
+     <dc:subject>true</dc:subject>
+     <dc:description>This symbol represents the boolean value true.</dc:description>
+   </metadata>
+   <type system="simpletypes.omdoc#simpletypes">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="truthval" name="bool"/></OMOBJ>
+   </type>
+  </symbol>
+
+  <notation cdbase="FIXME" cd="truthval" name="true">
+    <prototype>
+      <om:OMS cd="truthval" name="true"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="truthval">true</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en">
+      <m:mo>T</m:mo>
+    </rendering>
+  </notation>
+
+  <symbol name="false">
+   <metadata><dc:subject>false</dc:subject>
+     <dc:description>This symbol represents the boolean value
+       false.</dc:description>
+   </metadata>
+   <type system="simpletypes.omdoc#simpletypes">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="truthval" name="bool"/></OMOBJ>
+   </type>
+  </symbol>
+
+  <notation>
+    <prototype>
+      <om:OMS cd="truthval" name="false"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="truthval">false</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en">
+      <m:mo>F</m:mo>
+    </rendering>
+  </notation>
+
+ <symbol name="eq">
+   <metadata><dc:description>Equality on truth values</dc:description>
+</metadata>
+</symbol>
+
+  <notation cdbase="FIXME" cd="truthval" name="eq">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="truthval" name="eq"/>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="truthval">eq</m:csymbol>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </m:apply>
+    </prototype>
+    <rendering precedence="700">
+      <m:mrow>
+        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
+        <render name="arg1" precedence="700"/>
+        <m:mo>=</m:mo>
+        <render name="arg2" precedence="700"/>
+        <m:mo mcd:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+
+  <notation>
+    <prototype>
+      <om:OMS cd="truthval" name="eq"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="truthval">eq</m:csymbol>
+    </prototype>
+    <rendering>
+      <!--IMPROVEME: the following is just a fallback-->
+      <m:mo>eq</m:mo>
+    </rendering>
+    <rendering format="tptp">
+      <m:mo>eq</m:mo>
+    </rendering>
+  </notation>
+
+ <symbol name="neq">
+   <metadata><dc:description>Inequality on truth values</dc:description>
+</metadata>
+</symbol>
+
+  <notation cdbase="FIXME" cd="truthval" name="eq">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="truthval" name="neq"/>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="truthval">neq</m:csymbol>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </m:apply>
+    </prototype>
+    <rendering precedence="700">
+      <m:mrow>
+        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
+        <render name="arg1" precedence="700"/>
+        <m:mo>=</m:mo>
+        <render name="arg2" precedence="700"/>
+        <m:mo mcd:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+
+  <notation>
+    <prototype>
+      <om:OMS cd="truthval" name="neq"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="truthval">neq</m:csymbol>
+    </prototype>
+    <rendering>
+      <m:mo>&#x02260;</m:mo>
+    </rendering>
+    <rendering format="tptp">
+      <m:mo>neq</m:mo>
+    </rendering>
+  </notation>
+
+  <axiom xml:id="tf-distinct">
+   <CMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="truthval" name="true"/></OMOBJ> and 
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="truthval" name="false"/></OMOBJ> are distinct.
+   </CMP>
+   <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+     <OMA>
+      <OMS cd="truthval" name="neq"/>
+      <OMS cd="truthval" name="true"/>
+      <OMS cd="truthval" name="false"/>
+     </OMA>
+    </OMOBJ>
+   </FMP>
+  </axiom>
+</theory>
+
+</omdoc>

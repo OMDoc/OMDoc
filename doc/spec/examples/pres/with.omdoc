@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xml:id="with.omdoc"
+  xmlns="http://omdoc.org/ns"
+  xmlns:cc="http://creativecommons.org/ns"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  version="1.6">
+<metadata>
+  <dc:date action="created"> 2004-10-08T11:13:57Z </dc:date>
+  <dc:title xml:lang="en"> with </dc:title>
+  <dc:creator role="aut"> Michael Kohlhase </dc:creator>
+  <dc:source>  </dc:source>
+  <dc:date action="updated"> 2004-10-08T11:13:57Z </dc:date>
+  <dc:type> Text </dc:type>
+  <dc:format> application/omdoc+xml </dc:format>
+  <dc:rights>Copyright (c) 2004 Michael Kohlhase</dc:rights>
+  <cc:license>
+    <cc:permissions reproduction="permitted" distribution="permitted" derivative_works="permitted"/>
+    <cc:prohibitions commercial_use="permitted"/>
+    <cc:requirements notice="required" copyleft="required" attribution="required"/>
+  </cc:license>
+</metadata>
+
+<omtext xml:id="test">
+  <CMP>
+  I want to mark <phrase xml:id="w1" style="important">this important
+  text</phrase> as special.<phrase style="linebreak"/>
+  I can also refer to 
+  <phrase style="link"><OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMSTR>missing.html</OMSTR></OMOBJ>
+   here</phrase>, if something is missing.
+</CMP>
+</omtext>
+
+<omstyle element="omdoc:with" style="important">
+  <style format='html|pmml'><element name="em"><recurse/></element></style>
+  <xslt format='TeX' xmlns:xsl="http://www.w3.org/1999/XSL/Transform">{\em<xsl:apply-templates/>}</xslt>
+</omstyle>
+
+<omstyle element="omdoc:with" style="linebreak">
+  <style format='html|pmml'><element name="br"/></style>
+  <style format='TeX'><text>\par\noindent</text></style>
+</omstyle>
+
+<omstyle element="omdoc:with" style="link">
+ <style format="html|pmml">
+  <element name="a">
+   <attribute name="href">
+    <value-of select="om:OMOBJ/om:OMSTR"/>
+   </attribute>
+   <recurse select="*[not(om:OMOBJ)]"/>
+  </element>
+ </style>
+</omstyle>
+
+</omdoc>

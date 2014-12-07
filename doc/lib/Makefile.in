@@ -1,0 +1,20 @@
+# the following only works for Michael Kohlhase's setup
+
+install: main.pdf
+	cp main.pdf $(WWW)/pubs/omdoc$(OMDocV)-$(PART)-preview.pdf
+	svn ci -m're-generated' $(WWW)/pubs/omdoc$(OMDocV)-$(PART)-preview.pdf
+#	cp  errata.pdf $(WWW)/pubs/errata$(OMDocV)book.pdf
+#	svn ci -m're-generated' $(WWW)/pubs/errata$(OMDocV)book.pdf
+
+echo:	
+	echo $(OMDOC)
+
+spec-errata.tex: $(TEXSRC)
+	pdflatex spec
+
+errata.pdf: spec-errata.tex errata.tex
+	pdflatex errata.tex
+
+
+
+

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  
+       xmlns="http://omdoc.org/ns"
+       xmlns:om="http://www.openmath.org/OpenMath"
+       xmlns:m="http://www.w3.org/1998/Math/MathML"
+       xml:id="substitution-omdoc" >
+
+ <metadata>
+  <dc:title>Substitution</dc:title>
+   <dc:creator role="aut">Michael Kohlhase</dc:creator>
+   <dc:date>2002-04-16T00:00:00</dc:date>
+   <dc:description>The Theory of Substitutions.</dc:description>
+  <dc:rights>Copyright (c) 2008 Michael Kohlhase</dc:rights>
+  <license xmlns="http://creativecommons.org/ns">
+    <permissions reproduction="permitted" distribution="permitted" derivative_works="permitted"/>
+    <prohibitions commercial_use="permitted"/>
+    <requirements notice="required" copyleft="required" attribution="required"/>
+  </license>
+  </metadata>
+  
+ <theory xml:id="substitution">
+ <metadata>
+  <dc:title>Substitution</dc:title>
+ </metadata>
+<symbol name="substitute" role="object" scope="global">
+  <metadata><dc:subject>elementary substitution</dc:subject>
+  <dc:description>The elementary substitution constructor, it takes two arguments: 
+    the replacement term, the variable.</dc:description>
+</metadata>
+</symbol>
+
+<symbol name="apply" role="object" scope="global">
+  <metadata><dc:subject>substitution application</dc:subject>
+  <dc:description>
+    The applicatio operator for  substitutions, it takes two arguments: 
+    a substitution and a term.
+  </dc:description>
+</metadata>
+</symbol>
+
+<example xml:id="substitute-ex" for="#substitute #apply">
+ <CMP>
+  The expression
+   <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+     <OMS cd="substitution" name="substitute"/>
+     <OMV name="B"/>
+     <OMV name="X"/>
+    </OMA>
+   </OMOBJ>
+   is the substitution operator that substitutes the term <OMOBJ
+   xmlns="http://www.openmath.org/OpenMath"><OMV name="B"/></OMOBJ> for the variable
+   <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="X"/></OMOBJ>. It can be
+   applied to a term by the substitution application operator.
+   <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA><OMS cd="substitution" name="apply"/>
+      <OMA>
+	<OMS cd="substitution" name="substitute"/>
+	<OMV name="B"/>
+	<OMV name="X"/>
+      </OMA>
+     <OMV name="A"/>
+    </OMA>
+   </OMOBJ>
+  this denotes the term that is obtained by replacing all free occurrences of the
+  variable <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="X"/></OMOBJ> with 
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="B"/></OMOBJ> 
+  in <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="A"/></OMOBJ>.
+</CMP>
+</example>
+
+ <presentation  for="#substitute" role="applied" arity="2">
+  <style format="default">
+   <text>[</text><recurse select="*[2]"/>
+   <text>/</text><recurse select="*[3]"/>
+   <text>]</text>
+  </style>
+  <style format="pmml">
+    <element name="mrow" crid=".">
+      <element name="mo" cr="yes">
+	<attribute name="fence"><text>true</text></attribute>
+	<text>[</text>
+      </element>
+      <recurse select="*[2]"/>
+      <element name="mo" cr="yes"><text>/</text></element>
+      <recurse select="*[3]"/>
+      <element name="mo" cr="yes">
+	<attribute name="fence"><text>true</text></attribute>
+	<text>]</text>
+      </element>
+    </element>
+  </style>
+ </presentation>
+
+ <presentation  for="#apply" role="applied" arity="2">
+  <style format="default">
+   <recurse select="*[2]"/>
+   <text>(</text><recurse select="*[3]"/><text>)</text>
+  </style>
+  <style format="pmml">
+   <recurse select="*[2]"/>
+   <element name="mo">
+    <attribute name="fence"><text>true</text></attribute>
+    <text>(</text>
+   </element>
+   <recurse select="*[3]"/>
+   <element name="mo">
+    <attribute name="fence"><text>true</text></attribute>
+    <text>)</text>
+   </element>
+  </style>
+ </presentation>
+
+<symbol name="substlist">
+  <metadata><dc:subject>complex substitution</dc:subject>
+  <dc:description>The constructor for complex substitutions: it takes n 
+  arguments that are elementary substitutions.</dc:description>
+</metadata>
+</symbol>
+
+<presentation for="#substlist" role="applied" fixity="assoc" lbrack="" rbrack="">
+  <use format="default">,</use>
+</presentation>
+
+<ignore comment="todo">we need to define free, composition and and so on</ignore>
+
+</theory>
+</omdoc>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  
+       xmlns="http://omdoc.org/ns"
+       xmlns:om="http://www.openmath.org/OpenMath"
+       xmlns:m="http://www.w3.org/1998/Math/MathML"
+       xml:id="ind-omdoc">
+
+ <metadata>
+  <dc:title>Individuals</dc:title>
+  <dc:creator role="aut">Michael Kohlhase</dc:creator>
+  <dc:date>2008-07-04T18:28:06</dc:date>
+  <dc:rights>Copyright (c) 2008 Michael Kohlhase</dc:rights>
+  <license xmlns="http://creativecommons.org/ns">
+    <permissions reproduction="permitted" distribution="permitted" derivative_works="permitted"/>
+    <prohibitions commercial_use="permitted"/>
+    <requirements notice="required" copyleft="required" attribution="required"/>
+  </license>
+ </metadata>
+
+ <theory xml:id="ind">
+   <metadata>
+     <dc:title>Individuals</dc:title>
+     <dc:description>
+       This theory provides the set of individuals as needed in first-order logic.
+     </dc:description>
+   </metadata>
+
+   <symbol name="ind" role="type" scope="global">
+    <metadata>
+      <dc:subject>ind</dc:subject>
+      <dc:description> 
+	<OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="ind" name="ind"/></OMOBJ>
+	is the type of Individuals</dc:description>
+    </metadata>
+   </symbol>
+
+  <notation>
+    <prototype>
+      <om:OMS cd="ind" name="ind"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="ind">ind</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en"><m:mo>ι</m:mo></rendering>
+  </notation>
+
+ </theory>
+</omdoc>

@@ -1,0 +1,1083 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xml:id="elalg.omdoc"
+  xmlns="http://omdoc.org/ns"
+  xmlns:cc="http://creativecommons.org/ns"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xmlns:m="http://www.w3.org/1998/Math/MathML"
+  version="1.6">
+<metadata>
+  <dc:date action="created"> 2004-12-07T21:14:30Z </dc:date>
+  <dc:title xml:lang="en"> elalg </dc:title>
+  <dc:creator role="aut"> Michael Kohlhase </dc:creator>
+  <dc:source>  </dc:source>
+  <dc:date action="updated"> 2004-12-07T21:14:30Z </dc:date>
+  <dc:type> Text </dc:type>
+  <dc:format> application/omdoc+xml </dc:format>
+  <dc:rights>Copyright (c) 2004 Michael Kohlhase</dc:rights>
+  <cc:license>
+    <cc:permissions reproduction="permitted" distribution="permitted" derivative_works="permitted"/>
+    <cc:prohibitions commercial_use="permitted"/>
+    <cc:requirements notice="required" copyleft="required" attribution="required"/>
+  </cc:license>
+</metadata>
+
+<theory xml:id="semigroup">
+  <imports from="../../omstd/logic1.omdoc#logic1"/>
+  <imports from="../../omstd/quant1.omdoc#quant1"/>
+  <imports from="../../omstd/relation1.omdoc#relation1"/>
+  <imports from="../../omstd/set1.omdoc#set1"/>
+
+  <symbol name="base-set">
+    <metadata>
+      <dc:description>The binary operation ∘ defined on that set</dc:description>
+    </metadata>
+  </symbol>
+  <presentation for="#base-set">
+    <use format="default">M</use>
+    <use format="TeX">$M$</use>
+  </presentation>
+
+  <symbol name="op">
+    <metadata>
+      <dc:description>The base set M with semigroup property</dc:description>
+    </metadata>
+  </symbol>
+  <presentation xml:id="pr-op" for="#op" role="applied" fixity="assoc">
+    <use format="TeX">$\circ$</use>
+    <use format="default">∘</use>
+  </presentation>
+
+  <axiom xml:id="closed.ax">
+    <CMP>A semigroup is closed under the application of its operation.</CMP>
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	<OMBIND>
+	  <OMS name="forall" cd="quant1"/>
+	  <OMBVAR>
+	    <OMV name="x"/>
+	    <OMV name="y"/>
+	  </OMBVAR>
+	  <OMA>
+	    <OMS cd="logic1" name="implies"/>
+	    <OMA>
+	      <OMS cd="logic1" name="and"/>
+	      <OMA>
+		<OMS cd="set1" name="in"/>
+		<OMV name="x"/>
+		<OMS cd="semigroup" name="base-set"/>
+	      </OMA>
+	      <OMA>
+		<OMS cd="set1" name="in"/>
+		<OMV name="y"/>
+		<OMS cd="semigroup" name="base-set"/>
+	      </OMA>
+	    </OMA>
+	    <OMA>
+	      <OMS cd="set1" name="in"/>
+	      <OMA>
+		<OMS cd="semigroup" name="op"/>
+		<OMV name="x"/>
+		<OMV name="y"/>
+	      </OMA>
+	      <OMS cd="semigroup" name="base-set"/>
+	    </OMA>
+	  </OMA>
+	</OMBIND>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+
+  <axiom xml:id="assoc.ax">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	<OMBIND>
+	  <OMS name="forall" cd="quant1"/>
+	  <OMBVAR>
+	    <OMV name="x"/>
+	    <OMV name="y"/>
+	    <OMV name="z"/>
+	  </OMBVAR>
+	  <OMA>
+	    <OMS cd="logic1" name="implies"/>
+	    <OMA>
+	      <OMS cd="logic1" name="and"/>
+	      <OMA>
+		<OMS cd="set1" name="in"/>
+		<OMV name="x"/>
+		<OMS cd="semigroup" name="base-set"/>
+	      </OMA>
+	      <OMA>
+		<OMS cd="set1" name="in"/>
+		<OMV name="y"/>
+		<OMS cd="semigroup" name="base-set"/>
+	      </OMA>
+	      <OMA>
+		<OMS cd="set1" name="in"/>
+		<OMV name="z"/>
+		<OMS cd="semigroup" name="base-set"/>
+	      </OMA>
+	    </OMA>
+	    <OMA>
+	      <OMS cd="relation1" name="eq"/>
+	      <OMA>
+		<OMS cd="semigroup" name="op"/>
+		<OMA>
+		  <OMS cd="semigroup" name="op"/>
+		  <OMV name="x"/>
+		  <OMV name="y"/>
+		</OMA>
+		<OMV name="z"/>
+	      </OMA>
+	      <OMA>
+		<OMS cd="semigroup" name="op"/>
+		<OMV name="x"/>
+		<OMA>
+		  <OMS cd="semigroup" name="op"/>
+		  <OMV name="y"/>
+		  <OMV name="z"/>
+		</OMA>
+	      </OMA>
+	      <OMS cd="semigroup" name="base-set"/>
+	    </OMA>
+	  </OMA>
+	</OMBIND>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+  <assertion xml:id="conv.closed" theory="#semigroup">
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	<OMBIND>
+	  <OMS name="forall" cd="quant1"/>
+	  <OMBVAR>
+	    <OMV name="x"/>
+	    <OMV name="y"/>
+	  </OMBVAR>
+	  <OMA>
+	    <OMS cd="logic1" name="implies"/>
+	    <OMA>
+	      <OMS cd="logic1" name="and"/>
+	      <OMA>
+		<OMS cd="set1" name="in"/>
+		<OMV name="x"/>
+		<OMS cd="semigroup" name="base-set"/>
+	      </OMA>
+	      <OMA>
+		<OMS cd="set1" name="in"/>
+		<OMV name="y"/>
+		<OMS cd="semigroup" name="base-set"/>
+	      </OMA>
+	    </OMA>
+	    <OMA>
+	      <OMS cd="set1" name="in"/>
+	      <OMA>
+		<OMS cd="semigroup" name="op"/>
+		<OMV name="y"/>
+		<OMV name="x"/>
+	      </OMA>
+	      <OMS cd="semigroup" name="base-set"/>
+	    </OMA>
+	  </OMA>
+	</OMBIND>
+      </OMOBJ>
+    </FMP>
+  </assertion>
+</theory>
+<theory-inclusion xml:id="sg-conv-sg" from="#semigroup" to="#semigroup">
+  <morphism xml:id="sg-conv-sg.morphism">
+    <requation>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	<OMA>
+	  <OMS cd="semigroup" name="op"/>
+	  <OMV name="X"/>
+	  <OMV name="Y"/>
+	</OMA>
+      </OMOBJ>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	<OMA>
+	  <OMS cd="semigroup" name="op"/>
+	  <OMV name="Y"/>
+	  <OMV name="X"/>
+	</OMA>
+      </OMOBJ>
+    </requation>
+  </morphism>
+  <obligation assertion="#conv.closed" induced-by="#closed.ax"/>
+  <obligation assertion="#assoc.ax" induced-by="#assoc.ax"/>
+</theory-inclusion>
+
+<theory xml:id="monoid">
+  <imports xml:id="sg2mon" from="#semigroup"/>
+  <imports from="../../omstd/logic1.omdoc#logic1"/>
+  <imports from="../../omstd/quant1.omdoc#quant1"/>
+  <imports from="../../omstd/quant2.omdoc#quant2"/>
+  <imports from="../../omstd/relation1.omdoc#relation1"/>
+  <imports from="../../omstd/set1.omdoc#set1"/>
+
+  <axiom xml:id="unit.ax">
+    <CMP>There is a right unit element in M.</CMP>
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	<OMBIND>
+	  <OMS name="exists" cd="quant1"/>
+	  <OMBVAR>
+	    <OMV name="x"/>
+	  </OMBVAR>
+	  <OMA>
+	    <OMS cd="logic1" name="and"/>
+	    <OMA>
+	      <OMS cd="set1" name="in"/>
+	      <OMV name="x"/>
+	      <OMS cd="semigroup" name="base-set"/>
+	    </OMA>
+	    <OMBIND>
+	      <OMS name="forall" cd="quant1"/>
+	      <OMBVAR>
+		<OMV name="y"/>
+	      </OMBVAR>
+	      <OMA>
+		<OMS name="implies" cd="logic1"/>
+		<OMA>
+		  <OMS name="in" cd="set1"/>
+		  <OMV name="y"/>
+		  <OMS name="base-set" cd="semigroup"/>
+		</OMA>
+		<OMA>
+		  <OMS name="eq" cd="relation1"/>
+		  <OMA>
+		    <OMS name="op" cd="semigroup"/>
+		    <OMV name="y"/>
+		    <OMV name="x"/>
+		  </OMA>
+		  <OMV name="y"/>
+		</OMA>
+	      </OMA>
+	    </OMBIND>
+	  </OMA>
+	</OMBIND>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+
+  <assertion xml:id="unit.unique">
+    <CMP>There is exactly one right unit element in M.</CMP>
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	<OMBIND>
+	  <OMS name="exists-unique" cd="quant2"/>
+	  <OMBVAR>
+	    <OMV name="x"/>
+	  </OMBVAR>
+	  <OMA>
+	    <OMS cd="logic1" name="and"/>
+	    <OMA>
+	      <OMS cd="set1" name="in"/>
+	      <OMV name="x"/>
+	      <OMS cd="semigroup" name="base-set"/>
+	    </OMA>
+	    <OMBIND>
+	      <OMS name="forall" cd="quant1"/>
+	      <OMBVAR>
+		<OMV name="y"/>
+	      </OMBVAR>
+	      <OMA>
+		<OMS name="implies" cd="logic1"/>
+		<OMA>
+		  <OMS name="in" cd="set1"/>
+		  <OMV name="y"/>
+		  <OMS name="base-set" cd="semigroup"/>
+		</OMA>
+		<OMA>
+		  <OMS name="eq" cd="relation1"/>
+		  <OMA>
+		    <OMS name="op" cd="semigroup"/>
+		    <OMV name="y"/>
+		    <OMV name="x"/>
+		  </OMA>
+		  <OMV name="y"/>
+		</OMA>
+	      </OMA>
+	    </OMBIND>
+	  </OMA>
+	</OMBIND>
+      </OMOBJ>
+    </FMP>
+  </assertion>
+
+  <symbol name="unit" xml:id="unit">
+    <metadata>
+      <dc:description>The unit element e</dc:description>
+    </metadata>
+  </symbol>
+  <presentation for="#unit"><use format="default">e</use></presentation>
+
+  <definition xml:id="unit.def" for="#unit" type="implicit" existence="#unit.ax" uniqueness="#unit.unique">
+    <CMP>The unit element e is defined as the only element x in M with unit property.</CMP>
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	<OMBIND>
+	  <OMS name="forall" cd="quant1"/>
+	  <OMBVAR>
+	    <OMV name="y"/>
+	  </OMBVAR>
+	  <OMA>
+	    <OMS name="implies" cd="logic1"/>
+	    <OMA>
+	      <OMS name="in" cd="set1"/>
+	      <OMV name="y"/>
+	      <OMS name="base-set" cd="semigroup"/>
+	    </OMA>
+	    <OMA>
+	      <OMS name="eq" cd="relation1"/>
+	      <OMA>
+		<OMS name="op" cd="semigroup"/>
+		<OMV name="y"/>
+		<OMS name="unit" cd="monoid"/>
+	      </OMA>
+	      <OMV name="y"/>
+	    </OMA>
+	  </OMA>
+	</OMBIND>
+      </OMOBJ>
+    </FMP>
+  </definition>
+
+  <assertion xml:id="left.unit">
+    <CMP>The unit element e is also a left unit element on M.</CMP>
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	<OMBIND>
+	  <OMS name="forall" cd="quant1"/>
+	  <OMBVAR>
+	    <OMV name="x"/>
+	  </OMBVAR>
+	  <OMA>
+	    <OMS name="implies" cd="logic1"/>
+	    <OMA>
+	      <OMS name="in" cd="set1"/>
+	      <OMV name="x"/>
+	      <OMS name="base-set" cd="semigroup"/>
+	    </OMA>
+	    <OMA>
+	      <OMS name="eq" cd="relation1"/>
+	      <OMA>
+		<OMS name="op" cd="semigroup"/>
+		<OMS name="unit" cd="monoid"/>
+		<OMV name="x"/>
+	      </OMA>
+	      <OMV name="x"/>
+	    </OMA>
+	  </OMA>
+	</OMBIND>
+      </OMOBJ>
+    </FMP>
+  </assertion>
+
+  <symbol name="setstar" xml:id="setstar">
+    <metadata>
+      <dc:description>The star operator for sets</dc:description>
+    </metadata>
+  </symbol>
+  <presentation for="#setstar" role="applied" fixity="postfix">
+    <use format="TeX">$\cdot^*$</use>
+    <style format="html">
+      <recurse select="*[2]"/>
+      <element name="sup" ns="http://www.w3.org/1999/xhtml"><text>*</text></element>
+    </style>
+    <use format="pmml" bracket-style="lisp" element="msup"/>
+  </presentation>
+
+  <definition xml:id="ss.def" for="#setstar" type="implicit">
+    <CMP>The star operator excludes the unit element e from any subset of M</CMP>
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	<OMBIND>
+	  <OMS name="forall" cd="quant1"/>
+	  <OMBVAR>
+	    <OMV name="S"/>
+	  </OMBVAR>
+	  <OMA>
+	    <OMS name="implies" cd="logic1"/>
+	    <OMA>
+	      <OMS name="subset" cd="set1"/>
+	      <OMV name="S"/>
+	      <OMS name="base-set" cd="semigroup"/>
+	    </OMA>
+	    <OMA>
+	      <OMS name="eq" cd="relation1"/>
+	      <OMA>
+		<OMS name="setstar" cd="monoid"/>
+		<OMV name="S"/>
+	      </OMA>
+	      <OMA>
+		<OMS name="setdiff" cd="set1"/>
+		<OMV name="S"/>
+		<OMA>
+		  <OMS name="set" cd="set1"/>
+		  <OMS name="unit" cd="monoid"/>
+		</OMA>
+	      </OMA>
+	    </OMA>
+	  </OMA>
+	</OMBIND>
+      </OMOBJ>
+    </FMP>
+  </definition>
+</theory>
+
+<axiom-inclusion  xml:id="mon-conv-mon.local" from="#monoid" to="#monoid">
+  <morphism base="#sg-conv-sg.morphism"/>
+  <obligation assertion="#left.unit" induced-by="#unit.ax"/>
+</axiom-inclusion>
+
+<axiom-inclusion xml:id="sg-conv-mon" from="#semigroup" to="#monoid">
+  <morphism base="#sg-conv-sg.morphism"/>
+  <path-just local="#sg-conv-sg" globals="#sg2mon"/>
+</axiom-inclusion>
+<theory-inclusion xml:id="mon-conv-mon.global" from="#monoid" to="#monoid">
+  <morphism base="#sg-conv-sg.morphism"/>
+  <decomposition links="#sg-conv-sg #sg-conv-mon"/>
+</theory-inclusion>
+
+<theory xml:id="group">
+  <imports xml:id="mon2grp" from="#monoid"/>
+  <imports from="../../omstd/logic1.omdoc#logic1"/>
+  <imports from="../../omstd/quant1.omdoc#quant1"/>
+  <imports from="../../omstd/quant2.omdoc#quant2"/>
+  <imports from="../../omstd/relation1.omdoc#relation1"/>
+  <imports from="../../omstd/set1.omdoc#set1"/>
+
+  <axiom xml:id="inv.ax">
+    <CMP>There is a right inverse for any element of M.</CMP>
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	<OMBIND>
+	  <OMS name="forall" cd="quant1"/>
+	  <OMBVAR>
+	    <OMV name="x"/>
+	  </OMBVAR>
+	  <OMA>
+	    <OMS name="implies" cd="logic1"/>
+	    <OMA>
+	      <OMS name="in" cd="set1"/>
+	      <OMV name="x"/>
+	      <OMS name="base-set" cd="semigroup"/>
+	    </OMA>
+	    <OMBIND>
+	      <OMS cd="quant1" name="exists"/>
+	      <OMBVAR>
+		<OMV name="y"/>
+	      </OMBVAR>
+	      <OMA>
+		<OMS cd="logic1" name="and"/>
+		<OMA>
+		  <OMS cd="set1" name="in"/>
+		  <OMV name="y"/>
+		  <OMS cd="semigroup" name="base-set"/>
+		</OMA>
+		<OMA>
+		  <OMS cd="relation1" name="eq"/>
+		  <OMA>
+		    <OMS cd="semigroup" name="op"/>
+		    <OMV name="x"/>
+		    <OMV name="y"/>
+		  </OMA>
+		  <OMS cd="monoid" name="unit"/>
+		</OMA>
+	      </OMA>
+	    </OMBIND>
+	  </OMA>
+	</OMBIND>
+      </OMOBJ>
+    </FMP>
+  </axiom>
+  <symbol name="inv">
+    <metadata>
+      <dc:description>The inverse operator</dc:description>
+    </metadata>
+  </symbol>
+  <presentation for="#inv" role="applied">
+    <use format="default" lbrack="" rbrack="" fixity="postfix">^{-1}</use>
+  </presentation>
+  <definition xml:id="inv.def" for="#inv" type="pattern">
+    <CMP>The inverse of x is defined as the only element y in M with the inverse property.</CMP>
+    <requation>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	<OMA>
+	  <OMS cd="group" name="inv"/>
+	  <OMV name="x"/>
+	</OMA>
+      </OMOBJ>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	<OMBIND>
+	  <OMS cd="quant2" name="that"/>
+	  <OMBVAR>
+	    <OMV name="y"/>
+	  </OMBVAR>
+	  <OMA>
+	    <OMS cd="logic1" name="and"/>
+	    <OMA>
+	      <OMS cd="set1" name="in"/>
+	      <OMV name="y"/>
+	      <OMS cd="semigroup" name="base-set"/>
+	    </OMA>
+	    <OMA>
+	      <OMS cd="relation1" name="eq"/>
+	      <OMA>
+		<OMS cd="semigroup" name="op"/>
+		<OMV name="x"/>
+		<OMV name="y"/>
+	      </OMA>
+	      <OMS cd="monoid" name="unit"/>
+	    </OMA>
+	  </OMA>
+	</OMBIND>
+      </OMOBJ>
+    </requation>
+  </definition>
+
+  <assertion xml:id="conv.inv">
+    <CMP>There is a left inverse for any element of M.</CMP>
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	<OMBIND>
+	  <OMS name="forall" cd="quant1"/>
+	  <OMBVAR>
+	    <OMV name="x"/>
+	  </OMBVAR>
+	  <OMA>
+	    <OMS name="implies" cd="logic1"/>
+	    <OMA>
+	      <OMS name="in" cd="set1"/>
+	      <OMV name="x"/>
+	      <OMS name="base-set" cd="semigroup"/>
+	    </OMA>
+	    <OMBIND>
+	      <OMS cd="quant1" name="exists"/>
+	      <OMBVAR>
+		<OMV name="y"/>
+	      </OMBVAR>
+	      <OMA>
+		<OMS cd="logic1" name="and"/>
+		<OMA>
+		  <OMS cd="set1" name="in"/>
+		  <OMV name="y"/>
+		  <OMS cd="semigroup" name="base-set"/>
+		</OMA>
+		<OMA>
+		  <OMS cd="relation1" name="eq"/>
+		  <OMA>
+		    <OMS cd="semigroup" name="op"/>
+		    <OMV name="y"/>
+		    <OMV name="x"/>
+		  </OMA>
+		  <OMS cd="monoid" name="unit"/>
+		</OMA>
+	      </OMA>
+	    </OMBIND>
+	  </OMA>
+	</OMBIND>
+      </OMOBJ>
+    </FMP>
+  </assertion>
+
+  <assertion xml:id="inv.unique">
+    <CMP>There is exactly one right inverse for any element of M.</CMP>
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	<OMBIND>
+	  <OMS name="forall" cd="quant1"/>
+	  <OMBVAR>
+	    <OMV name="x"/>
+	  </OMBVAR>
+	  <OMA>
+	    <OMS name="implies" cd="logic1"/>
+	    <OMA>
+	      <OMS name="in" cd="set1"/>
+	      <OMV name="x"/>
+	      <OMS name="base-set" cd="semigroup"/>
+	    </OMA>
+	    <OMBIND>
+	      <OMS cd="quant2" name="exists-unique"/>
+	      <OMBVAR>
+		<OMV name="y"/>
+	      </OMBVAR>
+	      <OMA>
+		<OMS cd="logic1" name="and"/>
+		<OMA>
+		  <OMS cd="set1" name="in"/>
+		  <OMV name="y"/>
+		  <OMS cd="semigroup" name="base-set"/>
+		</OMA>
+		<OMA>
+		  <OMS cd="relation1" name="eq"/>
+		  <OMA>
+		    <OMS cd="semigroup" name="op"/>
+		    <OMV name="x"/>
+		    <OMV name="y"/>
+		  </OMA>
+		  <OMS cd="monoid" name="unit"/>
+		</OMA>
+	      </OMA>
+	    </OMBIND>
+	  </OMA>
+	</OMBIND>
+      </OMOBJ>
+    </FMP>
+  </assertion>
+  <proof xml:id="inv.unique.proof" for="#inv.unique">
+    <hypothesis xml:id="inv.unique.proof.h1">
+      <CMP>Suppose 
+	<OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	  <OMR href="#inv.unique.proof.h1.1"/>
+	</OMOBJ>
+      </CMP>
+      <FMP>	
+	<OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	  <OMA id="inv.unique.proof.h1.1">
+	    <OMS cd="set1" name="in"/>
+	    <OMV name="x"/>
+	    <OMS cd="semigroup" name="base-set"/>
+	  </OMA>
+	</OMOBJ>
+      </FMP>
+    </hypothesis>
+    <derive xml:id="inv.unique.proof.d2">
+      <FMP>
+	<OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	  <OMBIND>
+	    <OMS cd="quant1" name="exists"/>
+	    <OMBVAR>
+	      <OMV name="y"/>
+	    </OMBVAR>
+	    <OMA>
+	      <OMS cd="logic1" name="and"/>
+	      <OMA>
+		<OMS cd="set1" name="in"/>
+		<OMV name="y"/>
+		<OMS cd="semigroup" name="base-set"/>
+	      </OMA>
+	      <OMA>
+		<OMS cd="relation1" name="eq"/>
+		<OMA>
+		  <OMS cd="semigroup" name="op"/>
+		  <OMV name="x"/>
+		  <OMV name="y"/>
+		</OMA>
+		<OMA>
+		  <OMS cd="semigroup" name="op"/>
+		  <OMV name="y"/>
+		  <OMV name="x"/>
+		</OMA>
+		<OMS cd="monoid" name="unit"/>
+	      </OMA>
+	    </OMA>
+	  </OMBIND>
+	</OMOBJ>
+      </FMP>
+      <method>
+	<premise xref="#inv.ax"/>
+	<premise xref="#conv.inv"/>
+      </method>
+    </derive>
+    <hypothesis xml:id="inv.unique.proof.h3">
+      <CMP>Let there be a <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="#inv.unique.proof.h3.1"/></OMOBJ>
+	satisfying <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="#inv.unique.proof.h3.2"/></OMOBJ>.
+      </CMP>
+      <FMP>	
+	<OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	  <OMA>
+	    <OMS cd="logic1" name="and"/>
+	    <OMA id="inv.unique.proof.h3.1">
+	      <OMS cd="set1" name="in"/>
+	      <OMV name="z"/>
+	      <OMS cd="semigroup" name="base-set"/>
+	    </OMA>
+	    <OMA id="inv.unique.proof.h3.2">
+	      <OMS cd="relation1" name="eq"/>
+	      <OMA>
+		<OMS cd="semigroup" name="op"/>
+		<OMV name="x"/>
+		<OMV name="z"/>
+	      </OMA>
+	      <OMA>
+		<OMS cd="semigroup" name="op"/>
+		<OMV name="z"/>
+		<OMV name="x"/>
+	      </OMA>
+	      <OMS cd="monoid" name="unit"/>
+	    </OMA>
+	  </OMA>
+	</OMOBJ>
+      </FMP>
+    </hypothesis>
+    <derive xml:id="inv.unique.proof.d5">
+      <CMP>Then 
+	<OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	  <OMR href="#inv.unique.proof.d5.1"/>
+	</OMOBJ>
+      </CMP>
+      <FMP>
+	<OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	<OMA id="inv.unique.proof.d5.1">
+	  <OMS cd="relation1" name="eq"/>
+	  <OMV name="y"/>
+	  <OMA>
+	    <OMS cd="semigroup" name="op"/>
+	    <OMV name="y"/>
+	    <OMS cd="monoid" name="unit"/>
+	  </OMA>
+	  <OMA>
+	    <OMS cd="semigroup" name="op"/>
+	    <OMV name="y"/>
+	    <OMA>
+	      <OMS cd="semigroup" name="op"/>
+	      <OMV name="x"/>
+	      <OMV name="z"/>
+	    </OMA>
+	  </OMA>
+	  <OMA>
+	    <OMS cd="semigroup" name="op"/>
+	    <OMA>
+	      <OMS cd="semigroup" name="op"/>
+	      <OMV name="y"/>
+	      <OMV name="x"/>
+	    </OMA>
+	    <OMV name="z"/>
+	  </OMA>
+	  <OMA>
+	    <OMS cd="semigroup" name="op"/>
+	    <OMS cd="monoid" name="unit"/>
+	    <OMV name="z"/>
+	  </OMA>
+	  <OMV name="z"/>
+	</OMA>
+	</OMOBJ>
+      </FMP>
+      <method>
+	<premise xref="#unit.ax"/>
+	<!-- The properties of h are defined in a hypothesis. Can the latter be a premise? -->
+	<premise xref="#inv.unique.proof.h3"/>
+	<premise xref="#assoc.ax"/>
+	<premise xref="#inv.unique.proof.d2"/>
+	<premise xref="#left.unit"/>
+      </method>
+    </derive>
+    <derive xml:id="inv.unique.proof.d6">
+      <FMP>
+	<OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	  <OMA>
+	    <OMS cd="relation1" name="eq"/>
+	    <OMV name="y"/>
+	    <OMV name="z"/>
+	  </OMA>
+	</OMOBJ>
+      </FMP>
+      <method>
+	<premise xref="#inv.unique.proof.d5"/>
+      </method>
+    </derive>
+    <derive xml:id="inv.unique.proof.d7">
+      <CMP>Thus we have proved that there is a unique inverse.</CMP>
+      <method>
+	<premise xref="#inv.unique.proof.d2"/>
+	<premise xref="#inv.unique.proof.h3"/>
+	<premise xref="#inv.unique.proof.d6"/>
+      </method>
+    </derive>
+  </proof>
+</theory>
+<axiom-inclusion xml:id="grp-conv-grp.local" from="#group" to="#group">
+  <morphism base="#sg-conv-sg.morphism"/>
+  <obligation assertion="#conv.inv" induced-by="#inv.ax"/>
+</axiom-inclusion>
+<axiom-inclusion xml:id="sg-conv-grp" from="#semigroup" to="#group">
+  <morphism base="#sg-conv-sg.morphism"/>
+  <path-just local="#sg-conv-sg" globals="#mon2grp #sg2mon"/>
+</axiom-inclusion>
+<axiom-inclusion xml:id="mon-conv-grp" from="#monoid" to="#group">
+  <morphism base="#sg-conv-sg.morphism"/>
+  <path-just local="#mon-conv-mon.local" globals="#mon2grp"/>
+</axiom-inclusion>
+<theory-inclusion xml:id="grp-conv-grp" from="#group" to="#group">
+  <morphism base="#sg-conv-sg.morphism"/>
+  <decomposition links="#sg-conv-grp #mon-conv-grp #grp-conv-grp.local"/>
+</theory-inclusion>  
+
+<theory xml:id="ring"> 
+  <imports from="../../omstd/logic1.omdoc#logic1"/>
+  <imports from="../../omstd/quant1.omdoc#quant1"/>
+  <imports from="../../omstd/relation1.omdoc#relation1"/>
+  <imports from="../../omstd/set1.omdoc#set1"/>
+  <symbol name="R">
+    <metadata>
+      <dc:description>The base set R of a ring</dc:description>
+    </metadata>
+  </symbol>
+  <presentation for="#R"><use format="default">R</use></presentation>
+  <symbol name="plus">
+    <metadata>
+      <dc:description>The addition operator of a ring</dc:description>
+    </metadata>
+  </symbol>
+  <presentation for="#plus" role="applied"><use format="default">+</use></presentation>
+  <symbol name="zero">
+    <metadata>
+      <dc:description>The zero element of a ring</dc:description>
+    </metadata>
+  </symbol>
+  <presentation for="#zero"><use format="default">0</use></presentation>
+  <symbol name="negative">
+    <metadata>
+      <dc:description>The unary minus operator on a ring</dc:description>
+    </metadata>
+  </symbol>
+  <presentation for="#negative" role="applied"><use format="default">-</use></presentation>
+  <symbol name="times">
+    <metadata>
+      <dc:description>The multiplication operator of a ring</dc:description>
+    </metadata>
+  </symbol>
+  <presentation for="#times" role="applied"><use format="default">*</use></presentation>
+  <symbol name="one"> 
+    <metadata>
+      <dc:description>The one element of a ring</dc:description>
+    </metadata>
+  </symbol>
+  <presentation for="#one"><use format="default">1</use></presentation>
+  <imports xml:id="add.import" from="#group"> 
+    <morphism>
+      <requation>
+	<OMOBJ  xmlns="http://www.openmath.org/OpenMath"><OMS cd="semigroup" name="base-set"/></OMOBJ>
+	<OMOBJ  xmlns="http://www.openmath.org/OpenMath"><OMS cd="ring" name="R"/></OMOBJ>
+      </requation>
+      <requation>
+	  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	    <OMA><OMS cd="semigroup" name="op"/><OMV name="X"/><OMV name="Y"/></OMA>
+	  </OMOBJ>
+	  <OMOBJ  xmlns="http://www.openmath.org/OpenMath">
+	    <OMA><OMS cd="ring" name="plus"/>
+	    <OMV name="X"/><OMV name="Y"/>
+	    </OMA>
+	  </OMOBJ>
+      </requation>
+      <requation>
+	<OMOBJ  xmlns="http://www.openmath.org/OpenMath"><OMS cd="monoid" name="unit"/></OMOBJ>
+	<OMOBJ  xmlns="http://www.openmath.org/OpenMath"><OMS cd="ring" name="zero"/></OMOBJ>
+      </requation>
+      <requation>
+	<OMOBJ  xmlns="http://www.openmath.org/OpenMath"><OMA><OMS cd="group" name="inv"/><OMV name="X"/></OMA></OMOBJ>
+	<OMOBJ  xmlns="http://www.openmath.org/OpenMath"><OMA><OMS cd="ring" name="negative"/><OMV name="X"/></OMA></OMOBJ>
+      </requation>
+    </morphism>
+  </imports> 
+  <imports xml:id="mult.import" from="#monoid"> 
+    <morphism hiding="setstar">
+      <requation>
+	<OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="semigroup" name="M"/></OMOBJ>
+	<OMOBJ  xmlns="http://www.openmath.org/OpenMath"><OMA><OMS cd="monoid" name="setstar"/><OMS cd="ring" name="R"/></OMA></OMOBJ>
+      </requation>
+      <requation>
+	<OMOBJ  xmlns="http://www.openmath.org/OpenMath"><OMA><OMS cd="semigroup" name="op"/><OMV name="X"/><OMV name="Y"/></OMA></OMOBJ>
+	<OMOBJ  xmlns="http://www.openmath.org/OpenMath"><OMA><OMS cd="ring" name="times"/><OMV name="X"/><OMV name="Y"/></OMA></OMOBJ>
+      </requation>
+      <requation>
+	<OMOBJ  xmlns="http://www.openmath.org/OpenMath"><OMS cd="semigroup" name="unit"/></OMOBJ>
+	<OMOBJ  xmlns="http://www.openmath.org/OpenMath"><OMS cd="ring" name="one"/></OMOBJ>
+      </requation>
+    </morphism>
+  </imports> 
+  <axiom xml:id="dist.ax">
+    <CMP>Multiplication from the left distributes over addition</CMP>
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	<OMBIND>
+	  <OMS name="forall" cd="quant1"/>
+	  <OMBVAR>
+	    <OMV name="x"/>
+	    <OMV name="y"/>
+	    <OMV name="z"/>
+	  </OMBVAR>
+	  <OMA>
+	    <OMS cd="logic1" name="implies"/>
+	    <OMA>
+	      <OMS cd="logic1" name="and"/>
+	      <OMA>
+		<OMS cd="set1" name="in"/>
+		<OMV name="x"/>
+		<OMS cd="ring" name="R"/>
+	      </OMA>
+	      <OMA>
+		<OMS cd="set1" name="in"/>
+		<OMV name="y"/>
+		<OMS cd="ring" name="R"/>
+	      </OMA>
+	      <OMA>
+		<OMS cd="set1" name="in"/>
+		<OMV name="z"/>
+		<OMS cd="ring" name="R"/>
+	      </OMA>
+	    </OMA>
+	    <OMA>
+	      <OMS cd="relation1" name="eq"/>
+	      <OMA>
+		<OMS cd="ring" name="times"/>
+		<OMV name="x"/>
+		<OMA>
+		  <OMS cd="ring" name="plus"/>
+		  <OMV name="y"/>
+		  <OMV name="z"/>
+		</OMA>
+	      </OMA>
+	      <OMA>
+		<OMS cd="ring" name="plus"/>
+                <OMA>
+		  <OMS cd="ring" name="times"/>
+		  <OMV name="x"/>
+		  <OMV name="y"/>
+		</OMA>
+		<OMA>
+		  <OMS cd="ring" name="times"/>
+		  <OMV name="x"/>
+		  <OMV name="z"/>
+		</OMA>
+	      </OMA>
+	    </OMA>
+	  </OMA>
+	</OMBIND>
+      </OMOBJ>
+    </FMP>
+  </axiom> 
+  <assertion xml:id="dist.conv">
+    <CMP>Multiplication from the right distributes over addition</CMP>
+    <FMP>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	<OMBIND>
+	  <OMS name="forall" cd="quant1"/>
+	  <OMBVAR>
+	    <OMV name="x"/>
+	    <OMV name="y"/>
+	    <OMV name="z"/>
+	  </OMBVAR>
+	  <OMA>
+	    <OMS cd="logic1" name="implies"/>
+	    <OMA>
+	      <OMS cd="logic1" name="and"/>
+	      <OMA>
+		<OMS cd="set1" name="in"/>
+		<OMV name="x"/>
+		<OMS cd="ring" name="R"/>
+	      </OMA>
+	      <OMA>
+		<OMS cd="set1" name="in"/>
+		<OMV name="y"/>
+		<OMS cd="ring" name="R"/>
+	      </OMA>
+	      <OMA>
+		<OMS cd="set1" name="in"/>
+		<OMV name="z"/>
+		<OMS cd="ring" name="R"/>
+	      </OMA>
+	    </OMA>
+	    <OMA>
+	      <OMS cd="relation1" name="eq"/>
+	      <OMA>
+		<OMS cd="ring" name="times"/>
+		<OMA>
+		  <OMS cd="ring" name="plus"/>
+		  <OMV name="z"/>
+		  <OMV name="y"/>
+		</OMA>
+		<OMV name="x"/>
+	      </OMA>
+	      <OMA>
+		<OMS cd="ring" name="plus"/>
+                <OMA>
+		  <OMS cd="ring" name="times"/>
+		  <OMV name="z"/>
+		  <OMV name="x"/>
+		</OMA>
+		<OMA>
+		  <OMS cd="ring" name="times"/>
+		  <OMV name="y"/>
+		  <OMV name="x"/>
+		</OMA>
+	      </OMA>
+	    </OMA>
+	  </OMA>
+	</OMBIND>
+      </OMOBJ>
+    </FMP>
+  </assertion>
+</theory>
+<axiom-inclusion xml:id="sg-conv-rg.add" from="#semigroup" to="#ring">
+  <morphism base="#sg-conv-sg.morphism #add.import"/>
+  <path-just local="#sg-conv-sg" globals="#sg2mon #mon2grp #add.import "/>
+</axiom-inclusion>
+<axiom-inclusion xml:id="mon-conv-rg.add" from="#monoid" to="#group">
+  <morphism base="#sg-conv-sg.morphism #add.import"/>
+  <path-just local="#mon-conv-mon.local" globals="#mon2grp #add.import"/>
+</axiom-inclusion>
+<axiom-inclusion xml:id="grp-conv-rg.add" from="#group" to="#group">
+  <morphism base="#sg-conv-sg.morphism #add.import"/>
+  <path-just local="#grp-conv-grp.local" globals="#add.import"/>
+</axiom-inclusion>
+
+<axiom-inclusion xml:id="sg-conv-rg.mult" from="#semigroup" to="#ring">
+  <morphism base="#sg-conv-sg.morphism #mult.import"/>
+  <path-just local="#sg-conv-sg" globals="#sg2mon #mon2grp #mult.import "/>
+</axiom-inclusion>
+<axiom-inclusion xml:id="mon-conv-rg.mult" from="#monoid" to="#group">
+  <morphism base="#sg-conv-sg.morphism #mult.import"/>
+  <path-just local="#mon-conv-mon.local" globals="#mon2grp #mult.import"/>
+</axiom-inclusion>
+<axiom-inclusion xml:id="grp-conv-rg.mult" from="#group" to="#group">
+  <morphism base="#sg-conv-sg.morphism #mult.import"/>
+  <path-just local="#grp-conv-grp.local" globals="#mult.import"/>
+</axiom-inclusion>
+<axiom-inclusion xml:id="rg-conv-rg.local" from="#ring" to="#ring">
+  <morphism xml:id="rg-conv-rg.morphism">
+    <requation>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	<OMA>
+	  <OMS cd="ring" name="plus"/>
+	  <OMV name="X"/>
+	  <OMV name="Y"/>
+	</OMA>
+      </OMOBJ>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	<OMA>
+	  <OMS cd="ring" name="plus"/>
+	  <OMV name="Y"/>
+	  <OMV name="X"/>
+	</OMA>
+      </OMOBJ>
+    </requation>
+    <requation>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	<OMA>
+	  <OMS cd="ring" name="times"/>
+	  <OMV name="X"/>
+	  <OMV name="Y"/>
+	</OMA>
+      </OMOBJ>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	<OMA>
+	  <OMS cd="ring" name="times"/>
+	  <OMV name="Y"/>
+	  <OMV name="X"/>
+	</OMA>
+      </OMOBJ>
+    </requation>
+  </morphism>
+  <obligation assertion="#dist.conv" induced-by="#dist.ax"/>
+</axiom-inclusion>  
+<theory-inclusion xml:id="rg-conv-rg" from="#ring" to="#ring">
+  <morphism base="#rg-conv-rg.morphism"/>
+  <decomposition links="#rg-conv-rg.local 
+                        #sg-conv-rg.add  #mon-conv-rg.add  #grp-conv-rg.add
+                        #sg-conv-rg.mult #mon-conv-rg.mult #grp-conv-rg.mult"/>
+</theory-inclusion>  
+
+</omdoc>

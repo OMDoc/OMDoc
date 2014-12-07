@@ -1,0 +1,159 @@
+# Note that namespace URIs must end with / or #
+@prefix dct:	<http://purl.org/dc/terms/> .
+@prefix foaf:	<http://xmlns.com/foaf/0.1/> .
+@prefix oo:	<http://omdoc.org/ontology#> .
+@prefix owl:	<http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:	<http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sdoc:	<http://salt.semanticauthoring.org/onto/abstract-document-ontology#> .
+
+# Declare them as OWL property types, as DCMI Terms is RDFS only (see http://bloody-byte.net/rdf/dc_owl2dl/)
+dct:creator
+	a	owl:AnnotationProperty .
+dct:contributor
+	a	owl:AnnotationProperty .
+dct:subject
+	a	owl:AnnotationProperty .
+dct:title
+	a	owl:AnnotationProperty .
+
+<>
+	a	owl:Ontology ;
+	dct:title "OMDoc document ontology (base classes)" ;
+	rdfs:comment "Base classes of the OMDoc document ontology in OWL-DL" ;
+	dct:creator "Christoph Lange <ch.lange@jacobs-university.de>" ;
+	dct:contributor "Normen Müller <n.mueller@jacobs-university.de>" , "Gordan Ristovski <g.ristovski@jacobs-university.de>", "Nikita Zhiltsov (Никита Жильцов) <nikita.zhiltsov@gmail.com>" ;
+	# Contributors, please add your name here, and in the main file omdoc.n3. --Christoph Lange
+	dct:subject "Semantic Mathematical Markup" .
+
+#
+# BASE CLASSES
+#
+
+oo:MathKnowledgeItem
+	a	owl:Class ;
+	rdfs:comment "Any mathematical knowledge item that can be expressed in OMDoc (i.e. a statement or theory, or probably something else).  This base class neither has a counterpart in the OMDoc1.2 specification nor in its XML schema." ;
+	rdfs:label "Mathematische Wissenseinheit"@de ,
+                "Mathematical Knowledge Item"@en ,
+                "Объект математического знания"@ru ;
+	rdfs:isDefinedBy oo: .
+
+#
+# BASE RELATIONS
+#
+
+oo:dependsOn
+	a	owl:TransitiveProperty ;
+	rdfs:domain oo:MathKnowledgeItem ;
+	rdfs:range oo:MathKnowledgeItem ;
+	rdfs:comment """This relation denotes that one concept B depends on another concept A.  Dependency is “defined” as:  A change to A may have an impact on some property of B.  It is up to subproperties to fix the latter property to something reasonable, such as well-formedness.""" ;
+	rdfs:label "hängt ab von"@de ,
+                "depends on"@en ,
+                "зависит от"@ru ;
+	rdfs:isDefinedBy oo: .
+
+oo:wellFormedNessDependsOn
+	a	owl:TransitiveProperty ;
+	rdfs:subPropertyOf  oo:dependsOn ;
+	rdfs:comment """Dependency in terms of well-formedness, as defined by MMT/OMDoc 1.6.""" ;
+        rdfs:label "Wohlgeformtheit hängt ab von"@de ,
+                "wellformedness depends on"@en ;
+	rdfs:isDefinedBy oo: .
+
+oo:hasPart
+	a	owl:TransitiveProperty ;
+        rdfs:subPropertyOf  dct:hasPart ;
+	rdfs:domain oo:MathKnowledgeItem ;
+	rdfs:range oo:MathKnowledgeItem ;
+	rdfs:comment """The most generic containment relation, used to create relation between a whole and a part, denoting that one concept A (directly or indirectly) contains another concept B. This is orthogonal to dependency. Note that containment is not only transitive but also inverse functional, but both properties together are not allowed in OWL for decidability reasons.  Therefore, we model a single step of a transitive has-part chain (i.e. direct parthood) by a separate property, which is inverse functional.""" ;
+	rdfs:label "enthält"@de ,
+                "has part"@en ,
+                "имеет частью"@ru ;
+	rdfs:isDefinedBy oo: .
+
+oo:isPartOf
+	a	owl:ObjectProperty ;
+        # we have to model this explicitly, as DCMI Terms is RDFS only, i.e. does not declare
+        # dct:isPartOf owl:inverseOf dct:hasPart
+        rdfs:subPropertyOf  dct:isPartOf ;
+        owl:inverseOf   oo:hasPart ;
+        rdfs:label "ist enthalten in"@de ,
+                "is part of"@en ;
+	rdfs:isDefinedBy oo: .
+
+oo:hasDirectPart
+	a	owl:InverseFunctionalProperty, owl:ObjectProperty ;
+	rdfs:comment """We model the direct relation between a whole and a part separately, as that allows us to state that it is inverse functional.""" ;
+        rdfs:subPropertyOf oo:hasPart ;
+        rdfs:label "enthält unmittelbar"@de ,
+                "has direct part"@en ;
+	rdfs:isDefinedBy oo: .
+
+oo:isDirectPartOf
+	a	owl:ObjectProperty ;
+        owl:inverseOf   oo:hasDirectPart ;
+        rdfs:label "ist unmittelbar enthalten in"@de ,
+                "is direct part of"@en ;
+	rdfs:isDefinedBy oo: .
+
+oo:formalityDegree
+	a	owl:ObjectProperty, owl:FunctionalProperty ;
+	rdfs:comment """Used to express how formal a mathematical knowledge item is.""" ;
+	rdfs:domain oo:MathKnowledgeItem ;
+	rdfs:range oo:FormalityDegree ;
+	rdfs:label "Formalitätsgrad"@de ,
+                "formality degree"@en ,
+                "имеет степень формальности"@ru ;
+	rdfs:isDefinedBy oo: .
+
+#TODO extend the degree to include more levels of formality
+# Thanks to Knud Möller <knud.moeller@deri.org> for suggesting this representation
+oo:FormalityDegree
+	a	owl:Class ;
+	rdfs:comment """A class container for all formality degrees used to describe how formal a statement is. """ ;
+	owl:disjointWith oo:MathKnowledgeItem , oo:Reference ;
+	rdfs:label "Formalitätsgrad"@de ,
+                "Formality Degree"@en ,
+                "Степень формальности"@ru ;
+	rdfs:isDefinedBy oo: .
+	
+oo:Rigorous
+	a	oo:FormalityDegree ;
+	rdfs:label "rigoros"@de ,
+                "rigorous"@en ;
+	rdfs:isDefinedBy oo: .
+	
+	
+oo:Informal
+	a	oo:FormalityDegree ;
+        owl:differentFrom oo:Rigorous ;
+	rdfs:label "informal"@de ,
+                "informal"@en ,
+                "Неформальный"@ru ;
+	rdfs:isDefinedBy oo: .
+	
+oo:Computerized
+	a	oo:FormalityDegree ;
+        owl:differentFrom oo:Rigorous, oo:Informal ;
+	rdfs:label "computerisiert"@de ,
+                "computerized"@en ,
+                "Компьютеризированный"@ru ;
+	rdfs:isDefinedBy oo: .
+
+oo:RigorousKnowledgeItem
+	a	owl:Class ;
+	rdfs:subClassOf [ a owl:Restriction;
+	   		  owl:onProperty oo:formalityDegree;
+	  		  owl:hasValue oo:Rigorous ] ;
+	rdfs:label "Rigorose Wissenseinheit"@de ,
+                "Rigorous Knowledge Item"@en ;
+	rdfs:isDefinedBy oo: .
+
+oo:InformalKnowledgeItem
+	a	owl:Class ;
+	rdfs:subClassOf [ a owl:Restriction;
+	   		  owl:onProperty oo:formalityDegree;
+	  		  owl:hasValue oo:Informal ] ;
+	rdfs:label "Informale Wissenseinheit"@de ,
+                "Informal Knowledge Item"@en ,
+                "Объект неформального знания"@ru ;
+	rdfs:isDefinedBy oo: .

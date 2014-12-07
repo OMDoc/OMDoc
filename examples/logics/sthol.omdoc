@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  
+       xmlns="http://omdoc.org/ns"
+       xmlns:om="http://www.openmath.org/OpenMath"
+       xmlns:m="http://www.w3.org/1998/Math/MathML"
+       xmlns:mcd="http://www.w3.org/ns/mathml-cd"
+       xml:id="sthol-omdoc">
+
+ <metadata>
+  <dc:title>Simply Typed Higher-Order Logic</dc:title>
+  <dc:creator role="aut">Michael Kohlhase</dc:creator>
+  <dc:date>2008-07-04T18:28:06</dc:date>
+  <dc:rights>Copyright (c) 2008 Michael Kohlhase</dc:rights>
+  <license xmlns="http://creativecommons.org/ns">
+    <permissions reproduction="permitted" distribution="permitted" derivative_works="permitted"/>
+    <prohibitions commercial_use="permitted"/>
+    <requirements notice="required" copyleft="required" attribution="required"/>
+  </license>
+ </metadata>
+
+ <theory xml:id="sthol">
+ <metadata>
+  <dc:title>Simply Typed Higher-Order Logic</dc:title>
+  <dc:description>
+      This theory provides the classical two-valued first-order
+      quantifiers.
+  </dc:description>
+ </metadata>
+  <imports xml:id="sthol-imports-pl0" from="pl0.omdoc#pl0"/>
+  <imports xml:id="sthol-imports-lambda-calc" from="lambda-calc.omdoc#lambda-calc"/>
+  <imports xml:id="sthol-imports-ind" from="indeq.omdoc#indeq"/>
+
+
+  <symbol name="forall" xml:id="sthol.forall">
+   <metadata><dc:subject>forall</dc:subject>
+     <dc:description>This symbol is the binding symbol for the universal
+       quantifier.</dc:description>
+   </metadata>
+  </symbol>
+
+  <notation>
+    <prototype>
+      <om:OMS cd="sthol" name="forall"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="sthol">forall</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en"><m:mo>∀</m:mo></rendering>
+  </notation>
+
+  <example xml:id="forall-ex-1" type="for" for="#sthol.forall">
+   <CMP>All objects are equal to themselves</CMP>
+   <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMBIND>
+     <OMS cd="sthol" name="forall"/>
+     <OMBVAR><OMV name="x"/></OMBVAR>
+     <OMA>
+      <OMS cd="sthol" name="eq"/>
+      <OMV name="x"/>
+      <OMV name="x"/>
+     </OMA>
+    </OMBIND>
+   </OMOBJ>
+  </example>
+
+  <symbol name="exists" xml:id="sthol.exists">
+   <metadata><dc:subject>exists</dc:subject>
+     <dc:description>This symbol is the binding symbol for the  existential ("there exists") quantifier.</dc:description>
+   </metadata>
+ </symbol>
+  <notation>
+    <prototype>
+      <om:OMS cd="sthol" name="exists"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="sthol">exists</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en"><m:mo>∃</m:mo></rendering>
+  </notation>
+
+  <example xml:id="exists-ex-1" type="for" for="#sthol.exists">
+   <CMP>If the universe is non-empty, then the following statement is true</CMP>
+   <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMBIND>
+     <OMS cd="sthol" name="exists"/>
+     <OMBVAR><OMV name="x"/></OMBVAR>
+     <OMA>
+      <OMS cd="sthol" name="eq"/>
+      <OMV name="x"/>
+      <OMV name="x"/>
+     </OMA>
+    </OMBIND>
+   </OMOBJ>
+  </example>
+
+<omtext xml:id="sthol-hoas-intro">
+    <CMP>Some authors prefer to use higher-order abstract syntax for quantifiers,
+      this variant only uses the binding symbol
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="lambda-calc" name="lambda"/></OMOBJ>
+      and models the quantifiers as higher-order predicates.
+    </CMP>
+  </omtext>
+    
+  <symbol name="forall-op" xml:id="sthol.forall-op">
+   <metadata><dc:subject>forall</dc:subject>
+     <dc:description>This symbol is universal predicate of higher-order abstract
+       syntax.</dc:description>
+   </metadata>
+  </symbol>
+
+  <notation>
+    <prototype>
+      <om:OMS cd="sthol" name="forall-op"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="sthol">forall-op</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en"><m:mo>Π</m:mo></rendering>
+  </notation>
+
+  <example xml:id="forall-op-ex-1" type="for" for="#sthol.forall-op">
+   <CMP>All objects are equal to themselves</CMP>
+   <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+     <OMA>
+       <OMS cd="sthol" name="forall-op"/>
+       <OMBIND>
+	 <OMS cd="lambda-calc" name="lambda"/>
+	 <OMBVAR><OMV name="x"/></OMBVAR>
+	 <OMA>
+	   <OMS cd="sthol" name="eq"/>
+	   <OMV name="x"/>
+	   <OMV name="x"/>
+	 </OMA>
+       </OMBIND>
+     </OMA>
+   </OMOBJ>
+ </example>
+
+  <symbol name="exists-op" xml:id="sthol.exists-op">
+   <metadata><dc:subject>exists</dc:subject>
+     <dc:description>The existential ("there exists") quantifier of higher-order
+       abstract syntax.</dc:description>
+   </metadata>
+  </symbol>
+
+  <notation>
+    <prototype>
+      <om:OMS cd="sthol" name="exists-op"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="sthol">exists-op</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en"><m:mo>Σ</m:mo></rendering>
+  </notation>
+
+  <example xml:id="exists-op-ex-1" type="for" for="#sthol.exists-op">
+   <CMP>If the universe is non-empty, then the following statement is true</CMP>
+   <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+     <OMA>
+       <OMS cd="sthol" name="exists-op"/>
+       <OMBIND>
+	 <OMS cd="lambda-calc" name="lambda"/>
+	 <OMBVAR><OMV name="x"/></OMBVAR>
+	 <OMA>
+	   <OMS cd="sthol" name="eq"/>
+	   <OMV name="x"/>
+	   <OMV name="x"/>
+	 </OMA>
+       </OMBIND>
+     </OMA>
+   </OMOBJ>
+ </example>
+
+  <symbol name="eq">
+   <metadata>
+     <dc:subject>=</dc:subject>
+     <dc:description>Higher-order equality.</dc:description>
+   </metadata>
+  </symbol>
+ 
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="sthol" name="eq"/>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="sthol">eq</m:csymbol>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </m:apply>
+    </prototype>
+    <rendering precedence="700">
+      <m:mrow>
+        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
+        <render name="arg1" precedence="700"/>
+        <m:mo>=</m:mo>
+        <render name="arg2" precedence="700"/>
+        <m:mo mcd:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+
+  <symbol name="neq">
+   <metadata>
+     <dc:subject>=</dc:subject>
+     <dc:description>Higher-order inequality.</dc:description>
+   </metadata>
+  </symbol>
+
+  <notation>
+    <prototype>
+      <om:OMS cd="sthol" name="neq"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="sthol">neq</m:csymbol>
+    </prototype>
+    <rendering>
+      <m:mo>&#x02260;</m:mo>
+    </rendering>
+    <rendering format="tptp">
+      <m:mo>neq</m:mo>
+    </rendering>
+  </notation>
+ 
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="sthol" name="neq"/>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="sthol">neq</m:csymbol>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </m:apply>
+    </prototype>
+    <rendering precedence="700">
+      <m:mrow>
+        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
+        <render name="arg1" precedence="700"/>
+        <m:mo>=</m:mo>
+        <render name="arg2" precedence="700"/>
+        <m:mo mcd:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+</theory>
+</omdoc>

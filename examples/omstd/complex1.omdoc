@@ -1,0 +1,596 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  
+       xmlns="http://omdoc.org/ns"
+       xmlns:om="http://www.openmath.org/OpenMath"
+       xmlns:m="http://www.w3.org/1998/Math/MathML"
+       xmlns:o="http://omdoc.org/ns"
+       xml:id="complex1-omdoc">
+
+<metadata>
+  <dc:title>The OpenMath Content Dictionary complex1.ocd  in OMDoc form</dc:title>
+  <dc:creator role="trl">Michael Kohlhase</dc:creator>
+  <dc:creator role="ant">The OpenMath Society</dc:creator>
+  <dc:date> 2001-03-12T00:00:00</dc:date>
+  <dc:source>Derived from the OpenMath CD http://www.openmath.org/cd/complex1.ocd.</dc:source>
+  <dc:type>Text</dc:type>
+  <dc:format>application/omdoc+xml</dc:format>
+  <dc:rights>Copyright (c) 2000-2002 Michael Kohlhase;
+    This OMDoc content dictionary is released under the OpenMath license:
+    http://monet.nag.co.uk/openmath/cdfiles/license.html
+  </dc:rights>
+  <dc:description>
+    This CD is intended to be `compatible' with the MathML view of
+    operations on and constructors for  complex numbers.
+  </dc:description>
+</metadata>
+
+<theory xml:id="complex1">
+  <imports from="sts.omdoc#sts"/>
+  <imports from="setname1.omdoc#setname1"/>
+
+<symbol name="complex_cartesian" xml:id="complex_cartesian">
+<metadata>
+<dc:description> 
+    This symbol represents a constructor function for complex numbers
+    specified as the Cartesian coordinates of the relevant point on the
+    complex plane. It takes two arguments, the first is a number x to
+    denote the real part and the second a number y to denote the imaginary
+    part of the complex number x + i y. (Where i is the square root of -1.)
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMS name="NumericalValue" cd="sts"/>
+	<OMS name="NumericalValue" cd="sts"/>
+	<OMS name="C" cd="setname1"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+
+<theory xml:id="complex1-cartesian">
+<imports from="alg1.omdoc#alg1"/>
+<imports from="arith1.omdoc#arith1"/>
+<imports from="logic1.omdoc#logic1"/>
+<imports from="nums1.omdoc#nums1"/>
+<imports from="quant1.omdoc#quant1"/>
+<imports from="relation1.omdoc#relation1"/>
+<imports from="set1.omdoc#set1"/>
+<imports from="transc1.omdoc#transc1"/>
+
+<assertion xml:id="complex_cartesian-prop-1" type="lemma">
+  <CMP><legacy format="mocktex">for all x,y | complex_cartesian(x,y) = x + iy</legacy></CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMBIND>
+	<OMS cd="quant1" name="forall"/>
+	<OMBVAR>
+	  <OMV name="x"/>
+	  <OMV name="y"/>
+	</OMBVAR>
+	<OMA>
+	  <OMS cd="relation1" name="eq"/>
+	  <OMA>
+	    <OMS cd="complex1" name="complex_cartesian"/>
+	    <OMV name="x"/>
+	    <OMV name="y"/>
+	  </OMA>
+	  <OMA>
+	    <OMS cd="arith1" name="plus"/>
+	    <OMV name="x"/>
+	    <OMA>
+	      <OMS cd="arith1" name="times"/>
+	      <OMS cd="nums1" name="i"/>
+	      <OMV name="y"/>
+	    </OMA>
+	  </OMA>
+	</OMA>
+      </OMBIND>
+    </OMOBJ>
+  </FMP>
+</assertion>
+</theory>
+
+<symbol name="real" xml:id="real">
+  <metadata>
+    <dc:description>This represents the real part of a complex number</dc:description>
+    <dc:subject>real</dc:subject>
+  </metadata>
+  <type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMS name="C" cd="setname1"/>
+	<OMS name="NumericalValue" cd="sts"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+  <notation>
+    <prototype>
+      <om:OMS cd="complex1" name="real"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="complex1">real</m:csymbol>
+    </prototype>
+    <rendering>
+      <m:mo>real</m:mo>
+    </rendering>
+  </notation>
+  
+<theory xml:id="complex1-real">
+<imports from="alg1.omdoc#alg1"/>
+<imports from="arith1.omdoc#arith1"/>
+<imports from="logic1.omdoc#logic1"/>
+<imports from="nums1.omdoc#nums1"/>
+<imports from="quant1.omdoc#quant1"/>
+<imports from="relation1.omdoc#relation1"/>
+<imports from="set1.omdoc#set1"/>
+<imports from="transc1.omdoc#transc1"/>
+
+<assertion xml:id="real-prop-1" type="lemma">
+  <CMP> for all x,y | x = real(x+iy)</CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMBIND>
+	<OMS cd="quant1" name="forall"/>
+	<OMBVAR>
+	  <OMV name="x"/>
+	  <OMV name="y"/>
+	</OMBVAR>
+	<OMA>
+	  <OMS cd="relation1" name="eq"/>
+	  <OMV name="x"/>
+	  <OMA>
+	    <OMS name="real" cd="complex1"/>
+	    <OMA>
+	      <OMS name="complex_cartesian" cd="complex1"/>
+	      <OMV name="x"/>
+	      <OMV name="y"/>
+	    </OMA>
+	  </OMA>
+	</OMA>
+      </OMBIND>
+    </OMOBJ>
+  </FMP>
+</assertion>
+</theory>
+
+<symbol name="imaginary" xml:id="imaginary">
+  <metadata>
+  <dc:description>This represents the imaginary part of a complex number</dc:description><dc:subject>imaginary</dc:subject></metadata>
+  <type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMS name="C" cd="setname1"/>
+	<OMS name="NumericalValue" cd="sts"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+  <notation>
+    <prototype>
+      <om:OMS cd="complex1" name="imaginary"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="complex1">imaginary</m:csymbol>
+    </prototype>
+    <rendering>
+      <m:mo>imaginary</m:mo>
+    </rendering>
+  </notation>
+
+<theory xml:id="complex1-imaginary">
+<imports from="alg1.omdoc#alg1"/>
+<imports from="arith1.omdoc#arith1"/>
+<imports from="logic1.omdoc#logic1"/>
+<imports from="nums1.omdoc#nums1"/>
+<imports from="quant1.omdoc#quant1"/>
+<imports from="relation1.omdoc#relation1"/>
+<imports from="set1.omdoc#set1"/>
+<imports from="transc1.omdoc#transc1"/>
+
+<assertion xml:id="imaginary-prop-1" type="lemma">
+  <CMP>for all x,y | y = imaginary(x+iy).</CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMBIND>
+	<OMS cd="quant1" name="forall"/>
+	<OMBVAR>
+	  <OMV name="x"/>
+	  <OMV name="y"/>
+	</OMBVAR>
+	<OMA>
+	  <OMS cd="relation1" name="eq"/>
+	  <OMV name="y"/>
+	  <OMA>
+	    <OMS name="imaginary" cd="complex1"/>
+	    <OMA>
+	      <OMS name="complex_cartesian" cd="complex1"/>
+	      <OMV name="x"/>
+	      <OMV name="y"/>
+	    </OMA>
+	  </OMA>
+	</OMA>
+      </OMBIND>
+    </OMOBJ>
+  </FMP>
+</assertion>
+</theory>
+
+<symbol name="complex_polar" xml:id="complex_polar">
+<metadata>
+<dc:description> 
+    This symbol represents a constructor function for complex numbers
+    specified as the polar coordinates of the relevant point on the complex
+    plane. It takes two arguments, the first is a nonnegative number r to
+    denote the magnitude and the second a number theta (given in radians)
+    to denote the argument of the complex number <legacy format="mocktex">r e^(i theta)</legacy>. (i and
+    e are defined as in this CD).
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMV name="PositiveReal"/>
+	<OMS name="R" cd="setname1"/>
+	<OMS name="C" cd="setname1"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+
+<theory xml:id="complex1-polar">
+<imports from="alg1.omdoc#alg1"/>
+<imports from="arith1.omdoc#arith1"/>
+<imports from="logic1.omdoc#logic1"/>
+<imports from="nums1.omdoc#nums1"/>
+<imports from="quant1.omdoc#quant1"/>
+<imports from="relation1.omdoc#relation1"/>
+<imports from="set1.omdoc#set1"/>
+<imports from="transc1.omdoc#transc1"/>
+
+<assertion xml:id="complex_polar-prop-1" type="lemma">
+  <CMP>for all r,a <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="#complex_polar-prop-1.1"/></OMOBJ></CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMBIND>
+	<OMS cd="quant1" name="forall"/>
+	<OMBVAR>
+	  <OMV name="r"/>
+	  <OMV name="a"/>
+	</OMBVAR>
+	<OMA id="complex_polar-prop-1.1">
+	  <OMS cd="relation1" name="eq"/>
+	  <OMA>
+	    <OMS cd="complex1" name="complex_polar"/>
+	    <OMV name="r"/>
+	    <OMV name="a"/>
+	  </OMA>
+	  <OMA>
+	    <OMS cd="arith1" name="times"/>
+	    <OMV name="r"/>
+	    <OMA>
+	      <OMS cd="transc1" name="exp"/>
+	      <OMA>
+		<OMS cd="arith1" name="times"/>
+		<OMV name="a"/>
+		<OMS cd="nums1" name="i"/>
+	      </OMA>
+	    </OMA>
+	  </OMA>
+	</OMA>
+      </OMBIND>
+    </OMOBJ>
+  </FMP>
+</assertion>
+<assertion xml:id="complex_polar-prop-3" type="lemma">
+  <CMP>
+    for all x,y,r,a <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="#complex_polar-prop-3.1"/></OMOBJ>
+    implies <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="#complex_polar-prop-3.2"/></OMOBJ>
+  </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMBIND>
+	<OMS cd="quant1" name="forall"/>
+	<OMBVAR>
+	  <OMV name="x"/>
+	  <OMV name="y"/>
+	  <OMV name="r"/>
+	  <OMV name="a"/>
+	</OMBVAR>
+	<OMA>
+	  <OMS cd="logic1" name="implies"/>
+	  <OMA id="complex_polar-prop-3.1">
+	    <OMS cd="logic1" name="and"/>
+	    <OMA>
+	      <OMS cd="relation1" name="eq"/>
+	      <OMA>
+		<OMS cd="arith1" name="times"/>
+		<OMV name="r"/>
+		<OMA>
+		  <OMS cd="transc1" name="sin"/>
+		  <OMV name="a"/>
+		</OMA>
+	      </OMA>
+	      <OMV name="y"/>
+	    </OMA>
+	    <OMA>
+	      <OMS cd="relation1" name="eq"/>
+	      <OMA>
+		<OMS cd="arith1" name="times"/>
+		<OMV name="r"/>
+		<OMA>
+		  <OMS cd="transc1" name="cos"/>
+		  <OMV name="a"/>
+		</OMA>
+	      </OMA>
+	      <OMV name="x"/>
+	    </OMA>
+	  </OMA>
+	  <OMA id="complex_polar-prop-3.2">
+	    <OMS cd="relation1" name="eq"/>
+	    <OMA>
+	      <OMS cd="complex1" name="complex_polar"/>
+	      <OMV name="r"/>
+	      <OMV name="a"/>
+	    </OMA>
+	    <OMA>
+	      <OMS cd="complex1" name="complex_cartesian"/>
+	      <OMV name="x"/>
+	      <OMV name="y"/>
+	    </OMA>
+	  </OMA>
+	</OMA>
+      </OMBIND>
+    </OMOBJ>
+  </FMP>
+</assertion>
+<assertion xml:id="complex_polar-prop-5" type="lemma">
+  <CMP> for all x | if a is a real number and k is an integer then
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="#complex_polar-prop-5.1"/></OMOBJ>
+  </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMBIND>
+	<OMS cd="quant1" name="forall"/>
+	<OMBVAR>
+	  <OMV name="x"/>
+	</OMBVAR>
+	<OMA>
+	  <OMS cd="logic1" name="implies"/>
+	  <OMA>
+	    <OMS cd="logic1" name="and"/>
+	    <OMA>
+	      <OMS cd="set1" name="in"/>
+	      <OMV name="a"/>
+	      <OMS cd="setname1" name="R"/>
+	    </OMA>
+	    <OMA>
+	      <OMS cd="set1" name="in"/>
+	      <OMV name="k"/>
+	      <OMS cd="setname1" name="Z"/>
+	    </OMA>
+	  </OMA>
+	  <OMA id="complex_polar-prop-5.1">
+	    <OMS cd="relation1" name="eq"/>
+	    <OMA>
+	      <OMS cd="complex1" name="complex_polar"/>
+	      <OMV name="x"/>
+	      <OMV name="a"/>
+	    </OMA>
+	    <OMA>
+	      <OMS cd="complex1" name="complex_polar"/>
+	      <OMV name="x"/>
+	      <OMA>
+		<OMS cd="arith1" name="plus"/>
+		<OMV name="a"/>
+		<OMA>
+		  <OMS cd="arith1" name="times"/>
+		  <OMI> 2 </OMI>
+		  <OMS cd="nums1" name="pi"/>
+		  <OMV name="k"/>
+		</OMA>
+	      </OMA>
+	    </OMA>
+	  </OMA>
+	</OMA>
+      </OMBIND>
+    </OMOBJ>
+  </FMP>
+</assertion>
+<example xml:id="complex_polar-ex-7" type="for" for="#complex_polar">
+  <CMP><OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="#complex_polar-ex-7.1"/></OMOBJ></CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath"> 
+    <OMA id="complex_polar-ex-7.1">
+      <OMS cd="relation1" name="eq"/>
+      <OMS cd="nums1" name="i"/>
+      <OMA>
+	<OMS cd="complex1" name="complex_polar"/>
+	<OMS cd="alg1" name="one"/>
+	<OMA>
+	  <OMS cd="arith1" name="divide"/>
+	  <OMS cd="nums1" name="pi"/>
+	  <OMI> 2 </OMI>
+	</OMA>
+      </OMA>
+    </OMA>
+  </OMOBJ>
+</example>
+</theory>
+
+<symbol name="argument" xml:id="argument">
+<metadata>
+<dc:description>
+    This symbol represents the unary function which returns the argument
+    of a complex number, viz. the angle which a straight line drawn from
+    the number to zero makes with the Real line (measured
+    anti-clockwise). The argument to the symbol is the complex number whos
+    argument is being taken.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMS name="C" cd="setname1"/>
+	<OMV name="PositiveReal"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+  <notation>
+    <prototype>
+      <om:OMS cd="complex1" name="argument"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="complex1">argument</m:csymbol>
+    </prototype>
+    <rendering>
+      <m:mo>argument</m:mo>
+    </rendering>
+  </notation>
+  
+<theory xml:id="complex1-argument">
+<imports from="alg1.omdoc#alg1"/>
+<imports from="arith1.omdoc#arith1"/>
+<imports from="logic1.omdoc#logic1"/>
+<imports from="nums1.omdoc#nums1"/>
+<imports from="quant1.omdoc#quant1"/>
+<imports from="relation1.omdoc#relation1"/>
+<imports from="set1.omdoc#set1"/>
+<imports from="transc1.omdoc#transc1"/>
+
+<assertion xml:id="argument-prop-1" type="lemma">
+  <CMP> for all r,a, 
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="#argument-prop-1.1"/></OMOBJ>
+  </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMBIND>
+	<OMS cd="quant1" name="forall"/>
+	<OMBVAR>
+	  <OMV name="r"/>
+	  <OMV name="a"/>
+	</OMBVAR>
+	<OMA id="argument-prop-1.1">
+	  <OMS cd="relation1" name="eq"/>
+	  <OMA>
+	    <OMS cd="complex1" name="argument"/>
+	    <OMA>
+	      <OMS cd="complex1" name="complex_polar"/>
+	      <OMV name="r"/>
+	      <OMV name="a"/>
+	    </OMA>
+	  </OMA>
+	  <OMV name="a"/>
+	</OMA>
+      </OMBIND>
+    </OMOBJ>
+  </FMP>
+</assertion>
+<assertion xml:id="argument-prop-3" type="lemma">
+  <CMP>The argument of <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="#argument-prop-3.1"/></OMOBJ> is 
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="#argument-prop-3.3"/></OMOBJ>
+  </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="relation1" name="eq"/>
+	<OMA>
+	  <OMS cd="complex1" name="argument"/>
+	  <OMA id="argument-prop-3.1">
+	    <OMS cd="complex1" name="complex_cartesian"/>
+	    <OMV name="x"/>
+	    <OMV name="y"/>
+	  </OMA>
+	</OMA>
+	<OMA id="argument-prop-3.3">
+	  <OMS cd="transc1" name="tan"/>
+	  <OMA>
+	    <OMS cd="arith1" name="divide"/>
+	    <OMV name="y"/>
+	    <OMV name="x"/>
+	  </OMA>
+	</OMA>
+      </OMA>
+    </OMOBJ>
+  </FMP>
+</assertion>
+</theory>
+
+<symbol name="conjugate" xml:id="conjugate">
+  <metadata>
+  <dc:description>A unary operator representing the complex conjugate of its argument.</dc:description><dc:subject>conjugate</dc:subject></metadata>
+  <type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMS name="C" cd="setname1"/>
+	<OMS name="C" cd="setname1"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+  <notation>
+    <prototype>
+      <om:OMS cd="complex1" name="conjugate"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="complex1">conjugate</m:csymbol>
+    </prototype>
+    <rendering>
+      <m:mo>‾</m:mo>
+    </rendering>
+  </notation>
+
+<theory xml:id="complex1-conjugate">
+  <imports from="alg1.omdoc#alg1"/>
+<imports from="arith1.omdoc#arith1"/>
+<imports from="logic1.omdoc#logic1"/>
+<imports from="nums1.omdoc#nums1"/>
+<imports from="quant1.omdoc#quant1"/>
+<imports from="relation1.omdoc#relation1"/>
+<imports from="set1.omdoc#set1"/>
+<imports from="transc1.omdoc#transc1"/>
+
+<assertion xml:id="conjugate-prop-1" type="lemma">
+  <CMP> 
+    if a is a complex number then 
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="#conjugate-prop-1.1"/></OMOBJ> is a real number
+  </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="logic1" name="implies"/>
+	<OMA>
+	  <OMS cd="set1" name="in"/>
+	  <OMV name="a"/>
+	  <OMS cd="setname1" name="C"/>
+	</OMA>
+	<OMA>
+	  <OMS cd="set1" name="in"/>
+	  <OMA id="conjugate-prop-1.1">
+	    <OMS cd="arith1" name="plus"/>
+	    <OMA>
+	      <OMS cd="complex1" name="conjugate"/>
+	      <OMV name="a"/>
+	    </OMA>
+	    <OMV name="a"/>
+	  </OMA>
+	  <OMS cd="setname1" name="R"/>
+	</OMA>
+      </OMA>
+    </OMOBJ>
+  </FMP>
+</assertion>
+</theory>
+</theory>
+</omdoc>
+

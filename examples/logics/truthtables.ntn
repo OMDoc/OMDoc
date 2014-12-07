@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<notations xmlns="http://www.w3.org/ns/mathml-cd" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:om="http://www.openmath.org/OpenMath" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+  <notation cdbase="FIXME" cd="truth-tables" name="tt">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="truth-tables" name="tt"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="truth-tables">tt</m:csymbol>
+        <expr name="arg"/>
+      </m:apply>
+    </prototype>
+    <!--REPLACEME: This is just copied for manual intervention:-->
+    <element xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath" name="mtable" cr="yes">
+     <attribute name="columnlines"><text>solid</text></attribute>
+     <attribute name="rowlines"><text>solid</text></attribute>
+     <element name="mtr" cr="yes">
+      <element name="mtd" cr="yes"><recurse select="*[2]"/></element>
+      <recurse select="*[3]"/>
+     </element>
+     <recurse select="*[position() &gt; 3]"/>
+    </element>
+    <!--/REPLACEME-->
+  </notation>
+  <notation cdbase="FIXME" cd="truth-tables" name="ttrow">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="truth-tables" name="ttrow"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="truth-tables">ttrow</m:csymbol>
+        <expr name="arg"/>
+      </m:apply>
+    </prototype>
+    <!--REPLACEME: This is just copied for manual intervention:-->
+    <xsl:element xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath" name="mtr" namespace="http://www.w3.org/1998/Math/MathML">
+    <xsl:for-each select="*[position() &gt; 1]">
+        <xsl:element name="mtd" namespace="http://www.w3.org/1998/Math/MathML">
+	  <xsl:apply-templates select="."/>
+	</xsl:element>
+    </xsl:for-each>
+    </xsl:element>
+    <!--/REPLACEME-->
+  </notation>
+  <notation cdbase="FIXME" cd="truth-tables" name="ttargs">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="truth-tables" name="ttargs"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="truth-tables">ttargs</m:csymbol>
+        <expr name="arg"/>
+      </m:apply>
+    </prototype>
+    <!--REPLACEME: This is just copied for manual intervention:-->
+    <xsl:for-each xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath" select="*[position() &gt; 1]">
+      <xsl:element name="mtd" namespace="http://www.w3.org/1998/Math/MathML">
+        <xsl:apply-templates select="."/>
+     	</xsl:element>
+    </xsl:for-each>
+    <!--/REPLACEME-->
+  </notation>
+</notations>

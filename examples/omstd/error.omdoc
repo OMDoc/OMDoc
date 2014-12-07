@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  xmlns="http://omdoc.org/ns"
+xml:id="error-omdoc">
+
+
+  <dc:title>The OpenMath Content Dictionary error.ocd  in OMDoc form</dc:title>
+  <dc:creator role="trl">Michael Kohlhase</dc:creator>
+  <dc:creator role="ant">The OpenMath Society</dc:creator>
+  <dc:date> 2001-03-12T00:00:00</dc:date>
+  <dc:source>Derived from the OpenMath CD http://www.openmath.org/cd/error.ocd.</dc:source>
+  <dc:type>Text</dc:type>
+  <dc:format>application/omdoc+xml</dc:format>
+  <dc:rights>Copyright (c) 2000-2002 Michael Kohlhase;
+    This OMDoc content dictionary is released under the OpenMath license:
+    http://monet.nag.co.uk/openmath/cdfiles/license.html
+  </dc:rights>
+
+
+<theory xml:id="error" cdbase="http://www.openmath.org/cd">
+
+<include from="sts.omdoc#sts"/>
+
+<symbol name="unhandled_symbol" xml:id="unhandled_symbol">
+
+<dc:description>
+    This symbol represents the error which is raised when an application
+    reads a symbol which is present in the mentioned content
+    dictionary, but which it has not implemented.
+
+    When receiving such a symbol, the application should act as if it had
+    received the OpenMath error object constructed from
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS name="unhandled_symbol" cd="error"/></OMOBJ>
+    and the unhandled symbol as in the example below.
+</dc:description>
+
+<type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="sts" name="mapsto"/>
+	<OMV name="OMSymbol"/>
+	<OMS name="error" cd="sts"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+
+<example xml:id="unhandled_symbol-ex-1" type="for" for="#unhandled_symbol">
+  <CMP> The application does not implement the Complex numbers:</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OME>
+      <OMS cd="error" name="unhandled_symbol"/>
+      <OMS cd="setname1" name="C"/>
+    </OME>
+  </OMOBJ>
+</example>
+
+<symbol name="unexpected_symbol" xml:id="unexpected_symbol">
+
+<dc:description>
+    This symbol represents the error which is raised when an application
+    reads a symbol which is not present in the mentioned content dictionary.
+
+    When receiving such a symbol, the application should act as if it had
+    received the OpenMath error object constructed from
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="error" name="unexpected_symbol"/></OMOBJ>
+    and the unexpected symbol as in the example below.
+</dc:description>
+
+<type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="sts" name="mapsto"/>
+	<OMV name="OMSymbol"/>
+	<OMS name="error" cd="sts"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+
+<example xml:id="unexpected_symbol-ex-1" type="for" for="#unexpected_symbol">
+  <CMP>The application received a mistyped symbol</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OME>
+      <OMS cd="error" name="unexpected_symbol"/>
+      <OMS cd="arith1" name="plurse"/>
+    </OME>
+  </OMOBJ>
+</example>
+
+<symbol name="unsupported_CD" xml:id="unsupported_CD">
+
+<dc:description>
+    This symbol represents the error which is raised when an application
+    reads a symbol where the mentioned content dictionary is not
+    present.
+
+    When receiving such a symbol, the application should act as if it had
+    received the OpenMath error object constructed from
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="error" name="unsupported_CD"/></OMOBJ> and
+    the symbol from the unsupported Content Dictionary as in the example
+    below.
+</dc:description>
+
+<type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="sts" name="mapsto"/>
+	<OMV name="OMSymbol"/>
+	<OMS name="error" cd="sts"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+
+<example xml:id="unsupported_CD-ex-1" type="for" for="#unsupported_CD">
+  <CMP> The application does not know about the CD specfun1</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OME>
+      <OMS cd="error" name="unsupported_CD"/>
+      <OMS cd="specfun1" name="BesselJ"/>
+    </OME>
+  </OMOBJ>
+</example>
+
+</theory>
+</omdoc>

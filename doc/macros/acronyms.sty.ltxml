@@ -1,0 +1,62 @@
+# -*- CPERL -*-
+# /=======================================================\ #
+# |  acronyms.sty - Implementation for LaTeXML           | #
+# |                                                       | #
+# |=======================================================| #
+# | Not Part of LaTeXML : http://dlmf.nist.gov/LaTeXML/   | #
+# | Copyright (c) 2006 arXMLiv group                      | #
+# | Released under the GNU Public License                 | #
+# \=======================================================/ #
+
+package LaTeXML::Package::Pool;
+use strict;
+use LaTeXML::Package;
+
+# first load the raw package
+#RequirePackage('acronyms',raw=>1);
+
+# and then redefine the relevant parts.
+
+DefConstructor('\sys{}',
+	       "<omdoc:phrase type='systemname'>"
+              .  "<omdoc:idx>"
+	      .    "<omdoc:idt>#1</omdoc:idt>"
+	      .    "<omdoc:ide index='default'><omdoc:idp>#1</omdoc:idp></omdoc:ide>"
+	      .  "</omdoc:idx>"
+	      ."</omdoc:phrase>");
+
+Let('\scsys','\sys');
+Let('\ttsys','\sys');
+
+DefConstructor('\vomdoc{}','<omdoc:phrase type="systemname">#1</omdoc:phrase>',
+	       mode=>'text',bounded=>1,font=>{family=>'typewriter'});
+
+DefMacro('\openmath','\scsys{OpenMath}');
+DefMacro('\activemath','\scsys{ActiveMath}');
+DefMacro('\xml','\scsys{XML}');
+DefMacro('\xmlrpc','\scsys{XMLRPC}');
+DefMacro('\xhtml','\scsys{XHTML}');
+DefMacro('\html','\scsys{HTML}');
+DefMacro('\rdf','\scsys{RDF}');
+DefMacro('\xpath','\scsys{XPath}');
+DefMacro('\xlink','\scsys{XLink}');
+DefMacro('\unicode','\scsys{UniCode}');
+DefMacro('\docbook','\scsys{DocBook}');
+DefMacro('\relaxng','\scsys{RelaxNG}');
+DefMacro('\css','\scsys{CSS}');
+DefMacro('\xslt','\scsys{XSLT}');
+DefMacro('\casl','\scsys{CASL}');
+DefMacro('\isabelle','\scsys{Isabelle}');
+DefMacro('\nuprl','\scsys{NuPRL}');
+DefMacro('\imps','\scsys{IMPS}');
+DefMacro('\mathematica','\scsys{Mathematica}');
+DefMacro('\mathml','\scsys{MathML}');
+DefMacro('\cmathml','content \scsys{MathML}');
+DefMacro('\pmathml','presentation \scsys{MathML}');
+DefMacro('\omdoc','\scsys{OMDoc}');
+DefMacro('\vomdoc{}','Version {#1} of {\omdoc}');
+DefMacro('\omdocv{}','{\omdoc} #1');
+DefMacro('\explainomdocacronym','Open Mathematical Documents');
+
+#**********************************************************************
+1;

@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+<!-- An XML Catalog file for the OMDoc Distribution [http://www.omdoc.org] 
+     Copyright (c) 2003 Michael Kohlhase, released under the GNU Public License (GPL) -->
+
+
+<!DOCTYPE catalog PUBLIC "-//OASIS//DTD Entity Resolution XML Catalog V1.0//EN" 
+                         "http://www.oasis-open.org/committees/entity/release/1.0/catalog.dtd">
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+
+<!-- OMDoc DTD -->
+  <public publicId="-//OMDoc//DTD OMDoc V1.8//EN" uri="../dtd/omdoc.dtd"/>
+  <public publicId="-//OMDoc//DTD OMDoc OMDOBJ V1.8//EN" uri="../dtd/omdobj.dtd"/>
+  <public publicId="-//OMDoc//DTD OMDoc CD 1.8//EN" uri="../dtd/omdoc-cd.dtd"/>
+  <public publicId="-//OMDoc//DTD OMDoc Basic 1.8//EN" uri="../dtd/omdoc-basic.dtd"/>
+  <public publicId="-//OMDoc//DTD OMDoc Education 1.8//EN" uri="../dtd/omdoc-education.dtd"/>
+  <public publicId="-//OMDoc//DTD OMDoc MathWeb 1.8//EN" uri="../dtd/omdoc-mathweb.dtd"/>
+  <public publicId="-//OMDoc//DTD OMDoc Spec 1.8//EN" uri="../dtd/omdoc-spec.dtd"/>
+
+  <public publicId="-//OMDoc//ELEMENTS OMDoc V1.8//EN" uri="../dtd/omdoc.ent"/>
+  <public publicId="-//OMDoc//ELEMENTS OMDoc ADT V1.8//EN" uri="../dtd/omdocadt.mod"/>
+  <public publicId="-//OMDoc//ELEMENTS OMDoc CTH V1.8//EN" uri="../dtd/omdoccth.mod"/>
+  <public publicId="-//OMDoc//ELEMENTS OMDoc DC V1.8//EN" uri="../dtd/omdocdc.mod"/>
+  <public publicId="-//OMDoc//ELEMENTS OMDoc DOC V1.8//EN" uri="../dtd/omdocdoc.mod"/>
+  <public publicId="-//OMDoc//ELEMENTS OMDoc EXT V1.8//EN" uri="../dtd/omdocext.mod"/>
+  <public publicId="-//OMDoc//ELEMENTS OMDoc MOBJ V1.8//EN" uri="../dtd/omdocmobj.mod"/>
+  <public publicId="-//OMDoc//ELEMENTS OMDoc MTXT V1.8//EN" uri="../dtd/omdocmtxtx.mod"/>
+  <public publicId="-//OMDoc//ELEMENTS OMDoc PF V1.8//EN" uri="../dtd/omdocpf.mod"/>
+  <public publicId="-//OMDoc//ELEMENTS OMDoc PRES V1.8//EN" uri="../dtd/omdocpres.mod"/>
+  <public publicId="-//OMDoc//ELEMENTS OMDoc QUIZ V1.8//EN" uri="../dtd/omdocquiz.mod"/>
+  <public publicId="-//OMDoc//ELEMENTS OMDoc RT V1.8//EN" uri="../dtd/omdocrt.mod"/>
+  <public publicId="-//OMDoc//ELEMENTS OMDoc ST V1.8//EN" uri="../dtd/omdocst.mod"/>
+
+  <public publicId="-//OMDoc//ENTITIES OMDoc V1.8//EN" uri="../dtd/omdoc.ent"/>
+  <public publicId="-//OMDoc//ENTITIES OMDoc OMDOBJ V1.8//EN" uri="../dtd/omdobj.ent"/>
+  <public publicId="-//OMDoc//ENTITIES OMDoc ADT V1.8//EN" uri="../dtd/omdocadt.ent"/>
+  <public publicId="-//OMDoc//ENTITIES OMDoc CTH V1.8//EN" uri="../dtd/omdoccth.ent"/>
+  <public publicId="-//OMDoc//ENTITIES OMDoc DC V1.8//EN" uri="../dtd/omdocdc.ent"/>
+  <public publicId="-//OMDoc//ENTITIES OMDoc DOC V1.8//EN" uri="../dtd/omdocdoc.ent"/>
+  <public publicId="-//OMDoc//ENTITIES OMDoc EXT V1.8//EN" uri="../dtd/omdocext.ent"/>
+  <public publicId="-//OMDoc//ENTITIES OMDoc MOBJ V1.8//EN" uri="../dtd/omdocmobj.ent"/>
+  <public publicId="-//OMDoc//ENTITIES OMDoc MTXT V1.8//EN" uri="../dtd/omdocmtxt.ent"/>
+  <public publicId="-//OMDoc//ENTITIES OMDoc PF V1.8//EN" uri="../dtd/omdocpf.ent"/>
+  <public publicId="-//OMDoc//ENTITIES OMDoc PRES V1.8//EN" uri="../dtd/omdocpres.ent"/>
+  <public publicId="-//OMDoc//ENTITIES OMDoc QUIZ V1.8//EN" uri="../dtd/omdocquiz.ent"/>
+  <public publicId="-//OMDoc//ENTITIES OMDoc RT V1.8//EN" uri="../dtd/omdocrt.ent"/>
+  <public publicId="-//OMDoc//ENTITIES OMDoc ST V1.8//EN" uri="../dtd/omdocst.ent"/>
+
+<!-- Rewrite rules to access local copies
+  <rewriteSystem systemIdStartString="http://www.mathweb.org/omdoc/dtd/"
+                 rewritePrefix="../dtd/"/> -->
+  
+<!-- MathML DTD -->
+  <public publicId="-//W3C//DTD MathML 2.0//EN" 
+	  uri="../dtd/mathml2/mathml2.dtd"/>
+  <public publicId="-//W3C//ENTITIES MathML 2.0 Qualified Names 1.0//EN" 
+	  uri="../dtd/mathml2/mathml2-qname-1.mod"/>
+
+<!-- Characters entities for MathML -->
+  <public publicId="-//W3C//ENTITIES Added Math Symbols: Arrow Relations for MathML 2.0//EN" 
+          uri="../dtd/mathml2/isoamsa.ent" />
+  <public publicId="-//W3C//ENTITIES Added Math Symbols: Binary Operators for MathML 2.0//EN" 
+          uri="../dtd/mathml2/isoamsb.ent" />
+  <public publicId="-//W3C//ENTITIES Added Math Symbols: Delimiters for MathML 2.0//EN" 
+          uri="../dtd/mathml2/isoamsc.ent" />
+  <public publicId="-//W3C//ENTITIES Added Math Symbols: Negated Relations for MathML 2.0//EN" 
+          uri="../dtd/mathml2/isoamsn.ent" />
+  <public publicId="-//W3C//ENTITIES Added Math Symbols: Ordinary for MathML 2.0//EN" 
+          uri="../dtd/mathml2/isoamso.ent" />
+  <public publicId="-//W3C//ENTITIES Added Math Symbols: Relations for MathML 2.0//EN" 
+          uri="../dtd/mathml2/isoamsr.ent" />
+  <public publicId="-//W3C//ENTITIES Greek Symbols for MathML 2.0//EN" 
+          uri="../dtd/mathml2/isogrk3.ent" />
+  <public publicId="-//W3C//ENTITIES Math Alphabets: Fraktur for MathML 2.0//EN" 
+          uri="../dtd/mathml2/isomfrk.ent" />
+  <public publicId="-//W3C//ENTITIES Math Alphabets: Open Face for MathML 2.0//EN" 
+          uri="../dtd/mathml2/isomopf.ent" />
+  <public publicId="-//W3C//ENTITIES Math Alphabets: Script for MathML 2.0//EN" 
+          uri="../dtd/mathml2/isomscr.ent" />
+  <public publicId="-//W3C//ENTITIES General Technical for MathML 2.0//EN"
+    uri="../dtd/mathml2/isotech.ent" />
+  <public publicId="-//W3C//ENTITIES Box and Line Drawing for MathML 2.0//EN"
+    uri="../dtd/mathml2/isobox.ent" />
+  <public publicId="-//W3C//ENTITIES Russian Cyrillic for MathML 2.0//EN"
+    uri="../dtd/mathml2/isocyr1.ent" />
+  <public publicId="-//W3C//ENTITIES Non-Russian Cyrillic for MathML 2.0//EN"
+    uri="../dtd/mathml2/isocyr2.ent" />
+  <public publicId="-//W3C//ENTITIES Diacritical Marks for MathML 2.0//EN"
+    uri="../dtd/mathml2/isodia.ent" />
+  <public publicId="-//W3C//ENTITIES Added Latin 1 for MathML 2.0//EN"
+    uri="../dtd/mathml2/isolat1.ent" />
+  <public publicId="-//W3C//ENTITIES Added Latin 2 for MathML 2.0//EN"
+    uri="../dtd/mathml2/isolat2.ent" />
+  <public publicId="-//W3C//ENTITIES Numeric and Special Graphic for MathML 2.0//EN"
+    uri="../dtd/mathml2/isonum.ent" />
+  <public publicId="-//W3C//ENTITIES Publishing for MathML 2.0//EN"
+    uri="../dtd/mathml2/isopub.ent" />
+  <public publicId="-//W3C//ENTITIES Extra for MathML 2.0//EN"
+    uri="../dtd/mathml2/mmlextra.ent" />
+  <public publicId="-//W3C//ENTITIES Aiases for MathML 2.0//EN"
+    uri="../dtd/mathml2/mmlalias.ent" />
+
+  <!-- Rewrite rules to access local copies -->
+  <rewriteSystem systemIdStartString="http://cnx.rice.edu/cnxml/0.4/DTD/"
+                 rewritePrefix="projects/cnx/dtd/cnxml-0.4/"/>
+  <rewriteSystem systemIdStartString="http://foo.org/omdoc.sty"
+                 Rewriteprefix="omdoc.sty"/>
+</catalog>

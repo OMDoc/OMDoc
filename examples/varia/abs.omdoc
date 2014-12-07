@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="../../css/omdoc.css"?>
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://omdoc.org/ns" xml:id="abs.omdoc">
+<metadata>
+  <dc:date action="created"> 2002-12-06T12:54:05Z </dc:date>
+  <dc:title xml:lang="en">Rules for the Absolute Value Function</dc:title>
+  <dc:creator role="aut">Michael Kohlhase</dc:creator>
+  <dc:contributor role="ant">Ed M. Clarke</dc:contributor>
+  <dc:contributor role="ant">Xudong Zhao</dc:contributor>
+  <dc:source>
+    The file abs.m from the Analytica Theorem Prover,
+    Copyrighted E.M.Clarke and Xudong Zhao, Jan 22, 1991
+  </dc:source>
+  <dc:date action="updated"> 2003-01-12T22:38:53Z </dc:date>
+  <dc:type>Dataset</dc:type>
+  <dc:format>application/omdoc+xml</dc:format>
+  <dc:rights>Copyright (c) E. M. Clarke, Xudong Zhao, and Michael Kohlhase</dc:rights>
+  <dc:description>
+    Analytica Rules for the Absolute Value Function in Mathematica -- real case
+    only.
+  </dc:description>
+</metadata>
+
+
+<theory xml:id="simple-abs">
+  <metadata><dc:title>Simple properties of the absolute value function.</dc:title></metadata>
+
+  <imports from="../omstd/arith1.omdoc#arith1"/>
+  <imports from="../omstd/relation1.omdoc#relation1"/>
+  <imports from="../logics/pl1.omdoc#pl1"/>
+  <imports from="../logics/pl0.omdoc#pl0"/>
+  <imports from="../logics/truthval.omdoc#truthval"/>
+
+   
+   <assertion type="lemma" xml:id="abs-negative">
+     <CMP>The Absolute Value function is non-negative.</CMP>
+     <FMP>
+       <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+	 <OMBIND>
+	   <OMS cd="pl1" name="forall"/>
+	   <OMBVAR><OMV name="a"/></OMBVAR>
+	   <OMA>
+	     <OMS cd="relation1" name="eq"/>
+	     <OMA>
+	       <OMS cd="relation1" name="lt"/>
+	       <OMA><OMS cd="arith1" name="abs"/><OMV name="a"/> </OMA>
+	       <OMI>0</OMI>
+	     </OMA>
+	     <OMS cd="truthval" name="false"/>
+	   </OMA>
+	 </OMBIND>
+       </OMOBJ>
+     </FMP>
+   </assertion>
+
+   <omtext xml:id="abs-positive.about.m">
+     <CMP>This gives rise to the following Mathematica Code, which will be loaded
+       by Analytica:
+       <omlet data="#abs-negative.m" action="display"/>
+     </CMP>
+   </omtext>
+
+   <proof xml:id="abs-negative.pf" for="#abs-negative">
+     <derive xml:id="d1">
+       <CMP>
+	 By definition, <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS name="abs" cd="arith1"/></OMOBJ> is the
+	 identity on the positive real numbers and the negative identity on the
+	 negative real numbers.
+       </CMP>
+     </derive>
+     <derive xml:id="d2">
+       <CMP>As both branches are non-negative, we have proven the assertion.</CMP>
+     </derive>
+   </proof>
+
+   <code xml:id="abs-negative.m" for="#abs-negative">
+     <data format="Mathematica"><![CDATA[
+     Unprotect[Abs];
+     Abs /: (Abs[a_] < 0) := False;
+     Abs /: (0 <= Abs[a_]) := True;
+     Protect[Abs];]]>
+   </data>
+ </code>
+
+ <assertion type="lemma" xml:id="abs-non-negative">
+   <CMP>The Absolute Value function is non-positive only on <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMI>0</OMI></OMOBJ>.</CMP>
+   <FMP>
+     <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+       <OMBIND>
+	 <OMS cd="pl1" name="forall"/>
+	 <OMBVAR><OMV name="a"/></OMBVAR>
+	 <OMA>
+	   <OMS cd="pl0" name="implies"/>
+	   <OMA>
+	     <OMS cd="relation1" name="leq"/>
+	     <OMA>
+	       <OMS cd="arith1" name="abs"/>
+	       <OMV name="a"/>
+	     </OMA>
+	     <OMI>0</OMI>
+	   </OMA>
+	   <OMA>
+	     <OMS cd="relation1" name="eq"/>
+	     <OMV name="a"/>
+	     <OMI>0</OMI>
+	   </OMA>
+	 </OMA>
+       </OMBIND>
+     </OMOBJ>
+   </FMP>
+ </assertion>
+
+ <code xml:id="abs-non-negative.m" for="#abs-non-negative">
+   <data format="Mathematica"><![CDATA[
+   Unprotect[Abs];
+   Abs /: (Abs[a_] <= 0) := (a == 0);
+   Protect[Abs];]]>
+ </data>
+</code>
+
+<assertion type="lemma" xml:id="abs-zero">
+  <CMP>The Absolute Value function is zero only on <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMI>0</OMI></OMOBJ>.</CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMBIND>
+	<OMS cd="pl1" name="forall"/>
+	<OMBVAR><OMV name="a"/></OMBVAR>
+	<OMA>
+	  <OMS cd="pl0" name="implies"/>
+	  <OMA>
+	    <OMS cd="relation1" name="eq"/>
+	    <OMA>
+	      <OMS cd="arith1" name="abs"/>
+	      <OMV name="a"/>
+	    </OMA>
+	    <OMI>0</OMI>
+	  </OMA>
+	  <OMA>
+	    <OMS cd="relation1" name="eq"/>
+	    <OMV name="a"/>
+	    <OMI>0</OMI>
+	  </OMA>
+	</OMA>
+      </OMBIND>
+    </OMOBJ>
+  </FMP>
+</assertion>
+
+<code xml:id="abs-zero.m" for="#abs-zero">
+  <data format="Mathematica"><![CDATA[
+  Unprotect[Abs];
+  Abs /: (Abs[a_] == 0) := (a == 0);
+  Protect[Abs];]]>
+</data>
+</code>
+
+<assertion type="lemma" xml:id="abs-positive">
+  <CMP>The Absolute Value function is positive except on <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMI>0</OMI></OMOBJ>.</CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMBIND>
+	<OMS cd="pl1" name="forall"/>
+	<OMBVAR><OMV name="a"/></OMBVAR>
+	<OMA>
+	  <OMS cd="pl0" name="implies"/>
+	  <OMA>
+	    <OMS cd="relation1" name="lt"/>
+	    <OMI>0</OMI>
+	    <OMA>
+	      <OMS cd="arith1" name="abs"/>
+	      <OMV name="a"/>
+	    </OMA>
+	  </OMA>
+	  <OMA>
+	    <OMS cd="relation1" name="neq"/>
+	    <OMV name="a"/>
+	    <OMI>0</OMI>
+	  </OMA>
+	</OMA>
+      </OMBIND>
+    </OMOBJ>
+  </FMP>
+</assertion>
+
+<code xml:id="abs-positive.m" for="#abs-positive">
+  <data format="Mathematica"><![CDATA[
+  Unprotect[Abs];
+  Abs /: (0 < Abs[a_]) := not[a==0];
+  Protect[Abs];]]>
+</data>
+</code>
+</theory>
+
+<omdoc xml:id="abs-simpl">
+   <metadata>
+     <dc:title>
+       Rules for simplifying expressions involving the absolute value
+       function.
+     </dc:title>
+   </metadata>
+
+   <omtext xml:id="abs-simplify.about">
+     <CMP>From the definition of the absolute value function, we can directly
+       obtain the following simplification rules for Mathematica:
+       <omlet data="#abs-simplify.m" action="display"/>
+     </CMP>
+   </omtext>
+
+
+   <code xml:id="abs-simplify.m">
+     <data format="Mathematica"><![CDATA[
+     Abs[a_ b_] := Abs[a] Abs[b];
+     Abs[a_^n_] := Abs[a]^n;]]>
+   </data>
+ </code>
+</omdoc>
+
+<omdoc xml:id="local">
+   <metadata><dc:title>Local rule  used in simplification.</dc:title></metadata>
+
+   <omtext xml:id="abs-rule.docu">
+     <CMP>We need some documentation for the simplification rule
+       <omlet data="#abs-rule.m" action="display">abs-rule.m</omlet>.
+     </CMP>
+   </omtext>
+   
+   <code xml:id="abs-rule.m" for="#abs-rule">
+     <data format="Mathematica"><![CDATA[
+     AbsRule = {
+     Abs[a_] :> If[TrueQ[WeakSimplify[a >= 0]], a,
+     If[TrueQ[WeakSimplify[a <= 0]], -a,
+     Abs[Factor1[a]]]]
+     };]]>
+   </data>
+ </code>
+ 
+ <code xml:id="Factor1.m">
+   <data format="Mathematica"><![CDATA[
+   Factor1[a_] := Factor2[Factor[a]];
+   Factor2[(-1)^n_ a_. + (x_+y_)^n_ b_.] := Factor2[a + (-x-y)^n b];
+   Factor2[a_ + b_] :=
+   If[Order[Factor[Expand[-a-b]], a+b] > 0, 
+   Abs[Factor[Expand[-a-b]]], 
+   Abs[a+b]];
+   Factor2[a_] := a;]]>
+ </data>
+</code>
+
+</omdoc>
+</omdoc>
+
+

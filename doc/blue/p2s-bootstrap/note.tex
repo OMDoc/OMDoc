@@ -1,0 +1,332 @@
+\documentclass{article}
+\usepackage{a4wide,url}
+\usepackage[hyper]{acronyms}
+\usepackage{lstomdoc,xmlindex,myref}
+\usepackage[show]{ed}
+\usepackage[eso-foot,today]{svninfo}
+\usepackage{hyperref} 
+\svnInfo $Id: note.tex 8556 2009-11-16 08:14:39Z kohlhase $
+\svnKeyword $HeadURL: https://svn.omdoc.org/repos/omdoc/trunk/doc/blue/p2s-bootstrap/note.tex $
+\lstset{float=htb,columns=flexible,frame=lines,language=[1.6]OMDoc,basicstyle=\scriptsize,
+        numbers=left,stepnumber=5,numberstyle=\tiny,showstringspaces=false}
+
+\def\llquote#1{\ensuremath{\langle\kern-.25em\langle\hbox{\sl{#1}}\rangle\kern-.25em\rangle}}
+\def\ptos{\ensuremath{\mathcal{P}\kern-.2em2\kern-.2em\mathcal{S}}}
+\usepackage[hyperref=auto,style=alphabetic]{biblatex}
+\bibliography{kwarc}
+
+\title{Towards Bootstrapping the Pragmatic to Strict Mapping in {\omdoc}}
+\author{Michael Kohlhase\\Jacobs University Bremen\\\url{http://kwarc.info/kohlhase}}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+  We propose a representational infrastructure to make the {\omdocv2} pragmatic-to-strict
+  mapping that is fixed in {\omdocv{1.6}} configurable. This will allow to legitimize many
+  of the pragmatic {\omdoc} features from foundational metalogics and thus make {\omdocv2}
+  more flexible and expressive.
+\end{abstract}
+
+\section{Introduction}\label{sec:intro}
+
+The {\omdocv{2}} format currently under development at KWARC has two sub-languages:
+{\emph{strict {\omdoc}}} --- a conceptually minimal set of mathematically well-understood
+representational primitives~\cite{RabKoh:WSMSML09}, and {\emph{pragmatic}} {\omdoc} --- a
+representational infrastructure that attempts a more pragmatic balance between theoretical
+expressivity and conceptual familiarity. The meaning of pragmatic {\omdoc} is given by the
+{\ptos} mapping which interprets all pragmatic language features in terms of strict ones.
+
+The strict/pragmatic language design was pioneered by the author for the upcoming
+{\mathml}3 recommendation~\cite{CarlisleEd:MathML09}, and is used in
+{\omdocv{1.6}}~\cite{Kohlhase:OMDoc1.6spec}, the first step towards {\omdocv2}. This
+language design has the advantage that only a small, regular sublanguage has to be given a
+mathematical meaning, but a larger vocabulary that is more intuitive to practitioners of
+the field can be used for actual representation. Moreover, semantic services like
+validation only need to be implemented for the strict subset and can be extended to the
+pragmatic language by translation. Ultimately, a representation format might even have
+multiple pragmatic front-ends geared towards different audiences. These are semantically
+interoperable by construction.
+
+In {\omdocv{1.6}}, the {\ptos} mapping is fixed by the specification; severely restricting
+the benefits of the strict/pragmatic language design. Moreover, the specification revealed
+interactions with the respective foundational meta-logics that cannot be accounted for
+with a {\ptos} mapping. Consider for instance the pragmatic element of an ``implicit
+definition'' which defines a mathematical object by describing it so accurately, that
+there is only one object that fits this description: the definiendum. For instance the
+exponential function is defined as the (unique) solution of the differential equation
+$f=f'$ with $f(0)=1$. This form of definition is extensively used in practical
+mathematics, so pragmatic {\omdoc} should offer an infrastructure for it. Strict {\omdoc}
+only offers ``simple definitions'' of the form $c:=d$, where $c$ is a new symbol (the
+definiendum) and an expression $d$ (the definiens) which does not contain $c$. In the
+{\omdocv{1.6}} $\ptos$ mapping the implicit definition for the exponential function is
+mapped to the simple definition $e:=\tau f.(f'=f\wedge f(0)=1)$, where $\tau$ is a
+``definite description operator'': Given an expression $A$ with free variable $x$, such
+that there is a unique $x$ that makes $A$ valid, $\tau x.A$ returns that $x$, otherwise
+$\tau x.A$ is undefined. Note the {\ptos} mapping is only justified, if the current meta
+logic supplies a definite description operator. In most areas of mathematics, this is
+unproblematic, since its existence is implicitly assumed. In more foundational contexts
+such as the philosophy of mathematics this poses a problem, since it prevents the
+representation of systems without a definite description operator.
+
+To alleviate this and other problems, it seems natural to make the {\ptos} mapping
+configurable in the {\omdocv2} format itself. All the more since we can extend an existing
+{\omdoc{2}} mechanism for this: format transformations from the notation definition
+subsystem.
+
+\section{A Configurable {\ptos} Mapping}\label{sec:main}
+
+In~\cite{KMR:NoLMD08} we have presented a presentation system for {\omdoc}. It has been
+implemented in the {\jomdoc} system and became a part of the {\omdocv{1.6}} format. In a
+nutshell, the system uses {\emph{notation definitions}} such as the one in
+Listing~\ref{lst:bc-notation}. This is essentially a transformation rule that transforms
+{\openmath} expressions into presentation {\mathml} ones. Crucially, notation definitions
+are treated like statements in {\omdoc}; in particular they are tied to theories with
+which they are inherited.
+
+\begin{lstlisting}[label=lst:bc-notation,caption=A notation for a binomial coefficient]
+<notation>
+  <prototype>
+    <om:OMA> 
+      <om:OMS cd="arith1" name="binomial"/>
+      <expr name="arg1"/>
+      <expr name="arg2"/>
+    </om:OMA>
+  </prototype>
+  <rendering format="mathml-presentation+xml">
+    <m:mrow>
+      <m:mfrac linethickness="0">
+        <render name="arg1"/>
+        <render name="arg2"/>
+      </m:mfrac>
+    </m:mrow>
+  </rendering>
+</notation>
+\end{lstlisting}
+
+For a configurable {\ptos} mapping, we propose to use the same mechanism; just for
+intra-{\omdoc} transformations. In our example, we would add a {\ptos} transformation rule
+to a meta-theory that supplies a description operator. Listing~\ref{lst:desctheory} shows
+a fragment of such a theory based on first-order logic.
+
+\begin{lstlisting}[label=lst:desctheory,caption=A Meta Theory that supplies implicit definitions,mathescape]
+<theory name="descriptions">
+  <import from="fol.omdoc?fol"/>
+  <constant name="that" role="binding"/>
+  <notation>
+    <prototype><om:OMS cd="descriptions" name="that"/></prototype>
+    <rendering><m:mo>$\tau$</m:mo></rendering>
+  </notation>
+  <axiom name="that-ax">$\forall y.\tau x.(x=y)=y$</axiom>
+  <p2srule>
+    <prototype>
+      <definition type="implicit">
+        <attribute name="name"><expr name="name"/></attribute>
+        <attribute name="var"><expr name="var"/></attribute>
+        <expr name="content"/>
+      </definition>
+    </prototype> 
+    <rendering>
+     <constant>
+       <attribute name="name"><text name="name"/></attribute>
+       <definition>
+         <om:OMBIND>
+           <om:OMS cd="descriptions" name="that"/>
+           <om:OMBVAR>
+             <om:OMV><attribute name="name"/><text name="var"/></attribute></om:OMV>
+           </om:OMBVAR>
+           <render name="content"/>
+         </om:OMBIND>
+       </definition>
+    </rendering>
+  <p2srule>
+</theory>
+\end{lstlisting}
+The theory {\attvalveryshort{descriptions}} introduces the definite description operator
+as a new binding operator $\tau$, and describes its meaning by an axiom $\forall y.\tau
+x.(x=y)=y$. The new pragmatic syntax is introduced in the first child of a new element
+{\element{p2srule}}, which is just a variant of the {\element{notation}} element the two
+kinds of transformation rules will probably have to be handled differently, therefore the
+separate elements. This rule will transform the new pragmatic syntax.
+\begin{lstlisting}[mathescape]
+<definition type="implicit" name="expfun" var="f">$f'=f\wedge f(0)=1$</definition>
+\end{lstlisting}
+into the strict syntax
+\begin{lstlisting}[mathescape]
+<constant name="expfun">
+ <definition>$\tau f.f'=f\wedge f(0)=1$</definition>
+</constant>
+\end{lstlisting}
+in a situation where the theory {\attvalveryshort{descriptions}} is imported as a
+meta-theory. Importantly, strict {\omdoc} supports structural validation, which now
+extends to the new syntax. 
+
+Note that while the introduction of implicit definition via a simple first-order
+description operator works in principle, it does not capture the structure of implicit
+definitions in {\omdocv{1.2}}~\cite{Kohlhase:OMDoc1.2}, which uses attributes
+{\attribute{existence}{definition}} and {\attribute{uniqueness}{definition}} as pointers
+to assertions stating unique existence. In our example above, unique existence assertions
+are also needed to invoke the the axiom {\attvalveryshort{that-ax}}: $\exists^1
+f.f'=f\wedge f(0)=1$ can be used to show that the sets $\{f\bigl|f'=f\wedge f(0)=1\}$ and
+$\{f\bigl|f=e\}$ where $e$ is the exponential function are equal and thus that $e=\tau
+f. f'=f\wedge f(0)=1$. So any further mathematical development of the exponential function
+will need this assertion, but the syntax defined by the {\ptos} mapping in
+Listing~\ref{lst:desctheory} has no structural information to locate them. In fact in
+mathematical texts, the association is only made informally in the accompanying text.
+
+As for machine-processing of mathematical knowledge the accompanying text is opaque, we
+will try to re-gain the structural constraints using a more structural meta-logic:
+dependently typed first-order logic (a dependently typed meta-logic~\cite{Ban:MizarTypes}
+is used in the Mizar system~\cite{mizar:online} one of the larges mathematics formalization
+projects). In DFOL\ednote{cite Florian's papers here} we can introduce a definite
+description operator $\iota$ of type $\Pi\alpha.\Pi A\colon(\alpha\rightarrow
+o).pf(\exists^1A).\alpha$\ednote{check if that is really the right type.} Intuitively,
+$\iota$ takes as arguments a type $\alpha$, a set $A$, and a proof that $A$ has a unique
+member $a$ (i.e. is a singleton) and returns the unique member of that set. This would
+give rise to a translation\ednote{hmmmm, I am using $\lambda$ here, I am not sure that
+  this exists in DFOL} like the one in Listing~\ref{iotap2s}.
+\begin{lstlisting}[label=lst:iotap2s,caption=A Meta Theory for structured implicit definitions,mathescape]
+<p2srule>
+  <prototype>
+    <definition type="implicit">
+      <attribute name="name"><expr name="name"/></attribute>
+      <attribute name="var"><expr name="var"/></attribute>
+      <attribute name="exunique"><expr name="exunique"/></attribute>
+      <expr name="idef"/>
+    </definition>
+    $\ldots$
+    <type>
+      <attribute name="for"><expr name="name"/></attribute>
+      <expr name="tcont"/>
+    </type>
+    $\ldots$
+    <proof>
+      <attribute name="name"><expr name="exunique"/></attribute>
+      <expr name="pcont"/>
+    </proof>
+  </prototype> 
+  <rendering>
+   <constant>
+     <attribute name="name"><text name="name"/></attribute>
+     <definition>
+       <om:OMA>
+        <om:OMS cd="descriptions" name="iota"/>
+        <render name="tcont"/>
+        <om:OMBIND>
+          <om:OMS cd="dfol" name="lambda"/>
+          <om:OMBVAR>
+            <om:OMV><attribute name="name"/><text name="var"/></attribute></om:OMV>
+          </om:OMBVAR>
+          <render name="idef"/>
+        </om:OMBIND>
+        <render name="pcont"/>
+      </om:OMA>
+    </definition>
+  </rendering>
+<p2srule>
+\end{lstlisting}
+This already shows added difficulties for the implementation of the $\ptos$ mapping: The
+prototype contains three elements that together correspond to the strict
+definition. Naturally, the pragmatic syntax does not want to restrict itself to having
+these three elements in a consecutive block (a fact that we have tried to gloss by using
+the ellipses $\ldots$ in the {\element{prototype}} element).
+
+\section{Research \& Design Problems}\label{sec:problems}
+There are some problems that still have to be solved:
+
+\subsection{Multi-Part Prototypes} 
+Like in Listing~\ref{lst:iotap2s}. How are they matched, over what scope?
+
+\subsection{Prioritization \& Scoping \& Generic Rules}
+How are the {\ptos} rules prioritized and scoped? This is especially important, if we want
+to introduce generic {\ptos} rules, e.g. for attributes. Consider for instance the
+pragmatic way of specifying rhetorical metadata in {\omdocv{1.2}} via the
+{\attributeshoft{type}} attribute and related ones. For instance in {\omdocv{1.2}} we
+would have
+\begin{lstlisting}[mathescape]
+<omtext type="transition" from="foo" to="bar">$\ldots$</omtext>
+\end{lstlisting}
+which would be represented as 
+\begin{lstlisting}[mathescape]
+<omtext>
+  <meta property="omdoc:transition"/>
+  <link rel="omdoc:transition-from" href="foo"/>
+  <link rel="omdoc:transition-to" href="bar"/>
+  $\ldots$
+</omtext>
+\end{lstlisting}
+Note that these attributes might give rise to {\ptos} transformation rules in a generic
+{\attvalveryshort{omdoc}} theory via 
+\begin{lstlisting}[mathescape]
+<p2srule>
+  <prototype>
+    <element name="name">
+      <attribute name="type"><text name="type"/></attribute>
+      <attributes name="arest"/>
+      <exprlist name="crest"/>
+    </element>
+  </prototype>
+  <rendering>
+    <element name="name"><attributes name="arest/>
+    <meta><attribute name="property"><text>omdoc:</text><text name="type"/></attribute></meta>
+    <iterate name="crest"/>
+  </rendering>
+</p2srule>  
+\end{lstlisting}
+and similar ones for the {\attributeshort{for}} and {\attributeshort{from}}
+attributes. Note that in contrast to the {\ptos} rules shown above, these rules are not
+bound to a specific new element, but introduce new attributes\ednote{is that syntax above
+  a good way of talking about elements {\texttt{<*>}}}. So we might also contemplate the
+following transformation rule syntax:
+\begin{lstlisting}[mathescape]
+<p2srule>
+  <prototype>
+    <attribute name="type"><text name="type"/></attribute>
+  </prototype>
+  <rendering>
+    <meta><attribute name="property"><text>omdoc:</text><text name="type"/></attribute></meta>
+  </rendering>
+</p2srule>  
+\end{lstlisting}
+
+
+\subsection{User Extensions}\label{sec:problems:ue}
+Do we allow the user (as opposed to the language designer) to extend the syntax? If we
+did, we might end up with a situation like in {\LaTeX}, where we have thousands of
+{\omdoc} packages and classes.
+
+\subsection{Documentation}
+How are the {\ptos} rules documented for the language user? There should be some form an
+explanation system for the currently active transformation, especially, when we have user
+extensions as envisioned in section~\ref{sec:problems:ue}
+
+\section{Conclusion}\label{sec:concl}
+
+I have proposed a novel, more semantic way of handling the {\omdocv2} pragmatic to strict
+mapping. Even though some practical problems still have to be solved (see
+Section~\ref{sec:problems}), the approach points to a much more modular and flexible way
+of developing the {\omdoc} language. From all the examples that the author is aware, it
+seems to scale to interpreting the whole {\omdocv{1.2}} vocabulary as pragmatic
+{\omdocv{2}}. In fact, the new idea of having pragmatic extensions be meta-theory induced
+points towards the idea that {\omdoc} metadata and the corresponding metadata
+ontologies~\cite{LK:MathOntoAuthDoc09} are actually meta-theories as well (albeit at a
+somewhat different level).
+
+\begin{newpart}{this is still quite sketchy; must discuss with Florian; also in terms of
+    what this explains about foundations. Indeed the foundations supply type and equality
+    judgments; just the relations that are extensions. What would a real foundational MMT
+    look like?} In fact we can go even further and interpret the features of types and
+  definitions that are built into strict {\omdocv{1.6}}~\cite{RabKoh:WSMSML09} as
+  pragmatic extensions of an even more foundational system: definitions are just pragmatic
+  notations for axioms of the form $c=t$\ednote{Here Fulya's declaration patterns come in:
+    $t$ may not contain $c$.}, which are introduced by the meta-theory that supplies the
+  equality relation. Axioms in turn are just type statements of the form $true(A)$, so
+  they can be viewed as pragmatic extensions licensed by the meta-theory that introduces
+  the truth type $true$. 
+\end{newpart}
+\printbibliography
+\end{document}
+
+
+% LocalWords:  OMA cd arith expr arg mathml xml mrow mfrac linethickness omdoc
+% LocalWords:  srule OMBIND OMBVAR OMV expfun DFOL hmmmm exunique idef tcont
+% LocalWords:  pcont dfol omtext href arest exprlist

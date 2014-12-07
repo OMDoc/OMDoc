@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  
+       xmlns="http://omdoc.org/ns"
+       xmlns:om="http://www.openmath.org/OpenMath"
+       xmlns:m="http://www.w3.org/1998/Math/MathML"
+       xmlns:mcd="http://www.w3.org/ns/mathml-cd"
+       xml:id="indeq.omdoc">
+
+ <metadata>
+  <dc:title>Equality of Individuals</dc:title>
+  <dc:creator role="aut">Michael Kohlhase</dc:creator>
+  <dc:date>2008-07-04T18:28:06</dc:date>
+  <dc:rights>Copyright (c) 2008 Michael Kohlhase</dc:rights>
+  <license xmlns="http://creativecommons.org/ns">
+    <permissions reproduction="permitted" distribution="permitted" derivative_works="permitted"/>
+    <prohibitions commercial_use="permitted"/>
+    <requirements notice="required" copyleft="required" attribution="required"/>
+  </license>
+ </metadata>
+
+ <theory xml:id="indeq">
+   <metadata>
+     <dc:title>Equality of Individuals</dc:title>
+     <dc:description>
+       This theory provides equality on the set of individuals as needed in first-order logic.
+     </dc:description>
+   </metadata>
+
+   <imports from="ind.omdoc#ind"/>
+
+   <symbol name="eq">
+     <metadata>
+       <dc:description>
+           <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="indeq" name="eq"/></OMOBJ>
+       is the equality on individuals.</dc:description>
+     </metadata>
+   </symbol>
+
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="indeq" name="eq"/>
+        <exprlist name="args">
+          <expr name="arg"/>
+        </exprlist>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="indeq">eq</m:csymbol>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </m:apply>
+    </prototype>
+    <rendering precedence="700">
+      <m:mrow>
+        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
+        <render name="arg1" precedence="700"/>
+        <m:mo>=</m:mo>
+        <render name="arg2" precedence="700"/>
+        <m:mo mcd:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+  <notation>
+    <prototype>
+      <om:OMS cd="indeq" name="eq"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="indeq">eq</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en">
+      <m:mo>equal</m:mo>
+    </rendering>
+  </notation>
+
+   <symbol name="neq">
+     <metadata>
+       <dc:description>
+           <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="indeq"
+           name="neq"/></OMOBJ> is the inequality relation on truth values.
+       </dc:description>
+     </metadata>
+   </symbol>
+   
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="indeq" name="neq"/>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="indeq">neq</m:csymbol>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </m:apply>
+    </prototype>
+    <rendering precedence="700">
+      <m:mrow>
+        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
+        <render name="arg1" precedence="700"/>
+        <m:mo>≠</m:mo>
+        <render name="arg2" precedence="700"/>
+        <m:mo mcd:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+
+ </theory>
+</omdoc>

@@ -1,0 +1,431 @@
+\documentclass[11pt]{bluenote}
+\usepackage{url,graphicx,wrapfig}
+\usepackage{amsfonts,amstext}
+\usepackage{lstomdoc}
+\usepackage{tikz,standalone}
+\usetikzlibrary{mmt}
+\usepackage{calbf}
+\usepackage[show]{ed}
+\usepackage[eso-foot,today]{svninfo}
+\usepackage[hyperref=auto,style=alphabetic,isbn=false]{biblatex}
+\usepackage{bibtweaks}
+\addbibresource{kwarcpubs.bib}
+\addbibresource{extpubs.bib}
+\addbibresource{kwarccrossrefs.bib}
+\addbibresource{extcrossrefs.bib}
+
+\def\modelsof#1{\overline{#1}}
+\def\setdiff#1#2{#1\kern.2em\backslash\kern.1em #2}
+\def\cn#1{\mathsf{#1}}
+
+\usepackage{stex-logo}
+\usepackage{hyperref} 
+\svnInfo $Id: note.tex 9333 2014-05-04 10:25:05Z kohlhase $
+\svnKeyword $HeadURL: https://svn.omdoc.org/repos/omdoc/trunk/doc/blue/examples/note.tex $
+\def\KWARCslides#1{/Users/kohlhase/stc/slides/#1} 
+\def\mmt{MMT\xspace}
+\def\omdoc{OMDoc\xspace}
+\def\omdocv#1{OMDoc#1\xspace}
+
+\lstset{language=[1.6]OMDoc,basicstyle=\footnotesize\sf,columns=fullflexible}
+\lstset{mathescape,aboveskip=-.5em,belowskip=-.5em}
+\lstset{morekeywords={uses,termref}}
+
+\def\om#1{\fbox{\ensuremath{#1}}}
+\def\meta#1{\ensuremath{\langle\kern-.2em\langle\text{#1}\rangle\kern-.2em\rangle}}
+
+\newenvironment{inpe}{\begin{inparaenum}[\em i\,\rm )]\ignorespaces}{\ignorespaces\end{inparaenum}\ignorespaces}
+\newcommand\inperef[1]{\emph{\ref{inpe:#1}})}
+\def\omdoc{OMDoc\xspace}
+\def\defemph{\textbf}
+\def\thmo#1#2{\cn{#1}\colon\kern-.15em{#2}}
+\def\id{\text{Id}}
+
+\title{Examples and Counterexamples in \omdoc} 
+\author{Michael Kohlhase\\Computer Science,  Jacobs University\\\url{http://kwarc.info/kohlhase}}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+  We look at examples in \omdoc, and the tension between examples as views in theory
+  graphs and the practice of writing down examples in mathematical documents. 
+
+  This note is part of the ongoing \omdocv2 language design~\cite{Kohlhase:old13} and
+  studies an important aspect in more detail.
+\end{abstract}
+\tableofcontents\newpage
+
+\section{Introduction}
+
+Mathematical knowledge management has focused almost entirely on the ``holy trinity'' of
+statements: axiom/definition, theorem, proof. This practice neglects a type of statement
+that is at least as important for mathematical practice: examples.  Alison Pease and
+Ursula Martin have a chart of the polymath discussion on a math olympiad problem and find
+that 33\% of the dialogue turns in the proof is about examples. And they keep being strong
+all across the 74 minute length of the proof endeavor~\cite{PeaMar:sfmm12}. In another
+study, Ursula records that about 15\% of the questions on Mathoverflow are about examples
+for some property~\cite{MarPea:wmtapm13}. In this note, we are most interested in the
+structure and epistemic links of examples, so that we can model them adequately in
+\omdoc2. 
+
+
+
+\subsection{Examples as Mathematical Structures}
+In mathematical documents, examples come in various forms. We can distinguish them by
+epistemic level into the following categories: 
+\begin{compactenum}
+\item \emph{specific object-level}, e.g. ``13 is a prime number'', here the object ``13''
+  is an example the property of being a ``prime number'', i.e. the predicate ``prime''
+  evaluates true on ``13'' or in other words $13\in\cn{prime}$. We observe that every
+  example carries a proof obligation. We have to prove that the object we exhibit indeed
+  has the desired property it exemplifies.
+\item \emph{generic object-level}, e.g. ``All differentiable functions are continuous.''
+  here any object that is a differentiable function is an example for being continuous. In
+  other words the set of differentiable functions is a subset of continuous functions. In
+  this case, the proof obligation is more conspicuous, the $\epsilon/\delta$ proof of this
+  fact is one of the first in any elementary calculus course.
+\item \emph{specific theory-level} ``$(\mathbb{N},+)$ is a Monoid'', here we interpret
+  $(\mathbb{N},+)$ as a mathematical ``theory'' given by the symbols $\mathbb{N}$ (natural
+  numbers) and $+$ (addition). Here the relation given by the words ``is a'' has to be
+  understood as ``can be interpreted as'' in the sense that there is a meaning-preserving
+  mapping from the theory of monoids to the theory $(\mathbb{N},+)$.
+\item \emph{generic theory level} A similar situation obtains with ``Boolean Algebras are
+  Complete Lattices'', even though the phrase uses the plural as in generic object-level
+  case.  In both cases, we have theory morphisms that allow
+  framing~\cite{KohKoh:sifemp09}, we will elaborate on this in Section~\ref{sec:thygraph}.
+\end{compactenum}
+In general, an example states a satisfaction relation between objects and properties. At
+the object level, either between a specific object (we call it the \defemph{exemplar}) or
+a class of generic objects (which we will call the \defemph{exemplar class}\ednote{MK: I
+  just made this up, is there any traditional name for this?}) and a property (which we
+call the \defemph{exemplified property}). Thus from an epistemological perspective, an
+example is an assertion of the form $p(e)$ or $\forall{x} E(x)\Rightarrow p(x)$, where $p$
+is the exemplified property, $e$ the exemplar and $E$ the exemplar class, or if we want to
+see things more set-theoretically: $e\in p$ or $E\subseteq p$. We call this assertion the
+\defemph{proof obligation} of the example.
+
+
+\subsection{Polarity of Examples}
+Moreover we can distinguish counter-examples from supporting ones, we speak of the
+\textbf{polarity} of the example. The two polarities exist at all four levels we discussed
+above. To look at just the first, we can use 13 as an example for primality and 12 as a
+counter-example. In the latter case we have the proof obligation $13\notin\cn{prime}$,
+i.e. the negation of the obligation of the positive example. Counter-examples are most 
+\begin{compactenum}
+\item[5.] \emph{at the statement-level}, most saliently as supporting evidence for or
+  counter-example against conjectures.  Here \ednote{continue, we need examples for
+    counterexamples, recount the analysis from the OMDoc book in a nutshell.}
+\end{compactenum}
+
+\subsection{Examples as Narrative Structures}
+Examples can come in different syntactic forms in a mathematical discourse
+\begin{compactenum} 
+\item \emph{Embellished examples}\ednote{MK: is there a good word for this?} are given as
+  special paragraphs marked up with special cues -- prefixed by the emphasized keyword
+  ``Example'', possibly numbered for reference, and sometimes even marked up in a special
+  font family.
+\item Examples in the \emph{narrative flow} are usually single sentences that state the
+  exemplified property of the exemplar.
+\item \emph{Inline examples} just consist of a phrase, often an interjection like ``for
+  instance 13''. 
+\end{compactenum}
+No matter the syntactic structure, they always have the structural parts (which may be
+elided) identified above. 
+
+\subsection{Examples as Cognitive Devices}
+In the process of mathematical discovery, examples are used to strengthen conjectures, to
+show that concepts are non-vacuous or consistent, and to elucidate concepts.
+
+Counterexamples are used to prove the boundaries of possible theorems. By using
+counterexamples to show that certain conjectures are false, mathematical researchers avoid
+going down blind alleys and learn how to modify conjectures to produce provable
+theorems. \ednote{integrate Lakatos view on counterexamples
+  from~\cite[pp. 10-11]{Lakatos76}}
+
+\section{Parallel Markup for Immediate Examples}\label{sec:immediate}
+
+Following~\cite{KohIan:hlpmo13}, we will use \omdoc markup for the narrative aspects of
+examples and \mmt markup for the formal ones. For object-level example, we have the
+parallel markup in Figure~\ref{fig:simple-object}: we have a narrative representation,
+which represents the structure of the presentation of the example as an (embellished)
+paragraph with a statement and a proof as the justification. In this simple case, the
+statement of the justifying assertion is identical to the example text, so we can just
+represent the justification as a proof. The content representation is just a special
+constant representing the proof obligation. We have indicated the parallels between
+content and narrative by cross-references (the \lstinline|<meta>| elements with the
+\lstinline|o:formalizes| relation) on the content side.
+
+\begin{figure}[ht]\centering
+\lstset{mathescape}
+\begin{tabular}{|p{7.1cm}|p{7.5cm}|}\hline
+  narrative & content\\\hline
+\begin{lstlisting}
+<definition for="?prim">
+     A prime number is a natural number that 
+     has only the divisors 1 and itself.
+</definition>
+<example name="p13" for="prim">
+  <assertion xml:id="p13.st">
+    13 is a prime number.
+  </assertion>
+  <proof for="p13" name="p13.p">
+    <CMP>13 is indivisible by 2, 3, and 4.</CMP>
+  </proof>
+<example>
+\end{lstlisting}
+&
+\begin{lstlisting}
+<constant name="prim">$\ldots$</constant>
+<constant name="prim13">
+  <meta rel="o:formalizes" resource="?p13"/>
+  <type name="prim13.t">
+     <meta rel="o:formalizes" resource="?p13.st"/>
+     $\om{prim(13)}$
+  </type>
+  <definiens name="prim13.p">
+    <meta rel="o:formalizes" resource="?p13.p"/>
+     $\ldots$
+  </definiens>
+</constant>
+\end{lstlisting}\\\hline
+\end{tabular}
+\caption{A Simple Object-Level Example}\label{fig:simple-object}
+\end{figure}
+
+The situation in Figure~\ref{fig:simple-object} is also simple, since the both the
+exemplar and the exemplified property naturally come from the same theory: natural numbers
+arithmetic (which we have omitted).
+
+
+\begin{wrapfigure}r{3.5cm}\centering%\vspace*{-1em}
+\begin{tikzpicture}
+  \node[thy] (cont) at (0,0) {\textsf{cont}};
+  \node[thy] (diff) at (2,0) {\textsf{diff}};
+  \node[thy] (cd) at (1,1) {\textsf{cont-diff.ex}};
+  \draw[include] (cont) -- (cd);
+  \draw[include] (diff) -- (cd);
+\end{tikzpicture}\vspace*{-1em}
+\caption{Structure}\label{fig:diffcont}\vspace*{-1em}
+\end{wrapfigure}
+For the next level of complexity let us consider the generic object-level
+example\footnote{Nothing hinges on the genericity here, we could have made a similar point
+  with specific Mersenne numbers being prime, which would be specific object-level} ``All
+differentiable functions are continuous.'', where the exemplified property ``continuous''
+naturally lives in the theory \textsf{cont}, but the example invokes the concept of
+differentiable functions from the theory \textsf{diff} of differentiable functions. As we
+do not want to include \textsf{diff} into \textsf{cont}, we have to provide a separate
+theory \textsf{cont-diff.ex} for the example. This includes \textsf{diff} for the exemplar
+class and \textsf{cont} for the exemplified property and we get the markup in
+Figure~\ref{fig:complex-object}. Here we made use of the \lstinline|o:verbalizes| relation
+-- which is the converse to \lstinline|o:formalizes| -- for statement-level parallel
+markup and thus resides in the narrative representation. For the remaining examples below,
+we assume one of the two representations, but omit them to avoid clutter.
+
+\begin{figure}[ht]\centering
+\begin{tabular}{|p{7.5cm}|p{6cm}|}\hline
+  narrative & content\\\hline
+\begin{lstlisting}
+<theory name="cont">
+  $\ldots$
+  <example name="diffcont.ex" for="continuous">
+    <meta rel="o:verbalizes" 
+               resource="?cont-diff.ex"/>
+     <uses from="?diff"/>
+     <assertion>
+       All differentiable functions are continuous.
+     </assertion>
+  <example>
+  $\ldots$
+</theory>
+\end{lstlisting}
+&
+\begin{lstlisting}
+<theory name="cont-diff.ex">
+  <structure from="?diff"/>
+  <structure from="?cont"/>
+  <constant name="cd.ex.p">
+    <type>$\om{\mathcal{C}^1(\mathbb{R},\mathbb{R})\subseteq\mathcal{C}^0(\mathbb{R},\mathbb{R})}$</type>
+    <definiens>$\ldots$</definiens>
+  </constant>
+</theory>
+\end{lstlisting}\\\hline
+\end{tabular}
+\caption{A Generic Object-Level Example}\label{fig:complex-object}
+\end{figure}
+The content side in Figure~\ref{fig:complex-object} shows us what is really happening from
+a structural perspective: The example object is a theory of its own, which inherits from
+theories \lstinline|cont| and \lstinline|diff| as shown in Figure~\ref{fig:diffcont}. This
+structure is somewhat disguised in the narrative part: the \lstinline|example| element
+implicitly introduces a scope (of visibility of symbols and assumptions in effect) that
+includes all from theory \lstinline|cont| it is nested in and includes the material from
+theory \lstinline|diff| via the \lstinline|uses| directive.
+
+The examples we have looked up so far are immediate in that they do not involve any
+structural substitutions, we think of them as \defemph{immediate}: they correspond to
+simple set membership or subsumption. 
+
+
+\section{Examples via Morphisms}\label{sec:thygraph}
+
+We will now turn to examples that involve structural substitutions. We have already seen
+above that we best employ theory structures to model examples. So we make full use of
+\omdoc/MMT theory graphs~\cite{RabKoh:WSMSML13} for the content structures. We model
+examples as views and make use of assignments in theory morphisms to account for
+structural substitutions.
+
+\begin{figure}[ht]\centering
+\providecommand\myxscale{4.3}
+\providecommand\myyscale{2.5}
+\input{tikz/mmt/elalg-nat-graph}
+\caption{A Theory Graph with Examples}\label{fig:elal}
+\end{figure}
+
+\subsection{Examples as Theory Morphisms in Theory Graphs}
+
+For the monoids example above we will use the theory graph in Figure~\ref{fig:elal}.
+There we have two examples for monoids: natural numbers with addition and multiplication,
+represented by the views $\cn{f}$ and $\cn{e}$. The fact that $\cn{e}$ and
+$\cn{f}$ are views means that every axiom in source theory $\cn{Monoid}$ is
+provable in the respective target theories $\cn{NatPlus}$ and $\cn{NatTimes}$. 
+
+\begin{figure}[ht]\centering
+\begin{tabular}{|p{8.4cm}|p{5.7cm}|}\hline
+  narrative & content\\\hline
+\begin{lstlisting}
+<example name="natmon.ex">
+  <uses from="?NatPlus"/>
+  <meta rel="o:verbalizes" resource="?natmon"/>
+  <assertion name="natmon.ass">$\om{(\mathbb{N},+)}$ is a 
+     <termref ref="?Monoid?monoid">monoid</termref>
+     with neutral element $\om{0}$.
+   </assertion>
+   <proof for="natmon.ex">$\ldots$</proof>
+<example>
+\end{lstlisting}
+&
+\begin{lstlisting}
+<view name="natmon" 
+       from="?Monoid" to="NatPlus">
+  <conass name="set">$\om{\mathbb{N}}$</conass>
+  <conass name="op">$\om{+}$</conass>
+  <conass name="neut">$\om{0}$</conass>
+  <conass name="neutax">$\pi$</conass>
+</view>
+\end{lstlisting}\\\hline
+\end{tabular}
+\caption{A Theory-Level Example}\label{fig:theories}
+\end{figure}
+The narrative markup is just as in the case of simple examples from
+Section~\ref{sec:immediate}, only that the content markup is in the form of a view, which
+clarifies the structural substitutions. This example shows nicely that the narrative
+structure does two things: it marks up the text in a mathematical document and it also
+gives a view that is present in the theory graph a didactic label as ``suitable for
+exemplifying the concept of a monoid'' (in a particular narrative situation). Other views
+from \lstinline|monoid| might not be suitable examples -- in the situation; e.g. since the
+reader does not know their targets, or if they are too trivial. For instance in
+Figure~\ref{fig:elal} we have an inclusion of \lstinline|Monoid| into \lstinline|group|,
+which by construction is also a theory morphism. But in an situation where groups have
+just been introduced as special monoids, this example might be considered too immediate to
+mention it.
+
+\subsection{Counterexamples in Theory Graphs}
+
+The case of counterexamples is a completely different matter; naturally, the theory
+morphism property forbids a direct interpretation. But if we add a new
+\defemph{complementarity relation} to theory graphs (the dotted arrows in
+Figure~\ref{fig:elal}; either between theories or between extension inclusions), then we
+can characterize the counterexample relation as a composition of a complementarity link
+with a view. In our theory graph, the natural numbers with multiplication are a
+counter-example to group as evidenced by the dotted arrow (left to right) and the view
+$\thmo{c}\varphi$.\ednote{We probably need concrete syntax for this. The complementarity
+  relation could be a meta-relation, and we could give the counterexample an attribute
+  that points to it.}
+
+But to understand the counter-example relation, we take a step back and develop a notion
+that is akin to the role the theory morphisms play for examples. Let us build our
+intuition about these first. If we have a morphism $A\nmmtar{morph}\sigma B$, then we
+have $B\models\sigma(A)$ proof-theoretically or
+$\modelsof{\sigma(A)}\subseteq\modelsof{B}$, where $\modelsof{A}$ is the set of models of
+$A$.
+
+
+\begin{wrapfigure}r{4.6cm}\vspace*{-1em}
+\begin{tikzpicture}[xscale=3,yscale=1.3]
+  \node[thy] (ns) at (0,1) {$\cn{NatTimes}$};
+  \node[thy] (m) at (1,0) {$\cn{Monoid}$};
+  \node[thy] (g) at (1,1) {$\cn{Group}$};
+  \draw[include] (m) -- node[right]{$\cn{j}$} (g);
+  \draw[view] (m) -- node[below]{$\cn{i}\colon\sigma$} (ns);
+  \draw[anti,morph] (g) -- node[above]{$\cn{k}\colon\setdiff\sigma{\cn{j}}$} (ns);
+\end{tikzpicture}
+\end{wrapfigure}
+The situation we want to model is one of mathematical complementarity, where we want to
+state that $\cn{NatTimes}$ is ``not a $\cn{Group}$'' (but a $\cn{Monoid}$). In terms of
+models this means that $\modelsof{\cn{NatTimes}}\subseteq
+\setdiff{\modelsof{\cn{Monoid}}}{\modelsof{\cn{Group}}}$.  In terms of theory
+presentations we want to have a morphism from $\cn{group}$, such that
+$\cn{NatTimes}\models\sigma(G)$, where $G$ are those declarations that are in
+$\cn{Group}$, but not in $\cn{Monoid}$, i.e. those that have not been introduced by the
+theory morphism $j$\footnote{In our case this is an inclusion, I guess that a structure
+  would have worked just as well. I am not sure about the situation where $\cn{j}$ is a
+  view, that should be explored further.}. We call such a mapping an
+\defemph{antimorphism} and depict it with a stricken-through arrow and write it as
+$\cn{i}\colon\setdiff\sigma{\cn{j}}$: $\cn{i}$ is the name, $\sigma$ the assignment, and
+$j$ the \defemph{kernel}\ednote{MK: I do not think that kernel is a good name, but I did
+  not have any better at the moment.} morphism.
+
+In Figure~\ref{fig:elalg}, we can see the complementarity relation depicted by the dotted
+bidirectional arrow as a pair of antimorphisms $\cn{j}\colon\setdiff\id{\cn{g}}$ and
+$\cn{k}\colon\setdiff\id{\cn{ng}}$ between $\cn{NonMonGrp}$ and $\cn{Group}$. Antimorphisms
+compose with theory morphisms in the obvious ways: the set of antimorphisms is closed
+under extension with morphisms by post-composition and by pre-composition of kernel
+morphisms.
+
+\section{Conclusion}
+\ednote{Say something about~\cite{Rabe:ttbor12} that mediates between the theory-level and
+  object-level representations of examples.}  
+
+We have presented an approach of modeling examples as theory morphisms in the \omdoc/\mmt
+representation format for mathematical knowledge.  It turns out that \omdoc-style parallel
+markup together with \mmt theory morphisms allow to adequately capture the surface
+structure and the relational aspects of the meaning of examples.
+
+We propose to extend \omdoc/\mmt with the concept of antimorphisms capture the essence of
+counter-examples in a primitive that is commensurate with the design of \mmt. The details
+of this proposal still have to be worked out, but the examples of counterexamples we have
+studied seem to bear out the conjecture that antimorphisms are for counter-examples what
+morphisms are for supporting examples. 
+
+I believe that examples and counter-examples form an important part of the mathematical
+domain knowledge that plays a great role in the formation of mathematical intuitions and
+the exploration of mathematical domains. Therefore any attempt to flexiformalize
+mathematical knowledge should take them seriously. In particular, universal digital
+mathematical libraries like the one called for in~\cite{Farmer:mkm11} or realized
+in~\cite{IanJucKoh:sdm14,MathHub:on} should collect examples and counterexamples as
+first-class citizens -- which the model proposed in this note allows to do transparently
+and conservatively.
+
+In the future we want to study how the model of examples proposed here interacts with
+realms~\cite{CarFarKoh:rsckmt14}, whether we can extend it to counter-examples for
+conjectures, and which mathematical practices with examples can be supported in active
+documents. Furthermore, there is clearly a relation between antimorhpisms, the semantic
+antonym relation (see~\cite{Kohlhase:dmesmgm14} for a discussion of lexical relations and
+their relation with theory morphisms), and counter-examples, which we want to study in the
+future.
+
+\printbibliography
+\end{document}
+
+
+% LocalWords:  maketitle printbibliography mkm05 emph KohKoh tfndc11 flexiforms omdocv2
+% LocalWords:  compactenum textbf wrapfigure vspace KWARCslides adp hypergraph Pease cn
+% LocalWords:  KohDavGin psewads11 digm StaKoh tlcspx10 GinJucAnc alsaacl09 sfmm12 notin
+% LocalWords:  NorKoh efnrsmk07 Flexiformalist inparaenum renewcommand omdoc Mathoverflow
+% LocalWords:  baselinestretch tableofcontents newpage defemph ednote forall wmtapm13 mmt
+% LocalWords:  Rightarrow subseteq compactitem mathsf mathbb sifemp09 thygraph KohIan rel
+% LocalWords:  Lakatos Lakatos76 RabKoh elal thmo varphi tikz lstset lstlisting hlpmo13
+% LocalWords:  ttbor12 mathescape hline p13.st ldots om tikzpicture cont textsf cont neut
+%  LocalWords:  diffcont Mersenne mathcal mathcal providecommand myxscale myyscale natmon
+%  LocalWords:  natmon.ex termref termref conass conass neutax nmmtar modelsof modelsof
+%  LocalWords:  modelsof xscale yscale ns setdiff antimorphism elalg antimorphisms ng mtt
+%  LocalWords:  NonMonGrp Rabe mkm11 IanJucKoh sdm14 CarFarKoh rsckmt14

@@ -1,0 +1,391 @@
+\begin{theindex}
+
+  \item {\scshape  {$\Omega ${\scshape  {mega}}}}, \hyperpage{14}
+  \item {\tt  {.rnc}}, \hyperpage{9}
+  \item {\tt  {.rng}}, \hyperpage{9}
+
+  \indexspace
+
+  \item 639
+    \subitem ISO (), \hyperpage{15}
+
+  \indexspace
+
+  \item abbreviation
+    \subitem namespace, \hyperpage{8}
+  \item {{\tt  {m:apply}}
+    \subitem  element}, \hyperpage{13}
+  \item asked
+    \subitem frequently (), \hyperpage{3}
+  \item {{\tt  {assertion}}
+    \subitem  element}, \hyperpage{7}
+  \item attribute
+    \subitem default value, \hyperpage{7}
+
+  \indexspace
+
+  \item browser, \hyperpage{11}
+  \item {\scshape  {BugZilla}}, \hyperpage{4}
+
+  \indexspace
+
+  \item catalog
+    \subitem XML, \hyperpage{4}, \hyperpage{7}
+  \item {\tt  {cd2omdoc.xsl}}, \hyperpage{11}
+  \item {{\tt  {m:ci}}
+    \subitem  element}, \hyperpage{13}
+  \item {{\tt  {CMP}}
+    \subitem  element}, \hyperpage{13--15}
+  \item code
+    \subitem country, \hyperpage{15}
+  \item computer algebra
+    \subitem system, \hyperpage{13}
+  \item content   dictionary, \hyperpage{11}
+  \item Content {\sc  MathML}, \hyperpage{11}, \hyperpage{13}
+  \item context-free
+    \subitem grammar, \hyperpage{6}
+  \item {\scshape  {CoQ}}, \hyperpage{14}
+  \item country
+    \subitem code, \hyperpage{15}
+  \item CSS
+    \subitem style sheet, \hyperpage{4}
+
+  \indexspace
+
+  \item declaration
+    \subitem DOCTYPE, \hyperpage{7}
+    \subitem document type, \hyperpage{7}
+  \item default value
+    \subitem attribute, \hyperpage{7}
+  \item definition
+    \subitem document type, \hyperpage{6}, \hyperpage{8}
+  \item {\scshape  {Deskzilla}}, \hyperpage{4}
+  \item DOCTYPE
+    \subitem declaration, \hyperpage{7}
+  \item {\tt  {DOCTYPE}}, \hyperpage{7, 8}
+  \item document
+    \subitem knowledge-centered, \hyperpage{14}
+    \subitem multilingual, \hyperpage{15}
+    \subitem narrative-structured, \hyperpage{14}
+  \item document type, \hyperpage{7}
+    \subitem declaration, \hyperpage{7}
+    \subitem definition, \hyperpage{6}, \hyperpage{8}
+  \item DTD, \hyperpage{4}, \hyperpage{6, 7}
+    \subitem module, \hyperpage{8}
+    \subitem normalization, \hyperpage{7}
+  \item DTD Module
+    \subitem PF (Proofs and Arguments), \hyperpage{8}
+  \item DTD module, \hyperpage{6}
+
+  \indexspace
+
+  \item element
+    \subitem module, \hyperpage{8}
+  \item {\scshape  {Emacs}}, \hyperpage{9}
+  \item entity
+    \subitem module inclusion, \hyperpage{8}
+    \subitem parameter, \hyperpage{7}
+    \subitem XML, \hyperpage{6}
+  \item {\tt  {exincl.xsl}}, \hyperpage{12}
+  \item {\tt  {expres.xsl}}, \hyperpage{11, 12}
+  \item external
+    \subitem subset, \hyperpage{7}
+
+  \indexspace
+
+  \item FAQ, \hyperpage{3}
+  \item {{\tt  {format}}}
+    \subitem attribute
+      \subsubitem on {{\tt  {use}}}, \hyperpage{13}
+  \item fragment, \hyperpage{7}
+  \item frequently
+    \subitem asked
+      \subsubitem questions, \hyperpage{3}
+
+  \indexspace
+
+  \item grammar
+    \subitem context-free, \hyperpage{6}
+    \subitem normative (), \hyperpage{6}
+  \item group
+    \subitem multilingual, \hyperpage{14}
+
+  \indexspace
+
+  \item head
+    \subitem revision, \hyperpage{3}
+  \item {\scshape  {HTML}}, \hyperpage{14}
+
+  \indexspace
+
+  \item ID
+    \subitem system, \hyperpage{4}
+  \item identifier
+    \subitem public, \hyperpage{4}, \hyperpage{6}
+    \subitem system, \hyperpage{4}
+  \item {\tt  {INCLUDE}}, \hyperpage{8}
+  \item information
+    \subitem set, \hyperpage{7}
+  \item {\scshape  {InKa}}, \hyperpage{14}
+  \item instance
+    \subitem schema, \hyperpage{10}
+  \item interlingua, \hyperpage{13}
+  \item internal
+    \subitem subset, \hyperpage{7}
+      \subsubitem DTD, \hyperpage{7}
+  \item internationalization, \hyperpage{14}
+  \item {\msie}, \hyperpage{11}
+  \item Internet Explorer, \hyperpage{11}, \hyperpage{19}
+  \item ISO
+    \subitem 639
+      \subsubitem norm, \hyperpage{15}
+
+  \indexspace
+
+  \item knowledge-centered
+    \subitem document, \hyperpage{14}
+
+  \indexspace
+
+  \item {$\lambda ${\sl  Clam}}, \hyperpage{14}
+  \item language definition
+    \subitem theory, \hyperpage{13}
+  \item languages
+    \subitem multiple, \hyperpage{14}
+  \item {\tt  {libxml2}}, \hyperpage{4}
+  \item {\snippet{locale}} ({\xslt} parameter), \hyperpage{15}
+  \item localization, \hyperpage{15}
+
+  \indexspace
+
+  \item {{\tt  {m:apply}}
+    \subitem  element}, \hyperpage{13}
+  \item {{\tt  {m:ci}}
+    \subitem  element}, \hyperpage{13}
+  \item {\tt  {Makefiles}}, \hyperpage{11, 12}
+  \item mathematical
+    \subitem text, \hyperpage{8}
+  \item {\sc  MathML}
+    \subitem content, \hyperpage{11}, \hyperpage{13}
+    \subitem presentation, \hyperpage{6}
+  \item {\scshape  {MathML}}, \hyperpage{6}, \hyperpage{9}, 
+		\hyperpage{14}
+  \item {\scshape  {MathWeb}}, \hyperpage{3}
+  \item Microsoft
+    \subitem Internet Explorer, \hyperpage{11}, \hyperpage{19}
+  \item mode
+    \subitem nXML, \hyperpage{9}
+  \item modularization, \hyperpage{8}
+  \item module
+    \subitem DTD, \hyperpage{8}
+    \subitem element, \hyperpage{8}
+  \item module inclusion
+    \subitem entity, \hyperpage{8}
+  \item {\scshape  {Mozilla}}, \hyperpage{11}
+  \item MS
+    \subitem  Internet Explorer, \hyperpage{11}, \hyperpage{19}
+  \item multilingual
+    \subitem document, \hyperpage{15}
+    \subitem group, \hyperpage{14}
+    \subitem support, \hyperpage{14}
+  \item multiple
+    \subitem languages, \hyperpage{14}
+
+  \indexspace
+
+  \item namespace
+    \subitem abbreviation, \hyperpage{8}
+    \subitem XML, \hyperpage{8}
+  \item narrative-structured
+    \subitem document, \hyperpage{14}
+  \item normalization
+    \subitem DTD, \hyperpage{7}
+  \item normative
+    \subitem grammar
+      \subsubitem formalism, \hyperpage{6}
+  \item {\tt  {NS.prefixed}}, \hyperpage{8}
+  \item nXML
+    \subitem mode, \hyperpage{9}
+
+  \indexspace
+
+  \item {\tt  {o:}}, \hyperpage{9}
+  \item object
+    \subitem symbol, \hyperpage{13}
+  \item {{\tt  {om:OMA}}
+    \subitem  element}, \hyperpage{13}
+  \item {{\tt  {om:OMBIND}}
+    \subitem  element}, \hyperpage{13}
+  \item {{\tt  {om:OMV}}
+    \subitem  element}, \hyperpage{13}
+  \item {{\tt  {om:OMA}}
+    \subitem  element}, \hyperpage{13}
+  \item {{\tt  {om:OMBIND}}
+    \subitem  element}, \hyperpage{13}
+  \item {\sc  {OMDoc}}
+    \subitem version {1.1}, \hyperpage{11}
+    \subitem version {1.2}, \hyperpage{8}
+  \item {\scshape  {OMDoc}}, \hyperpage{1--15}
+  \item {{\tt  {omdoc}}
+    \subitem  element}, \hyperpage{10}
+  \item {\tt  {omdoc.cat}}, \hyperpage{4}
+  \item {\tt  {omdoc.prefix}}, \hyperpage{9}
+  \item {\tt  {omdoc1.1adapt1.2.xsl}}, \hyperpage{11}
+  \item {\tt  {omdoc2html.xsl}}, \hyperpage{14}
+  \item {\tt  {omdoc2pvs.xsl}}, \hyperpage{13}
+  \item {\tt  {omdoc2share.xsl}}, \hyperpage{14}
+  \item {\tt  {omdoc2sys.xsl}}, \hyperpage{13}
+  \item {\tt  {omdoc2tex.xsl}}, \hyperpage{14}
+  \item {\tt  {omdoc:}}, \hyperpage{9}
+  \item {{\tt  {omlet}}
+    \subitem  element}, \hyperpage{8}
+  \item {{\tt  {omstyle}}
+    \subitem  element}, \hyperpage{11}
+  \item {{\tt  {om:OMV}}
+    \subitem  element}, \hyperpage{13}
+  \item {\scshape  {OpenMath}}, \hyperpage{9}, \hyperpage{11}, 
+		\hyperpage{13, 14}
+
+  \indexspace
+
+  \item parameter, \hyperpage{14}
+    \subitem {\xslt}, \hyperpage{15}
+    \subitem entity, \hyperpage{7}
+  \item parameter entity, \hyperpage{8}
+    \subitem reference, \hyperpage{7}
+  \item parser
+    \subitem validating, \hyperpage{6}
+    \subitem XML, \hyperpage{13}
+  \item PF (Proofs and Arguments)
+    \subitem DTD Module, \hyperpage{8}
+  \item predefined
+    \subitem symbol, \hyperpage{13}
+  \item {{\tt  {presentation}}
+    \subitem  element}, \hyperpage{11--13}
+  \item Presentation \scshape  {MathML}, \hyperpage{6}
+  \item processor
+    \subitem XML, \hyperpage{4}
+  \item Proofs and Arguments
+    \subitem DTD Module PF, \hyperpage{8}
+  \item public
+    \subitem identifier, \hyperpage{4}, \hyperpage{6}
+  \item {\scshape  {Pvs}}, \hyperpage{13, 14}
+
+  \indexspace
+
+  \item {{\tt  {ref}}
+    \subitem  element}, \hyperpage{11, 12}
+  \item reference
+    \subitem parameter entity, \hyperpage{7}
+  \item {\scshape  {RelaxNG}}, \hyperpage{4}, \hyperpage{6}, 
+		\hyperpage{9, 10}
+  \item {\tt  {report-errors}}, \hyperpage{11}
+  \item revision
+    \subitem head, \hyperpage{3}
+
+  \indexspace
+
+  \item {\tt  {saxon}}, \hyperpage{11}
+  \item schema, \hyperpage{4}, \hyperpage{6}, \hyperpage{10}
+    \subitem instance, \hyperpage{10}
+    \subitem XML, \hyperpage{6}
+  \item {{\tt  {xsi:schemaLocation}}}
+    \subitem attribute
+      \subsubitem on {{\tt  {omdoc}}}, \hyperpage{10}
+  \item set
+    \subitem information, \hyperpage{7}
+  \item {\scshape  {SGML}}, \hyperpage{6}
+  \item {{\tt  {standalone}}}
+    \subitem attribute
+      \subsubitem on {{\tt  {?xml}}}, \hyperpage{7}
+  \item style sheet, \hyperpage{4}, \hyperpage{11}
+    \subitem CSS, \hyperpage{4}
+    \subitem XSL, \hyperpage{4}
+  \item {\scshape  {Sub\discretionary {-}{}{}ver\discretionary {-}{}{}sion}}, 
+		\hyperpage{3}
+  \item subset
+    \subitem external, \hyperpage{7}
+    \subitem internal, \hyperpage{7}
+    \subitem internal (), \hyperpage{7}
+  \item support
+    \subitem multilingual, \hyperpage{14}
+  \item {\scshape  {svn}}, \hyperpage{3}
+  \item symbol
+    \subitem object, \hyperpage{13}
+    \subitem predefined, \hyperpage{13}
+  \item {{\tt  {symbol}}
+    \subitem  element}, \hyperpage{13}
+  \item system
+    \subitem computer algebra, \hyperpage{13}
+    \subitem ID, \hyperpage{4}
+    \subitem identifier, \hyperpage{4}
+
+  \indexspace
+
+  \item {\tt  {TargetLanguage}}, \hyperpage{14, 15}
+  \item template
+    \subitem {\snippet{xslt}}, \hyperpage{11}
+  \item text
+    \subitem mathematical, \hyperpage{8}
+  \item theory
+    \subitem language definition, \hyperpage{13}
+  \item {{\tt  {theory}}
+    \subitem  element}, \hyperpage{13}
+  \item {\scshape  {TPS}}, \hyperpage{14}
+  \item {\scshape  {trang}}, \hyperpage{10}
+  \item {{\tt  {type}}}
+    \subitem attribute
+      \subsubitem on {{\tt  {assertion}}}, \hyperpage{7}
+
+  \indexspace
+
+  \item {\scshape  {Unicode}}, \hyperpage{6}
+  \item {\scshape  {Unix}}, \hyperpage{4}, \hyperpage{11}
+  \item URI, \hyperpage{7}
+  \item URL, \hyperpage{4}
+  \item {{\tt  {use}}
+    \subitem  element}, \hyperpage{13}
+
+  \indexspace
+
+  \item validating
+    \subitem parser, \hyperpage{6}
+    \subitem XML
+      \subsubitem parser, \hyperpage{10}
+  \item validation, \hyperpage{6}
+  \item {{\tt  {version}}}
+    \subitem attribute
+      \subsubitem on {{\tt  {omdoc}}}, \hyperpage{8}
+
+  \indexspace
+
+  \item W3C, \hyperpage{9}
+  \item well-formed, \hyperpage{7}
+  \item {\scshape  {Windows}}, \hyperpage{4}
+
+  \indexspace
+
+  \item {\tt  {xalan}}, \hyperpage{11}
+  \item {\scshape  {XHTML}}, \hyperpage{14}
+  \item {\scshape  {XLink}}, \hyperpage{6}
+  \item XML
+    \subitem catalog, \hyperpage{4}, \hyperpage{7}
+    \subitem entity, \hyperpage{6}
+    \subitem namespace, \hyperpage{8}
+    \subitem parser, \hyperpage{13}
+    \subitem processor, \hyperpage{4}
+    \subitem schema, \hyperpage{6}
+    \subitem validating (), \hyperpage{10}
+  \item {\scshape  {XML}}, \hyperpage{4}, \hyperpage{6--11}, 
+		\hyperpage{13}
+  \item {\tt  {XML\_CATALOG\_FILES}}, \hyperpage{4}
+  \item {\scshape  {xmllint}}, \hyperpage{6}, \hyperpage{9, 10}
+  \item {\tt  {xmllint}}, \hyperpage{4}
+  \item {\tt  {xmlns}}, \hyperpage{8}
+  \item XSL
+    \subitem style sheet, \hyperpage{4}
+  \item {\scshape  {XSLT}}, \hyperpage{9}, \hyperpage{11--14}, 
+		\hyperpage{19, 20}
+  \item {\tt  {xsltproc}}, \hyperpage{4}, \hyperpage{11}
+
+\end{theindex}

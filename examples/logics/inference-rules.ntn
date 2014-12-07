@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<notations xmlns="http://www.w3.org/ns/mathml-cd" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:om="http://www.openmath.org/OpenMath" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+  <notation cdbase="FIXME" cd="inference-rules" name="schema">
+    <prototype>
+      <om:OMBIND>
+        <om:OMS cd="inference-rules" name="schema"/>
+        <om:OMBVAR>
+          <exprlist name="bvars">
+            <expr name="bvar"/>
+          </exprlist>
+        </om:OMBVAR>
+        <om:OMC>
+          <expr name="condition"/>
+        </om:OMC>
+        <expr name="scope"/>
+      </om:OMBIND>
+    </prototype>
+    <prototype>
+      <m:bind>
+        <m:csymbol cd="inference-rules">schema</m:csymbol>
+        <m:bvar>
+          <exprlist name="bvars">
+            <expr name="bvar"/>
+          </exprlist>
+        </m:bvar>
+        <m:condition>
+          <expr name="condition"/>
+        </m:condition>
+        <expr name="scope"/>
+      </m:bind>
+    </prototype>
+    <!--REPLACEME: This is just copied for manual intervention:-->
+    <recurse xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath" select="*[3]"/>
+    <!--/REPLACEME-->
+    <prototype>
+      <om:OMBIND>
+        <om:OMS cd="inference-rules" name="schema"/>
+        <om:OMBVAR>
+          <exprlist name="bvars">
+            <expr name="bvar"/>
+          </exprlist>
+        </om:OMBVAR>
+        <expr name="scope"/>
+      </om:OMBIND>
+    </prototype>
+    <prototype>
+      <m:bind>
+        <m:csymbol cd="inference-rules">schema</m:csymbol>
+        <m:bvar>
+          <exprlist name="bvars">
+            <expr name="bvar"/>
+          </exprlist>
+        </m:bvar>
+        <expr name="scope"/>
+      </m:bind>
+    </prototype>
+    <!--REPLACEME: This is just copied for manual intervention:-->
+    <recurse xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath" select="*[3]"/>
+    <!--/REPLACEME-->
+  </notation>
+  <notation cdbase="FIXME" cd="inference-rules" name="rule">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="inference-rules" name="rule"/>
+        <exprlist name="args">
+          <expr name="arg"/>
+        </exprlist>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="inference-rules">rule</m:csymbol>
+        <expr name="arg"/>
+      </m:apply>
+    </prototype>
+    <!--REPLACEME: This is just copied for manual intervention:-->
+    <element xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath" name="mtable" ns="http://www.w3.org/1998/Math/MathML" cr="yes">
+       <attribute name="rowlines"><text>solid</text></attribute>       
+       <element name="mtr" ns="http://www.w3.org/1998/Math/MathML" cr="yes">
+	 <element name="mtd" ns="http://www.w3.org/1998/Math/MathML" cr="yes">
+	   <map select="*[position() &gt;1 and position() &lt;last()]">
+	     <separator>
+	       <element name="mspace" ns="http://www.w3.org/1998/Math/MathML" cr="yes">
+		 <attribute name="width"><text>2em</text></attribute>
+	       </element>
+	     </separator>
+	     <recurse select="."/>
+	   </map>
+	 </element>
+       </element>
+       <element name="mtr" ns="http://www.w3.org/1998/Math/MathML" cr="yes">
+	 <element name="mtd" ns="http://www.w3.org/1998/Math/MathML" cr="yes">
+	   <recurse select="*[last()]"/>
+	 </element>
+       </element>
+     </element>
+    <!--/REPLACEME-->
+  </notation>
+</notations>

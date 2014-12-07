@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  xmlns="http://omdoc.org/ns"
+xml:id="linalg4-omdoc">
+
+
+  <dc:title>The OpenMath Content Dictionary linalg4.ocd  in OMDoc form</dc:title>
+  <dc:creator role="trl">Michael Kohlhase</dc:creator>
+  <dc:creator role="ant">The OpenMath Society</dc:creator>
+  <dc:date> 1999-07-15T00:00:00</dc:date>
+  <dc:source>Derived from the OpenMath CD http://www.openmath.org/cd/linalg4.ocd.</dc:source>
+  <dc:type>Text</dc:type>
+  <dc:format>application/omdoc+xml</dc:format>
+  <dc:rights>Copyright (c) 2000-2002 Michael Kohlhase;
+    This OMDoc content dictionary is released under the OpenMath license:
+    http://monet.nag.co.uk/openmath/cdfiles/license.html
+  </dc:rights>
+  <dc:description>
+    This CD defines symbols for basic linear algebra.
+
+Regardless of the way of forming vectors and matrices, this CD
+deals with eigenvalues, eigenvectors and related concepts.
+</dc:description>
+
+
+<theory xml:id="linalg4" cdbase="http://www.openmath.org/cd">
+
+<include from="sts.omdoc#sts"/>
+<include from="relation1.omdoc#relation1"/>
+<include from="arith1.omdoc#arith1"/>
+<include from="logic1.omdoc#logic1"/>
+<include from="alg1.omdoc#alg1"/>
+<include from="linalg1.omdoc#linalg1"/>
+<include from="linalg5.omdoc#linalg5"/>
+<include from="setname1.omdoc#setname1"/>
+<include from="linalg2.omdoc#linalg2"/>
+
+<symbol name="eigenvalue" xml:id="eigenvalue">
+
+<dc:description>
+    This symbol represents the eigenvalue of a matrix. It takes two
+    arguments the first should be the matrix, the second should be an
+    index to specify the eigenvalue. The ordering imposed on the
+    eigenvalues is first on the modulus of the value, and second on the
+    argument of the value. A definition of eigenvalue is
+    given in Elementary Linear Algebra, Stanley I. Grossman in Definition 1 
+    of chapter 6, page 533.
+</dc:description>
+
+<type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMV name="Matrix"/>
+	<OMV name="Index"/>
+	<OMV name="NumericalValue"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+<assertion xml:id="eigenvalue-prop-1" type="lemma">
+  <CMP> A*eigenvector(A,i) = eigenvalue(A,i)*eigenvector(A,i) </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="relation1" name="eq"/>
+	<OMA>
+	  <OMS cd="arith1" name="times"/>
+	  <OMV name="A"/>
+	  <OMA>
+	    <OMS cd="linalg4" name="eigenvector"/>
+	    <OMV name="A"/>
+	    <OMV name="i"/>
+	  </OMA>
+	</OMA>
+	<OMA>
+	  <OMS cd="arith1" name="times"/>
+	  <OMA>
+	    <OMS cd="linalg4" name="eigenvalue"/>
+	    <OMV name="A"/>
+	    <OMV name="i"/>
+	  </OMA>
+	  <OMA>
+	    <OMS cd="linalg4" name="eigenvector"/>
+	    <OMV name="A"/>
+	    <OMV name="i"/>
+	  </OMA>
+	</OMA>
+      </OMA>
+    </OMOBJ>
+  </FMP>
+</assertion>
+<symbol name="eigenvector" xml:id="eigenvector">
+
+<dc:description>
+    This symbol represents the eigenvector of a matrix. It takes two
+    arguments the first should be the matrix, the second should be an
+    index to specify which eigenvalue this eigenvector should be paired
+    with. The ordering is as given in the eigenvalue symbol. A definition
+    of eigenvector is given in Elementary Linear Algebra, Stanley
+    I. Grossman in Definition 1 of chapter 6, page 533.
+</dc:description>
+
+<type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMV name="Matrix"/>
+	<OMV name="Index"/>
+	<OMV name="NumericalValue"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+<assertion xml:id="eigenvector-prop-1" type="lemma">
+  <CMP> A*eigenvector(A) = eigenvalue(A)*eigenvector(A) </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="relation1" name="eq"/>
+	<OMA>
+	  <OMS cd="arith1" name="times"/>
+	  <OMV name="A"/>
+	  <OMA>
+	    <OMS cd="linalg4" name="eigenvector"/>
+	    <OMV name="A"/>
+	    <OMV name="i"/>
+	  </OMA>
+	</OMA>
+	<OMA>
+	  <OMS cd="arith1" name="times"/>
+	  <OMA>
+	    <OMS cd="linalg4" name="eigenvalue"/>
+	    <OMV name="A"/>
+	    <OMV name="i"/>
+	  </OMA>
+	  <OMA>
+	    <OMS cd="linalg4" name="eigenvector"/>
+	    <OMV name="A"/>
+	    <OMV name="i"/>
+	  </OMA>
+	</OMA>
+      </OMA>
+    </OMOBJ>
+  </FMP>
+</assertion>
+<symbol name="characteristic_eqn" xml:id="characteristic_eqn">
+
+<dc:description>
+    This symbol represents the polynomial which appears in the left hand
+    side of the characteristic equation of a matrix. It
+    takes one argument which should be the matrix. A definition of the
+    characteristic equation is given in Elementary Linear Algebra, Stanley
+    I. Grossman in Definition 2 of chapter 6, page 535.
+</dc:description>
+
+<type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMV name="Matrix"/>
+	<OMV name="Polynomial"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+<assertion xml:id="characteristic_eqn-prop-1" type="lemma">
+  <CMP> 
+    p(eigenvalue(A,i)) = det(A-eigenvalue(A,i)I) = 0 
+    where p is the characteristic equation of A
+  </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="logic1" name="and"/>
+	<OMA>
+	  <OMS cd="relation1" name="eq"/>
+	  <OMA>
+	    <OMA>
+	      <OMS cd="linalg4" name="characteristic_eqn"/>
+	      <OMV name="A"/>
+	    </OMA>
+	    <OMA>
+	      <OMS cd="linalg4" name="eigenvalue"/>
+	      <OMV name="A"/>
+	      <OMV name="i"/>
+	    </OMA>
+	  </OMA>
+	  <OMS cd="alg1" name="zero"/>
+	</OMA>
+	<OMA>
+	  <OMS cd="relation1" name="eq"/>
+	  <OMA>
+	    <OMS cd="linalg1" name="determinant"/>
+	    <OMA>
+	      <OMS cd="arith1" name="minus"/>
+	      <OMV name="A"/>
+	      <OMA>
+		<OMS cd="arith1" name="times"/>
+		<OMA>
+		  <OMS cd="linalg4" name="eigenvalue"/>
+		  <OMV name="A"/>
+		  <OMV name="i"/>
+		</OMA>
+		<OMA>
+		  <OMS cd="linalg5" name="identity"/>
+		  <OMA>
+		    <OMS cd="linalg4" name="rowcount"/>
+		    <OMV name="A"/>
+		  </OMA>
+		</OMA>
+	      </OMA>
+	    </OMA>
+	  </OMA>
+	  <OMS cd="alg1" name="zero"/>
+	</OMA>
+      </OMA>
+    </OMOBJ>
+  </FMP>
+</assertion>
+<symbol name="size" xml:id="size">
+
+<dc:description>
+    This symbol represents the function which takes one vector argument
+    and returns the length of that vector.
+</dc:description>
+
+<type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMV name="Vector"/>
+	<OMS name="N" cd="setname1"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+<example xml:id="size-ex-1" type="for" for="#size">
+  <CMP>the length of the vector [1,2,3] = 3</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="relation1" name="eq"/>
+      <OMA>
+	<OMS cd="linalg4" name="size"/>
+	<OMA>
+	  <OMS cd="linalg2" name="vector"/>
+	  <OMI> 1 </OMI>
+	  <OMI> 2 </OMI>
+	  <OMI> 3 </OMI>
+	</OMA>
+      </OMA>
+      <OMI> 3 </OMI>
+    </OMA>
+  </OMOBJ>
+</example>
+<symbol name="rank" xml:id="rank">
+
+<dc:description>
+    This symbol represents the function which takes one matrix argument
+    and returns the number of linearly independent rows (or columns) of
+    that matrix.
+</dc:description>
+
+<type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMV name="Matrix"/>
+	<OMS name="N" cd="setname1"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+<assertion xml:id="rank-prop-1" type="lemma">
+  <CMP> the rank of an nxn identity matrix is n  </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="relation1" name="eq"/>
+	<OMA>
+	  <OMS cd="linalg4" name="rank"/>
+	  <OMA>
+	    <OMS cd="linalg5" name="identity"/>
+	    <OMV name="n"/>
+	  </OMA>
+	</OMA>
+	<OMV name="n"/>
+      </OMA>
+    </OMOBJ>
+  </FMP>
+</assertion>
+<symbol name="rowcount" xml:id="rowcount">
+
+<dc:description>
+    This symbol represents the function which takes one matrix argument
+    and returns the number of rows in that matrix.
+</dc:description>
+
+<type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMV name="Matrix"/>
+	<OMS name="N" cd="setname1"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+<example xml:id="rowcount-ex-1" type="for" for="#rowcount">
+  <CMP>Specification of the number of rows in the matrix:
+    [[1 2]
+    [3 4]
+    [5 6]]</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath" style="display:block">
+    <OMA>
+      <OMS cd="linalg4" name="rowcount"/>
+      <OMA>
+	<OMS cd="linalg2" name="matrix"/>
+	<OMA>
+	  <OMS cd="linalg2" name="matrixrow"/>
+	  <OMI>1</OMI>
+	  <OMI>2</OMI>
+	</OMA>
+	<OMA>
+	  <OMS cd="linalg2" name="matrixrow"/>
+	  <OMI>3</OMI>
+	  <OMI>4</OMI>
+	</OMA>
+	<OMA>
+	  <OMS cd="linalg2" name="matrixrow"/>
+	  <OMI>5</OMI>
+	  <OMI>6</OMI>
+	</OMA>
+      </OMA>
+    </OMA>
+  </OMOBJ>
+</example>
+
+<symbol name="columncount" xml:id="columncount">
+
+<dc:description>
+    This symbol represents the function which takes one matrix argument
+    and returns the number of columns in that matrix.
+</dc:description>
+
+<type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMV name="Matrix"/>
+	<OMS name="N" cd="setname1"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+
+<example xml:id="columncount-ex-1" type="for" for="#columncount">
+  <CMP>
+    Specification of the number of columns in the matrix:
+    [[1 2]
+    [3 4]
+    [5 6]]</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath" style="display:block">
+    <OMA>
+      <OMS cd="linalg4" name="columncount"/>
+      <OMA>
+	<OMS cd="linalg2" name="matrix"/>
+	<OMA>
+	  <OMS cd="linalg2" name="matrixrow"/>
+	  <OMI>1</OMI>
+	  <OMI>2</OMI>
+	</OMA>
+	<OMA>
+	  <OMS cd="linalg2" name="matrixrow"/>
+	  <OMI>3</OMI>
+	  <OMI>4</OMI>
+	</OMA>
+	<OMA>
+	  <OMS cd="linalg2" name="matrixrow"/>
+	  <OMI>5</OMI>
+	  <OMI>6</OMI>
+	</OMA>
+      </OMA>
+    </OMA>
+  </OMOBJ>
+</example>
+</theory>
+</omdoc>

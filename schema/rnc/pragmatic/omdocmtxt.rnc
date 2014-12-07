@@ -1,0 +1,51 @@
+# A RelaxNG schema for Open Mathematical documents (OMDoc 1.6) Module MTXT 
+# $Id: omdocmtxt.rnc 8633 2010-04-12 06:45:10Z kohlhase $
+# $HeadURL: https://svn.omdoc.org/repos/omdoc/trunk/schema/rnc/pragmatic/omdocmtxt.rnc $
+# See the documentation and examples at http://www.omdoc.org
+# Copyright (c) 2004-2007 Michael Kohlhase, released under the GNU Public License (GPL) 
+
+default namespace omdoc = "http://omdoc.org/ns"
+
+# textblocktype commented and left until further notice, rsttype recovered in 
+# the grammar with its initial purpose in the omtext element
+
+#textblocktype = "introduction" | "background" | "motivation" | "scenario" |
+#		"contribution" | "evaluation" | "results" | "discussion" |
+#		"conclusion"
+
+rsttype = "abstract" | "introduction" | "annote" |
+          "conclusion" | "thesis" | "comment" | "antithesis" |
+          "elaboration" | "motivation" | "evidence" | "note" |
+	  "warning" | "question" | "answer" | "transition"
+
+# relationtype - used in phrase element introduced instead
+relationtype =  "antithesis" | "circumstance" | "concession" | "condition" |
+		"evidence" | "means" | "preparation" | "purpose" | "cause" |
+		"consequence" | "elaboration" | "restatement" | "solutionhood"
+
+statementtype = "axiom" | "definition" | "example" | "proof" |
+                "derive" | "hypothesis" | "notation"
+
+assertiontype = "assertion" | "theorem" | "lemma" | "corollary" |
+                "proposition" | "conjecture" | "false-conjecture" |
+		"obligation" | "postulate" | "formula" | "assumption" |
+		"rule" 
+
+# omtext can take as argument rsttype and to extend extensibility if a type is not
+# specified, an typeURI is offered as additional option
+
+
+omtext.attribs &= ( attribute type {(rsttype | statementtype | assertiontype)} 
+			 | attribute typeURI {xsd:anyURI})? &
+                         attribute for {MMTURI}?&
+                         attribute from {MMTURI}?
+
+# in phrase element the type attribute is changed to take values from nucleus and
+# satellite, also the relation attribute is introduced having values of type relationtype,
+# and the for attribute is introduce to connect the satellite with the corresponding
+# nucleus.
+
+phrase.attribs &= attribute type {"nucleus"} | 
+           		       (attribute type {"satellite"} &
+	                        attribute relation {relationtype} &
+	                        attribute for {MMTURI})

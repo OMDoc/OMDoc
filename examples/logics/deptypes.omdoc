@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  
+       xmlns="http://omdoc.org/ns"
+       xmlns:om="http://www.openmath.org/OpenMath"
+       xmlns:m="http://www.w3.org/1998/Math/MathML"
+       xml:id="dependent.omdoc">
+
+<metadata>
+ <dc:creator role="aut">Michael Kohlhase</dc:creator>
+ <dc:date action="created">2001-05-19T00:00:00</dc:date>
+ <dc:title>Dependent Types</dc:title>
+  <dc:rights>Copyright (c) 2008 Michael Kohlhase</dc:rights>
+  <license xmlns="http://creativecommons.org/ns">
+    <permissions reproduction="permitted" distribution="permitted" derivative_works="permitted"/>
+    <prohibitions commercial_use="permitted"/>
+    <requirements notice="required" copyleft="required" attribution="required"/>
+  </license>
+</metadata>
+
+<omtext xml:id="intro">
+ <CMP>This document defines the dependent types discipline.</CMP>
+</omtext>
+
+<theory xml:id="deptypes">
+  <metadata>
+    <dc:title>Dependent Types</dc:title>
+  </metadata>
+
+<symbol name="function-term" role="binder">
+<metadata>
+<dc:description>The dependent function term constructor. It returns a dependent function that abstracts over a typed variable and returns a term. It can be applied to a term.
+</dc:description>
+</metadata>
+</symbol>
+
+<symbol name="function-type" role="binder">
+<metadata>
+<dc:description>The dependent function type constructor. It returns the type of dependent functions that abstracting over a typed variable and returning a term.
+</dc:description>
+</metadata>
+</symbol>
+
+<symbol name="function-application" role="object">
+<metadata>
+<dc:description>The application operator that applies terms (functions) to terms.
+</dc:description>
+</metadata>
+</symbol>
+
+<symbol name="type-family" role="binder">
+<metadata>
+<dc:description>The dependent type constructor. It returns a type family by abstracting over a typed variable and returning a type. It can be applied to a term.
+</dc:description>
+</metadata>
+</symbol>
+
+<symbol name="type-family-kind" role="binder">
+<metadata>
+<dc:description>The dependent function kind constructor. It returns the kind of type families that abstracts over a typed variable and returns a type.
+</dc:description>
+</metadata>
+</symbol>
+
+<symbol name="type-family-application" role="object">
+<metadata>
+<dc:description>The application operator that applies types (type families) to terms.
+</dc:description>
+</metadata>
+</symbol>
+
+<!--<presentation xml:id="pr-sigmatype" for="#sigmatype" role="binding">
+ <style format="pvs">
+   <text>[</text>
+    <recurse select="*[2]/*"/><text> -&gt; </text><recurse select="*[3]"/>
+   <text>]</text>
+ </style>
+</presentation>
+-->
+
+<symbol name="dependent-recordtype">
+<metadata>
+<dc:description>The dependent record type constructor. It takes an even number of
+  arguments. The even ones are field names (currently they are OMS symbols in the
+  pseudo-theory 'record-field' and the odd ones their values.</dc:description>
+</metadata>
+</symbol>
+
+<presentation xml:id="pr-dependent-recordtype" for="#dependent-recordtype" role="applied" arith="1">
+  <use format="pvs" lbrack="[# " rbrack=" #]"/>
+</presentation>
+
+<symbol name="dependent-tupletype">
+<metadata>
+<dc:description>The dependent tuple type constructor.</dc:description>
+</metadata>
+</symbol>
+
+<presentation xml:id="pr-dependent-tupletype" for="#dependent-tupletype" role="applied" arity="1">
+  <use format="pvs" lbrack="[" rbrack="]"/>
+</presentation>
+
+<symbol name="dependent-cotupletype">
+<metadata>
+<dc:description>The dependent-co-tuple type constructor (useful for formalizing
+  co-algebras).</dc:description>
+</metadata>
+</symbol>
+
+<presentation xml:id="pr-dependent-cotupletype" for="#dependent-cotupletype" role="applied" arity="nary">
+  <use format="pvs" lbrack="[ " rbrack=" ]" separator="+"/>
+</presentation>
+
+<omtext xml:id="no-term-constructors">
+ <CMP>We do not need any term constructors for dependent types, we can take the ones
+ defined in theory simpletypes
+ </CMP>
+</omtext>
+</theory>
+
+
+</omdoc>

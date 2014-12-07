@@ -1,0 +1,147 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This file is part of the LaTeX sources of the OMDoc 1.6 project descriptions
+% Copyright (c) 2006 Alberto Gonz\'alez Palomo
+% This work is licensed by the Creative Commons Share-Alike license
+% see http://creativecommons.org/licenses/by-sa/2.5/ for details
+\svnInfo $Id: main.tex 8392 2009-06-17 04:21:23Z kohlhase $
+\svnKeyword $HeadURL: https://svn.omdoc.org/repos/omdoc/trunk/doc/projects/qmath/main.tex $
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{omgroup}[id=qmath,short=QMath Parser,creators=alberto]
+  {QMath: A Human-Oriented Language and Batch Formatter for OMDoc}
+
+\ednote{project page: \url{http://www.matracas.org/qmath/index.en.html}}
+
+{\qmath} is a batch processor that produces an {\omdoc} file from a plain {\unicode}
+text document, in a similar way to how {\TeX} produces a DVI file from a plain
+text source. Its purpose is to allow fast writing of mathematical
+documents, using plain text and a straightforward syntax (like in computer algebra
+systems) for mathematical expressions.
+
+The ``Q'' was intended to mean ``quick'', since {\qmath} began in 1998 as an abbreviated
+notation for {\mathml}. The first version (0.1) just expanded the formulas found enclosed
+by ``{\$}'' signs, which were abbreviated forms of the {\mathml} element names, and added
+the extra markup such as {\snippet{<mrow>}} and the like. The second (0.2) did the same
+thing, but this time allowing an algebraic notation that was fixed in the source code.
+Finally, version 0.3 allowed the redefinition of symbols while parsing, but it was not
+capable of expanding formulas embedded in XML documents like the previous ones did until
+version 0.3.8.\footnote{\footnotesize{This offers an alternative to the {\scsys{OQMath}}
+    wrapper mentioned in {\sref{activemath}}.}}  For a more detailed history
+see~\cite{QMathHistory:URL}.
+
+{\qmath} is very simple: it just parses a text (UTF-8) file according to a user-definable
+table of symbols, and builds an XML document from that. The symbol definitions are grouped
+in files called ``contexts''. The idea is that when you declare a context, its file is
+loaded and from then on these symbol definitions take precedence over any previous one,
+thus setting the context for parsing of subsequent expressions.
+
+The grouping of symbols in the context files is arbitrary. However, the
+ones included with {\qmath} follow the
+{\openmath} Content Dictionaries hierarchy so that,
+for instance, the English language syntax for the symbols in
+the ``arith1'' CD is defined in the context ``Mathematics/OpenMath/arith1''.
+
+\setbox0=\hbox{\begin{minipage}{10.6cm}\scriptsize
+\lstinputlisting[frame=none,numbers=none,nolol]{\projectsPath{qmath/thoughtcrime.omdoc}}
+\end{minipage}}
+\begin{myfig}{qmathex}{A minimal {\qmath} document (top left) and its {\omdoc} result (bottom). Some symbol definitions are displayed in the top right.}\scriptsize
+\begin{tabular}{|p{5.2cm}|p{5.4cm}|}\hline
+{\scriptsize\begin{lstlisting}[numbers=none,frame=none]
+QMATH 0.3.8
+:en
+Context: "Mathematics/OMDoc"
+
+:"Diary"
+:W. Smith
+:1984-04-04 18:43:00+00:00
+
+Context: "Mathematics/Arithmetic"
+
+Theory:[<-thoughtcrime]
+
+:"Down with Big Brother"
+Freedom is the freedom to say $2+2=4$. 
+If that is granted, all else follows.
+\end{lstlisting}}
+&
+{\tiny{From {\url{contexts/en/Mathematics/OpenMath/arith1.qmath}}:}}
+{\scriptsize\begin{lstlisting}[frame=none,numbers=none,mathescape]
+Symbol: plus OP_PLUS "arith1:plus"
+Symbol: + OP_PLUS "arith1:plus"
+Symbol: sum APPLICATION "arith1:sum"
+Symbol: $\Sigma$ APPLICATION "arith1:sum"
+ $\cdots$
+\end{lstlisting}}
+{\tiny{From {\url{contexts/en/Mathematics/OpenMath/relation1.qmath}}:}}
+{\scriptsize\begin{lstlisting}[frame=none,numbers=none,mathescape]
+Symbol: = OP_EQ "relation1:eq"
+Symbol: neq OP_EQ "relation1:neq"
+Symbol: $\neg$= OP_EQ "relation1:neq"
+Symbol: $\neq$ OP_EQ "relation1:neq"
+\end{lstlisting}}
+$\cdots$
+\\\hline
+\multicolumn{2}{|l|}{\box0}\\\hline
+\end{tabular}
+\end{myfig}
+
+{\Myfigref{qmathex}} shows a minimal {\qmath} document, and the {\omdoc} document
+generated from it. The first line ("{\tt{QMATH 0.3.8}}") in the {\qmath} document is
+required for the parser to recognize the file. The lines beginning with ``{\tt{:}}'' are
+metadata items, the first of which, {\tt{:en}}, declares the primary language
+for the document, in this case English.
+Specifying the language is required, as it sets the basic keywords
+accordingly, and there is no default (privileged) language in {\qmath}.
+For example, the English keyword ``{\tt{Context}}'' is written
+``{\tt{Contexto}}'' if the language is Spanish.
+(Similarly, the arithmetic context is "{\tt{Matem\'aticas/Aritm\'etica}}").
+Then, the ``OMDoc'' context is loaded, defining the XML elements to be
+produced by the metadata items and the different kinds of paragraphs:
+plain text, theorem, definition, proof, example, etc.
+
+After that setup come the document title, author name (one line for each author), and
+date, which form the content of the {\omdoc} metadata element.
+
+The document is composed of paragraphs (which can be nested) separated by empty lines, and
+formulas are written enclosed by ``{\$}'' signs.
+
+There is an Emacs mode included in the source distribution, that
+provides syntax highlighting and basic navigation based on element identifiers.
+
+It is also possible to use it on an XML document for expanding only the mathematical
+expressions. {\qmath} will detect automatically the input format, either {\qmath}
+text or XML, and in the later case output everything verbatim except for the
+{\qmath} language fragments found inside the XML processing instructions of the form
+{\tt{<?QMath ... ?>}} and the mathematical expressions between ``{\$}''.
+\setbox0=\hbox{\begin{minipage}{10.6cm}\scriptsize
+\lstinputlisting[frame=none,numbers=none,nolol]{\projectsPath{qmath/thoughtcrime.qmath}}
+\end{minipage}}
+\begin{myfig}{qmathexembedded}{The same example document, using {\qmath} only for the formulas.}\scriptsize
+\begin{tabular}{|p{5.2cm}|p{5.4cm}|}\hline
+\multicolumn{2}{|l|}{\box0}\\\hline
+\end{tabular}
+\end{myfig}
+
+While {\qmath} was a good improvement over manual typing of the {\omdoc}
+{\xml}, it does not scale well: in real documents, with more than a couple
+of nesting levels, it is difficult to keep track of where the current
+paragraph belongs.
+
+One solution is to use it only for the mathematical expressions, and rely on some XML
+editor for the document navigation and organization, such as the {\omdoc} mode for Emacs
+described in {\extref{spec}{omdocmode}} or the {\sc OQmath} mode for {\sc jEdit} in
+{\sref{jeditoqmath}}.  Another is to use the {\scsys{Sentido}} browser/editor in
+{\sref{sentido}}, which reimplements and extends {\qmath}'s functionality.
+
+{\qmath} is Free Software distributed under the GNU General Public License (GPL~\cite{GPL}).
+\end{omgroup}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../main"
+%%% End: 
+
+% LocalWords:  QMath qmath Gonz alez Palomo DVI mrow OQMath activemath UTF EQ
+% LocalWords:  arith nolol qmathex thoughtcrime eq neq Contexto Matem aticas eq
+% LocalWords:  Aritm etica metadata qmathexembedded omdocmode OQmath jEdit GPL
+% LocalWords:  jeditoqmath Sentido sentido reimplements qmath OQmath sentido

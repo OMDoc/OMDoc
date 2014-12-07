@@ -1,0 +1,172 @@
+# -*- CPERL -*-
+# /=======================================================\ #
+# |  myindex.sty - Implementation for LaTeXML           | #
+# |                                                       | #
+# |=======================================================| #
+# | Not Part of LaTeXML : http://dlmf.nist.gov/LaTeXML/   | #
+# | Copyright (c) 2006 arXMLiv group                      | #
+# | Released under the GNU Public License                 | #
+# \=======================================================/ #
+
+package LaTeXML::Package::Pool;
+use strict;
+use LaTeXML::Package;
+RequirePackage('keyval');
+
+DefKeyVal('ns','ns-attr','Semiverbatim');
+DefKeyVal('ns','ns-elt','Semiverbatim');
+
+DefConstructor('\element OptionalKeyVals:xml {}',
+	       "<omdoc:idx xref='idx.?&KeyVal(#1,'ns-elt')(&KeyVal(#1,'ns-elt').)()#2'>"
+	      .  "<omdoc:idt>"
+	      .    "<omdoc:phrase type='elementname'>"
+	      .      "?&KeyVal(#1,'ns-elt')(&KeyVal(#1,'ns-elt'):)()#2"
+	      .    "</omdoc:phrase>"
+	      .  "</omdoc:idt>"
+              .  "<omdoc:ide sort-by='#2'>"
+              .    "<omdoc:idp>#2</omdoc:idp>"
+              .    "<omdoc:idp>element</omdoc:idp>"
+              .  "</omdoc:ide>"
+	      ."</omdoc:idx>");
+
+DefConstructor('\eldef OptionalKeyVals:xml {}',
+	       "<omdoc:idx xml:id='idx.?&KeyVal(#1,'ns-elt')(&KeyVal(#1,'ns-elt').)()#2'>"
+	      .  "<omdoc:idt>"
+	      .    "<omdoc:phrase type='elementname'>"
+	      .      "?&KeyVal(#1,'ns-elt')(&KeyVal(#1,'ns-elt'):)()#2"
+	      .    "</omdoc:phrase>"
+	      .  "</omdoc:idt>"
+              .  "<omdoc:ide sort-by='#2'>"
+              .    "<omdoc:idp>#2</omdoc:idp>"
+              .    "<omdoc:idp>element</omdoc:idp>"
+              .  "</omdoc:ide>"
+	      ."</omdoc:idx>");
+
+Let('\Eldef','\eldef');
+
+DefConstructor('\oldelement OptionalKeyVals:xml {}{}',
+	       "<omdoc:idx xml:id='idx.?&KeyVal(#1,'ns-elt')(&KeyVal(#1,'ns-elt').)()#2'>"
+	      .  "<omdoc:idt>"
+	      .    "<omdoc:phrase type='elementname'>"
+	      .      "?&KeyVal(#1,'ns-elt')(&KeyVal(#1,'ns-elt'):)()#2"
+	      .    "</omdoc:phrase>"
+	      .  "</omdoc:idt>"
+              .  "<omdoc:ide sort-by='#2'>"
+              .    "<omdoc:idp>#2</omdoc:idp>"
+              .    "<omdoc:idp>old element (deprecated in OMDoc #3)</omdoc:idp>"
+              .  "</omdoc:ide>"
+	      ."</omdoc:idx>");
+
+DefConstructor('\attribute OptionalKeyVals:xml {}{}',
+	       "<omdoc:idx xref='idx.?&KeyVal(#1,'ns-attr')(&KeyVal(#1,'ns-attr').)()#2."
+              .                     "?&KeyVal(#1,'ns-elt')(&KeyVal(#1,'ns-elt').)()#3'>"
+	      .  "<omdoc:idt>"
+	      .    "<omdoc:phrase type='attributename'>"
+	      .      "?&KeyVal(#1,'ns-attr')(&KeyVal(#1,'ns-attr'):)()#2"
+	      .    "</omdoc:phrase>"
+	      .  "</omdoc:idt>"
+              .  "<omdoc:ide sort-by='#2'>"
+              .    "<omdoc:idp>#2</omdoc:idp>"
+              .    "<omdoc:idp>attribute on</omdoc:idp>"
+              .    "<omdoc:idp>#3</omdoc:idp>"
+              .  "</omdoc:ide>"
+	      ."</omdoc:idx>");
+
+DefConstructor('\oldattribute OptionalKeyVals:xml {}{}{}',
+	       "<omdoc:idx xref='idx.?&KeyVal(#1,'ns-attr')(&KeyVal(#1,'ns-attr').)()#2:"
+              .                     "?&KeyVal(#1,'ns-elt')(&KeyVal(#1,'ns-elt').)()#3'>"
+	      .  "<omdoc:idt>"
+	      .    "<omdoc:phrase type='attributename'>"
+	      .      "?&KeyVal(#1,'ns-attr')(&KeyVal(#1,'ns-attr'):)()#2"
+	      .    "</omdoc:phrase>"
+	      .  "</omdoc:idt>"
+              .  "<omdoc:ide sort-by='#2'>"
+              .    "<omdoc:idp>#2</omdoc:idp>"
+              .    "<omdoc:idp>old attribute (deprecated in OMDoc #4) on</omdoc:idp>"
+              .    "<omdoc:idp>#3 </omdoc:idp>"
+              .  "</omdoc:ide>"
+	      ."</omdoc:idx>");
+
+DefConstructor('\attributeshort OptionalKeyVals:xml {}',
+	       "<omdoc:idx xref='idx.?&KeyVal(#1,'ns-attr')(&KeyVal(#1,'ns-attr').)()#2.attribute'>"
+	      .  "<omdoc:idt>"
+	      .    "<omdoc:phrase type='attributename'>"
+	      .      "?&KeyVal(#1,'ns-attr')(&KeyVal(#1,'ns-attr'):)()#2"
+	      .    "</omdoc:phrase>"
+	      .  "</omdoc:idt>"
+              .  "<omdoc:ide sort-by='#2'>"
+              .    "<omdoc:idp>#2</omdoc:idp>"
+              .    "<omdoc:idp>attribute</omdoc:idp>"
+              .  "</omdoc:ide>"
+	      ."</omdoc:idx>");
+
+DefConstructor('\attributeshortcomment OptionalKeyVals:xml {}{}',
+	       "<omdoc:idx xref='idx.?&KeyVal(#1,'ns-attr')(&KeyVal(#1,'ns-attr').)()#2.attribute'>"
+	      .  "<omdoc:idt>"
+	      .    "<omdoc:phrase type='attributename'>"
+	      .      "?&KeyVal(#1,'ns-attr')(&KeyVal(#1,'ns-attr'):)()#2"
+	      .    "</omdoc:phrase>"
+	      .  "</omdoc:idt>"
+              .  "<omdoc:ide sort-by='#2'>"
+              .    "<omdoc:idp>#2</omdoc:idp>"
+              .    "<omdoc:idp>attribute (#3)</omdoc:idp>"
+              .  "</omdoc:ide>"
+	      ."</omdoc:idx>");
+
+DefConstructor('\attval OptionalKeyVals:xml {}{}{}',
+	       "<omdoc:idx xref='idx.#2.attval."
+              .                     "?&KeyVal(#1,'ns-attr')(&KeyVal(#1,'ns-attr').)()#3."
+              .                     "?&KeyVal(#1,'ns-elt')(&KeyVal(#1,'ns-elt').)().#4'>"
+	      .  "<omdoc:idt>"
+	      .    "<omdoc:phrase type='attributeval'>#2</omdoc:phrase>"
+	      .  "</omdoc:idt>"
+              .  "<omdoc:ide sort-by='#2'>"
+              .    "<omdoc:idp>#2</omdoc:idp>"
+              .    "<omdoc:idp>atribute value for</omdoc:idp>"
+              .    "<omdoc:idp>#3 on</omdoc:idp>"
+              .    "<omdoc:idp>#4</omdoc:idp>"
+              .  "</omdoc:ide>"
+	      ."</omdoc:idx>");
+
+DefConstructor('\oldattval OptionalKeyVals:xml {}{}{}{}',
+	       "<omdoc:idx xref='idx.#2.old.#5.attval."
+              .                     "?&KeyVal(#1,'ns-attr')(&KeyVal(#1,'ns-attr').)()#3."
+              .                     "?&KeyVal(#1,'ns-elt')(&KeyVal(#1,'ns-elt').)()#4'>"
+	      .  "<omdoc:idt>"
+	      .    "<omdoc:phrase type='attributeval'>#2</omdoc:phrase>"
+	      .  "</omdoc:idt>"
+              .  "<omdoc:ide sort-by='#2'>"
+              .    "<omdoc:idp>#2</omdoc:idp>"
+              .    "<omdoc:idp>old atribute value (deprecated in OMDoc #5) for</omdoc:idp>"
+              .    "<omdoc:idp>#3 on</omdoc:idp>"
+              .    "<omdoc:idp>#4</omdoc:idp>"
+              .  "</omdoc:ide>"
+	      ."</omdoc:idx>");
+
+DefConstructor('\attvalshort OptionalKeyVals:xml {}{}',
+	       "<omdoc:idx xref='idx.#2.attval.?&KeyVal(#1,'ns-attr')(&KeyVal(#1,'ns-attr').)()#3'>"
+	      .  "<omdoc:idt>"
+	      .    "<omdoc:phrase type='attributeval'>#2</omdoc:phrase>"
+	      .  "</omdoc:idt>"
+              .  "<omdoc:ide sort-by='#2'>"
+              .    "<omdoc:idp>#2</omdoc:idp>"
+              .    "<omdoc:idp>atribute value for</omdoc:idp>"
+              .    "<omdoc:idp>#3</omdoc:idp>"
+              .  "</omdoc:ide>"
+	      ."</omdoc:idx>");
+
+DefConstructor('\attvalveryshort OptionalKeyVals:xml {}',
+	       "<omdoc:idx xref='idx.#2.attval'>"
+	      .  "<omdoc:idt>"
+	      .    "<omdoc:phrase type='attributeval'>#2</omdoc:phrase>"
+	      .  "</omdoc:idt>"
+              .  "<omdoc:ide sort-by='#2'>"
+              .    "<omdoc:idp>#2</omdoc:idp>"
+              .    "<omdoc:idp>atribute value</omdoc:idp>"
+              .  "</omdoc:ide>"
+	      ."</omdoc:idx>");
+
+DefConstructor('\defemph{}','');
+
+#**********************************************************************
+1;

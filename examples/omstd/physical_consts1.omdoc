@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  xmlns="http://omdoc.org/ns"
+xml:id="physical_consts1-omdoc">
+
+
+  <dc:title>The OpenMath Content Dictionary physical_consts1.ocd  in OMDoc form</dc:title>
+  <dc:creator role="trl">Michael Kohlhase</dc:creator>
+  <dc:creator role="ant">The OpenMath Society</dc:creator>
+  <dc:date> 2000-08-14T00:00:00</dc:date>
+  <dc:source>Derived from the OpenMath CD http://www.openmath.org/cd/physical_consts1.ocd.</dc:source>
+  <dc:type>Text</dc:type>
+  <dc:format>application/omdoc+xml</dc:format>
+  <dc:rights>Copyright (c) 2000-2002 Michael Kohlhase;
+    This OMDoc content dictionary is released under the OpenMath license:
+    http://monet.nag.co.uk/openmath/cdfiles/license.html
+  </dc:rights>
+  <dc:description> 
+    This CD defines symbols which represent some elementary physical constants.
+  </dc:description>
+
+
+<theory xml:id="physical_consts1" cdbase="http://www.openmath.org/cd">
+
+<include from="setname1.omdoc#setname1"/>
+
+<symbol name="absolute_zero" xml:id="absolute_zero">
+
+<dc:description>
+    This symbol represents the absolute zero of temperature, synonymous
+    with the object of that temperature having zero latent heat.
+</dc:description>
+
+<type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMV name="BaseValue"/>
+    </OMOBJ>
+  </type>
+</symbol>
+<symbol name="zero_Celsius" xml:id="zero_Celsius">
+  
+  <dc:description>This symbol represents the zero of the Celsius temperature scale.</dc:description><dc:subject>zero Celsius</dc:subject>
+  <type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="BaseValue"/></OMOBJ>
+  </type>
+</symbol>
+<symbol name="zero_Fahrenheit" xml:id="zero_Fahrenheit">
+  
+  <dc:description>This symbol represents the zero of the Fahrenheit temperature scale.</dc:description><dc:subject>zero Fahrenheit</dc:subject>
+  <type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="BaseValue"/></OMOBJ>
+  </type>
+</symbol>
+<symbol name="light_year" xml:id="light_year">
+
+<dc:description>
+    This symbol represents the distant for which a beam of light would
+    take a year to traverse, in a vacuum.
+</dc:description>
+
+<type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS name="R" cd="setname1"/></OMOBJ>
+  </type>
+</symbol>
+<symbol name="speed_of_light" xml:id="speed_of_light">
+
+<dc:description>
+    This symbol represents the speed of light in a vacuum. It is
+    approximately 299792458 metres per second.
+</dc:description>
+
+<type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMS name="R" cd="setname1"/>
+    </OMOBJ>
+  </type>
+</symbol>
+<symbol name="Planck_constant" xml:id="Planck_constant">
+
+<dc:description>
+    This symbol represents the fundamental constant equal to the ratio of
+    the energy of a quantum of energy to its frequency. It is
+    approximately equal to <legacy format="mocktex">6.6260755*10^(-34) +/- 4.0*10^(-40)</legacy> Joule seconds.
+</dc:description>
+
+<type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMS name="R" cd="setname1"/>
+    </OMOBJ>
+  </type>
+</symbol>
+<symbol name="mole" xml:id="mole">
+
+<dc:description>
+    This symbol represents the number of atoms in one gramme of carbon(12).
+</dc:description>
+
+<type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMS name="Z" cd="setname1"/>
+    </OMOBJ>
+  </type>
+</symbol>
+<symbol name="gravitational_constant" xml:id="gravitational_constant">
+
+<dc:description>
+    This symbol represents the constant of proportionality in Newtons law
+    of universal gravitation which states; Two bodies attract each other
+    with equal and opposite forces; the magnitude of this force is
+    proportional to the product of the two masses and is also proportional
+    to the inverse square of the distance between the centers of mass of
+    the two bodies. It is approximately equal to: <legacy format="mocktex">6.672*10^(-11)</legacy> Newton
+    square metres per kilogramme squared.
+</dc:description>
+
+<type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMS name="R" cd="setname1"/>
+    </OMOBJ>
+  </type>
+</symbol>
+<symbol name="Avogadros_constant" xml:id="Avogadros_constant">
+
+<dc:description>
+    This symbol represents the number of atoms in 12 grammes of pure
+    carbon(12). It is approximately
+    <legacy format="mocktex">6.0221367*10^(23) +/- 3.6*10^(17)</legacy> per mole.
+</dc:description>
+
+<type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMS name="Z" cd="setname1"/>
+    </OMOBJ>
+  </type>
+</symbol>
+<symbol name="Faradays_constant" xml:id="Faradays_constant">
+
+<dc:description>
+    This symbol represents the electric charge carried by one mole of
+    electrons. it is approximately 96485.309 +/- 0.029 Coulombs per mole.
+</dc:description>
+
+</symbol>
+<symbol name="gas_constant" xml:id="gas_constant">
+
+<dc:description>
+    This symbol represents the constant which is equal to the ratio of the
+    pressure times the volume and the temperature of an ideal gas. It is
+    approximately <legacy format="mocktex">8.31451 +/- 7.0*10^(-05)</legacy> Joules per mole per Kelvin.
+</dc:description>
+
+<type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMS name="R" cd="setname1"/>
+    </OMOBJ>
+  </type>
+</symbol>
+<symbol name="Loschmidt_constant" xml:id="Loschmidt_constant">
+
+<dc:description>
+    This symbol represents the number of particles per unit volume of an
+    ideal gas at standard temperature and pressure. It is approximately
+    <legacy format="mocktex">2.686763 * 10^(25) +/- 2.3 * 10^(20)</legacy> per metre cubed. 
+</dc:description>
+
+<type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMS name="Z" cd="setname1"/>
+    </OMOBJ>
+  </type>
+</symbol>
+<symbol name="magnetic_constant" xml:id="magnetic_constant">
+
+<dc:description>
+    This symbol represents the ratio of the magnetic flux density in a
+    substance to the external field strength for vacuum. It is equal to 
+    <legacy format="mocktex">4 pi x 10^(-7) H/m</legacy>.
+</dc:description>
+
+<type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMS name="R" cd="setname1"/>
+    </OMOBJ>
+  </type>
+</symbol>
+<symbol name="Boltzmann_constant" xml:id="Boltzmann_constant">
+
+<dc:description>
+    A constant which describes the relationship between temperature and kinetic energy for
+    molecules in an ideal gas. It is approximately
+    <legacy format="mocktex">1.680658*10^(-23) +/- 1.8*10^(-28)</legacy> Joules per Kelvin.
+</dc:description>
+
+<type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMS name="R" cd="setname1"/>
+    </OMOBJ>
+  </type>
+</symbol>
+</theory>
+</omdoc>

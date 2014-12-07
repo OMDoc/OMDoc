@@ -1,0 +1,45 @@
+test:		test-rng #test-undef
+
+test-dtd:	dtdtest.log
+test-rnc:	rnctest.log
+test-rng:	rngtest.log
+
+linktest:	linktest.log
+
+test-result:	$(PMML_DTD_TESTED) $(HTML_DTD_TESTED) 
+
+.%.link-tested:	%.omdoc 
+		$(JOMDOC) validate --imports $< &> $@ 
+
+linktest.log: $(OMDOCS_LINK_TESTED)
+	      cat $(OMDOCS_LINK_TESTED) > $@
+
+rnctest.log: $(OMDOCS_RNC_TESTED)
+	      cat $(OMDOCS_RNC_TESTED) > $@
+
+rngtest.log: $(OMDOCS_RNG_TESTED)
+	      cat $(OMDOCS_RNG_TESTED) > $@
+
+dtdtest.log: $(OMDOCS_DTD_TESTED)
+	      cat $(OMDOCS_DTD_TESTED) > $@
+
+$(OMDOCS_RNC_TESTED): .%.rnc-tested:	%.omdoc $(RNC)
+		$(RNCPARSE) $(RNCDIR)/omdoc.rnc $< &> $@ && touch $@
+
+$(OMDOCS_RNG_TESTED): .%.rng-tested:	%.omdoc $(RNG)
+		$(RNGPARSE) $< > $@ && touch $@
+
+$(OMDOCS_DTD_TESTED): .%.dtd-tested:	%.omdoc $(DTD)
+		$(XMLPARSE) $< > $@ && touch $@
+
+.%.html-dtd-tested: %.html 
+		$(XMLPARSE) $< > $@ && touch $@
+
+.%.pmml-dtd-tested: %.xml
+		$(XMLPARSE) $< > $@ && touch $@
+
+test-clean:	
+		rm -f .*.*-tested .*.tested 
+
+test-all:	test-clean test
+

@@ -1,0 +1,67 @@
+# A RelaxNG schema for Open Mathematical documents (OMDoc 1.6) Module MTXT 
+# $Id: mtxt-strict.rnc 8768 2010-12-06 12:57:01Z kohlhase $
+# $HeadURL: https://svn.omdoc.org/repos/omdoc/trunk/schema/rnc/strict/mtxt-strict.rnc $
+# See the documentation and examples at http://www.omdoc.org
+# Copyright (c) 2004-2007 Michael Kohlhase, released under the GNU Public License (GPL) 
+
+default namespace omdoc = "http://omdoc.org/ns"
+
+omdoc.class &= omtext*
+
+rst.attribs = attribute verbalizes {MMTURI}? 
+
+omtext.attribs= id.attribs & rst.attribs
+omtext.model  = metadata.class & p*
+omtext = element omtext {tref|(omtext.attribs & omtext.model)}
+
+triple.att = attribute cdbase {xsd:anyURI}? & 
+                  attribute name {xsd:NCName}? & 
+	          attribute cd {xsd:NCName}?
+
+term.attribs = id.attribs & triple.att
+term.model = p.model
+\term = element term {tref|(term.attribs & term.model)}
+
+p = grammar {include "pxhtml.rnc" 
+		          {Inline.model = (text | (parent metadata.class) | Inline.class)*}
+                      Inline.class |= parent op.class
+                      span.attlist &= parent rst.attribs
+		      start = p} 
+p.class = grammar {include "pxhtml.rnc" 
+                               Inline.class |= parent op.class
+	                       start = Inline.class} 
+
+p.model = (text | p.class)*
+
+op.class = \term | mobj | note  | idx | citation
+p.class |= op.class
+
+note = element note {tref|(id.attribs,attribute type {xsd:NMTOKEN}?,(p* | p.model))}
+
+index.att = attribute index {xsd:NCName}?
+ 
+idep.attribs = attribute sort-by {text}? &
+	              attribute see {xsd:anyURI}? &
+	              attribute seealso {xsd:anyURI}? & 
+	              attribute links {list {xsd:anyURI*}}?
+
+idx.attribs = id.attribs|xref.attrib
+idx.model = idt?,ide+
+idx = element idx {idx.attribs & idx.model}
+
+ide.attribs = index.att & idep.attribs
+ide.model = idp*
+ide = element ide {ide.attribs,ide.model}
+
+idt.attribs = idrest.attribs
+idt.model = p.model
+idt = element idt {idt.attribs & idt.model}
+
+idp.attribs = index.att
+idp.model = p.model
+idp = element idp {idp.attribs & idp.model}
+
+citation.attribs = attribute href {xsd:anyURI} | attribute bibref {text}
+citation.model = empty
+citation = element citation {citation.attribs & citation.model}
+

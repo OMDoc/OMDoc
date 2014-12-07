@@ -1,0 +1,76 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This file is part of the LaTeX sources of the OMDoc 1.6 specification
+% Copyright (c) 2011 Michael Kohlhase
+% This work is licensed by the Creative Commons Share-Alike license
+% see http://creativecommons.org/licenses/by-sa/2.5/ for details
+% $Id: main.tex 8975 2011-10-13 13:29:12Z kohlhase $
+% $HeadURL: https://svn.omdoc.org/repos/omdoc/trunk/doc/spec/main.tex $
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[extrefs,report]{omdocspec}
+\usepackage[show]{ed}     %../macros set to [hide] when publishing
+\usepackage{include}
+\input{dcmcontributors}
+\usepackage[backref=true,hyperref=auto,style=alphabetic]{biblatex}
+\bibliography{../bibs/kwarc}
+
+\makeindex 
+\spectrue
+\makeextrefs{spec} 
+\inputrefs{primer}{../primer/main}
+\extrefstyle{primer}{\cite[\protect{\theextref}]{Kohlhase:OMDoc1.6primer}}
+\inputrefs{projects}{../projects/main}
+\extrefstyle{projects}{\cite[\protect{\theextref}]{Kohlhase:OMDoc1.6projects}}
+
+\svnInfo $Id: main.tex 8975 2011-10-13 13:29:12Z kohlhase $
+\svnKeyword $HeadURL: https://svn.omdoc.org/repos/omdoc/trunk/doc/spec/main.tex $
+\begin{document}
+\begin{DCmetadata}[titlepage]
+  \DCMtitle{An Open Markup Format\\[1ex]
+    for Mathematical Documents\\
+    {\omdoc} [Version 1.6 (pre-2.0)]}
+  \DCMcreators{miko}
+  \DCMdate{\today}
+  \DCMcopyrightnotice{2009}{Michael Kohlhase}
+
+  \DCMlicensenotice{This work is licensed by the Creative Commons Share-Alike license
+    \url{http://creativecommons.org/licenses/by-sa/2.5/}: the contents of this
+    specification or fragments thereof may be copied and distributed freely, as long as
+    they are attributed to the original author and source, derivative works (i.e. modified
+    versions of the material) may be published as long as they are also licensed under the
+    Creative Commons Share-Alike license.}
+
+  \DCMabstract{The {\omdoc} (\explainomdocacronym) format is a content markup scheme for
+    (collections of) mathematical documents including articles, textbooks, interactive
+    books, and courses.  {\omdoc} also serves as the content language for agent
+    communication of mathematical services on a mathematical software bus.
+
+    This document is the specification of {\vomdoc{1.6}} of the {\omdoc} format, the first
+    step towards {\omdocv2}. It defines the {\omdoc} language features and their
+    meaning. The content of this part is normative for the {\omdoc} format; an {\omdoc}
+    document is valid as an {\omdoc} document, iff it meets all the constraints imposed
+    here. {\omdoc} applications will normally presuppose valid {\omdoc} documents and only
+    exhibit the intended behavior on such.}
+\end{DCmetadata}
+\newpage
+\setcounter{tocdepth}{1}\tableofcontents
+\newpage
+\input{preface} 
+\Inspec{toc} % all
+% \begin{presonly}% maybe include this again later. 
+% \Inspec{appendix}
+% \end{presonly}
+\printbibliography\newpage
+{\small\printindex}
+
+\end{document}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 
+
+% LocalWords:  rnc DCmetadata spechead DCMtitle omdoc DCMcreators miko DCMdate
+% LocalWords:  DCMcopyrightnotice DCMlicensenotice DCMabstract vomdoc omdocv2
+% LocalWords:  explainomdocacronym newpage setcounter tocdepth tableofcontents
+% LocalWords:  Inspec presonly printbibliography printindex

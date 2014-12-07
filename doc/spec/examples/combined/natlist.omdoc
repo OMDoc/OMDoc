@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  xmlns="http://omdoc.org/ns"
+xml:id="natlist.omdoc">
+<metadata>
+  <dc:date action="created"> 2003-02-22T17:11:08Z </dc:date>
+  <dc:title xml:lang="en"> natlist </dc:title>
+  <dc:creator role="aut"> Michael Kohlhase </dc:creator>
+  <dc:date action="updated"> 2004-07-13T10:37:36Z </dc:date>
+  <dc:type> Dataset </dc:type>
+  <dc:format> application/omdoc+xml </dc:format>
+</metadata>
+
+<theory xml:id="param">                   
+ <symbol name="elem" role="sort"/>       
+ <symbol name="ord"/>
+ <axiom xml:id="toset"><CMP>$ord$ is a  total order on $elem$.</CMP></axiom>
+</theory>                               
+                                       
+<assertion xml:id="ord-nat" theory="nat"> 
+ <CMP>$geq$ is a total order on $nats$.</CMP>
+</assertion>
+
+<theory xml:id="list">
+ <imports xml:id="list.im" from="param"/>
+ <symbol name="list-sort" role="sort"/>
+ <symbol name="cons"/><symbol name="nil"/>
+ <symbol name="ordered"/>
+</theory>
+
+<theory xml:id="nat-list">
+ <imports xml:id="nat-list.im-nat" from="nat"/>
+ <imports xml:id="nat-list.im-elt" from="list" type="local">
+  <morphism xml:id="elem-nat">
+   <requation>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="param" name="elem"/></OMOBJ>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="nat.thy" name="nats"/></OMOBJ>
+   </requation>
+  </morphism>
+ </imports>
+ <inclusion via="elem-nat-incl"/>
+</theory>
+
+<axiom-inclusion xml:id="elem-nat-incl" from="nat" to="param">
+ <morphism xml:id="elem-nat-incl-morph" base="elem-nat"/>
+ <obligation induced-by="toset" assertion="ord-nat"/>
+</axiom-inclusion>
+
+<theory-inclusion xml:id="nat-natlist-incl" from="list" to="nat-list">
+ <morphism xml:id="nat-natlist-incl-morph" base="elem-nat"/>
+</theory-inclusion>
+<decomposition xml:id="dec" for="nat-natlist-incl" links="elem-nat-incl"/>
+
+</omdoc>

@@ -1,0 +1,63 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This file is part of the LaTeX sources of the OMDoc 1.6 primer
+% Copyright (c) 2009 Michael Kohlhase
+% This work is licensed by the Creative Commons Share-Alike license
+% see http://creativecommons.org/licenses/by-sa/2.5/ for details
+% $Id: main.tex 8904 2011-01-25 06:37:12Z kohlhase $
+% $HeadURL: https://svn.omdoc.org/repos/omdoc/trunk/doc/primer/main.tex $
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[extrefs,report]{omdocspec}
+\usepackage[show]{ed}     %../macros set to [hide] when publishing
+\usepackage{include} 
+\usepackage[backref=true,hyperref=auto,style=alphabetic]{biblatex}
+\bibliography{../bibs/kwarc}
+\input{dcmcontributors}
+\makeindex
+\primertrue
+\makeextrefs{primer}
+\inputrefs{spec}{../spec/main}
+\extrefstyle{spec}{\cite[\protect{\theextref}]{Kohlhase:OMDoc1.6spec}}
+\inputrefs{projects}{../projects/main}
+\extrefstyle{projects}{\cite[\protect{\theextref}]{Kohlhase:OMDoc1.6projects}}
+
+\svnInfo $Id: main.tex 8904 2011-01-25 06:37:12Z kohlhase $
+\svnKeyword $HeadURL: https://svn.omdoc.org/repos/omdoc/trunk/doc/primer/main.tex $
+
+\begin{document}
+\begin{DCmetadata}[spechead]
+  \DCMtitle{An {\omdoc} Primer [Version 1.6 (pre-2.0)]}
+  \DCMcreators{miko}
+  \DCMdate{\today}
+  \DCMcopyrightnotice{2009}{Michael Kohlhase}
+
+  \DCMlicensenotice{This work is licensed by the Creative Commons Share-Alike license
+    \url{http://creativecommons.org/licenses/by-sa/2.5/}: the contents of this
+    specification or fragments thereof may be copied and distributed freely, as long as
+    they are attributed to the original author and source, derivative works (i.e. modified
+    versions of the material) may be published as long as they are also licenced under the
+    Creative Commons Share-Alike license.}
+
+  \DCMabstract{This document an easily approachable description of the {\omdoc} format by
+    way of paradigmatic examples of {\omdoc} documents.  The primer should be used
+    alongside the formal descriptions of the language contained in {\omdoc} specification.
+
+    The intended audience for the primer are users who only need a casual exposure to the
+    format, or authors that have a specific text category in mind.  The examples presented
+    here also serve as specifications of ``best practice'', to give the readers an
+    intuition for how to encode various kinds of mathematical knowledge.}
+\end{DCmetadata}
+\input{preface}
+\newpage\tableofcontents\newpage
+\Inprimer{toc}
+\printbibliography\newpage
+{\small\printindex}
+ 
+\end{document}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 
+
+% LocalWords:  rnc

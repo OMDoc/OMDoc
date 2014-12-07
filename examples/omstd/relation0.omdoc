@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  xmlns="http://omdoc.org/ns"
+xml:id="relation0-omdoc">
+
+
+  <dc:title>The OpenMath Content Dictionary relation0.ocd  in OMDoc form</dc:title>
+  <dc:creator role="trl">Michael Kohlhase</dc:creator>
+  <dc:creator role="ant">Olga Caprotti</dc:creator>
+  <dc:date>1999-06-01T00:00:00</dc:date>
+  <dc:source>Derived from the OpenMath CD http://www.openmath.org/cd/relation0.ocd.</dc:source>
+  <dc:type>Text</dc:type>
+  <dc:format>application/omdoc+xml</dc:format>
+  <dc:rights>Copyright (c) 2000-2002 Michael Kohlhase;
+    This OMDoc content dictionary is released under the OpenMath license:
+    http://monet.nag.co.uk/openmath/cdfiles/license.html
+  </dc:rights>
+  <dc:description> 
+    Binary relations properties, equivalence relation, orders, up
+    to the definition of a setoid as a set with an equivalence relations
+    defined on its elements.		
+  </dc:description>
+
+
+<theory xml:id="relation0" cdbase="http://www.openmath.org/cd">
+
+<include from="sts.omdoc#sts"/>
+<include from="setname2.omdoc#setname2"/>
+<include from="logic1.omdoc#logic1"/>
+<include from="arith1.omdoc#arith1"/>
+<include from="nums1.omdoc#nums1"/>
+
+<symbol name="relation" xml:id="relation">
+
+<dc:description> Type constructor; returns the type of binary relations on a set.
+</dc:description>
+
+</symbol>
+<assertion xml:id="relation-prop-1" type="lemma">
+  <CMP>Is defined as "[A:Set] A -&gt; A -&gt; Prop" </CMP>
+</assertion>
+<symbol name="reflexive" xml:id="reflexive">
+
+<dc:description> Proposition; the type of reflexive binary relations.
+</dc:description>
+
+</symbol>
+<presentation xml:id="pres-reflexive" for="#reflexive">
+  <use  format="default">refl</use>
+</presentation>
+<assertion xml:id="reflexive-prop-1" type="lemma">
+  <CMP>Defined as [A:symtype][R: (relation A)](x:A)(R x x)</CMP>
+</assertion>
+<symbol name="irreflexive" xml:id="irreflexive">
+
+<dc:description> Proposition; the type of irreflexive binary relations.
+</dc:description>
+
+</symbol>
+<presentation xml:id="pres-irreflexive" for="#irreflexive">
+  <use  format="default">irrefl</use>
+</presentation>
+<assertion xml:id="irreflexive-prop-1" type="lemma">
+  <CMP>Defined as  [A:symtype][R: (relation A)](x:A) ~(R x x)</CMP>
+</assertion>
+<symbol name="transitive" xml:id="transitive">
+
+<dc:description> Proposition; the type of transitive binary relations.
+</dc:description>
+
+</symbol>
+<assertion xml:id="transitive-prop-1" type="lemma">
+  <CMP>Defined as [A:symtype][R: (relation A)](x,y,z:A)(R x y) -&gt; (R y z) -&gt; (R x z)</CMP>
+</assertion>
+<symbol name="symmetric" xml:id="symmetric">
+
+<dc:description> Proposition; the type of symmetric binary relations.
+</dc:description>
+
+</symbol>
+<presentation xml:id="pres-symmetric" for="#symmetric">
+  <use  format="default">symm</use>
+</presentation>
+<assertion xml:id="symmetric-prop-1" type="lemma">
+  <CMP>Defined as [A:symtype][R: (relation A)](x,y:A)(R x y) -&gt; (R y x)</CMP>
+</assertion>
+<symbol name="antisymmetric" xml:id="antisymmetric">
+
+<dc:description> Proposition; the type of antisymmetric binary relations.
+</dc:description>
+
+</symbol>
+<assertion xml:id="antisymmetric-prop-1" type="lemma">
+  <CMP> Defined as [A:symtype][R: (relation A)](x,y:A)(R x y) -&gt; (R y x) -&gt; (relation1::eq x y)</CMP>
+</assertion>
+
+<symbol name="partial_equivalence" xml:id="partial_equivalence">
+
+<dc:description> Proposition; the type of partia equivalence relations, 
+    namely relations that are symmetric, and transitive.
+</dc:description>
+
+</symbol>
+
+<assertion xml:id="partial_equivalence-prop-1" type="lemma">
+  <CMP>Defined as [A:symtype][R: (relation A)] (symmetric R) /\ (transitive R)</CMP>
+</assertion>
+<symbol name="equivalence" xml:id="equivalence">
+
+<dc:description> Proposition; the type of equivalence relations, 
+    namely relations that are reflexive, symmetric and transitive.
+</dc:description>
+
+</symbol>
+<assertion xml:id="equivalence-prop-1" type="lemma">
+  <CMP>Defined as [A:symtype][R: (relation A)] (reflexive R) /\ (symmetric R) /\ (transitive R)</CMP>
+</assertion>
+<symbol name="order" xml:id="order">
+
+<dc:description> Proposition; the type of order relations, 
+    namely relations that are reflexive, antisymmetric and transitive.
+</dc:description>
+
+</symbol>
+<assertion xml:id="order-prop-1" type="lemma">
+  <CMP>Defined as [A:symtype][R: (relation A)] (reflexive R) /\ (antisymmetric R) /\ (transitive R)</CMP>
+</assertion>
+<symbol name="strict_order" xml:id="strict_order">
+
+<dc:description> Proposition; the type of strict order relations, 
+    namely relations that are irreflexive, antisymmetric and transitive.
+</dc:description>
+
+</symbol>
+<assertion xml:id="strict_order-prop-1" type="lemma">
+  <CMP>Defined as  [A:symtype][R: (relation A)] (irreflexive R) /\ (antisymmetric R) /\ (transitive R)</CMP>
+</assertion>
+<symbol name="pre_order" xml:id="pre_order">
+
+<dc:description> Proposition; the type of preorder relations, 
+    namely relations that are reflexive and transitive.
+</dc:description>
+
+</symbol>
+<assertion xml:id="pre_order-prop-1" type="lemma">
+  <CMP>Defined as  [A:symtype][R: (relation A)] (reflexive R) /\ (transitive R)</CMP>
+</assertion>
+</theory>
+</omdoc>

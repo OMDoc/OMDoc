@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html id="truth-table.omdoc" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <link rel="stylesheet" type="text/css" href="omdoc-default.css"/>
+    <title>Truth Tables.</title>
+  </head>
+  <body>
+    <div class="dc-titleblock">
+      <div class="dc-title">Truth Tables.</div>
+      <div class="dc-authors">Michael Kohlhase</div>
+      <div class="dc-date">2002-04-11</div>
+    </div>
+    <div class="theory" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="http://purl.org/dc/elements/1.1/">
+      <h1 id="truth-tables">1. Truth Tables.</h1>
+      <div class="omdoc-symbol" id="tt" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#truth-tables"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>tt
+        </div> The truth table constructor for a binary (n x m) operator. It takes n + 2 arguments. The first one is the symbol for the defined operator. Then come n values of the second argument (the first row), and finally n rows using the ttrow symbols.
+      </div>
+      <div class="omdoc-symbol" id="ttrow" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#truth-tables"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>ttrow
+        </div> A row in a (n x m) truth table, the first argument is the first argument, and the rest of the arguments are the m values 
+      </div>
+      <div class="omdoc-symbol" id="ttargs" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#truth-tables"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>ttargs
+        </div> The vector of second arguments for a binary truth tables.
+      </div>
+      <div class="theory">
+        <div class="imports">imports from: 
+          <a href="pl0.xhtml#pl0">pl0</a>
+        </div>
+        <div class="omdoc-example" id="and-table" role="Example" about="#tt ttrow ttargs" xml:id="and-table">
+          <a class="omdoc" rel="oso:exemplifies" href="#tt ttrow ttargs"/>
+          <a class="omdoc" rel="oso:homeTheory" href="#tt ttrow ttargs"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Example</span>
+          </div>
+          <p>The following is the truth table for conjunction</p>
+          <span id="MCRd20e111" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+              <m:mrow>
+                <m:mo>tt</m:mo>
+                <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                <m:mo>‚àß</m:mo>
+                <m:mo separator="true">,</m:mo>
+                <m:mrow>
+                  <m:mo>ttargs</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mo>T</m:mo>
+                  <m:mo separator="true">,</m:mo>
+                  <m:mo>F</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+                <m:mo separator="true">,</m:mo>
+                <m:mrow>
+                  <m:mo>ttrow</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mo>T</m:mo>
+                  <m:mo separator="true">,</m:mo>
+                  <m:mo>T</m:mo>
+                  <m:mo separator="true">,</m:mo>
+                  <m:mo>F</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+                <m:mo separator="true">,</m:mo>
+                <m:mrow>
+                  <m:mo>ttrow</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mo>F</m:mo>
+                  <m:mo separator="true">,</m:mo>
+                  <m:mo>F</m:mo>
+                  <m:mo separator="true">,</m:mo>
+                  <m:mo>F</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+                <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+              </m:mrow>
+            </m:math>
+          </span>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<notations xmlns="http://www.w3.org/ns/mathml-cd" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:om="http://www.openmath.org/OpenMath" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+  <notation cdbase="FIXME" cd="record-calc" name="record">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="record-calc" name="record"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="record-calc">record</m:csymbol>
+        <expr name="arg"/>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <!--SPECIFYME: no rendering generated-->
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="record-calc" name="select">
+    <prototype>
+      <om:OMS cd="record-calc" name="select"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="record-calc">select</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en">
+      <m:mo>.</m:mo>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="record-calc" name="ellipsis">
+    <prototype>
+      <om:OMS cd="record-calc" name="ellipsis"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="record-calc">ellipsis</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en">
+      <m:mo>...</m:mo>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="record-calc" name="tuple">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="record-calc" name="tuple"/>
+        <exprlist name="args">
+          <expr name="arg"/>
+        </exprlist>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="record-calc">tuple</m:csymbol>
+        <expr name="arg"/>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <!--SPECIFYME: no rendering generated-->
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="record-calc" name="proj">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="record-calc" name="proj"/>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="record-calc">proj</m:csymbol>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <!--SPECIFYME: no rendering generated-->
+    </rendering>
+  </notation>
+</notations>

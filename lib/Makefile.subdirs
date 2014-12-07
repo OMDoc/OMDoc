@@ -1,0 +1,13 @@
+all 2 4 html dvi ps pdf mml 42 mml2::
+	@for d in $(MAKEDIRS); do (cd $$d && $(MAKE) -$(MAKEFLAGS) $@) done
+
+clean distclean::
+	@for d in $(CLEANDIRS); do (cd $$d && $(MAKE) -$(MAKEFLAGS) $@) done
+
+test test-clean test-result test-dtd test-rng test-rnc::
+	@for d in $(TESTDIRS); do (cd $$d && $(MAKE) -$(MAKEFLAGS) $@) done
+
+install::
+	@for d in $(INSTALLDIRS); do (cd $$d && $(MAKE) -$(MAKEFLAGS) $@) done
+
+

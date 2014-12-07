@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+
+<!--  An example of a simple fully formal proof.  -->
+
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  xmlns="http://omdoc.org/ns"
+xml:id="andcom" >
+
+<metadata>
+  <dc:title>A proof of the commutativity of conjunction</dc:title>
+  <dc:creator role="aut">Michael Kohlhase</dc:creator> 
+  <dc:date>1999-09-01T00:00:00</dc:date>
+</metadata>
+
+<omtext xml:id="intro" type="introduction">
+  <CMP> This document shows a simple formal proof in Gentzens natural deduction
+    calculus, as an example for the communication of theorems and proofs between
+    deduction systems. 
+  </CMP>
+</omtext>
+
+<assertion type="theorem" xml:id="t1" theory="base">
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMBIND>
+	<OMS cd="quant1" name="forall"/>
+	<OMBVAR>
+	  <OMV name="X"/>
+	  <OMV name="Y"/>
+	</OMBVAR>
+	<OMA id="imp">
+	  <OMS cd="logic1" name="implies"/>
+	  <OMA id="xay">
+	    <OMS cd="logic1" name="and"/>
+	    <OMV name="X"/>
+	    <OMV name="Y"/>
+	  </OMA>
+	  <OMA id="yax">
+	    <OMS cd="logic1" name="and"/>
+	    <OMV name="Y"/>
+	    <OMV name="X"/>
+	  </OMA>
+	</OMA>
+      </OMBIND>
+    </OMOBJ>
+  </FMP>
+</assertion>
+
+<proof for="#t1" xml:id="p1" theory="base">
+  <derive xml:id="D2">
+    <FMP><OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="imp"/></OMOBJ></FMP>
+    <method xref="nd.omdoc#ND.impi">
+      <proof xml:id="t11">
+	<hypothesis xml:id="H1"><FMP><OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="xay"/></OMOBJ></FMP></hypothesis>
+	<derive xml:id="t111">
+	  <FMP><OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="X"/></OMOBJ></FMP>
+	  <method xref="nd.omdoc#ND.andel"><premise xref="#H1"/></method>
+	</derive>
+	<derive xml:id="t112">
+	  <FMP><OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="Y"/></OMOBJ></FMP>
+	  <method xref="nd.omdoc#ND.ander"><premise xref="#H1"/></method>
+	</derive>
+	<derive xml:id="t113">
+	  <FMP><OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="yax"/></OMOBJ></FMP>
+	  <method xref="nd.omdoc#ND.andi">
+	    <premise xref="D1.1"/>
+	    <premise xref="D1.8"/>
+	  </method>
+	</derive>
+      </proof>
+    </method>
+  </derive>
+  <derive xml:id="C">
+    <method xref="nd.omdoc#ND.foralli-star">
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="X"/></OMOBJ>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="Y"/></OMOBJ>
+      <premise xref="D2"/>
+    </method>
+  </derive>
+</proof>
+
+<omtext xml:id="concl" type="conclusion">
+  <CMP>The examples shows, that even though the OMDoc format is rather verbose, the
+    structure of proofs is equivalent to other proof representations. In particular,
+    the explicit management of proof structure by premise links allows to encode the
+    proof as a directed acyclic graph rather than a tree.
+
+    Note that the restriction to ND calculus is arbitrary for this example, the
+    method slots could contain arbitrary tactics.
+  </CMP>
+</omtext>
+
+</omdoc>

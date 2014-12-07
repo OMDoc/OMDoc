@@ -1,0 +1,19 @@
+Author: Jana Giceva [j.giceva@jacobs-university.de]
+Date: 21 August 2008
+
+(Note that this functionality will soon be relocated into the JOBAD project; see https://jomdoc.omdoc.org/ticket/99)
+
+The rhetoricalrelations.omdoc and rhetoricalrelations.xhtml files are the testcases for the rhetorical-visualization.xsl that can be found in /xsl2/varia/. 
+
+* command for creating and running the testcases:
+
+create the xhtml file from the omdoc file using the make command:
+
+	make rhetoricalrelations.xhtml
+
+run the XHTML testcase (rhetoricalrelation.xhtml in this case) on the XSL stylesheet (rhetorical-visualization.xsl), creating the output HTML file in the /examples/varia folder where the appropriate CSS stylesheet is at the moment:
+
+	saxon rhetoricalrelations.xhtml ../../xsl2/varia/rhetorical-visualization.xsl > ../varia/rhetorical-visualization.html
+
+
+

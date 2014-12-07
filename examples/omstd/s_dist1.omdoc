@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  
+       xmlns="http://omdoc.org/ns"
+       xmlns:om="http://www.openmath.org/OpenMath"
+       xmlns:m="http://www.w3.org/1998/Math/MathML"
+       xmlns:o="http://omdoc.org/ns"
+       xml:id="s_dist1-omdoc">
+
+<metadata>
+  <dc:title>The OpenMath Content Dictionary s_dist1.ocd  in OMDoc form</dc:title>
+  <dc:creator role="trl">Michael Kohlhase</dc:creator>
+  <dc:creator role="ant">The OpenMath Society</dc:creator>
+  <dc:date> 2001-03-12T00:00:00</dc:date>
+  <dc:source>Derived from the OpenMath CD http://www.openmath.org/cd/s_dist1.ocd.</dc:source>
+  <dc:type>Text</dc:type>
+  <dc:format>application/omdoc+xml</dc:format>
+  <dc:rights>Copyright (c) 2000-2002 Michael Kohlhase;
+    This OMDoc content dictionary is released under the OpenMath license:
+    http://monet.nag.co.uk/openmath/cdfiles/license.html
+  </dc:rights>
+  <dc:description>
+    This CD holds the definitions of the basic statistical functions
+    used on random variables. It is intended to be
+    `compatible' with the MathML elements representing statistical
+    functions.
+  </dc:description>
+</metadata>
+
+<theory xml:id="s_dist1">
+
+<imports xml:id="s_dist1-imports-sts" from="sts.omdoc#sts"/>
+<imports xml:id="s_dist1-imports-relation1" from="relation1.omdoc#relation1"/>
+<imports xml:id="s_dist1-imports-calculus1" from="calculus1.omdoc#calculus1"/>
+<imports xml:id="s_dist1-imports-interval1" from="interval1.omdoc#interval1"/>
+<imports xml:id="s_dist1-imports-arith1" from="arith1.omdoc#arith1"/>
+<imports xml:id="s_dist1-imports-nums1" from="nums1.omdoc#nums1"/>
+<imports xml:id="s_dist1-imports-fns1" from="fns1.omdoc#fns1"/>
+<imports xml:id="s_dist1-imports-setname1" from="setname1.omdoc#setname1"/>
+
+<symbol name="mean" xml:id="mean">
+<metadata>
+<dc:description> 
+    This symbol represents a unary function denoting the mean of a 
+    distribution. The argument is a univariate function to describe the 
+    distribution. That is, if f is the function describing the 
+    distribution. The mean is the expression integrate(x*f(x)) w.r.t. x over the
+    range (-infinity,infinity).
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMV name="Distribution"/>
+	<OMV name="Object"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="s_dist1" name="mean" o:cr="fun"/>
+        <exprlist name="args"><expr name="arg"/></exprlist>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="s_dist1" o:cr="fun">mean</m:csymbol>
+        <exprlist name="args"><expr name="arg"/></exprlist>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <m:mover>
+        <iterate name="args">
+          <separator><m:mo separator="true">,</m:mo></separator>
+          <render name="arg"/>
+        </iterate>
+        <m:mo o:cr="fun">¯</m:mo>
+      </m:mover>
+    </rendering>
+  </notation>
+
+<assertion xml:id="mean-prop-1" type="lemma">
+  <CMP>
+    mean(f(X)) = int(x*f(x)) w.r.t. x over the range [-infinity,infinity]
+  </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="relation1" name="eq"/>
+	<OMA>
+	  <OMS cd="s_dist1" name="mean"/>
+	  <OMV name="f"/>
+	</OMA>
+	<OMA>
+	  <OMS cd="calculus1" name="defint"/>
+	  <OMA>
+	    <OMS cd="interval1" name="interval"/>
+	    <OMA>
+	      <OMS cd="arith1" name="unary_minus"/>
+	      <OMS cd="nums1" name="infinity"/>
+	    </OMA>
+	    <OMS cd="nums1" name="infinity"/>
+	  </OMA>
+	  <OMBIND>
+	    <OMS cd="fns1" name="lambda"/>
+	    <OMBVAR>
+	      <OMV name="x"/>
+	    </OMBVAR>
+	    <OMA>
+	      <OMS cd="arith1" name="times"/>
+	      <OMV name="x"/>
+	      <OMA>
+		<OMV name="f"/>
+		<OMV name="x"/>
+	      </OMA>
+	    </OMA>
+	  </OMBIND>
+	</OMA>
+      </OMA>
+    </OMOBJ>
+  </FMP>
+</assertion>
+<symbol name="sdev" xml:id="sdev">
+<metadata>
+<dc:description> 
+    This symbol represents a unary function denoting the standard
+    deviation of a distribution. The argument is a univariate function
+    to describe the distribution. The standard deviation of a distribution
+    is the arithmetical mean of the squares of the deviation of the
+    distribution from the mean.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMV name="Distribution"/>
+	<OMV name="Object"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+  <notation>
+    <prototype>
+      <om:OMS cd="s_dist1" name="sdev"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="s_dist1">sdev</m:csymbol>
+    </prototype>
+    <rendering>
+      <m:mo>σ</m:mo>
+    </rendering>
+  </notation>
+  
+<assertion xml:id="sdev-prop-1" type="lemma">
+  <CMP> 
+    The standard deviation of a distribution is the arithmetical mean of
+    the squares of the deviation of the distribution from the mean. 
+  </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="relation1" name="eq"/>
+	<OMA>
+	  <OMS cd="s_dist1" name="sdev"/>
+	  <OMV name="f"/>
+	</OMA>
+	<OMA>
+	  <OMS cd="s_dist1" name="mean"/>
+	  <OMA>
+	    <OMS cd="arith1" name="power"/>
+	    <OMA>
+	      <OMS cd="arith1" name="minus"/>
+	      <OMV name="f"/>
+	      <OMA>
+		<OMS cd="s_dist1" name="mean"/>
+		<OMV name="f"/>
+	      </OMA>
+	    </OMA>
+	    <OMI> 2 </OMI>
+	  </OMA>
+	</OMA>
+      </OMA>
+    </OMOBJ>
+  </FMP>
+</assertion>
+<symbol name="variance" xml:id="variance">
+<metadata>
+<dc:description> 
+    This symbol represents a unary function denoting the variance of a
+    distribution. The argument is a function to describe the distribution.
+    That is if f is the function which describes the distribution.
+    The variance of a distribution is the square of the standard deviation
+    of the distribution.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMV name="Distribution"/>
+	<OMV name="Object"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="s_dist1" name="variance" o:cr="fun"/>
+        <expr name="arg"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="s_dist1" o:cr="fun">variance</m:csymbol>
+        <expr name="arg"/>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <m:mrow>
+	<m:mo o:cr="fun">σ</m:mo>
+	<m:mo fence="true" o:egroup="fence">(</m:mo>
+	<render name="arg"/>
+	<m:mo fence="true" o:egroup="fence">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+
+<assertion xml:id="variance-prop-1" type="lemma">
+  <CMP>
+    The variance of a distribution is the square of the standard deviation
+    of the distribution.
+  </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="relation1" name="eq"/>
+	<OMA>
+	  <OMS cd="s_dist1" name="variance"/>
+	  <OMV name="f"/>
+	</OMA>
+	<OMA>
+	  <OMS cd="arith1" name="power"/>
+	  <OMA>
+	    <OMS cd="s_dist1" name="sdev"/>
+	    <OMV name="f"/>
+	  </OMA>
+	  <OMI> 2 </OMI>
+	</OMA>
+      </OMA>
+    </OMOBJ>
+  </FMP>
+</assertion>
+<symbol name="moment" xml:id="moment">
+<metadata>
+<dc:description> 
+    This symbol represents a ternary function to denote the i'th moment of a
+    distribution. The first argument should be the degree of the moment
+    (that is, for the i'th moment the first argument should be i), the
+    second argument is the value about which the moment is to be taken and
+    the third argument is a univariate function to describe the distribution. That
+    is, if f is the function which describe the distribution. The i'th
+    moment of f about a is the integral of
+    <legacy format="mocktex">(x-a)^i*f(x)</legacy> with respect to x,
+    over the interval (-infinity,infinity).
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMS name="Z" cd="setname1"/>
+	<OMS name="R" cd="setname1"/>
+	<OMV name="Distribution"/>
+	<OMV name="Object"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+<assertion xml:id="moment-prop-1" type="lemma">
+  <CMP>
+    the i'th moment of
+    <legacy format="mocktex">f(X) about c = integral of (x-c)^i*f(x)</legacy>
+    with respect  to x, over the interval <legacy format="mocktex">(-infinity,infinity)</legacy>
+  </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="relation1" name="eq"/>
+	<OMA>
+	  <OMS cd="s_dist1" name="moment"/>
+	  <OMV name="i"/>
+	  <OMV name="c"/>
+	  <OMV name="f"/>
+	</OMA>
+	<OMA>
+	  <OMS cd="calculus1" name="defint"/>
+	  <OMA>
+	    <OMS cd="interval1" name="interval"/>
+	    <OMA>
+	      <OMS cd="arith1" name="unary_minus"/>
+	      <OMS cd="nums1" name="infinity"/>
+	    </OMA>
+	    <OMS cd="nums1" name="infinity"/>
+	  </OMA>
+	  <OMBIND>
+	    <OMS cd="fns1" name="lambda"/>
+	    <OMBVAR>
+	      <OMV name="x"/>
+	    </OMBVAR>
+	    <OMA>
+	      <OMS cd="arith1" name="times"/>
+	      <OMA>
+		<OMS cd="arith1" name="power"/>
+		<OMA>
+		  <OMS cd="arith1" name="minus"/>
+		  <OMV name="x"/>
+		  <OMV name="c"/>
+		</OMA>
+		<OMV name="i"/>
+	      </OMA>
+	      <OMA>
+		<OMV name="f"/>
+		<OMV name="x"/>
+	      </OMA>
+	    </OMA>
+	  </OMBIND>
+	</OMA>
+      </OMA>
+    </OMOBJ>
+  </FMP>
+</assertion>
+</theory>
+</omdoc>
+

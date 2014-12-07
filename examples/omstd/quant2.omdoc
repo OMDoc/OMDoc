@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  xmlns="http://omdoc.org/ns"
+xml:id="quant2-omdoc">
+
+
+  <dc:title>Additional quantors not found in quant1.ocd</dc:title>
+  <dc:creator>Christoph Lange</dc:creator>
+  <dc:date> 2006-06-09T00:00:00</dc:date>
+  <dc:type>Text</dc:type>
+  <dc:format>application/omdoc+xml</dc:format>
+  <dc:rights>Copyright (c) 2006 Christoph Lange;
+    This OMDoc content dictionary is released under the OpenMath license:
+    http://monet.nag.co.uk/openmath/cdfiles/license.html
+  </dc:rights>
+  <dc:description>
+  This CD holds the definitions of the unique existential ("there exists exactly one") quantifier
+  and the definite description operator.
+  </dc:description>
+
+
+<theory xml:id="quant2" cdbase="http://www.openmath.org/cd">
+
+<include from="sts.omdoc#sts"/>
+
+<symbol name="exists-unique" xml:id="exists-unique">
+
+<dc:description> 
+    This symbol represents the unique existential ("there exists exactly one") quantifier
+    which takes two arguments. It must be placed within an OMBIND element. The first
+    argument is the bound variables (placed within an OMBVAR element), and the second
+    is an expression.
+</dc:description>
+
+<type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS name="binder" cd="sts"/></OMOBJ>
+  </type>
+</symbol>
+
+<presentation for="#exists-unique">
+  <use  format="TeX">{\exists_1}</use>
+  <use  format="pmml">&#x02203;&#x2081;</use>
+</presentation>
+
+<presentation xml:id="pr-exists-unique" for="#exists-unique" role="binding">
+  <use  format="TeX">{\exists_1}</use>
+  <use  format="html">&#x02203;&#x2081;</use>
+  <style format="pmml">
+    <element name="mrow">
+      <element name="mo" cr="yes"><text>&#x02203;&#x2081;</text></element>
+      <recurse select="*[2]"/>
+      <element name="mo" cr="yes">
+        <attribute name="separator">
+          <text>true</text>
+        </attribute>
+        <text>.</text>
+      </element>
+      <recurse select="*[3]"/>
+    </element>
+  </style>
+</presentation>
+
+<symbol name="that" xml:id="that">
+
+<dc:description> 
+    This symbol represents the definite description operator, which takes two arguments.
+    It must be placed within an OMBIND element. The first
+    argument is the bound variables (placed within an OMBVAR element), and the second
+    is an expression. If there is a unique set of variable value assignments such that 
+    the expression is true, the operation evaluates to this set of values; otherwise, 
+    the result will be undefined.
+</dc:description>
+
+<type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS name="binder" cd="sts"/></OMOBJ>
+  </type>
+</symbol>
+
+<presentation for="#that">
+  <use format="TeX">{\tau}</use>
+  <use format="pmml">&#x03C4;</use>
+</presentation>
+
+<presentation xml:id="pr-that" for="#that" role="binding">
+  <use format="TeX">{\tau}</use>
+  <use format="html">&#x03C4;</use>
+  <style format="pmml">
+    <element name="mrow">
+      <element name="mo" cr="yes"><text>&#x03C4;</text></element>
+      <recurse select="*[2]"/>
+      <element name="mo" cr="yes">
+        <attribute name="separator">
+          <text>true</text>
+        </attribute>
+        <text>.</text>
+      </element>
+      <recurse select="*[3]"/>
+    </element>
+  </style>
+</presentation>
+</theory>
+</omdoc>

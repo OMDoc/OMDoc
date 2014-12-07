@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xml:id="las_of_composition-formal.omdoc"
+  xmlns="http://omdoc.org/ns"
+  xmlns:cc="http://creativecommons.org/ns"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xmlns:om="http://www.openmath.org/OpenMath"
+  version="1.6">
+
+<metadata>
+  <dc:date action="created"> 2004-10-04T17:50:22Z </dc:date>
+  <dc:title xml:lang="en"> las_of_composition-formal </dc:title>
+  <dc:creator role="aut"> Michael Kohlhase </dc:creator>
+  <dc:source>  </dc:source>
+  <dc:date action="updated"> 2004-10-04T17:50:22Z </dc:date>
+  <dc:type> Text </dc:type>
+  <dc:format> application/omdoc+xml </dc:format>
+  <dc:rights>Copyright (c) 2004 Michael Kohlhase</dc:rights>
+  <cc:license>
+    <cc:permissions reproduction="permitted" distribution="permitted" derivative_works="permitted"/>
+    <cc:prohibitions commercial_use="permitted"/>
+    <cc:requirements notice="required" copyleft="required" attribution="required"/>
+  </cc:license>
+</metadata>
+
+<theory xml:id="magmas">
+  <imports xml:id="imp3" from="background.omdoc#products"/>
+  <imports xml:id="imp2" 
+      from="https://svn.omdoc.org/repos/trunk/omdoc/examples/omstd/relation1.omdoc#relation1"/>
+
+<symbol name="law_of_composition">
+  <metadata><dc:description>A law of composition on a set.</dc:description></metadata>
+</symbol>
+<definition xml:id="magma.def" for="#law_of_composition" type="simple">
+  <CMP> 
+    Let <om:OMOBJ><om:OMV name="E"/></om:OMOBJ> be a set. A mapping of 
+    <om:OMOBJ><om:OMR href="#comp.1"/></om:OMOBJ> 
+    is called a <term cd="magmas" name="law_of_composition" 
+                      role="definiens">law of composition</term>
+    on <om:OMOBJ><om:OMV name="E"/></om:OMOBJ>.
+  </CMP>
+  <om:OMOBJ>
+    <om:OMBIND>
+      <om:OMS cd="fns1" name="lambda"/>
+      <om:OMBVAR><om:OMV name="E"/><om:OMV name="F"/></om:OMBVAR>
+      <om:OMA><om:OMS cd="pl0" name="and"/>
+       <om:OMA><om:OMS cd="sets" name="set"/><om:OMV name="E"/></om:OMA>
+       <om:OMA>
+         <om:OMS cd="functions" name="function"/>
+         <om:OMA id="comp.1">
+           <om:OMS cd="products" name="cartesian-product"/>
+           <om:OMV name="E"/>
+           <om:OMV name="E"/>
+         </om:OMA>
+         <om:OMV name="E"/>
+       </om:OMA>
+     </om:OMA>
+   </om:OMBIND>
+ </om:OMOBJ>
+</definition>
+</theory>
+</omdoc>

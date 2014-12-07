@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xml:id="tableaux.omdoc" 
+       xmlns:om="http://www.openmath.org/OpenMath"
+       xmlns:m="http://www.w3.org/1998/Math/MathML"
+       xmlns:dc="http://purl.org/dc/elements/1.1/"
+       xmlns="http://omdoc.org/ns">
+
+ <metadata>
+  <dc:title>Tableaux for Classical Propositional Logic</dc:title>
+  <dc:creator role="aut">Michael Kohlhase</dc:creator>
+  <dc:date>2008-07-04T18:28:06</dc:date>
+  <dc:rights>Copyright (c) 2008 Michael Kohlhase</dc:rights>
+  <license xmlns="http://creativecommons.org/ns">
+    <permissions reproduction="permitted" distribution="permitted" derivative_works="permitted"/>
+    <prohibitions commercial_use="permitted"/>
+    <requirements notice="required" copyleft="required" attribution="required"/>
+  </license>
+ </metadata>
+
+<theory xml:id="tableaux">
+  <metadata>
+    <dc:title>The Tableaux Calculus</dc:title>
+  </metadata>
+
+  <symbol name="tableau">
+    <metadata><dc:subject>The Tableau Constructor</dc:subject></metadata>
+  </symbol>
+
+  <notation>
+    <prototype>
+      <om:OMA>
+	<om:OMS cd="tableaux" name="tableau"/>
+	<exprlist name="args"><expr name="arg"/></exprlist>
+      </om:OMA>
+    </prototype>
+    <rendering>
+      <m:mtable>
+	<iterate name="args">
+	  <m:mtr><m:mtd><render name="arg"/></m:mtd></m:mtr>
+	</iterate>
+      </m:mtable>
+    </rendering>
+  </notation>
+
+  <symbol name="branches">
+    <metadata><dc:subject>The Tableau Branching Constructor</dc:subject></metadata>
+  </symbol>
+  
+  <notation>
+    <prototype>
+      <om:OMA>
+	<om:OMS cd="tableaux" name="branches"/>
+	<exprlist name="args"><expr name="arg"/></exprlist>
+      </om:OMA>
+    </prototype>
+    <rendering>
+      <m:mtr>
+	<iterate name="args">
+	  <m:mtd><render name="arg"/></m:mtd>
+	</iterate>
+      </m:mtr>
+    </rendering>
+  </notation>
+
+ </theory>
+</omdoc>

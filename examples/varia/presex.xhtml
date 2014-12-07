@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html id="arith1-omdoc" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <link rel="stylesheet" type="text/css" href="omdoc-default.css"/>
+    <title>The OpenMath Content Dictionary arith1.ocd in OMDoc form</title>
+  </head>
+  <body>
+    <div class="dc-titleblock">
+      <div class="dc-title">The OpenMath Content Dictionary arith1.ocd in OMDoc form</div>
+      <div class="dc-authors">Michael Kohlhase, The OpenMath Society</div>
+      <div class="dc-date">2002-12-02</div>
+      <div class="dc-description">This CD defines symbols for common arithmetic functions.</div>
+    </div>
+    <div class="theory" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="http://purl.org/dc/elements/1.1/">
+      <div class="imports">imports from: 
+        <a href="../omstd/sts.omdoc#sts">sts</a>, 
+        <a href="../omstd/relation1.omdoc#relation1">relation1</a>
+      </div>
+      <div class="omdoc-symbol" id="lcm" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#arith1"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>lcm
+        </div> The symbol to represent the n-ary function to return the least common multiple of its arguments. 
+        <div class="omdoc-type" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>(sts)
+          </div>
+          <span id="MCRd19e35" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+              <m:mrow>
+                <m:msup>
+                  <m:mi>SemiGroup</m:mi>
+                  <m:mo mcd:cr="fun" xmlns:mcd="http://www.w3.org/ns/mathml-cd">*</m:mo>
+                </m:msup>
+                <m:mo mcd:cr="fun" xmlns:mcd="http://www.w3.org/ns/mathml-cd">↦</m:mo>
+                <m:mi>SemiGroup</m:mi>
+              </m:mrow>
+            </m:math>
+          </span>
+        </div>
+      </div>
+      <div class="omdoc-lemma" id="lcm-prop-1" role="Assertion" about="#lcm-prop-1" xml:id="lcm-prop-1">
+        <a class="omdoc" rel="oso:homeTheory" href="#arith1"/>
+        <span class="omdoc-titleword">Lemma</span>
+        <p>
+          <span id="MCRd19e54" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+              <m:mrow>
+                <m:mrow>
+                  <m:mo>lcm</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mi>a</m:mi>
+                  <m:mo separator="true">,</m:mo>
+                  <m:mi>b</m:mi>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+                <m:mo mcd:cr="fun" xmlns:mcd="http://www.w3.org/ns/mathml-cd">=</m:mo>
+                <m:mrow>
+                  <m:mo>divide</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mrow>
+                    <m:mo>times</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                    <m:mi>a</m:mi>
+                    <m:mo separator="true">,</m:mo>
+                    <m:mi>b</m:mi>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                  </m:mrow>
+                  <m:mo separator="true">,</m:mo>
+                  <m:mrow>
+                    <m:mo>gcd</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                    <m:mi>a</m:mi>
+                    <m:mo separator="true">,</m:mo>
+                    <m:mi>b</m:mi>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                  </m:mrow>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+              </m:mrow>
+            </m:math>
+          </span> for all integers 
+          <span id="MCRd19e107" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+              <m:mi>a</m:mi>
+            </m:math>
+          </span> and 
+          <span id="MCRd19e111" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+              <m:mi>b</m:mi>
+            </m:math>
+          </span>.
+        </p>
+        <span class="omdoc-FMP">
+          <span id="MCRd19e178" class="displaymath" xmlns="">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath">
+              <m:mrow>
+                <m:mrow>
+                  <m:mo>lcm</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mi>a</m:mi>
+                  <m:mo separator="true">,</m:mo>
+                  <m:mi>b</m:mi>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+                <m:mo mcd:cr="fun" xmlns:mcd="http://www.w3.org/ns/mathml-cd">=</m:mo>
+                <m:mrow>
+                  <m:mo>divide</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mrow>
+                    <m:mo>times</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                    <m:mi>a</m:mi>
+                    <m:mo separator="true">,</m:mo>
+                    <m:mi>b</m:mi>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                  </m:mrow>
+                  <m:mo separator="true">,</m:mo>
+                  <m:mrow>
+                    <m:mo>gcd</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                    <m:mi>a</m:mi>
+                    <m:mo separator="true">,</m:mo>
+                    <m:mi>b</m:mi>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                  </m:mrow>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+              </m:mrow>
+            </m:math>
+          </span>
+        </span>
+      </div>
+    </div>
+  </body>
+</html>

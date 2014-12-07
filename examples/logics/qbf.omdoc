@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xml:id="qbf-omdoc" 
+       xmlns:dc="http://purl.org/dc/elements/1.1/"
+       xmlns:om="http://www.openmath.org/OpenMath"
+       xmlns:m="http://www.w3.org/1998/Math/MathML"
+       xmlns="http://omdoc.org/ns">
+
+ <metadata>
+  <dc:title>Quantified Boolean Formulae</dc:title>
+  <dc:creator role="aut">Michael Kohlhase</dc:creator>
+  <dc:date>2008-07-04T18:28:06</dc:date>
+  <dc:rights>Copyright (c) 2008 Michael Kohlhase</dc:rights>
+  <license xmlns="http://creativecommons.org/ns">
+    <permissions reproduction="permitted" distribution="permitted" derivative_works="permitted"/>
+    <prohibitions commercial_use="permitted"/>
+    <requirements notice="required" copyleft="required" attribution="required"/>
+  </license>
+ </metadata>
+
+
+<theory xml:id="qbf">
+ <metadata>
+  <dc:title>Quantified Boolean Formulae</dc:title>
+  <dc:description>
+    This theory provides quantifiers over Boolean values.
+  </dc:description>
+ </metadata>
+
+  <imports from="pl0.omdoc#pl0"/>
+
+    <symbol name="forall">
+     <metadata>
+       <dc:subject>forall</dc:subject>
+       <dc:description>
+	 <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="qbf"
+	 name="forall"/></OMOBJ> is the binder symbol for the universal quantifier (for
+	 all) on boolean values.
+       </dc:description>
+     </metadata>
+    </symbol>
+
+    <presentation xml:id="pr-forall" for="#forall" role="binding">
+      <use  format="TeX">{\forall}</use>
+      <use format="html">&#x02200;</use>
+      <style format="pmml">
+	<element name="mrow">
+	  <element name="mo" cr="yes"><text>&#x02200;</text></element>
+	  <recurse select="*[2]"/>
+	  <element name="mo" cr="yes">
+	    <attribute name="separator">
+	      <text>true</text>
+	    </attribute>
+	    <text>.</text>
+	  </element>
+	  <recurse select="*[3]"/>
+	</element>
+      </style>
+      <use format="pvs">FORALL</use>
+      <use format="tptp">!</use>
+    </presentation>
+    
+    <symbol name="exists">
+     <metadata><dc:subject>exists</dc:subject>
+     <dc:description>
+       <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="qbf"
+       name="exists"/></OMOBJ> This symbol is the binder symbol for the existential
+       quantifier (there is a) on boolean values.
+    </dc:description>
+  </metadata>
+</symbol>
+
+    <presentation xml:id="pr-exists" for="#exists" role="binding">
+      <use format="TeX">{\exists}</use>
+      <use format="html|pmml">&#x02203;</use>
+      <use format="pvs">EXISTS</use>
+      <use format="tptp">?</use>
+    </presentation>
+</theory>
+
+</omdoc>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  
+       xmlns="http://omdoc.org/ns"
+       xmlns:om="http://www.openmath.org/OpenMath"
+       xmlns:m="http://www.w3.org/1998/Math/MathML"
+       xml:id="let-omdoc" >
+
+ <metadata>
+  <dc:title>Let expressions</dc:title>
+   <dc:creator role="aut">Florian Rabe</dc:creator>
+   <dc:date>2008-07-07T00:00:00</dc:date>
+  <license xmlns="http://creativecommons.org/ns">
+    <permissions reproduction="permitted" distribution="permitted" derivative_works="permitted"/>
+    <prohibitions commercial_use="permitted"/>
+    <requirements notice="required" copyleft="required" attribution="required"/>
+  </license>
+  </metadata>
+
+ <theory xml:id="let">
+   <metadata>
+     <dc:title>Let Expressions</dc:title>
+   </metadata>
+
+ <symbol name="let" role="binder">
+   <metadata>
+     <dc:description>The let binder. It takes a variable X with a definedas attribution D and scope S. Its meaning is LET X = D IN S. Accordingly for multiple variables.
+	 </dc:description>
+   </metadata>
+ </symbol>
+
+ <symbol name="letrec" role="binder">
+   <metadata>
+     <dc:description>As let, but with recursive definitions. In case of multiple variables, the definitions can be mutually recursive.
+	 </dc:description>
+   </metadata>
+ </symbol>
+
+ <symbol name="definedas" role="attribution">
+   <metadata>
+     <dc:description>The key used to attribute a definition in a let or letrec binding.
+	 </dc:description>
+   </metadata>
+ </symbol>
+
+</theory>
+
+</omdoc>

@@ -1,0 +1,48 @@
+         [Apologies, if you receive this more than once]
+
+      +----------------------------------------------------+
+      |                                                    |
+      |       OMDoc: Open Mathematical Documents!          |
+      |          http:/www.mathweb.org/omdoc               |
+      |                                                    |
+      +----------------------------------------------------+
+      |                                                    |
+      |   OMDoc 1.1 has been released December 29. 2001    |
+      |                                                    |
+      +----------------------------------------------------+
+
+OMDoc is a content-based markup format for manipulating, archiving, and
+communicating mathematical knowledge on the Internet. It is used as the 
+basis for mathematical knowledge bases, computer-supported learning 
+systems, and electronic publishing of mathematical text.
+
+OMDoc is an extension of the OpenMath standard [1] to the document level,
+it supplies structured content-markup for mathematical statements (axioms, 
+theorems, proofs, definitions, texts (mixing formal content with 
+mathematical text). Furthermore it supplies syntax for a notion of a 
+structured theory hierarchy known from algebraic specification formalisms 
+like CASL [2]. 
+
+Since OMDoc builds on OpenMath and XML, OMDoc can be directly converted
+into MathML [3], which can be rendered in Mozilla and IE (via plug-ins).
+
+OMDoc 1.1 is a maintenance release that stabilizes the experiences with 
+OMDoc 1.0.  The changes are mainly non-disruptive in often-used parts 
+of OMDoc, e.g. adding  optional attributes and children. The main new 
+features are the addition of a new referencing and presentation system 
+for OMDoc elements and a completely re-written specification document.
+
+To find out more about OMDoc, join the OMDoc mailing list [4] or view [5].
+
+[1] http://www.openmath.org   
+[2] http://www.brics.dk/Projects/CoFI
+[3] http://www.w3c.org/
+[4] omdoc@mathweb.org; archived at http://www.mathweb.org/~mailists/omdoc
+[5] http:/www.mathweb.org/omdoc
+
+-------------------------------------------------------------------------
+   Dr. Michael Kohlhase,                School of Computer Science
+   tel/fax: +1 412 268 5749/6298        Carnegie Mellon University
+   net: <kohlhase+@cs.cmu.edu>          5000 Forbes Avenue, 
+   http://www.cs.cmu.edu/~kohlhase      Pittsburgh, Pa 15213-3891, USA.
+--------------------------------------------------------------------------

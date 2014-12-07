@@ -1,0 +1,1359 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<omdoc xml:id="arith1-omdoc" modules="CD" version="1.6" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns" xmlns:m="http://www.w3.org/1998/Math/MathML">
+  
+    <dc:title>The OpenMath Content Dictionary arith1.ocd in OMDoc form</dc:title>
+    <dc:creator role="trl">Michael Kohlhase</dc:creator>
+    <dc:creator role="ant">The OpenMath Society</dc:creator>
+    <dc:date action="updated">2004-07-13T17:11:57Z</dc:date>
+    <dc:source>Derived from the OpenMath CD http://www.openmath.org/cd/arith1.ocd.</dc:source>
+    <dc:type>Text</dc:type>
+    <dc:format>application/omdoc+xml</dc:format>
+    <dc:rights>Copyright (c) 2000-2002 Michael Kohlhase; This OMDoc content dictionary is released under the OpenMath license: http://monet.nag.co.uk/openmath/cdfiles/license.html </dc:rights>
+    <dc:description>This CD defines symbols for common arithmetic functions. </dc:description>
+  
+  <theory name="arith1">
+    <imports name="arith1-imports-integer1" from="integer1.omdoc#integer1"/>
+    <imports name="arith1-imports-relation1" from="relation1.omdoc#relation1"/>
+    <imports name="arith1-imports-sts" from="sts.omdoc#sts"/>
+    <symbol xml:id="lcm" name="lcm">
+      
+        <dc:description> The symbol to represent the n-ary function to return the 
+          <term cd="arith1" name="lcm" role="definiens">least common multiple</term> of its arguments. 
+        </dc:description>
+        <dc:description xml:lang="de"> Das Symbol f"ur das 
+          <term cd="arith1" name="lcm" role="definiens">kleinste gemeinsame Vielfache</term> (als n-aere Funktion). 
+        </dc:description>
+        <dc:subject>lcm</dc:subject>
+        <dc:subject xml:lang="de">kgV</dc:subject>
+      
+      <type>
+        <om:OMOBJ>
+          <om:OMA>
+            <om:OMS name="mapsto" cd="sts"/>
+            <om:OMA>
+              <om:OMS name="nassoc" cd="sts"/>
+              <om:OMV name="SemiGroup"/>
+            </om:OMA>
+            <om:OMV name="SemiGroup"/>
+          </om:OMA>
+        </om:OMOBJ>
+      </type>
+    </symbol>
+    <presentation xml:id="pr_lcm" for="#lcm">
+      <use format="default">lcm</use>
+      <use format="default" xml:lang="de">kgV</use>
+      <use format="cmml" element="lcm"/>
+    </presentation>
+    <ref xref="#lcm-prop-1" type="cite"/>
+    <ref xref="#lcm-prop-3" type="cite"/>
+    <symbol xml:id="gcd" name="gcd">
+      
+        <dc:description> The symbol to represent the n-ary function to return the gcd (greatest common divisor) of its arguments. </dc:description>
+      
+      <type>
+        <om:OMOBJ>
+          <om:OMA>
+            <om:OMS name="mapsto" cd="sts"/>
+            <om:OMA>
+              <om:OMS name="nassoc" cd="sts"/>
+              <om:OMV name="SemiGroup"/>
+            </om:OMA>
+            <om:OMV name="SemiGroup"/>
+          </om:OMA>
+        </om:OMOBJ>
+      </type>
+    </symbol>
+    <presentation xml:id="arith1_pr_gcd" for="#gcd">
+      <use format="default">gcd</use>
+      <use format="default" xml:lang="de">ggT</use>
+      <use format="cmml" element="gcd"/>
+    </presentation>
+    <ref xref="#gcd-prop-1" type="cite"/>
+    <ref xref="#gcd-ex-3" type="cite"/>
+    <symbol xml:id="plus" name="plus">
+      
+        <dc:description>The symbol representing an n-ary commutative function plus.</dc:description>
+        <dc:subject>plus</dc:subject>
+      
+      <type>
+        <om:OMOBJ>
+          <om:OMA>
+            <om:OMS name="mapsto" cd="sts"/>
+            <om:OMA>
+              <om:OMS name="nassoc" cd="sts"/>
+              <om:OMV name="AbelianSemiGroup"/>
+            </om:OMA>
+            <om:OMV name="AbelianSemiGroup"/>
+          </om:OMA>
+        </om:OMOBJ>
+      </type>
+    </symbol>
+    <presentation xml:id="pr-plus" for="#plus" role="applied" fixity="assoc" bracket-style="lisp" precedence="500" arity="nary">
+      <use format="default">+</use>
+    </presentation>
+    <presentation xml:id="pr2-plus" for="#plus">
+      <use format="default">+</use>
+      <use format="cmml" element="plus"/>
+    </presentation>
+    <ref xref="#plus-prop-1" type="cite"/>
+    <symbol xml:id="unary_minus" name="unary_minus">
+      
+        <dc:description> This symbol denotes unary minus, i.e. the additive inverse.</dc:description>
+        <dc:subject>unary minus</dc:subject>
+      
+      <type>
+        <om:OMOBJ>
+          <om:OMA>
+            <om:OMS name="mapsto" cd="sts"/>
+            <om:OMV name="AbelianGroup"/>
+            <om:OMV name="AbelianGroup"/>
+          </om:OMA>
+        </om:OMOBJ>
+      </type>
+    </symbol>
+    <presentation xml:id="pr-unary-minus" for="#unary_minus" role="applied" precedence="200" arity="1">
+      <use format="default">-</use>
+    </presentation>
+    <presentation xml:id="prr-unary-minus" for="#unary_minus">
+      <use format="default">-</use>
+      <use format="cmml" element="minus"/>
+    </presentation>
+    <ref xref="#unary_minus-prop-1" type="cite"/>
+    <symbol xml:id="minus" name="minus">
+      
+        <dc:description> The symbol representing a binary minus function. This is equivalent to adding the additive inverse. </dc:description>
+      
+      <type>
+        <om:OMOBJ>
+          <om:OMA>
+            <om:OMS name="mapsto" cd="sts"/>
+            <om:OMV name="AbelianGroup"/>
+            <om:OMV name="AbelianGroup"/>
+            <om:OMV name="AbelianGroup"/>
+          </om:OMA>
+        </om:OMOBJ>
+      </type>
+    </symbol>
+    <presentation xml:id="pr-minus" for="#minus" role="applied" fixity="infix" precedence="500" arity="2">
+      <use format="default">-</use>
+    </presentation>
+    <presentation xml:id="prr-minus" for="#minus">
+      <use format="default">-</use>
+      <use format="cmml" element="minus"/>
+    </presentation>
+    <ref xref="#minus-prop-1" type="cite"/>
+    <symbol xml:id="times" name="times">
+      
+        <dc:description> The symbol representing an n-ary multiplication function.</dc:description>
+        <dc:subject>times</dc:subject>
+      
+      <type>
+        <om:OMOBJ>
+          <om:OMA>
+            <om:OMS name="mapsto" cd="sts"/>
+            <om:OMA>
+              <om:OMS name="nassoc" cd="sts"/>
+              <om:OMV name="SemiGroup"/>
+            </om:OMA>
+            <om:OMV name="SemiGroup"/>
+          </om:OMA>
+        </om:OMOBJ>
+      </type>
+    </symbol>
+    <presentation for="#times">
+      <use format="html|maple">*</use>
+      <use format="TeX">{\cdot}</use>
+      <use format="pmml" crossref-symbol="no"/>
+      <use format="cmml" element="times"/>
+      <use format="PVS" bracket-style="lisp">TIMES</use>
+    </presentation>
+    <presentation xml:id="pr-times" for="#times" role="applied" fixity="assoc" precedence="400">
+      <use format="html">*</use>
+      <use format="TeX">{\cdot}</use>
+      <use format="pmml" crossref-symbol="no">⁢</use>
+    </presentation>
+    <theory name="times-ex1.thy">
+      <imports name="times-ex1-imports-linalg2" from="linalg2.omdoc#linalg2"/>
+      <example xml:id="times-ex-1" for="#times" type="for">
+        <om:OMOBJ style="display:block">
+          <om:OMA>
+            <om:OMS name="eq" cd="relation1"/>
+            <om:OMA>
+              <om:OMS name="times" cd="arith1"/>
+              <om:OMA>
+                <om:OMS name="matrix" cd="linalg2"/>
+                <om:OMA>
+                  <om:OMS name="matrixrow" cd="linalg2"/>
+                  <om:OMI>1</om:OMI>
+                  <om:OMI>2</om:OMI>
+                </om:OMA>
+                <om:OMA>
+                  <om:OMS name="matrixrow" cd="linalg2"/>
+                  <om:OMI>3</om:OMI>
+                  <om:OMI>4</om:OMI>
+                </om:OMA>
+              </om:OMA>
+              <om:OMA>
+                <om:OMS name="matrix" cd="linalg2"/>
+                <om:OMA>
+                  <om:OMS name="matrixrow" cd="linalg2"/>
+                  <om:OMI>5</om:OMI>
+                  <om:OMI>6</om:OMI>
+                </om:OMA>
+                <om:OMA>
+                  <om:OMS name="matrixrow" cd="linalg2"/>
+                  <om:OMI>7</om:OMI>
+                  <om:OMI>8</om:OMI>
+                </om:OMA>
+              </om:OMA>
+            </om:OMA>
+            <om:OMA>
+              <om:OMS name="matrix" cd="linalg2"/>
+              <om:OMA>
+                <om:OMS name="matrixrow" cd="linalg2"/>
+                <om:OMI>19</om:OMI>
+                <om:OMI>20</om:OMI>
+              </om:OMA>
+              <om:OMA>
+                <om:OMS name="matrixrow" cd="linalg2"/>
+                <om:OMI>43</om:OMI>
+                <om:OMI>50</om:OMI>
+              </om:OMA>
+            </om:OMA>
+          </om:OMA>
+        </om:OMOBJ>
+      </example>
+    </theory>
+    <ref xref="#times-prop-2" type="cite"/>
+    <ref xref="#times-prop-4" type="cite"/>
+    <symbol xml:id="divide" name="divide">
+      
+        <dc:description> This symbol represents a (binary) division function denoting the first argument right-divided by the second, i.e. divide(a,b)=a*inverse(b). It is the inverse of the multiplication function defined by the symbol times in this CD. </dc:description>
+      
+      <type>
+        <om:OMOBJ>
+          <om:OMA>
+            <om:OMS name="mapsto" cd="sts"/>
+            <om:OMV name="AbelianGroup"/>
+            <om:OMV name="AbelianGroup"/>
+            <om:OMV name="AbelianGroup"/>
+          </om:OMA>
+        </om:OMOBJ>
+      </type>
+    </symbol>
+    <presentation for="#divide">
+      <use format="default">/</use>
+      <use format="cmml" element="divide"/>
+    </presentation>
+    <presentation xml:id="pr-divide" for="#divide" role="applied" fixity="infix" bracket-style="lisp" precedence="600" arity="2">
+      <use format="default">/</use>
+      <use format="pmml" fixity="prefix" bracket-style="lisp" separator="" element="mfrac"/>
+      <use format="TeX" lbrack="{" rbrack="}" crossref-symbol="no">\over </use>
+    </presentation>
+    <ref xref="#divide-prop-1" type="cite"/>
+    <symbol xml:id="power" name="power">
+      
+        <dc:description> This symbol represents a power function. The first argument is raised to the power of the second argument. When the second argument is not an integer, powering is defined in terms of exponentials and logarithms for the complex and real numbers. This operator can represent general powering. </dc:description>
+      
+      <type>
+        <om:OMOBJ>
+          <om:OMA>
+            <om:OMS name="mapsto" cd="sts"/>
+            <om:OMS name="NumericalValue" cd="sts"/>
+            <om:OMS name="NumericalValue" cd="sts"/>
+            <om:OMS name="NumericalValue" cd="sts"/>
+          </om:OMA>
+        </om:OMOBJ>
+      </type>
+    </symbol>
+    <presentation for="#power">
+      <use format="cmml" element="power"/>
+    </presentation>
+    <presentation xml:id="pres-power" for="#power" role="applied" separator="" precedence="200" crossref-symbol="no" arity="2">
+      <style format="html">
+        <recurse select="*[2]"/>
+        <element name="sup">
+          <recurse select="*[3]"/>
+        </element>
+      </style>
+      <use format="TeX" fixity="infix">^</use>
+      <use format="pmml" bracket-style="lisp" element="msup"/>
+    </presentation>
+    <ref xref="#power-prop-1" type="cite"/>
+    <ref xref="#power-prop-3" type="cite"/>
+    <theory name="power-ex.theory">
+      <imports name="power-ex-imports-alg1" from="alg1.omdoc#alg1"/>
+      <imports name="power-ex-imports-linalg2" from="linalg2.omdoc#linalg2"/>
+      <imports name="power-ex-imports-nums1" from="nums1.omdoc#nums1"/>
+      <example xml:id="power-ex-5" for="#power" type="for">
+        <om:OMOBJ style="display:block">
+          <om:OMA>
+            <om:OMS name="eq" cd="relation1"/>
+            <om:OMA>
+              <om:OMS name="power" cd="arith1"/>
+              <om:OMA>
+                <om:OMS name="matrix" cd="linalg2"/>
+                <om:OMA>
+                  <om:OMS name="matrixrow" cd="linalg2"/>
+                  <om:OMI>1</om:OMI>
+                  <om:OMI>2</om:OMI>
+                </om:OMA>
+                <om:OMA>
+                  <om:OMS name="matrixrow" cd="linalg2"/>
+                  <om:OMI>3</om:OMI>
+                  <om:OMI>4</om:OMI>
+                </om:OMA>
+              </om:OMA>
+              <om:OMI>3</om:OMI>
+            </om:OMA>
+            <om:OMA>
+              <om:OMS name="matrix" cd="linalg2"/>
+              <om:OMA>
+                <om:OMS name="matrixrow" cd="linalg2"/>
+                <om:OMI>37</om:OMI>
+                <om:OMI>54</om:OMI>
+              </om:OMA>
+              <om:OMA>
+                <om:OMS name="matrixrow" cd="linalg2"/>
+                <om:OMI>81</om:OMI>
+                <om:OMI>118</om:OMI>
+              </om:OMA>
+            </om:OMA>
+          </om:OMA>
+        </om:OMOBJ>
+      </example>
+      <example xml:id="power-ex-6" for="#power" type="for">
+        <om:OMOBJ>
+          <om:OMA>
+            <om:OMS name="eq" cd="relation1"/>
+            <om:OMA>
+              <om:OMS name="power" cd="arith1"/>
+              <om:OMS name="e" cd="nums1"/>
+              <om:OMA>
+                <om:OMS name="times" cd="arith1"/>
+                <om:OMS name="i" cd="nums1"/>
+                <om:OMS name="pi" cd="nums1"/>
+              </om:OMA>
+            </om:OMA>
+            <om:OMA>
+              <om:OMS name="unary_minus" cd="arith1"/>
+              <om:OMS name="one" cd="alg1"/>
+            </om:OMA>
+          </om:OMA>
+        </om:OMOBJ>
+      </example>
+    </theory>
+    <symbol xml:id="abs" name="abs">
+      
+        <dc:description> A unary operator which represents the absolute value of its argument. The argument should be numerically valued. In the complex case this is often referred to as the modulus. </dc:description>
+      
+      <type>
+        <om:OMOBJ>
+          <om:OMA>
+            <om:OMS name="mapsto" cd="sts"/>
+            <om:OMS name="C" cd="setname1"/>
+            <om:OMS name="R" cd="setname1"/>
+          </om:OMA>
+        </om:OMOBJ>
+      </type>
+    </symbol>
+    <presentation for="#abs">
+      <use format="cmml" element="abs"/>
+    </presentation>
+    <presentation xml:id="pr-abs" for="#abs" role="applied" arity="1">
+      <use format="default" bracket-style="lisp" lbrack="|" rbrack="|" crossref-symbol="brackets"/>
+      <style format="pmml">
+        <element name="mrow" crid=".">
+          <element name="mo" cr="yes">
+            <text>|</text>
+          </element>
+          <recurse select="*[2]"/>
+          <element name="mo" cr="yes">
+            <text>|</text>
+          </element>
+        </element>
+      </style>
+    </presentation>
+    <ref xref="#abs-prop-1" type="cite"/>
+    <symbol xml:id="root" name="root">
+      
+        <dc:description> A binary operator which represents its first argument "lowered" to its n'th root where n is the second argument. This is the inverse of the operation represented by the power symbol defined in this CD. Care should be taken as to the precise meaning of this operator, in particular which root is represented, however it is here to represent the general notion of taking n'th roots. As inferred by the signature relevant to this symbol, the function represented by this symbol is the single valued function, the specific root returned is the one indicated by the first CMP. Note also that the converse of the second CMP is not valid in general. </dc:description>
+      
+      <type>
+        <om:OMOBJ>
+          <om:OMA>
+            <om:OMS name="mapsto" cd="sts"/>
+            <om:OMS name="NumericalValue" cd="sts"/>
+            <om:OMS name="NumericalValue" cd="sts"/>
+            <om:OMS name="NumericalValue" cd="sts"/>
+          </om:OMA>
+        </om:OMOBJ>
+      </type>
+    </symbol>
+    <presentation xml:id="pr-root" for="#root" role="applied" separator="" arity="1">
+      <style format="TeX">
+        <text>{\root{</text>
+        <recurse select="*[3]"/>
+        <text>}\of</text>
+        <recurse select="*[2]"/>
+        <text>}</text>
+      </style>
+      <style format="html">
+        <element name="sup">
+          <recurse select="*[3]"/>
+        </element>
+        <text>√</text>
+        <recurse select="*[2]"/>
+      </style>
+      <use format="pmml" bracket-style="lisp" element="mroot"/>
+    </presentation>
+    <presentation for="#root">
+      <use format="cmml" element="root"/>
+    </presentation>
+    <ref xref="#root-prop-1" type="cite"/>
+    <ref xref="#root-prop-3" type="cite"/>
+    <symbol xml:id="sum" name="sum">
+      
+        <dc:description> An operator taking two arguments, the first being the range of summation, e.g. an integral interval, the second being the function to be summed. Note that the sum may be over an infinite interval. </dc:description>
+      
+      <type>
+        <om:OMOBJ>
+          <om:OMA>
+            <om:OMS name="mapsto" cd="sts"/>
+            <om:OMV name="IntegerRange"/>
+            <om:OMA>
+              <om:OMS name="mapsto" cd="sts"/>
+              <om:OMS name="Z" cd="setname1"/>
+              <om:OMV name="AbelianMonoid"/>
+            </om:OMA>
+            <om:OMV name="AbelianMonoid"/>
+          </om:OMA>
+        </om:OMOBJ>
+      </type>
+    </symbol>
+    <presentation xml:id="arith1_pr_sum" for="#sum" role="applied" arity="1">
+      <style format="html">
+        <text>∑</text>
+        <element name="sub">
+          <recurse select="*[3]/*[2]/*[1]/@name"/>
+          <text>=</text>
+          <recurse select="*[2]/*[2]"/>
+        </element>
+        <element name="sup">
+          <recurse select="*[2]/*[3]"/>
+        </element>
+        <recurse select="*[3]/*[3]"/>
+      </style>
+      <style format="TeX">
+        <text>\sum_{</text>
+        <value-of select="*[3]/*[2]/*[1]/@name"/>
+        <text>=</text>
+        <recurse select="*[2]/*[2]"/>
+        <text>}</text>
+        <text>^{</text>
+        <recurse select="*[2]/*[3]"/>
+        <text>}</text>
+        <recurse select="*[3]/*[3]"/>
+      </style>
+      <style format="pmml">
+        <element name="mrow" crid=".">
+          <element name="munderover">
+            <element name="mo" crid="*[1]">
+              <text>∑</text>
+            </element>
+            <element name="mrow">
+              <element name="mi" crid="*[3]/*[2]/*[1]">
+                <value-of select="*[3]/*[2]/*[1]/@name"/>
+              </element>
+              <element name="mo">
+                <text>=</text>
+              </element>
+              <recurse select="*[2]/*[2]"/>
+            </element>
+            <recurse select="*[2]/*[3]"/>
+          </element>
+          <recurse select="*[3]/*[3]"/>
+        </element>
+      </style>
+    </presentation>
+    <presentation for="#sum">
+      <use format="cmml" element="sum"/>
+    </presentation>
+    <theory name="sum-ex.theory">
+      <imports name="sum-ex-imports-fns1" from="fns1.omdoc#fns1"/>
+      <imports name="sum-ex-imports-interval1" from="interval1.omdoc#interval1"/>
+      <example xml:id="sum-ex-1" for="#sum" type="for">
+        <CMP> This represents the summation of the reciprocals of all the integers between 
+          <om:OMOBJ>
+            <om:OMI>1</om:OMI>
+          </om:OMOBJ> and 
+          <om:OMOBJ>
+            <om:OMI>10</om:OMI>
+          </om:OMOBJ> inclusive. 
+        </CMP>
+        <om:OMOBJ>
+          <om:OMA>
+            <om:OMS name="sum" cd="arith1"/>
+            <om:OMA>
+              <om:OMS name="integer_interval" cd="interval1"/>
+              <om:OMI>1</om:OMI>
+              <om:OMI>10</om:OMI>
+            </om:OMA>
+            <om:OMBIND>
+              <om:OMS name="lambda" cd="fns1"/>
+              <om:OMBVAR>
+                <om:OMV name="x"/>
+              </om:OMBVAR>
+              <om:OMA>
+                <om:OMS name="divide" cd="arith1"/>
+                <om:OMI>1</om:OMI>
+                <om:OMV name="x"/>
+              </om:OMA>
+            </om:OMBIND>
+          </om:OMA>
+        </om:OMOBJ>
+      </example>
+    </theory>
+    <symbol xml:id="product" name="product">
+      
+        <dc:description> An operator taking two arguments, the first being the range of multiplication e.g. an integral interval, the second being the function to be multiplied. Note that the product may be over an infinite interval. </dc:description>
+      
+      <type>
+        <om:OMOBJ>
+          <om:OMA>
+            <om:OMS name="mapsto" cd="sts"/>
+            <om:OMV name="IntegerRange"/>
+            <om:OMA>
+              <om:OMS name="mapsto" cd="sts"/>
+              <om:OMS name="Z" cd="setname1"/>
+              <om:OMV name="AbelianMonoid"/>
+            </om:OMA>
+            <om:OMV name="AbelianMonoid"/>
+          </om:OMA>
+        </om:OMOBJ>
+      </type>
+    </symbol>
+    <presentation xml:id="arith1_pr_product" for="#product" role="applied" arity="1">
+      <style format="html">
+        <text>∏</text>
+        <element name="sub">
+          <recurse select="*[3]/*[2]/*[1]/@name"/>
+          <text>=</text>
+          <recurse select="*[2]/*[2]"/>
+        </element>
+        <element name="sup">
+          <recurse select="*[2]/*[3]"/>
+        </element>
+        <recurse select="*[3]/*[3]"/>
+      </style>
+      <style format="TeX">
+        <text>\Pi_{</text>
+        <value-of select="*[3]/*[2]/*[1]/@name"/>
+        <text>=</text>
+        <recurse select="*[2]/*[2]"/>
+        <text>}</text>
+        <text>^{</text>
+        <recurse select="*[2]/*[3]"/>
+        <text>}</text>
+        <recurse select="*[3]/*[3]"/>
+      </style>
+      <style format="pmml">
+        <element name="mrow" crid=".">
+          <element name="munderover" cr="yes">
+            <element name="mo" crid="*[1]">
+              <text>∏</text>
+            </element>
+            <element name="mrow">
+              <element name="mi" crid="*[3]/*[2]/*[1]">
+                <value-of select="*[3]/*[2]/*[1]/@name"/>
+              </element>
+              <element name="mo">
+                <text>=</text>
+              </element>
+              <recurse select="*[2]/*[2]"/>
+            </element>
+            <recurse select="*[2]/*[3]"/>
+          </element>
+          <recurse select="*[3]/*[3]"/>
+        </element>
+      </style>
+    </presentation>
+    <presentation for="#product">
+      <use format="cmml" element="sum"/>
+    </presentation>
+    <theory name="product-ex.theory">
+      <imports name="product-ex-imports-interval1" from="interval1.omdoc#interval1"/>
+      <imports name="product-ex-imports-fns1" from="fns1.omdoc#fns1"/>
+      <example xml:id="product-ex-1" for="#product" type="for">
+        <CMP> This represents the statement that the 
+          <term cd="integer1" name="factorial">factorial</term> of n is equal to the 
+          <term cd="arith1" name="product">product</term> of all the integers between 1 and n inclusive. 
+        </CMP>
+        <om:OMOBJ>
+          <om:OMA>
+            <om:OMS name="eq" cd="relation1"/>
+            <om:OMA>
+              <om:OMS name="factorial" cd="integer1"/>
+              <om:OMV name="n"/>
+            </om:OMA>
+            <om:OMA>
+              <om:OMS name="product" cd="arith1"/>
+              <om:OMA>
+                <om:OMS name="integer_interval" cd="interval1"/>
+                <om:OMI>1</om:OMI>
+                <om:OMV name="n"/>
+              </om:OMA>
+              <om:OMBIND>
+                <om:OMS name="lambda" cd="fns1"/>
+                <om:OMBVAR>
+                  <om:OMV name="i"/>
+                </om:OMBVAR>
+                <om:OMV name="i"/>
+              </om:OMBIND>
+            </om:OMA>
+          </om:OMA>
+        </om:OMOBJ>
+      </example>
+    </theory>
+  </theory>
+  <theory name="arith1-nonconstitutive">
+    <imports name="arith1-nonconstitutive-imports-arith1" from="#arith1"/>
+    <imports name="arith1-nonconstitutive-imports-alg1" from="alg1.omdoc#alg1"/>
+    <imports name="arith1-nonconstitutive-imports-logic1" from="logic1.omdoc#logic1"/>
+    <imports name="arith1-nonconstitutive-imports-quant1" from="quant1.omdoc#quant1"/>
+    <imports name="arith1-nonconstitutive-imports-set1" from="set1.omdoc#set1"/>
+    <imports name="arith1-nonconstitutive-imports-transc1" from="transc1.omdoc#transc1"/>
+    <assertion xml:id="lcm-prop-1" type="lemma">
+      <CMP>
+        <om:OMOBJ>
+          <om:OMR href="lcm-prop-1.O"/>
+        </om:OMOBJ> for all integers 
+        <om:OMOBJ>
+          <om:OMV name="a"/>
+        </om:OMOBJ> and 
+        <om:OMOBJ>
+          <om:OMV name="b"/>
+        </om:OMOBJ>.
+      </CMP>
+      <CMP xml:lang="de">
+        <om:OMOBJ>
+          <om:OMR href="lcm-prop-1.O"/>
+        </om:OMOBJ> fuer alle ganzen Zahlen 
+        <om:OMOBJ>
+          <om:OMV name="a"/>
+        </om:OMOBJ> und 
+        <om:OMOBJ>
+          <om:OMV name="a"/>
+        </om:OMOBJ>.
+      </CMP>
+      <FMP>
+        <om:OMOBJ>
+          <om:OMA id="lcm-prop-1.O">
+            <om:OMS name="eq" cd="relation1"/>
+            <om:OMA>
+              <om:OMS name="lcm" cd="arith1"/>
+              <om:OMV name="a"/>
+              <om:OMV name="b"/>
+            </om:OMA>
+            <om:OMA>
+              <om:OMS name="divide" cd="arith1"/>
+              <om:OMA>
+                <om:OMS name="times" cd="arith1"/>
+                <om:OMV name="a"/>
+                <om:OMV name="b"/>
+              </om:OMA>
+              <om:OMA>
+                <om:OMS name="gcd" cd="arith1"/>
+                <om:OMV name="a"/>
+                <om:OMV name="b"/>
+              </om:OMA>
+            </om:OMA>
+          </om:OMA>
+        </om:OMOBJ>
+      </FMP>
+    </assertion>
+    <assertion xml:id="lcm-prop-3" type="lemma">
+      <CMP>For all integers a,b there is no 
+        <om:OMOBJ>
+          <om:OMR href="#lcm-prop-3.1"/>
+        </om:OMOBJ> such that 
+        <om:OMOBJ>
+          <om:OMR href="lcm-prop-3.2"/>
+        </om:OMOBJ> and 
+        <om:OMOBJ>
+          <om:OMR href="#lcm-prop-3.3"/>
+        </om:OMOBJ> and 
+        <om:OMOBJ>
+          <om:OMR href="lcm-prop-3.4"/>
+        </om:OMOBJ>. 
+      </CMP>
+      <CMP xml:lang="de">Fuer alle ganzen Zahlen a,b gibt es kein 
+        <om:OMOBJ>
+          <om:OMR href="#lcm-prop-3.1"/>
+        </om:OMOBJ> mit 
+        <om:OMOBJ>
+          <om:OMR href="lcm-prop-3.2"/>
+        </om:OMOBJ> und 
+        <om:OMOBJ>
+          <om:OMR href="#lcm-prop-3.3"/>
+        </om:OMOBJ> und 
+        <om:OMOBJ>
+          <om:OMR href="lcm-prop-3.4"/>
+        </om:OMOBJ>. 
+      </CMP>
+      <FMP>
+        <om:OMOBJ>
+          <om:OMBIND>
+            <om:OMS name="forall" cd="quant1"/>
+            <om:OMBVAR>
+              <om:OMV name="a"/>
+              <om:OMV name="b"/>
+            </om:OMBVAR>
+            <om:OMA>
+              <om:OMS name="implies" cd="logic1"/>
+              <om:OMA>
+                <om:OMS name="and" cd="logic1"/>
+                <om:OMA>
+                  <om:OMS name="in" cd="set1"/>
+                  <om:OMV name="a"/>
+                  <om:OMS name="Z" cd="setname1"/>
+                </om:OMA>
+                <om:OMA>
+                  <om:OMS name="in" cd="set1"/>
+                  <om:OMV name="b"/>
+                  <om:OMS name="Z" cd="setname1"/>
+                </om:OMA>
+              </om:OMA>
+              <om:OMA>
+                <om:OMS name="not" cd="logic1"/>
+                <om:OMBIND>
+                  <om:OMS name="exists" cd="quant1"/>
+                  <om:OMBVAR>
+                    <om:OMV name="c"/>
+                  </om:OMBVAR>
+                  <om:OMA>
+                    <om:OMS name="and" cd="logic1"/>
+                    <om:OMA id="lcm-prop-3.1">
+                      <om:OMS name="gt" cd="relation1"/>
+                      <om:OMV name="c"/>
+                      <om:OMI>0</om:OMI>
+                    </om:OMA>
+                    <om:OMA id="lcm-prop-3.2">
+                      <om:OMS name="factorof" cd="integer1"/>
+                      <om:OMV name="a"/>
+                      <om:OMV name="c"/>
+                    </om:OMA>
+                    <om:OMA id="lcm-prop-3.3">
+                      <om:OMS name="factorof" cd="integer1"/>
+                      <om:OMV name="b"/>
+                      <om:OMV name="c"/>
+                    </om:OMA>
+                    <om:OMA id="lcm-prop-3.4">
+                      <om:OMS name="lt" cd="relation1"/>
+                      <om:OMV name="c"/>
+                      <om:OMA>
+                        <om:OMS name="lcm" cd="arith1"/>
+                        <om:OMV name="a"/>
+                        <om:OMV name="b"/>
+                      </om:OMA>
+                    </om:OMA>
+                  </om:OMA>
+                </om:OMBIND>
+              </om:OMA>
+            </om:OMA>
+          </om:OMBIND>
+        </om:OMOBJ>
+      </FMP>
+    </assertion>
+    <assertion xml:id="gcd-prop-1" type="lemma">
+      <CMP>For all integers a,b there is no c such that 
+        <om:OMOBJ>
+          <om:OMR href="#gcd-prop-1.1"/>
+        </om:OMOBJ> and 
+        <om:OMOBJ>
+          <om:OMR href="#gcd-prop-1.2"/>
+        </om:OMOBJ> but 
+        <om:OMOBJ>
+          <om:OMR href="#gcd-prop-1.6"/>
+        </om:OMOBJ>. Note that this implies that 
+        <om:OMOBJ>
+          <om:OMA>
+            <om:OMS name="gt" cd="relation1"/>
+            <om:OMA>
+              <om:OMS name="gcd" cd="arith1"/>
+              <om:OMV name="a"/>
+              <om:OMV name="b"/>
+            </om:OMA>
+            <om:OMI>0</om:OMI>
+          </om:OMA>
+        </om:OMOBJ>. 
+      </CMP>
+      <FMP>
+        <om:OMOBJ>
+          <om:OMBIND>
+            <om:OMS name="forall" cd="quant1"/>
+            <om:OMBVAR>
+              <om:OMV name="a"/>
+              <om:OMV name="b"/>
+            </om:OMBVAR>
+            <om:OMA>
+              <om:OMS name="implies" cd="logic1"/>
+              <om:OMA>
+                <om:OMS name="and" cd="logic1"/>
+                <om:OMA>
+                  <om:OMS name="in" cd="set1"/>
+                  <om:OMV name="a"/>
+                  <om:OMS name="Z" cd="setname1"/>
+                </om:OMA>
+                <om:OMA>
+                  <om:OMS name="in" cd="set1"/>
+                  <om:OMV name="b"/>
+                  <om:OMS name="Z" cd="setname1"/>
+                </om:OMA>
+              </om:OMA>
+              <om:OMA>
+                <om:OMS name="not" cd="logic1"/>
+                <om:OMBIND>
+                  <om:OMS name="exists" cd="quant1"/>
+                  <om:OMBVAR>
+                    <om:OMV name="c"/>
+                  </om:OMBVAR>
+                  <om:OMA>
+                    <om:OMS name="and" cd="logic1"/>
+                    <om:OMA id="gcd-prop-1.1">
+                      <om:OMS name="in" cd="set1"/>
+                      <om:OMA>
+                        <om:OMS name="divide" cd="arith1"/>
+                        <om:OMV name="a"/>
+                        <om:OMV name="c"/>
+                      </om:OMA>
+                      <om:OMS name="Z" cd="setname1"/>
+                    </om:OMA>
+                    <om:OMA id="gcd-prop-1.2">
+                      <om:OMS name="in" cd="set1"/>
+                      <om:OMA>
+                        <om:OMS name="divide" cd="arith1"/>
+                        <om:OMV name="b"/>
+                        <om:OMV name="c"/>
+                      </om:OMA>
+                      <om:OMS name="Z" cd="setname1"/>
+                    </om:OMA>
+                    <om:OMA id="gcd-prop-1.6">
+                      <om:OMS name="gt" cd="relation1"/>
+                      <om:OMV name="c"/>
+                      <om:OMA>
+                        <om:OMS name="gcd" cd="arith1"/>
+                        <om:OMV name="a"/>
+                        <om:OMV name="b"/>
+                      </om:OMA>
+                    </om:OMA>
+                  </om:OMA>
+                </om:OMBIND>
+              </om:OMA>
+            </om:OMA>
+          </om:OMBIND>
+        </om:OMOBJ>
+      </FMP>
+    </assertion>
+    <example xml:id="gcd-ex-3" for="#gcd" type="for">
+      <CMP>
+        <om:OMOBJ>
+          <om:OMR href="#gcd-ex-3.1"/>
+        </om:OMOBJ>
+      </CMP>
+      <om:OMOBJ>
+        <om:OMA id="gcd-ex-3.1">
+          <om:OMS name="eq" cd="relation1"/>
+          <om:OMA>
+            <om:OMS name="gcd" cd="arith1"/>
+            <om:OMI>6</om:OMI>
+            <om:OMI>9</om:OMI>
+          </om:OMA>
+          <om:OMI>3</om:OMI>
+        </om:OMA>
+      </om:OMOBJ>
+    </example>
+    <assertion xml:id="plus-prop-1" type="lemma">
+      <CMP>For all 
+        <om:OMOBJ>
+          <om:OMV name="a"/>
+        </om:OMOBJ> and 
+        <om:OMOBJ>
+          <om:OMV name="b"/>
+        </om:OMOBJ>, 
+        <om:OMOBJ>
+          <om:OMR href="#plus-prop-1.1"/>
+        </om:OMOBJ>
+      </CMP>
+      <FMP>
+        <om:OMOBJ>
+          <om:OMBIND>
+            <om:OMS name="forall" cd="quant1"/>
+            <om:OMBVAR>
+              <om:OMV name="a"/>
+              <om:OMV name="b"/>
+            </om:OMBVAR>
+            <om:OMA id="plus-prop-1.1">
+              <om:OMS name="eq" cd="relation1"/>
+              <om:OMA>
+                <om:OMS name="plus" cd="arith1"/>
+                <om:OMV name="a"/>
+                <om:OMV name="b"/>
+              </om:OMA>
+              <om:OMA>
+                <om:OMS name="plus" cd="arith1"/>
+                <om:OMV name="b"/>
+                <om:OMV name="a"/>
+              </om:OMA>
+            </om:OMA>
+          </om:OMBIND>
+        </om:OMOBJ>
+      </FMP>
+    </assertion>
+    <assertion xml:id="unary_minus-prop-1" type="lemma">
+      <CMP>
+        <om:OMOBJ>
+          <om:OMR href="#unary_minus-prop-1.1"/>
+        </om:OMOBJ> for all 
+        <om:OMOBJ>
+          <om:OMV name="a"/>
+        </om:OMOBJ>. 
+      </CMP>
+      <FMP>
+        <om:OMOBJ>
+          <om:OMBIND>
+            <om:OMS name="forall" cd="quant1"/>
+            <om:OMBVAR>
+              <om:OMV name="a"/>
+            </om:OMBVAR>
+            <om:OMA id="unary_minus-prop-1.1">
+              <om:OMS name="eq" cd="relation1"/>
+              <om:OMA>
+                <om:OMS name="plus" cd="arith1"/>
+                <om:OMV name="a"/>
+                <om:OMA>
+                  <om:OMS name="unary_minus" cd="arith1"/>
+                  <om:OMV name="a"/>
+                </om:OMA>
+              </om:OMA>
+              <om:OMS name="zero" cd="alg1"/>
+            </om:OMA>
+          </om:OMBIND>
+        </om:OMOBJ>
+      </FMP>
+    </assertion>
+    <assertion xml:id="minus-prop-1" type="lemma">
+      <CMP> For all 
+        <om:OMOBJ>
+          <om:OMV name="a"/>
+        </om:OMOBJ> and 
+        <om:OMOBJ>
+          <om:OMV name="b"/>
+        </om:OMOBJ>, 
+        <om:OMOBJ>
+          <om:OMR href="#minus-prop-1.1"/>
+        </om:OMOBJ>. 
+      </CMP>
+      <FMP>
+        <om:OMOBJ>
+          <om:OMBIND>
+            <om:OMS name="forall" cd="quant1"/>
+            <om:OMBVAR>
+              <om:OMV name="a"/>
+              <om:OMV name="b"/>
+            </om:OMBVAR>
+            <om:OMA id="minus-prop-1.1">
+              <om:OMS name="eq" cd="relation1"/>
+              <om:OMA>
+                <om:OMS name="minus" cd="arith1"/>
+                <om:OMV name="a"/>
+                <om:OMV name="b"/>
+              </om:OMA>
+              <om:OMA>
+                <om:OMS name="plus" cd="arith1"/>
+                <om:OMV name="a"/>
+                <om:OMA>
+                  <om:OMS name="unary_minus" cd="arith1"/>
+                  <om:OMV name="b"/>
+                </om:OMA>
+              </om:OMA>
+            </om:OMA>
+          </om:OMBIND>
+        </om:OMOBJ>
+      </FMP>
+    </assertion>
+    <assertion xml:id="times-prop-2" type="lemma">
+      <CMP> for all 
+        <om:OMOBJ>
+          <om:OMV name="a"/>
+        </om:OMOBJ> and 
+        <om:OMOBJ>
+          <om:OMV name="b"/>
+        </om:OMOBJ>, 
+        <om:OMOBJ>
+          <om:OMR href="#times-prop-2.1"/>
+        </om:OMOBJ> and 
+        <om:OMOBJ>
+          <om:OMR href="#times-prop-2.2"/>
+        </om:OMOBJ>. 
+      </CMP>
+      <FMP>
+        <om:OMOBJ>
+          <om:OMBIND>
+            <om:OMS name="forall" cd="quant1"/>
+            <om:OMBVAR>
+              <om:OMV name="a"/>
+              <om:OMV name="b"/>
+            </om:OMBVAR>
+            <om:OMA>
+              <om:OMS name="and" cd="logic1"/>
+              <om:OMA id="times-prop-2.1">
+                <om:OMS name="eq" cd="relation1"/>
+                <om:OMA>
+                  <om:OMS name="times" cd="arith1"/>
+                  <om:OMV name="a"/>
+                  <om:OMS name="zero" cd="alg1"/>
+                </om:OMA>
+                <om:OMS name="zero" cd="alg1"/>
+              </om:OMA>
+              <om:OMA id="times-prop-2.2">
+                <om:OMS name="eq" cd="relation1"/>
+                <om:OMA>
+                  <om:OMS name="times" cd="arith1"/>
+                  <om:OMV name="a"/>
+                  <om:OMV name="b"/>
+                </om:OMA>
+                <om:OMA>
+                  <om:OMS name="plus" cd="arith1"/>
+                  <om:OMA>
+                    <om:OMS name="times" cd="arith1"/>
+                    <om:OMV name="a"/>
+                    <om:OMA>
+                      <om:OMS name="minus" cd="arith1"/>
+                      <om:OMV name="b"/>
+                      <om:OMS name="one" cd="alg1"/>
+                    </om:OMA>
+                  </om:OMA>
+                  <om:OMV name="a"/>
+                </om:OMA>
+              </om:OMA>
+            </om:OMA>
+          </om:OMBIND>
+        </om:OMOBJ>
+      </FMP>
+    </assertion>
+    <assertion xml:id="times-prop-4" type="lemma">
+      <CMP>For all 
+        <om:OMOBJ>
+          <om:OMV name="a"/>
+        </om:OMOBJ>, 
+        <om:OMOBJ>
+          <om:OMV name="b"/>
+        </om:OMOBJ>, and 
+        <om:OMOBJ>
+          <om:OMV name="a"/>
+        </om:OMOBJ>, we have 
+        <om:OMOBJ>
+          <om:OMR href="#times-prop-4.1"/>
+        </om:OMOBJ>. 
+      </CMP>
+      <FMP>
+        <om:OMOBJ>
+          <om:OMBIND>
+            <om:OMS name="forall" cd="quant1"/>
+            <om:OMBVAR>
+              <om:OMV name="a"/>
+              <om:OMV name="b"/>
+              <om:OMV name="c"/>
+            </om:OMBVAR>
+            <om:OMA id="times-prop-4.1">
+              <om:OMS name="eq" cd="relation1"/>
+              <om:OMA>
+                <om:OMS name="times" cd="arith1"/>
+                <om:OMV name="a"/>
+                <om:OMA>
+                  <om:OMS name="plus" cd="arith1"/>
+                  <om:OMV name="b"/>
+                  <om:OMV name="c"/>
+                </om:OMA>
+              </om:OMA>
+              <om:OMA>
+                <om:OMS name="plus" cd="arith1"/>
+                <om:OMA>
+                  <om:OMS name="times" cd="arith1"/>
+                  <om:OMV name="a"/>
+                  <om:OMV name="b"/>
+                </om:OMA>
+                <om:OMA>
+                  <om:OMS name="times" cd="arith1"/>
+                  <om:OMV name="a"/>
+                  <om:OMV name="c"/>
+                </om:OMA>
+              </om:OMA>
+            </om:OMA>
+          </om:OMBIND>
+        </om:OMOBJ>
+      </FMP>
+    </assertion>
+    <assertion xml:id="divide-prop-1" type="lemma">
+      <CMP>If 
+        <om:OMOBJ>
+          <om:OMR href="#divide-prop-1.1"/>
+        </om:OMOBJ> then 
+        <om:OMOBJ>
+          <om:OMR href="#divide-prop-1.2"/>
+        </om:OMOBJ>. 
+      </CMP>
+      <FMP>
+        <om:OMOBJ>
+          <om:OMBIND>
+            <om:OMS name="forall" cd="quant1"/>
+            <om:OMBVAR>
+              <om:OMV name="a"/>
+            </om:OMBVAR>
+            <om:OMA>
+              <om:OMS name="implies" cd="logic1"/>
+              <om:OMA id="divide-prop-1.1">
+                <om:OMS name="neq" cd="relation1"/>
+                <om:OMV name="a"/>
+                <om:OMS name="zero" cd="alg1"/>
+              </om:OMA>
+              <om:OMA id="divide-prop-1.2">
+                <om:OMS name="eq" cd="relation1"/>
+                <om:OMA>
+                  <om:OMS name="divide" cd="arith1"/>
+                  <om:OMV name="a"/>
+                  <om:OMV name="a"/>
+                </om:OMA>
+                <om:OMS name="one" cd="alg1"/>
+              </om:OMA>
+            </om:OMA>
+          </om:OMBIND>
+        </om:OMOBJ>
+      </FMP>
+    </assertion>
+    <assertion xml:id="power-prop-1" type="lemma">
+      <CMP>
+        <om:OMOBJ>
+          <om:OMR href="#power-prop-1.1"/>
+        </om:OMOBJ> implies 
+        <om:OMOBJ>
+          <om:OMR href="#power-prop-1.2"/>
+        </om:OMOBJ>. 
+      </CMP>
+      <FMP>
+        <om:OMOBJ>
+          <om:OMA>
+            <om:OMS name="implies" cd="logic1"/>
+            <om:OMA id="power-prop-1.1">
+              <om:OMS name="in" cd="set1"/>
+              <om:OMV name="x"/>
+              <om:OMS name="C" cd="setname1"/>
+            </om:OMA>
+            <om:OMA id="power-prop-1.2">
+              <om:OMS name="eq" cd="relation1"/>
+              <om:OMA>
+                <om:OMS name="power" cd="arith1"/>
+                <om:OMV name="x"/>
+                <om:OMV name="a"/>
+              </om:OMA>
+              <om:OMA>
+                <om:OMS name="exp" cd="transc1"/>
+                <om:OMA>
+                  <om:OMS name="times" cd="arith1"/>
+                  <om:OMV name="a"/>
+                  <om:OMA>
+                    <om:OMS name="ln" cd="transc1"/>
+                    <om:OMV name="x"/>
+                  </om:OMA>
+                </om:OMA>
+              </om:OMA>
+            </om:OMA>
+          </om:OMA>
+        </om:OMOBJ>
+      </FMP>
+    </assertion>
+    <assertion xml:id="power-prop-3" type="lemma">
+      <CMP>If 
+        <om:OMOBJ>
+          <om:OMV name="n"/>
+        </om:OMOBJ> is an integer then 
+        <om:OMOBJ>
+          <om:OMR href="#power-prop-3.1"/>
+        </om:OMOBJ> and 
+        <om:OMOBJ>
+          <om:OMR href="#power-prop-3.2"/>
+        </om:OMOBJ>. 
+      </CMP>
+      <FMP>
+        <om:OMOBJ>
+          <om:OMA>
+            <om:OMS name="implies" cd="logic1"/>
+            <om:OMA>
+              <om:OMS name="in" cd="set1"/>
+              <om:OMV name="n"/>
+              <om:OMS name="Z" cd="setname1"/>
+            </om:OMA>
+            <om:OMA>
+              <om:OMS name="and" cd="logic1"/>
+              <om:OMA id="power-prop-3.1">
+                <om:OMS name="eq" cd="relation1"/>
+                <om:OMA>
+                  <om:OMS name="power" cd="arith1"/>
+                  <om:OMV name="x"/>
+                  <om:OMI>0</om:OMI>
+                </om:OMA>
+                <om:OMS name="one" cd="alg1"/>
+              </om:OMA>
+              <om:OMA id="power-prop-3.2">
+                <om:OMS name="eq" cd="relation1"/>
+                <om:OMA>
+                  <om:OMS name="power" cd="arith1"/>
+                  <om:OMV name="x"/>
+                  <om:OMV name="n"/>
+                </om:OMA>
+                <om:OMA>
+                  <om:OMS name="times" cd="arith1"/>
+                  <om:OMV name="x"/>
+                  <om:OMA>
+                    <om:OMS name="power" cd="arith1"/>
+                    <om:OMV name="x"/>
+                    <om:OMA>
+                      <om:OMS name="minus" cd="arith1"/>
+                      <om:OMV name="n"/>
+                      <om:OMI>1</om:OMI>
+                    </om:OMA>
+                  </om:OMA>
+                </om:OMA>
+              </om:OMA>
+            </om:OMA>
+          </om:OMA>
+        </om:OMOBJ>
+      </FMP>
+    </assertion>
+    <assertion xml:id="abs-prop-1" type="lemma">
+      <CMP>For all 
+        <om:OMOBJ>
+          <om:OMV name="x"/>
+        </om:OMOBJ> and 
+        <om:OMOBJ>
+          <om:OMV name="y"/>
+        </om:OMOBJ> we have 
+        <om:OMOBJ>
+          <om:OMR href="abs-prop-1.1"/>
+        </om:OMOBJ>. 
+      </CMP>
+      <FMP>
+        <om:OMOBJ>
+          <om:OMBIND>
+            <om:OMS name="forall" cd="quant1"/>
+            <om:OMBVAR>
+              <om:OMV name="x"/>
+              <om:OMV name="y"/>
+            </om:OMBVAR>
+            <om:OMA id="abs-prop-1.1">
+              <om:OMS name="geq" cd="relation1"/>
+              <om:OMA>
+                <om:OMS name="plus" cd="arith1"/>
+                <om:OMA>
+                  <om:OMS name="abs" cd="arith1"/>
+                  <om:OMV name="x"/>
+                </om:OMA>
+                <om:OMA>
+                  <om:OMS name="abs" cd="arith1"/>
+                  <om:OMV name="y"/>
+                </om:OMA>
+              </om:OMA>
+              <om:OMA>
+                <om:OMS name="abs" cd="arith1"/>
+                <om:OMA>
+                  <om:OMS name="plus" cd="arith1"/>
+                  <om:OMV name="x"/>
+                  <om:OMV name="y"/>
+                </om:OMA>
+              </om:OMA>
+            </om:OMA>
+          </om:OMBIND>
+        </om:OMOBJ>
+      </FMP>
+    </assertion>
+    <assertion xml:id="root-prop-1" type="lemma">
+      <CMP>
+        <om:OMOBJ>
+          <om:OMR href="#root-prop-1.1"/>
+        </om:OMOBJ> implies 
+        <om:OMOBJ>
+          <om:OMR href="#root-prop-1.2"/>
+        </om:OMOBJ>. 
+      </CMP>
+      <FMP>
+        <om:OMOBJ>
+          <om:OMA>
+            <om:OMS name="implies" cd="logic1"/>
+            <om:OMA id="root-prop-1.1">
+              <om:OMS name="in" cd="set1"/>
+              <om:OMV name="x"/>
+              <om:OMS name="C" cd="setname1"/>
+            </om:OMA>
+            <om:OMA id="root-prop-1.2">
+              <om:OMS name="eq" cd="relation1"/>
+              <om:OMA>
+                <om:OMS name="root" cd="arith1"/>
+                <om:OMV name="x"/>
+                <om:OMV name="n"/>
+              </om:OMA>
+              <om:OMA>
+                <om:OMS name="exp" cd="transc1"/>
+                <om:OMA>
+                  <om:OMS name="divide" cd="arith1"/>
+                  <om:OMA>
+                    <om:OMS name="ln" cd="transc1"/>
+                    <om:OMV name="x"/>
+                  </om:OMA>
+                  <om:OMV name="n"/>
+                </om:OMA>
+              </om:OMA>
+            </om:OMA>
+          </om:OMA>
+        </om:OMOBJ>
+      </FMP>
+    </assertion>
+    <assertion xml:id="root-prop-3" type="lemma">
+      <CMP> For all 
+        <om:OMOBJ>
+          <om:OMV name="a"/>
+        </om:OMOBJ> and 
+        <om:OMOBJ>
+          <om:OMV name="n"/>
+        </om:OMOBJ>
+        <om:OMOBJ>
+          <om:OMR href="#root-prop-3.1"/>
+        </om:OMOBJ> (if the root exists!). 
+      </CMP>
+      <FMP>
+        <om:OMOBJ>
+          <om:OMBIND>
+            <om:OMS name="forall" cd="quant1"/>
+            <om:OMBVAR>
+              <om:OMV name="a"/>
+              <om:OMV name="n"/>
+            </om:OMBVAR>
+            <om:OMA id="root-prop-3.1">
+              <om:OMS name="eq" cd="relation1"/>
+              <om:OMA>
+                <om:OMS name="power" cd="arith1"/>
+                <om:OMA>
+                  <om:OMS name="root" cd="arith1"/>
+                  <om:OMV name="a"/>
+                  <om:OMV name="n"/>
+                </om:OMA>
+                <om:OMV name="n"/>
+              </om:OMA>
+              <om:OMV name="a"/>
+            </om:OMA>
+          </om:OMBIND>
+        </om:OMOBJ>
+      </FMP>
+    </assertion>
+  </theory>
+</omdoc>

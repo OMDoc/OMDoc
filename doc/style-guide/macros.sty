@@ -1,0 +1,106 @@
+%%%%%%% pdf stuff copied from Paul Libbrecht
+\newif\ifpdf
+\ifx\pdfoutput\undefined
+\pdffalse % we are not running PDFLaTeX
+\else\pdfoutput=1 % we are running PDFLaTeX
+\pdftrue\fi
+
+
+\ifpdf\pdfcompresslevel9
+\usepackage[pdftex]{graphicx}
+\else\usepackage{graphicx}\fi
+
+% \ifpdf
+%         \DeclareGraphicsExtensions{.pdf, .eps, .eps.gz, .jpg}
+%         \DeclareGraphicsRule{.eps}     {pdf}  {.bb}{`convert EPS:#1 PDF:-}
+%         \DeclareGraphicsRule{.eps.gz}  {pdf}  {.eps.bb}{`gunzip -c #1 | convert EPS:- PDF:-}
+% \else
+% %\DeclareGraphicsExtensions{.eps.gz, .eps, .jpg}
+% %\DeclareGraphicsRule{.eps.gz}{eps}{.eps.bb}{`gunzip -c #1} 
+% %\DeclareGraphicsRule{.jpg}{eps}{.bb}{`convert #1 /tmp/#1.eps && cat /tmp/#1.eps && rm /tmp/#1.eps} 
+% % \DeclareGraphicsRule{.pdf}{eps}{.eps.bb}{`pdf2ps -c #1} 
+%         \DeclareGraphicsExtensions{.eps.gz, .eps, .pdf, .png, .jpg}
+%         \DeclareGraphicsRule{.eps.gz}  {eps} {.eps.bb}{`gunzip -c #1} 
+%         \DeclareGraphicsRule{.pdf}     {eps} {.bb}{`convert PDF:#1 EPS:-}
+%         \DeclareGraphicsRule{.png}         {eps} {.bb}{`convert PNG:#1 EPS:-}
+%         \DeclareGraphicsRule{.jpg}     {eps} {.bb}{`convert JPEG:#1 EPS:-} 
+% \fi
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Editorials
+% 
+% the font shape of ednotes is governed by the parameter \ednoteshape
+% the default is sans serif, specialize it to say italic by 
+% \def\ednoteshape{\it}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\ednoteshape{\sf}
+\newif\ifshowednotes\showednotesfalse
+\def\edshownotes{\showednotestrue}
+\newcounter{ednote}
+\def\ed@foot#1#2#3% text, type, label
+{\def\test{#3}\def\empty{}\footnotetext[\value{ednote}]%
+{{\sc{#2}\if\test\empty\else\label{ed:#3}[{#3}]\fi:} \ednoteshape #1}}
+\def\ed@note#1#2#3% text, type, label
+{\addtocounter{ednote}{1}\message{#2!}%
+\ifshowednotes%
+\footnotemark[\arabic{ednote}]\ed@foot{#1}{#2}{#3}%
+\marginpar{#2(\arabic{ednote})}%
+\fi}
+\newcommand{\ednote}[2][]{\ed@note{#2}{EdNote}{#1}}
+\newcommand{\issue}[2][]{\ed@note{#2}{Issue}{#1}}
+\newenvironment{newpart}[1]% text
+{\addtocounter{ednote}{1}\edef\new@number{\theednote}\message{New Part!}
+\ifshowednotes%
+\ed@foot{#1}{New Part}{}\marginpar{BegNP(\arabic{ednote})}%
+\fi}
+{\ifshowednotes\marginpar{EndNP(\new@number)}\fi}
+
+\def\ednotemessage{\ifnum\value{ednote}>0\typeout{}%
+\typeout{There are still \arabic{ednote} EdNotes and Issues to resolve!}%
+\typeout{}\fi}
+
+\newenvironment{todolist}[1]%
+{\message{todolist!}{{\sf To Do: #1}}\bgroup\sf\marginpar{{\sf ToDo}}\begin{itemize}}%
+{\end{itemize}\egroup}
+
+\newenvironment{neu}{\begin{newpart}{no explanation given}}{\end{newpart}}
+
+\def\tweak#1{\ifshowednotes\marginpar{{\sf tweak}(#1)}\fi}
+
+\def\indextoo#1{{#1}\index{#1}}
+\def\df#1{\bf{#1}}
+\def\dfi#1{\bf{\indextoo{#1}}}
+\def\defemph{\textbf}
+\def\defin#1{\indextoo{#1}}
+\def\defins#1{#1s\index{#1}}
+\def\emin#1{\indextoo{#1}}
+\def\emins#1{{#1s}\index{#1}}
+\def\edin#1{\indextoo{#1}}
+\def\edins#1{\indextoo{#1}s}
+\def\ttin#1{{\tt{#1}}\index{#1@{\tt{#1}}}}
+\def\ttins#1{{\tt{#1}}s\index{#1@{\tt{#1}}}}
+
+\newenvironment{myfig}[2]%
+{\begin{figure}[!htb]\def\myfiglabel{#1}\def\myfigcaption{{#2}}\begin{center}}
+{\caption{\myfigcaption}\label{fig:\myfiglabel}\end{center}\end{figure}}
+\def\myfigref#1{Figure~\ref{fig:#1}}
+\def\myfigsref#1#2{Figures~\ref{fig:#1} and~\ref{fig:#2}}
+\def\myfiglref#1#2{Figures~\ref{fig:#1} to~\ref{fig:#2}}
+\def\Myfigref#1{Figure~\ref{fig:#1}}  % this one is capitalized for sentence beginnings
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% support for XML %%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\attribute#1#2{{\tt{#1}}\index{#1@{\tt{#1}} attribute in!{\tt{#2}}}}
+\def\element#1{{\tt{#1}}\index{#1@{\tt{#1}} (element)}}
+\def\oldelement#1#2{{\tt{#1}}\index{#1@{\tt{#1}} (deprecated in {#2})}}
+\def\eldef#1{\label{eldef:#1}{\tt{#1}}\index{#1@{\tt{#1}} (element)}}
+\def\attval#1#2#3{{\tt{'#1'}}%
+\index{#1@{\tt{#1}}  value for attribue !{\tt{#2}} on element!{\tt{#3}}}}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "omdoc"
+%%% End:
+ 

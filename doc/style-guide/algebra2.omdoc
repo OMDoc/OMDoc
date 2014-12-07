@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc id="algebra1.omdoc"
+       cdbase="http://cds.omdoc.org/omstd"
+       xmlns:bourbaki="http://www.bourbaki.org/theories.omdoc">
+       <!-- FIXME this is a strange notion of a "cd" namespace.  We should introduce a 
+            proper OMDoc namespace, and declare a CDBase. -->
+ <metadata>
+  <Title>Laws of Composition</Title>
+  <Creator role="trl">Michael Kohlhase</Creator> 
+  <Date action="created">2002-01-03T0703</Date>
+  <Description>
+   A first migration step for a fragment of Bourbaki's Algebra
+  </Description>
+  <Source>Nicolas Bourbaki, Algebra, Springer Verlag 1974</Source>
+  <Type>Text</Type>
+  <Format>application/omdoc+xml</Format>
+</metadata>
+      
+<theory id="magmas">
+<symbol id="E" scope="local">
+ <CMP>A set that acts as a base set for a magma</CMP>
+</symbol>
+
+<symbol id="top" scope="local">
+ <CMP>An arbitrary law of composition set that acts as a base set for a magma</CMP>
+</symbol>
+<presentation for="top">
+ <use format="TeX"><![CDATA[\top]]></use>
+</presentation>
+<presentation for="top" parent="OMA" fixity="infix">
+ <use format="TeX"><![CDATA[\top]]></use>
+</presentation>
+
+<symbol id="bot" scope="local">
+ <CMP>An arbitrary law of composition set that acts as a base set for a magma</CMP>
+</symbol>
+<presentation for="bot">
+ <use format="TeX"><![CDATA[\bot]]></use>
+</presentation>
+<presentation for="bot" parent="OMA" fixity="infix">
+ <use format="TeX"><![CDATA[\bot]]></use>
+</presentation>
+
+
+<symbol id="top" scope="local">
+ <CMP>An arbitrary law of composition set that acts as a base set for a magma</CMP>
+</symbol>
+<presentation for="top">
+ <use format="TeX"><![CDATA[\top]]></use>
+</presentation>
+<presentation for="top" parent="OMA" fixity="infix">
+ <use format="TeX"><![CDATA[\top]]></use>
+</presentation>
+
+<symbol id="plus" scope="local">
+ <CMP>An arbitrary additive law of composition set that acts as a base set for a magma</CMP>
+</symbol>
+<presentation for="plus">
+ <use format="default"><![CDATA[+]]></use>
+</presentation>
+<presentation for="plus" parent="OMA" fixity="infix">
+ <use format="default"><![CDATA[+]]></use>
+</presentation>
+
+<symbol id="times" scope="local">
+ <CMP>An arbitrary multiplicative law of composition set that acts as a base set for a magma</CMP>
+</symbol>
+<presentation for="times">
+ <use format="default"><![CDATA[.]]></use>
+</presentation>
+<presentation for="times" parent="OMA" fixity="infix">
+ <use format="default"/>
+</presentation>
+<presentation for="times" parent="OMA" fixity="infix" style="visible>
+ <use format="default"><![CDATA[.]]></use>
+</presentation>
+
+<symbol id="magma">
+ <CMP>A set with a law of composition</CMP>
+</symbol>
+
+<definition id="magma.def" for="magma">
+ <CMP> 
+  Let <OMOBJ><OMS cd="magmas" name="E"/></OMOBJ> be a set. A mapping of 
+  <OMOBJ>
+   <OMA>
+    <OMS cd="bourbaki:products" name="cartesian-product"/>
+    <OMS cd="magmas" name="E"/>
+    <OMS cd="magmas" name="E"/>
+   </OMA>
+  </OMOBJ> is called a
+  law of composition on <OMOBJ><OMS cd="magmas" name="E"/></OMOBJ>. 
+  The value 
+  <OMOBJ><OMA><OMV  name="f"/><OMV name="x"/><OMV name="y"/></OMA></OMOBJ> of 
+  <OMOBJ><OMV  name="f"/></OMOBJ> for an ordered pair
+  <OMOBJ>
+   <OMA>
+    <OMS cd="set1" name="in"/>
+    <OMA>
+     <OMS cd="bourbaki:products" name="pair"/>
+     <OMV name="x"/>
+     <OMV name="y"/>
+    </OMA>
+    <OMA>
+     <OMS cd="bourbaki:products" name="cartesian-product"/>
+     <OMS cd="magmas" name="E"/>
+     <OMS cd="magmas" name="E"/>
+    </OMA>
+   </OMA>
+   </OMOBJ> is called the composition of   <OMOBJ><OMV name="x"/></OMOBJ> and   
+   <OMOBJ><OMV name="y"/></OMOBJ> of under this  law. 
+   A set with a law of composition is called a magma.
+ </CMP>
+</definition>
+
+<omtext id="t1">
+ <CMP>
+  The composition of <OMOBJ><OMV name="x"/></OMOBJ> and 
+  <OMOBJ><OMV name="y"/></OMOBJ> is usually denoted by writing 
+  <OMOBJ><OMV name="x"/></OMOBJ> and <OMOBJ><OMV name="y"/></OMOBJ>
+  in a definite order and separating them by a characteristic symbol of the 
+  law in question (a symbol which it may be agreed to omit). Among the 
+  symbols most often used are <OMOBJ><OMS cd="magmas" name="plus"/></OMOBJ> and 
+  <OMOBJ><OMS cd="magmas" name="times"/></OMOBJ>, the usual convention being to omit the 
+  latter if desired; with these symbols the composition of 
+  <OMOBJ><OMV name="x"/></OMOBJ> and <OMOBJ><OMV name="y"/></OMOBJ> is 
+  written respectively as 
+  <OMOBJ><OMA><OMS cd="magmas" name="plus"/><OMV name="x"/><OMV name="y"/></OMA></OMOBJ>,
+  <OMOBJ>
+   <OMA>
+    <OMS cd="magmas" name="times" style="visible"/>
+    <OMV name="x"/>
+    <OMV name="y"/>
+   </OMA>
+  </OMOBJ>, or
+  <OMOBJ><OMA><OMS cd="magmas" name="times"/><OMV name="x"/><OMV name="y"/></OMA></OMOBJ>,
+  A law denoted by the symbol <OMOBJ><OMS cd="magmas" name="plus"/></OMOBJ>
+  is usually called {\em addition} (the composition 
+  <OMOBJ><OMA><OMS cd="magmas" name="plus"/><OMV name="x"/><OMV name="y"/></OMA></OMOBJ>,
+  beind called the {\em sum} of <OMOBJ><OMV name="x"/></OMOBJ> and <OMOBJ><OMV
+  name="y"/></OMOBJ>) and we say that it is {\em written additively}; 
+  a law denoted by the symbol   
+  <OMOBJ><OMS cd="magmas" name="times"/></OMOBJ> is usually called {\em multiplication} (the 
+  composition 
+  <OMOBJ>
+   <OMA>
+    <OMS cd="relation1" name="eq"/>
+    <OMA>
+     <OMS cd="magmas" name="times" style="visible"/>
+     <OMV name="x"/>
+     <OMV name="y"/>
+    </OMA>
+    <OMA><OMS cd="magmas" name="times"/><OMV name="x"/><OMV name="y"/></OMA>
+   </OMA>
+  </OMOBJ> being called the {\em product} for <OMOBJ><OMV name="x"/></OMOBJ> 
+  and <OMOBJ><OMV name="y"/></OMOBJ>) and we say that it is {\em written multiplicatively}. 
+ </CMP>
+</omtext>
+
+<omtext id="t2">
+ <CMP>
+  In the general arguments of paragraphs 1 to 3 of this chapter we shall 
+  generally use the symbols   <OMOBJ><OMS cd="magmas" name="top"/></OMOBJ>  
+  and   <OMOBJ><OMS cd="magmas" name="bot"/></OMOBJ> to denote arbitrary laws of 
+  composition.
+ </CMP>
+</omtext>
+
+<omtext id="t3">
+ <CMP>
+  By an abuse of language, a mapping of a {\em subset} of  
+  <OMOBJ>
+   <OMA>
+    <OMS cd="bourbaki:products" name="cartesian-product"/>
+    <OMS cd="magmas" name="E"/>
+    <OMS cd="magmas" name="E"/>
+   </OMA>
+  </OMOBJ> into
+  <OMOBJ><OMS cd="magmas" name="E"/></OMOBJ> 
+  is sometimes called a law of composition {\em not everywhere defined} on 
+  <OMOBJ><OMS cd="magmas" name="E"/></OMOBJ>.
+ </CMP>
+</omtext> 
+
+<omgroup type="sequence">
+ <metadata><Title>Examples</Title></metadata>
+
+ <example id="e1.magma" for="magma">
+  <CMP>
+   The mappings $(X,Y)\mapsto X\cup Y$ and $(X,Y)\mapsto X\cap Y$ are
+  laws of composition on the set of subsets of a set <OMOBJ><OMS cd="magmas" name="E"/></OMOBJ>.
+  </CMP>
+ </example>
+ 
+ <example id="e2.magma" for="magma">
+  <CMP>
+   On the set $\bf N$ of natural numbers, addition, multiplication, and 
+   exponentiation are laws of composition (the compositions of $x\in{\bf N}$ and 
+   $y\in{\bf N}$ under these laws being denoted respectively by $x+y$, $xy$, or 
+   $x.y$ and $x^y$)  ({\em Set Theory}, III, $\P3$, no. 4).
+  </CMP>
+ </example>
+ 
+ <example id="e3.magma" for="magma">
+  <CMP>
+   Let <OMOBJ><OMS cd="magmas" name="E"/></OMOBJ> be a set; the mapping $(X,Y)\mapsto X\circ Y$ is a law of composition 
+   on the set of subsets of $E\times E$ ({\em Set Theory}, II, $\P3$, no. 3, 
+   Definition 6); the mapping $(f,g)\mapsto f\circ g$ is a law of composition on 
+   the set of mappings from  <OMOBJ><OMS cd="magmas" name="E"/></OMOBJ> into <OMOBJ><OMS cd="magmas" name="E"/></OMOBJ> ({\em Set Theory}, II, $\P5$, no. 2).
+  </CMP>
+ </example>
+</omgroup>
+</theory>
+</omdoc>

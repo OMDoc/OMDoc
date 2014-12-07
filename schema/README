@@ -1,0 +1,10 @@
+This directory contains the validation schemata for OMDoc1.6
+
+Manifest: 
+rnc: RelaxNG Schema in compact form; this is the hand-written, normative schema, all others are (will be) generated from it
+rng: RelaxNG Schema in XML form: generated from rnc/*.rnc
+dtd: document type definition (DTD) generated from rnc/*.rnc
+xsd: W3C schema (XSD)  generated from rnc/*.rnc
+Makefile: regenreates the schemata in rng/, dtd/, and  xsd/
+
+LIMITATION: the schema generation does not work yet.  

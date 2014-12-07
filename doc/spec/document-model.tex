@@ -1,0 +1,415 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This file is part of the LaTeX sources of the OMDoc 1.6 specification
+% Copyright (c) 2006 Michael Kohlhase
+% This work is licensed by the Creative Commons Share-Alike license
+% see http://creativecommons.org/licenses/by-sa/2.5/ for details
+\svnInfo $Id: document-model.tex 8534 2009-09-29 19:08:14Z kohlhase $
+\svnKeyword $HeadURL: https://svn.omdoc.org/repos/omdoc/trunk/doc/spec/document-model.tex $
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{module}[id=document-model]
+\begin{omgroup}[id=document-model]{Document Models for OMDoc}
+
+In almost all {\xml} applications, there is a tension between the document view and the
+object view of data; after all, {\xml} is a document-oriented interoperability framework
+for exchanging data objects. The question, which view is the correct one for {\xml} in
+general is hotly debated among {\xml} theorists. In {\omdoc}, actually both views make
+sense in various ways. Mathematical documents are the objects we try to formalize, they
+contain knowledge about mathematical objects that are encoded as formulae, and we arrive
+at content markup for mathematical documents by treating knowledge fragments (statements
+and theories) as objects in their own right that can be inspected and reasoned about.
+
+In {\srefl{mobj}{quiz}}, we have defined what {\omdoc} documents look like and motivated
+this by the mathematical objects they encode. But we have not really defined the
+properties of these documents as objects themselves (\inlinedef{we will speak of the
+  {\omdoc} {\twindef{document}{object model}} ({\indextoo{OMDOM}})}). To get a feeling for
+the issues involved, let us take stock of what we mean by the object view of data. In
+mathematics, when we define a class of mathematical objects (e.g.  vector spaces), we have
+to say which objects belong to this class, and when they are to be considered equal (e.g.
+vector spaces are equal, iff they are isomorphic). When defining the intended behavior of
+operations, we need to care only about objects of this class, and we can only make use of
+properties that are invariant under object equality. In particular, we cannot use
+properties of a particular realization of a vector space that are not preserved under
+isomorphism. For document models, we do the same, only that the objects are documents.
+
+
+\begin{omgroup}[id=xml-DOM]{XML Document Models}
+\begin{module}[id=XMLDom]
+
+{\xml} supports the task of defining a particular class of documents (e.g. the class of
+{\omdoc} documents) with formal grammars such as the {\twintoo{document type}{definition}}
+({\indextoo{DTD}}) or an {\xml} \twinalt{schema}{XML}{schema}, that can be used for
+mechanical document validation.  Surprisingly, {\xml} leaves the task of specifying
+document equality to be clarified in the (informal) specifications, such as this {\omdoc}
+specification. As a consequence, current practice for {\xml}
+\twinalt{applications}{application}{XML} is quite varied. For instance, the {\openmath}
+standard (see~\cite{BusCapCar:2oms04} and {\sref{openmath}}) gives a mathematical
+object model for {\openmath} objects that is specified independently of the {\xml}
+encoding. Other {\xml} applications like e.g.  presentation
+{\mathml}~\cite{CarIon:MathML03} or {\xhtml}~\cite{W3C:xhtml2000} specify models in form
+of the intended screen presentation, while still others like the
+{\xslt}~\cite{Clark:xslt99} give the operational semantics.
+
+For a formal definition
+\begin{definition}[display=flow,id=document-model.def]
+  let $\cK$ be a set of documents. We take a {\twindef{document}{model}} to be a partial
+  equivalence relation\footnote{A partial equivalence relation is a symmetric transitive
+    relation. We will use $[d]_\cX$ for the {\twindef{equivalence}{class}} of $d$, i.e.
+    $[d]_\cX\colon=\{e|d{\cX}e\}$ $\cX$ on documents, such that $\{d|d{\cX}d\}=\cK$}. In
+  particular, a relation $\cX$ is an equivalence relation on $\cK$.  For a given document
+  model $\cX$, let us say that two documents $d$ and $d'$ are {\defemph{$\cX$-equal}}, iff
+  $d{\cX}d'$. We call a property $p$ $\cX$-{\defin{invariant}}, iff for all $d{\cX}d'$,
+  $p$ holds on $d$ whenever $p$ holds on $d'$.
+\end{definition}
+
+A possible source of confusion is that documents can admit more than one document model
+(see~\cite{KohKoh:esmk05} for an exploration of possible document models for
+mathematics). Concretely, {\omdoc} documents admit the {\omdoc} document model that we
+will specify in section {\sref{omdom}} and also the following four {\xml} document
+models that can be restricted to {\omdoc} documents (as a relation).\footnote{Here we
+  follow Eliotte Rusty Harold's classification of layers of {\xml} processing
+  in~\cite{Harold:ex03}, where he distinguishes the binary, lexical, sequence, structure,
+  and semantic layer, the latter being the document model of the {\xml} application}
+\begin{description}
+\item[The {\twintoo{binary}{document model}}] interprets files as sequences of
+  bytes.  Two documents are equal, iff they are equal as byte sequence. This
+  is the most concrete and fine-grained (and thus weakest) document model
+  imaginable.
+\item[The {\atwintoo{lexical}{document}{model}}] interprets binary files as sequences of
+  {\indextoo{Unicode}} characters~\cite{Unicode:tuc03} using an encoding table.  Two files
+  may be considered equal by this document model even though they differ as binary files,
+  if they have different encodings that map the byte sequences to the same sequence of
+  {\unicode} characters.
+\item[The \atwinalt{{\xml} syntax document model}{XML}{syntax}{document model}] interprets
+  {\unicode} Files as sequences consisting of an {\xml} declaration, a DOCTYPE
+  declaration, tags, entity references, character references, CDATA sections, PCDATA
+  comments, and processing instructions. At this level, for instance, whitespace
+  characters between {\xml} tags are irrelevant, and {\xml} documents may be considered
+  the same, if they are different as {\unicode} sequences.
+\item[The \atwinalt{{\xml} structure document model}{XML}{structure}{document model}]
+  interprets documents as {\xml} trees of elements, attributes, text nodes, processing
+  instructions, and sometimes comments. In this document model the order of attribute
+  declarations in {\xml} elements is immaterial, double and single quotes can be used
+  interchangeably for strings, and {\xml} \twinalt{comments}{XML}{comment}
+  (\snippetin{<\char33--}\ldots\snippetin{-->}) are ignored.
+\end{description}
+Each of these document models, is suitable for different applications, for instance the
+lexical document model is the appropriate one for {\indextoo{Unicode}}-aware editors that
+interpret the encoding string in the {\xml} declaration and present the appropriate glyphs
+to the user, while the binary document model would be appropriate for a simple ASCII
+editor. Since the last three document models are refinements of the {\xml} document model,
+we will recap this in the next section and define the {\omdoc} document model in
+{\sref{omdom}}.
+
+To get a feeling for the issues involved, let us compare the {\omdoc} elements in
+{\mylstlref{first}{third}} below. For instance, the serialization in {\mylstref{second}}
+is {\xml}-equal to the one in {\mylstref{first}}, but not to the one in
+{\mylstref{third}}.
+
+\begin{lstlisting}[escapechar=\%,label=lst:first,
+   index={definition,OMA},caption={An {\omdoc} Definition}]
+<docalt>
+  <definition xml:id="comm.def.en" for="comm">
+    <h:p xml:lang="en">
+      An operation <OMV name="op" id="op"/> is called commutative, iff 
+      <OMA id="comm1"><OMS cd="relation1" name="eq"/>
+        <OMA><OMV name="op"/><OMV name="X"/><OMV name="Y"/></OMA>
+        <OMA><OMV name="op"/><OMV name="Y"/><OMV name="X"/></OMA>
+      </OMA>
+      for all <OMV id="x" name="X"/> and <OMV id="y" name="Y"/>.
+    </h:p>
+  </definition
+  <definition xml:id="comm.def.de" for="#comm">
+    <h:p xml:lang="de">
+      Eine Operation <OMR href="#op"/> hei%\ss%t kommutativ, falls 
+      <OMR href="#comm1"/> f%\"u%r alle <OMR href="#x"/> und <OMR href="#y"/>.
+    </h:p>
+  </definition>
+</docalt>
+\end{lstlisting}
+
+\begin{lstlisting}[escapechar=\%,label=lst:second,mathescape,
+   index={definition,h:p},
+   caption={An {\xml}-equal serialization for {\mylstref{first}}}]
+<definition for="comm" xml:id="comm.def.de" >
+ <h:p xml:lang='de'> <!-- Note the unabbreviated empty element -->
+   Eine Operation <OMR href="#op"/>  hei%\ss%t 
+   kommutativ, falls <OMR href='comm1'/> f%\"u%r alle 
+   <OMR href="#x"/> und <OMR href='y'/>.
+  </h:p>
+</definition>
+\end{lstlisting}
+\end{module}
+\end{omgroup}
+
+\begin{omgroup}[id=omdom]{The OMDoc Document Model}
+\begin{module}[id=omdom]
+
+The {\omdoc} document model extends the {\xml} structure document model in various ways.
+We will specify the equality relation in the table below, and discuss a few general issues
+here.
+
+The {\omdoc} document model is guided by the notion of content markup for mathematical
+documents. Thus, two document fragments will only be considered equal, if they have the
+same abstract structure. For instance, the order of children of an {\element{docalt}}
+element is irrelevant, since they form a {\twintoo{multilingual}{group}} which form the
+base for multilingual text assembly. Other facets of the {\omdoc} document model are
+motivated by presentation-independence, for instance the distribution of whitespace is
+irrelevant even in text nodes, to allow formatting and reflow in the source code, which is
+not considered to change the information content of a text.
+
+\begin{lstlisting}[escapechar=\%,label=lst:third,
+   index={definition,docalt,OMA},
+   caption={An {\omdoc}-Equal Representation for {\mylstsref{first}{second}}}]
+<docalt>
+  <definition xml:id="comm.def.de" for="comm">
+    <h:p xml:lang="de">Eine Operation <OMR href="#op"/> 
+      hei%\ss%t kommutativ, falls 
+      <OMA id="comm1"><OMS cd="relation1" name="eq"/>
+        <OMA><OMV name="op"/><OMV name="X"/><OMV name="Y"/></OMA>
+        <OMA><OMV name="op"/><OMV name="Y"/><OMV name="X"/></OMA>
+      </OMA>
+      f%\"u%r alle <OMR href="#x"/> und <OMR href="#y"/>.
+  </h:p>
+  </definition>
+  <definition xml:id="comm.def.en" for="#comm">
+    <h:p xml:lang="en">
+      An operation <OMV id="op" name="op"/> is called commutative, 
+      iff <OMR href="#comm1"/> for all <OMV id="x" name="X"/> and 
+      <OMV id="y" name="Y"/>.
+    </h:p>
+  </definition>
+</docalt>
+\end{lstlisting}
+
+Compared to other document models, this is a rather weak (but general) notion of
+equality. Note in particular, that the {\omdoc} document model does {\emph{not}}
+use mathematical equality here, which would make the formula $X+Y=Y+X$ (the
+{\element[ns-elt=om]{OMA}} with {\snippet{xml:id="comm1"}} in
+{\mylstref{third}} instantiated with addition for {\snippetin{op}}) mathematically
+equal to the trivial condition $X+Y=X+Y$, obtained by exchanging the right hand
+side $Y+X$ of the equality by $X+Y$, which is mathematically equal (but not
+{\omdoc}-equal).
+
+Let us now specify (part of) the equality relation by the rules in the table in
+{\myfigref{omdom}}.  We have discussed a machine-readable form of these equality
+constraints in the {\xml} schema for {\omdoc} in~\cite{KohAng:tccmvc03}.
+
+\begin{myfig}{omdom}{The {\omdoc} Document Model}
+\begin{scriptsize}
+\begin{tabular}{|l|p{1.2truecm}|p{5.5truecm}|p{3cm}|}\hline
+  \#& Rule & comment & elements \\\hline\hline
+  1 & unordered
+  & The order of children of this element is irrelevant (as far as permitted by
+  the content model). For instance only the order of {\element{obligation}}
+  elements in the {\element{axiom-inclusion}} element  is arbitrary, since the
+  others must precede them in the content model. 
+  & {\element{adt}} {\element{axiom-inclusion}} {\element{metadata}}
+  {\element{symbol}} {\element{code}} {\element{private}} {\element{presentation}}
+  {\element{omstyle}}\\\hline
+  2 & multi-group 
+  & The order between siblings elements does not matter, as long as the values of
+  the key attributes differ. 
+  & {\element{requation}} {\element[ns-elt=dc]{description}}
+  {\element{sortdef}} {\element{data}}   {\element[ns-elt=dc]{title}} {\element{solution}} \\\hline 
+  3 & DAG encoding 
+  & \atwinalt{Directedacyclicgraphs}{directed}{acyclic}{graph} built up using
+    {\element[ns-elt=om]{OMR}} elements are equal, iff their {\twintoo{tree}{expansion}s}
+    are equal.  
+  & {\element[ns-elt=om]{OMR}} {\element{ref}}     \\\hline   
+  4 & Dataset 
+  & If the content of the {\element[ns-elt=dc]{type}} element is {\snippetin{Dataset}}, then
+  the order of the siblings of the parent {\element{metadata}} element is
+  irrelevant. 
+  & {\element[ns-elt=dc]{type}} \\\hline
+\end{tabular}
+\end{scriptsize}
+\end{myfig}
+
+The last rule in {\myfigref{omdom}} is probably the most interesting, as we have seen in
+{\sref{omdoc-infrastructure}}, {\omdoc} documents have both formal and informal aspects,
+they can contain {\emph{\indextoo{narrative}}} as well as
+{\emph{\indextoo{narrative-structured}}} information.  The latter kind of document
+contains a formalization of a mathematical theory, as a reference for automated theorem
+proving systems. There, logical dependencies play a much greater role than the order of
+serialization in mathematical objects.  \inlinedef{We call such documents {\defin{content
+      OMDoc}}} and specify the value {\snippetin{Dataset}} in the
+{\element[ns-elt=dc]{type}} element of the {\omdoc} metadata for such documents.  On the
+other extreme we have human-oriented presentations of mathematical knowledge, e.g.  for
+educational purposes, where didactic considerations determine the order of
+presentation. \inlinedef{We call such documents {\defin{narrative-structured}}} and
+specify this by the value {\snippetin{Text}} (also see the discussion in
+{\sref{dc-elements}})
+\end{module}
+\end{omgroup}
+
+\begin{omgroup}[id=sub-languages]{OMDoc Sub-Languages}
+\begin{module}[id=sub-languages]
+
+  In the last chapters we have described the {\omdoc} modules. Together, they make up the
+  {\omdoc} document format, a very rich format for marking up the content of a wide
+  variety of mathematical documents. (see {\extref{primer}{all}} for some worked
+  examples). Of course not all documents need the full breadth of {\omdoc} functionality,
+  and on the other hand, not all {\omdoc} applications (see {\extref{projects}{all}} for
+  examples) support the whole language.
+
+One of the advantages of a modular language design is that it becomes easy to address this
+situation by specifying sub-languages that only include part of the functionality. We will
+discuss plausible {\omdoc} sub-languages and their applications that can be obtained by
+dropping optional modules from {\omdoc}.  {\myfigref{omdoc-sub-languages}} visualizes the
+sub-languages we will present in this chapter. The full language {\omdoc} is at the top,
+at the bottom is a minimal sub-language {\omdoc} Basic, which only contains the required
+modules (mathematical documents without them do not really make sense). The arrows signify
+language inclusion and are marked with the modules acquired in the extension.
+
+\begin{myfig}{omdoc-sub-languages}{{\omdoc} Sub-Languages and Modules}
+ \begin{tikzpicture}
+     \begin{scope}
+       \tikzstyle{every node}=[draw]
+       \node (basic) at (3,0) {{\sc Basic} ({\small{\MOBJmodule{spec}},
+           {\DOCmodule{spec}}, {\METAmodule{spec}}, {\MTXTmodule{spec}}, {\RTmodule{spec}}})};
+       \node (cd) at (3,1.5) {{\sc{Content Dictionaries}}};
+       \node (mathweb) at (1,2.8) {{\sc{MathWeb}}};
+       \node (edu) at (1,4.4) {{\sc{Education}}};
+       \node (spec) at (5,3.5) {{\sc{Specification}}};
+       \node (full) at (3,5.5) {{\omdoc}};
+     \end{scope}
+    \draw[->] (basic) -- node[left]{\footnotesize{\PRESmodule{spec}}, {\STmodule{spec}}}  (cd);
+    \draw[->] (cd) -- node[left]{\footnotesize{\EXTmodule{spec}}} (mathweb);
+    \draw[->] (mathweb) --  node[left] {\footnotesize{\QUIZmodule{spec}}} (edu);
+    \draw[->] (edu) -- 
+        node[left] {\footnotesize{\CTHmodule{spec}}, {\DGmodule{spec}},
+                                   {\PFmodule{spec}}, {\ADTmodule{spec}}}
+              (full); 
+    \draw [->] (cd) -- 
+        node[right] {\footnotesize{\CTHmodule{spec}}, {\DGmodule{spec}}, 
+                                  {\PFmodule{spec}}, {\ADTmodule{spec}}}
+               (spec);
+    \draw[->] (spec) -- node[right] {\footnotesize{\EXTmodule{spec}}, {\QUIZmodule{spec}}} (full);
+  \end{tikzpicture}
+\end{myfig}
+
+The sub-language identifiers can be used as values of the {\attributeshort{modules}}
+attribute on the {\element{omdoc}} and {\element{omdoc}} elements. Used there, they
+abbreviate the list of modules these sub-languages contain.
+
+
+\begin{omgroup}[id=sub-languages.basic]{Basic {\omdoc}}
+
+Basic {\omdoc} is sufficient for very simple mathematical documents that do not introduce
+new symbols or concepts, or for early (and non-specific) stages in the migration process
+from legacy representations of mathematical material (see {\sref{top-level}}). This
+{\omdoc} sub-language consists of five modules: we need module {\MOBJmodule{spec}} for
+mathematical objects and formulae, which are present in almost all mathematical documents.
+Module {\DOCmodule{spec}} provides the document infrastructure, and in particular, the
+root \twinalt{element}{document}{root} {\element{omdoc}}. We need {\METAmodule{spec}} for
+titles, descriptions, and administrative metadata, and module {\MTXTmodule{spec}} so we
+can state properties about the mathematical objects in {\element{omtext}} element.
+Finally, module {\RTmodule{spec}} allows to structured text below the {\element{omtext}}
+level. This module is not strictly needed for basic {\omdoc}, but we have included it for
+convenience.
+\end{omgroup}
+
+\begin{omgroup}[id=sub-languages.cd]{{\omdoc} Content Dictionaries}
+
+Content Dictionaries are used to define the meaning of {\indextoo{symbol}s} in the
+{\openmath} standard~\cite{BusCapCar:2oms04}, they are the mathematical documents referred
+to in the {\attribute{cd}{OMS}} attribute of the {\element[ns-elt=om]{OMS}} element.  To
+express \twinalt{contentdictionaries}{content dictionary}{OMDoc} in {\omdoc}, we need to
+add the module {\STmodule{spec}} to Basic {\omdoc}.  It provides the possibility to
+specify the meaning of basic mathematical objects ({\indextoo{symbol}s}) by
+{\indextoo{axiom}s} and {\indextoo{definition}s} together with the infrastructure for
+inheritance, and grouping, and allows to reference the symbols defined via their home
+theory (see the discussion in {\sref{theories-contexts}}).
+  
+With this extension alone, {\omdoc} content dictionaries add support for
+{\twintoo{multilingual}{text}}, simple {\indextoo{inheritance}} for theories, and
+{\twintoo{document}{structure}} to the functionality of {\openmath} content
+dictionaries. Furthermore, {\omdoc} content dictionaries allow the conceptual separation
+of mathematical properties into {\indextoo{constitutive}} ones and
+{\twintoo{logically}{redundant}} ones. The latter of these are not strictly essential for
+content dictionaries, but enhance maintainability and readability, they are included in
+{\openmath} content dictionaries for documentation and explanation.
+
+The sub-language for {\omdoc} content dictionaries also allows the specification of
+notations for the introduced symbols (by module {\PRESmodule{spec}}). So the resulting
+documents can be used for referencing (as in {\openmath}) and as a resource for deriving
+presentation information for the symbols defined here.  To get a feeling for this
+sub-language, see the example in the {\omdoc} variant of the {\openmath} content
+dictionary {\snippetin{arith1}} in {\sref{omcds}}, which shows that the {\openmath}
+content dictionary format is (isomorphic to) a subset of the {\omdoc} format. In fact, the
+{\openmath}2 standard only presents the content dictionary format used here as one of many
+encodings and specifies abstract conditions on content dictionaries that the {\omdoc}
+encoding below also meets.  Thus {\omdoc} is a valid content dictionary encoding.
+\end{omgroup}
+
+\begin{omgroup}[id=sub-languages.spec]{Specification {\omdoc}}
+
+{\omdoc} content dictionaries are still a relatively lightweight format for the
+specification of meaning of mathematical symbols and objects. Large scale formal
+specification efforts, e.g. for program verification need more structure to be
+practical. Specification languages like {\casl} (Common Algebraic
+\indexalt{Specification}{specification} Language~\cite{CoFI:2004:CASL-RM}) offer the necessary
+infrastructure, but have a syntax that is not integrated with web standards.
+
+The Specification {\omdoc} sub-language adds the modules {\ADTmodule{spec}} and
+{\CTHmodule{spec}} to the language of {\omdoc} content dictionaries. The resulting
+language is equivalent to the {\casl} standard,
+see~\cite{AutHut:tefsduc00,Hutter:mocsv00,MAH-06-a} for the necessary theory.
+
+The structured definition schemata from module {\ADTmodule{spec}} allow to specify
+{\twintoo{abstract}{data type}s}, sets of objects that are inductively defined from
+constructor symbols. The {\twintoo{development}{graph}} structure built on the
+{\twintoo{theory}{morphism}s} from module {\CTHmodule{spec}} allow to make inclusion
+assertions about theories that structure fragments of mathematical developments and
+support a \twintoo{Management of}{change}.
+\end{omgroup}
+
+\begin{omgroup}[id=sub-languages.mathwebomdoc]{MathWeb {\omdoc}}
+
+{\omdoc} can be used as a content-oriented basis for web publishing of
+mathematics. Documents for the web often contain images, applets, code fragments,
+and other data, together with mathematical statements and theories.
+
+The {\omdoc} sub-language {\twinalt{MathWeb {\omdoc}}{MathWeb} {OMDoc}} extends the
+language for {\omdoc} content dictionaries by the module {\EXTmodule{spec}}, which adds
+infrastructure for images, applets, code fragments, and other data.
+\end{omgroup}
+
+\begin{omgroup}[id=sub-languages.edu]{Educational {\omdoc}}
+
+{\omdoc} is currently used as a content-oriented basis for various systems for mathematics
+education (see e.g. {\extref{primer}{courseware}} for an example and discussion).  The {\omdoc}
+sub-language \twinalt{Educational {\omdoc}}{Educational}{OMDoc} extends MathWeb {\omdoc}
+by the module {\QUIZmodule{spec}}, which adds infrastructure for exercises and
+assessments.
+\end{omgroup}
+\end{module}
+
+\begin{omgroup}[id=spec-intro.reusing]{Reusing {\omdoc} modules in other formats}
+
+Another application of the modular language design is to share modules with other {\xml}
+\twinalt{applications}{XML}{application}. For instance, formats like
+{\docbook}~\cite{WalMue:dtdg99} or {\xhtml}~\cite{W3C:xhtml2000} could be extended with
+the {\omdoc} statement level.  Including modules {\MOBJmodule{spec}}, {\METAmodule{spec}},
+and (parts of) {\MTXTmodule{spec}}, but not {\RTmodule{spec}} and {\DOCmodule{spec}} would
+result in content formats that mix the document-level structure of these formats.  Another
+example is the combination of {\xmlrpc} envelopes and {\omdoc} documents used for
+interoperability in {\extref{primer}{rpc}}.
+\end{omgroup}
+\end{omgroup}
+\end{omgroup}
+\end{module}
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "main"
+%%% End: 
+
+% LocalWords:  cd xxx arith omcds mathwebomdoc rpc ns omdom omdom omdom omdom
+% LocalWords:  mobj OMDOM DOM openmath omdom Eliotte Harold's unicode PCDATA en
+% LocalWords:  escapechar lst comm def lang cd eq Eine xref hei kommutativ alle
+% LocalWords:  und basicstyle xsd adt  requation sortdef OMR Dataset href elt
+% LocalWords:  dc mathescape concl omdom DOCTYPE CDATA omdom OMA OMV
+% LocalWords:  de omtext omdom omdom metadata omstyle multi FMP omdom omdoc edu
+
+% LocalWords:  MathWeb MathWeb MathWeb

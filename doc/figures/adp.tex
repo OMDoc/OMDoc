@@ -1,0 +1,55 @@
+\begin{tikzpicture}
+[inner sep=1.5mm, node distance=2cm,
+place/.style={circle,draw=blue!50,fill=blue!20,thick},
+transition/.style={regular polygon,regular polygon sides=4,draw=blue!50,fill=blue!20,thick},
+block/.style={rectangle, draw, fill=blue!20, 
+    text width=4em, text centered, rounded corners, minimum height=3.5em},
+scale=.7]
+
+%% the diagram, which is also defines the origin
+\node (center) at ( 0,0) [place] {};
+\node (middleleft) at (-1.5,0) [transition] {};
+\node (middleright) at (1.5,0) [transition] {};
+
+\node (righttop) at ( 1,1) [place] {};
+\node (lefttop) at (-1,1) [place] {};b
+
+\node (leftbottom) at (-1,-1) [place] {};
+\node (rightbottom) at (1,-1) [place] {};
+
+%% labels
+\coordinate (A) at (-2.5,5);
+\coordinate (B) at (-2.5,-1.5);
+\coordinate [label=left:{Active Documents}] (C) at (-3,4.5);
+\coordinate [label=right:{Content Commons}] (D) at (-2,4.5);
+\node[text width=4em] at (2.5,1.2) {\footnotesize Content Objects};
+
+%% lines
+
+\draw[-] (center) -- (lefttop);
+\draw[-] (center) -- (rightbottom);
+\draw[-] (center) -- (leftbottom);
+\draw[-] (center) -- (righttop);
+\draw[-] (lefttop) -- (righttop);
+\draw[-] (leftbottom) -- (rightbottom);
+\draw[-] (leftbottom) -- (middleleft);
+\draw[-] (middleleft) -- (lefttop);
+\draw[-] (middleright) -- (righttop);
+\draw[-] (middleright) -- (rightbottom);
+\draw[->,dashed] (lefttop.north) to [bend left=45] (righttop.north);
+\draw[->,dashed] (leftbottom) -- (lefttop);
+
+\draw[-,dashed] (A) -- (B);
+
+%% active documents and player
+\node (activedocs) at (-5,0) [block] {Active Documents};
+\node at (-4.6,0.4) [block] {Active Documents};
+\node at (-4.8,0.2) [block] {Active Documents};
+\node at (-5,0) [block] {Active Documents};
+
+\node (player) at (-2.5,3) [block] {Document Player};
+
+\draw[<->,draw,thick] (-2,0) -- (-3,0);
+\draw[<->,draw,thick] (-4,1.5) -- (-3,2);
+\draw[<->,draw,thick] (-2,2) -- (-1,1.5);
+\end{tikzpicture}

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xml:id="sequent.omdoc"
+  xmlns="http://omdoc.org/ns"
+  xmlns:cc="http://creativecommons.org/ns"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  version="1.6">
+<metadata>
+  <dc:date action="created"> 2004-10-06T08:51:43Z </dc:date>
+  <dc:title xml:lang="en"> sequent </dc:title>
+  <dc:creator role="aut"> Michael Kohlhase </dc:creator>
+  <dc:source>  </dc:source>
+  <dc:date action="updated"> 2004-10-06T08:51:43Z </dc:date>
+  <dc:type> Text </dc:type>
+  <dc:format> application/omdoc+xml </dc:format>
+  <dc:rights>Copyright (c) 2004 Michael Kohlhase</dc:rights>
+  <cc:license>
+    <cc:permissions reproduction="permitted" distribution="permitted" derivative_works="permitted"/>
+    <cc:prohibitions commercial_use="permitted"/>
+    <cc:requirements notice="required" copyleft="required" attribution="required"/>
+  </cc:license>
+</metadata>
+<assertion type="conjecture" xml:id="sequent.test">
+  <CMP>If $a\in{U}$ and $a\in{V}$, then $a\in{U}\cap{V}$ or 
+    <phrase index="moon_cheese">the moon is made of green cheese</phrase>.
+  </CMP>
+  <FMP>
+    <assumption xml:id="A"><legacy format="TeX">$a\in{U}$</legacy></assumption>
+    <assumption xml:id="B"><legacy format="TeX">$b\in{U}$</legacy></assumption>
+    <conclusion xml:id="C"><legacy format="TeX">$a\in{U}\cap{V}$</legacy></conclusion>
+    <conclusion xml:id="moon_cheese"><legacy format="TeX">$made\_of(moon,gc)$</legacy></conclusion>
+  </FMP>
+</assertion>
+</omdoc>

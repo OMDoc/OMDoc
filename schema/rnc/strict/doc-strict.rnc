@@ -1,0 +1,16 @@
+# A RelaxNG for Open Mathematical documents (OMDoc 1.6) Module DOC         
+# $Id: doc-strict.rnc 8867 2011-01-19 10:37:44Z kohlhase $
+# $HeadURL: https://svn.omdoc.org/repos/omdoc/trunk/schema/rnc/strict/doc-strict.rnc $
+# See the documentation and examples at http://www.omdoc.org
+# Copyright (c) 2004-2007 Michael Kohlhase, released under the GNU Public License (GPL) 
+
+default namespace omdoc = "http://omdoc.org/ns"
+
+omdoc.attribs = id.attribs & 
+	                  attribute uri {MMTURI}? & 
+	                  attribute version {xsd:string {pattern = "1.6"}}? & 
+			  attribute base {MMTURI}?
+omdoc.model = metadata.class & omdoc.class
+omdoc.class = empty
+omdoc = element omdoc {tref|(omdoc.attribs&omdoc.model)}
+

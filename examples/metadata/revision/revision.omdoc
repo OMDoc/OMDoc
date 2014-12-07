@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xml:id="revision.omdoc" version="1.6"
+       xmlns:dc="http://purl.org/dc/elements/1.1/" 
+       xmlns:om="http://www.openmath.org/OpenMath"
+       xmlns:oo="http://omdoc.org/ontology#"
+       xmlns:m="http://www.w3.org/1998/Math/MathML"
+       xmlns="http://omdoc.org/ns">
+
+<metadata>
+  <meta property="dc:title">A Content Dictionary for the OMDoc Revision Ontology</meta>
+  <meta property="dc:creator">Christoph Lange</meta>
+  <meta property="dc:date">2008-12-07</meta>
+  <meta property="dc:format">application/omdoc+xml</meta>
+  <meta property="dc:rights">Copyright © 2008 Christoph Lange</meta>
+</metadata>
+
+<theory xml:id="revision">
+<imports from="../owl.omdoc#owl"/>
+
+<!--
+Core: the triangle Change, Revision, DataAsset
+Reuse the ontology as is, but give the concepts names in our own style and then map to the original versioning ontology using owl:equivalentClass
+
+Change
+  rdfs:subClassOf event:Event
+  owl:equivalentClass versioning:Data_asset_change
+  laterRevision: Revision?
+    owl:sameAs versioning:later_version
+  priorRevision: Revision?
+    owl:sameAs versioning:prior_version
+Revision
+  owl:equivalentClass versioning:Data_asset_version
+  contents
+  createdByAct: Change?
+    owl:sameAs versioning:created_by_act
+  versionOf: DataAsset
+    owl:sameAs versioning:version_of
+DataAsset
+  containedIn: DataAssetContainer
+  contents: ...
+    In our case, these are the "contains" relations of OMDoc
+  createdByAct: Change?
+  currentVersion: Revision?
+  hasRevision: Revision*
+DataAssetContainer
+  rdfs:subClassOf DataAsset
+  containsResource: DataAsset
+    In our case, these are the "contains" relations of OMDoc
+
+OMDocConcept
+  rdfs:subClassOf DataAsset
+OMDocContainer (omgroup, theory, etc.)
+  rdfs:subClassOf DataAssetContainer
+make the top-level "contains" relations of OMDoc subPropertiesOf
+DataAsset.contains
+
+Subclasses of "Change", as inspired by OMV
+
+import event, time, and FOAF ontologies and allow event.dc:date as a shorthand
+for event.time(time:Instant).time:xsdDateTime.
+-->
+
+</theory>
+</omdoc>
+
+<!-- vim:sw=2:sts=2
+-->
+
+

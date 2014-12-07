@@ -1,0 +1,28 @@
+<?xml version='1.0'?>
+<env:Envelope xmlns:env="http://www.w3.org/2003/05/soap-envelope">
+  <env:Body>
+    <ws:prove env:encodingStyle="http://www.w3.org/2003/05/soap-encoding"
+        xmlns:ws="http://www.mathweb.org/ws-fictional">
+      <omdoc:assertion xml:id="peter-hates-somebody" type="conjecture"
+	  xmlns:omdoc="http://omdoc.org/ns"
+             theory="http://mbase.mathweb.org:8080/RPC2#lovelife"> 
+        <omdoc:CMP>Peter hates somebody</omdoc:CMP> 
+        <omdoc:FMP> 
+          <om:OMOBJ xmlns:om="http://www.openmath.org/OpenMath"> 
+            <om:OMBIND> 
+             <om:OMS cd="quant1" name="exists"/> 
+             <om:OMBVAR><om:OMV name="X"/></om:OMBVAR> 
+             <om:OMA> 
+               <om:OMS cd="lovelife" name="hate"/> 
+                <om:OMS cd="lovelife" name="peter"/> 
+                <om:OMV name="X"/> 
+              </om:OMA> 
+            </om:OMBIND> 
+          </om:OMOBJ> 
+        </omdoc:FMP> 
+      </omdoc:assertion> 
+      <ws:replyWith><ws:state>proof</ws:state></ws:replyWith>
+      <ws:timeout>20</ws:timeout>
+    </ws:prove>
+  </env:Body>
+</env:Envelope>

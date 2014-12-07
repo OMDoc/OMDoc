@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  xmlns="http://omdoc.org/ns"
+xml:id="rhetoricalrelations-incorrectexample2.omdoc">
+
+<metadata>
+<dc:title>test</dc:title>
+<dc:creator role="aut">hf</dc:creator>
+<dc:date>2001-12-12T00:00:00</dc:date>
+</metadata>
+<!-- incorrect input -->
+
+<!-- 1. adding a not-supported attribute to the nucleus phrase -->
+
+
+<omtext xml:id="txt2.2" type="motivation">
+  <CMP xml:id="text2.2">
+	<phrase xml:id="sat2.3" type="satellite" relation="antithesis" for="#nuc2.2">Motivation</phrase>
+	<phrase xml:id="nuc2.2" type="nucleus" for="#test3">Nucleus</phrase>
+	<phrase xml:id="sat2.4" type="satellite" relation="elaboration" for="#nuc2.2">Introduction</phrase>
+  </CMP>
+</omtext>
+
+</omdoc>

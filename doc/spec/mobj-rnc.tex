@@ -1,0 +1,54 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This file is part of the LaTeX sources of the OMDoc 1.6 specification
+% Copyright (c) 2006 Michael Kohlhase
+% This work is licensed by the Creative Commons Share-Alike license
+% see http://creativecommons.org/licenses/by-sa/2.5/ for details
+\svnInfo $Id: mobj-rnc.tex 8939 2011-08-10 14:44:56Z kohlhase $
+\svnKeyword $HeadURL: https://svn.omdoc.org/repos/omdoc/trunk/doc/spec/mobj-rnc.tex $
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{omgroup}[id=mobj-rnc]{The RelaxNG Schemata for Mathematical Objects}
+
+For completeness we reprint the {\relaxng} schemata for the external formats
+{\omdoc} makes use of.
+
+\begin{omgroup}[id=rnc.openm]{The RelaxNG Schema for OpenMath}
+
+For completeness we reprint the {\relaxng} schema for {\openmath}, the original can be
+found in the {\openmath}3 standard under development\ednote{cite it when done}
+
+\lstinputlisting[language=RNC,nolol,
+index={OMS,OMV,OMI,OMB,OMSTR,OMF,OMA,OMBIND,OMBVAR,OME,OMATTR,OMATP}]
+{../../schema/rnc/openmath/openmath3.rnc}
+\end{omgroup}
+
+\begin{omgroup}[id=rnc.mathml]{The RelaxNG Schema for MathML}
+
+For completeness, we reprint the {\relaxng} schema for {\mathml}. It comes in three parts,
+the schema driver with common parts, and the parts for content- and presentation {\mathml} which we will
+present in the next two subsections.
+
+\lstinputlisting[nolol,language=RNC,index={m:math}]{../../schema/rnc/mathml3/mathml3.rnc}
+\lstinputlisting[nolol,language=RNC,index={m:math}]{../../schema/rnc/mathml3/mathml3-common.rnc}
+\end{omgroup}
+
+\begin{omgroup}[id=rnc.pmathml]{Presentation {\mathml}}
+\lstinputlisting[nolol,language=RNC,index={m:math}]{../../schema/rnc/mathml3/mathml3-presentation.rnc}
+\end{omgroup}
+
+\begin{omgroup}[id=rnc.cmathml]{Strict Content {\mathml}}
+  \lstinputlisting[nolol,language=RNC,index={m:math}]{../../schema/rnc/mathml3/mathml3-strict-content.rnc}
+\end{omgroup}
+
+\begin{omgroup}[id=rnc.cmathml]{Pragmatic Content {\mathml}}
+  \lstinputlisting[nolol,language=RNC,index={m:math}]{../../schema/rnc/mathml3/mathml3-content.rnc}
+\end{omgroup}
+\end{omgroup}
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "main"
+%%% End: 
+
+
+% LocalWords:  mobj rnc RNC openmath OMB OMSTR OMF OME OMATP mathml nolol OMV
+% LocalWords:  pmathml cmathml OMI OMA OMBIND OMBVAR OMATTR

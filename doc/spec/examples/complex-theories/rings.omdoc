@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<omdoc xml:id="rings.omdoc"
+  xmlns="http://omdoc.org/ns"
+  xmlns:cc="http://creativecommons.org/ns"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  version="1.6">
+
+<metadata>
+  <dc:date action="created"> 2004-10-05T08:03:32Z </dc:date>
+  <dc:title xml:lang="en"> rings </dc:title>
+  <dc:creator role="aut"> Michael Kohlhase </dc:creator>
+  <dc:source>  </dc:source>
+  <dc:date action="updated"> 2004-10-05T08:03:32Z </dc:date>
+  <dc:type> Text </dc:type>
+  <dc:format> application/omdoc+xml </dc:format>
+  <dc:rights>Copyright (c) 2004 Michael Kohlhase</dc:rights>
+  <cc:license>
+    <cc:permissions reproduction="permitted" distribution="permitted" derivative_works="permitted"/>
+    <cc:prohibitions commercial_use="permitted"/>
+    <cc:requirements notice="required" copyleft="required" attribution="required"/>
+  </cc:license>
+</metadata>
+<theory xml:id="ring"> 
+  <symbol name="times"/><symbol name="one"/> 
+  <imports xml:id="add.import" from="#group" type="global"/>
+  <imports xml:id="mult.import" from="#monoid" type="global"> 
+    <morphism> 
+      <requation> 
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="monoid" name="set"/></OMOBJ>
+          <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+            <OMA><OMS cd="monoid" name="setstar"/>
+              <OMS cd="semigroup" name="set"/>
+            </OMA>
+          </OMOBJ>
+      </requation> 
+      <requation> 
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="monoid" name="op"/></OMOBJ>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="ring" name="times"/></OMOBJ>
+      </requation> 
+      <requation>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="monoid" name="neut"/></OMOBJ>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="ring" name="one"/></OMOBJ>
+      </requation> 
+    </morphism> 
+  </imports> 
+  <axiom xml:id="ring.distribution"> 
+    <CMP><OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="semigroup" name="op"/></OMOBJ> distributes over 
+     <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="ring" name="times"/></OMOBJ> 
+    </CMP> 
+  </axiom>
+</theory>
+
+</omdoc>

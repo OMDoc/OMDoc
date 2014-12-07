@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html id="simpletypes-omdoc" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <link rel="stylesheet" type="text/css" href="omdoc-default.css"/>
+    <title>Simple Types</title>
+  </head>
+  <body>
+    <div class="dc-titleblock">
+      <div class="dc-title">Simple Types</div>
+      <div class="dc-authors">Michael Kohlhase</div>
+      <div class="dc-date">2002-02-02</div>
+    </div>
+    <div class="header">introduction</div>
+    <div class="omdoc-omtext salt-introduction" id="intro">
+      <p>We define the simple type discipline. This includes the classical base types for individuals and truth values, function types, and also record- and tuple types. Furthermore, it includes simple type schemata, also known as ML-polymorphism. </p>
+    </div>
+    <div class="theory" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="http://purl.org/dc/elements/1.1/">
+      <h1 id="simpletypes">1. Simple Types</h1>
+      <div class="header">introduction</div>
+      <div class="omdoc-omtext salt-introduction" id="CDComment12">
+        <p>Definition of type constructors</p>
+      </div>
+      <div class="omdoc-symbol" id="type">
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>type
+        </div>The kind of all types
+      </div>
+      <div class="omdoc-symbol" id="funtype">
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>funtype
+        </div>The function type constructor.
+      </div>
+      <div class="theory">
+        <div class="imports">imports from: 
+          <a href="ind.xhtml#ind">ind</a>, 
+          <a href="truthval.xhtml#truthval">truthval</a>
+        </div>
+        <div class="omdoc-example" id="funtype-prop-1">
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Example</span>
+          </div>
+          <p>
+            <span id="MCRd19e62" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+                <m:semantics>
+                  <m:mrow xref="#MMLPROC-a9094ac28-2c65-42f4-9700-c2170cb87d38">
+                    <m:mo xref="#MMLPROC-a9094ac28-2c65-42f4-9700-c2170cb87d38-args-arg1">ι</m:mo>
+                    <m:mo>→</m:mo>
+                    <m:mo xref="#MMLPROC-a9094ac28-2c65-42f4-9700-c2170cb87d38-args-arg2">o</m:mo>
+                  </m:mrow>
+                  <m:annotation-xml>
+                    <OMA id="MMLPROC-a9094ac28-2c65-42f4-9700-c2170cb87d38" xmlns="http://www.openmath.org/OpenMath">
+                      <OMS cd="simpletypes" name="funtype"/>
+                      <OMS cd="ind" name="ind" id="MMLPROC-a9094ac28-2c65-42f4-9700-c2170cb87d38-args-arg1"/>
+                      <OMS cd="truthval" name="bool" id="MMLPROC-a9094ac28-2c65-42f4-9700-c2170cb87d38-args-arg2"/>
+                    </OMA>
+                  </m:annotation-xml>
+                </m:semantics>
+              </m:math>
+            </span> is a type. It encodes the type of unary predicates. 
+          </p>
+        </div>
+      </div>
+      <div class="omdoc-symbol" id="all-types">
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>all-types
+        </div> The universal type quantification operator. It is a binding object that universally binds a list of type variables in a type. 
+      </div>
+      <div class="theory">
+        <div class="imports">imports from: 
+          <a href="truthval.xhtml#truthval">truthval</a>
+        </div>
+        <div class="omdoc-example" id="all-types-prop-1">
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Example</span>
+          </div>
+          <p>
+            <span id="MCRd19e109" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+                <m:semantics>
+                  <m:mrow xref="#MMLPROC-a8ca449eb-7e5d-4270-a8cf-75be9c8d469f">
+                    <m:mo>∀</m:mo>
+                    <m:mi xref="#MMLPROC-a8ca449eb-7e5d-4270-a8cf-75be9c8d469f-bvars-bvar1">a</m:mi>
+                    <m:mrow xref="#MMLPROC-a8ca449eb-7e5d-4270-a8cf-75be9c8d469f-scope">
+                      <m:mi xref="#MMLPROC-a8ca449eb-7e5d-4270-a8cf-75be9c8d469f-scope-args-arg1">a</m:mi>
+                      <m:mo>→</m:mo>
+                      <m:mi xref="#MMLPROC-a8ca449eb-7e5d-4270-a8cf-75be9c8d469f-scope-args-arg2">a</m:mi>
+                      <m:mo>→</m:mo>
+                      <m:mo xref="#MMLPROC-a8ca449eb-7e5d-4270-a8cf-75be9c8d469f-scope-args-arg3">o</m:mo>
+                    </m:mrow>
+                  </m:mrow>
+                  <m:annotation-xml>
+                    <OMBIND id="MMLPROC-a8ca449eb-7e5d-4270-a8cf-75be9c8d469f" xmlns="http://www.openmath.org/OpenMath">
+                      <OMS cd="simpletypes" name="all-types"/>
+                      <OMBVAR>
+                        <OMV name="a" id="MMLPROC-a8ca449eb-7e5d-4270-a8cf-75be9c8d469f-bvars-bvar1"/>
+                      </OMBVAR>
+                      <OMA id="MMLPROC-a8ca449eb-7e5d-4270-a8cf-75be9c8d469f-scope">
+                        <OMS cd="simpletypes" name="funtype"/>
+                        <OMV name="a" id="MMLPROC-a8ca449eb-7e5d-4270-a8cf-75be9c8d469f-scope-args-arg1"/>
+                        <OMV name="a" id="MMLPROC-a8ca449eb-7e5d-4270-a8cf-75be9c8d469f-scope-args-arg2"/>
+                        <OMS cd="truthval" name="bool" id="MMLPROC-a8ca449eb-7e5d-4270-a8cf-75be9c8d469f-scope-args-arg3"/>
+                      </OMA>
+                    </OMBIND>
+                  </m:annotation-xml>
+                </m:semantics>
+              </m:math>
+            </span> is a well-formed type. It encodes the type of e.g. of the equality relation. 
+          </p>
+        </div>
+      </div>
+      <div class="omdoc-symbol" id="oftype">
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>oftype
+        </div>The type attribute. It relates an object to its type in an attribution.
+      </div>
+      <div class="omdoc-example" id="all-types-prop-2">
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Example</span>
+        </div>
+        <p>Here is a typed variable 
+          <span id="MCRd19e164" class="displaymath">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+              <m:semantics>
+                <m:msub xref="#MMLPROC-ad07a2665-262b-4b56-9acd-56f4e4a9df79">
+                  <m:mi xref="#MMLPROC-ad07a2665-262b-4b56-9acd-56f4e4a9df79-scope">X</m:mi>
+                  <m:mrow xref="#MMLPROC-ad07a2665-262b-4b56-9acd-56f4e4a9df79-val">
+                    <m:mi xref="#MMLPROC-ad07a2665-262b-4b56-9acd-56f4e4a9df79-val-args-arg1">I</m:mi>
+                    <m:mo>→</m:mo>
+                    <m:mi xref="#MMLPROC-ad07a2665-262b-4b56-9acd-56f4e4a9df79-val-args-arg2">I</m:mi>
+                    <m:mo>→</m:mo>
+                    <m:mi xref="#MMLPROC-ad07a2665-262b-4b56-9acd-56f4e4a9df79-val-args-arg3">O</m:mi>
+                  </m:mrow>
+                </m:msub>
+                <m:annotation-xml>
+                  <OMATTR id="MMLPROC-ad07a2665-262b-4b56-9acd-56f4e4a9df79" xmlns="http://www.openmath.org/OpenMath">
+                    <OMATP>
+                      <OMS cd="simpletypes" name="oftype"/>
+                      <OMA id="MMLPROC-ad07a2665-262b-4b56-9acd-56f4e4a9df79-val">
+                        <OMS cd="simpletypes" name="funtype"/>
+                        <OMV name="I" id="MMLPROC-ad07a2665-262b-4b56-9acd-56f4e4a9df79-val-args-arg1"/>
+                        <OMV name="I" id="MMLPROC-ad07a2665-262b-4b56-9acd-56f4e4a9df79-val-args-arg2"/>
+                        <OMV name="O" id="MMLPROC-ad07a2665-262b-4b56-9acd-56f4e4a9df79-val-args-arg3"/>
+                      </OMA>
+                    </OMATP>
+                    <OMV name="X" id="MMLPROC-ad07a2665-262b-4b56-9acd-56f4e4a9df79-scope"/>
+                  </OMATTR>
+                </m:annotation-xml>
+              </m:semantics>
+            </m:math>
+          </span>
+        </p>
+      </div>
+      <div class="omdoc-symbol" id="recordtype">
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>recordtype
+        </div>The record type constructor. It takes an even number of arguments. The even ones are field names (currently they are OMS symbols in the pseudo-theory 'record-field' and the odd ones their values.
+      </div>
+      <div class="omdoc-symbol" id="tupletype">
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>tupletype
+        </div>The tuple type constructor
+      </div>
+      <div class="omdoc-symbol" id="cotupletype">
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>cotupletype
+        </div>The co-tuple type constructor (useful for formalizing co-algebras).
+      </div>
+    </div>
+  </body>
+</html>

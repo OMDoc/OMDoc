@@ -1,0 +1,91 @@
+# -*- CPERL -*-
+# /=======================================================\ #
+# |  myindex.sty - Implementation for LaTeXML+OMDoc       | #
+# |                                                       | #
+# |=======================================================| #
+# | Not Part of LaTeXML : http://dlmf.nist.gov/LaTeXML/   | #
+# | Copyright (c) 2006 arXMLiv group                      | #
+# | Released under the GNU Public License                 | #
+# \=======================================================/ #
+
+package LaTeXML::Package::Pool;
+use strict;
+use LaTeXML::Package;
+RequirePackage('keyval');
+
+DefKeyVal('ns','ns-attr','Semiverbatim');
+DefKeyVal('ns','ns-elt','Semiverbatim');
+
+DefConstructor('\@element OptionalKeyVals:xml {}',
+	       "<omdoc:phrase class='elementname'>"
+	       . "?&KeyVal(#1,'ns-elt')(&KeyVal(#1,'ns-elt'):)()#2"
+	     . "</omdoc:phrase>");
+
+DefConstructor('\@attribute OptionalKeyVals:xml {}',
+	       "<omdoc:phrase class='attributename'>"
+	       . "?&KeyVal(#1,'ns-attr')(&KeyVal(#1,'ns-attr'):)()#2"
+	     . "</omdoc:phrase>");
+
+DefConstructor('\@attval{}',"<omdoc:phrase class='attval'>#1</omdoc:phrase>");
+
+DefConstructor('\@ipe OptionalKeyVals:xml {}{}',
+	       "<omdoc:idp key='#2'>"
+	       . "?&KeyVal(#1,'ns-elt')(&KeyVal(#1,'ns-elt':))()#2 #3"
+	     . "</omdoc:idp>");
+
+DefConstructor('\@ipa OptionalKeyVals:xml {}{}',
+	       "<omdoc:idp key='#2'>"
+	       . "?&KeyVal(#1,'ns-attr')(&KeyVal(#1,'ns-attr':))()#2 #3"
+	     . "</omdoc:idp>");
+
+DefMacro('\element OptionalKeyVals:xml {}',
+	 '\@idx{\@idt{\@element[#1]{#2}}\@ide{\@ipe[#1]{#2}{}}}');
+
+DefMacro('\oldelement OptionalKeyVals:xml {}{}',
+	 '\@idx{\@idt{\@element[#1]{#2}}\@ide{\@ipe[#1]{#2}{(deprecated in OMDoc #3)}}}');
+
+DefMacro('\eldef OptionalKeyVals:xml {}',
+	 '\defemph{\@idx{\@idt{\@element[#1]{#2}}\@ide{\@ipe[#1]{#2}{(deprecated in OMDoc #3)}}}}');
+
+Let('\Eldef','\eldef');
+
+DefMacro('\attribute OptionalKeyVals:xml {}{}',
+	 '\@idx{\@idt{\@attribute[#1]{#2}}'
+	      .'\@ide{\@ipa[#1]{#2}{}'
+                    . '\@idp{attribute on}'
+	            . '\@ipe[#1]{#2}{}}}');
+
+DefMacro('\oldattribute OptionalKeyVals:xml {}{}{}',
+	 '\@idx{\@idt{\@attribute[#1]{#2}}'
+              . '\@ide{\@ipa[#1]{#2}{}'
+	             . '\@idp{old attribute (deprecated in OMDoc #4) on}'
+	             . '\@ipe[#1]{#2}{}}}');
+
+DefMacro('\attributeshort OptionalKeyVals:xml {}',
+	 '\@idx{\@idt{\@attribute[#1]{#2}}\@ide{\@ipa[#1]{#2}{}\@idp{attribute}}}');
+
+DefMacro('\attributeshortcomment OptionalKeyVals:xml {}',
+	 '\@idx{\@idt{\@attribute[#1]{#2}}'
+	       .'\@ide{\@ipa[#1]{#2}{}\@idp{attribute (#3)}}}');
+
+DefMacro('\attval OptionalKeyVals:xml {}{}{}',
+	 '\@idx{\@idt{\@attval{#2}}'
+	       .'\@ide{\@idp{attribute value for}'
+                     . '\@ipa[#1]{#3}{on}'
+	             . '\@ipe[#1]{#4}{}}}');
+
+DefMacro('\oldattval OptionalKeyVals:xml {}{}{}{}',
+	 '\@idx{\@idt{\@attval{#2}}'
+	      .'\@ide{\@idp{attribute value (deprecated in OMDoc #4) for}'
+	            . '\@ipa[#1]{#3}{on}'
+	            . '\@ipe[#1]{#4}{}}}');
+
+DefMacro('\attvalshort OptionalKeyVals:xml {}{}',
+	 '\@idx{\@idt{\@attval{#2}}'
+	       .'\@ide{\@idp{attribute value for}\@ipa[#1]{#3}{}}}');
+
+DefMacro('\attvalveryshort OptionalKeyVals:xml {}',
+	 '\@idx{\@idt{\@attval{#2}}\@ide{\@idp{attribute value}}}');
+
+#**********************************************************************
+1;

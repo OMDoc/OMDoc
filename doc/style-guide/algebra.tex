@@ -1,0 +1,117 @@
+\chapter{Formalizing Mathematics}
+\label{cha:algebra}
+
+In this chapter we will work an example of a stepwise formalization of
+mathematical knowledge. This is the task of e.g. an editor of a mathematical
+textbook preparing it for web-based publication. 
+
+Since {\omdoc} only gives an infrastructure for modeling mathematical content and
+not for the conceptualization of the mathematical objects themselves, we will
+start from an informal, but rigorous text: a fragment of Bourbaki's
+Algebra~\cite{Bourbaki:a74}, which we display in {\myfigref{bourbaki}} for
+convenience.
+
+We will now formalize this piece of mathematical knowledge in three stages in the
+next sections, discussing the design decisions as we go along.
+
+In section~\ref{sec:algebra1} we discuss the first level of formalization. At this
+level we just mark up the large-scale structure of the text (which we assume to be
+given as {\LaTeX} source code for simplicity) into {\omdoc} elements. At this
+level, we have only marked up the text structure and mathematical statements. This
+allows us to annotate and extract some metadata and would allow applications to
+slice the text into individual units, store it in data bases like {\mbase},
+or\ednote{slicing books}, or assemble the text slices into individualized books.
+e.g. covering only a sub-topic of the orignial work.
+
+However, all of the text itself, still contains the {\LaTeX} markup for formulae,
+which is readable only by experienced humans, and can in particular only be
+processed by
+
+
+In section~\ref{sec:algebra2}, we will map all mathematical objects in the text
+into {\openmath} formulae,\ednote{say something about the benefits} 
+
+Finally, in section~\ref{sec:algebra3} we will fully formalize the mathematical
+knowledge.  \ednote{say something about the benefits}
+
+
+
+\begin{myfig}{bourbaki}{A fragment of Bourbaki's Algebra}
+\fbox{\small
+\begin{minipage}{12cm}\parindent=1.5em
+\noindent{\bf 1. LAWS OF COMPOSITION}\vspace{1em}\par\noindent
+{\sc Definition 1.} {\em Let $E$ be a set. A mapping of $E\times E$ is called a
+  law of composition on $E$. The value $f(x,y)$ of $f$ for an ordered pair
+  $(x,y)\in E\times E$ is called the composition of $x$ and $y$ under this law. A
+  set with a law of composition is called a magma.}
+\vspace{1em}
+
+The composition of $x$ and $y$ is usually denoted by writing $x$ and $y$ in a
+definite order and separating them by a characteristic symbol of the law in
+question (a symbol which it may be agreed to omit). Among the symbols most often
+used are + and ., the usual convention being to omit the latter if desired; with
+these symbols the composition of $x$ and $y$ is written respectively as $x+y$,
+$x.y$ or $xy$. A law denoted by the symbol $+$ is usually called {\em addition}
+(the composition $x+y$ beind called the {\em sum} of $x$ and $y$) and we say that
+it is {\em written additively}; a law denoted by the symbol . is usually called
+{\em multiplication} (the composition $x.y=xy$ being called the {\em product} for
+$x$ and $y$) and we say that it is {\em written multiplicatively}. 
+
+In the general arguments of paragraphs 1 to 3 of this chapter we shall generally use the
+symbols $\top$ and $\bot$ to denote arbitrary laws of composition.
+
+By an abuse of language, a mapping of a {\em subset} of $E\times E$ into $E$ is sometimes
+called a law of composition {\em not everywhere defined} on $E$.
+\vspace{1em}
+
+\strut\hfill
+\begin{minipage}{11cm}\parindent=1.5em
+  {\em Examples.} (1) The mappings $(X,Y)\mapsto X\cup Y$ and $(X,Y)\mapsto X\cap Y$ are
+  laws of composition on the set of subsets of a set $E$.
+ 
+  (2) On the set $\bf N$ of natural numbers, addition, multiplication, and exponentiation
+  are laws of composition (the compositions of $x\in{\bf N}$ and $y\in{\bf N}$ under these
+  laws being denoted respectively by $x+y$, $xy$, or $x.y$ and $x^y$)  ({\em Set Theory},
+  III, $\P3$, no. 4).\ednote{right paragraph sign here?}
+  
+  (3) Let $E$ be a set; the mapping $(X,Y)\mapsto X\circ Y$ is a law of composition on the
+  set of subsets of $E\times E$ ({\em Set Theory}, II, $\P3$, no. 3, Definition 6); the
+  mapping $(f,g)\mapsto f\circ g$ is a law of composition on the set of mappings from 
+  $E$ into $E$ ({\em Set Theory}, II, $\P5$, no. 2).
+\end{minipage}
+\end{minipage}}
+\end{myfig}
+
+
+\section{Marking up the Top-Level Structure and Mathematical Statements}\label{sec:algebra1}
+
+In this section we conver the mathematical text in {\myfigref{bourbaki}} in a very
+simple-minded manner. At this level, we only care about the top-level structure
+and the mathematical statements. We will explain the features in detail by line
+numbers below.  
+
+{\scriptsize\listinginput[5]{1}{algebra1.omdoc}}
+\begin{itemize}
+\item[1] The {\xml} declaration. 
+\item[2] The document type declaration. 
+\item[4] the root element of the document, it must be {\element{omdoc}} and it must have
+  an {\attribute{id}{omdoc}} attribute. Its value can be any string, but should not contain
+  ``:'' (this is reserved for namespaces in {\xml}).\ednote{continue}
+\end{itemize}
+
+\section{Marking up the Formulae}\label{sec:algebra2}
+Here is the converted text. We will explain the features in detail by line numbers  below.
+{\scriptsize\listinginput[5]{1}{algebra2.omdoc}}
+\begin{itemize}
+\item[1] The {\xml} declaration. 
+\item[2] The document type declaration. 
+\item[4] the root element of the document, it must be {\element{omdoc}} and it must have
+  an {\attribute{id}{omdoc}} attribute. Its value can be any string, but should not contain
+  ``:'' (this is reserved for namespaces in {\xml}).\ednote{continue}
+\end{itemize}
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "guide"
+%%% End: 

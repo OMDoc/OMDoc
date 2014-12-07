@@ -1,0 +1,3044 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html id="theory-collection-logics" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <link rel="stylesheet" type="text/css" href="omdoc-default.css"/>
+    <title>The Logics Theory Collection</title>
+  </head>
+  <body>
+    <div class="dc-titleblock">
+      <div class="dc-title">The Logics Theory Collection</div>
+      <div class="dc-authors">Michael Kohlhase</div>
+      <div class="dc-date">2002-02-20</div>
+      <div class="dc-description"> A collection of OMDoc documents that define the most commonly used logics </div>
+    </div>
+    <div class="omdoc-omgroup">
+      <h1 id="introduction"> Introduction</h1>
+      <div class="omdoc-omtext" id="intro.1">
+        <p> This theory collection makes available an interdependent collection of theories that define logics. These logics are a foundation for the interoperability and communication between reasoning services on 
+          <span id="" style="acronym">MathWeb</span>. 
+        </p>
+      </div>
+    </div>
+    <div class="omdoc-omgroup">
+      <h1 id="prop-log"> Propositional Logics</h1>
+      <div class="omdoc-omtext" id="prop-log-intro">
+        <p> Propositional logics are logics that abstract from the inner structure of statements, and only study their interrelation in complex formulae built up from propositional connectives. </p>
+      </div>
+      <div class="theory" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="http://purl.org/dc/elements/1.1/">
+        <h3 id="d20e33truthval">2.1. Classical Truth Values</h3>
+        <div class="omdoc-symbol" id="d20e33bool" role="Symbol" about="#" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#truthval"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Concept</span>bool
+          </div>The type of truth values.
+        </div>
+        <div class="omdoc-symbol" id="d20e33true" role="Symbol" about="#" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#truthval"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Concept</span>true
+          </div>This symbol represents the boolean value true. 
+          <div class="omdoc-type" xml:id="">
+            <a class="omdoc" rel="oso:homeTheory" href="#"/>
+            <div class="omdoc-titlebox">
+              <span class="omdoc-titleword">Type</span>(simpletypes.omdoc#simpletypes) 
+              <span id="MCRd28e43" class="displaymath" xmlns="">
+                <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+                  <OMS cd="truthval" name="bool"/>
+                </OMOBJ>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="omdoc-symbol" id="d20e33false" role="Symbol" about="#" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#truthval"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Concept</span>false
+          </div>This symbol represents the boolean value false. 
+          <div class="omdoc-type" xml:id="">
+            <a class="omdoc" rel="oso:homeTheory" href="#"/>
+            <div class="omdoc-titlebox">
+              <span class="omdoc-titleword">Type</span>(simpletypes.omdoc#simpletypes) 
+              <span id="MCRd28e61" class="displaymath" xmlns="">
+                <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+                  <OMS cd="truthval" name="bool"/>
+                </OMOBJ>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="omdoc-symbol" id="d20e33eq" role="Symbol" about="#" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#truthval"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Concept</span>eq
+          </div>Equality on truth values
+        </div>
+        <div class="omdoc-symbol" id="d20e33neq" role="Symbol" about="#" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#truthval"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Concept</span>neq
+          </div>Inequality on truth values
+        </div>
+        <div class="omdoc-axiom" id="d20e33tf-distinct" role="Axiom" about="#tf-distinct" xml:id="tf-distinct">
+          <a class="omdoc" rel="oso:homeTheory" href="#truthval"/>
+          <span class="omdoc-titleword">Axiom</span>
+          <p>
+            <span id="MCRd28e152" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+                <OMS cd="truthval" name="true"/>
+              </OMOBJ>
+            </span> and 
+            <span id="MCRd28e155" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+                <OMS cd="truthval" name="false"/>
+              </OMOBJ>
+            </span> are distinct. 
+          </p>
+          <span class="omdoc-FMP">
+            <span id="MCRd28e159" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+                <OMA>
+                  <OMS cd="truthval" name="neq"/>
+                  <OMS cd="truthval" name="true"/>
+                  <OMS cd="truthval" name="false"/>
+                </OMA>
+              </OMOBJ>
+            </span>
+          </span>
+        </div>
+      </div>
+      <div class="theory" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="http://purl.org/dc/elements/1.1/">
+        <h3 id="d20e34pl0">3.1. Classical Propositional Logic</h3>
+        <div class="imports">imports from: 
+          <a href="truthval.xhtml#truthval">truthval</a>, 
+          <a href="truthtables.xhtml#truth-tables">truth-tables</a>, 
+          <a href="simpletypes.xhtml#simpletypes">simpletypes</a>
+        </div>
+        <div class="omdoc-symbol" id="d20e34not" role="Symbol" about="#" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#pl0"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Concept</span>not
+          </div>
+          <span id="MCRd38e29" class="displaymath" xmlns="">
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+              <OMS cd="pl0" name="not"/>
+            </OMOBJ>
+          </span> represents the logical not function which takes one boolean argument, and returns the opposite boolean value. It has the truth table 
+          <div id="MCRd38e32" class="displaymath" style="display:block" xmlns="">
+            <OMOBJ style="display:block" xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+              <OMA>
+                <OMS cd="truth-tables" name="tt"/>
+                <OMS cd="pl0" name="not"/>
+                <OMA>
+                  <OMS cd="truth-tables" name="ttargs"/>
+                </OMA>
+                <OMA>
+                  <OMS cd="truth-tables" name="ttrow"/>
+                  <OMS cd="truthval" name="true"/>
+                  <OMS cd="truthval" name="false"/>
+                </OMA>
+                <OMA>
+                  <OMS cd="truth-tables" name="ttrow"/>
+                  <OMS cd="truthval" name="false"/>
+                  <OMS cd="truthval" name="true"/>
+                </OMA>
+              </OMA>
+            </OMOBJ>
+          </div>
+        </div>
+        <div class="omdoc-lemma" id="d20e34false-not" role="Assertion" about="#false-not" xml:id="false-not">
+          <a class="omdoc" rel="oso:homeTheory" href="#pl0"/>
+          <span class="omdoc-titleword">Lemma</span>
+          <p>
+            <span id="MCRd38e75" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+                <OMS cd="truthval" name="false"/>
+              </OMOBJ>
+            </span> is 
+            <span id="MCRd38e78" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+                <OMR href="#true-prop-1.1"/>
+              </OMOBJ>
+            </span>
+          </p>
+          <span class="omdoc-FMP">
+            <span id="MCRd38e81" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+                <OMA>
+                  <OMS cd="truthval" name="eq"/>
+                  <OMS cd="truthval" name="false"/>
+                  <OMA id="true-prop-1.1">
+                    <OMS cd="pl0" name="not"/>
+                    <OMS cd="truthval" name="true"/>
+                  </OMA>
+                </OMA>
+              </OMOBJ>
+            </span>
+          </span>
+        </div>
+        <div class="omdoc-lemma" id="d20e34false-prop-1" role="Assertion" about="#false-prop-1" xml:id="false-prop-1">
+          <a class="omdoc" rel="oso:homeTheory" href="#pl0"/>
+          <span class="omdoc-titleword">Lemma</span>
+          <p>
+            <span id="MCRd38e90" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+                <OMR href="#false-prop-1.1"/>
+              </OMOBJ>
+            </span>
+          </p>
+          <span class="omdoc-FMP">
+            <span id="MCRd38e93" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+                <OMA id="false-prop-1.1">
+                  <OMS cd="truthval" name="eq"/>
+                  <OMA>
+                    <OMS cd="pl0" name="not"/>
+                    <OMS cd="truthval" name="false"/>
+                  </OMA>
+                  <OMS cd="truthval" name="true"/>
+                </OMA>
+              </OMOBJ>
+            </span>
+          </span>
+        </div>
+        <div class="theory">
+          <div class="imports">imports from: 
+            <a href="qbf.xhtml#qbf">qbf</a>
+          </div>
+          <div class="omdoc-lemma" id="d20e34not-prop-1" role="Assertion" about="#not-prop-1" xml:id="not-prop-1">
+            <a class="omdoc" rel="oso:homeTheory" href="#not-prop.thy"/>
+            <span class="omdoc-titleword">Lemma</span>
+            <p>
+              <span id="MCRd38e104" class="displaymath" xmlns="">
+                <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+                  <OMR href="#not-prop-1.1"/>
+                </OMOBJ>
+              </span> for all 
+              <span id="MCRd38e107" class="displaymath" xmlns="">
+                <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+                  <OMV name="X"/>
+                </OMOBJ>
+              </span>.
+            </p>
+            <span class="omdoc-FMP">
+              <span id="MCRd38e111" class="displaymath" xmlns="">
+                <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+                  <OMBIND>
+                    <OMS cd="qbf" name="forall"/>
+                    <OMBVAR>
+                      <OMV name="x"/>
+                    </OMBVAR>
+                    <OMA id="not-prop-1.1">
+                      <OMS cd="truthval" name="eq"/>
+                      <OMA>
+                        <OMS cd="pl0" name="not"/>
+                        <OMA>
+                          <OMS cd="pl0" name="not"/>
+                          <OMV name="x"/>
+                        </OMA>
+                      </OMA>
+                      <OMV name="x"/>
+                    </OMA>
+                  </OMBIND>
+                </OMOBJ>
+              </span>
+            </span>
+          </div>
+        </div>
+        <div class="omdoc-symbol" id="d20e34and" role="Symbol" about="#" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#pl0"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Concept</span>and
+          </div>
+          <span id="MCRd38e129" class="displaymath" xmlns="">
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+              <OMS cd="pl0" name="and"/>
+            </OMOBJ>
+          </span> represents the logical and function which is an n-ary function taking boolean arguments and returning a boolean value. It is true if all arguments are true or false otherwise. Its truth table is 
+          <div id="MCRd38e132" class="displaymath" style="display:block" xmlns="">
+            <OMOBJ style="display:block" xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+              <OMA>
+                <OMS cd="truth-tables" name="tt"/>
+                <OMS cd="pl0" name="and"/>
+                <OMA>
+                  <OMS cd="truth-tables" name="ttargs"/>
+                  <OMS cd="truthval" name="true"/>
+                  <OMS cd="truthval" name="false"/>
+                </OMA>
+                <OMA>
+                  <OMS cd="truth-tables" name="ttrow"/>
+                  <OMS cd="truthval" name="true"/>
+                  <OMS cd="truthval" name="true"/>
+                  <OMS cd="truthval" name="false"/>
+                </OMA>
+                <OMA>
+                  <OMS cd="truth-tables" name="ttrow"/>
+                  <OMS cd="truthval" name="false"/>
+                  <OMS cd="truthval" name="false"/>
+                  <OMS cd="truthval" name="false"/>
+                </OMA>
+              </OMA>
+            </OMOBJ>
+          </div>
+          <div class="omdoc-type" xml:id="">
+            <a class="omdoc" rel="oso:homeTheory" href="#"/>
+            <div class="omdoc-titlebox">
+              <span class="omdoc-titleword">Type</span>(simpletypes.omdoc#simpletypes) 
+              <span id="MCRd38e151" class="displaymath" xmlns="">
+                <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+                  <OMA>
+                    <OMS name="funtype" cd="simpletypes"/>
+                    <OMS cd="truthval" name="bool"/>
+                    <OMS cd="truthval" name="bool"/>
+                    <OMS cd="truthval" name="bool"/>
+                  </OMA>
+                </OMOBJ>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="theory">
+          <div class="imports">imports from: 
+            <a href="qbf.xhtml#qbf">qbf</a>
+          </div>
+          <div class="omdoc-lemma" id="d20e34and-prop-1" role="Assertion" about="#and-prop-1" xml:id="and-prop-1">
+            <a class="omdoc" rel="oso:homeTheory" href="#and-prop.thy"/>
+            <span class="omdoc-titleword">Lemma</span>
+            <p>
+              <span id="MCRd38e194" class="displaymath" xmlns="">
+                <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+                  <OMR href="#and-prop-1.1"/>
+                </OMOBJ>
+              </span> for all 
+              <span id="MCRd38e197" class="displaymath" xmlns="">
+                <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+                  <OMV name="X"/>
+                </OMOBJ>
+              </span>. 
+            </p>
+            <span class="omdoc-FMP">
+              <span id="MCRd38e201" class="displaymath" xmlns="">
+                <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+                  <OMBIND>
+                    <OMS cd="qbf" name="forall"/>
+                    <OMBVAR>
+                      <OMV name="x"/>
+                    </OMBVAR>
+                    <OMA id="and-prop-1.1">
+                      <OMS cd="truthval" name="eq"/>
+                      <OMA>
+                        <OMS cd="pl0" name="and"/>
+                        <OMV name="x"/>
+                        <OMA>
+                          <OMS cd="pl0" name="not"/>
+                          <OMV name="x"/>
+                        </OMA>
+                      </OMA>
+                      <OMS cd="truthval" name="false"/>
+                    </OMA>
+                  </OMBIND>
+                </OMOBJ>
+              </span>
+            </span>
+          </div>
+        </div>
+        <div class="omdoc-symbol" id="d20e34xor" role="Symbol" about="#" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#pl0"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Concept</span>xor
+          </div>
+          <span id="MCRd38e220" class="displaymath" xmlns="">
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+              <OMS cd="pl0" name="xor"/>
+            </OMOBJ>
+          </span> represents the logical xor function which is an n-ary function taking boolean arguments and returning a boolean value. It is true if there are an odd number of true arguments or false otherwise. Its truth table is 
+          <div id="MCRd38e223" class="displaymath" style="display:block" xmlns="">
+            <OMOBJ style="display:block" xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+              <OMA>
+                <OMS cd="truth-tables" name="tt"/>
+                <OMS cd="pl0" name="xor"/>
+                <OMA>
+                  <OMS cd="truth-tables" name="ttargs"/>
+                  <OMS cd="truthval" name="true"/>
+                  <OMS cd="truthval" name="false"/>
+                </OMA>
+                <OMA>
+                  <OMS cd="truth-tables" name="ttrow"/>
+                  <OMS cd="truthval" name="true"/>
+                  <OMS cd="truthval" name="false"/>
+                  <OMS cd="truthval" name="true"/>
+                </OMA>
+                <OMA>
+                  <OMS cd="truth-tables" name="ttrow"/>
+                  <OMS cd="truthval" name="false"/>
+                  <OMS cd="truthval" name="true"/>
+                  <OMS cd="truthval" name="false"/>
+                </OMA>
+              </OMA>
+            </OMOBJ>
+          </div>
+          <div class="omdoc-type" xml:id="">
+            <a class="omdoc" rel="oso:homeTheory" href="#"/>
+            <div class="omdoc-titlebox">
+              <span class="omdoc-titleword">Type</span>(simpletypes.omdoc#simpletypes) 
+              <span id="MCRd38e242" class="displaymath" xmlns="">
+                <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+                  <OMA>
+                    <OMS name="funtype" cd="simpletypes"/>
+                    <OMS cd="truthval" name="bool"/>
+                    <OMS cd="truthval" name="bool"/>
+                    <OMS cd="truthval" name="bool"/>
+                  </OMA>
+                </OMOBJ>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="theory">
+          <div class="imports">imports from: 
+            <a href="qbf.xhtml#qbf">qbf</a>
+          </div>
+          <div class="omdoc-lemma" id="d20e34xor-prop-1" role="Assertion" about="#xor-prop-1" xml:id="xor-prop-1">
+            <a class="omdoc" rel="oso:homeTheory" href="#xor-prop.thy"/>
+            <span class="omdoc-titleword">Lemma</span>
+            <p>
+              <span id="MCRd38e284" class="displaymath" xmlns="">
+                <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+                  <OMR href="#xor-prop-1.1"/>
+                </OMOBJ>
+              </span> for all 
+              <span id="MCRd38e287" class="displaymath" xmlns="">
+                <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+                  <OMV name="X"/>
+                </OMOBJ>
+              </span>. 
+            </p>
+            <span class="omdoc-FMP">
+              <span id="MCRd38e291" class="displaymath" xmlns="">
+                <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+                  <OMBIND>
+                    <OMS cd="qbf" name="forall"/>
+                    <OMBVAR>
+                      <OMV name="x"/>
+                    </OMBVAR>
+                    <OMA id="xor-prop-1.1">
+                      <OMS cd="truthval" name="eq"/>
+                      <OMA>
+                        <OMS cd="pl0" name="xor"/>
+                        <OMV name="x"/>
+                        <OMV name="x"/>
+                      </OMA>
+                      <OMS cd="truthval" name="false"/>
+                    </OMA>
+                  </OMBIND>
+                </OMOBJ>
+              </span>
+            </span>
+          </div>
+          <div class="omdoc-lemma" id="d20e34xor-prop-3" role="Assertion" about="#xor-prop-3" xml:id="xor-prop-3">
+            <a class="omdoc" rel="oso:homeTheory" href="#xor-prop.thy"/>
+            <span class="omdoc-titleword">Lemma</span>
+            <p>
+              <span id="MCRd38e305" class="displaymath" xmlns="">
+                <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+                  <OMR href="#xor-prop-3.1"/>
+                </OMOBJ>
+              </span> for all 
+              <span id="MCRd38e308" class="displaymath" xmlns="">
+                <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+                  <OMV name="X"/>
+                </OMOBJ>
+              </span>.
+            </p>
+            <span class="omdoc-FMP">
+              <span id="MCRd38e312" class="displaymath" xmlns="">
+                <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+                  <OMBIND>
+                    <OMS cd="qbf" name="forall"/>
+                    <OMBVAR>
+                      <OMV name="x"/>
+                    </OMBVAR>
+                    <OMA id="xor-prop-3.1">
+                      <OMS cd="truthval" name="eq"/>
+                      <OMA>
+                        <OMS cd="pl0" name="xor"/>
+                        <OMV name="x"/>
+                        <OMA>
+                          <OMS cd="pl0" name="not"/>
+                          <OMV name="x"/>
+                        </OMA>
+                      </OMA>
+                      <OMS cd="truthval" name="true"/>
+                    </OMA>
+                  </OMBIND>
+                </OMOBJ>
+              </span>
+            </span>
+          </div>
+        </div>
+        <div class="omdoc-symbol" id="d20e34or" role="Symbol" about="#" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#pl0"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Concept</span>or
+          </div>
+          <span id="MCRd38e331" class="displaymath" xmlns="">
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+              <OMS cd="pl0" name="or"/>
+            </OMOBJ>
+          </span> represents the logical or function which is an n-ary function taking boolean arguments and returning a boolean value. It is true if any of the arguments are true or false otherwise. Its truth table is 
+          <div id="MCRd38e334" class="displaymath" style="display:block" xmlns="">
+            <OMOBJ style="display:block" xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+              <OMA>
+                <OMS cd="truth-tables" name="tt"/>
+                <OMS cd="pl0" name="or"/>
+                <OMA>
+                  <OMS cd="truth-tables" name="ttargs"/>
+                  <OMS cd="truthval" name="true"/>
+                  <OMS cd="truthval" name="false"/>
+                </OMA>
+                <OMA>
+                  <OMS cd="truth-tables" name="ttrow"/>
+                  <OMS cd="truthval" name="true"/>
+                  <OMS cd="truthval" name="true"/>
+                  <OMS cd="truthval" name="true"/>
+                </OMA>
+                <OMA>
+                  <OMS cd="truth-tables" name="ttrow"/>
+                  <OMS cd="truthval" name="false"/>
+                  <OMS cd="truthval" name="true"/>
+                  <OMS cd="truthval" name="false"/>
+                </OMA>
+              </OMA>
+            </OMOBJ>
+          </div>
+          <div class="omdoc-type" xml:id="">
+            <a class="omdoc" rel="oso:homeTheory" href="#"/>
+            <div class="omdoc-titlebox">
+              <span class="omdoc-titleword">Type</span>(simpletypes.omdoc#simpletypes) 
+              <span id="MCRd38e353" class="displaymath" xmlns="">
+                <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+                  <OMA>
+                    <OMS name="funtype" cd="simpletypes"/>
+                    <OMS cd="truthval" name="bool"/>
+                    <OMS cd="truthval" name="bool"/>
+                    <OMS cd="truthval" name="bool"/>
+                  </OMA>
+                </OMOBJ>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="theory">
+          <div class="imports">imports from: 
+            <a href="qbf.xhtml#qbf">qbf</a>
+          </div>
+          <div class="omdoc-axiom" id="d20e34tnd" role="Axiom" about="#tnd" xml:id="tnd">
+            <a class="omdoc" rel="oso:homeTheory" href="#tnd.thy"/>
+            <span class="omdoc-titleword">Axiom</span>
+            <p>The axiom of the excluded middle: 
+              <span id="MCRd38e396" class="displaymath" xmlns="">
+                <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+                  <OMR href="#tnd.1"/>
+                </OMOBJ>
+              </span> for all 
+              <span id="MCRd38e399" class="displaymath" xmlns="">
+                <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+                  <OMV name="X"/>
+                </OMOBJ>
+              </span>.
+            </p>
+            <span class="omdoc-FMP">
+              <span id="MCRd38e403" class="displaymath" xmlns="">
+                <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+                  <OMBIND>
+                    <OMS cd="qbf" name="forall"/>
+                    <OMBVAR>
+                      <OMV name="x"/>
+                    </OMBVAR>
+                    <OMA id="tnd.1">
+                      <OMS cd="pl0" name="or"/>
+                      <OMV name="x"/>
+                      <OMA>
+                        <OMS cd="pl0" name="not"/>
+                        <OMV name="x"/>
+                      </OMA>
+                    </OMA>
+                  </OMBIND>
+                </OMOBJ>
+              </span>
+            </span>
+          </div>
+        </div>
+        <div class="theory">
+          <div class="imports">imports from: 
+            <a href="qbf.xhtml#qbf">qbf</a>
+          </div>
+          <div class="omdoc-lemma" id="d20e34or-prop-1" role="Assertion" about="#or-prop-1" xml:id="or-prop-1">
+            <a class="omdoc" rel="oso:homeTheory" href="#or-prop.thy"/>
+            <span class="omdoc-titleword">Lemma</span>
+            <p>
+              <span id="MCRd38e419" class="displaymath" xmlns="">
+                <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+                  <OMR href="#or-prop-1.1"/>
+                </OMOBJ>
+              </span> for all 
+              <span id="MCRd38e422" class="displaymath" xmlns="">
+                <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+                  <OMV name="X"/>
+                </OMOBJ>
+              </span>.
+            </p>
+            <span class="omdoc-FMP">
+              <span id="MCRd38e426" class="displaymath" xmlns="">
+                <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+                  <OMBIND>
+                    <OMS cd="qbf" name="forall"/>
+                    <OMBVAR>
+                      <OMV name="x"/>
+                    </OMBVAR>
+                    <OMA id="or-prop-1.1">
+                      <OMS cd="truthval" name="eq"/>
+                      <OMA>
+                        <OMS cd="pl0" name="or"/>
+                        <OMV name="x"/>
+                        <OMA>
+                          <OMS cd="pl0" name="not"/>
+                          <OMV name="x"/>
+                        </OMA>
+                      </OMA>
+                      <OMS cd="truthval" name="true"/>
+                    </OMA>
+                  </OMBIND>
+                </OMOBJ>
+              </span>
+            </span>
+          </div>
+          <div class="omdoc-lemma" id="d20e34or-prop-3" role="Assertion" about="#or-prop-3" xml:id="or-prop-3">
+            <a class="omdoc" rel="oso:homeTheory" href="#or-prop.thy"/>
+            <span class="omdoc-titleword">Lemma</span>
+            <p>
+              <span id="MCRd38e442" class="displaymath" xmlns="">
+                <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+                  <OMR href="#or-prop-3.1"/>
+                </OMOBJ>
+              </span> for all 
+              <span id="MCRd38e445" class="displaymath" xmlns="">
+                <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+                  <OMV name="a"/>
+                </OMOBJ>
+              </span> and 
+              <span id="MCRd38e448" class="displaymath" xmlns="">
+                <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+                  <OMV name="b"/>
+                </OMOBJ>
+              </span>. 
+            </p>
+            <span class="omdoc-FMP">
+              <span id="MCRd38e452" class="displaymath" xmlns="">
+                <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+                  <OMBIND>
+                    <OMS cd="qbf" name="forall"/>
+                    <OMBVAR>
+                      <OMV name="a"/>
+                      <OMV name="b"/>
+                    </OMBVAR>
+                    <OMA id="or-prop-3.1">
+                      <OMS cd="truthval" name="eq"/>
+                      <OMA>
+                        <OMS cd="pl0" name="not"/>
+                        <OMA>
+                          <OMS cd="pl0" name="and"/>
+                          <OMV name="a"/>
+                          <OMV name="b"/>
+                        </OMA>
+                      </OMA>
+                      <OMA>
+                        <OMS cd="pl0" name="or"/>
+                        <OMA>
+                          <OMS cd="pl0" name="not"/>
+                          <OMV name="a"/>
+                        </OMA>
+                        <OMA>
+                          <OMS cd="pl0" name="not"/>
+                          <OMV name="b"/>
+                        </OMA>
+                      </OMA>
+                    </OMA>
+                  </OMBIND>
+                </OMOBJ>
+              </span>
+            </span>
+          </div>
+        </div>
+        <div class="omdoc-symbol" id="d20e34implies" role="Symbol" about="#" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#pl0"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Concept</span>implies
+          </div>
+          <span id="MCRd38e479" class="displaymath" xmlns="">
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+              <OMS cd="pl0" name="implies"/>
+            </OMOBJ>
+          </span> represents the logical implies function which takes two boolean expressions as arguments. It evaluates to false if the first argument is true and the second argument is false, otherwise it evaluates to true. Its truth table is 
+          <div id="MCRd38e482" class="displaymath" style="display:block" xmlns="">
+            <OMOBJ style="display:block" xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+              <OMA>
+                <OMS cd="truth-tables" name="tt"/>
+                <OMS cd="pl0" name="implies"/>
+                <OMA>
+                  <OMS cd="truth-tables" name="ttargs"/>
+                  <OMS cd="truthval" name="true"/>
+                  <OMS cd="truthval" name="false"/>
+                </OMA>
+                <OMA>
+                  <OMS cd="truth-tables" name="ttrow"/>
+                  <OMS cd="truthval" name="true"/>
+                  <OMS cd="truthval" name="true"/>
+                  <OMS cd="truthval" name="false"/>
+                </OMA>
+                <OMA>
+                  <OMS cd="truth-tables" name="ttrow"/>
+                  <OMS cd="truthval" name="false"/>
+                  <OMS cd="truthval" name="true"/>
+                  <OMS cd="truthval" name="true"/>
+                </OMA>
+              </OMA>
+            </OMOBJ>
+          </div>
+          <div class="omdoc-type" xml:id="">
+            <a class="omdoc" rel="oso:homeTheory" href="#"/>
+            <div class="omdoc-titlebox">
+              <span class="omdoc-titleword">Type</span>(simpletypes.omdoc#simpletypes) 
+              <span id="MCRd38e501" class="displaymath" xmlns="">
+                <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+                  <OMA>
+                    <OMS name="funtype" cd="simpletypes"/>
+                    <OMS cd="truthval" name="bool"/>
+                    <OMS cd="truthval" name="bool"/>
+                    <OMS cd="truthval" name="bool"/>
+                  </OMA>
+                </OMOBJ>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="omdoc-symbol" id="d20e34implied" role="Symbol" about="#" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#pl0"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Concept</span>implied
+          </div>
+          <span id="MCRd38e542" class="displaymath" xmlns="">
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+              <OMS cd="pl0" name="implied"/>
+            </OMOBJ>
+          </span> represents the reverse implication which takes two boolean expressions as arguments. It evaluates to false if the first argument is false and the second argument is true, otherwise it evaluates to true. Its truth table is 
+          <div id="MCRd38e545" class="displaymath" style="display:block" xmlns="">
+            <OMOBJ style="display:block" xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+              <OMA>
+                <OMS cd="truth-tables" name="tt"/>
+                <OMS cd="pl0" name="implied"/>
+                <OMA>
+                  <OMS cd="truth-tables" name="ttargs"/>
+                  <OMS cd="truthval" name="true"/>
+                  <OMS cd="truthval" name="false"/>
+                </OMA>
+                <OMA>
+                  <OMS cd="truth-tables" name="ttrow"/>
+                  <OMS cd="truthval" name="true"/>
+                  <OMS cd="truthval" name="true"/>
+                  <OMS cd="truthval" name="true"/>
+                </OMA>
+                <OMA>
+                  <OMS cd="truth-tables" name="ttrow"/>
+                  <OMS cd="truthval" name="false"/>
+                  <OMS cd="truthval" name="true"/>
+                  <OMS cd="truthval" name="false"/>
+                </OMA>
+              </OMA>
+            </OMOBJ>
+          </div>
+          <div class="omdoc-type" xml:id="">
+            <a class="omdoc" rel="oso:homeTheory" href="#"/>
+            <div class="omdoc-titlebox">
+              <span class="omdoc-titleword">Type</span>(simpletypes.omdoc#simpletypes) 
+              <span id="MCRd38e564" class="displaymath" xmlns="">
+                <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+                  <OMA>
+                    <OMS name="funtype" cd="simpletypes"/>
+                    <OMS cd="truthval" name="bool"/>
+                    <OMS cd="truthval" name="bool"/>
+                    <OMS cd="truthval" name="bool"/>
+                  </OMA>
+                </OMOBJ>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="theory">
+          <div class="imports">imports from: 
+            <a href="qbf.xhtml#qbf">qbf</a>
+          </div>
+          <div class="omdoc-lemma" id="d20e34implies-prop-1" role="Assertion" about="#implies-prop-1" xml:id="implies-prop-1">
+            <a class="omdoc" rel="oso:homeTheory" href="#implies-prop.thy"/>
+            <span class="omdoc-titleword">Lemma</span>
+            <p>
+              <span id="MCRd38e605" class="displaymath" xmlns="">
+                <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+                  <OMR href="#implies-prop-1.1"/>
+                </OMOBJ>
+              </span> for all 
+              <span id="MCRd38e608" class="displaymath" xmlns="">
+                <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+                  <OMV name="X"/>
+                </OMOBJ>
+              </span>.
+            </p>
+            <span class="omdoc-FMP">
+              <span id="MCRd38e612" class="displaymath" xmlns="">
+                <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+                  <OMBIND>
+                    <OMS cd="qbf" name="forall"/>
+                    <OMBVAR>
+                      <OMV name="x"/>
+                    </OMBVAR>
+                    <OMA id="implies-prop-1.1">
+                      <OMS cd="pl0" name="implies"/>
+                      <OMS cd="truthval" name="false"/>
+                      <OMV name="x"/>
+                    </OMA>
+                  </OMBIND>
+                </OMOBJ>
+              </span>
+            </span>
+          </div>
+        </div>
+        <div class="omdoc-symbol" id="d20e34equivalent" role="Symbol" about="#" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#pl0"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Concept</span>equivalent(
+            <a class="omdoc" href="#">Definition</a>)
+          </div>
+          <span id="MCRd38e626" class="displaymath" xmlns="">
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+              <OMS cd="pl0" name="equivalent"/>
+            </OMOBJ>
+          </span> is used to show that two boolean expressions are logically equivalent, that is have the same boolean value for any inputs. Its truth table is 
+          <div id="MCRd38e629" class="displaymath" style="display:block" xmlns="">
+            <OMOBJ style="display:block" xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+              <OMA>
+                <OMS cd="truth-tables" name="tt"/>
+                <OMS cd="pl0" name="equivalent"/>
+                <OMA>
+                  <OMS cd="truth-tables" name="ttargs"/>
+                  <OMS cd="truthval" name="true"/>
+                  <OMS cd="truthval" name="false"/>
+                </OMA>
+                <OMA>
+                  <OMS cd="truth-tables" name="ttrow"/>
+                  <OMS cd="truthval" name="true"/>
+                  <OMS cd="truthval" name="true"/>
+                  <OMS cd="truthval" name="false"/>
+                </OMA>
+                <OMA>
+                  <OMS cd="truth-tables" name="ttrow"/>
+                  <OMS cd="truthval" name="false"/>
+                  <OMS cd="truthval" name="false"/>
+                  <OMS cd="truthval" name="true"/>
+                </OMA>
+              </OMA>
+            </OMOBJ>
+          </div>
+        </div>
+        <div class="omdoc-definition" id="d20e34equivalent-def" role="Definition" about="#equivalent" xml:id="equivalent-def">
+          <a class="omdoc" rel="oso:defines" href="#equivalent"/>
+          <a class="omdoc" rel="oso:homeTheory" href="#equivalent"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Definition</span>
+          </div>
+          <p> The condition 
+            <span id="MCRd38e682" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+                <OMR href="#equivalent-def.1"/>
+              </OMOBJ>
+            </span> is equivalent to the condition that 
+            <span id="MCRd38e685" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+                <OMR href="#equivalent-def.2"/>
+              </OMOBJ>
+            </span>. 
+          </p>
+          <span class="omdoc-FMP">
+            <span id="MCRd38e689" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+                <OMA>
+                  <OMS cd="pl0" name="equivalent"/>
+                  <OMA id="equivalent-def.1">
+                    <OMS cd="pl0" name="equivalent"/>
+                    <OMV name="A"/>
+                    <OMV name="B"/>
+                  </OMA>
+                  <OMA id="equivalent-def.2">
+                    <OMS cd="pl0" name="and"/>
+                    <OMA>
+                      <OMS cd="pl0" name="implies"/>
+                      <OMV name="A"/>
+                      <OMV name="B"/>
+                    </OMA>
+                    <OMA>
+                      <OMS cd="pl0" name="implies"/>
+                      <OMV name="B"/>
+                      <OMV name="A"/>
+                    </OMA>
+                  </OMA>
+                </OMA>
+              </OMOBJ>
+            </span>
+          </span>
+        </div>
+      </div>
+      <div class="theory" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="http://purl.org/dc/elements/1.1/">
+        <h3 id="d20e35skl0">4.1. Strong Kleene Logic (Three-valued Propositional Logic)</h3>
+        <div class="imports">imports from: 
+          <a href="pl0.xhtml#pl0">pl0</a>
+        </div>
+        <div class="omdoc-symbol" id="d20e35threebool" role="Symbol" about="#" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#skl0"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Concept</span>threebool
+          </div>
+          <span id="MCRd63e27" class="displaymath" xmlns="">
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+              <OMS cd="skl0" name="threebool"/>
+            </OMOBJ>
+          </span> is the type of thre-valued truth values .
+        </div>
+        <div class="omdoc-symbol" id="d20e35undefined" role="Symbol" about="#" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#skl0"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Concept</span>undefined
+          </div>
+          <span id="MCRd63e38" class="displaymath" xmlns="">
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+              <OMS cd="skl0" name="undefined"/>
+            </OMOBJ>
+          </span> represents the undefined truth value. 
+          <div class="omdoc-type" xml:id="">
+            <a class="omdoc" rel="oso:homeTheory" href="#"/>
+            <div class="omdoc-titlebox">
+              <span class="omdoc-titleword">Type</span>(simpletypes.omdoc#simpletypes) 
+              <span id="MCRd63e42" class="displaymath" xmlns="">
+                <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+                  <OMS cd="skl0" name="threebool"/>
+                </OMOBJ>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="omdoc-symbol" id="d20e35eq" role="Symbol" about="#" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#skl0"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Concept</span>eq
+          </div>
+          <span id="MCRd63e50" class="displaymath" xmlns="">
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+              <OMS cd="skl0" name="eq"/>
+            </OMOBJ>
+          </span> is the equality relation on truth values
+        </div>
+        <div class="omdoc-symbol" id="d20e35neq" role="Symbol" about="#" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#skl0"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Concept</span>neq
+          </div>
+          <span id="MCRd63e61" class="displaymath" xmlns="">
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+              <OMS cd="skl0" name="new"/>
+            </OMOBJ>
+          </span> is the inequality relation on truth values. 
+        </div>
+        <div class="omdoc-axiom" id="d20e35tfu-distinct" role="Axiom" about="#tfu-distinct" xml:id="tfu-distinct">
+          <a class="omdoc" rel="oso:homeTheory" href="#skl0"/>
+          <span class="omdoc-titleword">Axiom</span>
+          <p>The truth values 
+            <span id="MCRd63e82" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+                <OMS cd="truthval" name="true"/>
+              </OMOBJ>
+            </span>, 
+            <span id="MCRd63e85" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+                <OMS cd="skl0" name="undefined"/>
+              </OMOBJ>
+            </span> and 
+            <span id="MCRd63e88" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+                <OMS cd="truthval" name="false"/>
+              </OMOBJ>
+            </span> are distinct. 
+          </p>
+          <span class="omdoc-FMP">
+            <span id="MCRd63e92" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+                <OMA>
+                  <OMS cd="pl0" name="and"/>
+                  <OMA>
+                    <OMS cd="truthval" name="neq"/>
+                    <OMS cd="truthval" name="true"/>
+                    <OMS cd="truthval" name="false"/>
+                  </OMA>
+                  <OMA>
+                    <OMS cd="truthval" name="neq"/>
+                    <OMS cd="truthval" name="true"/>
+                    <OMS cd="skl0" name="undefined"/>
+                  </OMA>
+                  <OMA>
+                    <OMS cd="truthval" name="neq"/>
+                    <OMS cd="truthval" name="false"/>
+                    <OMS cd="skl0" name="undefined"/>
+                  </OMA>
+                </OMA>
+              </OMOBJ>
+            </span>
+          </span>
+        </div>
+        <div class="omdoc-symbol" id="d20e35not" role="Symbol" about="#" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#skl0"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Concept</span>not
+          </div>
+          <span id="MCRd63e112" class="displaymath" xmlns="">
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+              <OMS cd="skl0" name="not"/>
+            </OMOBJ>
+          </span> represents the logical not function which takes one boolean argument, and returns the opposite boolean value. It has the truth table 
+          <div id="MCRd63e115" class="displaymath" style="display:block" xmlns="">
+            <OMOBJ style="display:block" xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+              <OMA>
+                <OMS cd="truth-tables" name="tt"/>
+                <OMS cd="skl0" name="not"/>
+                <OMA>
+                  <OMS cd="truth-tables" name="ttargs"/>
+                </OMA>
+                <OMA>
+                  <OMS cd="truth-tables" name="ttrow"/>
+                  <OMS cd="truthval" name="true"/>
+                  <OMS cd="truthval" name="false"/>
+                </OMA>
+                <OMA>
+                  <OMS cd="truth-tables" name="ttrow"/>
+                  <OMS cd="skl0" name="undefined"/>
+                  <OMS cd="skl0" name="undefined"/>
+                </OMA>
+                <OMA>
+                  <OMS cd="truth-tables" name="ttrow"/>
+                  <OMS cd="truthval" name="false"/>
+                  <OMS cd="truthval" name="true"/>
+                </OMA>
+              </OMA>
+            </OMOBJ>
+          </div>
+        </div>
+        <div class="omdoc-definition" id="d20e35false-def" role="Definition" about="#false" xml:id="false-def">
+          <a class="omdoc" rel="oso:defines" href="#false"/>
+          <a class="omdoc" rel="oso:homeTheory" href="#false"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Definition</span>
+          </div>
+          <p>
+            <span id="MCRd63e149" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+                <OMS cd="truthval" name="false"/>
+              </OMOBJ>
+            </span> is 
+            <span id="MCRd63e152" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+                <OMR href="true-prop-1.1"/>
+              </OMOBJ>
+            </span>
+          </p>
+        </div>
+        <div class="omdoc-lemma" id="d20e35false-prop-1" role="Assertion" about="#false-prop-1" xml:id="false-prop-1">
+          <a class="omdoc" rel="oso:homeTheory" href="#skl0"/>
+          <span class="omdoc-titleword">Lemma</span>
+          <p>
+            <span id="MCRd63e160" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+                <OMR href="false-prop-1.1"/>
+              </OMOBJ>
+            </span>
+          </p>
+          <span class="omdoc-FMP">
+            <span id="MCRd63e163" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+                <OMA id="false-prop-1.1">
+                  <OMS cd="skl0" name="eq"/>
+                  <OMA>
+                    <OMS cd="skl0" name="not"/>
+                    <OMS cd="truthval" name="false"/>
+                  </OMA>
+                  <OMS cd="truthval" name="true"/>
+                </OMA>
+              </OMOBJ>
+            </span>
+          </span>
+        </div>
+        <div class="omdoc-lemma" id="d20e35not-prop-1" role="Assertion" about="#not-prop-1" xml:id="not-prop-1">
+          <a class="omdoc" rel="oso:homeTheory" href="#skl0"/>
+          <span class="omdoc-titleword">Lemma</span>
+          <p>
+            <span id="MCRd63e172" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+                <OMR href="not-prop-1.1"/>
+              </OMOBJ>
+            </span> for all 
+            <span id="MCRd63e175" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+                <OMV name="X"/>
+              </OMOBJ>
+            </span>.
+          </p>
+          <span class="omdoc-FMP">
+            <span id="MCRd63e179" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+                <OMBIND>
+                  <OMS cd="skl0" name="forall"/>
+                  <OMBVAR>
+                    <OMV name="x"/>
+                  </OMBVAR>
+                  <OMA id="not-prop-1.1">
+                    <OMS cd="skl0" name="eq"/>
+                    <OMA>
+                      <OMS cd="skl0" name="not"/>
+                      <OMA>
+                        <OMS cd="skl0" name="not"/>
+                        <OMV name="x"/>
+                      </OMA>
+                    </OMA>
+                    <OMV name="x"/>
+                  </OMA>
+                </OMBIND>
+              </OMOBJ>
+            </span>
+          </span>
+        </div>
+        <div class="omdoc-symbol" id="d20e35and" role="Symbol" about="#" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#skl0"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Concept</span>and
+          </div>
+          <span id="MCRd63e197" class="displaymath" xmlns="">
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+              <OMS cd="skl0" name="and"/>
+            </OMOBJ>
+          </span> represents the logical and function which is an n-ary function taking boolean arguments and returning a boolean value. It is true if all arguments are true or false otherwise. Its truth table is 
+          <div id="MCRd63e200" class="displaymath" style="display:block" xmlns="">
+            <OMOBJ style="display:block" xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+              <OMA>
+                <OMS cd="truth-tables" name="tt"/>
+                <OMS cd="skl0" name="and"/>
+                <OMA>
+                  <OMS cd="truth-tables" name="ttargs"/>
+                  <OMS cd="truthval" name="false"/>
+                  <OMS cd="skl0" name="undefined"/>
+                  <OMS cd="truthval" name="true"/>
+                </OMA>
+                <OMA>
+                  <OMS cd="truth-tables" name="ttrow"/>
+                  <OMS cd="truthval" name="false"/>
+                  <OMS cd="truthval" name="false"/>
+                  <OMS cd="truthval" name="false"/>
+                  <OMS cd="truthval" name="false"/>
+                </OMA>
+                <OMA>
+                  <OMS cd="truth-tables" name="ttrow"/>
+                  <OMS cd="skl0" name="undefined"/>
+                  <OMS cd="truthval" name="false"/>
+                  <OMS cd="skl0" name="undefined"/>
+                  <OMS cd="skl0" name="undefined"/>
+                </OMA>
+                <OMA>
+                  <OMS cd="truth-tables" name="ttrow"/>
+                  <OMS cd="truthval" name="true"/>
+                  <OMS cd="truthval" name="false"/>
+                  <OMS cd="skl0" name="undefined"/>
+                  <OMS cd="truthval" name="true"/>
+                </OMA>
+              </OMA>
+            </OMOBJ>
+          </div>
+          <div class="omdoc-type" xml:id="">
+            <a class="omdoc" rel="oso:homeTheory" href="#"/>
+            <div class="omdoc-titlebox">
+              <span class="omdoc-titleword">Type</span>(simpletypes.omdoc#simpletypes) 
+              <span id="MCRd63e228" class="displaymath" xmlns="">
+                <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+                  <OMA>
+                    <OMS name="funtype" cd="simpletypes"/>
+                    <OMS cd="skl0" name="threebool"/>
+                    <OMS cd="skl0" name="threebool"/>
+                    <OMS cd="skl0" name="threebool"/>
+                  </OMA>
+                </OMOBJ>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="omdoc-lemma" id="d20e35and-prop-1" role="Assertion" about="#and-prop-1" xml:id="and-prop-1">
+          <a class="omdoc" rel="oso:homeTheory" href="#skl0"/>
+          <span class="omdoc-titleword">Lemma</span>
+          <p>
+            <span id="MCRd63e250" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+                <OMR href="and-prop-1.1"/>
+              </OMOBJ>
+            </span> for all 
+            <span id="MCRd63e253" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+                <OMV name="X"/>
+              </OMOBJ>
+            </span>. 
+          </p>
+          <span class="omdoc-FMP">
+            <span id="MCRd63e257" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+                <OMBIND>
+                  <OMS cd="skl0" name="forall"/>
+                  <OMBVAR>
+                    <OMV name="x"/>
+                  </OMBVAR>
+                  <OMA id="and-prop-1.1">
+                    <OMS cd="skl0" name="eq"/>
+                    <OMA>
+                      <OMS cd="skl0" name="and"/>
+                      <OMV name="x"/>
+                      <OMA>
+                        <OMS cd="skl0" name="not"/>
+                        <OMV name="x"/>
+                      </OMA>
+                    </OMA>
+                    <OMS cd="truthval" name="false"/>
+                  </OMA>
+                </OMBIND>
+              </OMOBJ>
+            </span>
+          </span>
+        </div>
+        <div class="omdoc-symbol" id="d20e35xor" role="Symbol" about="#" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#skl0"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Concept</span>xor
+          </div>
+          <span id="MCRd63e277" class="displaymath" xmlns="">
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+              <OMS cd="skl0" name="xor"/>
+            </OMOBJ>
+          </span> represents the logical xor function which is an n-ary function taking boolean arguments and returning a boolean value. It is true if there are an odd number of true arguments or false otherwise. Its truth table is 
+          <div id="MCRd63e280" class="displaymath" style="display:block" xmlns="">
+            <OMOBJ style="display:block" xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+              <OMA>
+                <OMS cd="truth-tables" name="tt"/>
+                <OMS cd="skl0" name="xor"/>
+                <OMA>
+                  <OMS cd="truth-tables" name="ttargs"/>
+                  <OMS cd="truthval" name="false"/>
+                  <OMS cd="skl0" name="undefined"/>
+                  <OMS cd="truthval" name="true"/>
+                </OMA>
+                <OMA>
+                  <OMS cd="truth-tables" name="ttrow"/>
+                  <OMS cd="truthval" name="true"/>
+                  <OMS cd="truthval" name="false"/>
+                  <OMS cd="skl0" name="undefined"/>
+                  <OMS cd="truthval" name="true"/>
+                </OMA>
+                <OMA>
+                  <OMS cd="truth-tables" name="ttrow"/>
+                  <OMS cd="skl0" name="undefined"/>
+                  <OMS cd="skl0" name="undefined"/>
+                  <OMS cd="skl0" name="undefined"/>
+                  <OMS cd="truthval" name="true"/>
+                </OMA>
+                <OMA>
+                  <OMS cd="truth-tables" name="ttrow"/>
+                  <OMS cd="truthval" name="true"/>
+                  <OMS cd="truthval" name="true"/>
+                  <OMS cd="truthval" name="true"/>
+                  <OMS cd="truthval" name="false"/>
+                </OMA>
+              </OMA>
+            </OMOBJ>
+          </div>
+          <div class="omdoc-type" xml:id="">
+            <a class="omdoc" rel="oso:homeTheory" href="#"/>
+            <div class="omdoc-titlebox">
+              <span class="omdoc-titleword">Type</span>(simpletypes.omdoc#simpletypes) 
+              <span id="MCRd63e308" class="displaymath" xmlns="">
+                <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+                  <OMA>
+                    <OMS name="funtype" cd="simpletypes"/>
+                    <OMS cd="skl0" name="threebool"/>
+                    <OMS cd="skl0" name="threebool"/>
+                    <OMS cd="skl0" name="threebool"/>
+                  </OMA>
+                </OMOBJ>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="omdoc-lemma" id="d20e35xor-prop-1" role="Assertion" about="#xor-prop-1" xml:id="xor-prop-1">
+          <a class="omdoc" rel="oso:homeTheory" href="#skl0"/>
+          <span class="omdoc-titleword">Lemma</span>
+          <p>
+            <span id="MCRd63e322" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+                <OMR href="xor-prop-1.1"/>
+              </OMOBJ>
+            </span> for all 
+            <span id="MCRd63e325" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+                <OMV name="X"/>
+              </OMOBJ>
+            </span>. 
+          </p>
+          <span class="omdoc-FMP">
+            <span id="MCRd63e329" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+                <OMBIND>
+                  <OMS cd="skl0" name="forall"/>
+                  <OMBVAR>
+                    <OMV name="x"/>
+                  </OMBVAR>
+                  <OMA id="xor-prop-1.1">
+                    <OMS cd="skl0" name="eq"/>
+                    <OMA>
+                      <OMS cd="skl0" name="xor"/>
+                      <OMV name="x"/>
+                      <OMV name="x"/>
+                    </OMA>
+                    <OMS cd="truthval" name="false"/>
+                  </OMA>
+                </OMBIND>
+              </OMOBJ>
+            </span>
+          </span>
+        </div>
+        <div class="omdoc-lemma" id="d20e35xor-prop-3" role="Assertion" about="#xor-prop-3" xml:id="xor-prop-3">
+          <a class="omdoc" rel="oso:homeTheory" href="#skl0"/>
+          <span class="omdoc-titleword">Lemma</span>
+          <p>
+            <span id="MCRd63e343" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+                <OMR href="xor-prop-3.1"/>
+              </OMOBJ>
+            </span> for all 
+            <span id="MCRd63e346" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+                <OMV name="X"/>
+              </OMOBJ>
+            </span>.
+          </p>
+          <span class="omdoc-FMP">
+            <span id="MCRd63e350" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+                <OMBIND>
+                  <OMS cd="skl0" name="forall"/>
+                  <OMBVAR>
+                    <OMV name="x"/>
+                  </OMBVAR>
+                  <OMA id="xor-prop-3.1">
+                    <OMS cd="skl0" name="eq"/>
+                    <OMA>
+                      <OMS cd="skl0" name="xor"/>
+                      <OMV name="x"/>
+                      <OMA>
+                        <OMS cd="skl0" name="not"/>
+                        <OMV name="x"/>
+                      </OMA>
+                    </OMA>
+                    <OMS cd="truthval" name="true"/>
+                  </OMA>
+                </OMBIND>
+              </OMOBJ>
+            </span>
+          </span>
+        </div>
+        <div class="omdoc-symbol" id="d20e35or" role="Symbol" about="#" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#skl0"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Concept</span>or
+          </div>
+          <span id="MCRd63e369" class="displaymath" xmlns="">
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+              <OMS cd="skl0" name="or"/>
+            </OMOBJ>
+          </span> represents the logical or function which is an n-ary function taking boolean arguments and returning a boolean value. It is true if any of the arguments are true or false otherwise. Its truth table is 
+          <div id="MCRd63e372" class="displaymath" style="display:block" xmlns="">
+            <OMOBJ style="display:block" xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+              <OMA>
+                <OMS cd="truth-tables" name="tt"/>
+                <OMS cd="skl0" name="or"/>
+                <OMA>
+                  <OMS cd="truth-tables" name="ttargs"/>
+                  <OMS cd="truthval" name="false"/>
+                  <OMS cd="skl0" name="undefined"/>
+                  <OMS cd="truthval" name="true"/>
+                </OMA>
+                <OMA>
+                  <OMS cd="truth-tables" name="ttrow"/>
+                  <OMS cd="truthval" name="true"/>
+                  <OMS cd="truthval" name="false"/>
+                  <OMS cd="skl0" name="undefined"/>
+                  <OMS cd="truthval" name="true"/>
+                </OMA>
+                <OMA>
+                  <OMS cd="truth-tables" name="ttrow"/>
+                  <OMS cd="skl0" name="undefined"/>
+                  <OMS cd="skl0" name="undefined"/>
+                  <OMS cd="skl0" name="undefined"/>
+                  <OMS cd="truthval" name="true"/>
+                </OMA>
+                <OMA>
+                  <OMS cd="truth-tables" name="ttrow"/>
+                  <OMS cd="truthval" name="true"/>
+                  <OMS cd="truthval" name="true"/>
+                  <OMS cd="truthval" name="true"/>
+                  <OMS cd="truthval" name="true"/>
+                </OMA>
+              </OMA>
+            </OMOBJ>
+          </div>
+          <div class="omdoc-type" xml:id="">
+            <a class="omdoc" rel="oso:homeTheory" href="#"/>
+            <div class="omdoc-titlebox">
+              <span class="omdoc-titleword">Type</span>(simpletypes.omdoc#simpletypes) 
+              <span id="MCRd63e400" class="displaymath" xmlns="">
+                <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+                  <OMA>
+                    <OMS name="funtype" cd="simpletypes"/>
+                    <OMS cd="skl0" name="threebool"/>
+                    <OMS cd="skl0" name="threebool"/>
+                    <OMS cd="skl0" name="threebool"/>
+                  </OMA>
+                </OMOBJ>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="omdoc-lemma" id="d20e35or-prop-1" role="Assertion" about="#or-prop-1" xml:id="or-prop-1">
+          <a class="omdoc" rel="oso:homeTheory" href="#skl0"/>
+          <span class="omdoc-titleword">Lemma</span>
+          <p>
+            <span id="MCRd63e444" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+                <OMR href="or-prop-1.1"/>
+              </OMOBJ>
+            </span> for all 
+            <span id="MCRd63e447" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+                <OMV name="X"/>
+              </OMOBJ>
+            </span>.
+          </p>
+          <span class="omdoc-FMP">
+            <span id="MCRd63e451" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+                <OMBIND>
+                  <OMS cd="skl0" name="forall"/>
+                  <OMBVAR>
+                    <OMV name="x"/>
+                  </OMBVAR>
+                  <OMA id="or-prop-1.1">
+                    <OMS cd="skl0" name="eq"/>
+                    <OMA>
+                      <OMS cd="skl0" name="or"/>
+                      <OMV name="x"/>
+                      <OMA>
+                        <OMS cd="skl0" name="not"/>
+                        <OMV name="x"/>
+                      </OMA>
+                    </OMA>
+                    <OMS cd="truthval" name="true"/>
+                  </OMA>
+                </OMBIND>
+              </OMOBJ>
+            </span>
+          </span>
+        </div>
+        <div class="omdoc-lemma" id="d20e35or-prop-3" role="Assertion" about="#or-prop-3" xml:id="or-prop-3">
+          <a class="omdoc" rel="oso:homeTheory" href="#skl0"/>
+          <span class="omdoc-titleword">Lemma</span>
+          <p>
+            <span id="MCRd63e467" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+                <OMR href="or-prop-3.1"/>
+              </OMOBJ>
+            </span> for all 
+            <span id="MCRd63e470" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+                <OMV name="a"/>
+              </OMOBJ>
+            </span> and 
+            <span id="MCRd63e473" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+                <OMV name="b"/>
+              </OMOBJ>
+            </span>. 
+          </p>
+          <span class="omdoc-FMP">
+            <span id="MCRd63e477" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+                <OMBIND>
+                  <OMS cd="skl0" name="forall"/>
+                  <OMBVAR>
+                    <OMV name="a"/>
+                    <OMV name="b"/>
+                  </OMBVAR>
+                  <OMA id="or-prop-3.1">
+                    <OMS cd="skl0" name="eq"/>
+                    <OMA>
+                      <OMS cd="skl0" name="not"/>
+                      <OMA>
+                        <OMS cd="skl0" name="and"/>
+                        <OMV name="a"/>
+                        <OMV name="b"/>
+                      </OMA>
+                    </OMA>
+                    <OMA>
+                      <OMS cd="skl0" name="or"/>
+                      <OMA>
+                        <OMS cd="skl0" name="not"/>
+                        <OMV name="a"/>
+                      </OMA>
+                      <OMA>
+                        <OMS cd="skl0" name="not"/>
+                        <OMV name="b"/>
+                      </OMA>
+                    </OMA>
+                  </OMA>
+                </OMBIND>
+              </OMOBJ>
+            </span>
+          </span>
+        </div>
+        <div class="omdoc-symbol" id="d20e35implies" role="Symbol" about="#" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#skl0"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Concept</span>implies
+          </div>
+          <span id="MCRd63e505" class="displaymath" xmlns="">
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+              <OMS cd="skl0" name="implies"/>
+            </OMOBJ>
+          </span> represents the logical implies function which takes two boolean expressions as arguments. It evaluates to false if the first argument is true and the second argument is false, otherwise it evaluates to true. Its truth table is 
+          <div id="MCRd63e508" class="displaymath" style="display:block" xmlns="">
+            <OMOBJ style="display:block" xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+              <OMA>
+                <OMS cd="truth-tables" name="tt"/>
+                <OMS cd="skl0" name="implies"/>
+                <OMA>
+                  <OMS cd="truth-tables" name="ttargs"/>
+                  <OMS cd="truthval" name="false"/>
+                  <OMS cd="skl0" name="undefined"/>
+                  <OMS cd="truthval" name="true"/>
+                </OMA>
+                <OMA>
+                  <OMS cd="truth-tables" name="ttrow"/>
+                  <OMS cd="truthval" name="true"/>
+                  <OMS cd="truthval" name="true"/>
+                  <OMS cd="truthval" name="true"/>
+                  <OMS cd="truthval" name="true"/>
+                </OMA>
+                <OMA>
+                  <OMS cd="truth-tables" name="ttrow"/>
+                  <OMS cd="skl0" name="undefined"/>
+                  <OMS cd="skl0" name="undefined"/>
+                  <OMS cd="skl0" name="undefined"/>
+                  <OMS cd="truthval" name="true"/>
+                </OMA>
+                <OMA>
+                  <OMS cd="truth-tables" name="ttrow"/>
+                  <OMS cd="truthval" name="true"/>
+                  <OMS cd="truthval" name="false"/>
+                  <OMS cd="skl0" name="undefined"/>
+                  <OMS cd="truthval" name="true"/>
+                </OMA>
+              </OMA>
+            </OMOBJ>
+          </div>
+          <div class="omdoc-type" xml:id="">
+            <a class="omdoc" rel="oso:homeTheory" href="#"/>
+            <div class="omdoc-titlebox">
+              <span class="omdoc-titleword">Type</span>(simpletypes.omdoc#simpletypes) 
+              <span id="MCRd63e536" class="displaymath" xmlns="">
+                <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+                  <OMA>
+                    <OMS name="funtype" cd="simpletypes"/>
+                    <OMS cd="skl0" name="threebool"/>
+                    <OMS cd="skl0" name="threebool"/>
+                    <OMS cd="skl0" name="threebool"/>
+                  </OMA>
+                </OMOBJ>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="omdoc-lemma" id="d20e35implies-prop-1" role="Assertion" about="#implies-prop-1" xml:id="implies-prop-1">
+          <a class="omdoc" rel="oso:homeTheory" href="#skl0"/>
+          <span class="omdoc-titleword">Lemma</span>
+          <p>
+            <span id="MCRd63e558" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+                <OMR href="implies-prop-1.1"/>
+              </OMOBJ>
+            </span> for all 
+            <span id="MCRd63e561" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+                <OMV name="X"/>
+              </OMOBJ>
+            </span>.
+          </p>
+          <span class="omdoc-FMP">
+            <span id="MCRd63e565" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+                <OMBIND>
+                  <OMS cd="skl0" name="forall"/>
+                  <OMBVAR>
+                    <OMV name="x"/>
+                  </OMBVAR>
+                  <OMA id="implies-prop-1.1">
+                    <OMS cd="skl0" name="implies"/>
+                    <OMS cd="truthval" name="false"/>
+                    <OMV name="x"/>
+                  </OMA>
+                </OMBIND>
+              </OMOBJ>
+            </span>
+          </span>
+        </div>
+        <div class="omdoc-symbol" id="d20e35equivalent" role="Symbol" about="#" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#skl0"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Concept</span>equivalent(
+            <a class="omdoc" href="#">Definition</a>)
+          </div>
+          <span id="MCRd63e579" class="displaymath" xmlns="">
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+              <OMS cd="skl0" name="equivalent"/>
+            </OMOBJ>
+          </span> is used to show that two boolean expressions are logically equivalent, that is have the same boolean value for any inputs. Its truth table is 
+          <div id="MCRd63e582" class="displaymath" style="display:block" xmlns="">
+            <OMOBJ style="display:block" xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+              <OMA>
+                <OMS cd="truth-tables" name="tt"/>
+                <OMS cd="skl0" name="equivalent"/>
+                <OMA>
+                  <OMS cd="truth-tables" name="ttargs"/>
+                  <OMS cd="truthval" name="false"/>
+                  <OMS cd="skl0" name="undefined"/>
+                  <OMS cd="truthval" name="true"/>
+                </OMA>
+                <OMA>
+                  <OMS cd="truth-tables" name="ttrow"/>
+                  <OMS cd="truthval" name="false"/>
+                  <OMS cd="truthval" name="true"/>
+                  <OMS cd="skl0" name="undefined"/>
+                  <OMS cd="truthval" name="true"/>
+                </OMA>
+                <OMA>
+                  <OMS cd="truth-tables" name="ttrow"/>
+                  <OMS cd="skl0" name="undefined"/>
+                  <OMS cd="skl0" name="undefined"/>
+                  <OMS cd="skl0" name="undefined"/>
+                  <OMS cd="truthval" name="true"/>
+                </OMA>
+                <OMA>
+                  <OMS cd="truth-tables" name="ttrow"/>
+                  <OMS cd="truthval" name="true"/>
+                  <OMS cd="truthval" name="true"/>
+                  <OMS cd="truthval" name="true"/>
+                  <OMS cd="truthval" name="true"/>
+                </OMA>
+              </OMA>
+            </OMOBJ>
+          </div>
+        </div>
+        <div class="omdoc-definition" id="d20e35equivalent-def" role="Definition" about="#equivalent" xml:id="equivalent-def">
+          <a class="omdoc" rel="oso:defines" href="#equivalent"/>
+          <a class="omdoc" rel="oso:homeTheory" href="#equivalent"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Definition</span>
+          </div>
+          <p> The condition 
+            <span id="MCRd63e624" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+                <OMR href="equivalent-def.1"/>
+              </OMOBJ>
+            </span> is equivalent to the condition that 
+            <span id="MCRd63e627" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+                <OMR href="equivalent-def.2"/>
+              </OMOBJ>
+            </span>. 
+          </p>
+          <span class="omdoc-FMP">
+            <span id="MCRd63e631" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+                <OMA>
+                  <OMS cd="skl0" name="equivalent"/>
+                  <OMA id="equivalent-def.1">
+                    <OMS cd="skl0" name="equivalent"/>
+                    <OMV name="A"/>
+                    <OMV name="B"/>
+                  </OMA>
+                  <OMA id="equivalent-def.2">
+                    <OMS cd="skl0" name="and"/>
+                    <OMA>
+                      <OMS cd="skl0" name="implies"/>
+                      <OMV name="A"/>
+                      <OMV name="B"/>
+                    </OMA>
+                    <OMA>
+                      <OMS cd="skl0" name="implies"/>
+                      <OMV name="B"/>
+                      <OMV name="A"/>
+                    </OMA>
+                  </OMA>
+                </OMA>
+              </OMOBJ>
+            </span>
+          </span>
+        </div>
+        <div class="omdoc-symbol" id="d20e35tf" role="Symbol" about="#" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#skl0"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Concept</span>tf
+          </div>
+          <span id="MCRd63e651" class="displaymath" xmlns="">
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+              <OMS cd="skl0" name="tf"/>
+            </OMOBJ>
+          </span>The definedness connective; it is true, if it's argument is true or false, it is false on undefined. Its truth table is 
+          <div id="MCRd63e654" class="displaymath" style="display:block" xmlns="">
+            <OMOBJ style="display:block" xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+              <OMA>
+                <OMS cd="truth-tables" name="tt"/>
+                <OMS cd="skl0" name="tf"/>
+                <OMA>
+                  <OMS cd="truth-tables" name="ttargs"/>
+                </OMA>
+                <OMA>
+                  <OMS cd="truth-tables" name="ttrow"/>
+                  <OMS cd="truthval" name="false"/>
+                  <OMS cd="truthval" name="true"/>
+                </OMA>
+                <OMA>
+                  <OMS cd="truth-tables" name="ttrow"/>
+                  <OMS cd="skl0" name="undefined"/>
+                  <OMS cd="truthval" name="false"/>
+                </OMA>
+                <OMA>
+                  <OMS cd="truth-tables" name="ttrow"/>
+                  <OMS cd="truthval" name="true"/>
+                  <OMS cd="truthval" name="false"/>
+                </OMA>
+              </OMA>
+            </OMOBJ>
+          </div>
+          <div class="omdoc-type" xml:id="">
+            <a class="omdoc" rel="oso:homeTheory" href="#"/>
+            <div class="omdoc-titlebox">
+              <span class="omdoc-titleword">Type</span>(simpletypes.omdoc#simpletypes) 
+              <span id="MCRd63e673" class="displaymath" xmlns="">
+                <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+                  <OMA>
+                    <OMS name="funtype" cd="simpletypes"/>
+                    <OMS cd="skl0" name="threebool"/>
+                    <OMS cd="skl0" name="threebool"/>
+                  </OMA>
+                </OMOBJ>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="omdoc-omgroup">
+      <h1 id="fol"> First-Order Logics</h1>
+      <div class="omdoc-omtext" id="fol-intro">
+        <p> First-order logics are logics that allow quantification over individuals. They are usually untyped. </p>
+      </div>
+      <div class="theory" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="http://purl.org/dc/elements/1.1/">
+        <h3 id="d20e43ind">1.1. Individuals</h3>
+        <div class="omdoc-symbol" id="d20e43ind" role="Symbol" about="#" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#ind"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Concept</span>ind
+          </div>
+          <span id="MCRd96e26" class="displaymath" xmlns="">
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+              <OMS cd="ind" name="ind"/>
+            </OMOBJ>
+          </span> is the type of Individuals
+        </div>
+      </div>
+      <div class="theory" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="http://purl.org/dc/elements/1.1/">
+        <h3 id="d20e44pl1">2.1. First-Order Logic</h3>
+        <div class="imports">imports from: 
+          <a href="pl0.xhtml#pl0">pl0</a>, 
+          <a href="ind.xhtml#ind">ind</a>
+        </div>
+        <div class="omdoc-symbol" id="d20e44forall" role="Symbol" about="#pl1.forall" xml:id="pl1.forall">
+          <a class="omdoc" rel="oso:homeTheory" href="#pl1"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Concept</span>forall
+          </div>
+          <span id="MCRd98e28" class="displaymath" xmlns="">
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+              <OMS cd="pl1" name="forall"/>
+            </OMOBJ>
+          </span> is the binding symbol for the universal (for all) quantifier. 
+        </div>
+        <div class="omdoc-symbol" id="d20e44exists" role="Symbol" about="#pl1.exists" xml:id="pl1.exists">
+          <a class="omdoc" rel="oso:homeTheory" href="#pl1"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Concept</span>exists
+          </div>
+          <span id="MCRd98e58" class="displaymath" xmlns="">
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+              <OMS cd="pl1" name="exists"/>
+            </OMOBJ>
+          </span> is the binding symbol for the existential ("there exists") quantifier. 
+        </div>
+      </div>
+      <div class="theory" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="http://purl.org/dc/elements/1.1/">
+        <h3 id="d20e45undefined">3.1. Undefined Elements</h3>
+        <div class="omdoc-symbol" id="d20e45indstar" role="Symbol" about="#" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#undefined"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Concept</span>indstar
+          </div>The type of individuals with an undefined element.
+        </div>
+        <div class="omdoc-symbol" id="d20e45undefined" role="Symbol" about="#" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#undefined"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Concept</span>undefined
+          </div>This symbol represents the undefined element. 
+          <div class="omdoc-type" xml:id="">
+            <a class="omdoc" rel="oso:homeTheory" href="#"/>
+            <div class="omdoc-titlebox">
+              <span class="omdoc-titleword">Type</span>(simpletypes.omdoc#simpletypes) 
+              <span id="MCRd101e43" class="displaymath" xmlns="">
+                <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+                  <OMS cd="undefined" name="indstar"/>
+                </OMOBJ>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="theory" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="http://purl.org/dc/elements/1.1/">
+        <h3 id="d20e46partial1">4.1. First-Order, Two-Valued Partial-Function Logic</h3>
+        <div class="imports">imports from: 
+          <a href="pl0.xhtml#pl0">pl0</a>, 
+          <a href="ind.xhtml#ind">ind</a>
+        </div>
+        <div class="omdoc-axiom" id="d20e46undef-atom-false" role="Axiom" about="#undef-atom-false" xml:id="undef-atom-false">
+          <a class="omdoc" rel="oso:homeTheory" href="#partial1"/>
+          <span class="omdoc-titleword">Axiom</span>
+          <p>All atomic formulae that contain an occurrence of the undefined constant are false</p>
+        </div>
+      </div>
+      <div class="theory" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="http://purl.org/dc/elements/1.1/">
+        <h3 id="d20e47skl1">5.1. Strong First-Order Kleene Logic</h3>
+        <div class="imports">imports from: 
+          <a href="pl0.xhtml#pl0">pl0</a>, 
+          <a href="indeq.xhtml#indeq">indeq</a>
+        </div>
+        <div class="omdoc-symbol" id="d20e47forall" role="Symbol" about="#skl1.forall" xml:id="skl1.forall">
+          <a class="omdoc" rel="oso:homeTheory" href="#skl1"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Concept</span>forall
+          </div>This symbol is the binding symbol for the three-calued universal ("for all") quantifier.
+        </div>
+        <div class="omdoc-example" id="d20e47forall-ex-1" role="Example" about="#skl1.forall" xml:id="forall-ex-1">
+          <a class="omdoc" rel="oso:exemplifies" href="#skl1.forall"/>
+          <a class="omdoc" rel="oso:homeTheory" href="#skl1.forall"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Example</span>
+          </div>
+          <p>All objects are equal to themselves</p>
+          <span id="MCRd107e39" class="displaymath" xmlns="">
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+              <OMBIND>
+                <OMS cd="skl1" name="forall"/>
+                <OMBVAR>
+                  <OMV name="x"/>
+                </OMBVAR>
+                <OMA>
+                  <OMS cd="indeq" name="eq"/>
+                  <OMV name="x"/>
+                  <OMV name="x"/>
+                </OMA>
+              </OMBIND>
+            </OMOBJ>
+          </span>
+        </div>
+        <div class="omdoc-symbol" id="d20e47exists" role="Symbol" about="#skl1.exists" xml:id="skl1.exists">
+          <a class="omdoc" rel="oso:homeTheory" href="#skl1"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Concept</span>exists
+          </div>This symbol is the binding symbol for the three-valued existential ("there exists") quantifier.
+        </div>
+        <div class="omdoc-example" id="d20e47exists-ex-1" role="Example" about="#skl1.exists" xml:id="exists-ex-1">
+          <a class="omdoc" rel="oso:exemplifies" href="#skl1.exists"/>
+          <a class="omdoc" rel="oso:homeTheory" href="#skl1.exists"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Example</span>
+          </div>
+          <p>If the universe is non-empty, then the following statement is true</p>
+          <span id="MCRd107e64" class="displaymath" xmlns="">
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+              <OMBIND>
+                <OMS cd="skl1" name="exists"/>
+                <OMBVAR>
+                  <OMV name="x"/>
+                </OMBVAR>
+                <OMA>
+                  <OMS cd="indeq" name="eq"/>
+                  <OMV name="x"/>
+                  <OMV name="x"/>
+                </OMA>
+              </OMBIND>
+            </OMOBJ>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="omdoc-omgroup">
+      <h1 id="untyped"> Untyped Calculi</h1>
+      <div class="omdoc-omtext" id="untyped-intro">
+        <p> Untyped lambda calculus and other calculi with built-in notions of equality </p>
+      </div>
+      <div class="theory" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="http://purl.org/dc/elements/1.1/">
+        <h3 id="d20e55substitution">1.1. Substitution</h3>
+        <div class="omdoc-symbol" id="d20e55substitute" role="Symbol" about="#" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#substitution"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Concept</span>substitute
+          </div>The elementary substitution constructor, it takes two arguments: the replacement term, the variable.
+        </div>
+        <div class="omdoc-symbol" id="d20e55apply" role="Symbol" about="#" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#substitution"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Concept</span>apply
+          </div> The applicatio operator for substitutions, it takes two arguments: a substitution and a term. 
+        </div>
+        <div class="omdoc-example" id="d20e55substitute-ex" role="Example" about="#substitute #apply" xml:id="substitute-ex">
+          <a class="omdoc" rel="oso:exemplifies" href="#substitute #apply"/>
+          <a class="omdoc" rel="oso:homeTheory" href="#substitute #apply"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Example</span>
+          </div>
+          <p> The expression 
+            <span id="MCRd115e36" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+                <OMA>
+                  <OMS cd="substitution" name="substitute"/>
+                  <OMV name="B"/>
+                  <OMV name="X"/>
+                </OMA>
+              </OMOBJ>
+            </span> is the substitution operator that substitutes the term 
+            <span id="MCRd115e42" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+                <OMV name="B"/>
+              </OMOBJ>
+            </span> for the variable 
+            <span id="MCRd115e45" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+                <OMV name="X"/>
+              </OMOBJ>
+            </span>. It can be applied to a term by the substitution application operator. 
+            <span id="MCRd115e48" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+                <OMA>
+                  <OMS cd="substitution" name="apply"/>
+                  <OMA>
+                    <OMS cd="substitution" name="substitute"/>
+                    <OMV name="B"/>
+                    <OMV name="X"/>
+                  </OMA>
+                  <OMV name="A"/>
+                </OMA>
+              </OMOBJ>
+            </span> this denotes the term that is obtained by replacing all free occurrences of the variable 
+            <span id="MCRd115e57" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+                <OMV name="X"/>
+              </OMOBJ>
+            </span> with 
+            <span id="MCRd115e61" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+                <OMV name="B"/>
+              </OMOBJ>
+            </span> in 
+            <span id="MCRd115e64" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+                <OMV name="A"/>
+              </OMOBJ>
+            </span>. 
+          </p>
+        </div>
+        <div class="omdoc-symbol" id="d20e55substlist" role="Symbol" about="#" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#substitution"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Concept</span>substlist
+          </div>The constructor for complex substitutions: it takes n arguments that are elementary substitutions.
+        </div>
+      </div>
+      <div class="theory" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="http://purl.org/dc/elements/1.1/">
+        <h3 id="d20e56lambda-calc">2.1. Lambda Calculus</h3>
+        <div class="imports">imports from: 
+          <a href="substitution.xhtml#substitution">substitution</a>
+        </div>
+        <div class="omdoc-symbol" id="d20e56lambda" role="Symbol" about="#lambda-calc.lambda" xml:id="lambda-calc.lambda">
+          <a class="omdoc" rel="oso:homeTheory" href="#lambda-calc"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Concept</span>lambda
+          </div>
+          <span id="MCRd120e27" class="displaymath" xmlns="">
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+              <OMS cd="lambda-calc" name="lambda"/>
+            </OMOBJ>
+          </span> is used to represent anonymous functions as lambda expansions. It is used in a binder that takes two further arguments, the first of which is a list of variables, and the second of which is an expression, and it forms the function which is the lambda extraction of the expression 
+        </div>
+        <div class="omdoc-example" id="d20e56lambda-id-ex" role="Example" about="#lambda-calc.lambda" xml:id="lambda-id-ex">
+          <a class="omdoc" rel="oso:exemplifies" href="#lambda-calc.lambda"/>
+          <a class="omdoc" rel="oso:homeTheory" href="#lambda-calc.lambda"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Example</span>
+          </div>
+          <p>The following is a representation of the identity function: 
+            <span id="MCRd120e41" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+                <OMBIND>
+                  <OMS cd="lambda-calc" name="lambda"/>
+                  <OMBVAR>
+                    <OMV name="X"/>
+                  </OMBVAR>
+                  <OMV name="X"/>
+                </OMBIND>
+              </OMOBJ>
+            </span>
+          </p>
+        </div>
+        <div class="omdoc-symbol" id="d20e56alpha-equal" role="Symbol" about="#" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#lambda-calc"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Concept</span>alpha-equal
+          </div>
+          <span id="MCRd120e50" class="displaymath" xmlns="">
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+              <OMS cd="lambda-calc" name="alpha-equal"/>
+            </OMOBJ>
+          </span> is the relation of alphabetic equality.
+        </div>
+        <div class="omdoc-axiom" id="d20e56alpha-ax" role="Axiom" about="#alpha-ax" xml:id="alpha-ax">
+          <a class="omdoc" rel="oso:homeTheory" href="#lambda-calc"/>
+          <span class="omdoc-titleword">Axiom</span>
+          <p>Bound Variables can be renamed, i.e. 
+            <span id="MCRd120e82" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+                <OMA>
+                  <OMS cd="lambda-calc" name="alpha-equal"/>
+                  <OMBIND>
+                    <OMS cd="lambda-calc" name="lambda"/>
+                    <OMBVAR>
+                      <OMV name="X"/>
+                    </OMBVAR>
+                    <OMV name="X"/>
+                  </OMBIND>
+                  <OMBIND>
+                    <OMS cd="lambda-calc" name="lambda"/>
+                    <OMBVAR>
+                      <OMV name="Y"/>
+                    </OMBVAR>
+                    <OMV name="Y"/>
+                  </OMBIND>
+                </OMA>
+              </OMOBJ>
+            </span>. 
+          </p>
+        </div>
+        <div class="omdoc-symbol" id="d20e56beta-equal" role="Symbol" about="#" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#lambda-calc"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Concept</span>beta-equal
+          </div>
+          <span id="MCRd120e99" class="displaymath" xmlns="">
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+              <OMS cd="lambda-calc" name="beta-equal"/>
+            </OMOBJ>
+          </span>is the relation of beta equality.
+        </div>
+        <div class="omdoc-axiom" id="d20e56beta-axiom" role="Axiom" about="#beta-axiom" xml:id="beta-axiom">
+          <a class="omdoc" rel="oso:homeTheory" href="#lambda-calc"/>
+          <span class="omdoc-titleword">Axiom</span>
+          <p>For all lambda-terms 
+            <span id="MCRd120e131" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+                <OMV name="A"/>
+              </OMOBJ>
+            </span> and 
+            <span id="MCRd120e134" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+                <OMV name="B"/>
+              </OMOBJ>
+            </span> we have 
+            <span id="MCRd120e137" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+                <OMA>
+                  <OMS cd="lambda-calc" name="beta-equal"/>
+                  <OMA>
+                    <OMBIND>
+                      <OMS cd="lambda-calc" name="lambda"/>
+                      <OMBVAR>
+                        <OMV name="X"/>
+                      </OMBVAR>
+                      <OMV name="B"/>
+                    </OMBIND>
+                    <OMV name="A"/>
+                  </OMA>
+                  <OMA>
+                    <OMS cd="substitution" name="apply"/>
+                    <OMA>
+                      <OMS cd="substitution" name="substitute"/>
+                      <OMV name="A"/>
+                      <OMV name="X"/>
+                    </OMA>
+                    <OMV name="B"/>
+                  </OMA>
+                </OMA>
+              </OMOBJ>
+            </span>. 
+          </p>
+        </div>
+        <div class="omdoc-example" id="d20e56beta-axiom-ex" role="Example" about="#beta-axiom" xml:id="beta-axiom-ex">
+          <a class="omdoc" rel="oso:exemplifies" href="#beta-axiom"/>
+          <a class="omdoc" rel="oso:homeTheory" href="#beta-axiom"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Example</span>
+          </div>
+          <p>
+            <span id="MCRd120e158" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+                <OMBIND>
+                  <OMS cd="lambda-calc" name="lambda"/>
+                  <OMBVAR>
+                    <OMV name="X"/>
+                  </OMBVAR>
+                  <OMV name="X"/>
+                </OMBIND>
+              </OMOBJ>
+            </span> acts as the identity function: 
+            <span id="MCRd120e165" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+                <OMA>
+                  <OMS cd="lambda-calc" name="beta-equal"/>
+                  <OMA>
+                    <OMBIND>
+                      <OMS cd="lambda-calc" name="lambda"/>
+                      <OMBVAR>
+                        <OMV name="X"/>
+                      </OMBVAR>
+                      <OMV name="X"/>
+                    </OMBIND>
+                    <OMV name="Y"/>
+                  </OMA>
+                  <OMV name="Y"/>
+                </OMA>
+              </OMOBJ>
+            </span>
+          </p>
+        </div>
+        <div class="omdoc-symbol" id="d20e56beta-reduces" role="Symbol" about="#" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#lambda-calc"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Concept</span>beta-reduces
+          </div>
+          <span id="MCRd120e179" class="displaymath" xmlns="">
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+              <OMS cd="lambda-calc" name="beta-reduces"/>
+            </OMOBJ>
+          </span> is the beta reduction relation.
+        </div>
+        <div class="omdoc-axiom" id="d20e56beta-reduction-axiom" role="Axiom" about="#beta-reduction-axiom" xml:id="beta-reduction-axiom">
+          <a class="omdoc" rel="oso:homeTheory" href="#lambda-calc"/>
+          <span class="omdoc-titleword">Axiom</span>
+          <p>For all lambda-terms 
+            <span id="MCRd120e211" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+                <OMV name="A"/>
+              </OMOBJ>
+            </span> and 
+            <span id="MCRd120e214" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+                <OMV name="B"/>
+              </OMOBJ>
+            </span> we have 
+            <span id="MCRd120e217" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+                <OMA>
+                  <OMS cd="lambda-calc" name="beta-reduces"/>
+                  <OMA>
+                    <OMBIND>
+                      <OMS cd="lambda-calc" name="lambda"/>
+                      <OMBVAR>
+                        <OMV name="X"/>
+                      </OMBVAR>
+                      <OMV name="B"/>
+                    </OMBIND>
+                    <OMV name="A"/>
+                  </OMA>
+                  <OMA>
+                    <OMS cd="substitution" name="substitute"/>
+                    <OMA>
+                      <OMS cd="substitution" name="substitute"/>
+                      <OMV name="A"/>
+                      <OMV name="X"/>
+                    </OMA>
+                    <OMV name="B"/>
+                  </OMA>
+                </OMA>
+              </OMOBJ>
+            </span>. 
+          </p>
+        </div>
+        <div class="omdoc-example" id="d20e56beta-reduces-id" role="Example" about="#beta-reduces" xml:id="beta-reduces-id">
+          <a class="omdoc" rel="oso:exemplifies" href="#beta-reduces"/>
+          <a class="omdoc" rel="oso:homeTheory" href="#beta-reduces"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Example</span>
+          </div>
+          <p>Beta equality need not be terminating in general: 
+            <span id="MCRd120e238" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+                <OMA>
+                  <OMS cd="lambda-calc" name="beta-reduces"/>
+                  <OMA>
+                    <OMBIND>
+                      <OMS cd="lambda-calc" name="lambda"/>
+                      <OMBVAR>
+                        <OMV name="X"/>
+                      </OMBVAR>
+                      <OMA>
+                        <OMV name="X"/>
+                        <OMV name="X"/>
+                      </OMA>
+                    </OMBIND>
+                    <OMBIND>
+                      <OMS cd="lambda-calc" name="lambda"/>
+                      <OMBVAR>
+                        <OMV name="X"/>
+                      </OMBVAR>
+                      <OMA>
+                        <OMV name="X"/>
+                        <OMV name="X"/>
+                      </OMA>
+                    </OMBIND>
+                  </OMA>
+                  <OMA>
+                    <OMBIND>
+                      <OMS cd="lambda-calc" name="lambda"/>
+                      <OMBVAR>
+                        <OMV name="X"/>
+                      </OMBVAR>
+                      <OMA>
+                        <OMV name="X"/>
+                        <OMV name="X"/>
+                      </OMA>
+                    </OMBIND>
+                    <OMBIND>
+                      <OMS cd="lambda-calc" name="lambda"/>
+                      <OMBVAR>
+                        <OMV name="X"/>
+                      </OMBVAR>
+                      <OMA>
+                        <OMV name="X"/>
+                        <OMV name="X"/>
+                      </OMA>
+                    </OMBIND>
+                  </OMA>
+                </OMA>
+              </OMOBJ>
+            </span>
+          </p>
+        </div>
+        <div class="omdoc-symbol" id="d20e56eta-equal" role="Symbol" about="#" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#lambda-calc"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Concept</span>eta-equal
+          </div>
+          <span id="MCRd120e274" class="displaymath" xmlns="">
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+              <OMS cd="lambda-calc" name="eta-equal"/>
+            </OMOBJ>
+          </span> is the eta equality relation, this is a restricted form of extensionality.
+        </div>
+        <div class="omdoc-axiom" id="d20e56eta-axiom" role="Axiom" about="#eta-axiom" xml:id="eta-axiom">
+          <a class="omdoc" rel="oso:homeTheory" href="#lambda-calc"/>
+          <span class="omdoc-titleword">Axiom</span>
+          <p>For all lambda-terms 
+            <span id="MCRd120e306" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+                <OMV name="B"/>
+              </OMOBJ>
+            </span> such that 
+            <span id="MCRd120e309" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+                <OMV name="X"/>
+              </OMOBJ>
+            </span> is not free in 
+            <span id="MCRd120e312" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+                <OMV name="B"/>
+              </OMOBJ>
+            </span> we have 
+            <span id="MCRd120e315" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+                <OMA>
+                  <OMS cd="lambda-calc" name="beta-equal"/>
+                  <OMBIND>
+                    <OMS cd="lambda-calc" name="lambda"/>
+                    <OMBVAR>
+                      <OMV name="X"/>
+                    </OMBVAR>
+                    <OMA>
+                      <OMV name="B"/>
+                      <OMV name="X"/>
+                    </OMA>
+                  </OMBIND>
+                  <OMV name="B"/>
+                </OMA>
+              </OMOBJ>
+            </span>. 
+          </p>
+        </div>
+        <div class="omdoc-symbol" id="d20e56eta-reduces" role="Symbol" about="#" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#lambda-calc"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Concept</span>eta-reduces
+          </div>
+          <span id="MCRd120e330" class="displaymath" xmlns="">
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+              <OMS cd="lambda-calc" name="eta-reduces"/>
+            </OMOBJ>
+          </span> is the eta reduction relation.
+        </div>
+        <div class="omdoc-axiom" id="d20e56eta-reduction-axiom" role="Axiom" about="#eta-reduction-axiom" xml:id="eta-reduction-axiom">
+          <a class="omdoc" rel="oso:homeTheory" href="#lambda-calc"/>
+          <span class="omdoc-titleword">Axiom</span>
+          <p>For all lambda-terms 
+            <span id="MCRd120e362" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+                <OMV name="B"/>
+              </OMOBJ>
+            </span> such that 
+            <span id="MCRd120e365" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+                <OMV name="X"/>
+              </OMOBJ>
+            </span> is not free in 
+            <span id="MCRd120e368" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+                <OMV name="B"/>
+              </OMOBJ>
+            </span> we have 
+            <span id="MCRd120e371" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+                <OMA>
+                  <OMS cd="lambda-calc" name="eta-reduces"/>
+                  <OMBIND>
+                    <OMS cd="lambda-calc" name="lambda"/>
+                    <OMBVAR>
+                      <OMV name="X"/>
+                    </OMBVAR>
+                    <OMA>
+                      <OMV name="B"/>
+                      <OMV name="X"/>
+                    </OMA>
+                  </OMBIND>
+                  <OMV name="B"/>
+                </OMA>
+              </OMOBJ>
+            </span>. 
+          </p>
+        </div>
+      </div>
+      <div class="theory" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="http://purl.org/dc/elements/1.1/">
+        <h3 id="d20e57record-calc">3.1. Record Calculus Types</h3>
+        <div class="omdoc-symbol" id="d20e57record" role="Symbol" about="#" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#record-calc"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Concept</span>record
+          </div>The record expression constructor. It takes an even number of arguments, the ones at even position are the record fields and the ones at the odd positions their values.
+        </div>
+        <div class="omdoc-symbol" id="d20e57select" role="Symbol" about="#" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#record-calc"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Concept</span>select
+          </div>The record selector constant. The first argument is a record, the second a record, from which the value for this feature is selected.
+        </div>
+        <div class="omdoc-symbol" id="d20e57record-beta-equal" role="Symbol" about="#" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#record-calc"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Concept</span>record-beta-equal
+          </div>Record beta equaltiy
+        </div>
+        <div class="omdoc-axiom" id="d20e57record-beta-ax" role="Axiom" about="#record-beta-ax" xml:id="record-beta-ax">
+          <a class="omdoc" rel="oso:homeTheory" href="#record-calc"/>
+          <span class="omdoc-titleword">Axiom</span>
+          <p>Selecting a feature from a record gives the appropriate value: 
+            <span id="MCRd135e55" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+                <OMA>
+                  <OMS cd="record-calc" name="record-beta-equal"/>
+                  <OMA>
+                    <OMS cd="record-calc" name="select"/>
+                    <OMA>
+                      <OMS cd="record-calc" name="record"/>
+                      <OMS cd="record-calc" name="ellipsis"/>
+                      <OMS cd="record-calc" name="ellipsis"/>
+                      <OMV name="F"/>
+                      <OMV name="V"/>
+                      <OMS cd="record-calc" name="ellipsis"/>
+                      <OMS cd="record-calc" name="ellipsis"/>
+                    </OMA>
+                    <OMV name="F"/>
+                  </OMA>
+                  <OMV name="V"/>
+                </OMA>
+              </OMOBJ>
+            </span>
+          </p>
+        </div>
+        <div class="omdoc-symbol" id="d20e57ellipsis" role="Symbol" about="#" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#record-calc"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Concept</span>ellipsis
+          </div>This is a meta-symbol that is used for record ellipsis, it should not be used in formal content.
+        </div>
+        <div class="omdoc-symbol" id="d20e57tuple" role="Symbol" about="#" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#record-calc"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Concept</span>tuple
+          </div>The tuple expression constructor.
+        </div>
+        <div class="omdoc-symbol" id="d20e57proj" role="Symbol" about="#" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#record-calc"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Concept</span>proj
+          </div>The tuple projection function. It takes a number expression N and a tuple as input and returns the N-th component, if the first argument evaluates to N.
+        </div>
+      </div>
+    </div>
+    <div class="omdoc-omgroup">
+      <h1 id="types"> Type Systems</h1>
+      <div class="omdoc-omtext" id="pl0-intro">
+        <p>Type systems are basic building blocks of many logics.</p>
+      </div>
+      <div class="theory" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="http://purl.org/dc/elements/1.1/">
+        <h3 id="d20e65simpletypes">1.1. Simple Types</h3>
+        <div class="header">introduction</div>
+        <div class="omdoc-omtext salt-introduction" id="CDComment12">
+          <p>Definition of type constructors</p>
+        </div>
+        <div class="omdoc-symbol" id="d20e65type" role="Symbol" about="#" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#simpletypes"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Concept</span>type
+          </div>The kind of all types
+        </div>
+        <div class="omdoc-symbol" id="d20e65funtype" role="Symbol" about="#simpletypes.funtype" xml:id="simpletypes.funtype">
+          <a class="omdoc" rel="oso:homeTheory" href="#simpletypes"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Concept</span>funtype
+          </div>The function type constructor.
+        </div>
+        <div class="theory">
+          <div class="imports">imports from: 
+            <a href="ind.xhtml#ind">ind</a>, 
+            <a href="truthval.xhtml#truthval">truthval</a>
+          </div>
+          <div class="omdoc-example" id="d20e65funtype-prop-1" role="Example" about="#simpletypes.funtype" xml:id="funtype-prop-1">
+            <a class="omdoc" rel="oso:exemplifies" href="#simpletypes.funtype"/>
+            <a class="omdoc" rel="oso:homeTheory" href="#simpletypes.funtype"/>
+            <div class="omdoc-titlebox">
+              <span class="omdoc-titleword">Example</span>
+            </div>
+            <p>
+              <span id="MCRd146e62" class="displaymath" xmlns="">
+                <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+                  <OMA>
+                    <OMS cd="simpletypes" name="funtype"/>
+                    <OMS cd="ind" name="ind"/>
+                    <OMS cd="truthval" name="bool"/>
+                  </OMA>
+                </OMOBJ>
+              </span> is a type. It encodes the type of unary predicates. 
+            </p>
+          </div>
+        </div>
+        <div class="omdoc-symbol" id="d20e65all-types" role="Symbol" about="#simpletypes.all-types" xml:id="simpletypes.all-types">
+          <a class="omdoc" rel="oso:homeTheory" href="#simpletypes"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Concept</span>all-types
+          </div> The universal type quantification operator. It is a binding object that universally binds a list of type variables in a type. 
+        </div>
+        <div class="theory">
+          <div class="imports">imports from: 
+            <a href="truthval.xhtml#truthval">truthval</a>
+          </div>
+          <div class="omdoc-example" id="d20e65all-types-prop-1" role="Example" about="#simpletypes.all-types" xml:id="all-types-prop-1">
+            <a class="omdoc" rel="oso:exemplifies" href="#simpletypes.all-types"/>
+            <a class="omdoc" rel="oso:homeTheory" href="#simpletypes.all-types"/>
+            <div class="omdoc-titlebox">
+              <span class="omdoc-titleword">Example</span>
+            </div>
+            <p>
+              <span id="MCRd146e100" class="displaymath" xmlns="">
+                <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+                  <OMBIND>
+                    <OMS cd="simpletypes" name="all-types"/>
+                    <OMBVAR>
+                      <OMV name="a"/>
+                    </OMBVAR>
+                    <OMA>
+                      <OMS cd="simpletypes" name="funtype"/>
+                      <OMV name="a"/>
+                      <OMV name="a"/>
+                      <OMS cd="truthval" name="bool"/>
+                    </OMA>
+                  </OMBIND>
+                </OMOBJ>
+              </span> is a well-formed type. It encodes the type of e.g. of the equality relation. 
+            </p>
+          </div>
+        </div>
+        <div class="omdoc-symbol" id="d20e65oftype" role="Symbol" about="#" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#simpletypes"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Concept</span>oftype
+          </div>The type attribute. It relates an object to its type in an attribution.
+        </div>
+        <div class="omdoc-example" id="d20e65all-types-prop-2" role="Example" about="#simpletypes.all-types" xml:id="all-types-prop-2">
+          <a class="omdoc" rel="oso:exemplifies" href="#simpletypes.all-types"/>
+          <a class="omdoc" rel="oso:homeTheory" href="#simpletypes.all-types"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Example</span>
+          </div>
+          <p>Here is a typed variable 
+            <span id="MCRd146e137" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+                <OMATTR>
+                  <OMATP>
+                    <OMS cd="simpletypes" name="oftype"/>
+                    <OMA>
+                      <OMS cd="simpletypes" name="funtype"/>
+                      <OMV name="I"/>
+                      <OMV name="I"/>
+                      <OMV name="O"/>
+                    </OMA>
+                  </OMATP>
+                  <OMV name="X"/>
+                </OMATTR>
+              </OMOBJ>
+            </span>
+          </p>
+        </div>
+        <div class="omdoc-symbol" id="d20e65recordtype" role="Symbol" about="#" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#simpletypes"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Concept</span>recordtype
+          </div>The record type constructor. It takes an even number of arguments. The even ones are field names (currently they are OMS symbols in the pseudo-theory 'record-field' and the odd ones their values.
+        </div>
+        <div class="omdoc-symbol" id="d20e65tupletype" role="Symbol" about="#" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#simpletypes"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Concept</span>tupletype
+          </div>The tuple type constructor
+        </div>
+        <div class="omdoc-symbol" id="d20e65cotupletype" role="Symbol" about="#" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#simpletypes"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Concept</span>cotupletype
+          </div>The co-tuple type constructor (useful for formalizing co-algebras).
+        </div>
+      </div>
+      <div class="theory" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="http://purl.org/dc/elements/1.1/">
+        <h3 id="d20e66deptypes">2.1. Dependent Types</h3>
+        <div class="omdoc-symbol" id="d20e66function-term" role="Symbol" about="#" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#deptypes"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Concept</span>function-term
+          </div>The dependent function term constructor. It returns a dependent function that abstracts over a typed variable and returns a term. It can be applied to a term. 
+        </div>
+        <div class="omdoc-symbol" id="d20e66function-type" role="Symbol" about="#" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#deptypes"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Concept</span>function-type
+          </div>The dependent function type constructor. It returns the type of dependent functions that abstracting over a typed variable and returning a term. 
+        </div>
+        <div class="omdoc-symbol" id="d20e66function-application" role="Symbol" about="#" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#deptypes"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Concept</span>function-application
+          </div>The application operator that applies terms (functions) to terms. 
+        </div>
+        <div class="omdoc-symbol" id="d20e66type-family" role="Symbol" about="#" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#deptypes"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Concept</span>type-family
+          </div>The dependent type constructor. It returns a type family by abstracting over a typed variable and returning a type. It can be applied to a term. 
+        </div>
+        <div class="omdoc-symbol" id="d20e66type-family-kind" role="Symbol" about="#" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#deptypes"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Concept</span>type-family-kind
+          </div>The dependent function kind constructor. It returns the kind of type families that abstracts over a typed variable and returns a type. 
+        </div>
+        <div class="omdoc-symbol" id="d20e66type-family-application" role="Symbol" about="#" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#deptypes"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Concept</span>type-family-application
+          </div>The application operator that applies types (type families) to terms. 
+        </div>
+        <div class="omdoc-symbol" id="d20e66dependent-recordtype" role="Symbol" about="#" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#deptypes"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Concept</span>dependent-recordtype
+          </div>The dependent record type constructor. It takes an even number of arguments. The even ones are field names (currently they are OMS symbols in the pseudo-theory 'record-field' and the odd ones their values.
+        </div>
+        <div class="omdoc-symbol" id="d20e66dependent-tupletype" role="Symbol" about="#" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#deptypes"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Concept</span>dependent-tupletype
+          </div>The dependent tuple type constructor.
+        </div>
+        <div class="omdoc-symbol" id="d20e66dependent-cotupletype" role="Symbol" about="#" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#deptypes"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Concept</span>dependent-cotupletype
+          </div>The dependent-co-tuple type constructor (useful for formalizing co-algebras).
+        </div>
+        <div class="omdoc-omtext" id="no-term-constructors">
+          <p>We do not need any term constructors for dependent types, we can take the ones defined in theory simpletypes </p>
+        </div>
+      </div>
+    </div>
+    <div class="omdoc-omgroup">
+      <h1 id="typed-logics"> Typed Logics and Type Theories</h1>
+      <div class="omdoc-omtext" id="typed-logics-intro">
+        <p>In this section we will introduce logics that use type systems to categorize the basic building blocks.</p>
+      </div>
+      <div class="theory" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="http://purl.org/dc/elements/1.1/">
+        <h3 id="d20e74stlc">1.1. The simply typed lambda calculus</h3>
+        <div class="imports">imports from: 
+          <a href="simpletypes.xhtml#simpletypes">simpletypes</a>, 
+          <a href="ind.xhtml#ind">ind</a>, 
+          <a href="lambda-calc.xhtml#lambda-calc">lambda-calc</a>
+        </div>
+        <div class="omdoc-example" id="d20e74typed-identity" role="Example" about="lambda-calc.omdoc#lambda-calc.lambda" xml:id="typed-identity">
+          <a class="omdoc" rel="oso:exemplifies" href="lambda-calc.omdoc#lambda-calc.lambda"/>
+          <a class="omdoc" rel="oso:homeTheory" href="lambda-calc.omdoc#lambda-calc.lambda"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Example</span>
+          </div>
+          <p>
+            <span id="MCRd176e26" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+                <OMR href="typed-id1"/>
+              </OMOBJ>
+            </span> represents the identity function on individuals.
+          </p>
+          <span id="MCRd176e29" class="displaymath" xmlns="">
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+              <OMBIND id="typed-id1">
+                <OMS cd="lambda-calc" name="lambda"/>
+                <OMBVAR>
+                  <OMATTR>
+                    <OMATP>
+                      <OMS cd="simpletypes" name="oftype"/>
+                      <OMS cd="ind" name="ind"/>
+                    </OMATP>
+                    <OMV name="X"/>
+                  </OMATTR>
+                </OMBVAR>
+                <OMV name="X"/>
+              </OMBIND>
+            </OMOBJ>
+          </span>
+        </div>
+      </div>
+      <div class="theory" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="http://purl.org/dc/elements/1.1/">
+        <h3 id="d20e75sthol">2.1. Simply Typed Higher-Order Logic</h3>
+        <div class="imports">imports from: 
+          <a href="pl0.xhtml#pl0">pl0</a>, 
+          <a href="lambda-calc.xhtml#lambda-calc">lambda-calc</a>, 
+          <a href="indeq.xhtml#indeq">indeq</a>
+        </div>
+        <div class="omdoc-symbol" id="d20e75forall" role="Symbol" about="#sthol.forall" xml:id="sthol.forall">
+          <a class="omdoc" rel="oso:homeTheory" href="#sthol"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Concept</span>forall
+          </div>This symbol is the binding symbol for the universal quantifier.
+        </div>
+        <div class="omdoc-example" id="d20e75forall-ex-1" role="Example" about="#sthol.forall" xml:id="forall-ex-1">
+          <a class="omdoc" rel="oso:exemplifies" href="#sthol.forall"/>
+          <a class="omdoc" rel="oso:homeTheory" href="#sthol.forall"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Example</span>
+          </div>
+          <p>All objects are equal to themselves</p>
+          <span id="MCRd178e42" class="displaymath" xmlns="">
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+              <OMBIND>
+                <OMS cd="sthol" name="forall"/>
+                <OMBVAR>
+                  <OMV name="x"/>
+                </OMBVAR>
+                <OMA>
+                  <OMS cd="sthol" name="eq"/>
+                  <OMV name="x"/>
+                  <OMV name="x"/>
+                </OMA>
+              </OMBIND>
+            </OMOBJ>
+          </span>
+        </div>
+        <div class="omdoc-symbol" id="d20e75exists" role="Symbol" about="#sthol.exists" xml:id="sthol.exists">
+          <a class="omdoc" rel="oso:homeTheory" href="#sthol"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Concept</span>exists
+          </div>This symbol is the binding symbol for the existential ("there exists") quantifier.
+        </div>
+        <div class="omdoc-example" id="d20e75exists-ex-1" role="Example" about="#sthol.exists" xml:id="exists-ex-1">
+          <a class="omdoc" rel="oso:exemplifies" href="#sthol.exists"/>
+          <a class="omdoc" rel="oso:homeTheory" href="#sthol.exists"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Example</span>
+          </div>
+          <p>If the universe is non-empty, then the following statement is true</p>
+          <span id="MCRd178e69" class="displaymath" xmlns="">
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+              <OMBIND>
+                <OMS cd="sthol" name="exists"/>
+                <OMBVAR>
+                  <OMV name="x"/>
+                </OMBVAR>
+                <OMA>
+                  <OMS cd="sthol" name="eq"/>
+                  <OMV name="x"/>
+                  <OMV name="x"/>
+                </OMA>
+              </OMBIND>
+            </OMOBJ>
+          </span>
+        </div>
+        <div class="omdoc-omtext" id="sthol-hoas-intro">
+          <p>Some authors prefer to use higher-order abstract syntax for quantifiers, this variant only uses the binding symbol 
+            <span id="MCRd178e81" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+                <OMS cd="lambda-calc" name="lambda"/>
+              </OMOBJ>
+            </span> and models the quantifiers as higher-order predicates. 
+          </p>
+        </div>
+        <div class="omdoc-symbol" id="d20e75forall-op" role="Symbol" about="#sthol.forall-op" xml:id="sthol.forall-op">
+          <a class="omdoc" rel="oso:homeTheory" href="#sthol"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Concept</span>forall-op
+          </div>This symbol is universal predicate of higher-order abstract syntax.
+        </div>
+        <div class="omdoc-example" id="d20e75forall-op-ex-1" role="Example" about="#sthol.forall-op" xml:id="forall-op-ex-1">
+          <a class="omdoc" rel="oso:exemplifies" href="#sthol.forall-op"/>
+          <a class="omdoc" rel="oso:homeTheory" href="#sthol.forall-op"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Example</span>
+          </div>
+          <p>All objects are equal to themselves</p>
+          <span id="MCRd178e103" class="displaymath" xmlns="">
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+              <OMA>
+                <OMS cd="sthol" name="forall-op"/>
+                <OMBIND>
+                  <OMS cd="lambda-calc" name="lambda"/>
+                  <OMBVAR>
+                    <OMV name="x"/>
+                  </OMBVAR>
+                  <OMA>
+                    <OMS cd="sthol" name="eq"/>
+                    <OMV name="x"/>
+                    <OMV name="x"/>
+                  </OMA>
+                </OMBIND>
+              </OMA>
+            </OMOBJ>
+          </span>
+        </div>
+        <div class="omdoc-symbol" id="d20e75exists-op" role="Symbol" about="#sthol.exists-op" xml:id="sthol.exists-op">
+          <a class="omdoc" rel="oso:homeTheory" href="#sthol"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Concept</span>exists-op
+          </div>The existential ("there exists") quantifier of higher-order abstract syntax.
+        </div>
+        <div class="omdoc-example" id="d20e75exists-op-ex-1" role="Example" about="#sthol.exists-op" xml:id="exists-op-ex-1">
+          <a class="omdoc" rel="oso:exemplifies" href="#sthol.exists-op"/>
+          <a class="omdoc" rel="oso:homeTheory" href="#sthol.exists-op"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Example</span>
+          </div>
+          <p>If the universe is non-empty, then the following statement is true</p>
+          <span id="MCRd178e132" class="displaymath" xmlns="">
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+              <OMA>
+                <OMS cd="sthol" name="exists-op"/>
+                <OMBIND>
+                  <OMS cd="lambda-calc" name="lambda"/>
+                  <OMBVAR>
+                    <OMV name="x"/>
+                  </OMBVAR>
+                  <OMA>
+                    <OMS cd="sthol" name="eq"/>
+                    <OMV name="x"/>
+                    <OMV name="x"/>
+                  </OMA>
+                </OMBIND>
+              </OMA>
+            </OMOBJ>
+          </span>
+        </div>
+        <div class="omdoc-symbol" id="d20e75eq" role="Symbol" about="#" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#sthol"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Concept</span>eq
+          </div>Higher-order equality.
+        </div>
+        <div class="omdoc-symbol" id="d20e75neq" role="Symbol" about="#" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#sthol"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Concept</span>neq
+          </div>Higher-order inequality.
+        </div>
+      </div>
+      <div class="theory" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="http://purl.org/dc/elements/1.1/">
+        <h3 id="d20e77sthold">4.1. Higher-order logic with descriptions</h3>
+        <div class="imports">imports from: 
+          <a href="stholif.xhtml#stholif">stholif</a>
+        </div>
+        <div class="omdoc-symbol" id="d20e77that" role="Symbol" about="#sthold.that" xml:id="sthold.that">
+          <a class="omdoc" rel="oso:homeTheory" href="#sthold"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Concept</span>that
+          </div>
+          <span id="MCRd193e27" class="displaymath" xmlns="">
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+              <OMS cd="sthold" name="that"/>
+            </OMOBJ>
+          </span> is the binding symbol for definite descriptions. 
+        </div>
+        <div class="omdoc-example" id="d20e77that-ex-1" role="Example" about="#sthold.that" xml:id="that-ex-1">
+          <a class="omdoc" rel="oso:exemplifies" href="#sthold.that"/>
+          <a class="omdoc" rel="oso:homeTheory" href="#sthold.that"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Example</span>
+          </div>
+          <p>For any 
+            <span id="MCRd193e41" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+                <OMV name="x"/>
+              </OMOBJ>
+            </span>, 
+            <span id="MCRd193e44" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+                <OMR href="that-ex-1.1"/>
+              </OMOBJ>
+            </span> returns 
+            <span id="MCRd193e47" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+                <OMV name="x"/>
+              </OMOBJ>
+            </span>. 
+          </p>
+          <span id="MCRd193e50" class="displaymath" xmlns="">
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+              <OMBIND>
+                <OMS cd="sthol" name="forall"/>
+                <OMBVAR>
+                  <OMV name="x"/>
+                </OMBVAR>
+                <OMA>
+                  <OMS cd="sthol" name="eq"/>
+                  <OMBIND id="that-ex-1.1">
+                    <OMS cd="sthold" name="that"/>
+                    <OMBVAR>
+                      <OMV name="y"/>
+                    </OMBVAR>
+                    <OMA>
+                      <OMS cd="indeq" name="eq"/>
+                      <OMV name="x"/>
+                      <OMV name="y"/>
+                    </OMA>
+                  </OMBIND>
+                  <OMV name="x"/>
+                </OMA>
+              </OMBIND>
+            </OMOBJ>
+          </span>
+        </div>
+      </div>
+      <div class="theory" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="http://purl.org/dc/elements/1.1/">
+        <h3 id="d20e78stholc">5.1. Higher-order logic with Choice</h3>
+        <div class="imports">imports from: 
+          <a href="sthold.xhtml#sthold">sthold</a>
+        </div>
+        <div class="omdoc-symbol" id="d20e78choose" role="Symbol" about="#" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#stholc"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Concept</span>choose
+          </div>This symbol is the binding symbol for choice operator.
+        </div>
+        <div class="omdoc-axiom" id="d20e78choice-ax" role="Axiom" about="#choice-ax" xml:id="choice-ax">
+          <a class="omdoc" rel="oso:homeTheory" href="#stholc"/>
+          <span class="omdoc-titleword">Axiom</span> (The axiom of choice for .) 
+          <p>For any property 
+            <span id="MCRd196e42" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+                <OMV name="P"/>
+              </OMOBJ>
+            </span>, that can be satisfied by some 
+            <span id="MCRd196e45" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+                <OMV name="x"/>
+              </OMOBJ>
+            </span>, 
+            <span id="MCRd196e48" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+                <OMR href="choice-ax.1"/>
+              </OMOBJ>
+            </span> chooses a concrete witness. 
+          </p>
+          <span class="omdoc-FMP">
+            <span id="MCRd196e52" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+                <OMBIND>
+                  <OMS cd="sthol" name="forall"/>
+                  <OMBVAR>
+                    <OMV name="P"/>
+                  </OMBVAR>
+                  <OMA>
+                    <OMS cd="pl0" name="implies"/>
+                    <OMBIND>
+                      <OMS cd="sthol" name="exists"/>
+                      <OMBVAR>
+                        <OMV name="X"/>
+                      </OMBVAR>
+                      <OMA>
+                        <OMV name="P"/>
+                        <OMV name="x"/>
+                      </OMA>
+                    </OMBIND>
+                    <OMA>
+                      <OMV name="P"/>
+                      <OMBIND id="choice-ax.1">
+                        <OMS cd="stholc" name="choose"/>
+                        <OMBVAR>
+                          <OMV name="y"/>
+                        </OMBVAR>
+                        <OMV name="S"/>
+                      </OMBIND>
+                    </OMA>
+                  </OMA>
+                </OMBIND>
+              </OMOBJ>
+            </span>
+          </span>
+        </div>
+        <div class="omdoc-symbol" id="d20e78choice-op" role="Symbol" about="#" xml:id="">
+          <a class="omdoc" rel="oso:homeTheory" href="#stholc"/>
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Concept</span>choice-op
+          </div>This symbol is a choice function.
+        </div>
+        <div class="omdoc-axiom" id="d20e78choice-op-ax" role="Axiom" about="#choice-op-ax" xml:id="choice-op-ax">
+          <a class="omdoc" rel="oso:homeTheory" href="#stholc"/>
+          <span class="omdoc-titleword">Axiom</span> (The axiom of choice for .) 
+          <p>For any non-empty set 
+            <span id="MCRd196e93" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+                <OMV name="S"/>
+              </OMOBJ>
+            </span>, 
+            <span id="MCRd196e96" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+                <OMS cd="stholc" name="choice-op"/>
+              </OMOBJ>
+            </span> returns a member of 
+            <span id="MCRd196e99" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+                <OMV name="S"/>
+              </OMOBJ>
+            </span>. 
+          </p>
+          <span class="omdoc-FMP">
+            <span id="MCRd196e103" class="displaymath" xmlns="">
+              <OMOBJ xmlns="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath" xmlns:m="http://www.w3.org/1998/Math/MathML">
+                <OMBIND>
+                  <OMS cd="sthol" name="forall"/>
+                  <OMBVAR>
+                    <OMV name="S"/>
+                  </OMBVAR>
+                  <OMA>
+                    <OMS cd="pl0" name="implies"/>
+                    <OMBIND>
+                      <OMS cd="sthol" name="exists"/>
+                      <OMBVAR>
+                        <OMV name="X"/>
+                      </OMBVAR>
+                      <OMA>
+                        <OMV name="S"/>
+                        <OMV name="x"/>
+                      </OMA>
+                    </OMBIND>
+                    <OMA>
+                      <OMV name="S"/>
+                      <OMA>
+                        <OMS cd="stholc" name="choose"/>
+                        <OMV name="S"/>
+                      </OMA>
+                    </OMA>
+                  </OMA>
+                </OMBIND>
+              </OMOBJ>
+            </span>
+          </span>
+        </div>
+      </div>
+      <div class="theory" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="http://purl.org/dc/elements/1.1/">
+        <h3 id="d20e79pf2hol">6.1. Two-valued higher-order logic with partial functions</h3>
+        <div class="imports">imports from: 
+          <a href="sthol.xhtml#sthol">sthol</a>, 
+          <a href="undefined.xhtml#undefined">undefined</a>
+        </div>
+      </div>
+    </div>
+    <div class="omdoc-omgroup">
+      <h1 id="systems"> Interface Logics of particular Systems</h1>
+      <div class="omdoc-omtext" id="systems-intro">
+        <p>The following theories model the interface logics of particular mathematical software systems. They provide this functionality mainly by importing from the theories above, and only specify the ideosyncrasies of the particular logics that defy the generalization in the hierarchy above.</p>
+      </div>
+      <div class="omdoc-omtext" id="disclaimer">
+        <p>The formalizations of systems are not ready yet</p>
+      </div>
+    </div>
+  </body>
+</html>

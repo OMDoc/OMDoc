@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xml:id="pl0-omdoc" 
+       xmlns:om="http://www.openmath.org/OpenMath"
+       xmlns:m="http://www.w3.org/1998/Math/MathML"
+       xmlns:dc="http://purl.org/dc/elements/1.1/"
+       xmlns="http://omdoc.org/ns">
+
+ <metadata>
+  <dc:title>ND for Classical Propositional Logic</dc:title>
+  <dc:creator role="aut">Michael Kohlhase</dc:creator>
+  <dc:date>2008-07-04T18:28:06</dc:date>
+  <dc:rights>Copyright (c) 2008 Michael Kohlhase</dc:rights>
+  <license xmlns="http://creativecommons.org/ns">
+    <permissions reproduction="permitted" distribution="permitted" derivative_works="permitted"/>
+    <prohibitions commercial_use="permitted"/>
+    <requirements notice="required" copyleft="required" attribution="required"/>
+  </license>
+ </metadata>
+
+<theory xml:id="pl0-nd">
+  <metadata>
+    <dc:title>The Natural Deduction Calculus for Propositional Logic</dc:title>
+  </metadata>
+  <imports from="pl0.omdoc#pl0"/>
+
+  <symbol name="noti">
+    <metadata><dc:subject>Negation introduction</dc:subject>
+    </metadata>
+  </symbol>
+  
+  <definition for="noti" xml:id="noti.def">
+    <CMP>Negation introduction: if we can derive 
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="truthval" name="false"/></OMOBJ> 
+    from a hypothesis 
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="A"/></OMOBJ>,
+    then we can  conclude 
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA><OMS cd="pl0" name="not"/><OMV name="A"/></OMA>
+      </OMOBJ>.
+    </CMP>
+  </definition>
+
+  <symbol name="note">
+   <metadata>
+     <dc:subject>Negation elimination</dc:subject>
+   </metadata>
+  </symbol>
+
+<definition xml:id="note.def" for="note">
+  <CMP>Negation elimination: if we can derive 
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="A"/></OMOBJ> and
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA><OMS cd="pl0" name="not"/><OMV name="A"/></OMA>
+    </OMOBJ>, 
+    then we can conclude 
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="truthval" name="false"/></OMOBJ>.
+  </CMP>
+</definition>
+
+  <symbol name="andi">
+   <metadata><dc:subject>Conjunction introduction</dc:subject>
+   </metadata>
+  </symbol>
+
+  <definition xml:id="andi.def" for="andi">
+    <CMP>Conjunction introduction, if we can derive 
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="A"/></OMOBJ>
+    and <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="B"/></OMOBJ>, 
+    then we can conclude 
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA><OMS cd="pl0" name="and"/><OMV name="A"/><OMV name="B"/></OMA>
+      </OMOBJ>.
+    </CMP>
+  </definition>
+
+  <symbol name="ander">
+   <metadata><dc:subject>Conjunction elimination right</dc:subject></metadata>
+  </symbol>
+
+<definition xml:id="ander.def" for="ander">
+  <CMP>Conjunction introduction right: if we can derive 
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA><OMS cd="pl0" name="and"/><OMV name="A"/><OMV name="B"/></OMA>
+    </OMOBJ>, 
+    then we can conclude 
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="B"/></OMOBJ>.
+  </CMP>
+</definition>
+
+
+  <symbol name="andel">
+   <metadata><dc:subject>Conjunction elimination left</dc:subject></metadata>
+  </symbol>
+
+<definition for="andel" xml:id="andel.def">
+    <CMP>Conjunction introduction left: if we can derive 
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA><OMS cd="pl0" name="and"/><OMV name="A"/><OMV name="B"/></OMA>
+    </OMOBJ>,
+    then we can conclude <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="A"/></OMOBJ>.
+  </CMP>
+</definition>
+
+ </theory>
+</omdoc>

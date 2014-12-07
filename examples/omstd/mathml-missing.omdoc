@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  xmlns="http://omdoc.org/ns"
+xml:id="minmax2-omdoc">
+
+
+  <dc:title>Missing Symbols for MathML compatibility</dc:title>
+  <dc:creator role="trl">Michael Kohlhase</dc:creator>
+  <dc:date> 2003-03-05T00:00:00</dc:date>
+  <dc:type>Text</dc:type>
+  <dc:format>application/omdoc+xml</dc:format>
+  <dc:rights>Copyright (c) 2003 Michael Kohlhase;
+    This OMDoc content dictionary is released under the OpenMath license:
+    http://monet.nag.co.uk/openmath/cdfiles/license.html
+  </dc:rights>
+
+
+<theory xml:id="minmax2" cdbase="http://www.openmath.org/cd">
+  <imports from="arith1.omdoc#arith1"/>
+  <imports from="fns1.omdoc#fns1"/>
+  <imports from="minmax1.omdoc#minmax1"/>
+  <imports from="sts.omdoc#sts"/>
+
+  <symbol name="min-exp" xml:id="min-exp">
+
+<dc:description> 
+    This symbol denotes the binary minimum function which takes a set as
+    its first argument and an expression as the second one, and returns the
+    element in the set that minimizes the expression.
+</dc:description>
+
+<type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMA>
+	  <OMS name="structure" cd="sts"/>
+	  <OMV name="Set"/>
+	</OMA>
+	<OMV name="Expression"/>
+	<OMV name="OrderedSet"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+
+<example xml:id="min-ex-1" type="for" for="#min-exp">
+  <CMP><OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="#min-ex-11"/></OMOBJ>.</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA id="min-ex-11">
+      <OMS cd="relation1" name="eq"/>
+      <OMA>
+	<OMS cd="minmax2" name="min-exp"/>
+	<OMA>
+	  <OMS cd="set1" name="set"/>
+	  <OMI> 1 </OMI>
+	  <OMI> 9 </OMI>
+	  <OMI> 5 </OMI>
+	</OMA>
+	<OMBIND>
+	  <OMS cd="fns1" name="lambda"/>
+	  <OMBVAR><OMV name="x"/></OMBVAR>
+	  <OMA>
+	    <OMS cd="arith1" name="divide"/>
+	    <OMI>1</OMI>
+	    <OMV name="x"/>
+	  </OMA>
+	</OMBIND>
+      </OMA>
+      <OMI> 9 </OMI>
+    </OMA>
+  </OMOBJ>
+</example>
+
+<assertion type="theorem" xml:id="min-thm">
+  <CMP><OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="#max-thm-11"/></OMOBJ>.</CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMBIND id="min-thm-11">
+	<OMS cd="quant1" name="forall"/>
+	<OMBVAR><OMV name="S"/></OMBVAR>
+	<OMA>
+	  <OMS cd="relation1" name="eq"/>
+	  <OMA>
+	    <OMS cd="minmax1" name="min"/>
+	    <OMV name="S"/>
+	  </OMA>
+	  <OMA>
+	    <OMS cd="minmax2" name="min-exp"/>
+	    <OMV name="S"/>
+	    <OMBIND>
+	      <OMS cd="fns1" name="lambda"/>
+	      <OMBVAR><OMV name="x"/></OMBVAR>
+	      <OMV name="x"/>
+	    </OMBIND>
+	  </OMA>
+	</OMA>
+      </OMBIND>
+    </OMOBJ>
+  </FMP>
+</assertion>
+
+<symbol name="max-exp" xml:id="max-exp">
+
+<dc:description> 
+    This symbol denotes the binary maximum function which takes a set as
+    its first argument and an expression as the second one, and returns the
+    element in the set that maximizes the expression.
+</dc:description>
+
+<type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMA>
+	  <OMS name="structure" cd="sts"/>
+	  <OMV name="Set"/>
+	</OMA>
+	<OMV name="Expression"/>
+	<OMV name="OrderedSet"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+
+<example xml:id="max-ex-1" type="for" for="#max-exp">
+  <CMP><OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="#max-ex-11"/></OMOBJ>.</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA id="max-ex-11">
+      <OMS cd="relation1" name="eq"/>
+      <OMA>
+	<OMS cd="minmax2" name="max-exp"/>
+	<OMA>
+	  <OMS cd="set1" name="set"/>
+	  <OMI> 1 </OMI>
+	  <OMI> 9 </OMI>
+	  <OMI> 5 </OMI>
+	</OMA>
+	<OMBIND>
+	  <OMS cd="fns1" name="lambda"/>
+	  <OMBVAR><OMV name="x"/></OMBVAR>
+	  <OMA>
+	    <OMS cd="arith1" name="divide"/>
+	    <OMI>1</OMI>
+	    <OMV name="x"/>
+	  </OMA>
+	</OMBIND>
+      </OMA>
+      <OMI> 9 </OMI>
+    </OMA>
+  </OMOBJ>
+</example>
+
+<assertion type="theorem" xml:id="max-thm">
+  <CMP><OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="#max-thm-11"/></OMOBJ>.</CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMBIND id="max-thm-11">
+	<OMS cd="quant1" name="forall"/>
+	<OMBVAR><OMV name="S"/></OMBVAR>
+	<OMA>
+	  <OMS cd="relation1" name="eq"/>
+	  <OMA>
+	    <OMS cd="minmax1" name="max"/>
+	    <OMV name="S"/>
+	  </OMA>
+	  <OMA>
+	    <OMS cd="minmax2" name="max-exp"/>
+	    <OMV name="S"/>
+	    <OMBIND>
+	      <OMS cd="fns1" name="lambda"/>
+	      <OMBVAR><OMV name="x"/></OMBVAR>
+	      <OMV name="x"/>
+	    </OMBIND>
+	  </OMA>
+	</OMA>
+      </OMBIND>
+    </OMOBJ>
+  </FMP>
+</assertion>
+</theory>
+
+<theory xml:id="tendsto" cdbase="http://www.openmath.org/cd">
+  <imports from="arith1.omdoc#arith1"/>
+
+  <symbol name="above" xml:id="above">
+
+<dc:description>The relation that a quantity is tending to a specified value from
+      above.</dc:description>
+
+</symbol>
+
+  <presentation for="#above" role="applied" fixity="infix">
+    <use format="html|pmml">&#x02193;</use>
+    <use format="TeX">\searrow</use>
+  </presentation>
+
+  <example xml:id="above-ex" for="#above">
+    <CMP><OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="#above-ex1"/></OMOBJ> tends to
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="#above-ex2"/></OMOBJ> from the above.</CMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA id="above-ex1">
+	<OMS cd="tendsto" name="above"/>
+	<OMA>
+	  <OMS cd="arith1" name="power"/>
+	  <OMV name="x"/>
+	  <OMI> 2 </OMI>
+	</OMA>
+	<OMI id="above-ex2">4</OMI>
+      </OMA>
+    </OMOBJ>
+  </example>
+
+  <symbol name="below" xml:id="below">
+
+<dc:description>The relation that a quantity is tending to a specified value from
+      below.</dc:description>
+
+</symbol>
+
+
+  <presentation for="#below" role="applied" fixity="infix">
+    <use format="html|pmml">&#x02191;</use>
+    <use format="TeX">\NEarrow</use>
+  </presentation>
+
+  <symbol name="two-sided" xml:id="two-sided">
+
+<dc:description>The relation that a quantity is tending to a specified value from
+      below.</dc:description>
+
+</symbol>
+
+
+  <presentation for="#two-sided" role="applied" fixity="infix">
+    <use format="html|pmml">&#x02192;</use>
+    <use format="TeX">\Rightarrow</use>
+  </presentation>
+
+</theory>
+  
+</omdoc>

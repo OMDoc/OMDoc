@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xml:id="uni.omdoc" version="1.6"
+       xmlns:dc="http://purl.org/dc/elements/1.1/" 
+       xmlns:cc="http://creativecommons.org/ns" 
+       xmlns="http://omdoc.org/ns"
+       xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+       xmlns:oo="http://omdoc.org/ontology#"
+       xmlns:om="http://www.openmath.org/OpenMath"
+       xmlns:m="http://www.w3.org/1998/Math/MathML">
+
+
+<metadata>
+  <meta property="dc:title">A sample university ontology; an example for an OWL ontology in OMDoc</meta>
+  <meta property="dc:creator">Christoph Lange</meta>
+</metadata>
+
+<theory name="uni" xml:id="uni">
+  <metadata>
+    <link rel="oo:semWebBase" href="http://foo.dd/uni#"/>
+    <meta property="dc:title">university ontology</meta>
+ </metadata>
+
+<!-- Other ontologies that we import -->
+<imports from="../metadata/foaf.omdoc#foaf"/>
+
+<!-- TODO idea: we could add missing owl:imports from the OMDoc theory graph -->
+
+<!-- TODO make this a metatheory -->
+<imports from="../logics/owl.omdoc#owl"/>
+
+<symbol name="Student" xml:id="Student.sym">
+  <metadata>
+    <meta property="dc:description">A student</meta>
+  </metadata>
+  <type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMS cd="owl" name="Class"/>
+    </OMOBJ>
+  </type>
+</symbol>
+
+<axiom for="Student">
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="owl" name="disjointWith"/>
+	<OMS cd="uni" name="Student"/>
+	<OMS cd="foaf" name="Document"/>
+      </OMA>
+    </OMOBJ>
+  </FMP>
+</axiom>
+
+<symbol name="enrolledIn" xml:id="enrolledIn.sym">
+  <metadata>
+    <meta property="dc:description">being enrolled in some place</meta>
+  </metadata>
+  <type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="owl" name="ObjectProperty"/>
+	<OMS cd="uni" name="Student"/>
+	<OMS cd="owl" name="Thing"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+
+<!-- On phrase and term, await http://trac.omdoc.org/OMDoc/ticket/1614
+     Christoph Lange, 2010/08/29
+-->
+<definition for="Student" type="simple" xml:id="Student.def">
+  <CMP><term cd="uni" name="Student" role="definiendum">A student</term> is <term cd="uni" name="Student" role="definiens"><phrase verbalizes="#A"><phrase verbalizes="#A2">a person</phrase> <phrase verbalizes="#A1">who is</phrase> <phrase verbalizes="#A3"><phrase verbalizes="#A3B">enrolled</phrase> <phrase verbalizes="#A3C"><phrase verbalizes="#A3C1">at least</phrase> <phrase verbalizes="#A3C2">once</phrase></phrase></phrase></phrase></term>.</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA id="A">
+      <OMS id="A1" cd="owl" name="intersectionOf"/>
+      <OMS id="A2" cd="foaf" name="Person"/>
+      <OMA id="A3">
+	<OMS id="A3A" cd="owl" name="Restriction"/>
+        <OMS id="A3B" cd="uni" name="enrolledIn"/>
+        <OMA id="A3C">
+          <OMS id="A3C1" cd="owl" name="minCardinality"/>
+	  <OMI id="A3C2">1</OMI>
+	</OMA>
+      </OMA>
+    </OMA>
+  </OMOBJ>
+</definition>
+
+</theory>
+</omdoc>
+
+<!-- vim:sw=2:sts=2
+-->

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html id="abs.omdoc" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <link rel="stylesheet" type="text/css" href="omdoc-default.css"/>
+    <title>Tests for OMDoc Rich Text</title>
+  </head>
+  <body>
+    <div class="dc-titleblock">
+      <div class="dc-title">Tests for OMDoc Rich Text</div>
+      <div class="dc-authors">Michael Kohlhase</div>
+      <div class="dc-date">2003-02-01</div>
+    </div>
+    <div class="header"/>
+    <div class="omdoc-omtext" id="testtext">
+      <p id="p1">this is the first paragraph </p>
+      <p id="p2">and a second one</p>
+      <p> and now we try an unordered list: </p>
+      <ul id="l1">
+        <li>the first item of a list</li>
+        <li>the second item of a list</li>
+      </ul>
+      <p> and an ordered one: </p>
+      <ol id="l2">
+        <li>the first item of a list</li>
+        <li>the second item of a list</li>
+      </ol>
+      <p> how about a table now</p>
+      <table>
+        <tr>
+          <td>A11</td>
+          <td>A12</td>
+          <td>A13</td>
+        </tr>
+        <tr>
+          <td>A21</td>
+          <td>A22</td>
+          <td>A23</td>
+        </tr>
+      </table>
+      <p> now some text with a note
+        <span class="omdoc-noteref" id="n1">
+          <a href="#n1" class="omdoc">0</a>
+        </span> and another one 
+        <span class="omdoc-noteref" id="n2">
+          <a href="#n2" class="omdoc">1</a>
+        </span>. 
+      </p>
+    </div>
+    <div class="header"/>
+    <div class="omdoc-omtext" id="testtext2">
+      <p id="testtext2intro">Here we test multilingual parallel markup</p>
+      <ul id="testtext2list">
+        <li id="testtext2first">a first item</li>
+        <li id="testtext2second">something else</li>
+      </ul>
+    </div>
+  </body>
+</html>

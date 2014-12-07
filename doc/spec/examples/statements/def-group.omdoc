@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xml:id="def-group.omdoc"
+  xmlns="http://omdoc.org/ns"
+  xmlns:cc="http://creativecommons.org/ns"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  version="1.6">
+<metadata>
+  <dc:date action="created"> 2004-10-08T13:17:07Z </dc:date>
+  <dc:title xml:lang="en"> def-group </dc:title>
+  <dc:creator role="aut"> Michael Kohlhase </dc:creator>
+  <dc:source>  </dc:source>
+  <dc:date action="updated"> 2004-10-08T13:17:07Z </dc:date>
+  <dc:type> Text </dc:type>
+  <dc:format> application/omdoc+xml </dc:format>
+  <dc:rights>Copyright (c) 2004 Michael Kohlhase</dc:rights>
+  <cc:license>
+    <cc:permissions reproduction="permitted" distribution="permitted" derivative_works="permitted"/>
+    <cc:prohibitions commercial_use="permitted"/>
+    <cc:requirements notice="required" copyleft="required" attribution="required"/>
+  </cc:license>
+</metadata>
+
+<theory xml:id="semigroup">
+  <symbol name="set"/>                      <symbol name="op"/>
+  <axiom xml:id="closed"><CMP> ... </CMP></axiom>        <axiom xml:id="assoc"><CMP> ... </CMP></axiom>
+</theory>
+
+<theory xml:id="monoid">
+  <imports xml:id="mis" from="#semigroup"/>
+  <symbol name="neut"/><symbol name="setstar"/>
+  <axiom xml:id="left-unit">
+    <CMP>%\tt{set}% is a left unit for %\tt{op}%.</CMP>
+    <FMP><legacy format="TeX">$\allcdot{x\in{\tt{set}}}{{\tt{op}}(x,{\tt{neut}})=x}$</legacy></FMP>
+  </axiom>
+  <definition xml:id="setstar.def" for="#setstar" type="implicit">
+    <CMP>$\cdot^*$ subtracts the unit from a set </CMP>
+    <FMP><legacy format="TeX">$\allcdot{S}{S^*=S\backslash\set{\tt{unit}}}$</legacy></FMP>
+  </definition>
+</theory>
+
+<theory xml:id="group"> 
+  <imports xml:id="gim" from="#monoid"/>
+  <symbol name="inv"/>
+  <axiom xml:id="left-inv">
+    <CMP>For every $X\in\tt{set}$ there is an inverse ${\tt{inv}}(X)$ wrt. %\tt{op}%.</CMP>
+  </axiom>
+</theory>
+
+</omdoc>

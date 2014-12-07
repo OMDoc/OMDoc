@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  xmlns="http://omdoc.org/ns"
+xml:id="units_metric1-omdoc">
+
+
+  <dc:title>The OpenMath Content Dictionary units_metric1.ocd  in OMDoc form</dc:title>
+  <dc:creator role="trl">Michael Kohlhase</dc:creator>
+  <dc:creator role="aut">The OpenMath Society</dc:creator>
+  <dc:date> 2000-08-13T00:00:00</dc:date>
+  <dc:source>Derived from the OpenMath CD http://www.openmath.org/cd/units_metric.ocd.</dc:source>
+  <dc:type>Text</dc:type>
+  <dc:format>application/omdoc+xml</dc:format>
+  <dc:rights>Copyright (c) 2000-2002 Michael Kohlhase;
+    This OMDoc content dictionary is released under the OpenMath license:
+    http://monet.nag.co.uk/openmath/cdfiles/license.html
+  </dc:rights>
+  <dc:description> 
+    This CD defines symbols to represent the basic physical units.
+  </dc:description>
+
+
+<theory xml:id="units_metric1" cdbase="http://www.openmath.org/cd">
+  <include from="dimensions1.omdoc#dimensions1"/>
+
+<symbol name="metre" xml:id="metre">
+
+<dc:description>
+    This symbol represents the measure of one metre. This is the standard
+    metric unit measure for physical distance.
+</dc:description>
+
+<type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMS cd="dimensions1" name="length"/>
+    </OMOBJ>
+  </type>
+</symbol>
+<presentation for="#metre">
+  <use format="default">m</use>
+</presentation>
+
+<symbol name="metre_sqrd" xml:id="metre_sqrd">
+
+<dc:description>
+    This symbol represents the measure of one metre squared. This is the
+    standard metric measure for physical area.
+</dc:description>
+
+</symbol>
+<presentation for="#metre">
+  <use format="defaut">sqm</use>
+  <style format="html">
+    <text>m</text><element name="sup"><text>2</text></element>
+  </style>
+  <style format="TeX"><text>m^2</text></style>
+  <style format="pmml">
+    <element name="msup" cr="yes" crid=".">
+      <element name="mo"><text>m</text></element>
+      <element name="mn"><text>2</text></element>
+    </element>
+  </style>
+</presentation>
+
+<symbol name="litre" xml:id="litre">
+
+<dc:description>
+    This symbol represents the measure of one litre. This is the standard
+    metric measure for physical volume.
+</dc:description>
+
+</symbol>
+<presentation for="#litre">
+  <use format="default">l</use>
+</presentation>
+
+<symbol name="metres_per_second" xml:id="metres_per_second">
+
+<dc:description>
+    This symbol represents the measure of one metre per second. This is
+    the standard metric measure for speed.
+</dc:description>
+
+</symbol>
+<presentation for="#metres_per_second">
+  <use format="defaut">m/s</use>
+  <style format="TeX"><text>{m\over s}</text></style>
+  <style format="pmml">
+    <element name="msup" crid="." cr="yes">
+      <element name="mo"><text>m</text></element>
+      <element name="mo"><text>s</text></element>
+    </element>
+  </style>
+</presentation>
+
+<symbol name="metres_per_second_sqrd" xml:id="metres_per_second_sqrd">
+
+<dc:description>
+    This symbol represents the measure of one metre per second
+    squared. This is the standard metric measure for acceleration.
+</dc:description>
+
+</symbol>
+
+<symbol name="second" xml:id="second">
+
+<dc:description>
+    This symbol represents the measure of one second. This is the standard
+    metric measure for time.
+</dc:description>
+
+<type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMS cd="dimensions1" name="time"/>
+    </OMOBJ>
+  </type>
+</symbol>
+<presentation for="#second">
+  <use format="default">s</use>
+</presentation>
+
+<symbol name="gramme" xml:id="gramme">
+
+<dc:description>
+    This symbol represents the measure of one gramme. This is the standard
+    metric measure for mass.
+</dc:description>
+
+<type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMS cd="dimensions1" name="mass"/>
+    </OMOBJ>
+  </type>
+</symbol>
+<presentation for="#gramme">
+  <use format="default">g</use>
+</presentation>
+
+<symbol name="Newton" xml:id="Newton">
+
+<dc:description>
+    This symbol represents the measure of one Newton. This is the standard
+    metric measure for force.
+</dc:description>
+
+<type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMS cd="dimensions1" name="force"/>
+    </OMOBJ>
+  </type>
+</symbol>
+<presentation for="#Newton">
+  <use format="default">N</use>
+</presentation>
+
+<symbol name="degree_Kelvin" xml:id="degree_Kelvin">
+
+<dc:description>
+    This symbol represents the measure of one degree Kelvin. This is a standard
+    metric measure for temperature relative to absolute zero.
+</dc:description>
+
+<type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMS cd="dimensions1" name="temperature"/>
+    </OMOBJ>
+  </type>
+</symbol>
+<presentation for="#degree_Kelvin">
+  <use format="default">deg K</use>
+  <use format="html|pmml">&#x000B0;K</use>
+  <use format="TeX">^{\circ}K</use>
+</presentation>
+
+<symbol name="degree_Celsius" xml:id="degree_Celsius">
+
+<dc:description>
+    This symbol represents the measure of one degree Celsius. This is a standard
+    metric measure for temperature.
+</dc:description>
+
+<type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMS cd="dimensions1" name="temperature"/>
+    </OMOBJ>
+  </type>
+</symbol>
+<presentation for="#degree_Celsius">
+  <use format="default">deg C</use>
+  <use format="html|pmml">&#x000B0;C</use>
+  <use format="TeX">^{\circ}C</use>
+</presentation>
+
+<symbol name="Newton_per_sqr_metre" xml:id="Newton_per_sqr_metre">
+
+<dc:description>
+    This symbol represents the measure of one Newton per square metre.
+    This is a standard metric measure for pressure.
+</dc:description>
+
+<type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMS cd="dimensions1" name="pressure"/>
+    </OMOBJ>
+  </type>
+</symbol>
+
+<symbol name="Coulomb" xml:id="Coulomb">
+
+<dc:description>
+    This symbol represents the measure of one Coulomb. This is the standard
+    metric measure for charge.
+</dc:description>
+
+<type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMS cd="dimensions1" name="charge"/>
+    </OMOBJ>
+  </type>
+</symbol>
+<presentation for="#Coulomb">
+  <use format="default">C</use>
+</presentation>
+
+<symbol name="amp" xml:id="amp">
+
+<dc:description>
+    This symbol represents the measure of one amp. This is the standard
+    metric measure for current.
+</dc:description>
+
+<type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMS cd="dimensions1" name="current"/>
+    </OMOBJ>
+  </type>
+</symbol>
+<presentation for="#amp">
+  <use format="default">A</use>
+</presentation>
+
+<symbol name="volt" xml:id="volt">
+
+<dc:description>
+    This symbol represents the measure of one volt. This is the standard
+    metric measure for voltage.
+</dc:description>
+
+<type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMS cd="dimensions1" name="voltage"/>
+    </OMOBJ>
+  </type>
+</symbol>
+<presentation for="#volt">
+  <use format="default">V</use>
+</presentation>
+</theory>
+</omdoc>

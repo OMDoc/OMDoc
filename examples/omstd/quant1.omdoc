@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  
+       xmlns="http://omdoc.org/ns"
+       xmlns:om="http://www.openmath.org/OpenMath"
+       xmlns:m="http://www.w3.org/1998/Math/MathML"
+       xmlns:o="http://omdoc.org/ns"
+       xml:id="quant1-omdoc">
+
+<metadata>
+  <dc:title>The OpenMath Content Dictionary quant1.ocd  in OMDoc form</dc:title>
+  <dc:creator role="trl">Michael Kohlhase</dc:creator>
+  <dc:creator role="ant">The OpenMath Society</dc:creator>
+  <dc:date> 2001-03-12T00:00:00</dc:date>
+  <dc:source>Derived from the OpenMath CD http://www.openmath.org/cd/quant1.ocd.</dc:source>
+  <dc:type>Text</dc:type>
+  <dc:format>application/omdoc+xml</dc:format>
+  <dc:rights>Copyright (c) 2000-2002 Michael Kohlhase;
+    This OMDoc content dictionary is released under the OpenMath license:
+    http://monet.nag.co.uk/openmath/cdfiles/license.html
+  </dc:rights>
+  <dc:description>
+    This CD holds the definitions of the basic universal ("for all")
+    quantifier and existential ("there exists") quantifier. It is
+    intended to be `compatible' with the MathML elements representing
+    these quantifiers. 
+  </dc:description>
+</metadata>
+
+<theory xml:id="quant1">
+
+<imports xml:id="quant1-imports-sts" from="sts.omdoc#sts"/>
+
+<symbol name="forall" xml:id="forall">
+<metadata>
+<dc:description> 
+    This symbol represents the universal ("for all") quantifier which takes two
+    arguments. It must be placed within an OMBIND element. The first argument is the
+    bound variables (placed within an OMBVAR element), and the second is an expression. 
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS name="binder" cd="sts"/></OMOBJ>
+  </type>
+</symbol>
+  <notation>
+    <prototype>
+      <om:OMS cd="quant1" name="forall"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="quant1">forall</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en"><m:mo>∀</m:mo></rendering>
+  </notation>
+  <notation>
+    <prototype>
+      <om:OMBIND>
+        <om:OMS cd="quant1" name="forall" o:cr="quant"/>
+        <om:OMBVAR>
+          <exprlist name="bvars"><expr name="bvar"/></exprlist>
+        </om:OMBVAR>
+        <expr name="scope"/>
+      </om:OMBIND>
+    </prototype>
+    <prototype>
+      <m:bind>
+        <m:csymbol cd="quant1" o:cr="quant">forall</m:csymbol>
+	<exprlist name="bvars"><m:bvar><expr name="bvar"/></m:bvar></exprlist>
+        <expr name="scope"/>
+      </m:bind>
+    </prototype>
+    <rendering>
+      <m:mrow>
+	<m:mo o:cr="quant">∀</m:mo>
+	<m:mrow>
+	  <iterate name="bvars">
+	    <separator><m:mo o:egroup="separator" separator="true">,</m:mo></separator>
+	    <o:render name="bvar"/>
+	  </iterate>
+	</m:mrow>
+	<m:mo separator="true">.</m:mo>
+	<o:render name="scope"/>
+      </m:mrow>
+    </rendering>   
+  </notation>
+  <notation> 
+    <prototype>
+      <om:OMBIND>
+        <om:OMS cd="quant1" name="forall" o:cr="quant"/>
+        <om:OMBVAR>
+          <exprlist name="bvars"><expr name="bvar"/></exprlist>
+        </om:OMBVAR>
+        <expr name="scope"/>
+      </om:OMBIND>
+    </prototype>
+    <prototype>
+      <m:bind>
+        <m:csymbol cd="quant1" o:cr="quant">forall</m:csymbol>
+	<exprlist name="bvars"><m:bvar><expr name="bvar"/></m:bvar></exprlist>
+        <expr name="scope"/>
+      </m:bind>
+    </prototype>
+    <rendering>
+      <m:mrow>
+	<m:mo o:cr="quant">∀</m:mo>
+	<m:mrow>
+	  <iterate name="bvars">
+	    <separator><m:mo separator="true">,</m:mo></separator>
+	    <o:render name="bvar"/>
+	  </iterate>
+	</m:mrow>
+	<m:mo separator="true">.</m:mo>
+	<o:render name="scope"/>
+      </m:mrow>
+    </rendering>    
+  </notation>
+
+<symbol name="exists" xml:id="exists">
+<metadata>
+<dc:description> 
+    This symbol represents the existential ("there exists") quantifier
+    which takes two arguments. It must be placed within an OMBIND element. The first
+    argument is the bound variables (placed within an OMBVAR element), and the second
+    is an expression.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS name="binder" cd="sts"/></OMOBJ>
+  </type>
+</symbol>
+  <notation>
+    <prototype>
+      <om:OMS cd="quant1" name="exists"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="quant1">exists</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en"><m:mo>∃</m:mo></rendering>
+  </notation>
+
+  <notation>
+    <prototype>
+      <om:OMBIND>
+        <om:OMS cd="quant1" name="exists" o:cr="quant"/>
+        <om:OMBVAR>
+          <exprlist name="bvars"><expr name="bvar"/></exprlist>
+        </om:OMBVAR>
+        <expr name="scope"/>
+      </om:OMBIND>
+    </prototype>
+    <prototype>
+      <m:bind>
+        <m:csymbol cd="quant1" o:cr="quant">exists</m:csymbol>
+        <m:bvar>
+          <exprlist name="bvars"><expr name="bvar"/></exprlist>
+        </m:bvar>
+        <expr name="scope"/>
+      </m:bind>
+    </prototype>
+    <rendering>
+      <m:mrow>
+	<m:mo o:cr="quant">∃</m:mo>
+	<m:mrow>
+	  <iterate name="bvars">
+	    <separator><m:mo separator="true">,</m:mo></separator>
+	    <o:render name="bvar"/>
+	  </iterate>
+	</m:mrow>
+	<m:mo separator="true">.</m:mo>
+	<o:render name="scope"/>
+      </m:mrow>
+    </rendering>    
+  </notation>
+
+  <notation>
+    <prototype>
+      <om:OMBIND>
+        <om:OMS cd="quant1" name="exists" o:cr="quant"/>
+        <om:OMBVAR>
+          <exprlist name="bvars"><expr name="bvar"/></exprlist>
+        </om:OMBVAR>
+        <expr name="scope"/>
+      </om:OMBIND>
+    </prototype>
+    <prototype>
+      <m:bind>
+        <m:csymbol cd="quant1" o:cr="quant">exists</m:csymbol>
+        <m:bvar>
+          <exprlist name="bvars"><expr name="bvar"/></exprlist>
+        </m:bvar>
+        <expr name="scope"/>
+      </m:bind>
+    </prototype>
+    <rendering>
+      <m:mrow>
+	<m:mo o:cr="quant">∃</m:mo>
+	<m:mrow>
+	  <iterate name="bvars">
+	    <separator><m:mo o:egroup="separator" separator="true">,</m:mo></separator>
+	    <o:render name="bvar"/>
+	  </iterate>
+	</m:mrow>
+	<m:mo o:egroup="separator" separator="true">.</m:mo>
+	<o:render name="scope"/>
+      </m:mrow>
+    </rendering>    
+  </notation>
+</theory>
+
+<!-- rolled out to prevent a circular import relation -->
+<theory xml:id="quant1-nonconstitutive">
+<imports from="#quant1"/>
+<imports from="arith1.omdoc#arith1"/>
+<imports from="logic1.omdoc#logic1"/>
+<imports from="relation1.omdoc#relation1"/>
+<imports from="transc1.omdoc#transc1"/>
+
+<example xml:id="forall-ex-1" type="for" for="#forall">
+  <CMP>An example to represent the statement that 
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="#forall-ex-1.1"/></OMOBJ> for all x.</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMBIND>
+      <OMS cd="quant1" name="forall"/>
+      <OMBVAR><OMV name="x"/></OMBVAR>
+      <OMA id="forall-ex-1.1">
+	<OMS cd="relation1" name="leq"/>
+	<OMA>
+	  <OMS cd="arith1" name="abs"/>
+	  <OMA>
+	    <OMS cd="transc1" name="sin"/>
+	    <OMV name="x"/>
+	  </OMA>
+	</OMA>
+	<OMF dec="1.0"/>
+      </OMA>
+    </OMBIND>
+  </OMOBJ>
+</example>
+
+<example xml:id="exists-ex-1" type="for" for="#exists">
+  <CMP>
+    An example which represents the statement that there is no solution to
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="#exists-ex-1.2"/></OMOBJ> for 
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="#exists-ex-1.1"/></OMOBJ> that is: it is not true that there are
+    x,y,z,n with  <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="#exists-ex-1.1"/></OMOBJ> and 
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="#exists-ex-1.2"/></OMOBJ>
+  </CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="logic1" name="not"/>
+      <OMBIND>
+	<OMS cd="quant1" name="exists"/>
+	<OMBVAR>
+	  <OMV name="x"/>
+	  <OMV name="y"/>
+	  <OMV name="z"/>
+	  <OMV name="n"/>
+	</OMBVAR>
+	<OMA>
+	  <OMS cd="logic1" name="and"/>
+	  <OMA id="exists-ex-1.1">
+	    <OMS cd="relation1" name="gt"/>
+	    <OMV name="n"/>
+	    <OMI> 2 </OMI>
+	  </OMA>
+	  <OMA id="exists-ex-1.2">
+	    <OMS cd="relation1" name="eq"/>
+	    <OMA>
+	      <OMS cd="arith1" name="plus"/>
+	      <OMA>
+		<OMS cd="arith1" name="power"/>
+		<OMV name="x"/>
+		<OMV name="n"/>
+	      </OMA>
+	      <OMA>
+		<OMS cd="arith1" name="power"/>
+		<OMV name="y"/>
+		<OMV name="n"/>
+	      </OMA>
+	    </OMA>
+	    <OMA>
+	      <OMS cd="arith1" name="power"/>
+	      <OMV name="z"/>
+	      <OMV name="n"/>
+	    </OMA>
+	  </OMA>
+	</OMA>
+      </OMBIND>
+    </OMA>
+  </OMOBJ>
+</example>
+</theory>
+</omdoc>
+

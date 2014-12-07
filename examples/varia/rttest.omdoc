@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="../../css/omdoc.css"?>
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://omdoc.org/ns" xml:id="abs.omdoc">
+<metadata>
+  <dc:date action="created">2003-02-01T00:00:00</dc:date>
+  <dc:title xml:lang="en">Tests for OMDoc Rich Text</dc:title>
+  <dc:creator role="aut">Michael Kohlhase</dc:creator>
+  <dc:type>Dataset</dc:type>
+  <dc:format>application/omdoc+xml</dc:format>
+</metadata>
+
+
+<omtext xml:id="testtext">
+  <CMP>
+    <p xml:id="p1">this is the first paragraph </p>
+    <p xml:id="p2">and a second one</p>
+    and now we try an unordered list:
+    <ul xml:id="l1">
+      <li>the first item of a list</li>
+      <li>the second item of a list</li>
+    </ul>
+    and an ordered one:
+    <ol xml:id="l2">
+      <li>the first item of a list</li>
+      <li>the second item of a list</li>
+    </ol>
+    <p> how about a table now</p>
+    <table>
+      <tr><td>A11</td><td>A12</td><td>A13</td></tr>
+      <tr><td>A21</td><td>A22</td><td>A23</td></tr>
+    </table>
+    now some text with a note<note xml:id="n1"> here it is</note> and another one
+    <note xml:id="n2"> let us see if the numbering is correct</note>.
+  </CMP>
+</omtext>
+
+<omtext xml:id="testtext2">
+  <CMP>
+    <p index="intro">Here we test multilingual parallel markup</p>
+    <ul index="list">
+      <li index="first">a first item</li>
+      <li index="second">something else</li>
+    </ul>
+  </CMP>
+  <CMP xml:lang="de">
+    <p index="intro">Hier testen wir mehrsprachigen parallelen markup</p>
+    <ul index="list">
+      <li index="first">ein erster Strichelstrich</li>
+      <li index="second">etwas anderes</li>
+    </ul>
+  </CMP>
+</omtext>
+</omdoc>
+
+

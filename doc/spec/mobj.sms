@@ -1,0 +1,10 @@
+\begin{module}[id=OpenMath]%
+\end{module}%
+\begin{module}[id=cMathML]%
+\end{module}%
+\begin{module}[id=omml-types]%
+\end{module}%
+\begin{module}[id=omml-semvar]%
+\end{module}%
+\begin{module}[id=legacy]%
+\end{module}%

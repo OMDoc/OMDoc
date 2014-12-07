@@ -1,0 +1,2073 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xml:id="mtxt.omdoc" version="1.3"
+       xmlns:dct="http://purl.org/dc/terms/" 
+       xmlns:cc="http://creativecommons.org/ns" 
+       xmlns="http://omdoc.org/ns"
+       xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+       xmlns:oo="http://omdoc.org/ontology#"
+       xmlns:om="http://www.openmath.org/OpenMath"
+       xmlns:m="http://www.w3.org/1998/Math/MathML">
+
+  <metadata>
+    <meta property="dct:title">OMDoc document ontology (module ST)</meta>
+    <meta property="rdfs:comment">OMDoc document ontology, statement module.  See chapter 15 (Mathematical Statements) of the OMDoc1.2 specification.
+    This file is designed to be imported from the main module `omdoc'.</meta>
+    <meta property="dct:creator">Christoph Lange &lt;ch.lange@jacobs-university.de></meta>
+    <meta property="dct:contributor">Normen Müller &lt;n.mueller@jacobs-university.de></meta>
+    <meta property="dct:contributor">Krzysztof Retel &lt;retel@macs.hw.ac.uk></meta>
+    <meta property="dct:contributor">Gordan Ristovski &lt;g.ristovski@jacobs-university.de></meta>
+    <meta property="dct:contributor">Andrei Ioniţă &lt;a.ionita@jacobs-university.de></meta>
+    <meta property="dct:contributor">Nikita Zhiltsov (Никита Жильцов) &lt;nikita.zhiltsov@gmail.com></meta>
+    <!-- Contributors, please add your name here, and in the main file omdoc.omdoc –Christoph Lange -->
+    <meta property="dct:subject">Semantic Mathematical Markup, Mathematical Statements</meta>
+  </metadata>
+
+  <theory xml:id="st">
+    <metadata>
+      <link rel="oo:vocab" href="http://omdoc.org/ontology#"/>
+    </metadata>
+    <!-- meta-theories -->
+    <imports xml:id="owl" from="../examples/logics/owl.omdoc#owl"/>
+    <imports xml:id="pl1eq" from="../examples/logics/pl1eq.omdoc#pl1eq"/>
+    <!-- other modules of this ontology -->
+    <imports xml:id="mtxt" from="mtxt.omdoc#mtxt"/>
+    <!-- Note: the base classes are imported by every module. -->
+
+    <omgroup>
+      <meta property="dct:title">Base Classes</meta>
+
+      <symbol name="Statement">
+        <metadata>
+          <meta property="rdfs:comment">A very general type of statement, comprising not only “proper” statements occurring in theories, but also statements made local to a proof, or other substatements.</meta>
+          <meta property="rdfs:label" xml:lang="ru">Предложение</meta>
+          <meta property="rdfs:label" xml:lang="en">Statement</meta>
+          <meta property="rdfs:label" xml:lang="de">Aussage</meta>
+        </metadata>
+        <type>
+          <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+            <OMS cd="owl" name="Class"/>
+          </OMOBJ>
+        </type>
+      </symbol>
+
+      <axiom for="Statement">
+        <FMP>
+          <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+            <OMA>
+              <OMS cd="rdfs" name="subClassOf"/>
+              <OMS cd="st" name="Statement"/>
+              <OMS cd="base" name="MathKnowledgeItem"/>
+            </OMA>
+          </OMOBJ>
+        </FMP>
+      </axiom>
+      
+      <symbol name="StatementInTheory">
+        <metadata>
+          <meta property="rdfs:comment">Any OMDoc statement, as defined in the OMDoc1.2 specification, chapters 14.3 (Text Fragments and their Rhetoric/Mathematical Roles) and 15 (Mathematical Statements). A statement can only belong to one theory.</meta>
+          <meta property="rdfs:label" xml:lang="en">Statement</meta>
+          <meta property="rdfs:label" xml:lang="de">Aussage</meta>
+        </metadata>
+        <type>
+          <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+            <OMS cd="owl" name="Class"/>
+          </OMOBJ>
+        </type>
+      </symbol>
+
+      <axiom for="StatementInTheory">
+        <FMP>
+          <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+            <OMA>
+              <OMS cd="rdfs" name="subClassOf"/>
+              <OMS cd="st" name="StatementInTheory"/>
+              <OMS cd="st" name="Statement"/>
+            </OMA>
+          </OMOBJ>
+        </FMP>
+      </axiom>
+
+      <symbol name="AnyLevelStatement">
+        <metadata>
+          <meta property="rdfs:comment">Generic superclass of statements that can not only occur as children of theories but also elsewhere.</meta>
+          <meta property="rdfs:label" xml:lang="en">Statement</meta>
+          <meta property="rdfs:label" xml:lang="de">Aussage</meta>
+        </metadata>
+        <type>
+          <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+            <OMS cd="owl" name="Class"/>
+          </OMOBJ>
+        </type>
+      </symbol>
+
+      <axiom for="AnyLevelStatement">
+        <FMP>
+          <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+            <OMA>
+              <OMS cd="rdfs" name="subClassOf"/>
+              <OMS cd="st" name="AnyLevelStatement"/>
+              <OMS cd="st" name="Statement"/>
+            </OMA>
+          </OMOBJ>
+        </FMP>
+      </axiom>
+    </omgroup>
+
+    <omgroup>
+      <meta property="dct:title">Theories</meta>
+      
+      <symbol name="Theory">
+        <metadata>
+          <meta property="rdfs:comment">An OMDoc theory, as defined in chapter 15.6 (Theories as Structured Contexts) of the OMDoc1.2 specification.
+          In OMDoc/XML, this is represented by the omdoc:theory element.
+          Note that theories are no proper statements, although the basic infrastructure for theories is part of the statement module of OMDoc.</meta>
+          <meta property="rdfs:label" xml:lang="ru">Теория</meta>
+          <meta property="rdfs:label" xml:lang="en">Theory</meta>
+          <meta property="rdfs:label" xml:lang="de">Theorie</meta>
+        </metadata>
+        <type>
+          <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+            <OMS cd="owl" name="Class"/>
+          </OMOBJ>
+        </type>
+      </symbol>
+
+      <axiom for="Theory">
+        <FMP>
+          <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+            <OMA>
+              <OMS cd="rdfs" name="subClassOf"/>
+              <OMS cd="st" name="Theory"/>
+              <OMS cd="base" name="MathKnowledgeItem"/>
+            </OMA>
+          </OMOBJ>
+        </FMP>
+      </axiom>
+
+      <symbol name="imports">
+        <metadata>
+          <meta property="rdfs:label" xml:lang="de">importiert</meta>
+          <meta property="rdfs:label" xml:lang="ru">включает</meta>
+          <meta property="rdfs:comment">An import relation between two theories, which is not further specified (e.g. by morphisms), as defined in chapter 15.6.1 (Simple Inheritance) of the OMDoc1.2 specification.
+          In OMDoc/XML, this is represented by the omdoc:theory/@import attribute</meta>
+          <meta property="rdfs:label" xml:lang="en">imports</meta>
+        </metadata>
+        <type>
+          <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+            <OMA>
+              <OMS cd="owl" name="TransitiveProperty"/>
+              <OMS cd="st" name="Theory"/>
+              <OMS cd="st" name="Theory"/>
+            </OMA>
+          </OMOBJ>
+        </type>
+      </symbol>
+
+      <axiom for="imports">
+        <FMP>
+          <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+            <OMA>
+              <OMS cd="rdfs" name="subPropertyOf"/>
+              <OMS cd="st" name="imports"/>
+              <OMS cd="base" name="wellFormedNessDependsOn"/>
+            </OMA>
+          </OMOBJ>
+        </FMP>
+      </axiom>
+
+      <axiom for="imports">
+        <FMP>
+          <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+            <OMA>
+              <OMS cd="owl" name="propertyChainAxiom"/>
+              <OMS cd="st" name="imports"/>
+              <OMS cd="st" name="hasImport"/>
+              <OMS cd="st" name="importsFrom"/>
+            </OMA>
+          </OMOBJ>
+        </FMP>
+      </axiom>
+
+      <symbol name="importedBy">
+        <metadata>
+          <meta property="rdfs:label" xml:lang="ru">включена</meta>
+          <meta property="rdfs:label" xml:lang="en">imported by</meta>
+          <meta property="rdfs:label" xml:lang="de">wird importiert von</meta>
+        </metadata>
+        <type>
+          <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+            <OMA>
+              <OMS cd="owl" name="TransitiveProperty"/>
+              <OMS cd="st" name="Theory"/>
+              <OMS cd="st" name="Theory"/>
+            </OMA>
+          </OMOBJ>
+        </type>
+      </symbol>
+
+      <axiom for="importedBy">
+        <FMP>
+          <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+            <OMA>
+              <OMS cd="owl" name="inverseOf"/>
+              <OMS cd="st" name="importedBy"/>
+              <OMS cd="st" name="imports"/>
+            </OMA>
+          </OMOBJ>
+        </FMP>
+      </axiom>
+
+      <symbol name="metaTheory">
+        <metadata>
+          <meta property="rdfs:label" xml:lang="en">Meta Theory</meta>
+          <meta property="rdfs:label" xml:lang="de">Metatheorie</meta>
+          <!-- TODO add rdfs:comment -->
+        </metadata>
+        <type>
+          <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+            <OMS cd="owl" name="ObjectProperty"/>
+          </OMOBJ>
+        </type>
+        <type>
+          <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+            <OMS cd="owl" name="FunctionalProperty"/>
+          </OMOBJ>
+        </type>
+      </symbol>
+
+      <!-- TODO is that correct?  Otherwise need to declare domain, range, and subPropertyOf wellFormedNessDependsOn explicitly -->
+      <axiom for="metaTheory">
+        <FMP>
+          <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+            <OMA>
+              <OMS cd="rdfs" name="subPropertyOf"/>
+              <OMS cd="st" name="metaTheory"/>
+              <OMS cd="st" name="imports"/>
+            </OMA>
+          </OMOBJ>
+        </FMP>
+      </axiom>
+
+      <symbol name="Import">
+        <metadata>
+          <meta property="rdfs:comment">An import from one theory into another one, modeled as a first-class object</meta>
+          <meta property="rdfs:label" xml:lang="en">Import</meta>
+          <meta property="rdfs:label" xml:lang="de">Import</meta>
+        </metadata>
+        <type>
+          <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+            <OMS cd="owl" name="Class"/>
+          </OMOBJ>
+        </type>
+      </symbol>
+
+      <axiom for="Import">
+        <FMP>
+          <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+            <OMA>
+              <OMS cd="rdfs" name="subClassOf"/>
+              <OMS cd="st" name="Import"/>
+              <OMS cd="st" name="ConstitutiveStatement"/>
+            </OMA>
+          </OMOBJ>
+        </FMP>
+      </axiom>
+
+      <symbol name="hasImport">
+        <metadata>
+          <meta property="rdfs:comment">The relationship between a theory and an import statement it contains</meta>
+          <meta property="rdfs:label" xml:lang="ru">имеет включение</meta>
+          <meta property="rdfs:label" xml:lang="en">has import</meta>
+          <meta property="rdfs:label" xml:lang="de">hat Import</meta>
+        </metadata>
+        <type>
+          <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+            <OMA>
+              <OMS cd="owl" name="ObjectProperty"/>
+              <OMS cd="st" name="Theory"/>
+              <OMS cd="st" name="Import"/>
+            </OMA>
+          </OMOBJ>
+        </type>
+      </symbol>
+
+      <axiom for="hasImport">
+        <FMP>
+          <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+            <OMA>
+              <OMS cd="rdfs" name="subPropertyOf"/>
+              <OMS cd="st" name="hasImport"/>
+              <OMS cd="st" name="homeTheoryOf"/>
+            </OMA>
+          </OMOBJ>
+        </FMP>
+      </axiom>
+
+      <symbol name="importsFrom">
+        <metadata>
+          <meta property="rdfs:comment">The relationship between an import and the theory it imports</meta>
+          <meta property="rdfs:label" xml:lang="ru">включает из</meta>
+          <meta property="rdfs:label" xml:lang="en">imports from</meta>
+          <meta property="rdfs:label" xml:lang="de">importiert aus</meta>
+        </metadata>
+        <type>
+          <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+            <OMA>
+              <OMS cd="owl" name="ObjectProperty"/>
+              <OMS cd="st" name="Import"/>
+              <OMS cd="st" name="Theory"/>
+            </OMA>
+          </OMOBJ>
+        </type>
+        <type>
+          <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+            <OMS cd="owl" name="FunctionalProperty"/>
+          </OMOBJ>
+        </type>
+      </symbol>
+
+      <!-- TODO add morphisms to imports
+           property: symbol occurs in morphism of import (cf. MMT) -->
+    </omgroup>
+
+    <omgroup>
+      <meta property="dct:title">Statements</meta>
+
+      <omgroup>
+        <meta property="dct:title">General Statement Relations</meta>
+
+        <symbol name="homeTheoryOf">
+          <metadata>
+            <meta property="rdfs:comment">Expresses that a theory is the home of a statement or another (nested) theory (and thereby also provides a context for the statement or the theory, but not the only one, as importing theories elsewhere embeds them into new contexts as well).  Each statement or nested theory has at most one home theory.  See chapter 15.1 (Types of Statements in Mathematics) of the OMDoc1.2 specification for a definition.</meta>
+            <meta property="rdfs:label" xml:lang="en">home theory of</meta>
+            <meta property="rdfs:label" xml:lang="de">Heimattheorie von</meta>
+          </metadata>
+          <type>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="owl" name="ObjectProperty"/>
+                <OMS cd="st" name="Theory"/>
+                <OMA>
+                  <OMS cd="owl" name="unionOf"/>
+                  <OMS cd="st" name="StatementInTheory"/>
+                  <OMS cd="st" name="Theory"/>
+                  <OMS cd="doc" name="Document"/>
+                  <OMS cd="doc" name="DocumentUnit"/>
+                </OMA>
+              </OMA>
+            </OMOBJ>
+          </type>
+          <type>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMS cd="owl" name="InverseFunctionalProperty"/>
+            </OMOBJ>
+          </type>
+        </symbol>
+
+        <axiom for="homeTheoryOf">
+          <FMP>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="rdfs" name="subPropertyOf"/>
+                <OMS cd="st" name="homeTheoryOf"/>
+                <OMS cd="base" name="hasDirectPart"/>
+              </OMA>
+            </OMOBJ>
+          </FMP>
+        </axiom>
+
+        <axiom for="homeTheoryOf">
+          <FMP>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="owl" name="inverseOf"/>
+                <OMS cd="st" name="homeTheoryOf"/>
+                <OMS cd="st" name="homeTheory"/>
+              </OMA>
+            </OMOBJ>
+          </FMP>
+        </axiom>
+
+        <symbol name="homeTheory">
+          <metadata>
+            <meta property="rdfs:comment">Expresses that a statement or a nested theory has another theory as its home theory, which provides the context for the statement or the theory.  Each statement or nested theory has at most one home theory.  See chapter 15.1 (Types of Statements in Mathematics) of the OMDoc1.2 specification for a definition.
+            In OMDoc/XML, this is represented by the omdoc:*/@theory attribute (at least for non-constitutive statements) or by containment within an omdoc:theory element.
+            Probably, this relation should be refactored into two ones.  A statement has exactly one home theory, but a theory need not have a home theory, if it's at top level. —Christoph Lange</meta>
+            <meta property="rdfs:label" xml:lang="en">Home theory</meta>
+            <meta property="rdfs:label" xml:lang="de">Heimattheorie</meta>
+          </metadata>
+          <type>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMS cd="owl" name="ObjectProperty"/>
+            </OMOBJ>
+          </type>
+          <type>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMS cd="owl" name="FunctionalProperty"/>
+            </OMOBJ>
+          </type>
+        </symbol>
+
+        <symbol name="justifiedBy">
+          <metadata>
+            <meta property="rdfs:comment">Generic superproperty for justifications of knowledge items made by pointing to other statements.</meta>
+            <meta property="rdfs:label" xml:lang="ru">обоснован посредством</meta>
+            <meta property="rdfs:label" xml:lang="en">justified by</meta>
+            <meta property="rdfs:label" xml:lang="de">begründet durch</meta>
+          </metadata>
+          <type>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="owl" name="ObjectProperty"/>
+                <OMS cd="base" name="MathKnowledgeItem"/>
+                <OMS cd="st" name="AnyLevelStatement"/>
+              </OMA>
+            </OMOBJ>
+          </type>
+        </symbol>
+      </omgroup>
+
+      <omgroup>
+        <meta property="dct:title">General Statements</meta>
+
+        <symbol name="GeneralSymbol">
+          <metadata>
+            <meta property="rdfs:comment">A symbol, both as a constitutive element of a theory and as a proof-local declaration</meta>
+            <meta property="rdfs:label" xml:lang="en">Symbol (general)</meta>
+            <meta property="rdfs:label" xml:lang="de">Symbol (allgemein)</meta>
+          </metadata>
+          <type>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMS cd="owl" name="Class"/>
+            </OMOBJ>
+          </type>
+        </symbol>
+
+        <axiom for="GeneralSymbol">
+          <FMP>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="rdfs" name="subClassOf"/>
+                <OMS cd="st" name="GeneralSymbol"/>
+                <OMS cd="base" name="RigorousKnowledgeItem"/>
+              </OMA>
+            </OMOBJ>
+          </FMP>
+        </axiom>
+
+        <axiom for="GeneralSymbol">
+          <FMP>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="rdfs" name="subClassOf"/>
+                <OMS cd="st" name="GeneralSymbol"/>
+                <OMS cd="st" name="AnyLevelStatement"/>
+              </OMA>
+            </OMOBJ>
+          </FMP>
+        </axiom>
+
+        <symbol name="GeneralDefinition">
+          <metadata>
+            <meta property="rdfs:comment">A definition, both as a constitutive element of a theory and as a proof-local definition</meta>
+            <meta property="rdfs:label" xml:lang="ru">Общее определение</meta>
+            <meta property="rdfs:label" xml:lang="en">Definition (general)</meta>
+            <meta property="rdfs:label" xml:lang="de">Definition (allgemein)</meta>
+          </metadata>
+          <type>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMS cd="owl" name="Class"/>
+            </OMOBJ>
+          </type>
+        </symbol>
+
+        <axiom for="GeneralDefinition">
+          <FMP>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="rdfs" name="subClassOf"/>
+                <OMS cd="st" name="GeneralDefinition"/>
+                <OMS cd="st" name="AnyLevelStatement"/>
+              </OMA>
+            </OMOBJ>
+          </FMP>
+        </axiom>
+
+
+        <symbol name="GeneralAxiom">
+          <metadata>
+            <meta property="rdfs:label" xml:lang="ru">Общая аксиома</meta>
+            <meta property="rdfs:label" xml:lang="en">Axiom (general)</meta>
+            <meta property="rdfs:comment">An axiom, both as a constitutive element of a theory and as a proof-local hypothesis</meta>
+            <meta property="rdfs:label" xml:lang="de">Axiom (allgemein)</meta>
+          </metadata>
+          <type>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMS cd="owl" name="Class"/>
+            </OMOBJ>
+          </type>
+        </symbol>
+
+        <axiom for="GeneralAxiom">
+          <FMP>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="rdfs" name="subClassOf"/>
+                <OMS cd="st" name="GeneralAxiom"/>
+                <OMS cd="st" name="AnyLevelStatement"/>
+              </OMA>
+            </OMOBJ>
+          </FMP>
+        </axiom>
+
+        <axiom for="GeneralSymbol GeneralDefinition GeneralAxiom">
+          <FMP>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="owl" name="AllDisjointClasses"/>
+                <OMS cd="st" name="GeneralSymbol"/>
+                <OMS cd="st" name="GeneralDefinition"/>
+                <OMS cd="st" name="GeneralAxiom"/>
+              </OMA>
+            </OMOBJ>
+          </FMP>
+        </axiom>
+      </omgroup>
+
+      <omgroup>
+        <meta property="dct:title">Constitutive Statements</meta>
+        
+        <symbol name="ConstitutiveStatement">
+          <metadata>
+            <meta property="rdfs:comment">An OMDoc statement, which is theory-constitutive, as defined in the OMDoc1.2 specification, chapter 15.1 (Types of Statements in Mathematics) and 15.2 (Theory-Constitutive Statements in OMDoc).</meta>
+            <meta property="rdfs:label" xml:lang="ru">Конструктивное предложение</meta>
+            <meta property="rdfs:label" xml:lang="en">Constitutive Statement</meta>
+            <meta property="rdfs:label" xml:lang="de">Konstitutive Aussage</meta>
+          </metadata>
+          <type>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMS cd="owl" name="Class"/>
+            </OMOBJ>
+          </type>
+        </symbol>
+
+        <axiom for="ConstitutiveStatement">
+          <FMP>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="rdfs" name="subClassOf"/>
+                <OMS cd="st" name="ConstitutiveStatement"/>
+                <OMS cd="st" name="StatementInTheory"/>
+              </OMA>
+            </OMOBJ>
+          </FMP>
+        </axiom>
+
+        <symbol name="Symbol">
+          <metadata>
+            <meta property="rdfs:comment">An OMDoc symbol, as defined in the OMDoc1.2 specification, chapter 15.2.1 (Symbol Declarations).
+            In OMDoc/XML, this is represented by the omdoc:symbol element.</meta>
+            <meta property="rdfs:label" xml:lang="ru">Символ</meta>
+            <meta property="rdfs:label" xml:lang="en">Symbol</meta>
+            <meta property="rdfs:label" xml:lang="de">Symbol</meta>
+          </metadata>
+          <type>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMS cd="owl" name="Class"/>
+            </OMOBJ>
+          </type>
+        </symbol>
+
+        <axiom for="Symbol">
+          <FMP>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="rdfs" name="subClassOf"/>
+                <OMS cd="st" name="Symbol"/>
+                <OMS cd="st" name="GeneralSymbol"/>
+              </OMA>
+            </OMOBJ>
+          </FMP>
+        </axiom>
+
+        <axiom for="Symbol">
+          <FMP>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="rdfs" name="subClassOf"/>
+                <OMS cd="st" name="Symbol"/>
+                <OMS cd="st" name="ConstitutiveStatement"/>
+              </OMA>
+            </OMOBJ>
+          </FMP>
+        </axiom>
+
+        <symbol name="Type">
+          <metadata>
+            <meta property="rdfs:comment">The type of a symbol (declared or asserted), as defined in the OMDoc1.2 specification, chapter 15.2.3 (Type Declarations) and 15.3.2 (Type Assertions).
+            In OMDoc/XML, this is represented by the omdoc:type element.</meta>
+            <meta property="rdfs:label" xml:lang="ru">Тип</meta>
+            <meta property="rdfs:label" xml:lang="en">Type</meta>
+            <meta property="rdfs:label" xml:lang="de">Typ</meta>
+          </metadata>
+          <type>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMS cd="owl" name="Class"/>
+            </OMOBJ>
+          </type>
+        </symbol>
+
+        <axiom for="Type">
+          <FMP>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="rdfs" name="subClassOf"/>
+                <OMS cd="st" name="Type"/>
+                <OMS cd="base" name="RigorousKnowledgeItem"/>
+              </OMA>
+            </OMOBJ>
+          </FMP>
+        </axiom>
+
+        <axiom for="Statement Theory Type">
+          <FMP>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="owl" name="AllDisjointClasses"/>
+                <OMS cd="st" name="Statement"/>
+                <OMS cd="st" name="Theory"/>
+                <OMS cd="st" name="Type"/>
+              </OMA>
+            </OMOBJ>
+          </FMP>
+        </axiom>
+
+        <symbol name="DeclaredType">
+          <metadata>
+            <meta property="rdfs:comment">The declared type of a symbol, as defined in the OMDoc1.2 specification, chapter 15.2.3 (Type Declarations).
+            In OMDoc/XML, this is represented by the omdoc:type element being a child of omdoc:symbol.</meta>
+            <meta property="rdfs:label" xml:lang="ru">Объявленный тип</meta>
+            <meta property="rdfs:label" xml:lang="en">Declared Type</meta>
+            <meta property="rdfs:label" xml:lang="de">Deklarierter Typ</meta>
+          </metadata>
+          <type>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMS cd="owl" name="Class"/>
+            </OMOBJ>
+          </type>
+        </symbol>
+
+        <axiom for="DeclaredType">
+          <FMP>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="rdfs" name="subClassOf"/>
+                <OMS cd="st" name="DeclaredType"/>
+                <OMS cd="st" name="Type"/>
+              </OMA>
+            </OMOBJ>
+          </FMP>
+        </axiom>
+
+        <symbol name="AssertedType">
+          <metadata>
+            <meta property="rdfs:comment">The asserted type of a symbol, as defined in the OMDoc1.2 specification, chapter 15.3.2 (Type Assertions).
+            In OMDoc/XML, this is represented by the omdoc:type element on statement level.</meta>
+            <meta property="rdfs:label" xml:lang="ru">Утвержденный тип</meta>
+            <meta property="rdfs:label" xml:lang="en">Asserted Type</meta>
+            <meta property="rdfs:label" xml:lang="de">Behaupteter Typ</meta>
+          </metadata>
+          <type>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMS cd="owl" name="Class"/>
+            </OMOBJ>
+          </type>
+        </symbol>
+
+        <axiom for="AssertedType">
+          <FMP>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="rdfs" name="subClassOf"/>
+                <OMS cd="st" name="AssertedType"/>
+                <OMS cd="st" name="Type"/>
+              </OMA>
+            </OMOBJ>
+          </FMP>
+        </axiom>
+
+        <!-- TODO really? -->
+        <axiom for="AssertedType">
+          <FMP>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="rdfs" name="subClassOf"/>
+                <OMS cd="st" name="AssertedType"/>
+                <OMS cd="st" name="NonConstitutiveStatement"/>
+              </OMA>
+            </OMOBJ>
+          </FMP>
+        </axiom>
+
+        <axiom for="DeclaredType AssertedType">
+          <FMP>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="owl" name="AllDisjointClasses"/>
+                <OMS cd="st" name="DeclaredType"/>
+                <OMS cd="st" name="AssertedType"/>
+              </OMA>
+            </OMOBJ>
+          </FMP>
+        </axiom>
+
+        <symbol name="type">
+          <metadata>
+            <meta property="rdfs:comment">The relation between a symbol and its (declared or asserted-and-proved) type, as defined in the OMDoc1.2 specification, chapter 15.2.3 (Type Declarations) and 15.3.2 (Type Assertions).</meta>
+            <meta property="rdfs:label" xml:lang="ru">имеет тип</meta>
+            <meta property="rdfs:label" xml:lang="en">has type</meta>
+            <meta property="rdfs:label" xml:lang="de">hat Typ</meta>
+          </metadata>
+          <type>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="owl" name="ObjectProperty"/>
+                <OMS cd="st" name="Symbol"/>
+                <!-- TODO note that we do not yet cover asserted types of complex MOBJs -->
+                <OMS cd="st" name="Type"/>
+              </OMA>
+            </OMOBJ>
+          </type>
+        </symbol>
+
+        <symbol name="declaredType">
+          <metadata>
+            <meta property="rdfs:comment">The relation between a symbol and its declared type, as defined in the OMDoc1.2 specification, chapter 15.2.3 (Type Declarations).</meta>
+            <meta property="rdfs:label" xml:lang="ru">имеет объявленный тип</meta>
+            <meta property="rdfs:label" xml:lang="en">has declared type</meta>
+            <meta property="rdfs:label" xml:lang="de">hat deklarierten Typ</meta>
+          </metadata>
+          <type>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMS cd="owl" name="ObjectProperty"/>
+            </OMOBJ>
+          </type>
+        </symbol>
+
+        <axiom for="declaredType">
+          <FMP>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="rdfs" name="subPropertyOf"/>
+                <OMS cd="st" name="declaredType"/>
+                <OMS cd="st" name="type"/>
+              </OMA>
+            </OMOBJ>
+          </FMP>
+        </axiom>
+
+        <axiom for="declaredType">
+          <FMP>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="rdfs" name="range"/>
+                <OMS cd="st" name="declaredType"/>
+                <OMS cd="st" name="DeclaredType"/>
+              </OMA>
+            </OMOBJ>
+          </FMP>
+        </axiom>
+
+        <symbol name="assertedType">
+          <metadata>
+            <meta property="rdfs:comment">The relation between a symbol and its asserted type, as defined in the OMDoc1.2 specification, chapter 15.3.2 (Type Assertions).</meta>
+            <meta property="rdfs:label" xml:lang="ru">имеет утвержденный тип</meta>
+            <meta property="rdfs:label" xml:lang="en">has asserted type</meta>
+            <meta property="rdfs:label" xml:lang="de">hat behaupteten Typ</meta>
+          </metadata>
+          <type>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMS cd="owl" name="ObjectProperty"/>
+            </OMOBJ>
+          </type>
+        </symbol>
+
+        <!-- this is not by default a subproperty of oo:type
+             TODO add a rule: if the assertion is true, then oo:assertedType => oo:type -->
+
+        <axiom for="assertedType">
+          <FMP>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="rdfs" name="range"/>
+                <OMS cd="st" name="assertedType"/>
+                <OMS cd="st" name="AssertedType"/>
+              </OMA>
+            </OMOBJ>
+          </FMP>
+        </axiom>
+
+        <symbol name="typeJustifiedBy">
+          <metadata>
+            <meta property="rdfs:comment">Points from a type assertion to the corresponding assertion that justifies it.</meta>
+            <meta property="rdfs:label" xml:lang="de">begründet durch</meta>
+            <meta property="rdfs:label" xml:lang="en">justified by</meta>
+            <meta property="rdfs:label" xml:lang="ru">обоснован посредством</meta>
+          </metadata>
+          <type>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMS cd="owl" name="FunctionalProperty"/>
+            </OMOBJ>
+          </type>
+          <type>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="owl" name="ObjectProperty"/>
+                <OMS cd="st" name="AssertedType"/>
+                <OMS cd="st" name="Assertion"/>
+              </OMA>
+            </OMOBJ>
+          </type>
+        </symbol>
+
+        <axiom for="typeJustifiedBy">
+          <FMP>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="rdfs" name="subPropertyOf"/>
+                <OMS cd="st" name="typeJustifiedBy"/>
+                <OMS cd="st" name="justifiedBy"/>
+              </OMA>
+            </OMOBJ>
+          </FMP>
+        </axiom>
+
+        <symbol name="hasOccurrenceOfInType">
+          <metadata>
+            <meta property="rdfs:label" xml:lang="en">has occurrence of in type</meta>
+            <meta property="rdfs:label" xml:lang="ru">встречается в</meta>
+            <meta property="rdfs:comment">Another symbol occurs in the type declaration of this symbol (MMT/OMDoc1.6)</meta>
+            <meta property="rdfs:label" xml:lang="de">enthält im Typen</meta>
+          </metadata>
+          <type>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="owl" name="ObjectProperty"/>
+                <OMS cd="st" name="Symbol"/>
+                <OMS cd="st" name="Symbol"/>
+              </OMA>
+            </OMOBJ>
+          </type>
+        </symbol>
+
+        <axiom for="hasOccurrenceOfInType">
+          <FMP>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="rdfs" name="subPropertyOf"/>
+                <OMS cd="st" name="hasOccurrenceOfInType"/>
+                <OMS cd="base" name="wellFormedNessDependsOn"/>
+              </OMA>
+            </OMOBJ>
+          </FMP>
+        </axiom>
+
+        <axiom for="hasOccurrenceOfInType">
+          <FMP>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="owl" name="propertyChainAxiom"/>
+                <OMS cd="st" name="hasOccurrenceOfInType"/>
+                <OMS cd="st" name="type"/>
+                <OMS cd="mtxt" name="usesSymbol"/>
+              </OMA>
+            </OMOBJ>
+          </FMP>
+        </axiom>
+
+        <symbol name="occursInTypeOf">
+          <metadata>
+            <meta property="rdfs:label" xml:lang="ru">встречается в типе</meta>
+            <meta property="rdfs:label" xml:lang="en">occurs in type of</meta>
+            <meta property="rdfs:label" xml:lang="de">kommt vor im Typ von</meta>
+          </metadata>
+          <type>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMS cd="owl" name="ObjectProperty"/>
+            </OMOBJ>
+          </type>
+        </symbol>
+
+        <axiom for="occursInTypeOf">
+          <FMP>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="owl" name="inverseOf"/>
+                <OMS cd="st" name="occursInTypeOf"/>
+                <OMS cd="st" name="hasOccurrenceOfInType"/>
+              </OMA>
+            </OMOBJ>
+          </FMP>
+        </axiom>
+
+        <symbol name="hasOccurrenceOfInDefinition">
+          <metadata>
+            <meta property="rdfs:comment">Another symbol occurs in the definition of this symbol (MMT/OMDoc1.6)</meta>
+            <meta property="rdfs:label" xml:lang="en">has occurrence of in definition</meta>
+            <meta property="rdfs:label" xml:lang="de">enthält in der Definition</meta>
+          </metadata>
+          <type>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="owl" name="ObjectProperty"/>
+                <OMS cd="st" name="Symbol"/>
+                <OMS cd="st" name="Symbol"/>
+              </OMA>
+            </OMOBJ>
+          </type>
+        </symbol>
+
+        <axiom for="hasOccurrenceOfInDefinition">
+          <FMP>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="rdfs" name="subPropertyOf"/>
+                <OMS cd="st" name="hasOccurrenceOfInDefinition"/>
+                <OMS cd="base" name="wellFormedNessDependsOn"/>
+              </OMA>
+            </OMOBJ>
+          </FMP>
+        </axiom>
+
+        <axiom for="hasOccurrenceOfInDefinition">
+          <FMP>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="owl" name="propertyChainAxiom"/>
+                <OMS cd="st" name="hasOccurrenceOfInDefinition"/>
+                <OMS cd="st" name="hasDefinition"/>
+                <OMS cd="mtxt" name="usesSymbol"/>
+              </OMA>
+            </OMOBJ>
+          </FMP>
+        </axiom>
+
+        <symbol name="occursInDefinitionOf">
+          <metadata>
+            <meta property="rdfs:label" xml:lang="ru">встречается в определении</meta>
+            <meta property="rdfs:label" xml:lang="en">occurs in definition of</meta>
+            <meta property="rdfs:label" xml:lang="de">kommt vor in der Definition von</meta>
+          </metadata>
+          <type>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMS cd="owl" name="ObjectProperty"/>
+            </OMOBJ>
+          </type>
+        </symbol>
+
+        <axiom for="occursInDefinitionOf">
+          <FMP>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="owl" name="inverseOf"/>
+                <OMS cd="st" name="occursInDefinitionOf"/>
+                <OMS cd="st" name="hasOccurrenceOfInDefinition"/>
+              </OMA>
+            </OMOBJ>
+          </FMP>
+        </axiom>
+
+        <symbol name="Axiom">
+          <metadata>
+            <meta property="rdfs:comment">An OMDoc axiom, as defined in the OMDoc1.2 specification, chapter 15.2.2 (Axioms).
+            In OMDoc/XML, this is represented by the omdoc:axiom element. It can also be informal, as a type in an omtext element, linked with a Informal Formality Degree.</meta>
+            <meta property="rdfs:label" xml:lang="ru">Аксиома</meta>
+            <meta property="rdfs:label" xml:lang="en">Axiom</meta>
+            <meta property="rdfs:label" xml:lang="de">Axiom</meta>
+          </metadata>
+          <type>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMS cd="owl" name="Class"/>
+            </OMOBJ>
+          </type>
+        </symbol>
+
+        <axiom for="Axiom">
+          <FMP>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="rdfs" name="subClassOf"/>
+                <OMS cd="st" name="Axiom"/>
+                <OMS cd="st" name="ConstitutiveStatement"/>
+              </OMA>
+            </OMOBJ>
+          </FMP>
+        </axiom>
+
+        <axiom for="Axiom">
+          <FMP>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="rdfs" name="subClassOf"/>
+                <OMS cd="st" name="Axiom"/>
+                <OMS cd="st" name="GeneralAxiom"/>
+              </OMA>
+            </OMOBJ>
+          </FMP>
+        </axiom>
+
+        <symbol name="Definition">
+          <metadata>
+            <meta property="rdfs:label" xml:lang="en">Definition</meta>
+            <meta property="rdfs:label" xml:lang="de">Definition</meta>
+            <meta property="rdfs:comment">An OMDoc definition, as defined in the OMDoc1.2 specification, chapter 15.2.4 (Definitions).
+            In OMDoc/XML, this is represented by the omdoc:definition element. It can also be informal, as a type in an omtext element, linked with a Informal Formality Degree.</meta>
+            <meta property="rdfs:label" xml:lang="ru">Определение</meta>
+          </metadata>
+          <type>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMS cd="owl" name="Class"/>
+            </OMOBJ>
+          </type>
+        </symbol>
+
+        <axiom for="Definition">
+          <FMP>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="rdfs" name="subClassOf"/>
+                <OMS cd="st" name="Definition"/>
+                <OMS cd="st" name="ConstitutiveStatement"/>
+              </OMA>
+            </OMOBJ>
+          </FMP>
+        </axiom>
+
+        <axiom for="Definition">
+          <FMP>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="rdfs" name="subClassOf"/>
+                <OMS cd="st" name="Definition"/>
+                <OMS cd="st" name="GeneralDefinition"/>
+              </OMA>
+            </OMOBJ>
+          </FMP>
+        </axiom>
+
+        <axiom for="Import Symbol Axiom Definition">
+          <FMP>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="owl" name="AllDisjointClasses"/>
+                <OMS cd="st" name="Import"/>
+                <OMS cd="st" name="Symbol"/>
+                <OMS cd="st" name="Axiom"/>
+                <OMS cd="st" name="Definition"/>
+              </OMA>
+            </OMOBJ>
+          </FMP>
+        </axiom>
+
+        <symbol name="SimpleDefinition">
+          <metadata>
+            <meta property="rdfs:comment">A simple OMDoc definition, as defined in the OMDoc1.2 specification, chapter 15.2.4 (Definitions).  In OMDoc/XML, this is represented by the omdoc:definition[@type='simple'] element.</meta>
+            <meta property="rdfs:label" xml:lang="en">Simple Definition</meta>
+            <meta property="rdfs:label" xml:lang="de">Einfache Definition</meta>
+          </metadata>
+          <type>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMS cd="owl" name="Class"/>
+            </OMOBJ>
+          </type>
+        </symbol>
+
+        <axiom for="SimpleDefinition">
+          <FMP>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="rdfs" name="subClassOf"/>
+                <OMS cd="st" name="SimpleDefinition"/>
+                <OMS cd="st" name="GeneralDefinition"/><!-- these types can hold whether a definition is proof-local or not -->
+              </OMA>
+            </OMOBJ>
+          </FMP>
+        </axiom>
+
+        <symbol name="ImplicitDefinition">
+          <metadata>
+            <meta property="rdfs:comment">An implicit OMDoc definition, as defined in the OMDoc1.2 specification, chapter 15.2.4 (Definitions).  In OMDoc/XML, this is represented by the omdoc:definition[@type='implicit'] element.</meta>
+            <meta property="rdfs:label" xml:lang="en">Implicit Definition</meta>
+            <meta property="rdfs:label" xml:lang="de">Implizite Definition</meta>
+          </metadata>
+          <type>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMS cd="owl" name="Class"/>
+            </OMOBJ>
+          </type>
+        </symbol>
+
+        <axiom for="ImplicitDefinition">
+          <FMP>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="rdfs" name="subClassOf"/>
+                <OMS cd="st" name="ImplicitDefinition"/>
+                <OMS cd="st" name="GeneralDefinition"/>
+              </OMA>
+            </OMOBJ>
+          </FMP>
+        </axiom>
+
+        <symbol name="RecursiveDefinition">
+          <metadata>
+            <meta property="rdfs:comment">A recursive OMDoc definition, common superclass of inductive and pattern-based definitions.</meta>
+            <meta property="rdfs:label" xml:lang="en">Recursive Definition</meta>
+            <meta property="rdfs:label" xml:lang="de">Rekursive Definition</meta>
+          </metadata>
+          <type>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMS cd="owl" name="Class"/>
+            </OMOBJ>
+          </type>
+        </symbol>
+
+        <axiom for="RecursiveDefinition">
+          <FMP>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="rdfs" name="subClassOf"/>
+                <OMS cd="st" name="RecursiveDefinition"/>
+                <OMS cd="st" name="GeneralDefinition"/>
+              </OMA>
+            </OMOBJ>
+          </FMP>
+        </axiom>
+
+        <axiom for="SimpleDefinition ImplicitDefinition RecursiveDefinition">
+          <FMP>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="owl" name="AllDisjointClasses"/>
+                <OMS cd="st" name="SimpleDefinition"/>
+                <OMS cd="st" name="ImplicitDefinition"/>
+                <OMS cd="st" name="RecursiveDefinition"/>
+              </OMA>
+            </OMOBJ>
+          </FMP>
+        </axiom>
+
+        <symbol name="InductiveDefinition">
+          <metadata>
+            <meta property="rdfs:comment">An inductive OMDoc definition, as defined in the OMDoc1.2 specification, chapter 15.2.4 (Definitions).  In OMDoc/XML, this is represented by the omdoc:definition[@type='inductive'] element.</meta>
+            <meta property="rdfs:label" xml:lang="en">Inductive Definition</meta>
+            <meta property="rdfs:label" xml:lang="de">Induktive Definition</meta>
+          </metadata>
+          <type>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMS cd="owl" name="Class"/>
+            </OMOBJ>
+          </type>
+        </symbol>
+
+        <axiom for="InductiveDefinition">
+          <FMP>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="rdfs" name="subClassOf"/>
+                <OMS cd="st" name="InductiveDefinition"/>
+                <OMS cd="st" name="RecursiveDefinition"/>
+              </OMA>
+            </OMOBJ>
+          </FMP>
+        </axiom>
+
+        <symbol name="PatternBasedDefinition">
+          <metadata>
+            <meta property="rdfs:comment">An OMDoc definition by pattern-based case distinction, as defined in the OMDoc1.2 specification, chapter 15.2.4 (Definitions).  In OMDoc/XML, this is represented by the omdoc:definition[@type='pattern'] element.</meta>
+            <meta property="rdfs:label" xml:lang="en">Pattern-based Definition</meta>
+            <meta property="rdfs:label" xml:lang="de">Fallweise Definition</meta>
+          </metadata>
+          <type>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMS cd="owl" name="Class"/>
+            </OMOBJ>
+          </type>
+        </symbol>
+
+        <axiom for="PatternBasedDefinition">
+          <FMP>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="rdfs" name="subClassOf"/>
+                <OMS cd="st" name="PatternBasedDefinition"/>
+                <OMS cd="st" name="RecursiveDefinition"/>
+              </OMA>
+            </OMOBJ>
+          </FMP>
+        </axiom>
+
+        <axiom for="InductiveDefinition PatternBasedDefinition">
+          <FMP>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="owl" name="AllDisjointClasses"/>
+                <OMS cd="st" name="InductiveDefinition"/>
+                <OMS cd="st" name="PatternBasedDefinition"/>
+              </OMA>
+            </OMOBJ>
+          </FMP>
+        </axiom>
+
+        <symbol name="hasDefinition">
+          <metadata>
+            <meta property="rdfs:comment">Expresses that a definition defines a symbol; see chapter 15.2.4 (Definitions) of the OMDoc1.2 specification.  A symbol can have at most one definition.  A definition defines at least one symbol.</meta>
+            <meta property="rdfs:label" xml:lang="de">hat Definition</meta>
+            <meta property="rdfs:label" xml:lang="ru">имеет определение</meta>
+            <meta property="rdfs:label" xml:lang="en">has definition</meta>
+          </metadata>
+          <type>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMS cd="owl" name="FunctionalProperty"/>
+            </OMOBJ>
+          </type>
+          <type>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="owl" name="ObjectProperty"/>
+                <OMS cd="st" name="Symbol"/>
+                <OMA>
+                  <OMS cd="owl" name="unionOf"/>
+                  <OMS cd="st" name="Definition"/>
+                  <OMA>
+                    <!-- for now, as we can have CMP-defines-term -->
+                    <OMS cd="owl" name="intersectionOf"/>
+                    <OMS cd="mtxt" name="Property"/>
+                    <OMS cd="base" name="InformalKnowledgeItem"/>
+                  </OMA>
+                </OMA>
+              </OMA>
+            </OMOBJ>
+          </type>
+        </symbol>
+
+        <axiom for="hasDefinition">
+          <FMP>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="owl" name="inverseOf"/>
+                <OMS cd="st" name="hasDefinition"/>
+                <OMS cd="st" name="defines"/>
+              </OMA>
+            </OMOBJ>
+          </FMP>
+        </axiom>
+
+        <symbol name="defines">
+          <metadata>
+            <meta property="rdfs:comment">Expresses that a definition defines a symbol; see chapter 15.2.4 (Definitions) of the OMDoc1.2 specification.  A symbol can have at most one definition.  A definition defines at least one symbol.
+            In OMDoc/XML, this is represented by the omdoc:definition/@for attribute.</meta>
+            <meta property="rdfs:label" xml:lang="ru">определяет</meta>
+            <meta property="rdfs:label" xml:lang="en">defines</meta>
+            <meta property="rdfs:label" xml:lang="de">definiert</meta>
+          </metadata>
+          <type>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMS cd="owl" name="ObjectProperty"/>
+            </OMOBJ>
+          </type>
+          <type>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMS cd="owl" name="InverseFunctionalProperty"/>
+            </OMOBJ>
+          </type>
+        </symbol>
+      </omgroup>
+
+      <omgroup>
+        <meta property="dct:title">Non-constitutive Statements</meta>
+
+        <symbol name="NonConstitutiveStatement">
+          <metadata>
+            <meta property="rdfs:comment">An OMDoc statement, which is not theory-constitutive, as defined in the OMDoc1.2 specification, chapter 15.1 (Types of Statements in Mathematics).</meta>
+            <meta property="rdfs:label" xml:lang="ru">Неконструктивное предложение</meta>
+            <meta property="rdfs:label" xml:lang="en">Non-constitutive Statement</meta>
+            <meta property="rdfs:label" xml:lang="de">Nicht-konstitutive Aussage</meta>
+          </metadata>
+          <type>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMS cd="owl" name="Class"/>
+            </OMOBJ>
+          </type>
+        </symbol>
+
+        <axiom for="NonConstitutiveStatement">
+          <FMP>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="rdfs" name="subClassOf"/>
+                <OMS cd="st" name="NonConstitutiveStatement"/>
+                <OMS cd="st" name="StatementInTheory"/>
+              </OMA>
+            </OMOBJ>
+          </FMP>
+        </axiom>
+
+        <axiom for="ConstitutiveStatement NonConstitutiveStatement">
+          <FMP>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="owl" name="AllDisjointClasses"/>
+                <OMS cd="st" name="ConstitutiveStatement"/>
+                <OMS cd="st" name="NonConstitutiveStatement"/>
+              </OMA>
+            </OMOBJ>
+          </FMP>
+        </axiom>
+
+        <symbol name="Assertion">
+          <metadata>
+            <meta property="rdfs:comment">An OMDoc assertion, as defined in the OMDoc1.2 specification, chapter 15.3.1 (Assertions).
+            In OMDoc/XML, this is represented by the omdoc:assertion element.
+            Note: This class has lots of subclasses.  Their semantics needs to be clarified, as not everything is clearly documented in the OMDoc specification; see the discussion on
+            http://mathweb.org/wiki/Talk:OMDoc/document_ontology —Christoph Lange</meta>
+            <meta property="rdfs:label" xml:lang="en">Assertion</meta>
+            <meta property="rdfs:label" xml:lang="de">Behauptung</meta>
+          </metadata>
+          <type>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMS cd="owl" name="Class"/>
+            </OMOBJ>
+          </type>
+        </symbol>
+
+        <axiom for="Assertion">
+          <FMP>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="rdfs" name="subClassOf"/>
+                <OMS cd="st" name="Assertion"/>
+                <OMS cd="st" name="NonConstitutiveStatement"/>
+              </OMA>
+            </OMOBJ>
+          </FMP>
+        </axiom>
+
+        <symbol name="ProvenAssertion">
+          <metadata>
+            <meta property="rdfs:comment">An OMDoc assertion that has a proof, as defined in the OMDoc1.2 specification, chapter 15.3.1 (Assertions).</meta>
+            <meta property="rdfs:label" xml:lang="en">Proven Assertion</meta>
+            <meta property="rdfs:label" xml:lang="de">Bewiesene Behauptung</meta>
+          </metadata>
+          <type>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMS cd="owl" name="Class"/>
+            </OMOBJ>
+          </type>
+        </symbol>
+
+        <!-- alternative formalization as a definition 
+        <definition for="ProvenAssertion" type="simple">
+          <CMP><term cd="st" name="ProvenAssertion" role="definiendum">A proven assertion
+              </term> is <term cd="st" name="Assertion" role="definiens">
+              <phrase verbalizes="#A"><phrase verbalizes="#A2">an assertion</phrase>
+                <phrase verbalizes="#A1">that</phrase><phrase verbalizes="#A3">
+                  <phrase verbalizes="#A3B">is proved by</phrase>
+                  <phrase verbalizes="#A3C"><phrase verbalizes="#A3C1">a</phrase>
+                    <phrase verbalizes="#A3C2">proof</phrase></phrase></phrase></phrase>
+          </term>.</CMP>
+          <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+            <OMA id="A">
+              <OMS id="A1" cd="owl" name="intersectionOf"/>
+              <OMS id="A2" cd="st" name="Assertion"/>
+              <OMA id="A3">
+                <OMS id="A3A" cd="owl" name="Restriction"/>
+                <OMS id="A3B" cd="st" name="provedBy"/>
+                <OMA id="A3C">
+                  <OMS id="A3C1" cd="owl" name="someValuesFrom"/>
+                  <OMS id="A3C2" cd="pf" name="Proof"/>
+                </OMA>
+              </OMA>
+            </OMA>
+          </OMOBJ>
+        </definition>
+        -->
+
+        <axiom for="ProvenAssertion">
+          <FMP>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="rdfs" name="subClassOf"/>
+                <OMS cd="st" name="ProvenAssertion"/>
+                <OMA>
+                  <OMS cd="owl" name="Restriction"/>
+                  <OMS cd="st" name="provedBy"/>
+                  <OMA>
+                    <!-- note that we don't need allValuesFrom, as the range of oo:provedBy is oo:Proof anyway
+                    alternatively we could set a minCardinality of 1 for oo:provedBy -->
+                    <OMS cd="owl" name="someValuesFrom"/>
+                    <OMS cd="pf" name="Proof"/>
+                  </OMA>
+                </OMA>
+              </OMA>
+            </OMOBJ>
+          </FMP>
+        </axiom>
+
+        <axiom for="ProvenAssertion">
+          <FMP>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="rdfs" name="subClassOf"/>
+                <OMS cd="st" name="ProvenAssertion"/>
+                <OMS cd="st" name="Assertion"/>
+              </OMA>
+            </OMOBJ>
+          </FMP>
+        </axiom>
+
+        <symbol name="UnProvenAssertion">
+          <metadata>
+            <meta property="rdfs:comment">An OMDoc assertion that does not [have to] have a proof, as defined in the OMDoc1.2 specification, chapter 15.3.1 (Assertions).</meta>
+            <meta property="rdfs:label" xml:lang="en">Unproven Assertion</meta>
+            <meta property="rdfs:label" xml:lang="de">Unbewiesene Behauptung</meta>
+          </metadata>
+          <type>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMS cd="owl" name="Class"/>
+            </OMOBJ>
+          </type>
+        </symbol>
+
+        <axiom for="UnProvenAssertion">
+          <FMP>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="rdfs" name="subClassOf"/>
+                <OMS cd="st" name="UnProvenAssertion"/>
+                <OMS cd="st" name="Assertion"/>
+              </OMA>
+            </OMOBJ>
+          </FMP>
+        </axiom>
+
+        <symbol name="RefutedAssertion">
+          <metadata>
+            <meta property="rdfs:comment">An OMDoc assertion that has a counter-example, as defined in the OMDoc1.2 specification, chapter 15.3.1 (Assertions).</meta>
+            <meta property="rdfs:label" xml:lang="en">Refuted Assertion</meta>
+            <meta property="rdfs:label" xml:lang="de">Widerlegte Behauptung</meta>
+          </metadata>
+          <type>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMS cd="owl" name="Class"/>
+            </OMOBJ>
+          </type>
+        </symbol>
+
+        <axiom for="RefutedAssertion">
+          <FMP>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="rdfs" name="subClassOf"/>
+                <OMS cd="st" name="RefutedAssertion"/>
+                <OMS cd="st" name="Assertion"/>
+              </OMA>
+            </OMOBJ>
+          </FMP>
+        </axiom>
+
+        <axiom for="RefutedAssertion">
+          <FMP>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="rdfs" name="subClassOf"/>
+                <OMS cd="st" name="RefutedAssertion"/>
+                <OMA>
+                  <OMS cd="owl" name="Restriction"/>
+                  <OMS cd="st" name="refutedBy"/>
+                  <OMA>
+                    <OMS cd="owl" name="someValuesFrom"/>
+                    <OMS cd="st" name="Example"/>
+                  </OMA>
+                </OMA>
+              </OMA>
+            </OMOBJ>
+          </FMP>
+        </axiom>
+
+        <symbol name="Theorem">
+          <metadata>
+            <meta property="rdfs:comment">An OMDoc assertion, which is a theorem; see figure 15.5 (Types of Mathematical Assertions) in the OMDoc1.2 specification.  In OMDoc/XML, this is represented by the omdoc:assertion[@type='theorem'] attribute. It can also be informal, as a type in an omtext element, linked with a Informal Formality Degree.</meta>
+            <meta property="rdfs:label" xml:lang="ru">Утверждение</meta>
+            <meta property="rdfs:label" xml:lang="en">Theorem</meta>
+            <meta property="rdfs:label" xml:lang="de">Satz/Theorem</meta>
+          </metadata>
+          <type>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMS cd="owl" name="Class"/>
+            </OMOBJ>
+          </type>
+        </symbol>
+
+        <axiom for="Theorem">
+          <FMP>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="rdfs" name="subClassOf"/>
+                <OMS cd="st" name="Theorem"/>
+                <OMS cd="st" name="ProvenAssertion"/>
+              </OMA>
+            </OMOBJ>
+          </FMP>
+        </axiom>
+
+        <axiom for="Theorem Proposition Corollary Lemma">
+          <FMP>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="owl" name="AllDisjointClasses"/>
+                <OMS cd="st" name="Theorem"/>
+                <OMS cd="st" name="Proposition"/>
+                <OMS cd="st" name="Corollary"/>
+                <OMS cd="st" name="Lemma"/>
+              </OMA>
+            </OMOBJ>
+          </FMP>
+        </axiom>
+
+        <symbol name="Lemma">
+          <metadata>
+            <meta property="rdfs:comment">An OMDoc assertion, which is a lemma; see figure 15.5 (Types of Mathematical Assertions) in the OMDoc1.2 specification.
+            In OMDoc/XML, this is represented by the omdoc:assertion[@type='lemma'] attribute. It can also be informal, as a type in an omtext element, linked with a Informal Formality Degree.</meta>
+            <meta property="rdfs:label" xml:lang="ru">Лемма</meta>
+            <meta property="rdfs:label" xml:lang="en">Lemma</meta>
+            <meta property="rdfs:label" xml:lang="de">Lemma</meta>
+          </metadata>
+          <type>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMS cd="owl" name="Class"/>
+            </OMOBJ>
+          </type>
+        </symbol>
+
+        <axiom for="Lemma">
+          <FMP>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="rdfs" name="subClassOf"/>
+                <OMS cd="st" name="Lemma"/>
+                <OMS cd="st" name="ProvenAssertion"/>
+              </OMA>
+            </OMOBJ>
+          </FMP>
+        </axiom>
+
+        <symbol name="Corollary">
+          <metadata>
+            <meta property="rdfs:label" xml:lang="en">Corollary</meta>
+            <meta property="rdfs:label" xml:lang="de">Korollar</meta>
+            <meta property="rdfs:comment">An OMDoc assertion, which is a corollary; see figure 15.5 (Types of Mathematical Assertions) in the OMDoc1.2 specification.
+            In OMDoc/XML, this is represented by the omdoc:assertion[@type='corollary'] attribute. It can also be informal, as a type in an omtext element, linked with a Informal Formality Degree.</meta>
+            <meta property="rdfs:label" xml:lang="ru">Следствие</meta>
+          </metadata>
+          <type>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMS cd="owl" name="Class"/>
+            </OMOBJ>
+          </type>
+        </symbol>
+
+        <axiom for="Corollary">
+          <FMP>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="rdfs" name="subClassOf"/>
+                <OMS cd="st" name="Corollary"/>
+                <OMS cd="st" name="ProvenAssertion"/>
+              </OMA>
+            </OMOBJ>
+          </FMP>
+        </axiom>
+
+        <symbol name="Proposition">
+          <metadata>
+            <meta property="rdfs:comment">An OMDoc assertion, which is a proposition; see figure 15.5 (Types of Mathematical Assertions) in the OMDoc1.2 specification.  For a proposition, a proof exists, but not necessarily in our knowledge base.  Thanks to the Open World Assumption of OWL, it is no problem to demand a proof, though.
+            In OMDoc/XML, this is represented by the omdoc:assertion[@type='proposition'] attribute. It can also be informal, as a type in an omtext element, linked with a Informal Formality Degree.</meta>
+            <meta property="rdfs:label" xml:lang="ru">Предложение</meta>
+            <meta property="rdfs:label" xml:lang="en">Proposition</meta>
+            <meta property="rdfs:label" xml:lang="de">Proposition</meta>
+          </metadata>
+          <type>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMS cd="owl" name="Class"/>
+            </OMOBJ>
+          </type>
+        </symbol>
+
+        <axiom for="Proposition">
+          <FMP>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="rdfs" name="subClassOf"/>
+                <OMS cd="st" name="Proposition"/>
+                <OMS cd="st" name="ProvenAssertion"/>
+              </OMA>
+            </OMOBJ>
+          </FMP>
+        </axiom>
+
+        <symbol name="Conjecture">
+          <metadata>
+            <meta property="rdfs:label" xml:lang="en">Conjecture</meta>
+            <meta property="rdfs:comment">An OMDoc assertion, which is a conjecture; see figure 15.5 (Types of Mathematical Assertions) in the OMDoc1.2 specification.
+            In OMDoc/XML, this is represented by the omdoc:assertion[@type='conjecture'] attribute. It can also be informal, as a type in an omtext element, linked with a Informal Formality Degree.</meta>
+            <meta property="rdfs:label" xml:lang="de">Konjektur</meta>
+            <meta property="rdfs:label" xml:lang="ru">Гипотетическое утверждение</meta>
+          </metadata>
+          <type>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMS cd="owl" name="Class"/>
+            </OMOBJ>
+          </type>
+        </symbol>
+
+        <axiom for="Conjecture">
+          <FMP>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="rdfs" name="subClassOf"/>
+                <OMS cd="st" name="Conjecture"/>
+                <OMS cd="st" name="UnProvenAssertion"/>
+              </OMA>
+            </OMOBJ>
+          </FMP>
+        </axiom>
+
+        <axiom for="Conjecture Obligation AssumptionAssertion Postulate Rule Formula">
+          <FMP>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="owl" name="AllDisjointClasses"/>
+                <OMS cd="st" name="Conjecture"/>
+                <OMS cd="st" name="Obligation"/>
+                <OMS cd="st" name="AssumptionAssertion"/>
+                <OMS cd="st" name="Postulate"/>
+                <OMS cd="st" name="Rule"/>
+                <OMS cd="st" name="Formula"/>
+              </OMA>
+            </OMOBJ>
+          </FMP>
+        </axiom>
+
+        <symbol name="Obligation">
+          <metadata>
+            <meta property="rdfs:comment">An OMDoc assertion, which is an obligation; see figure 15.5 (Types of Mathematical Assertions) in the OMDoc1.2 specification.
+            In OMDoc/XML, this is represented by the omdoc:assertion[@type='obligation'] attribute. It can also be informal, as a type in an omtext element, linked with a Informal Formality Degree.</meta>
+            <meta property="rdfs:label" xml:lang="ru">Требование</meta>
+            <meta property="rdfs:label" xml:lang="en">Obligation</meta>
+            <meta property="rdfs:label" xml:lang="de">Verpflichtung</meta>
+          </metadata>
+          <type>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMS cd="owl" name="Class"/>
+            </OMOBJ>
+          </type>
+        </symbol>
+
+        <axiom for="Obligation">
+          <FMP>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="rdfs" name="subClassOf"/>
+                <OMS cd="st" name="Obligation"/>
+                <OMS cd="st" name="UnProvenAssertion"/>
+              </OMA>
+            </OMOBJ>
+          </FMP>
+        </axiom>
+
+        <symbol name="AssumptionAssertion">
+          <metadata>
+            <meta property="rdfs:comment">An OMDoc assertion, which is an assumption; see figure 15.5 (Types of Mathematical Assertions) in the OMDoc1.2 specification.
+            In OMDoc/XML, this is represented by omdoc:assertion[@type='assumption'] attribute. It can also be informal, as a type in an omtext element, linked with a Informal Formality Degree.</meta>
+            <meta property="rdfs:label" xml:lang="de">Vermutung</meta>
+            <meta property="rdfs:label" xml:lang="en">Assumption</meta>
+            <meta property="rdfs:label" xml:lang="ru">Предположение</meta>
+          </metadata>
+          <type>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMS cd="owl" name="Class"/>
+            </OMOBJ>
+          </type>
+        </symbol>
+
+        <axiom for="AssumptionAssertion">
+          <FMP>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="rdfs" name="subClassOf"/>
+                <OMS cd="st" name="AssumptionAssertion"/>
+                <OMS cd="st" name="UnProvenAssertion"/>
+              </OMA>
+            </OMOBJ>
+          </FMP>
+        </axiom>
+
+        <symbol name="Postulate">
+          <metadata>
+            <meta property="rdfs:comment">An OMDoc assertion, which is a postulate; see figure 15.5 (Types of Mathematical Assertions) in the OMDoc1.2 specification.
+            In OMDoc/XML, this is represented by the omdoc:assertion[@type='postulate'] attribute. It can also be informal, as a type in an omtext element, linked with a Informal Formality Degree.</meta>
+            <meta property="rdfs:label" xml:lang="ru">Постулат</meta>
+            <meta property="rdfs:label" xml:lang="en">Postulate</meta>
+            <meta property="rdfs:label" xml:lang="de">Postulat</meta>
+          </metadata>
+          <type>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMS cd="owl" name="Class"/>
+            </OMOBJ>
+          </type>
+        </symbol>
+
+        <axiom for="Postulate">
+          <FMP>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="rdfs" name="subClassOf"/>
+                <OMS cd="st" name="Postulate"/>
+                <OMS cd="st" name="UnProvenAssertion"/>
+              </OMA>
+            </OMOBJ>
+          </FMP>
+        </axiom>
+
+        <symbol name="Formula">
+          <metadata>
+            <meta property="rdfs:label" xml:lang="en">Formel</meta>
+            <meta property="rdfs:label" xml:lang="de">Formel</meta>
+            <meta property="rdfs:comment">An OMDoc assertion, which is a formula; see figure 15.5 (Types of Mathematical Assertions) in the OMDoc1.2 specification.
+            In OMDoc/XML, this is represented by omdoc:assertion[@type='formula'] attribute. It can also be informal, as a type in an omtext element, linked with a Informal Formality Degree.</meta>
+            <meta property="rdfs:label" xml:lang="ru">Формула</meta>
+          </metadata>
+          <type>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMS cd="owl" name="Class"/>
+            </OMOBJ>
+          </type>
+        </symbol>
+
+        <axiom for="Formula">
+          <FMP>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="rdfs" name="subClassOf"/>
+                <OMS cd="st" name="Formula"/>
+                <OMS cd="st" name="UnProvenAssertion"/>
+              </OMA>
+            </OMOBJ>
+          </FMP>
+        </axiom>
+
+        <symbol name="Rule">
+          <metadata>
+            <meta property="rdfs:comment">An OMDoc assertion, which is a rule.  This type of assertion is missing from figure 15.5 (Types of Mathematical Assertions) in the OMDoc1.2 specification, but it occurs in the XML schema nevertheless (Appendix D.4, enumeration ``assertiontype'').
+            In OMDoc/XML, this is represented by the omdoc:assertion[@type='rule'] attribute. It can also be informal, as a type in an omtext element, linked with a Informal Formality Degree.</meta>
+            <meta property="rdfs:label" xml:lang="ru">Правило</meta>
+            <meta property="rdfs:label" xml:lang="en">Rule</meta>
+            <meta property="rdfs:label" xml:lang="de">Regel</meta>
+          </metadata>
+          <type>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMS cd="owl" name="Class"/>
+            </OMOBJ>
+          </type>
+        </symbol>
+
+        <axiom for="Rule">
+          <FMP>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="rdfs" name="subClassOf"/>
+                <OMS cd="st" name="Rule"/>
+                <OMS cd="st" name="UnProvenAssertion"/>
+                <!-- TODO not sure if “rule” should really be unproven -->
+              </OMA>
+            </OMOBJ>
+          </FMP>
+        </axiom>
+
+        <symbol name="FalseConjecture">
+          <metadata>
+            <meta property="rdfs:comment">An OMDoc assertion, which is a conjecture that has proven to be false; see figure 15.5 (Types of Mathematical Assertions) in the OMDoc1.2 specification.
+            In OMDoc/XML, this is represented by the omdoc:assertion[@type='false-conjecture'] attribute. It can also be informal, as a type in an omtext element, linked with a Informal Formality Degree.</meta>
+            <meta property="rdfs:label" xml:lang="ru">Ложное утверждение</meta>
+            <meta property="rdfs:label" xml:lang="en">False Conjecture</meta>
+            <meta property="rdfs:label" xml:lang="de">Falsche Behauptung</meta>
+          </metadata>
+          <type>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMS cd="owl" name="Class"/>
+            </OMOBJ>
+          </type>
+        </symbol>
+
+        <axiom for="FalseConjecture">
+          <FMP>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="rdfs" name="subClassOf"/>
+                <OMS cd="st" name="FalseConjecture"/>
+                <OMS cd="st" name="RefutedAssertion"/>
+              </OMA>
+            </OMOBJ>
+          </FMP>
+        </axiom>
+
+        <symbol name="Example">
+          <metadata>
+            <meta property="rdfs:comment">An OMDoc example, as defined in the OMDoc specification, chapter 15.4 (Mathematical Examples in OMDoc).
+            In OMDoc/XML, this is represented by the omdoc:example element. It can also be informal, as a type in an omtext element, linked with a Informal Formality Degree.</meta>
+            <meta property="rdfs:label" xml:lang="ru">Пример</meta>
+            <meta property="rdfs:label" xml:lang="en">Example</meta>
+            <meta property="rdfs:label" xml:lang="de">Beispiel</meta>
+          </metadata>
+          <type>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMS cd="owl" name="Class"/>
+            </OMOBJ>
+          </type>
+        </symbol>
+
+        <axiom for="Example">
+          <FMP>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="rdfs" name="subClassOf"/>
+                <OMS cd="st" name="Example"/>
+                <OMS cd="st" name="NonConstitutiveStatement"/>
+              </OMA>
+            </OMOBJ>
+          </FMP>
+        </axiom>
+
+        <symbol name="exemplifies">
+          <metadata>
+            <meta property="rdfs:comment">The statement that is exemplified by this example; see the OMDoc specification, chapter 15.4 (Mathematical Examples in OMDoc).
+            In OMDoc/XML, this is represented by the omdoc:example/@for attribute.</meta>
+            <meta property="rdfs:label" xml:lang="ru">является примером для</meta>
+            <meta property="rdfs:label" xml:lang="en">exemplifies</meta>
+            <meta property="rdfs:label" xml:lang="de">erläutert</meta>
+          </metadata>
+          <type>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="owl" name="ObjectProperty"/>
+                <OMS cd="st" name="Example"/>
+                <OMA>
+                  <OMS cd="owl" name="unionOf"/>
+                  <OMS cd="st" name="Symbol"/>
+                  <OMS cd="st" name="Definition"/>
+                  <OMS cd="st" name="AlternativeDefinition"/>
+                  <OMS cd="st" name="Axiom"/>
+                  <OMS cd="st" name="Assertion"/>
+                </OMA>
+              </OMA>
+            </OMOBJ>
+          </type>
+        </symbol>
+
+        <symbol name="exemplifiedBy">
+          <metadata>
+            <meta property="rdfs:label" xml:lang="en">exemplified by</meta>
+            <meta property="rdfs:label" xml:lang="de">erläutert durch</meta>
+          </metadata>
+          <type>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMS cd="owl" name="ObjectProperty"/>
+            </OMOBJ>
+          </type>
+        </symbol>
+
+        <axiom for="exemplifiedBy">
+          <FMP>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="owl" name="inverseOf"/>
+                <OMS cd="st" name="exemplifiedBy"/>
+                <OMS cd="st" name="exemplifies"/>
+              </OMA>
+            </OMOBJ>
+          </FMP>
+        </axiom>
+
+        <symbol name="corroborates">
+          <metadata>
+            <meta property="rdfs:comment">The assertion that is corroborated by this example; see the OMDoc specification, chapter 15.4 (Mathematical Examples in OMDoc). Although not explicitly stated in the OMDoc book, I guess that only assertions can be corroborated by an example; for a symbol or definition, it wouldn't make sense.
+            In OMDoc/XML, this is represented by the omdoc:example/@for attribute, together with omdoc:example[@type='for'].</meta>
+            <meta property="rdfs:label" xml:lang="ru">подтверждает</meta>
+            <meta property="rdfs:label" xml:lang="en">corroborates</meta>
+            <meta property="rdfs:label" xml:lang="de">bestätigt</meta>
+          </metadata>
+          <type>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="owl" name="ObjectProperty"/>
+                <OMS cd="st" name="Example"/><!-- actually inherited from super property -->
+                <OMS cd="st" name="Assertion"/>
+              </OMA>
+            </OMOBJ>
+          </type>
+        </symbol>
+
+        <axiom for="corroborates">
+          <FMP>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="rdfs" name="subPropertyOf"/>
+                <OMS cd="st" name="corroborates"/>
+                <OMS cd="st" name="exemplifies"/>
+              </OMA>
+            </OMOBJ>
+          </FMP>
+        </axiom>
+
+        <symbol name="corroboratedBy">
+          <metadata>
+            <meta property="rdfs:label" xml:lang="ru">подтвержден посредством</meta>
+            <meta property="rdfs:label" xml:lang="en">corroborated by</meta>
+            <meta property="rdfs:label" xml:lang="de">bestätigt durch</meta>
+          </metadata>
+          <type>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMS cd="owl" name="ObjectProperty"/>
+            </OMOBJ>
+          </type>
+        </symbol>
+
+        <axiom for="corroboratedBy">
+          <FMP>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="owl" name="inverseOf"/>
+                <OMS cd="st" name="corroboratedBy"/>
+                <OMS cd="st" name="corroborates"/>
+              </OMA>
+            </OMOBJ>
+          </FMP>
+        </axiom>
+
+        <symbol name="refutes">
+          <metadata>
+            <meta property="rdfs:comment">The assertion that is refuted by this example; see the OMDoc specification, chapter 15.4 (Mathematical Examples in OMDoc).  Although not explicitly stated in the OMDoc book, I guess that only assertions can be corroborated by an example; for a symbol or definition, it wouldn't make sense.
+            In OMDoc/XML, this is represented by the omdoc:example/@for attribute, together with omdoc:example[@type='against'].</meta>
+            <meta property="rdfs:label" xml:lang="ru">опровергает</meta>
+            <meta property="rdfs:label" xml:lang="en">refutes</meta>
+            <meta property="rdfs:label" xml:lang="de">widerlegt</meta>
+          </metadata>
+          <type>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="owl" name="ObjectProperty"/>
+                <OMS cd="st" name="Example"/><!-- actually inherited from super property -->
+                <OMS cd="st" name="Assertion"/>
+              </OMA>
+            </OMOBJ>
+          </type>
+        </symbol>
+
+        <axiom for="refutes">
+          <FMP>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="rdfs" name="subPropertyOf"/>
+                <OMS cd="st" name="refutes"/>
+                <OMS cd="st" name="exemplifies"/>
+              </OMA>
+            </OMOBJ>
+          </FMP>
+        </axiom>
+
+        <axiom for="refutes corroborates">
+          <FMP>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="owl" name="AllDisjointProperties"/>
+                <OMS cd="st" name="refutes"/>
+                <OMS cd="st" name="corroborates"/>
+              </OMA>
+            </OMOBJ>
+          </FMP>
+        </axiom>
+
+        <symbol name="refutedBy">
+          <metadata>
+            <meta property="rdfs:label" xml:lang="ru">опровергается посредством</meta>
+            <meta property="rdfs:label" xml:lang="en">refuted by</meta>
+            <meta property="rdfs:label" xml:lang="de">widerlegt durch</meta>
+          </metadata>
+          <type>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMS cd="owl" name="ObjectProperty"/>
+            </OMOBJ>
+          </type>
+        </symbol>
+
+        <axiom for="refutedBy">
+          <FMP>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="owl" name="inverseOf"/>
+                <OMS cd="st" name="refutedBy"/>
+                <OMS cd="st" name="refutes"/>
+              </OMA>
+            </OMOBJ>
+          </FMP>
+        </axiom>
+
+        <symbol name="AlternativeDefinition">
+          <metadata>
+            <meta property="rdfs:label" xml:lang="en">Alternative Definition</meta>
+            <meta property="rdfs:label" xml:lang="de">Alternative Definition</meta>
+            <meta property="rdfs:comment">An OMDoc alternative definition, as defined in the OMDoc specification, chapter 15.3.3 (Alternative Definitions).
+            In OMDoc/XML, this is represented by the omdoc:AlternativeDefinition element.</meta>
+            <meta property="rdfs:label" xml:lang="ru">Альтернативное определение</meta>
+          </metadata>
+          <type>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMS cd="owl" name="Class"/>
+            </OMOBJ>
+          </type>
+        </symbol>
+
+        <axiom for="AlternativeDefinition">
+          <FMP>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="rdfs" name="subClassOf"/>
+                <OMS cd="st" name="AlternativeDefinition"/>
+                <OMS cd="st" name="NonConstitutiveStatement"/>
+              </OMA>
+            </OMOBJ>
+          </FMP>
+        </axiom>
+
+        <axiom for="Assertion Example AlternativeDefinition">
+          <FMP>
+            <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+              <OMA>
+                <OMS cd="owl" name="AllDisjointClasses"/>
+                <OMS cd="st" name="Example"/>
+                <OMS cd="st" name="Assertion"/>
+                <OMS cd="st" name="AlternativeDefinition"/>
+              </OMA>
+            </OMOBJ>
+          </FMP>
+        </axiom>
+      </omgroup>
+    </omgroup>
+  </theory>
+</omdoc>
+
+<!--
+vim:sw=2:sts=2
+-->

@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  A RelaxNG schema for Open Mathematical documents (OMDoc 1.6) Module EXT 
+  $Id: omdocext.rnc 8432 2009-07-19 13:18:40Z kohlhase $
+  $HeadURL: https://svn.omdoc.org/repos/omdoc/trunk/schema/rnc/omdocext.rnc $
+  See the documentation and examples at http://www.omdoc.org
+  Copyright (c) 2004-2007 Michael Kohlhase, released under the GNU Public License (GPL) 
+-->
+<grammar ns="http://omdoc.org/ns" xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  <define name="op.class" combine="choice">
+    <zeroOrMore>
+      <ref name="omlet"/>
+    </zeroOrMore>
+  </define>
+  <define name="omdocext.class">
+    <interleave>
+      <zeroOrMore>
+        <ref name="private"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="code"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="omlet"/>
+      </zeroOrMore>
+    </interleave>
+  </define>
+  <define name="omdoc.class" combine="interleave">
+    <ref name="omdocext.class"/>
+  </define>
+  <define name="private.attribs">
+    <interleave>
+      <ref name="omdoc.toplevel.attribs"/>
+      <ref name="fori.attrib"/>
+      <optional>
+        <attribute name="requires">
+          <ref name="MMTURI"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="reformulates">
+          <ref name="SURI"/>
+        </attribute>
+      </optional>
+    </interleave>
+  </define>
+  <define name="private.model">
+    <optional>
+      <ref name="metadata"/>
+    </optional>
+    <oneOrMore>
+      <ref name="data"/>
+    </oneOrMore>
+  </define>
+  <define name="private">
+    <element name="private">
+      <interleave>
+        <ref name="private.attribs"/>
+        <ref name="private.model"/>
+      </interleave>
+    </element>
+  </define>
+  <!--
+    reformulates is a URIref to the omdoc elements that are reformulated by the 
+    system-specific information in this element
+  -->
+  <define name="code.attribs">
+    <ref name="private.attribs"/>
+  </define>
+  <define name="code.model">
+    <optional>
+      <ref name="metadata"/>
+    </optional>
+    <interleave>
+      <zeroOrMore>
+        <ref name="data"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="input"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="output"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="effect"/>
+      </zeroOrMore>
+    </interleave>
+  </define>
+  <define name="code">
+    <element name="code">
+      <interleave>
+        <ref name="code.attribs"/>
+        <ref name="code.model"/>
+      </interleave>
+    </element>
+  </define>
+  <define name="input.attribs">
+    <ref name="id.attribs"/>
+  </define>
+  <define name="input.model">
+    <zeroOrMore>
+      <ref name="p"/>
+    </zeroOrMore>
+  </define>
+  <define name="input">
+    <element name="input">
+      <interleave>
+        <ref name="input.attribs"/>
+        <ref name="input.model"/>
+      </interleave>
+    </element>
+  </define>
+  <define name="output.attribs">
+    <ref name="id.attribs"/>
+  </define>
+  <define name="output.model">
+    <zeroOrMore>
+      <ref name="p"/>
+    </zeroOrMore>
+  </define>
+  <define name="output">
+    <element name="output">
+      <interleave>
+        <ref name="output.attribs"/>
+        <ref name="output.model"/>
+      </interleave>
+    </element>
+  </define>
+  <define name="effect.attribs">
+    <ref name="id.attribs"/>
+  </define>
+  <define name="effect.model">
+    <zeroOrMore>
+      <ref name="p"/>
+    </zeroOrMore>
+  </define>
+  <define name="effect">
+    <element name="effect">
+      <interleave>
+        <ref name="effect.attribs"/>
+        <ref name="effect.model"/>
+      </interleave>
+    </element>
+  </define>
+  <define name="data.attribs">
+    <interleave>
+      <ref name="id.attribs"/>
+      <optional>
+        <attribute name="href">
+          <data type="anyURI"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="size">
+          <data type="string"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="pto">
+          <data type="string"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="pto-version">
+          <data type="string"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="original">
+          <choice>
+            <value>external</value>
+            <value>local</value>
+          </choice>
+        </attribute>
+      </optional>
+    </interleave>
+  </define>
+  <define name="data.textformat">
+    <value>TeX</value>
+  </define>
+  <define name="data.text">
+    <interleave>
+      <ref name="data.attribs"/>
+      <optional>
+        <attribute name="format">
+          <ref name="data.textformat"/>
+        </attribute>
+      </optional>
+      <text/>
+    </interleave>
+  </define>
+  <define name="data.any">
+    <interleave>
+      <ref name="data.attribs"/>
+      <optional>
+        <attribute name="format">
+          <data type="anyURI"/>
+        </attribute>
+      </optional>
+      <ref name="Anything"/>
+    </interleave>
+  </define>
+  <define name="data.model">
+    <choice>
+      <ref name="data.text"/>
+      <ref name="data.any"/>
+    </choice>
+  </define>
+  <define name="data">
+    <element name="data">
+      <ref name="data.model"/>
+    </element>
+  </define>
+  <define name="omlet.attribs">
+    <interleave>
+      <ref name="id.attribs"/>
+      <optional>
+        <attribute name="action">
+          <choice>
+            <value>display</value>
+            <value>execute</value>
+            <value>other</value>
+          </choice>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="show">
+          <choice>
+            <value>new</value>
+            <value>replace</value>
+            <value>embed</value>
+            <value>other</value>
+          </choice>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="actuate">
+          <choice>
+            <value>onPresent</value>
+            <value>onLoad</value>
+            <value>onRequest</value>
+            <value>other</value>
+          </choice>
+        </attribute>
+      </optional>
+    </interleave>
+  </define>
+  <define name="omlet.param">
+    <interleave>
+      <zeroOrMore>
+        <ref name="p"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="param"/>
+      </zeroOrMore>
+    </interleave>
+  </define>
+  <define name="omlet.data">
+    <choice>
+      <attribute name="data">
+        <data type="anyURI"/>
+      </attribute>
+      <choice>
+        <ref name="private"/>
+        <ref name="code"/>
+      </choice>
+    </choice>
+  </define>
+  <define name="omlet">
+    <element name="omlet">
+      <interleave>
+        <ref name="omlet.attribs"/>
+        <group>
+          <optional>
+            <ref name="metadata"/>
+          </optional>
+          <ref name="omlet.param"/>
+          <ref name="omlet.data"/>
+        </group>
+      </interleave>
+    </element>
+  </define>
+  <define name="param.attribs">
+    <interleave>
+      <ref name="id.attribs"/>
+      <attribute name="name">
+        <data type="string"/>
+      </attribute>
+      <optional>
+        <attribute name="value">
+          <data type="string"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="valuetype">
+          <choice>
+            <value>data</value>
+            <value>ref</value>
+            <value>object</value>
+          </choice>
+        </attribute>
+      </optional>
+    </interleave>
+  </define>
+  <define name="param.model">
+    <optional>
+      <ref name="mobj"/>
+    </optional>
+  </define>
+  <define name="param">
+    <element name="param">
+      <ref name="param.attribs"/>
+      <ref name="param.model"/>
+    </element>
+  </define>
+</grammar>

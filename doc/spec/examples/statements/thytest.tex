@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xml:id="stthy.omdoc"
+  xmlns="http://omdoc.org/ns"
+  xmlns:cc="http://creativecommons.org/ns"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xmlns:om="http://www.openmath.org/OpenMath"
+  xmlns:m="http://www.w3.org/1998/Math/MathML"
+  version="1.6"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://omdoc.org/ns
+                      http://www.omdoc.org/xsd/omdoc.xsd">
+<metadata>
+  <dc:date action="created">2007-07-02T09:18:49</dc:date>
+  <dc:title xml:lang="en">stthy</dc:title>
+  <dc:creator role="aut">Michael Kohlhase</dc:creator>
+  <dc:date action="updated">2007-07-02T09:18:49</dc:date>
+  <dc:format>application/omdoc+xml</dc:format>
+  <dc:rights>Copyright (c) 2007 Michael Kohlhase</dc:rights>
+  <cc:license>
+    <cc:permissions reproduction="permitted" distribution="permitted" derivative_works="permitted"/>
+    <cc:prohibitions commercial_use="permitted"/>
+    <cc:requirements notice="required" copyleft="required" attribution="required"/>
+  </cc:license>
+</metadata>
+
+<!-- all statements are theories, so this is also one -->
+<symbol name="nat"/>
+
+<!-- this symbol declaration imports from theory "nat" --> 
+<symbol name="zero">
+  <imports="nat"/>
+  <type><csymbol pref="nat/nat"/></type>
+</symbol>
+
+<!-- this one also needs a function type, so we import it -->
+<symbol name="suc">
+  <imports="nat"/>
+  <imports="simple-types"/>
+  <type>
+    <apply>
+      <csymbol pref="simple-types/funtype"/>
+      <csymbol pref="nat"/>
+      <csymbol pref="nat"/>
+    </apply>
+  </type>
+</symbol>
+
+<!-- the third Peano Axiom (1&2 are about types) is only about suc -->
+<axiom name="peano3">
+  <imports from="suc"/>
+  <imports from="quant1"/>
+  <bind>
+    <csymbol pref="quant1/forall"/>
+    <bvar><ci>a</ci><ci>b</ci></bvar>
+    <apply>
+      <iff/>
+      <apply><eq/><ci>a</ci><ci>b</ci></apply>
+      <apply><eq/>
+        <apply><csymbol pref="suc/suc"/><ci>a</ci></apply>
+        <apply><csymbol pref="suc/suc"/><ci>b</ci></apply>
+      </apply>
+    </apply>
+  </bind>
+</axiom>
+      
+
+</omdoc>

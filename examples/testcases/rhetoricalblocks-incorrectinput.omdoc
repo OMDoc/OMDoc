@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+
+<!-- This example is no longer valid according to the new RelaxNG grammar. The changes were performed in the omgroup and omtext elements! -->
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  xmlns="http://omdoc.org/ns"
+xml:id="rhetoricalblocks-incorrectinput.omdoc">
+
+<metadata>
+<dc:title>test</dc:title>
+<dc:creator role="aut">hf</dc:creator>
+<dc:date>2001-12-12T00:00:00</dc:date>
+</metadata>
+
+<!-- incorrect input -->
+
+<!-- 1.wrong attribute value - not recognized! type="intro"-->
+
+<omgroup xml:id="gr1.5" type="intro" layout="enumeration">
+	<omtext xml:id="txt1.6" type="motivation">
+	  <CMP xml:id="text1.6">This is a motivation in introduction</CMP>
+	</omtext>
+</omgroup>
+
+
+</omdoc>

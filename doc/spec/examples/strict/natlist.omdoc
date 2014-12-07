@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xml:id="natlist.omdoc"
+  xmlns="http://omdoc.org/ns"
+  xmlns:cc="http://creativecommons.org/ns"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xmlns:m="http://www.w3.org/1998/Math/MathML"
+  version="1.6">
+
+<theory name="TOSet" metatheory="omdoc">                   
+  <object name="set" synrole="application"/>
+  <object name="ord" synrole="application"/>
+  <object semrole="statement" name="toset" synrole="constant">
+     <type><mtext><p>$ord$ is a  total order on $set$.</p></mtext></type>
+  </object>
+</theory>                               
+
+<theory xml:id="nat">
+  <adt>
+    <sortdef name="Nat">
+      <constructor name="zero"/>
+      <constructor name="succ">
+        <argument>
+          <type><OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS name="Nat" cd="nat"/></OMOBJ></type>
+          <selector name="pred"/>
+        </argument>
+      </constructor>
+    </sortdef>
+  </adt>
+</theory>
+
+<theory name="NatOrd" metatheory="omdoc">
+  <imports from="#nat"/>
+  <imports from="#TOSet"/>
+  <object name="leq" synrole="application">
+    <type xml:id="leq.def">
+      <legacy format="TeX">$\allcdot{x}{0\leq x}\land\allcdot{x,y}{x\leq y\implies s(x)\leq s(y)}$</legacy>
+    </type>
+  </object>
+  <assertion xml:id="leq.ex"><CMP>$\leq$ exists.</CMP></assertion>
+  <assertion xml:id="leq.unique"><CMP>$\leq$ is unique</CMP></assertion>
+  <assertion xml:id="leq.TO"><CMP>$\leq$ is a  total order on $Nat$.</CMP></assertion>
+</theory>                       
+
+<theory-inclusion xml:id="elem-nat-incl" to="#NatOrd" from="#TOSet">
+  <morphism xml:id="elem-nat" type="pattern">
+    <requation>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="TOSet" name="set"/></OMOBJ>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="NatOrd" name="Nat"/></OMOBJ>
+    </requation>
+    <requation>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="TOSet" name="ord"/></OMOBJ>
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="NatOrd" name="leq"/></OMOBJ>
+    </requation>
+  </morphism>
+  <obligation induced-by="#toset" assertion="#leq.TO"/>
+</theory-inclusion>
+
+<theory xml:id="OrdList">
+  <imports from="TOSet"/>
+  <adt xml:id="list-adt">
+    <sortdef name="lists">
+      <constructor name="cons">
+        <argument>
+	  <type><OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS name="set" cd="TOSet"/></OMOBJ></type>
+	  <selector name="head"/>
+	</argument>
+        <argument>
+	  <type><OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS name="lists" cd="OrdList"/></OMOBJ></type>
+	  <selector name="rest"/>
+	</argument>
+      </constructor>
+      <constructor name="nil"/>
+    </sortdef>
+  </adt>
+
+  <symbol name="ordered"/>
+  <definition xml:id="ordered-def" for="#ordered" type="informal">
+    <CMP>A list $l$ is called ordered, iff $head(l)\leq z$ for all elements $z\in rest(l)$ and
+    $rest(l)$ is ordered.</CMP>
+  </definition>
+</theory>
+
+<theory xml:id="NatOrdList">
+  <imports xml:id="natordlist.im-natord" from="#NatOrd"/>
+  <imports xml:id="natordlist.im-elt" from="#OrdList" type="local">
+    <morphism base="#elem-nat"/>
+  </imports>
+  <inclusion via="elem-nat-incl"/>
+</theory>
+
+<axiom-inclusion xml:id="toset-natordlist-incl" from="#TOSet" to="#NatOrdList">
+  <morphism base="#elem-nat"/>
+  <path-just local="#elem-nat-incl" globals="#natordlist.im-natord"/>
+</axiom-inclusion>
+
+<theory-inclusion from="#OrdList" to="#NatOrdList">
+  <morphism base="#elem-nat"/>
+  <decomposition links="#toset-natordlist-incl #elem-nat-incl"/>
+</theory-inclusion>
+
+</omdoc>

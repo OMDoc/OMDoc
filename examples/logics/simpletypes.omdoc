@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  
+       xmlns="http://omdoc.org/ns"
+       xmlns:om="http://www.openmath.org/OpenMath"
+       xmlns:m="http://www.w3.org/1998/Math/MathML"
+       xmlns:mcd="http://www.w3.org/ns/mathml-cd"
+       xml:id="simpletypes-omdoc" >
+
+ <metadata>
+  <dc:title>Simple Types</dc:title>
+   <dc:creator role="aut">Michael Kohlhase</dc:creator>
+   <dc:date>2002-02-02T00:00:00</dc:date>
+  <dc:rights>Copyright (c) 2008 Michael Kohlhase</dc:rights>
+  <license xmlns="http://creativecommons.org/ns">
+    <permissions reproduction="permitted" distribution="permitted" derivative_works="permitted"/>
+    <prohibitions commercial_use="permitted"/>
+    <requirements notice="required" copyleft="required" attribution="required"/>
+  </license>
+  </metadata>
+  
+  <omtext xml:id="intro" type="introduction">
+   <CMP>We define the simple type discipline. This includes the classical 
+     base types for individuals and truth values, function types, and also record-
+     and tuple types. Furthermore, it includes simple type schemata, also known as
+     ML-polymorphism. 
+    </CMP>
+  </omtext>
+
+ <theory xml:id="simpletypes">
+   <metadata>
+     <dc:title>Simple Types</dc:title>
+     <dc:description>Simple ML-polymorphic types.</dc:description>
+   </metadata>
+   
+    <omtext xml:id="CDComment12" type="introduction">
+     <CMP>Definition of type constructors</CMP>
+    </omtext>
+
+    <symbol name="type" role="object" scope="global">
+     <metadata>
+       <dc:subject>type</dc:subject>
+       <dc:description>The kind of all types</dc:description>
+     </metadata>
+    </symbol>
+
+    <symbol name="funtype" xml:id="simpletypes.funtype" role="object" scope="global">
+      <metadata>
+	<dc:subject>funtype</dc:subject>
+	<dc:description>The function type constructor.</dc:description>
+      </metadata>
+    </symbol>
+ 
+  <notation cdbase="FIXME" cd="simpletypes" name="funtype">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="simpletypes" name="funtype"/>
+        <exprlist name="args">
+          <expr name="arg"/>
+        </exprlist>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="simpletypes">funtype</m:csymbol>
+        <expr name="arg"/>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <m:mrow>
+	<iterate name="args">
+	  <separator><m:mo>→</m:mo></separator>
+	  <render name="arg"/>
+	</iterate>
+      </m:mrow>
+    </rendering>
+  </notation>
+
+<theory xml:id="funtype-prop-1.thy">
+  <imports from="ind.omdoc#ind"/>
+  <imports from="truthval.omdoc#truthval"/>
+<example for="#simpletypes.funtype" xml:id="funtype-prop-1">
+  <CMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="simpletypes" name="funtype"/>
+	<OMS cd="ind" name="ind"/>
+	<OMS cd="truthval" name="bool"/>
+      </OMA>
+    </OMOBJ> 
+    is a type. It encodes the type of unary predicates.
+  </CMP>
+</example>
+</theory>
+
+      <symbol name="all-types" xml:id="simpletypes.all-types" role="object" scope="global">
+         <metadata><dc:subject>all-types</dc:subject>
+        <dc:description> The universal type quantification operator. It is a binding
+           object that universally binds a list of type variables in a type. 
+	 </dc:description>
+       </metadata>
+       </symbol>
+ 
+  <notation>
+    <prototype>
+      <om:OMBIND>
+        <om:OMS cd="simpletypes" name="all-types"/>
+        <om:OMBVAR>
+          <exprlist name="bvars">
+            <expr name="bvar"/>
+          </exprlist>
+        </om:OMBVAR>
+        <expr name="scope"/>
+      </om:OMBIND>
+    </prototype>
+    <rendering precedence="1000">
+      <m:mrow>
+        <m:mo>∀</m:mo>
+        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
+	<iterate name="bvars">
+	  <separator><m:mo>,</m:mo></separator>
+	  <render name="bvar"/>
+	</iterate>
+	<m:mo mcd:egroup="fence" fence="true">)</m:mo>
+	<render name="scope"/>
+      </m:mrow>
+    </rendering>
+  </notation>
+
+    <theory xml:id="all-types-prop-1.thy">
+      <imports from="truthval.omdoc#truthval"/>
+     <example for="#simpletypes.all-types" xml:id="all-types-prop-1">
+       <CMP>
+        <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+          <OMBIND>
+	    <OMS cd="simpletypes" name="all-types"/>
+	    <OMBVAR><OMV name="a"/></OMBVAR>
+	    <OMA>
+	      <OMS cd="simpletypes" name="funtype"/>
+	      <OMV name="a"/>
+	      <OMV name="a"/>
+	      <OMS cd="truthval" name="bool"/>
+	    </OMA>
+	  </OMBIND>
+	</OMOBJ> is a well-formed type. It encodes the type of e.g. of the
+	equality relation.
+     </CMP>
+    </example>
+    </theory>
+
+   <symbol name="oftype" role="semantic-attribution" scope="global">
+     <metadata>
+       <dc:subject>oftype</dc:subject>
+       <dc:description>The type attribute. It relates an object to its type in an
+	 attribution.</dc:description>
+     </metadata>
+    </symbol>
+
+  <notation cdbase="FIXME" cd="simpletypes" name="oftype">
+    <prototype>
+      <om:OMATTR>
+        <om:OMATP>
+          <om:OMS cd="simpletypes" name="oftype"/>
+          <expr name="val"/>
+        </om:OMATP>
+        <expr name="scope"/>
+      </om:OMATTR>
+    </prototype>
+    <prototype>
+      <m:semantics>
+        <expr name="scope"/>
+        <m:annotation-xml cd="simpletypes" name="oftype">
+          <expr name="val"/>
+        </m:annotation-xml>
+      </m:semantics>
+    </prototype>
+    <rendering>
+      <m:msub>
+        <render name="scope"/>
+        <render name="val"/>
+      </m:msub>
+    </rendering>
+  </notation>
+
+<example for="#simpletypes.all-types" xml:id="all-types-prop-2">
+  <CMP>Here is a typed variable
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+     <OMATTR>
+      <OMATP>
+       <OMS cd="simpletypes" name="oftype"/>
+        <OMA>
+         <OMS cd="simpletypes" name="funtype"/>
+          <OMV name="I"/>
+          <OMV name="I"/>
+          <OMV name="O"/>
+        </OMA>
+       </OMATP>
+       <OMV name="X"/>
+      </OMATTR>
+     </OMOBJ>
+   </CMP>
+</example>
+
+<symbol name="recordtype">
+<metadata>
+<dc:description>The record type constructor. It takes an even number of arguments. 
+    The even ones  are field names (currently they are OMS symbols in the
+  pseudo-theory 'record-field' and the odd ones their values.</dc:description>
+</metadata>
+</symbol>
+
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="simpletypes" name="recordtype"/>
+        <exprlist name="args">
+          <expr name="arg"/>
+        </exprlist>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="simpletypes">recordtype</m:csymbol>
+        <expr name="arg"/>
+      </m:apply>
+    </prototype>
+    <rendering format="pvs">
+      <pdata>[#</pdata><render name="arg"/><pdata>#]</pdata>
+    </rendering>
+  </notation>
+
+<symbol name="tupletype">
+<metadata>
+<dc:description>The tuple type constructor</dc:description>
+</metadata>
+</symbol>
+
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="simpletypes" name="tupletype"/>
+        <exprlist name="args">
+          <expr name="arg"/>
+        </exprlist>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="simpletypes">tupletype</m:csymbol>
+        <expr name="arg"/>
+      </m:apply>
+    </prototype>
+    <rendering format="pvs">
+      <pdata>[</pdata><render name="arg"/><pdata>]</pdata>
+    </rendering>
+  </notation>
+
+<symbol name="cotupletype">
+<metadata>
+<dc:description>The co-tuple type constructor (useful for formalizing co-algebras).</dc:description>
+</metadata>
+</symbol>
+
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="simpletypes" name="cotupletype"/>
+        <exprlist name="args">
+          <expr name="arg"/>
+        </exprlist>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="simpletypes">cotupletype</m:csymbol>
+        <expr name="arg"/>
+      </m:apply>
+    </prototype>
+    <rendering format="pvs">
+      <pdata>[</pdata><render name="arg"/><pdata>]</pdata>
+    </rendering>
+  </notation>
+
+</theory>
+
+
+</omdoc>

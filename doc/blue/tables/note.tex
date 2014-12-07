@@ -1,0 +1,55 @@
+\documentclass[12pt]{article}
+\usepackage{a4wide,url}
+\usepackage[hyper]{acronyms}
+\usepackage{lstomdoc,xmlindex}
+\usepackage[show]{ed}
+\usepackage[eso-foot,today]{svninfo}
+\usepackage{hyperref}
+\svnInfo $Id: note.tex 8001 2008-09-07 10:58:26Z kohlhase $
+\svnKeyword $HeadURL: https://svn.omdoc.org/repos/omdoc/trunk/doc/blue/tables/note.tex $
+\lstset{language=[1.6]OMDoc,basicstyle=\scriptsize}
+\def\llquote#1{\ensuremath{\langle\kern-.25em\langle\hbox{\sl{#1}}\rangle\kern-.25em\rangle}}
+
+\title{Tables for OMDoc 1.6}
+\author{Michael Kohlhase}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+  We propose a semantic representation scheme for OMDoc 1.6\ednote{continue}
+\end{abstract}
+
+\section{Introduction}
+
+Tables are an important means for presenting data as well as functional dependencies in
+documents. They are used in the form of ledger sheets in accounting, to report the the
+results of experiments in scientific documents, and
+
+\section{Analysis}
+
+\section{Representation}
+
+The simplest representation for the grids underlying tables it to consider them as
+(partial) functions from cell names to values. This representation is 
+
+\section{RelaxNG Schema}
+  \lstinputlisting[language=RNC,nolol]{rnc/omdocTAB.rnc}
+
+\section{Caveats and Text Roadmap}
+
+This note is still in a very early stage, and is intended mainly as a vehicle or
+discussion between {\omdoc} developers. In particular, the element names provisional and
+will probably evolve over time. At a later and more mature stage, part of the text might
+go into the {\omdoc} specification.
+
+\section{Acknowledgements}
+This proposal has been greatly influenced by discussions with Andrea Kohlhase in the
+{\tt{SACHS}} project at DFKI Bremen and is based on insights of our
+paper~\cite{KohKoh:csbs08}
+
+\bibliographystyle{alphahurl} 
+\bibliography{kwarc}
+\end{document}
+
+% LocalWords:  ns attr xml byctx cd MMT cdbase mmt arith MMTWS mmtget saxon
+% LocalWords:  Sacerdoti Coen Zacchiroli kwarc

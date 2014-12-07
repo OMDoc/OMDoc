@@ -1,0 +1,1054 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  
+       xmlns="http://omdoc.org/ns"
+       xmlns:om="http://www.openmath.org/OpenMath"
+       xmlns:m="http://www.w3.org/1998/Math/MathML"
+       xmlns:o="http://omdoc.org/ns"
+xml:id="multiset1-omdoc">
+
+<metadata>
+  <dc:title>The OpenMath Content Dictionary multiset1.ocd  in OMDoc form</dc:title>
+  <dc:creator role="trl">Michael Kohlhase</dc:creator>
+  <dc:creator role="ant">The OpenMath Society</dc:creator>
+  <dc:date> 2001-03-12T00:00:00</dc:date>
+  <dc:source>Derived from the OpenMath CD http://www.openmath.org/cd/multiset1.ocd.</dc:source>
+  <dc:type>Text</dc:type>
+  <dc:format>application/omdoc+xml</dc:format>
+  <dc:rights>Copyright (c) 2000-2002 Michael Kohlhase;
+    This OMDoc content dictionary is released under the OpenMath license:
+    http://monet.nag.co.uk/openmath/cdfiles/license.html
+  </dc:rights>
+  <dc:description>
+    This CD defines the set functions and constructors for basic
+    multiset theory. It is intended to be `compatible' with the
+    corresponding elements in MathML i.e. set operations acting
+    on sets of type=multiset.
+  </dc:description>
+</metadata>
+
+<theory xml:id="multiset1">
+<imports from="sts.omdoc#sts"/>
+<imports from="relation1.omdoc#relation1"/>
+<imports from="logic1.omdoc#logic1"/>
+<imports from="quant1.omdoc#quant1"/>
+<imports from="setname2.omdoc#setname2"/>
+
+<omtext xml:id="CDComment-10" type="introduction">
+  <CMP>Based on set1.ocd</CMP>
+</omtext>
+<symbol name="size" xml:id="size">
+<metadata>
+<dc:description> 
+    This symbol is used to denote the number of elements in a multiset. It is
+    either a non-negative integer, or an infinite cardinal number. The
+    symbol infinity may be used for an unspecified infinite cardinal.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMV name="Multiset"/>
+	<OMV name="CardinalNumber"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="multiset1" name="size" o:cr="fun"/>
+        <expr name="arg"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="multiset1" o:cr="fun">size</m:csymbol>
+        <expr name="arg"/>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <m:mrow>
+        <m:mo o:cr="fun">#</m:mo>
+        <m:mo o:egroup="fence" fence="true">(</m:mo>
+        <render name="arg"/>
+        <m:mo o:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+
+  <notation>
+    <prototype>
+      <om:OMS cd="multiset1" name="size"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="multiset1">size</m:csymbol>
+    </prototype>
+    <rendering>
+      <m:mo>size</m:mo>
+    </rendering>
+  </notation>
+  
+<example xml:id="size-ex-1" type="for" for="#size">
+  <CMP>The size of the multiset{3,3,9} = 3</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="relation1" name="eq"/>
+      <OMA>
+	<OMS cd="multiset1" name="size"/>
+	<OMA>
+	  <OMS cd="multiset1" name="multiset"/>
+	  <OMI> 3 </OMI>
+	  <OMI> 3 </OMI>
+	  <OMI> 9 </OMI>
+	</OMA>
+      </OMA>
+      <OMI> 3 </OMI>
+    </OMA>
+  </OMOBJ>
+</example>
+
+<symbol name="cartesian_product" xml:id="cartesian_product">
+<metadata>
+<dc:description>
+    This symbol represents an n-ary construction function for constructing
+    the Cartesian product of multisets. It takes n multiset arguments in order to
+    construct their Cartesian product.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="sts" name="mapsto"/>
+	<OMA>
+	  <OMS cd="sts" name="nary"/>
+	  <OMA>
+	    <OMS cd="sts" name="structure"/>
+	    <OMV name="Set"/>
+	  </OMA>
+	</OMA>
+	<OMA>
+	  <OMS cd="sts" name="structure"/>
+	  <OMV name="Set1"/>
+	</OMA>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="multiset1" name="cartesian_product" o:cr="fun"/>
+        <exprlist name="args"><expr name="arg"/></exprlist>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="multiset1" o:cr="fun">cartesian_product</m:csymbol>
+        <exprlist name="args"><expr name="arg"/></exprlist>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <m:mrow>
+        <m:mo o:egroup="fence" fence="true">(</m:mo>
+        <iterate name="args">
+          <separator><m:mo o:cr="fun">×</m:mo></separator>
+          <render name="arg"/>
+        </iterate>
+        <m:mo o:egroup="fence" fence="true">(</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+  <notation>
+    <prototype>
+      <om:OMS cd="multiset1" name="cartesian_product"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="multiset1">cartesian_product</m:csymbol>
+    </prototype>
+    <rendering>
+      <m:mo>cartesian_product</m:mo>
+    </rendering>
+  </notation>
+
+<example xml:id="cartesian_product-ex-1" type="for" for="#cartesian_product">
+  <CMP>
+    An example to show the representation of the Cartesian product of
+    multisets: AxBxC.</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="multiset1" name="cartesian_product"/>
+      <OMV name="A"/>
+      <OMV name="B"/>
+      <OMV name="C"/>
+    </OMA>
+  </OMOBJ>
+</example>
+<symbol name="emptyset" xml:id="emptyset">
+<metadata>
+<dc:description>
+    This symbol is used to represent the empty multiset, that is the multiset which
+    contains no members. It takes no parameters.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMV name="Multiset"/>
+    </OMOBJ>
+  </type>
+</symbol>
+  <notation>
+    <prototype>
+      <om:OMS cd="multiset1" name="emptyset"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="multiset1">emptyset</m:csymbol>
+    </prototype>
+    <rendering>
+      <m:mo>∅</m:mo>
+    </rendering>
+  </notation>
+
+<assertion xml:id="emptyset-prop-1" type="lemma">
+  <CMP> The intersection of A with the empty (multi) set is the empty
+    (multi) set </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="relation1" name="eq"/>
+	<OMA>
+	  <OMS cd="multiset1" name="intersect"/>
+	  <OMV name="A"/>
+	  <OMS cd="multiset1" name="emptyset"/>
+	</OMA>
+	<OMS cd="multiset1" name="emptyset"/>
+      </OMA>
+    </OMOBJ>
+  </FMP>
+</assertion>
+<assertion xml:id="emptyset-prop-3" type="lemma">
+  <CMP> The union of A with the empty (multi) set is A </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="relation1" name="eq"/>
+	<OMA>
+	  <OMS cd="multiset1" name="union"/>
+	  <OMV name="A"/>
+	  <OMS cd="multiset1" name="emptyset"/>
+	</OMA>
+	<OMV name="A"/>
+      </OMA>
+    </OMOBJ>
+  </FMP>
+</assertion>
+<symbol name="multiset" xml:id="multiset">
+<metadata>
+<dc:description> 
+    This symbol represents the multiset construct. It is either an
+    n-ary function, in which case the multiset entries are given 
+    explicitly, or it works on an elements construct. There is no 
+    implied ordering to the elements of a multiset.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMA>
+	  <OMS name="nary" cd="sts"/>
+	  <OMS name="Object" cd="sts"/>
+	</OMA>
+	<OMV name="Multiset"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="multiset1" name="multiset" o:cr="fun"/>
+        <exprlist name="args"><expr name="arg"/></exprlist>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="multiset1" o:cr="fun">multiset</m:csymbol>
+        <exprlist name="args"><expr name="arg"/></exprlist>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <m:mrow>
+        <m:mo o:egroup="fence" fence="true">(</m:mo>
+        <iterate name="args">
+          <separator><m:mo o:cr="fun" separator="true">,</m:mo></separator>
+          <render name="arg"/>
+        </iterate>
+        <m:mo o:egroup="fence" fence="true">(</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+
+<example xml:id="multiset-ex-1" type="for" for="#multiset">
+  <CMP>The multiset {4, 1, 0, 1 4} </CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="multiset1" name="multiset"/>
+      <OMI> 4 </OMI>
+      <OMI> 1 </OMI>
+      <OMI> 0 </OMI>
+      <OMI> 1 </OMI>
+      <OMI> 4 </OMI>
+    </OMA>
+  </OMOBJ>
+</example>
+<symbol name="intersect" xml:id="intersect">
+<metadata>
+<dc:description> 
+    This symbol is used to denote the n-ary intersection of 
+    multisets. It takes multisets as arguments, and denotes the 
+    multiset that contains all the elements that occur in all of 
+    them, with multiplicity the minimum of their multiplicities 
+    in all multisets.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMA>
+	  <OMS name="nassoc" cd="sts"/>
+	  <OMV name="Multiset"/>
+	</OMA>
+	<OMV name="Multiset"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="multiset1" name="intersect" o:cr="fun"/>
+        <exprlist name="args"><expr name="arg"/></exprlist>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="multiset1">intersect</m:csymbol>
+        <exprlist name="args"><expr name="arg"/></exprlist>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <m:mrow>
+        <m:mo o:egroup="fence" fence="true">(</m:mo>
+        <iterate name="args" precedence="500">
+          <separator><m:mo o:cr="fun">∩</m:mo></separator>
+          <render name="arg"/>
+        </iterate>
+        <m:mo o:egroup="fence" fence="true">(</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+  <notation>
+    <prototype>
+      <om:OMS cd="multiset1" name="intersect"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="multiset1">intersect</m:csymbol>
+    </prototype>
+    <rendering>
+      <m:mo>intersect</m:mo>
+    </rendering>
+  </notation>
+
+<assertion xml:id="intersect-prop-1" type="lemma">
+  <CMP>
+    (A intersect B) is a subset of A and 
+    (A intersect B) is a subset of B
+  </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="logic1" name="and"/>
+	<OMA>
+	  <OMS cd="multiset1" name="subset"/>
+	  <OMA>
+	    <OMS cd="multiset1" name="intersect"/>
+	    <OMV name="A"/>
+	    <OMV name="B"/>
+	  </OMA>
+	  <OMV name="A"/>
+	</OMA>
+	<OMA>
+	  <OMS cd="multiset1" name="subset"/>
+	  <OMA>
+	    <OMS cd="multiset1" name="intersect"/>
+	    <OMV name="A"/>
+	    <OMV name="B"/>
+	  </OMA>
+	  <OMV name="B"/>
+	</OMA>
+      </OMA>
+    </OMOBJ>
+  </FMP>
+</assertion>
+<symbol name="union" xml:id="union">
+<metadata>
+<dc:description> 
+    This symbol is used to denote the n-ary union of multisets. It
+    takes multisets as arguments, and denotes the multiset that 
+    contains all the elements that occur in any of them, with 
+    multiplicity the sum of all the multiplicities in the multiset 
+    arguments.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMA>
+	  <OMS name="nassoc" cd="sts"/>
+	  <OMV name="Multiset"/>
+	</OMA>
+	<OMV name="Multiset"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="multiset1" name="union" o:cr="fun"/>
+        <exprlist name="args"><expr name="arg"/></exprlist>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="multiset1" o:cr="fun">union</m:csymbol>
+        <exprlist name="args"><expr name="arg"/></exprlist>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <m:mrow>
+        <m:mo o:egroup="fence" fence="true">(</m:mo>
+        <iterate name="args" precedence="500">
+          <separator><m:mo o:cr="fun">∪</m:mo></separator>
+          <render name="arg"/>
+        </iterate>
+        <m:mo o:egroup="fence" fence="true">(</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+  <notation>
+    <prototype>
+      <om:OMS cd="multiset1" name="union"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="multiset1">union</m:csymbol>
+    </prototype>
+    <rendering>
+      <m:mo>union</m:mo>
+    </rendering>
+  </notation>
+
+<assertion xml:id="union-prop-1" type="lemma">
+  <CMP> 
+    A is a subset of (A union B) and B is a subset of (A union B) 
+  </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="logic1" name="and"/>
+	<OMA>
+	  <OMS cd="multiset1" name="subset"/>
+	  <OMV name="A"/>
+	  <OMA>
+	    <OMS cd="multiset1" name="union"/>
+	    <OMV name="A"/>
+	    <OMV name="B"/>
+	  </OMA>
+	</OMA>
+	<OMA>
+	  <OMS cd="multiset1" name="subset"/>
+	  <OMV name="B"/>
+	  <OMA>
+	    <OMS cd="multiset1" name="union"/>
+	    <OMV name="A"/>
+	    <OMV name="B"/>
+	  </OMA>
+	</OMA>
+      </OMA>
+    </OMOBJ>
+  </FMP>
+</assertion>
+<assertion xml:id="union-prop-3" type="lemma">
+  <CMP>
+    for all sets A,B and C
+    union(A,intersect(B,C)) = intersect(union(A,B),union(A,C))
+  </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMBIND>
+	<OMS cd="quant1" name="forall"/>
+	<OMBVAR>
+	  <OMV name="A"/>
+	  <OMV name="B"/>
+	  <OMV name="C"/>
+	</OMBVAR>
+	<OMA>
+	  <OMS cd="relation1" name="eq"/>
+	  <OMA>
+	    <OMS cd="multiset1" name="union"/>
+	    <OMV name="A"/>
+	    <OMA>
+	      <OMS cd="multiset1" name="intersect"/>
+	      <OMV name="B"/>
+	      <OMV name="C"/>
+	    </OMA>
+	  </OMA>
+	  <OMA>
+	    <OMS cd="multiset1" name="intersect"/>
+	    <OMA>
+	      <OMS cd="multiset1" name="union"/>
+	      <OMV name="A"/>
+	      <OMV name="B"/>
+	    </OMA>
+	    <OMA>
+	      <OMS cd="multiset1" name="union"/>
+	      <OMV name="A"/>
+	      <OMV name="C"/>
+	    </OMA>
+	  </OMA>
+	</OMA>
+      </OMBIND>
+    </OMOBJ>
+  </FMP>
+</assertion>
+<symbol name="setdiff" xml:id="setdiff">
+<metadata>
+<dc:description> 
+    This symbol is used to denote the multiset difference of two 
+    multisets. It takes two multisets as arguments, and denotes the 
+    multiset that contains all the elements that occur in the first 
+    multiset with strictly greater multiplicity than in the second.
+    The multiplicity in the result is the difference of the two.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMV name="Multiset"/>
+	<OMV name="Multiset"/>
+	<OMV name="Multiset"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="multiset1" name="setdiff" o:cr="fun"/>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="multiset1" o:cr="fun">setdiff</m:csymbol>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <m:mrow>
+        <m:mo o:egroup="fence" fence="true">(</m:mo>
+        <render name="arg1" precedence="500"/>
+        <m:mo o:cr="fun">∖</m:mo>
+        <render name="arg2" precedence="500"/>
+        <m:mo o:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+  <notation>
+    <prototype>
+      <om:OMS cd="multiset1" name="setdiff"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="multiset1">setdiff</m:csymbol>
+    </prototype>
+    <rendering>
+      <m:mo>setdiff</m:mo>
+    </rendering>
+  </notation>
+
+<assertion xml:id="setdiff-prop-1" type="lemma">
+  <CMP>
+    the difference of A and B is a subset of A
+  </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="multiset1" name="subset"/>
+	<OMA>
+	  <OMS cd="multiset1" name="setdiff"/>
+	  <OMV name="A"/>
+	  <OMV name="B"/>
+	</OMA>
+	<OMV name="A"/>
+      </OMA>
+    </OMOBJ>
+  </FMP>
+</assertion>
+<symbol name="subset" xml:id="subset">
+<metadata>
+<dc:description>
+    This symbol has two (multiset) arguments. It is used to denote 
+    that the first set is a subset of the second, i.e. every element 
+    of the first occurs with multiplicity at least as much in the 
+    second.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMV name="Multiset"/>
+	<OMV name="Multiset"/>
+	<OMS cd="setname2" name="Boolean"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="multiset1" name="subset" o:cr="fun"/>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="multiset1" o:cr="fun">subset</m:csymbol>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <m:mrow>
+        <m:mo o:egroup="fence" fence="true">(</m:mo>
+        <render name="arg1" precedence="700"/>
+        <m:mo o:cr="fun">⊆</m:mo>
+        <render name="arg2" precedence="700"/>
+        <m:mo o:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+  <notation>
+    <prototype>
+      <om:OMS cd="multiset1" name="subset"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="multiset1">subset</m:csymbol>
+    </prototype>
+    <rendering>
+      <m:mo>subset</m:mo>
+    </rendering>
+  </notation>
+
+<assertion xml:id="subset-prop-1" type="lemma">
+  <CMP>
+    if B is a subset of A and C is a subset of B 
+    then C is a subset of A
+  </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="logic1" name="implies"/>
+	<OMA>
+	  <OMS cd="logic1" name="and"/>
+	  <OMA>
+	    <OMS cd="multiset1" name="subset"/>
+	    <OMV name="B"/>
+	    <OMV name="A"/>
+	  </OMA>
+	  <OMA>
+	    <OMS cd="multiset1" name="subset"/>
+	    <OMV name="C"/>
+	    <OMV name="B"/>
+	  </OMA>
+	</OMA>
+	<OMA>
+	  <OMS cd="multiset1" name="subset"/>
+	  <OMV name="C"/>
+	  <OMV name="A"/>
+	</OMA>
+      </OMA>
+    </OMOBJ>
+  </FMP>
+</assertion>
+<symbol name="in" xml:id="in">
+<metadata>
+<dc:description> 
+    This symbol has two arguments, an element and a multiset. It is 
+    used to denote that the element is in the given multiset.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMS name="Object" cd="sts"/>
+	<OMV name="Multiset"/>
+	<OMS cd="setname2" name="Boolean"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="multiset1" name="in" o:cr="fun"/>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="multiset1" o:cr="fun">in</m:csymbol>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <m:mrow>
+        <m:mo o:egroup="fence" fence="true">(</m:mo>
+        <render name="arg1" precedence="550"/>
+        <m:mo o:cr="fun">∈</m:mo>
+        <render name="arg2" precedence="550"/>
+        <m:mo o:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+  <notation>
+    <prototype>
+      <om:OMS cd="multiset1" name="in"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="multiset1">in</m:csymbol>
+    </prototype>
+    <rendering>
+      <m:mo>in</m:mo>
+    </rendering>
+  </notation>
+  
+<assertion xml:id="in-prop-1" type="lemma">
+  <CMP>
+    if a is in A and a is in B then a is in A intersection B
+  </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="logic1" name="implies"/>
+	<OMA>
+	  <OMS cd="logic1" name="and"/>
+	  <OMA>
+	    <OMS cd="multiset1" name="in"/>
+	    <OMV name="a"/>
+	    <OMV name="A"/>
+	  </OMA>
+	  <OMA>
+	    <OMS cd="multiset1" name="in"/>
+	    <OMV name="a"/>
+	    <OMV name="B"/>
+	  </OMA>
+	</OMA>
+	<OMA>
+	  <OMS cd="multiset1" name="in"/>
+	  <OMV name="a"/>
+	  <OMA>
+	    <OMS cd="multiset1" name="intersect"/>
+	    <OMV name="A"/>
+	    <OMV name="B"/>
+	  </OMA>
+	</OMA>
+      </OMA>
+    </OMOBJ>
+  </FMP>
+</assertion>
+<symbol name="notin" xml:id="notin">
+<metadata>
+<dc:description> 
+    This symbol has two arguments, an element and a multiset. It is 
+    used to denote that the element is not in the given multiset.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMS name="Object" cd="sts"/>
+	<OMV name="Multiset"/>
+	<OMS cd="setname2" name="Boolean"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="multiset1" name="notin" o:cr="fun"/>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="multiset1" o:cr="fun">notin</m:csymbol>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <m:mrow>
+        <m:mo o:egroup="fence" fence="true">(</m:mo>
+        <render name="arg1" precedence="700"/>
+        <m:mo o:cr="fun">∉</m:mo>
+        <render name="arg2" precedence="700"/>
+        <m:mo o:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+  <notation>
+    <prototype>
+      <om:OMS cd="multiset1" name="notin"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="multiset1">notin</m:csymbol>
+    </prototype>
+    <rendering>
+      <m:mo>notin</m:mo>
+    </rendering>
+  </notation>
+  
+<example xml:id="notin-ex-1" type="for" for="#notin">
+  <CMP>  4 is not in {1,1,2,3}</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="multiset1" name="notin"/>
+      <OMI> 4 </OMI>
+      <OMA>
+	<OMS cd="multiset1" name="multiset"/>
+	<OMI> 1 </OMI>
+	<OMI> 1 </OMI>
+	<OMI> 2 </OMI>
+	<OMI> 3 </OMI>
+      </OMA>
+    </OMA>
+  </OMOBJ>
+</example>
+<symbol name="prsubset" xml:id="prsubset">
+<metadata>
+<dc:description> 
+    This symbol has two (multiset) arguments. It is used to denote 
+    that the first multiset is a proper subset of the second, that is 
+    a subset of the second multiset but not actually equal to it.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMV name="Multiset"/>
+	<OMV name="Multiset"/>
+	<OMS cd="setname2" name="Boolean"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="multiset1" name="prsubset" o:cr="fun"/>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="multiset1" o:cr="fun">prsubset</m:csymbol>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <m:mrow>
+        <m:mo o:egroup="fence" fence="true">(</m:mo>
+        <render name="arg1" precedence="700"/>
+        <m:mo o:cr="fun">⊊</m:mo>
+        <render name="arg2" precedence="700"/>
+        <m:mo o:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+  
+<example xml:id="prsubset-ex-1" type="for" for="#prsubset">
+  <CMP>  {2,3} is a proper subset of {2,2,3}</CMP>
+
+<OMOBJ xmlns="http://www.openmath.org/OpenMath">
+  <OMA>
+    <OMS cd="multiset1" name="prsubset"/>
+    <OMA>
+      <OMS cd="multiset1" name="multiset"/>
+      <OMI> 2 </OMI>
+      <OMI> 3 </OMI>
+    </OMA>
+    <OMA>
+      <OMS cd="multiset1" name="multiset"/>
+      <OMI> 2 </OMI>
+      <OMI> 2 </OMI>
+      <OMI> 3 </OMI>
+    </OMA>
+  </OMA>
+</OMOBJ>
+</example>
+<symbol name="notsubset" xml:id="notsubset">
+<metadata>
+<dc:description> 
+    This symbol has two (multiset) arguments. It is used to denote 
+    that the first multiset is not a subset of the second.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMV name="Multiset"/>
+	<OMV name="Multiset"/>
+	<OMS cd="setname2" name="Boolean"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="multiset1" name="notsubset" o:cr="fun"/>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="multiset1" o:cr="fun">notsubset</m:csymbol>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <m:mrow>
+        <m:mo o:egroup="fence" fence="true">(</m:mo>
+        <render name="arg1" precedence="700"/>
+        <m:mo o:cr="fun">⊈</m:mo>
+        <render name="arg2" precedence="700"/>
+        <m:mo o:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+  
+<example xml:id="notsubset-ex-1" type="for" for="#notsubset">
+  <CMP>  {2,3,3} is not a subset of {1,2,3}</CMP>
+
+<OMOBJ xmlns="http://www.openmath.org/OpenMath">
+  <OMA>
+    <OMS cd="multiset1" name="notsubset"/>
+    <OMA>
+      <OMS cd="multiset1" name="multiset"/>
+      <OMI> 2 </OMI>
+      <OMI> 3 </OMI>
+      <OMI> 3 </OMI>
+    </OMA>
+    <OMA>
+      <OMS cd="multiset1" name="multiset"/>
+      <OMI> 1 </OMI>
+      <OMI> 2 </OMI>
+      <OMI> 3 </OMI>
+    </OMA>
+  </OMA>
+</OMOBJ>
+</example>
+<symbol name="notprsubset" xml:id="notprsubset">
+<metadata>
+<dc:description> 
+    This symbol has two (multiset) arguments. It is used to denote 
+    that the first multiset is not a proper subset of the second. A 
+    proper subset of a multiset is a subset of the multiset but not 
+    actually equal to it.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMV name="Multiset"/>
+	<OMV name="Multiset"/>
+	<OMS cd="setname2" name="Boolean"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="multiset1" name="notprsubset" o:cr="fun"/>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="multiset1" o:cr="fun">notprsubset</m:csymbol>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <m:mrow>
+        <m:mo o:egroup="fence" fence="true">(</m:mo>
+        <render name="arg1" precedence="700"/>
+        <m:mo o:cr="fun">⊄</m:mo>
+        <render name="arg2" precedence="700"/>
+        <m:mo o:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+
+<example xml:id="notprsubset-ex-1" type="for" for="#notprsubset">
+  <CMP>{1,2,1} is not a proper subset of {1,2,1}</CMP>
+
+<OMOBJ xmlns="http://www.openmath.org/OpenMath">
+  <OMA>
+    <OMS cd="multiset1" name="notprsubset"/>
+    <OMA>
+      <OMS cd="multiset1" name="multiset"/>
+      <OMI> 1 </OMI>
+      <OMI> 2 </OMI>
+      <OMI> 1 </OMI>
+    </OMA>
+    <OMA>
+      <OMS cd="multiset1" name="multiset"/>
+      <OMI> 1 </OMI>
+      <OMI> 2 </OMI>
+      <OMI> 1 </OMI>
+    </OMA>
+  </OMA>
+</OMOBJ>
+</example>
+</theory>
+</omdoc>
+

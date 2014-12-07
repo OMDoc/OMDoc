@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xml:id="term-declaration.omdoc"
+  xmlns="http://omdoc.org/ns"
+  xmlns:cc="http://creativecommons.org/ns"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  version="1.6">
+<metadata>
+  <dc:date action="created"> 2004-10-08T13:07:10Z </dc:date>
+  <dc:title xml:lang="en"> term-declaration </dc:title>
+  <dc:creator role="aut"> Michael Kohlhase </dc:creator>
+  <dc:source>  </dc:source>
+  <dc:date action="updated"> 2004-10-08T13:07:10Z </dc:date>
+  <dc:type> Text </dc:type>
+  <dc:format> application/omdoc+xml </dc:format>
+  <dc:rights>Copyright (c) 2004 Michael Kohlhase</dc:rights>
+  <cc:license>
+    <cc:permissions reproduction="permitted" distribution="permitted" derivative_works="permitted"/>
+    <cc:prohibitions commercial_use="permitted"/>
+    <cc:requirements notice="required" copyleft="required" attribution="required"/>
+  </cc:license>
+</metadata>
+
+<type xml:id="double-even.td" system="#POST" 
+      theory="adv.int" just-by="double-even">
+  <m:math>
+    <m:apply><m:plus/>
+      <m:ci type="integer">X</m:ci>
+      <m:ci type="integer">X</m:ci>
+    </m:apply>
+  </m:math>
+  <m:math>
+    <m:csymbol definitionURL="http://cds.omdoc.org/integers/evens"/>
+  </m:math>
+</type>
+
+<assertion xml:id="double-even" type="lemma" theory="adv.int">
+  <FMP>
+    <m:math>
+      <m:apply><m:forall/>
+        <m:bvar><m:ci id="x13" type="integer">X</m:ci></m:bvar>
+        <m:apply><m:in/>
+          <m:apply><m:plus/>
+            <m:ci definitionURL="x13" type="integer">X</m:ci>
+            <m:ci definitionURL="x13" type="integer">X</m:ci>
+          </m:apply>
+          <m:csymbol definitionURL="http://cds.omdoc.org/nat/evens"/>
+        </m:apply>
+      </m:apply>
+    </m:math>
+  </FMP>
+</assertion>
+
+</omdoc>

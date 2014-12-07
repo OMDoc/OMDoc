@@ -1,0 +1,9 @@
+This directory contains the compact RelaxNG schemata for OMDoc1.6
+
+Manifest: 
+strict:              The schema for the strict subset of OMDoc1.6
+pragmatic:      The schema for the pragmatic subset of OMDoc1.6
+omdoc.rnc:     the top-level schema file, includes material from both directories above. 
+schemas.xml: a schema association specification for the nxml mode in emacs. 
+omdocphys.rnc: leftover need to figure out what to do with it. 
+Makefile:        has no real function yet.

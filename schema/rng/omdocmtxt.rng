@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  A RelaxNG schema for Open Mathematical documents (OMDoc 1.6) Module MTXT 
+  $Id: omdocmtxt.rnc 8381 2009-06-16 01:42:35Z kohlhase $
+  $HeadURL: https://svn.omdoc.org/repos/omdoc/trunk/schema/rnc/omdocmtxt.rnc $
+  See the documentation and examples at http://www.omdoc.org
+  Copyright (c) 2004-2007 Michael Kohlhase, released under the GNU Public License (GPL) 
+-->
+<grammar xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  <!--
+    textblocktype commented and left until further notice, rsttype recovered in 
+    the grammar with its initial purpose in the omtext element
+  -->
+  <!--
+    textblocktype = "introduction" | "background" | "motivation" | "scenario" |
+    		"contribution" | "evaluation" | "results" | "discussion" |
+    		"conclusion"
+  -->
+  <define name="rsttype">
+    <choice>
+      <value>abstract</value>
+      <value>introduction</value>
+      <value>annote</value>
+      <value>conclusion</value>
+      <value>thesis</value>
+      <value>comment</value>
+      <value>antithesis</value>
+      <value>elaboration</value>
+      <value>motivation</value>
+      <value>evidence</value>
+      <value>note</value>
+      <value>warning</value>
+      <value>question</value>
+      <value>answer</value>
+      <value>transition</value>
+    </choice>
+  </define>
+  <!-- relationtype - used in phrase element introduced instead -->
+  <define name="relationtype">
+    <choice>
+      <value>antithesis</value>
+      <value>circumstance</value>
+      <value>concession</value>
+      <value>condition</value>
+      <value>evidence</value>
+      <value>means</value>
+      <value>preparation</value>
+      <value>purpose</value>
+      <value>cause</value>
+      <value>consequence</value>
+      <value>elaboration</value>
+      <value>restatement</value>
+      <value>solutionhood</value>
+    </choice>
+  </define>
+  <define name="statementtype">
+    <choice>
+      <value>axiom</value>
+      <value>definition</value>
+      <value>example</value>
+      <value>proof</value>
+      <value>derive</value>
+      <value>hypothesis</value>
+      <value>notation</value>
+    </choice>
+  </define>
+  <define name="assertiontype">
+    <choice>
+      <value>assertion</value>
+      <value>theorem</value>
+      <value>lemma</value>
+      <value>corollary</value>
+      <value>proposition</value>
+      <value>conjecture</value>
+      <value>false-conjecture</value>
+      <value>obligation</value>
+      <value>postulate</value>
+      <value>formula</value>
+      <value>assumption</value>
+      <value>rule</value>
+    </choice>
+  </define>
+  <!--
+    omtext can take as argument rsttype and to extend extensibility if a type is not
+    specified, an typeURI is offered as additional option
+  -->
+  <define name="omtext.attribs" combine="interleave">
+    <interleave>
+      <optional>
+        <choice>
+          <attribute name="type">
+            <choice>
+              <ref name="rsttype"/>
+              <ref name="statementtype"/>
+              <ref name="assertiontype"/>
+            </choice>
+          </attribute>
+          <attribute name="typeURI">
+            <data type="anyURI"/>
+          </attribute>
+        </choice>
+      </optional>
+      <optional>
+        <attribute name="for">
+          <ref name="MMTURI"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="from">
+          <ref name="MMTURI"/>
+        </attribute>
+      </optional>
+    </interleave>
+  </define>
+  <!--
+    in phrase element the type attribute is changed to take values from nucleus and
+    satellite, also the relation attribute is introduced having values of type relationtype,
+    and the for attribute is introduce to connect the satellite with the corresponding
+    nucleus.
+  -->
+  <define name="phrase.attribs" combine="interleave">
+    <choice>
+      <attribute name="type">
+        <value>nucleus</value>
+      </attribute>
+      <interleave>
+        <attribute name="type">
+          <value>satellite</value>
+        </attribute>
+        <attribute name="relation">
+          <ref name="relationtype"/>
+        </attribute>
+        <attribute name="for">
+          <ref name="MMTURI"/>
+        </attribute>
+      </interleave>
+    </choice>
+  </define>
+</grammar>

@@ -1,0 +1,870 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xml:id="pl0-omdoc" 
+       xmlns:om="http://www.openmath.org/OpenMath"
+       xmlns:m="http://www.w3.org/1998/Math/MathML"
+       xmlns:dc="http://purl.org/dc/elements/1.1/"
+       xmlns:mcd="http://www.w3.org/ns/mathml-cd"
+       xmlns="http://omdoc.org/ns">
+
+ <metadata>
+  <dc:title>Classical Propositional Logic</dc:title>
+  <dc:creator role="aut">Michael Kohlhase</dc:creator>
+  <dc:date>2008-07-04T18:28:06</dc:date>
+  <dc:rights>Copyright (c) 2008 Michael Kohlhase</dc:rights>
+  <license xmlns="http://creativecommons.org/ns">
+    <permissions reproduction="permitted" distribution="permitted" derivative_works="permitted"/>
+    <prohibitions commercial_use="permitted"/>
+    <requirements notice="required" copyleft="required" attribution="required"/>
+  </license>
+ </metadata>
+
+ <theory xml:id="pl0">
+ <metadata>
+  <dc:title>Classical Propositional Logic</dc:title>
+  <dc:description>
+    This theory provides all classical two-valued propositional connectives, it shares
+    the symbol names with the OpenMath content dictionary logic1 for consistency. We have a
+    separate theory here, since we want to make the semantics more restrictive than
+    the inclusive treatment in logic1. In particular, we insist that the
+    connectives are two-valued.
+  </dc:description>
+ </metadata>
+  <imports from="truthval.omdoc#truthval"/>
+  <imports from="truthtables.omdoc#truth-tables"/>
+  <imports from="simpletypes.omdoc#simpletypes"/>
+ 
+  <symbol name="not">
+   <metadata>
+     <dc:subject>not</dc:subject>
+     <dc:description>
+       <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="pl0" name="not"/></OMOBJ>
+       represents the logical not function which takes one boolean argument, and returns
+       the opposite boolean value. It has the truth table
+       <OMOBJ  xmlns="http://www.openmath.org/OpenMath" style="display:block">
+	 <OMA>
+	   <OMS cd="truth-tables" name="tt"/>
+	   <OMS cd="pl0" name="not"/>
+	   <OMA><OMS cd="truth-tables" name="ttargs"/></OMA>
+	   <OMA>
+	     <OMS cd="truth-tables" name="ttrow"/>
+	     <OMS cd="truthval" name="true"/>
+	     <OMS cd="truthval" name="false"/>
+	   </OMA>   
+	   <OMA>
+	     <OMS cd="truth-tables" name="ttrow"/>
+	     <OMS cd="truthval" name="false"/>
+	     <OMS cd="truthval" name="true"/>
+	   </OMA>   
+	 </OMA>
+       </OMOBJ>
+     </dc:description>
+   </metadata>
+  </symbol>
+
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="pl0" name="not"/>
+        <expr name="arg"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="pl0">not</m:csymbol>
+        <expr name="arg"/>
+      </m:apply>
+    </prototype>
+    <rendering precedence="200">
+      <m:mrow>
+        <m:mo>¬</m:mo>
+        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
+        <render name="arg"/>
+        <m:mo mcd:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+
+ <notation>
+    <prototype>
+      <om:OMS cd="pl0" name="not"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="pl0">not</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en">¬</rendering>
+  </notation>
+
+  <assertion type="lemma" xml:id="false-not">
+   <CMP>
+     <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+       <OMS cd="truthval" name="false"/>
+     </OMOBJ> is
+     <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="#true-prop-1.1"/></OMOBJ>
+   </CMP>
+   <FMP>
+    <OMOBJ  xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS cd="truthval" name="eq"/>
+	<OMS cd="truthval" name="false"/>
+	<OMA id="true-prop-1.1">
+	  <OMS cd="pl0" name="not"/>
+	  <OMS cd="truthval" name="true"/>
+	</OMA>
+      </OMA>
+    </OMOBJ>
+   </FMP>
+ </assertion>
+
+  <assertion xml:id="false-prop-1" type="lemma">
+   <CMP><OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="#false-prop-1.1"/></OMOBJ></CMP>
+   <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+     <OMA  id="false-prop-1.1">
+      <OMS cd="truthval" name="eq"/>
+      <OMA>
+       <OMS cd="pl0" name="not"/>
+       <OMS cd="truthval" name="false"/>
+      </OMA>
+      <OMS cd="truthval" name="true"/>
+     </OMA>
+    </OMOBJ>
+   </FMP>
+  </assertion>
+
+<theory xml:id="not-prop.thy">
+  <imports from="qbf.omdoc#qbf"/>
+  <assertion xml:id="not-prop-1" type="lemma">
+   <CMP><OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="#not-prop-1.1"/></OMOBJ> for all <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="X"/></OMOBJ>.</CMP>
+   <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+     <OMBIND>
+      <OMS cd="qbf" name="forall"/>
+      <OMBVAR><OMV name="x"/></OMBVAR>
+      <OMA id="not-prop-1.1">
+       <OMS cd="truthval" name="eq"/>
+       <OMA>
+	<OMS cd="pl0" name="not"/>
+	<OMA>
+	 <OMS cd="pl0" name="not"/>
+	 <OMV name="x"/>
+	</OMA>
+       </OMA>
+       <OMV name="x"/>
+      </OMA>
+     </OMBIND>
+    </OMOBJ>
+   </FMP>
+  </assertion>
+</theory>
+
+  <symbol name="and">
+   <metadata>
+     <dc:subject>and</dc:subject>
+   <dc:description>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="pl0" name="and"/></OMOBJ>
+    represents the logical and function which is an n-ary function taking boolean
+    arguments and returning a boolean value. It is true if all arguments are true or false
+    otherwise. Its truth table is
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath" style="display:block">
+     <OMA>
+      <OMS cd="truth-tables" name="tt"/>
+      <OMS cd="pl0" name="and"/>
+      <OMA>
+       <OMS cd="truth-tables" name="ttargs"/>
+       <OMS cd="truthval" name="true"/>
+       <OMS cd="truthval" name="false"/>
+      </OMA>
+      <OMA>
+       <OMS cd="truth-tables" name="ttrow"/>
+       <OMS cd="truthval" name="true"/>
+       <OMS cd="truthval" name="true"/>
+       <OMS cd="truthval" name="false"/>
+      </OMA>   
+      <OMA>
+       <OMS cd="truth-tables" name="ttrow"/>
+       <OMS cd="truthval" name="false"/>
+       <OMS cd="truthval" name="false"/>
+       <OMS cd="truthval" name="false"/>
+      </OMA>   
+     </OMA>
+    </OMOBJ>
+  </dc:description>
+</metadata>
+<type system="simpletypes.omdoc#simpletypes">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+     <OMA>
+      <OMS name="funtype" cd="simpletypes"/>
+      <OMS cd="truthval" name="bool"/>
+      <OMS cd="truthval" name="bool"/>
+      <OMS cd="truthval" name="bool"/>
+     </OMA>
+    </OMOBJ>
+   </type>
+  </symbol>
+  
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="pl0" name="and"/>
+        <exprlist name="args">
+          <expr name="arg"/>
+        </exprlist>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="pl0">and</m:csymbol>
+        <exprlist name="args">
+          <expr name="arg"/>
+        </exprlist>
+      </m:apply>
+    </prototype>
+    <rendering precedence="500">
+      <m:mrow>
+        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
+        <iterate name="args" precedence="500">
+          <separator>
+            <m:mo>∧</m:mo>
+          </separator>
+          <render name="arg"/>
+        </iterate>
+        <m:mo mcd:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+
+  <notation>
+    <prototype>
+      <om:OMS cd="pl0" name="and"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="pl0">and</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en"><m:mo>∧</m:mo></rendering>
+  </notation>
+
+<theory xml:id="and-prop.thy">
+  <imports from="qbf.omdoc#qbf"/>
+  <assertion xml:id="and-prop-1" type="lemma">
+   <CMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="#and-prop-1.1"/></OMOBJ> for all <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="X"/></OMOBJ>.
+   </CMP>
+   <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+     <OMBIND>
+      <OMS cd="qbf" name="forall"/>
+      <OMBVAR>
+       <OMV name="x"/>
+      </OMBVAR>
+      <OMA id="and-prop-1.1">
+       <OMS cd="truthval" name="eq"/>
+       <OMA>
+	<OMS cd="pl0" name="and"/>
+	<OMV name="x"/>
+	<OMA>
+	 <OMS cd="pl0" name="not"/>
+	 <OMV name="x"/>
+	</OMA>
+       </OMA>
+       <OMS cd="truthval" name="false"/>
+      </OMA>
+     </OMBIND>
+    </OMOBJ>
+   </FMP>
+  </assertion>
+</theory>
+  
+  <symbol name="xor">
+   <metadata><dc:subject>xor</dc:subject>
+   <dc:description>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="pl0" name="xor"/></OMOBJ>
+    represents the logical xor function which is an n-ary function taking boolean
+    arguments and returning a boolean value. It is true if there are an odd number of true
+    arguments or false otherwise. Its truth table is
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath" style="display:block">
+     <OMA>
+      <OMS cd="truth-tables" name="tt"/>
+      <OMS cd="pl0" name="xor"/>
+      <OMA>
+       <OMS cd="truth-tables" name="ttargs"/>
+       <OMS cd="truthval" name="true"/>
+       <OMS cd="truthval" name="false"/>
+      </OMA>
+      <OMA>
+       <OMS cd="truth-tables" name="ttrow"/>
+       <OMS cd="truthval" name="true"/>
+       <OMS cd="truthval" name="false"/>
+       <OMS cd="truthval" name="true"/>
+      </OMA>   
+      <OMA>
+       <OMS cd="truth-tables" name="ttrow"/>
+       <OMS cd="truthval" name="false"/>
+       <OMS cd="truthval" name="true"/>
+       <OMS cd="truthval" name="false"/>
+      </OMA>   
+     </OMA>
+    </OMOBJ>
+  </dc:description>
+ </metadata>
+   <type system="simpletypes.omdoc#simpletypes">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+     <OMA>
+      <OMS name="funtype" cd="simpletypes"/>
+      <OMS cd="truthval" name="bool"/>
+      <OMS cd="truthval" name="bool"/>
+      <OMS cd="truthval" name="bool"/>
+     </OMA>
+    </OMOBJ>
+   </type>
+  </symbol>
+  
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="pl0" name="xor"/>
+        <exprlist name="args">
+          <expr name="arg"/>
+        </exprlist>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="pl0">xor</m:csymbol>
+        <exprlist name="args">
+          <expr name="arg"/>
+        </exprlist>
+      </m:apply>
+    </prototype>
+    <rendering precedence="500">
+      <m:mrow>
+        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
+        <iterate name="args" precedence="500">
+          <separator>
+            <m:mo>!</m:mo>
+          </separator>
+          <render name="arg"/>
+        </iterate>
+        <m:mo mcd:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+
+<notation>
+    <prototype>
+      <om:OMS cd="pl0" name="xor"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="pl0">xor</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en">
+      <m:mo>!</m:mo>
+    </rendering>
+  </notation>
+
+<theory xml:id="xor-prop.thy">
+  <imports from="qbf.omdoc#qbf"/>
+  <assertion xml:id="xor-prop-1" type="lemma">
+   <CMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="#xor-prop-1.1"/></OMOBJ> for all <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="X"/></OMOBJ>.
+   </CMP>
+   <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+     <OMBIND>
+      <OMS cd="qbf" name="forall"/>
+      <OMBVAR>
+       <OMV name="x"/>
+      </OMBVAR>
+      <OMA id="xor-prop-1.1">
+       <OMS cd="truthval" name="eq"/>
+       <OMA>
+	<OMS cd="pl0" name="xor"/>
+	<OMV name="x"/>
+	<OMV name="x"/>
+       </OMA>
+       <OMS cd="truthval" name="false"/>
+      </OMA>
+     </OMBIND>
+    </OMOBJ>
+   </FMP>
+  </assertion>
+  
+  <assertion xml:id="xor-prop-3" type="lemma">
+   <CMP><OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="#xor-prop-3.1"/></OMOBJ> for all <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="X"/></OMOBJ>.</CMP>
+   <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+     <OMBIND>
+      <OMS cd="qbf" name="forall"/>
+      <OMBVAR><OMV name="x"/></OMBVAR>
+      <OMA id="xor-prop-3.1">
+       <OMS cd="truthval" name="eq"/>
+       <OMA>
+	<OMS cd="pl0" name="xor"/>
+	<OMV name="x"/>
+	<OMA><OMS cd="pl0" name="not"/><OMV name="x"/></OMA>
+       </OMA>
+       <OMS cd="truthval" name="true"/>
+      </OMA>
+     </OMBIND>
+    </OMOBJ>
+   </FMP>
+  </assertion>
+</theory>
+  
+  <symbol name="or">
+   <metadata><dc:subject>or</dc:subject>
+   <dc:description>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="pl0" name="or"/></OMOBJ>
+    represents the logical or function which is an n-ary function taking boolean arguments
+    and returning a boolean value. It is true if any of the arguments are true or false
+    otherwise. Its truth table is
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath" style="display:block">
+     <OMA>
+      <OMS cd="truth-tables" name="tt"/>
+      <OMS cd="pl0" name="or"/>
+      <OMA>
+       <OMS cd="truth-tables" name="ttargs"/>
+       <OMS cd="truthval" name="true"/>
+       <OMS cd="truthval" name="false"/>
+      </OMA>
+      <OMA>
+       <OMS cd="truth-tables" name="ttrow"/>
+       <OMS cd="truthval" name="true"/>
+       <OMS cd="truthval" name="true"/>
+       <OMS cd="truthval" name="true"/>
+      </OMA>   
+      <OMA>
+       <OMS cd="truth-tables" name="ttrow"/>
+       <OMS cd="truthval" name="false"/>
+       <OMS cd="truthval" name="true"/>
+       <OMS cd="truthval" name="false"/>
+      </OMA>   
+     </OMA>
+    </OMOBJ>
+  </dc:description>
+  </metadata>
+   <type system="simpletypes.omdoc#simpletypes">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+     <OMA>
+      <OMS name="funtype" cd="simpletypes"/>
+      <OMS cd="truthval" name="bool"/>
+      <OMS cd="truthval" name="bool"/>
+      <OMS cd="truthval" name="bool"/>
+     </OMA>
+    </OMOBJ>
+   </type>
+  </symbol>
+
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="pl0" name="or"/>
+        <exprlist name="args">
+          <expr name="arg"/>
+        </exprlist>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="pl0">or</m:csymbol>
+        <exprlist name="args">
+          <expr name="arg"/>
+        </exprlist>
+      </m:apply>
+    </prototype>
+    <rendering precedence="500">
+      <m:mrow>
+        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
+        <iterate name="args" precedence="500">
+          <separator>
+            <m:mo>∨</m:mo>
+          </separator>
+          <render name="arg"/>
+        </iterate>
+        <m:mo mcd:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+  <notation>
+    <prototype>
+      <om:OMS cd="pl0" name="or"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="pl0">or</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en"><m:mo>∨</m:mo></rendering>
+  </notation>
+
+<theory xml:id="tnd.thy">
+  <imports from="qbf.omdoc#qbf"/>
+  <axiom xml:id="tnd">
+   <CMP>The axiom of the excluded middle: <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="#tnd.1"/></OMOBJ> 
+     for all <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="X"/></OMOBJ>.</CMP>
+   <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+     <OMBIND>
+      <OMS cd="qbf" name="forall"/>
+      <OMBVAR><OMV name="x"/></OMBVAR>
+      <OMA id="tnd.1">
+       <OMS cd="pl0" name="or"/>
+       <OMV name="x"/>
+       <OMA><OMS cd="pl0" name="not"/><OMV name="x"/></OMA>
+      </OMA>
+     </OMBIND>
+    </OMOBJ>
+   </FMP>
+  </axiom>
+</theory>
+
+<theory xml:id="or-prop.thy">
+  <imports from="qbf.omdoc#qbf"/>
+  <assertion xml:id="or-prop-1" type="lemma">
+   <CMP><OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="#or-prop-1.1"/></OMOBJ> for all <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="X"/></OMOBJ>.</CMP>
+   <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+     <OMBIND>
+      <OMS cd="qbf" name="forall"/>
+      <OMBVAR><OMV name="x"/></OMBVAR>
+      <OMA id="or-prop-1.1">
+       <OMS cd="truthval" name="eq"/>
+       <OMA>
+	<OMS cd="pl0" name="or"/>
+	<OMV name="x"/>
+	<OMA><OMS cd="pl0" name="not"/><OMV name="x"/></OMA>
+       </OMA>
+       <OMS cd="truthval" name="true"/>
+      </OMA>
+     </OMBIND>
+    </OMOBJ>
+   </FMP>
+  </assertion>
+
+  <assertion xml:id="or-prop-3" type="lemma">
+   <CMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="#or-prop-3.1"/></OMOBJ> for all 
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="a"/></OMOBJ> and <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="b"/></OMOBJ>.
+   </CMP>
+   <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+     <OMBIND>
+      <OMS cd="qbf" name="forall"/>
+      <OMBVAR>
+       <OMV name="a"/>
+       <OMV name="b"/>
+      </OMBVAR>
+      <OMA id="or-prop-3.1">
+       <OMS cd="truthval" name="eq"/>
+       <OMA>
+	<OMS cd="pl0" name="not"/>
+	<OMA>
+	 <OMS cd="pl0" name="and"/>
+	 <OMV name="a"/>
+	 <OMV name="b"/>
+	</OMA>
+       </OMA>
+       <OMA>
+	<OMS cd="pl0" name="or"/>
+	<OMA>
+	 <OMS cd="pl0" name="not"/>
+	 <OMV name="a"/>
+	</OMA>
+	<OMA>
+	 <OMS cd="pl0" name="not"/>
+	 <OMV name="b"/>
+	</OMA>
+       </OMA>
+      </OMA>
+     </OMBIND>
+    </OMOBJ>
+   </FMP>
+  </assertion>
+</theory>
+
+  <symbol name="implies">
+   <metadata><dc:subject>implies</dc:subject>
+   <dc:description>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="pl0" name="implies"/></OMOBJ>
+    represents the logical implies function which takes two boolean expressions as
+    arguments. It evaluates to false if the first argument is true and the second argument
+    is false, otherwise it evaluates to true. Its truth table is
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath" style="display:block">
+     <OMA>
+      <OMS cd="truth-tables" name="tt"/>
+      <OMS cd="pl0" name="implies"/>
+      <OMA>
+       <OMS cd="truth-tables" name="ttargs"/>
+       <OMS cd="truthval" name="true"/>
+       <OMS cd="truthval" name="false"/>
+      </OMA>
+      <OMA>
+       <OMS cd="truth-tables" name="ttrow"/>
+       <OMS cd="truthval" name="true"/>
+       <OMS cd="truthval" name="true"/>
+       <OMS cd="truthval" name="false"/>
+      </OMA>   
+      <OMA>
+       <OMS cd="truth-tables" name="ttrow"/>
+       <OMS cd="truthval" name="false"/>
+       <OMS cd="truthval" name="true"/>
+       <OMS cd="truthval" name="true"/>
+      </OMA>   
+     </OMA>
+    </OMOBJ>
+  </dc:description>
+    </metadata>
+   <type system="simpletypes.omdoc#simpletypes">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+     <OMA>
+      <OMS name="funtype" cd="simpletypes"/>
+      <OMS cd="truthval" name="bool"/>
+      <OMS cd="truthval" name="bool"/>
+      <OMS cd="truthval" name="bool"/>
+     </OMA>
+    </OMOBJ>
+   </type>
+  </symbol>
+
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="pl0" name="implies"/>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="pl0">implies</m:csymbol>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </m:apply>
+    </prototype>
+    <rendering precedence="1000">
+      <m:mrow>
+        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
+        <render name="arg1" precedence="1000"/>
+        <m:mo>⇒</m:mo>
+        <render name="arg2" precedence="1000"/>
+        <m:mo mcd:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+  <notation>
+    <prototype>
+      <om:OMS cd="pl0" name="implies"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="pl0">implies</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en">⇒</rendering>
+  </notation>
+
+  <symbol name="implied">
+   <metadata>
+     <dc:subject>implied</dc:subject>
+     <dc:description>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="pl0" name="implied"/></OMOBJ>
+    represents the reverse implication which takes two boolean expressions as
+    arguments. It evaluates to false if the first argument is false and the second
+    argument is true, otherwise it evaluates to true. Its truth table is
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath" style="display:block">
+     <OMA>
+      <OMS cd="truth-tables" name="tt"/>
+      <OMS cd="pl0" name="implied"/>
+      <OMA>
+       <OMS cd="truth-tables" name="ttargs"/>
+       <OMS cd="truthval" name="true"/>
+       <OMS cd="truthval" name="false"/>
+      </OMA>
+      <OMA>
+       <OMS cd="truth-tables" name="ttrow"/>
+       <OMS cd="truthval" name="true"/>
+       <OMS cd="truthval" name="true"/>
+       <OMS cd="truthval" name="true"/>
+      </OMA>   
+      <OMA>
+       <OMS cd="truth-tables" name="ttrow"/>
+       <OMS cd="truthval" name="false"/>
+       <OMS cd="truthval" name="true"/>
+       <OMS cd="truthval" name="false"/>
+      </OMA>   
+     </OMA>
+    </OMOBJ>
+  </dc:description>
+    </metadata>
+   <type system="simpletypes.omdoc#simpletypes">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+     <OMA>
+      <OMS name="funtype" cd="simpletypes"/>
+      <OMS cd="truthval" name="bool"/>
+      <OMS cd="truthval" name="bool"/>
+      <OMS cd="truthval" name="bool"/>
+     </OMA>
+    </OMOBJ>
+   </type>
+  </symbol>
+
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="pl0" name="implied"/>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="pl0">implied</m:csymbol>
+        <expr name="arg1"/>
+        <expr name="arg2"/>
+      </m:apply>
+    </prototype>
+    <rendering precedence="1000">
+      <m:mrow>
+        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
+        <render name="arg1" precedence="1000"/>
+        <m:mo>&lt;=</m:mo>
+        <render name="arg2" precedence="1000"/>
+        <m:mo mcd:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+  <notation>
+    <prototype>
+      <om:OMS cd="pl0" name="implied"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="pl0">implied</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en"><m:mo>⇒</m:mo></rendering>
+  </notation>
+
+
+<theory xml:id="implies-prop.thy">
+  <imports from="qbf.omdoc#qbf"/>
+  <assertion xml:id="implies-prop-1" type="lemma">
+   <CMP><OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="#implies-prop-1.1"/></OMOBJ> for all <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="X"/></OMOBJ>.</CMP>
+   <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+     <OMBIND>
+      <OMS cd="qbf" name="forall"/>
+      <OMBVAR><OMV name="x"/></OMBVAR>
+      <OMA id="implies-prop-1.1">
+       <OMS cd="pl0" name="implies"/>
+       <OMS cd="truthval" name="false"/>
+       <OMV name="x"/>
+      </OMA>
+     </OMBIND>
+    </OMOBJ>
+   </FMP>
+  </assertion>
+</theory>
+  
+  <symbol name="equivalent">
+   <metadata><dc:subject>equivalent</dc:subject>
+   <dc:description> 
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="pl0"
+    name="equivalent"/></OMOBJ> is used to show that two boolean expressions are logically
+    equivalent, that is have the same boolean value for any inputs. Its truth table is
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath"  style="display:block">
+     <OMA>
+      <OMS cd="truth-tables" name="tt"/>
+      <OMS cd="pl0" name="equivalent"/>
+      <OMA>
+       <OMS cd="truth-tables" name="ttargs"/>
+       <OMS cd="truthval" name="true"/>
+       <OMS cd="truthval" name="false"/>
+      </OMA>
+      <OMA>
+       <OMS cd="truth-tables" name="ttrow"/>
+       <OMS cd="truthval" name="true"/>
+       <OMS cd="truthval" name="true"/>
+       <OMS cd="truthval" name="false"/>
+      </OMA>   
+      <OMA>
+       <OMS cd="truth-tables" name="ttrow"/>
+       <OMS cd="truthval" name="false"/>
+       <OMS cd="truthval" name="false"/>
+       <OMS cd="truthval" name="true"/>
+      </OMA>   
+     </OMA>
+    </OMOBJ>
+  </dc:description>
+</metadata>
+</symbol>
+
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="pl0" name="equivalent"/>
+        <exprlist name="args">
+          <expr name="arg"/>
+        </exprlist>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="pl0">equivalent</m:csymbol>
+        <exprlist name="args">
+          <expr name="arg"/>
+        </exprlist>
+      </m:apply>
+    </prototype>
+    <rendering precedence="700">
+      <m:mrow>
+        <m:mo mcd:egroup="fence" fence="true">(</m:mo>
+        <iterate name="args" precedence="700">
+          <separator>
+            <m:mo>≡</m:mo>
+          </separator>
+          <render name="arg"/>
+        </iterate>
+        <m:mo mcd:egroup="fence" fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+  <notation>
+    <prototype>
+      <om:OMS cd="pl0" name="equivalent"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="pl0">equivalent</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en">≡</rendering>
+  </notation>
+
+
+  <definition xml:id="equivalent-def" for="equivalent" type="implicit">
+   <CMP> The condition <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="#equivalent-def.1"/></OMOBJ> is equivalent to the
+          condition that <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="#equivalent-def.2"/></OMOBJ>. 
+   </CMP>
+   <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+     <OMA>
+      <OMS cd="pl0" name="equivalent"/>
+      <OMA id="equivalent-def.1">
+       <OMS cd="pl0" name="equivalent"/>
+       <OMV name="A"/>
+       <OMV name="B"/>
+      </OMA>
+      <OMA id="equivalent-def.2">
+       <OMS cd="pl0" name="and"/>
+       <OMA>
+	<OMS cd="pl0" name="implies"/>
+	<OMV name="A"/>
+	<OMV name="B"/>
+       </OMA>
+       <OMA>
+	<OMS cd="pl0" name="implies"/>
+	<OMV name="B"/>
+	<OMV name="A"/>
+       </OMA>
+      </OMA>
+     </OMA>
+    </OMOBJ>
+   </FMP>
+  </definition>
+
+ </theory>
+
+</omdoc>

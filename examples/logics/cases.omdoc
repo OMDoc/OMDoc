@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xml:id="cases.omdoc"
+  xmlns="http://omdoc.org/ns"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xmlns:m="http://www.w3.org/1998/Math/MathML"
+  xmlns:om="http://www.openmath.org/OpenMath"
+  version="1.6">
+
+<metadata>
+  <dc:date action="created">2008-12-15T21:13:48Z</dc:date>
+  <dc:title xml:lang="en">cases</dc:title>
+  <dc:creator role="aut">Michael Kohlhase</dc:creator>
+  <dc:date action="updated"> 2008-12-15T21:13:48Z </dc:date>
+  <dc:type> Text </dc:type>
+  <dc:format> application/omdoc+xml </dc:format>
+  <dc:rights>Copyright (c) 2008 Michael Kohlhase</dc:rights>
+  <license xmlns="http://creativecommons.org/ns">
+    <permissions reproduction="permitted" distribution="permitted" derivative_works="permitted"/>
+    <prohibitions commercial_use="permitted"/>
+    <requirements notice="required" copyleft="required" attribution="required"/>
+  </license>
+</metadata>
+
+<theory xml:id="cases">
+  <metadata>
+    <dc:title>Case Statements</dc:title>
+  </metadata>
+
+    <symbol name="cases" role="object" scope="global">
+    <metadata>
+      <dc:description>The cases operator takes arguments
+      E,C_1,... C_n,[E']. The first argument E is an expression on which the case
+      analysis is performed. The remaining arguments are either 
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="cases" name="case"/></OMOBJ> 
+      expressions C_i or (optionally, if they are the last
+      argument) and expression for the else case. The value of the case expression is
+      the unique value of the matching case or (if none matches and one is given) the
+      value of the else-expression, orelse undefined.
+      </dc:description>
+    </metadata>
+  </symbol>
+
+<presentation xml:id="pr-cases" for="#cases" role="applied" arith="nary">
+  <style format="default">
+    <text>case </text>
+    <recurse select="*[2]"/>
+    <text> of </text>
+    <recurse select="*[position()&gt;2]"/>
+    <text> esac</text>
+  </style>
+  <style format="pmml">
+    <element name="mrow">
+      <element name="mo" cr="yes"><text>case</text></element> 
+      <recurse select="*[2]"/>
+      <element name="mo" cr="yes"><text>of</text></element>
+      <recurse select="*[position()&gt;2]"/>
+      <element name="mo" cr="yes"><text> esac</text></element>
+    </element>
+  </style>
+</presentation>
+
+  <symbol name="case" role="object" scope="global">
+    <metadata>
+      <dc:description>The case operator takes two arguments C (a constructor) and F (a
+      form) that perform a case analysis in a <OMOBJ
+      xmlns="http://www.openmath.org/OpenMath"><OMS cd="cases" name="cases"/></OMOBJ>
+      expression.  If F is a binding expression with symbol <OMOBJ
+      xmlns="http://www.openmath.org/OpenMath"><OMS cd="cases"
+      name="case-lambda"/></OMOBJ>, then the bound varibles A1,...,An of F are called the
+      arguments of C. The case expression succeeds, iff the expression in the
+      superordinate <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="cases"
+      name="cases"/></OMOBJ> expression matches the term C(A_1,...,A_n) with substitution
+      sigma. In this case the value of the case expression is sigma applied to the body of
+      F.</dc:description>
+    </metadata>
+  </symbol>
+
+<presentation xml:id="pr-case" for="#case" role="applied" arith="2">
+  <style format="default">
+    <recurse select="*[2]"/>
+    <text>: </text>
+    <recurse select="*[3]"/>
+    <text>&#xA;</text>
+  </style>
+  <style format="pmml">
+    <element name="mrow">
+      <recurse select="*[2]"/>
+      <element name="mo" cr="yes"><text>: </text></element>
+      <recurse select="*[3]"/>
+      <text>&#xA;</text>
+    </element>
+  </style>
+</presentation>
+
+  <symbol name="case-other" role="object" scope="global">
+    <metadata>
+      <dc:description>The "other case" constructor takes one arguments:
+      a form F. This case alowys succeeds in a case expression, if no other does. In this case the value of the
+      case expression is F.</dc:description>
+    </metadata>
+  </symbol>
+
+<example for="#cases #case #case-other">
+  <CMP>The following is an object defined by a case statement</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="cases" name="cases"/>
+      <OMV name="tree"/>
+      <OMA>
+	<OMS cd="cases" name="case"/>
+	  <OMV name="nil"/>
+	  <OMA>
+	    <OMV name="node"/>
+	    <OMV name="value"/>
+	  </OMA>
+	</OMA>
+	<OMA>
+	  <OMS cd="cases" name="case-other"/>
+	  <OMV name="nil"/>
+	</OMA>
+      </OMA>
+  </OMOBJ>
+</example>
+
+<presentation for="#case-other" role="applied" arity="1">
+  <style format="default">
+    <text>other: </text><recurse select="*[2]"/><text>&#xA;</text>
+  </style>
+  <style format="pmml">
+    <element name="mrow">
+      <element name="mo" cr="yes"><text>other: </text></element>
+      <recurse select="*[2]"/>
+      <text>&#xA;</text>
+    </element>
+  </style>
+</presentation>
+
+<symbol name="case-lambda" role="object" scope="global">
+  <metadata>
+    <dc:description>
+      The symbol for binding objects in case statements, see <OMOBJ
+      xmlns="http://www.openmath.org/OpenMath"><OMS cd="cases"
+      name="case"/></OMOBJ>.</dc:description>
+  </metadata>
+</symbol>
+
+
+</theory>
+</omdoc>

@@ -1,0 +1,1461 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html id="owl.omdoc" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <link rel="stylesheet" type="text/css" href="omdoc-default.css"/>
+    <title>A Content Dictionary for OWL, the Web Ontology Langage</title>
+  </head>
+  <body>
+    <div class="dc-titleblock">
+      <div class="dc-title">A Content Dictionary for OWL, the Web Ontology Langage</div>
+      <div class="dc-authors">Michael Kohlhase, Christoph Lange</div>
+      <div class="dc-date">2008-09-12</div>
+      <div class="dc-description">This CD defines the OWL ontology language.</div>
+    </div>
+    <div class="theory" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="http://purl.org/dc/elements/1.1/">
+      <h1 id="owl">1. No Title Specified</h1>
+      <div class="imports">imports from: 
+        <a href="rdfs.xhtml#rdfs">rdfs</a>, 
+        <a href="xsd.xhtml#xsd">xsd</a>
+      </div>
+      <div class="omdoc-symbol" id="Class">
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>Class
+        </div>
+        <div class="omdoc-type">
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>
+            <span id="MCRd19e27" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+                <m:semantics>
+                  <m:mo xref="#MMLPROC-a71fc1785-c05d-4f13-b62d-035cb7d87bc7">Class</m:mo>
+                  <m:annotation-xml>
+                    <OMS cd="rdfs" name="Class" id="MMLPROC-a71fc1785-c05d-4f13-b62d-035cb7d87bc7" xmlns="http://www.openmath.org/OpenMath"/>
+                  </m:annotation-xml>
+                </m:semantics>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-axiom">
+        <span class="omdoc-titleword">Axiom</span>
+        <span class="omdoc-FMP">
+          <span id="MCRd19e35" class="displaymath">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+              <m:semantics>
+                <m:mrow xref="#MMLPROC-a7489855f-f128-402b-a5c8-ae2a7dc8c74b">
+                  <m:mo xref="#MMLPROC-a7489855f-f128-402b-a5c8-ae2a7dc8c74b-arg1">Class</m:mo>
+                  <m:mo>⊑</m:mo>
+                  <m:mo xref="#MMLPROC-a7489855f-f128-402b-a5c8-ae2a7dc8c74b-arg2">Class</m:mo>
+                </m:mrow>
+                <m:annotation-xml>
+                  <OMA id="MMLPROC-a7489855f-f128-402b-a5c8-ae2a7dc8c74b" xmlns="http://www.openmath.org/OpenMath">
+                    <OMS cd="rdfs" name="subClassOf"/>
+                    <OMS cd="owl" name="Class" id="MMLPROC-a7489855f-f128-402b-a5c8-ae2a7dc8c74b-arg1"/>
+                    <OMS cd="rdfs" name="Class" id="MMLPROC-a7489855f-f128-402b-a5c8-ae2a7dc8c74b-arg2"/>
+                  </OMA>
+                </m:annotation-xml>
+              </m:semantics>
+            </m:math>
+          </span>
+        </span>
+      </div>
+      <div class="omdoc-symbol" id="Thing">
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>Thing
+        </div>
+        <div class="omdoc-type">
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>
+            <span id="MCRd19e54" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+                <m:semantics>
+                  <m:mo xref="#MMLPROC-aaaf5c631-7c0e-4a82-b8a0-6371853ef751">Class</m:mo>
+                  <m:annotation-xml>
+                    <OMS cd="owl" name="Class" id="MMLPROC-aaaf5c631-7c0e-4a82-b8a0-6371853ef751" xmlns="http://www.openmath.org/OpenMath"/>
+                  </m:annotation-xml>
+                </m:semantics>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-definition">
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Definition</span>
+        </div>
+        <span id="MCRd19e67" class="displaymath">
+          <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+            <m:semantics>
+              <m:mrow xref="#MMLPROC-ae7c7d18d-0e39-4b07-a69e-8dacb63e3607">
+                <m:mo xref="#MMLPROC-ae7c7d18d-0e39-4b07-a69e-8dacb63e3607-arg1">⊥</m:mo>
+                <m:mo>⊔</m:mo>
+                <m:mrow xref="#MMLPROC-ae7c7d18d-0e39-4b07-a69e-8dacb63e3607-arg2">
+                  <m:mo>¬</m:mo>
+                  <m:mo xref="#MMLPROC-ae7c7d18d-0e39-4b07-a69e-8dacb63e3607-arg2-arg">⊥</m:mo>
+                </m:mrow>
+              </m:mrow>
+              <m:annotation-xml>
+                <OMA id="MMLPROC-ae7c7d18d-0e39-4b07-a69e-8dacb63e3607" xmlns="http://www.openmath.org/OpenMath">
+                  <OMS cd="owl" name="unionOf"/>
+                  <OMS cd="owl" name="Nothing" id="MMLPROC-ae7c7d18d-0e39-4b07-a69e-8dacb63e3607-arg1"/>
+                  <OMA id="MMLPROC-ae7c7d18d-0e39-4b07-a69e-8dacb63e3607-arg2">
+                    <OMS cd="owl" name="complementOf"/>
+                    <OMS cd="owl" name="Nothing" id="MMLPROC-ae7c7d18d-0e39-4b07-a69e-8dacb63e3607-arg2-arg"/>
+                  </OMA>
+                </OMA>
+              </m:annotation-xml>
+            </m:semantics>
+          </m:math>
+        </span>
+      </div>
+      <div class="omdoc-symbol" id="Nothing">
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>Nothing
+        </div>The empty set, also called “bottom concept”
+        <div class="omdoc-type">
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>
+            <span id="MCRd19e93" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+                <m:semantics>
+                  <m:mo xref="#MMLPROC-a3ce6b9c7-d204-4144-8465-c06657a8cc45">Class</m:mo>
+                  <m:annotation-xml>
+                    <OMS cd="owl" name="Class" id="MMLPROC-a3ce6b9c7-d204-4144-8465-c06657a8cc45" xmlns="http://www.openmath.org/OpenMath"/>
+                  </m:annotation-xml>
+                </m:semantics>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-definition">
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Definition</span>
+        </div>
+        <span id="MCRd19e106" class="displaymath">
+          <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+            <m:semantics>
+              <m:mrow xref="#MMLPROC-ac74e3fa5-60ba-42b4-a26a-a336072d3935">
+                <m:mo>¬</m:mo>
+                <m:mo xref="#MMLPROC-ac74e3fa5-60ba-42b4-a26a-a336072d3935-arg">⊤</m:mo>
+              </m:mrow>
+              <m:annotation-xml>
+                <OMA id="MMLPROC-ac74e3fa5-60ba-42b4-a26a-a336072d3935" xmlns="http://www.openmath.org/OpenMath">
+                  <OMS cd="owl" name="complementOf"/>
+                  <OMS cd="owl" name="Thing" id="MMLPROC-ac74e3fa5-60ba-42b4-a26a-a336072d3935-arg"/>
+                </OMA>
+              </m:annotation-xml>
+            </m:semantics>
+          </m:math>
+        </span>
+      </div>
+      <div class="omdoc-symbol" id="equivalentClass">
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>equivalentClass
+        </div>
+        <div class="omdoc-type">
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>
+            <span id="MCRd19e123" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+                <m:semantics>
+                  <m:mrow xref="#MMLPROC-a5119b5a8-2ab5-4698-8fc4-64ad8147bec4">
+                    <m:mo xref="#MMLPROC-a5119b5a8-2ab5-4698-8fc4-64ad8147bec4-fun">Property</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                    <m:mo xref="#MMLPROC-a5119b5a8-2ab5-4698-8fc4-64ad8147bec4-args-arg1">Class</m:mo>
+                    <m:mo separator="true">,</m:mo>
+                    <m:mo xref="#MMLPROC-a5119b5a8-2ab5-4698-8fc4-64ad8147bec4-args-arg2">Class</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                  </m:mrow>
+                  <m:annotation-xml>
+                    <OMA id="MMLPROC-a5119b5a8-2ab5-4698-8fc4-64ad8147bec4" xmlns="http://www.openmath.org/OpenMath">
+                      <OMS cd="rdf" name="Property" id="MMLPROC-a5119b5a8-2ab5-4698-8fc4-64ad8147bec4-fun"/>
+                      <OMS cd="owl" name="Class" id="MMLPROC-a5119b5a8-2ab5-4698-8fc4-64ad8147bec4-args-arg1"/>
+                      <OMS cd="owl" name="Class" id="MMLPROC-a5119b5a8-2ab5-4698-8fc4-64ad8147bec4-args-arg2"/>
+                    </OMA>
+                  </m:annotation-xml>
+                </m:semantics>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-axiom">
+        <span class="omdoc-titleword">Axiom</span>
+        <span class="omdoc-FMP">
+          <span id="MCRd19e157" class="displaymath">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+              <m:semantics>
+                <m:mrow xref="#MMLPROC-ab27fdd63-e8fe-49d3-9142-76eac1f4f198">
+                  <m:mo xref="#MMLPROC-ab27fdd63-e8fe-49d3-9142-76eac1f4f198-arg1">equivalentClass</m:mo>
+                  <m:mo>⊑</m:mo>
+                  <m:mo xref="#MMLPROC-ab27fdd63-e8fe-49d3-9142-76eac1f4f198-arg2">subClassOf</m:mo>
+                </m:mrow>
+                <m:annotation-xml>
+                  <OMA id="MMLPROC-ab27fdd63-e8fe-49d3-9142-76eac1f4f198" xmlns="http://www.openmath.org/OpenMath">
+                    <OMS cd="rdfs" name="subPropertyOf"/>
+                    <OMS cd="owl" name="equivalentClass" id="MMLPROC-ab27fdd63-e8fe-49d3-9142-76eac1f4f198-arg1"/>
+                    <OMS cd="rdfs" name="subClassOf" id="MMLPROC-ab27fdd63-e8fe-49d3-9142-76eac1f4f198-arg2"/>
+                  </OMA>
+                </m:annotation-xml>
+              </m:semantics>
+            </m:math>
+          </span>
+        </span>
+      </div>
+      <div class="omdoc-symbol" id="disjointWith">
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>disjointWith
+        </div>This constructor guarantees that an individual that is a member of one class cannot simultaneously be an instance of a specified other class. An axiom 
+        <span id="MCRd19e177" class="displaymath">
+          <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+            <m:semantics>
+              <m:mrow xref="#MMLPROC-a0a04f8ff-c58d-484d-bbfa-193df688d573">
+                <m:mi xref="#MMLPROC-a0a04f8ff-c58d-484d-bbfa-193df688d573-arg1">A</m:mi>
+                <m:mo>⊓</m:mo>
+                <m:mi xref="#MMLPROC-a0a04f8ff-c58d-484d-bbfa-193df688d573-arg2">B</m:mi>
+                <m:mo>=</m:mo>
+                <m:mo>⊥</m:mo>
+              </m:mrow>
+              <m:annotation-xml>
+                <OMA id="MMLPROC-a0a04f8ff-c58d-484d-bbfa-193df688d573" xmlns="http://www.openmath.org/OpenMath">
+                  <OMS cd="owl" name="disjointWith"/>
+                  <OMV name="A" id="MMLPROC-a0a04f8ff-c58d-484d-bbfa-193df688d573-arg1"/>
+                  <OMV name="B" id="MMLPROC-a0a04f8ff-c58d-484d-bbfa-193df688d573-arg2"/>
+                </OMA>
+              </m:annotation-xml>
+            </m:semantics>
+          </m:math>
+        </span> is equivalent to the following axiom: 
+        <span id="MCRd19e196" class="displaymath">
+          <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+            <m:semantics>
+              <m:mrow xref="#MMLPROC-a603dcf69-a798-46b5-b453-9fea36ee1bac">
+                <m:mi xref="#MMLPROC-a603dcf69-a798-46b5-b453-9fea36ee1bac-arg1">A</m:mi>
+                <m:mo>⊑</m:mo>
+                <m:mrow xref="#MMLPROC-a603dcf69-a798-46b5-b453-9fea36ee1bac-arg2">
+                  <m:mo>¬</m:mo>
+                  <m:mi xref="#MMLPROC-a603dcf69-a798-46b5-b453-9fea36ee1bac-arg2-arg">B</m:mi>
+                </m:mrow>
+              </m:mrow>
+              <m:annotation-xml>
+                <OMA id="MMLPROC-a603dcf69-a798-46b5-b453-9fea36ee1bac" xmlns="http://www.openmath.org/OpenMath">
+                  <OMS cd="rdfs" name="subClassOf"/>
+                  <OMV name="A" id="MMLPROC-a603dcf69-a798-46b5-b453-9fea36ee1bac-arg1"/>
+                  <OMA id="MMLPROC-a603dcf69-a798-46b5-b453-9fea36ee1bac-arg2">
+                    <OMS cd="owl" name="complementOf"/>
+                    <OMV name="B" id="MMLPROC-a603dcf69-a798-46b5-b453-9fea36ee1bac-arg2-arg"/>
+                  </OMA>
+                </OMA>
+              </m:annotation-xml>
+            </m:semantics>
+          </m:math>
+        </span>
+        <div class="omdoc-type">
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>
+            <span id="MCRd19e216" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+                <m:semantics>
+                  <m:mrow xref="#MMLPROC-a38f737c1-2423-41f4-b372-f91b6a58e4e4">
+                    <m:mo xref="#MMLPROC-a38f737c1-2423-41f4-b372-f91b6a58e4e4-fun">Property</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                    <m:mo xref="#MMLPROC-a38f737c1-2423-41f4-b372-f91b6a58e4e4-args-arg1">Class</m:mo>
+                    <m:mo separator="true">,</m:mo>
+                    <m:mo xref="#MMLPROC-a38f737c1-2423-41f4-b372-f91b6a58e4e4-args-arg2">Class</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                  </m:mrow>
+                  <m:annotation-xml>
+                    <OMA id="MMLPROC-a38f737c1-2423-41f4-b372-f91b6a58e4e4" xmlns="http://www.openmath.org/OpenMath">
+                      <OMS cd="rdf" name="Property" id="MMLPROC-a38f737c1-2423-41f4-b372-f91b6a58e4e4-fun"/>
+                      <OMS cd="owl" name="Class" id="MMLPROC-a38f737c1-2423-41f4-b372-f91b6a58e4e4-args-arg1"/>
+                      <OMS cd="owl" name="Class" id="MMLPROC-a38f737c1-2423-41f4-b372-f91b6a58e4e4-args-arg2"/>
+                    </OMA>
+                  </m:annotation-xml>
+                </m:semantics>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-symbol" id="equivalentProperty">
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>equivalentProperty
+        </div>
+        <div class="omdoc-type">
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>
+            <span id="MCRd19e257" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+                <m:semantics>
+                  <m:mo xref="#MMLPROC-add9c046e-4f40-4f21-af87-3129f4ddd5b0">Property</m:mo>
+                  <m:annotation-xml>
+                    <OMS cd="rdf" name="Property" id="MMLPROC-add9c046e-4f40-4f21-af87-3129f4ddd5b0" xmlns="http://www.openmath.org/OpenMath"/>
+                  </m:annotation-xml>
+                </m:semantics>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-axiom">
+        <span class="omdoc-titleword">Axiom</span>
+        <span class="omdoc-FMP">
+          <span id="MCRd19e278" class="displaymath">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+              <m:semantics>
+                <m:mrow xref="#MMLPROC-a21489112-b4fa-4c4c-bd2d-faa44910f0b8">
+                  <m:mo xref="#MMLPROC-a21489112-b4fa-4c4c-bd2d-faa44910f0b8-arg1">equivalentProperty</m:mo>
+                  <m:mo>⊑</m:mo>
+                  <m:mo xref="#MMLPROC-a21489112-b4fa-4c4c-bd2d-faa44910f0b8-arg2">subClassOf</m:mo>
+                </m:mrow>
+                <m:annotation-xml>
+                  <OMA id="MMLPROC-a21489112-b4fa-4c4c-bd2d-faa44910f0b8" xmlns="http://www.openmath.org/OpenMath">
+                    <OMS cd="rdfs" name="subPropertyOf"/>
+                    <OMS cd="owl" name="equivalentProperty" id="MMLPROC-a21489112-b4fa-4c4c-bd2d-faa44910f0b8-arg1"/>
+                    <OMS cd="rdfs" name="subClassOf" id="MMLPROC-a21489112-b4fa-4c4c-bd2d-faa44910f0b8-arg2"/>
+                  </OMA>
+                </m:annotation-xml>
+              </m:semantics>
+            </m:math>
+          </span>
+        </span>
+      </div>
+      <div class="omdoc-symbol" id="sameAs">
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>sameAs
+        </div>
+        <div class="omdoc-type">
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>
+            <span id="MCRd19e297" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+                <m:semantics>
+                  <m:mrow xref="#MMLPROC-abad81561-457c-4980-97d7-5338771721e0">
+                    <m:mo xref="#MMLPROC-abad81561-457c-4980-97d7-5338771721e0-fun">Property</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                    <m:mo xref="#MMLPROC-abad81561-457c-4980-97d7-5338771721e0-args-arg1">⊤</m:mo>
+                    <m:mo separator="true">,</m:mo>
+                    <m:mo xref="#MMLPROC-abad81561-457c-4980-97d7-5338771721e0-args-arg2">⊤</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                  </m:mrow>
+                  <m:annotation-xml>
+                    <OMA id="MMLPROC-abad81561-457c-4980-97d7-5338771721e0" xmlns="http://www.openmath.org/OpenMath">
+                      <OMS cd="rdf" name="Property" id="MMLPROC-abad81561-457c-4980-97d7-5338771721e0-fun"/>
+                      <OMS cd="owl" name="Thing" id="MMLPROC-abad81561-457c-4980-97d7-5338771721e0-args-arg1"/>
+                      <OMS cd="owl" name="Thing" id="MMLPROC-abad81561-457c-4980-97d7-5338771721e0-args-arg2"/>
+                    </OMA>
+                  </m:annotation-xml>
+                </m:semantics>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-symbol" id="differentFrom">
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>differentFrom
+        </div>
+        <div class="omdoc-type">
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>
+            <span id="MCRd19e335" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+                <m:semantics>
+                  <m:mrow xref="#MMLPROC-a2afd7dfd-dfb4-4fd5-b0bf-2047c2ef1d5e">
+                    <m:mo xref="#MMLPROC-a2afd7dfd-dfb4-4fd5-b0bf-2047c2ef1d5e-fun">Property</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                    <m:mo xref="#MMLPROC-a2afd7dfd-dfb4-4fd5-b0bf-2047c2ef1d5e-args-arg1">⊤</m:mo>
+                    <m:mo separator="true">,</m:mo>
+                    <m:mo xref="#MMLPROC-a2afd7dfd-dfb4-4fd5-b0bf-2047c2ef1d5e-args-arg2">⊤</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                  </m:mrow>
+                  <m:annotation-xml>
+                    <OMA id="MMLPROC-a2afd7dfd-dfb4-4fd5-b0bf-2047c2ef1d5e" xmlns="http://www.openmath.org/OpenMath">
+                      <OMS cd="rdf" name="Property" id="MMLPROC-a2afd7dfd-dfb4-4fd5-b0bf-2047c2ef1d5e-fun"/>
+                      <OMS cd="owl" name="Thing" id="MMLPROC-a2afd7dfd-dfb4-4fd5-b0bf-2047c2ef1d5e-args-arg1"/>
+                      <OMS cd="owl" name="Thing" id="MMLPROC-a2afd7dfd-dfb4-4fd5-b0bf-2047c2ef1d5e-args-arg2"/>
+                    </OMA>
+                  </m:annotation-xml>
+                </m:semantics>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-symbol" id="AllDifferent">
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>AllDifferent
+        </div>
+        <div class="omdoc-type">
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>
+            <span id="MCRd19e373" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+                <m:semantics>
+                  <m:mo xref="#MMLPROC-a0a2c8d4f-c487-4cb1-b786-d72f42bb1693">Class</m:mo>
+                  <m:annotation-xml>
+                    <OMS cd="rdfs" name="Class" id="MMLPROC-a0a2c8d4f-c487-4cb1-b786-d72f42bb1693" xmlns="http://www.openmath.org/OpenMath"/>
+                  </m:annotation-xml>
+                </m:semantics>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-symbol" id="distinctMembers">
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>distinctMembers
+        </div>
+        <div class="omdoc-type">
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>
+            <span id="MCRd19e384" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+                <m:semantics>
+                  <m:mrow xref="#MMLPROC-a63f46ffa-fdaa-42d0-9088-acab8b69e9e2">
+                    <m:mo xref="#MMLPROC-a63f46ffa-fdaa-42d0-9088-acab8b69e9e2-fun">Property</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                    <m:mo xref="#MMLPROC-a63f46ffa-fdaa-42d0-9088-acab8b69e9e2-args-arg1">AllDifferent</m:mo>
+                    <m:mo separator="true">,</m:mo>
+                    <m:mo xref="#MMLPROC-a63f46ffa-fdaa-42d0-9088-acab8b69e9e2-args-arg2">List</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                  </m:mrow>
+                  <m:annotation-xml>
+                    <OMA id="MMLPROC-a63f46ffa-fdaa-42d0-9088-acab8b69e9e2" xmlns="http://www.openmath.org/OpenMath">
+                      <OMS cd="rdf" name="Property" id="MMLPROC-a63f46ffa-fdaa-42d0-9088-acab8b69e9e2-fun"/>
+                      <OMS cd="owl" name="AllDifferent" id="MMLPROC-a63f46ffa-fdaa-42d0-9088-acab8b69e9e2-args-arg1"/>
+                      <OMS cd="rdf" name="List" id="MMLPROC-a63f46ffa-fdaa-42d0-9088-acab8b69e9e2-args-arg2"/>
+                    </OMA>
+                  </m:annotation-xml>
+                </m:semantics>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-symbol" id="unionOf">
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>unionOf
+        </div>
+        <div class="omdoc-type">
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>
+            <span id="MCRd19e409" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+                <m:semantics>
+                  <m:mrow xref="#MMLPROC-a49d57d28-2cb5-43d0-9e28-00032ae7cd32">
+                    <m:mo xref="#MMLPROC-a49d57d28-2cb5-43d0-9e28-00032ae7cd32-fun">Property</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                    <m:mo xref="#MMLPROC-a49d57d28-2cb5-43d0-9e28-00032ae7cd32-args-arg1">Class</m:mo>
+                    <m:mo separator="true">,</m:mo>
+                    <m:mo xref="#MMLPROC-a49d57d28-2cb5-43d0-9e28-00032ae7cd32-args-arg2">List</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                  </m:mrow>
+                  <m:annotation-xml>
+                    <OMA id="MMLPROC-a49d57d28-2cb5-43d0-9e28-00032ae7cd32" xmlns="http://www.openmath.org/OpenMath">
+                      <OMS cd="rdf" name="Property" id="MMLPROC-a49d57d28-2cb5-43d0-9e28-00032ae7cd32-fun"/>
+                      <OMS cd="owl" name="Class" id="MMLPROC-a49d57d28-2cb5-43d0-9e28-00032ae7cd32-args-arg1"/>
+                      <OMS cd="rdf" name="List" id="MMLPROC-a49d57d28-2cb5-43d0-9e28-00032ae7cd32-args-arg2"/>
+                    </OMA>
+                  </m:annotation-xml>
+                </m:semantics>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-symbol" id="intersectionOf">
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>intersectionOf
+        </div>
+        <div class="omdoc-type">
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>
+            <span id="MCRd19e446" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+                <m:semantics>
+                  <m:mrow xref="#MMLPROC-ae38bdaee-52dc-481d-973a-27447a54a73c">
+                    <m:mo xref="#MMLPROC-ae38bdaee-52dc-481d-973a-27447a54a73c-fun">Property</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                    <m:mo xref="#MMLPROC-ae38bdaee-52dc-481d-973a-27447a54a73c-args-arg1">Class</m:mo>
+                    <m:mo separator="true">,</m:mo>
+                    <m:mo xref="#MMLPROC-ae38bdaee-52dc-481d-973a-27447a54a73c-args-arg2">List</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                  </m:mrow>
+                  <m:annotation-xml>
+                    <OMA id="MMLPROC-ae38bdaee-52dc-481d-973a-27447a54a73c" xmlns="http://www.openmath.org/OpenMath">
+                      <OMS cd="rdf" name="Property" id="MMLPROC-ae38bdaee-52dc-481d-973a-27447a54a73c-fun"/>
+                      <OMS cd="owl" name="Class" id="MMLPROC-ae38bdaee-52dc-481d-973a-27447a54a73c-args-arg1"/>
+                      <OMS cd="rdf" name="List" id="MMLPROC-ae38bdaee-52dc-481d-973a-27447a54a73c-args-arg2"/>
+                    </OMA>
+                  </m:annotation-xml>
+                </m:semantics>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-symbol" id="complementOf">
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>complementOf
+        </div>
+        <div class="omdoc-type">
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>
+            <span id="MCRd19e483" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+                <m:semantics>
+                  <m:mrow xref="#MMLPROC-a0a7bae14-38b2-4b2c-abe1-507ba0d578a9">
+                    <m:mo xref="#MMLPROC-a0a7bae14-38b2-4b2c-abe1-507ba0d578a9-fun">Property</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                    <m:mo xref="#MMLPROC-a0a7bae14-38b2-4b2c-abe1-507ba0d578a9-args-arg1">Class</m:mo>
+                    <m:mo separator="true">,</m:mo>
+                    <m:mo xref="#MMLPROC-a0a7bae14-38b2-4b2c-abe1-507ba0d578a9-args-arg2">Class</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                  </m:mrow>
+                  <m:annotation-xml>
+                    <OMA id="MMLPROC-a0a7bae14-38b2-4b2c-abe1-507ba0d578a9" xmlns="http://www.openmath.org/OpenMath">
+                      <OMS cd="rdf" name="Property" id="MMLPROC-a0a7bae14-38b2-4b2c-abe1-507ba0d578a9-fun"/>
+                      <OMS cd="owl" name="Class" id="MMLPROC-a0a7bae14-38b2-4b2c-abe1-507ba0d578a9-args-arg1"/>
+                      <OMS cd="owl" name="Class" id="MMLPROC-a0a7bae14-38b2-4b2c-abe1-507ba0d578a9-args-arg2"/>
+                    </OMA>
+                  </m:annotation-xml>
+                </m:semantics>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-symbol" id="oneOf">
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>oneOf
+        </div>
+        <div class="omdoc-type">
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>
+            <span id="MCRd19e518" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+                <m:semantics>
+                  <m:mrow xref="#MMLPROC-a332ba655-5742-4fa0-a3c4-c1704ca1d482">
+                    <m:mo xref="#MMLPROC-a332ba655-5742-4fa0-a3c4-c1704ca1d482-fun">Property</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                    <m:mo xref="#MMLPROC-a332ba655-5742-4fa0-a3c4-c1704ca1d482-args-arg1">Class</m:mo>
+                    <m:mo separator="true">,</m:mo>
+                    <m:mo xref="#MMLPROC-a332ba655-5742-4fa0-a3c4-c1704ca1d482-args-arg2">List</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                  </m:mrow>
+                  <m:annotation-xml>
+                    <OMA id="MMLPROC-a332ba655-5742-4fa0-a3c4-c1704ca1d482" xmlns="http://www.openmath.org/OpenMath">
+                      <OMS cd="rdf" name="Property" id="MMLPROC-a332ba655-5742-4fa0-a3c4-c1704ca1d482-fun"/>
+                      <OMS cd="owl" name="Class" id="MMLPROC-a332ba655-5742-4fa0-a3c4-c1704ca1d482-args-arg1"/>
+                      <OMS cd="rdf" name="List" id="MMLPROC-a332ba655-5742-4fa0-a3c4-c1704ca1d482-args-arg2"/>
+                    </OMA>
+                  </m:annotation-xml>
+                </m:semantics>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-symbol" id="Restriction">
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>Restriction
+        </div>
+        <div class="omdoc-type">
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>
+            <span id="MCRd19e543" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+                <m:semantics>
+                  <m:mo xref="#MMLPROC-a63225b82-8ab9-4648-8815-03013e124b2c">Class</m:mo>
+                  <m:annotation-xml>
+                    <OMS cd="rdfs" name="Class" id="MMLPROC-a63225b82-8ab9-4648-8815-03013e124b2c" xmlns="http://www.openmath.org/OpenMath"/>
+                  </m:annotation-xml>
+                </m:semantics>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-axiom">
+        <span class="omdoc-titleword">Axiom</span>
+        <span class="omdoc-FMP">
+          <span id="MCRd19e552" class="displaymath">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+              <m:semantics>
+                <m:mrow xref="#MMLPROC-a2f403cbb-700f-4d63-ab81-6c47f4794363">
+                  <m:mo xref="#MMLPROC-a2f403cbb-700f-4d63-ab81-6c47f4794363-arg1">Restriction</m:mo>
+                  <m:mo>⊑</m:mo>
+                  <m:mo xref="#MMLPROC-a2f403cbb-700f-4d63-ab81-6c47f4794363-arg2">Class</m:mo>
+                </m:mrow>
+                <m:annotation-xml>
+                  <OMA id="MMLPROC-a2f403cbb-700f-4d63-ab81-6c47f4794363" xmlns="http://www.openmath.org/OpenMath">
+                    <OMS cd="rdfs" name="subClassOf"/>
+                    <OMS cd="owl" name="Restriction" id="MMLPROC-a2f403cbb-700f-4d63-ab81-6c47f4794363-arg1"/>
+                    <OMS cd="rdfs" name="Class" id="MMLPROC-a2f403cbb-700f-4d63-ab81-6c47f4794363-arg2"/>
+                  </OMA>
+                </m:annotation-xml>
+              </m:semantics>
+            </m:math>
+          </span>
+        </span>
+      </div>
+      <div class="omdoc-symbol" id="onProperty">
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>onProperty
+        </div>
+        <div class="omdoc-type">
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>
+            <span id="MCRd19e663" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+                <m:semantics>
+                  <m:mrow xref="#MMLPROC-ad238501b-f369-4ec3-9ff9-56558a4e42a5">
+                    <m:mo xref="#MMLPROC-ad238501b-f369-4ec3-9ff9-56558a4e42a5-fun">Property</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                    <m:mo xref="#MMLPROC-ad238501b-f369-4ec3-9ff9-56558a4e42a5-args-arg1">Restriction</m:mo>
+                    <m:mo separator="true">,</m:mo>
+                    <m:mo xref="#MMLPROC-ad238501b-f369-4ec3-9ff9-56558a4e42a5-args-arg2">Property</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                  </m:mrow>
+                  <m:annotation-xml>
+                    <OMA id="MMLPROC-ad238501b-f369-4ec3-9ff9-56558a4e42a5" xmlns="http://www.openmath.org/OpenMath">
+                      <OMS cd="rdf" name="Property" id="MMLPROC-ad238501b-f369-4ec3-9ff9-56558a4e42a5-fun"/>
+                      <OMS cd="owl" name="Restriction" id="MMLPROC-ad238501b-f369-4ec3-9ff9-56558a4e42a5-args-arg1"/>
+                      <OMS cd="rdf" name="Property" id="MMLPROC-ad238501b-f369-4ec3-9ff9-56558a4e42a5-args-arg2"/>
+                    </OMA>
+                  </m:annotation-xml>
+                </m:semantics>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-symbol" id="allValuesFrom">
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>allValuesFrom
+        </div>
+        <div class="omdoc-type">
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>
+            <span id="MCRd19e688" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+                <m:semantics>
+                  <m:mrow xref="#MMLPROC-af3363259-b2e3-4fa5-b201-01dd3e2a82a7">
+                    <m:mo xref="#MMLPROC-af3363259-b2e3-4fa5-b201-01dd3e2a82a7-fun">Property</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                    <m:mo xref="#MMLPROC-af3363259-b2e3-4fa5-b201-01dd3e2a82a7-args-arg1">Restriction</m:mo>
+                    <m:mo separator="true">,</m:mo>
+                    <m:mo xref="#MMLPROC-af3363259-b2e3-4fa5-b201-01dd3e2a82a7-args-arg2">Class</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                  </m:mrow>
+                  <m:annotation-xml>
+                    <OMA id="MMLPROC-af3363259-b2e3-4fa5-b201-01dd3e2a82a7" xmlns="http://www.openmath.org/OpenMath">
+                      <OMS cd="rdf" name="Property" id="MMLPROC-af3363259-b2e3-4fa5-b201-01dd3e2a82a7-fun"/>
+                      <OMS cd="owl" name="Restriction" id="MMLPROC-af3363259-b2e3-4fa5-b201-01dd3e2a82a7-args-arg1"/>
+                      <OMS cd="rdfs" name="Class" id="MMLPROC-af3363259-b2e3-4fa5-b201-01dd3e2a82a7-args-arg2"/>
+                    </OMA>
+                  </m:annotation-xml>
+                </m:semantics>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-symbol" id="hasValue">
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>hasValue
+        </div>
+        <div class="omdoc-type">
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>
+            <span id="MCRd19e719" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+                <m:semantics>
+                  <m:mo xref="#MMLPROC-a1364aa81-f04e-427d-876f-51025736db29">Property</m:mo>
+                  <m:annotation-xml>
+                    <OMS cd="rdf" name="Property" id="MMLPROC-a1364aa81-f04e-427d-876f-51025736db29" xmlns="http://www.openmath.org/OpenMath"/>
+                  </m:annotation-xml>
+                </m:semantics>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-axiom">
+        <span class="omdoc-titleword">Axiom</span>
+        <span class="omdoc-FMP">
+          <span id="MCRd19e727" class="displaymath">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+              <m:semantics>
+                <m:mrow xref="#MMLPROC-a23196d3b-1ed6-4b8d-8173-09f321a33833">
+                  <m:mo xref="#MMLPROC-a23196d3b-1ed6-4b8d-8173-09f321a33833-fun">domain</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                  <m:mo xref="#MMLPROC-a23196d3b-1ed6-4b8d-8173-09f321a33833-args-arg1">∃</m:mo>
+                  <m:mo separator="true">,</m:mo>
+                  <m:mo xref="#MMLPROC-a23196d3b-1ed6-4b8d-8173-09f321a33833-args-arg2">Restriction</m:mo>
+                  <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                </m:mrow>
+                <m:annotation-xml>
+                  <OMA id="MMLPROC-a23196d3b-1ed6-4b8d-8173-09f321a33833" xmlns="http://www.openmath.org/OpenMath">
+                    <OMS cd="rdfs" name="domain" id="MMLPROC-a23196d3b-1ed6-4b8d-8173-09f321a33833-fun"/>
+                    <OMS cd="owl" name="hasValue" id="MMLPROC-a23196d3b-1ed6-4b8d-8173-09f321a33833-args-arg1"/>
+                    <OMS cd="owl" name="Restriction" id="MMLPROC-a23196d3b-1ed6-4b8d-8173-09f321a33833-args-arg2"/>
+                  </OMA>
+                </m:annotation-xml>
+              </m:semantics>
+            </m:math>
+          </span>
+        </span>
+      </div>
+      <div class="omdoc-symbol" id="someValuesFrom">
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>someValuesFrom
+        </div>
+        <div class="omdoc-type">
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>
+            <span id="MCRd19e758" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+                <m:semantics>
+                  <m:mrow xref="#MMLPROC-ae30e78cf-1185-417d-9209-17db89c3f5d5">
+                    <m:mo xref="#MMLPROC-ae30e78cf-1185-417d-9209-17db89c3f5d5-fun">Property</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                    <m:mo xref="#MMLPROC-ae30e78cf-1185-417d-9209-17db89c3f5d5-args-arg1">Restriction</m:mo>
+                    <m:mo separator="true">,</m:mo>
+                    <m:mo xref="#MMLPROC-ae30e78cf-1185-417d-9209-17db89c3f5d5-args-arg2">Class</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                  </m:mrow>
+                  <m:annotation-xml>
+                    <OMA id="MMLPROC-ae30e78cf-1185-417d-9209-17db89c3f5d5" xmlns="http://www.openmath.org/OpenMath">
+                      <OMS cd="rdf" name="Property" id="MMLPROC-ae30e78cf-1185-417d-9209-17db89c3f5d5-fun"/>
+                      <OMS cd="owl" name="Restriction" id="MMLPROC-ae30e78cf-1185-417d-9209-17db89c3f5d5-args-arg1"/>
+                      <OMS cd="rdfs" name="Class" id="MMLPROC-ae30e78cf-1185-417d-9209-17db89c3f5d5-args-arg2"/>
+                    </OMA>
+                  </m:annotation-xml>
+                </m:semantics>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-symbol" id="minCardinality">
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>minCardinality
+        </div>
+        <div class="omdoc-type">
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>
+            <span id="MCRd19e789" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+                <m:semantics>
+                  <m:mrow xref="#MMLPROC-a9ae05d22-6a25-426a-a6de-ecf1cb0b0793">
+                    <m:mo xref="#MMLPROC-a9ae05d22-6a25-426a-a6de-ecf1cb0b0793-fun">Property</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                    <m:mo xref="#MMLPROC-a9ae05d22-6a25-426a-a6de-ecf1cb0b0793-args-arg1">Restriction</m:mo>
+                    <m:mo separator="true">,</m:mo>
+                    <m:mo xref="#MMLPROC-a9ae05d22-6a25-426a-a6de-ecf1cb0b0793-args-arg2">nonNegativeInteger</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                  </m:mrow>
+                  <m:annotation-xml>
+                    <OMA id="MMLPROC-a9ae05d22-6a25-426a-a6de-ecf1cb0b0793" xmlns="http://www.openmath.org/OpenMath">
+                      <OMS cd="rdf" name="Property" id="MMLPROC-a9ae05d22-6a25-426a-a6de-ecf1cb0b0793-fun"/>
+                      <OMS cd="owl" name="Restriction" id="MMLPROC-a9ae05d22-6a25-426a-a6de-ecf1cb0b0793-args-arg1"/>
+                      <OMS cd="xsd" name="nonNegativeInteger" id="MMLPROC-a9ae05d22-6a25-426a-a6de-ecf1cb0b0793-args-arg2"/>
+                    </OMA>
+                  </m:annotation-xml>
+                </m:semantics>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-symbol" id="maxCardinality">
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>maxCardinality
+        </div>
+        <div class="omdoc-type">
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>
+            <span id="MCRd19e821" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+                <m:semantics>
+                  <m:mrow xref="#MMLPROC-a08cc764c-4817-4bb7-a266-604fa26704ad">
+                    <m:mo xref="#MMLPROC-a08cc764c-4817-4bb7-a266-604fa26704ad-fun">Property</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                    <m:mo xref="#MMLPROC-a08cc764c-4817-4bb7-a266-604fa26704ad-args-arg1">Restriction</m:mo>
+                    <m:mo separator="true">,</m:mo>
+                    <m:mo xref="#MMLPROC-a08cc764c-4817-4bb7-a266-604fa26704ad-args-arg2">nonNegativeInteger</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                  </m:mrow>
+                  <m:annotation-xml>
+                    <OMA id="MMLPROC-a08cc764c-4817-4bb7-a266-604fa26704ad" xmlns="http://www.openmath.org/OpenMath">
+                      <OMS cd="rdf" name="Property" id="MMLPROC-a08cc764c-4817-4bb7-a266-604fa26704ad-fun"/>
+                      <OMS cd="owl" name="Restriction" id="MMLPROC-a08cc764c-4817-4bb7-a266-604fa26704ad-args-arg1"/>
+                      <OMS cd="xsd" name="nonNegativeInteger" id="MMLPROC-a08cc764c-4817-4bb7-a266-604fa26704ad-args-arg2"/>
+                    </OMA>
+                  </m:annotation-xml>
+                </m:semantics>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-symbol" id="cardinality">
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>cardinality
+        </div>
+        <div class="omdoc-type">
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>
+            <span id="MCRd19e852" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+                <m:semantics>
+                  <m:mrow xref="#MMLPROC-aab51fb4f-a3ef-4883-851c-c66768dbf2be">
+                    <m:mo xref="#MMLPROC-aab51fb4f-a3ef-4883-851c-c66768dbf2be-fun">Property</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                    <m:mo xref="#MMLPROC-aab51fb4f-a3ef-4883-851c-c66768dbf2be-args-arg1">Restriction</m:mo>
+                    <m:mo separator="true">,</m:mo>
+                    <m:mo xref="#MMLPROC-aab51fb4f-a3ef-4883-851c-c66768dbf2be-args-arg2">nonNegativeInteger</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                  </m:mrow>
+                  <m:annotation-xml>
+                    <OMA id="MMLPROC-aab51fb4f-a3ef-4883-851c-c66768dbf2be" xmlns="http://www.openmath.org/OpenMath">
+                      <OMS cd="rdf" name="Property" id="MMLPROC-aab51fb4f-a3ef-4883-851c-c66768dbf2be-fun"/>
+                      <OMS cd="owl" name="Restriction" id="MMLPROC-aab51fb4f-a3ef-4883-851c-c66768dbf2be-args-arg1"/>
+                      <OMS cd="xsd" name="nonNegativeInteger" id="MMLPROC-aab51fb4f-a3ef-4883-851c-c66768dbf2be-args-arg2"/>
+                    </OMA>
+                  </m:annotation-xml>
+                </m:semantics>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-symbol" id="ObjectProperty">
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>ObjectProperty
+        </div>
+        <div class="omdoc-type">
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>
+            <span id="MCRd19e883" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+                <m:semantics>
+                  <m:mo xref="#MMLPROC-aeeb64ae3-82a5-4276-9899-9fb3dd375328">Class</m:mo>
+                  <m:annotation-xml>
+                    <OMS cd="rdfs" name="Class" id="MMLPROC-aeeb64ae3-82a5-4276-9899-9fb3dd375328" xmlns="http://www.openmath.org/OpenMath"/>
+                  </m:annotation-xml>
+                </m:semantics>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-axiom">
+        <span class="omdoc-titleword">Axiom</span>
+        <span class="omdoc-FMP">
+          <span id="MCRd19e891" class="displaymath">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+              <m:semantics>
+                <m:mrow xref="#MMLPROC-a439ca849-bb48-446d-b3a1-75119265847a">
+                  <m:mo xref="#MMLPROC-a439ca849-bb48-446d-b3a1-75119265847a-arg1">ObjectProperty</m:mo>
+                  <m:mo>⊑</m:mo>
+                  <m:mo xref="#MMLPROC-a439ca849-bb48-446d-b3a1-75119265847a-arg2">Property</m:mo>
+                </m:mrow>
+                <m:annotation-xml>
+                  <OMA id="MMLPROC-a439ca849-bb48-446d-b3a1-75119265847a" xmlns="http://www.openmath.org/OpenMath">
+                    <OMS cd="rdfs" name="subClassOf"/>
+                    <OMS cd="owl" name="ObjectProperty" id="MMLPROC-a439ca849-bb48-446d-b3a1-75119265847a-arg1"/>
+                    <OMS cd="rdf" name="Property" id="MMLPROC-a439ca849-bb48-446d-b3a1-75119265847a-arg2"/>
+                  </OMA>
+                </m:annotation-xml>
+              </m:semantics>
+            </m:math>
+          </span>
+        </span>
+      </div>
+      <div class="omdoc-symbol" id="DatatypeProperty">
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>DatatypeProperty
+        </div>
+        <div class="omdoc-type">
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>
+            <span id="MCRd19e910" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+                <m:semantics>
+                  <m:mo xref="#MMLPROC-ad82ee7dc-7de0-4e8d-86cf-5fae49f20698">Class</m:mo>
+                  <m:annotation-xml>
+                    <OMS cd="rdfs" name="Class" id="MMLPROC-ad82ee7dc-7de0-4e8d-86cf-5fae49f20698" xmlns="http://www.openmath.org/OpenMath"/>
+                  </m:annotation-xml>
+                </m:semantics>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-axiom">
+        <span class="omdoc-titleword">Axiom</span>
+        <span class="omdoc-FMP">
+          <span id="MCRd19e918" class="displaymath">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+              <m:semantics>
+                <m:mrow xref="#MMLPROC-af14a329e-1647-461d-afbc-d0278d02ac51">
+                  <m:mo xref="#MMLPROC-af14a329e-1647-461d-afbc-d0278d02ac51-arg1">DatatypeProperty</m:mo>
+                  <m:mo>⊑</m:mo>
+                  <m:mo xref="#MMLPROC-af14a329e-1647-461d-afbc-d0278d02ac51-arg2">Property</m:mo>
+                </m:mrow>
+                <m:annotation-xml>
+                  <OMA id="MMLPROC-af14a329e-1647-461d-afbc-d0278d02ac51" xmlns="http://www.openmath.org/OpenMath">
+                    <OMS cd="rdfs" name="subClassOf"/>
+                    <OMS cd="owl" name="DatatypeProperty" id="MMLPROC-af14a329e-1647-461d-afbc-d0278d02ac51-arg1"/>
+                    <OMS cd="rdf" name="Property" id="MMLPROC-af14a329e-1647-461d-afbc-d0278d02ac51-arg2"/>
+                  </OMA>
+                </m:annotation-xml>
+              </m:semantics>
+            </m:math>
+          </span>
+        </span>
+      </div>
+      <div class="omdoc-symbol" id="inverseOf">
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>inverseOf
+        </div>
+        <div class="omdoc-type">
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>
+            <span id="MCRd19e937" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+                <m:semantics>
+                  <m:mrow xref="#MMLPROC-ad3be890e-3533-4c57-94c7-e6a38512115f">
+                    <m:mo xref="#MMLPROC-ad3be890e-3533-4c57-94c7-e6a38512115f-fun">Property</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                    <m:mo xref="#MMLPROC-ad3be890e-3533-4c57-94c7-e6a38512115f-args-arg1">ObjectProperty</m:mo>
+                    <m:mo separator="true">,</m:mo>
+                    <m:mo xref="#MMLPROC-ad3be890e-3533-4c57-94c7-e6a38512115f-args-arg2">ObjectProperty</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                  </m:mrow>
+                  <m:annotation-xml>
+                    <OMA id="MMLPROC-ad3be890e-3533-4c57-94c7-e6a38512115f" xmlns="http://www.openmath.org/OpenMath">
+                      <OMS cd="rdf" name="Property" id="MMLPROC-ad3be890e-3533-4c57-94c7-e6a38512115f-fun"/>
+                      <OMS cd="owl" name="ObjectProperty" id="MMLPROC-ad3be890e-3533-4c57-94c7-e6a38512115f-args-arg1"/>
+                      <OMS cd="owl" name="ObjectProperty" id="MMLPROC-ad3be890e-3533-4c57-94c7-e6a38512115f-args-arg2"/>
+                    </OMA>
+                  </m:annotation-xml>
+                </m:semantics>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-symbol" id="TransitiveProperty">
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>TransitiveProperty
+        </div>
+        <div class="omdoc-type">
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>
+            <span id="MCRd19e979" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+                <m:semantics>
+                  <m:mo xref="#MMLPROC-af51b1df4-9c99-470d-b07b-5eb692068017">Class</m:mo>
+                  <m:annotation-xml>
+                    <OMS cd="rdfs" name="Class" id="MMLPROC-af51b1df4-9c99-470d-b07b-5eb692068017" xmlns="http://www.openmath.org/OpenMath"/>
+                  </m:annotation-xml>
+                </m:semantics>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-axiom">
+        <span class="omdoc-titleword">Axiom</span>
+        <span class="omdoc-FMP">
+          <span id="MCRd19e987" class="displaymath">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+              <m:semantics>
+                <m:mrow xref="#MMLPROC-af742f27b-5ea4-43dd-bdd9-881d928f785d">
+                  <m:mo xref="#MMLPROC-af742f27b-5ea4-43dd-bdd9-881d928f785d-arg1">TransitiveProperty</m:mo>
+                  <m:mo>⊑</m:mo>
+                  <m:mo xref="#MMLPROC-af742f27b-5ea4-43dd-bdd9-881d928f785d-arg2">Property</m:mo>
+                </m:mrow>
+                <m:annotation-xml>
+                  <OMA id="MMLPROC-af742f27b-5ea4-43dd-bdd9-881d928f785d" xmlns="http://www.openmath.org/OpenMath">
+                    <OMS cd="rdfs" name="subClassOf"/>
+                    <OMS cd="owl" name="TransitiveProperty" id="MMLPROC-af742f27b-5ea4-43dd-bdd9-881d928f785d-arg1"/>
+                    <OMS cd="rdf" name="Property" id="MMLPROC-af742f27b-5ea4-43dd-bdd9-881d928f785d-arg2"/>
+                  </OMA>
+                </m:annotation-xml>
+              </m:semantics>
+            </m:math>
+          </span>
+        </span>
+      </div>
+      <div class="omdoc-symbol" id="SymmetricProperty">
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>SymmetricProperty
+        </div>
+        <div class="omdoc-type">
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>
+            <span id="MCRd19e1006" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+                <m:semantics>
+                  <m:mo xref="#MMLPROC-a19461edf-b600-4e91-aca0-557b11985e63">Class</m:mo>
+                  <m:annotation-xml>
+                    <OMS cd="rdfs" name="Class" id="MMLPROC-a19461edf-b600-4e91-aca0-557b11985e63" xmlns="http://www.openmath.org/OpenMath"/>
+                  </m:annotation-xml>
+                </m:semantics>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-axiom">
+        <span class="omdoc-titleword">Axiom</span>
+        <span class="omdoc-FMP">
+          <span id="MCRd19e1014" class="displaymath">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+              <m:semantics>
+                <m:mrow xref="#MMLPROC-a820a0707-2da2-47f4-8fc3-26c689bd2ac9">
+                  <m:mo xref="#MMLPROC-a820a0707-2da2-47f4-8fc3-26c689bd2ac9-arg1">SymmetricProperty</m:mo>
+                  <m:mo>⊑</m:mo>
+                  <m:mo xref="#MMLPROC-a820a0707-2da2-47f4-8fc3-26c689bd2ac9-arg2">ObjectProperty</m:mo>
+                </m:mrow>
+                <m:annotation-xml>
+                  <OMA id="MMLPROC-a820a0707-2da2-47f4-8fc3-26c689bd2ac9" xmlns="http://www.openmath.org/OpenMath">
+                    <OMS cd="rdfs" name="subClassOf"/>
+                    <OMS cd="owl" name="SymmetricProperty" id="MMLPROC-a820a0707-2da2-47f4-8fc3-26c689bd2ac9-arg1"/>
+                    <OMS cd="owl" name="ObjectProperty" id="MMLPROC-a820a0707-2da2-47f4-8fc3-26c689bd2ac9-arg2"/>
+                  </OMA>
+                </m:annotation-xml>
+              </m:semantics>
+            </m:math>
+          </span>
+        </span>
+      </div>
+      <div class="omdoc-symbol" id="FunctionalProperty">
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>FunctionalProperty
+        </div>
+        <div class="omdoc-type">
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>
+            <span id="MCRd19e1033" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+                <m:semantics>
+                  <m:mo xref="#MMLPROC-aa6ef0076-bf5e-4112-8306-ae995829ca7c">Class</m:mo>
+                  <m:annotation-xml>
+                    <OMS cd="rdfs" name="Class" id="MMLPROC-aa6ef0076-bf5e-4112-8306-ae995829ca7c" xmlns="http://www.openmath.org/OpenMath"/>
+                  </m:annotation-xml>
+                </m:semantics>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-axiom">
+        <span class="omdoc-titleword">Axiom</span>
+        <span class="omdoc-FMP">
+          <span id="MCRd19e1041" class="displaymath">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+              <m:semantics>
+                <m:mrow xref="#MMLPROC-af81c5cae-7511-440f-9b77-6e06bc18dd3d">
+                  <m:mo xref="#MMLPROC-af81c5cae-7511-440f-9b77-6e06bc18dd3d-arg1">FunctionalProperty</m:mo>
+                  <m:mo>⊑</m:mo>
+                  <m:mo xref="#MMLPROC-af81c5cae-7511-440f-9b77-6e06bc18dd3d-arg2">Property</m:mo>
+                </m:mrow>
+                <m:annotation-xml>
+                  <OMA id="MMLPROC-af81c5cae-7511-440f-9b77-6e06bc18dd3d" xmlns="http://www.openmath.org/OpenMath">
+                    <OMS cd="rdfs" name="subClassOf"/>
+                    <OMS cd="owl" name="FunctionalProperty" id="MMLPROC-af81c5cae-7511-440f-9b77-6e06bc18dd3d-arg1"/>
+                    <OMS cd="rdf" name="Property" id="MMLPROC-af81c5cae-7511-440f-9b77-6e06bc18dd3d-arg2"/>
+                  </OMA>
+                </m:annotation-xml>
+              </m:semantics>
+            </m:math>
+          </span>
+        </span>
+      </div>
+      <div class="omdoc-symbol" id="InverseFunctionalProperty">
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>InverseFunctionalProperty
+        </div>
+        <div class="omdoc-type">
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>
+            <span id="MCRd19e1060" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+                <m:semantics>
+                  <m:mo xref="#MMLPROC-a5decfba2-e3a8-45eb-a2d3-9a73b3f17d21">Class</m:mo>
+                  <m:annotation-xml>
+                    <OMS cd="rdfs" name="Class" id="MMLPROC-a5decfba2-e3a8-45eb-a2d3-9a73b3f17d21" xmlns="http://www.openmath.org/OpenMath"/>
+                  </m:annotation-xml>
+                </m:semantics>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-axiom">
+        <span class="omdoc-titleword">Axiom</span>
+        <span class="omdoc-FMP">
+          <span id="MCRd19e1068" class="displaymath">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+              <m:semantics>
+                <m:mrow xref="#MMLPROC-ac74b6fc4-8833-4a19-b8c2-6231a2a7bcbe">
+                  <m:mo xref="#MMLPROC-ac74b6fc4-8833-4a19-b8c2-6231a2a7bcbe-arg1">InverseFunctionalProperty</m:mo>
+                  <m:mo>⊑</m:mo>
+                  <m:mo xref="#MMLPROC-ac74b6fc4-8833-4a19-b8c2-6231a2a7bcbe-arg2">ObjectProperty</m:mo>
+                </m:mrow>
+                <m:annotation-xml>
+                  <OMA id="MMLPROC-ac74b6fc4-8833-4a19-b8c2-6231a2a7bcbe" xmlns="http://www.openmath.org/OpenMath">
+                    <OMS cd="rdfs" name="subClassOf"/>
+                    <OMS cd="owl" name="InverseFunctionalProperty" id="MMLPROC-ac74b6fc4-8833-4a19-b8c2-6231a2a7bcbe-arg1"/>
+                    <OMS cd="owl" name="ObjectProperty" id="MMLPROC-ac74b6fc4-8833-4a19-b8c2-6231a2a7bcbe-arg2"/>
+                  </OMA>
+                </m:annotation-xml>
+              </m:semantics>
+            </m:math>
+          </span>
+        </span>
+      </div>
+      <div class="omdoc-symbol" id="AnnotationProperty">
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>AnnotationProperty
+        </div>
+        <div class="omdoc-type">
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>
+            <span id="MCRd19e1087" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+                <m:semantics>
+                  <m:mo xref="#MMLPROC-a385fe512-fe41-43bf-b64e-89a6750c7bc1">Class</m:mo>
+                  <m:annotation-xml>
+                    <OMS cd="rdfs" name="Class" id="MMLPROC-a385fe512-fe41-43bf-b64e-89a6750c7bc1" xmlns="http://www.openmath.org/OpenMath"/>
+                  </m:annotation-xml>
+                </m:semantics>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-axiom">
+        <span class="omdoc-titleword">Axiom</span>
+        <span class="omdoc-FMP">
+          <span id="MCRd19e1095" class="displaymath">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+              <m:semantics>
+                <m:mrow xref="#MMLPROC-ad73d807c-7fc1-4fc3-80c6-5fabcfe587f5">
+                  <m:mo xref="#MMLPROC-ad73d807c-7fc1-4fc3-80c6-5fabcfe587f5-arg1">AnnotationProperty</m:mo>
+                  <m:mo>⊑</m:mo>
+                  <m:mo xref="#MMLPROC-ad73d807c-7fc1-4fc3-80c6-5fabcfe587f5-arg2">Property</m:mo>
+                </m:mrow>
+                <m:annotation-xml>
+                  <OMA id="MMLPROC-ad73d807c-7fc1-4fc3-80c6-5fabcfe587f5" xmlns="http://www.openmath.org/OpenMath">
+                    <OMS cd="rdfs" name="subClassOf"/>
+                    <OMS cd="owl" name="AnnotationProperty" id="MMLPROC-ad73d807c-7fc1-4fc3-80c6-5fabcfe587f5-arg1"/>
+                    <OMS cd="rdf" name="Property" id="MMLPROC-ad73d807c-7fc1-4fc3-80c6-5fabcfe587f5-arg2"/>
+                  </OMA>
+                </m:annotation-xml>
+              </m:semantics>
+            </m:math>
+          </span>
+        </span>
+      </div>
+      <div class="omdoc-symbol" id="Ontology">
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>Ontology
+        </div>
+        <div class="omdoc-type">
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>
+            <span id="MCRd19e1114" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+                <m:semantics>
+                  <m:mo xref="#MMLPROC-a7b269c3e-f3e3-4179-b817-8c93508f165c">Class</m:mo>
+                  <m:annotation-xml>
+                    <OMS cd="rdfs" name="Class" id="MMLPROC-a7b269c3e-f3e3-4179-b817-8c93508f165c" xmlns="http://www.openmath.org/OpenMath"/>
+                  </m:annotation-xml>
+                </m:semantics>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-symbol" id="OntologyProperty">
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>OntologyProperty
+        </div>
+        <div class="omdoc-type">
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>
+            <span id="MCRd19e1126" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+                <m:semantics>
+                  <m:mo xref="#MMLPROC-a4ccb380d-4778-486b-b74e-e154d39cbf90">Class</m:mo>
+                  <m:annotation-xml>
+                    <OMS cd="rdfs" name="Class" id="MMLPROC-a4ccb380d-4778-486b-b74e-e154d39cbf90" xmlns="http://www.openmath.org/OpenMath"/>
+                  </m:annotation-xml>
+                </m:semantics>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-axiom">
+        <span class="omdoc-titleword">Axiom</span>
+        <span class="omdoc-FMP">
+          <span id="MCRd19e1134" class="displaymath">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+              <m:semantics>
+                <m:mrow xref="#MMLPROC-a862fc2f6-8317-4a3e-afb0-408bfeec44b7">
+                  <m:mo xref="#MMLPROC-a862fc2f6-8317-4a3e-afb0-408bfeec44b7-arg1">OntologyProperty</m:mo>
+                  <m:mo>⊑</m:mo>
+                  <m:mo xref="#MMLPROC-a862fc2f6-8317-4a3e-afb0-408bfeec44b7-arg2">Property</m:mo>
+                </m:mrow>
+                <m:annotation-xml>
+                  <OMA id="MMLPROC-a862fc2f6-8317-4a3e-afb0-408bfeec44b7" xmlns="http://www.openmath.org/OpenMath">
+                    <OMS cd="rdfs" name="subClassOf"/>
+                    <OMS cd="owl" name="OntologyProperty" id="MMLPROC-a862fc2f6-8317-4a3e-afb0-408bfeec44b7-arg1"/>
+                    <OMS cd="rdf" name="Property" id="MMLPROC-a862fc2f6-8317-4a3e-afb0-408bfeec44b7-arg2"/>
+                  </OMA>
+                </m:annotation-xml>
+              </m:semantics>
+            </m:math>
+          </span>
+        </span>
+      </div>
+      <div class="omdoc-symbol" id="imports">
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>imports
+        </div>
+        <div class="omdoc-type">
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>
+            <span id="MCRd19e1153" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+                <m:semantics>
+                  <m:mrow xref="#MMLPROC-ac52e03c1-aa89-464b-8f4e-598470fd1eac">
+                    <m:mo xref="#MMLPROC-ac52e03c1-aa89-464b-8f4e-598470fd1eac-fun">OntologyProperty</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                    <m:mo xref="#MMLPROC-ac52e03c1-aa89-464b-8f4e-598470fd1eac-args-arg1">Ontology</m:mo>
+                    <m:mo separator="true">,</m:mo>
+                    <m:mo xref="#MMLPROC-ac52e03c1-aa89-464b-8f4e-598470fd1eac-args-arg2">Ontology</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                  </m:mrow>
+                  <m:annotation-xml>
+                    <OMA id="MMLPROC-ac52e03c1-aa89-464b-8f4e-598470fd1eac" xmlns="http://www.openmath.org/OpenMath">
+                      <OMS cd="owl" name="OntologyProperty" id="MMLPROC-ac52e03c1-aa89-464b-8f4e-598470fd1eac-fun"/>
+                      <OMS cd="owl" name="Ontology" id="MMLPROC-ac52e03c1-aa89-464b-8f4e-598470fd1eac-args-arg1"/>
+                      <OMS cd="owl" name="Ontology" id="MMLPROC-ac52e03c1-aa89-464b-8f4e-598470fd1eac-args-arg2"/>
+                    </OMA>
+                  </m:annotation-xml>
+                </m:semantics>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-symbol" id="versionInfo">
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>versionInfo
+        </div>
+        <div class="omdoc-type">
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>
+            <span id="MCRd19e1178" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+                <m:semantics>
+                  <m:mo xref="#MMLPROC-a9afe5afd-061c-4fe1-a392-83d0668505ea">AnnotationProperty</m:mo>
+                  <m:annotation-xml>
+                    <OMS cd="owl" name="AnnotationProperty" id="MMLPROC-a9afe5afd-061c-4fe1-a392-83d0668505ea" xmlns="http://www.openmath.org/OpenMath"/>
+                  </m:annotation-xml>
+                </m:semantics>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-symbol" id="priorVersion">
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>priorVersion
+        </div>
+        <div class="omdoc-type">
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>
+            <span id="MCRd19e1189" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+                <m:semantics>
+                  <m:mrow xref="#MMLPROC-a6487fe87-a665-4777-83d5-800cdb300ce0">
+                    <m:mo xref="#MMLPROC-a6487fe87-a665-4777-83d5-800cdb300ce0-fun">OntologyProperty</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                    <m:mo xref="#MMLPROC-a6487fe87-a665-4777-83d5-800cdb300ce0-args-arg1">Ontology</m:mo>
+                    <m:mo separator="true">,</m:mo>
+                    <m:mo xref="#MMLPROC-a6487fe87-a665-4777-83d5-800cdb300ce0-args-arg2">Ontology</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                  </m:mrow>
+                  <m:annotation-xml>
+                    <OMA id="MMLPROC-a6487fe87-a665-4777-83d5-800cdb300ce0" xmlns="http://www.openmath.org/OpenMath">
+                      <OMS cd="owl" name="OntologyProperty" id="MMLPROC-a6487fe87-a665-4777-83d5-800cdb300ce0-fun"/>
+                      <OMS cd="owl" name="Ontology" id="MMLPROC-a6487fe87-a665-4777-83d5-800cdb300ce0-args-arg1"/>
+                      <OMS cd="owl" name="Ontology" id="MMLPROC-a6487fe87-a665-4777-83d5-800cdb300ce0-args-arg2"/>
+                    </OMA>
+                  </m:annotation-xml>
+                </m:semantics>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-symbol" id="backwardCompatibleWith">
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>backwardCompatibleWith
+        </div>
+        <div class="omdoc-type">
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>
+            <span id="MCRd19e1214" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+                <m:semantics>
+                  <m:mrow xref="#MMLPROC-a379afe0f-cf83-4adc-accf-636ef4cd9a0f">
+                    <m:mo xref="#MMLPROC-a379afe0f-cf83-4adc-accf-636ef4cd9a0f-fun">OntologyProperty</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                    <m:mo xref="#MMLPROC-a379afe0f-cf83-4adc-accf-636ef4cd9a0f-args-arg1">Ontology</m:mo>
+                    <m:mo separator="true">,</m:mo>
+                    <m:mo xref="#MMLPROC-a379afe0f-cf83-4adc-accf-636ef4cd9a0f-args-arg2">Ontology</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                  </m:mrow>
+                  <m:annotation-xml>
+                    <OMA id="MMLPROC-a379afe0f-cf83-4adc-accf-636ef4cd9a0f" xmlns="http://www.openmath.org/OpenMath">
+                      <OMS cd="owl" name="OntologyProperty" id="MMLPROC-a379afe0f-cf83-4adc-accf-636ef4cd9a0f-fun"/>
+                      <OMS cd="owl" name="Ontology" id="MMLPROC-a379afe0f-cf83-4adc-accf-636ef4cd9a0f-args-arg1"/>
+                      <OMS cd="owl" name="Ontology" id="MMLPROC-a379afe0f-cf83-4adc-accf-636ef4cd9a0f-args-arg2"/>
+                    </OMA>
+                  </m:annotation-xml>
+                </m:semantics>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-symbol" id="incompatibleWith">
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>incompatibleWith
+        </div>
+        <div class="omdoc-type">
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>
+            <span id="MCRd19e1239" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+                <m:semantics>
+                  <m:mrow xref="#MMLPROC-a03cb85d5-5b59-4b7a-af30-6f4d2f85b7a8">
+                    <m:mo xref="#MMLPROC-a03cb85d5-5b59-4b7a-af30-6f4d2f85b7a8-fun">OntologyProperty</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">(</m:mo>
+                    <m:mo xref="#MMLPROC-a03cb85d5-5b59-4b7a-af30-6f4d2f85b7a8-args-arg1">Ontology</m:mo>
+                    <m:mo separator="true">,</m:mo>
+                    <m:mo xref="#MMLPROC-a03cb85d5-5b59-4b7a-af30-6f4d2f85b7a8-args-arg2">Ontology</m:mo>
+                    <m:mo fence="true" mcd:egroup="fence" xmlns:mcd="http://www.w3.org/ns/mathml-cd">)</m:mo>
+                  </m:mrow>
+                  <m:annotation-xml>
+                    <OMA id="MMLPROC-a03cb85d5-5b59-4b7a-af30-6f4d2f85b7a8" xmlns="http://www.openmath.org/OpenMath">
+                      <OMS cd="owl" name="OntologyProperty" id="MMLPROC-a03cb85d5-5b59-4b7a-af30-6f4d2f85b7a8-fun"/>
+                      <OMS cd="owl" name="Ontology" id="MMLPROC-a03cb85d5-5b59-4b7a-af30-6f4d2f85b7a8-args-arg1"/>
+                      <OMS cd="owl" name="Ontology" id="MMLPROC-a03cb85d5-5b59-4b7a-af30-6f4d2f85b7a8-args-arg2"/>
+                    </OMA>
+                  </m:annotation-xml>
+                </m:semantics>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-symbol" id="DeprecatedClass">
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>DeprecatedClass
+        </div>
+        <div class="omdoc-type">
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>
+            <span id="MCRd19e1264" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+                <m:semantics>
+                  <m:mo xref="#MMLPROC-a6ffc1e04-5b4e-4c13-9a0a-4c5baf714136">Class</m:mo>
+                  <m:annotation-xml>
+                    <OMS cd="rdfs" name="Class" id="MMLPROC-a6ffc1e04-5b4e-4c13-9a0a-4c5baf714136" xmlns="http://www.openmath.org/OpenMath"/>
+                  </m:annotation-xml>
+                </m:semantics>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-symbol" id="DeprecatedProperty">
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>DeprecatedProperty
+        </div>
+        <div class="omdoc-type">
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>
+            <span id="MCRd19e1275" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+                <m:semantics>
+                  <m:mo xref="#MMLPROC-a41762c35-7c55-4d62-9f2c-cc78d2ed1117">Class</m:mo>
+                  <m:annotation-xml>
+                    <OMS cd="rdfs" name="Class" id="MMLPROC-a41762c35-7c55-4d62-9f2c-cc78d2ed1117" xmlns="http://www.openmath.org/OpenMath"/>
+                  </m:annotation-xml>
+                </m:semantics>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="omdoc-axiom">
+        <span class="omdoc-titleword">Axiom</span>
+        <span class="omdoc-FMP">
+          <span id="MCRd19e1283" class="displaymath">
+            <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+              <m:semantics>
+                <m:mrow xref="#MMLPROC-ad4941b94-1b4c-42ff-bb03-1996e767d646">
+                  <m:mo xref="#MMLPROC-ad4941b94-1b4c-42ff-bb03-1996e767d646-arg1">DeprecatedProperty</m:mo>
+                  <m:mo>⊑</m:mo>
+                  <m:mo xref="#MMLPROC-ad4941b94-1b4c-42ff-bb03-1996e767d646-arg2">Property</m:mo>
+                </m:mrow>
+                <m:annotation-xml>
+                  <OMA id="MMLPROC-ad4941b94-1b4c-42ff-bb03-1996e767d646" xmlns="http://www.openmath.org/OpenMath">
+                    <OMS cd="rdfs" name="subClassOf"/>
+                    <OMS cd="owl" name="DeprecatedProperty" id="MMLPROC-ad4941b94-1b4c-42ff-bb03-1996e767d646-arg1"/>
+                    <OMS cd="rdf" name="Property" id="MMLPROC-ad4941b94-1b4c-42ff-bb03-1996e767d646-arg2"/>
+                  </OMA>
+                </m:annotation-xml>
+              </m:semantics>
+            </m:math>
+          </span>
+        </span>
+      </div>
+      <div class="omdoc-symbol" id="DataRange">
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>DataRange
+        </div>
+        <div class="omdoc-type">
+          <div class="omdoc-titlebox">
+            <span class="omdoc-titleword">Type</span>
+            <span id="MCRd19e1302" class="displaymath">
+              <m:math xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns="http://omdoc.org/ns" xmlns:cc="http://creativecommons.org/ns" xmlns:om="http://www.openmath.org/OpenMath" xmlns:oo="http://omdoc.org/ontology#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+                <m:semantics>
+                  <m:mo xref="#MMLPROC-a866ac1b3-d004-4d39-9f4f-56802548f15a">Class</m:mo>
+                  <m:annotation-xml>
+                    <OMS cd="rdfs" name="Class" id="MMLPROC-a866ac1b3-d004-4d39-9f4f-56802548f15a" xmlns="http://www.openmath.org/OpenMath"/>
+                  </m:annotation-xml>
+                </m:semantics>
+              </m:math>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

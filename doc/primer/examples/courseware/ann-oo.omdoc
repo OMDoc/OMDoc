@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xml:id="ann-oo.omdoc"
+  xmlns="http://omdoc.org/ns"
+  xmlns:cc="http://creativecommons.org/ns"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  version="1.6">
+<metadata>
+  <dc:date action="created"> 2004-10-05T11:03:26Z </dc:date>
+  <dc:title xml:lang="en"> ann-oo </dc:title>
+  <dc:creator role="aut"> Michael Kohlhase </dc:creator>
+  <dc:source>  </dc:source>
+  <dc:date action="updated"> 2004-10-05T11:03:26Z </dc:date>
+  <dc:type> Text </dc:type>
+  <dc:format> application/omdoc+xml </dc:format>
+  <dc:rights>Copyright (c) 2004 Michael Kohlhase</dc:rights>
+  <cc:license>
+    <cc:permissions reproduction="permitted" distribution="permitted" derivative_works="permitted"/>
+    <cc:prohibitions commercial_use="permitted"/>
+    <cc:requirements notice="required" copyleft="required" attribution="required"/>
+  </cc:license>
+</metadata>
+<theory xml:id="cvi">
+  <symbol name="object" xml:id="cvi.object"/>
+  <symbol name="instance" xml:id="cvi.instance"/>
+  <symbol name="class" xml:id="cvi.class"/>
+  <symbol name="inherits" xml:id="cvi.inherits"/>
+  <symbol name="superclass" xml:id="cvi.superclass"/>
+
+  <axiom xml:id="ax1" for="#cvi.object #cvi.instance #cvi.class">
+    <CMP>Every <phrase style="font-style:italic;color:blue">object</phrase>
+      is an <phrase style="font-style:italic;color:red">instance</phrase> 
+      of a <phrase style="font-style:italic;color:blue">class</phrase>.
+    </CMP>
+  </axiom>
+
+  <axiom xml:id="ax2" for="#cvi.class">
+    <CMP>The characteristics of an object are defined by its class.</CMP>
+  </axiom>
+
+  <axiom xml:id="ax3" for="#cvi.inherits #cvi.superclass">
+    <CMP> An object <phrase style="font-style:italic;color:blue">inherits</phrase>
+      characteristics from all of its 
+      <phrase style="font-style:italic;color:red">superclasses</phrase>.</CMP>
+   </axiom>
+</theory>
+
+</omdoc>

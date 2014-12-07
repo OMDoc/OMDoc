@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xml:id="theory-inclusion.omdoc"
+  xmlns="http://omdoc.org/ns"
+  xmlns:cc="http://creativecommons.org/ns"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  version="1.6">
+<metadata>
+  <dc:date action="created"> 2004-10-05T08:04:31Z </dc:date>
+  <dc:title xml:lang="en"> theory-inclusion </dc:title>
+  <dc:creator role="aut"> Michael Kohlhase </dc:creator>
+  <dc:source>  </dc:source>
+  <dc:date action="updated"> 2004-10-05T08:04:31Z </dc:date>
+  <dc:type> Text </dc:type>
+  <dc:format> application/omdoc+xml </dc:format>
+  <dc:rights>Copyright (c) 2004 Michael Kohlhase</dc:rights>
+  <cc:license>
+    <cc:permissions reproduction="permitted" distribution="permitted" derivative_works="permitted"/>
+    <cc:prohibitions commercial_use="permitted"/>
+    <cc:requirements notice="required" copyleft="required" attribution="required"/>
+  </cc:license>
+</metadata>
+<theory-inclusion xml:id="ti1" from="group" to="#group">
+  <morphism>
+    <requation>
+      <legacy format="TeX">$X^{-1}$</legacy>
+      <legacy format="TeX">$X$</legacy>
+    </requation>
+    <requation>
+      <legacy format="TeX">$X$</legacy>
+      <legacy format="TeX">$X^{-1}$</legacy>
+    </requation>
+  </morphism>
+  <obligation assertion="inv.closed" induced-by="elalg.omdoc#closed.ax"/>
+  <obligation assertion="inv.assoc" induced-by="elalg.omdoc#assoc.ax"/>
+  <obligation assertion="inv.unit" induced-by="elalg.omdoc#unit.ax"/>
+  <obligation assertion="inv.inv" induced-by="elalg.omdoc#inv.ax"/>
+</theory-inclusion>  
+
+<assertion xml:id="inv.closed">
+  <FMP><legacy format="TeX">$\forall{x,y}.x^{-1}\in{M}\wedge
+      y^{-1}\in{M}\Rightarrow x^{-1}\circ y^{-1}\in{M}$</legacy>
+    </FMP>
+</assertion>
+<assertion xml:id="inv.assoc">
+  <FMP><legacy format="TeX">$\forall{x,y,z}.x^{-1}\in{M}\wedge y^{-1}\in{M}\wedge
+      z^{-1}\in{M}\Rightarrow (x^{-1}\circ y^{-1}) \circ
+      z^{-1}=x^{-1}\circ(y^{-1}\circ z^{-1})$</legacy>
+  </FMP>
+</assertion>
+<assertion xml:id="inv.unit">
+  <FMP><legacy format="TeX">$\forall{x}.x^{-1}\in{M}\Rightarrow x^{-1}\circ e=
+      x^{-1}$</legacy></FMP>
+    </assertion>
+<assertion xml:id="inv.inv">
+  <FMP><legacy format="TeX">$\forall{x,y}.x^{-1}\in{M}\wedge
+      y^{-1}\in{M}\Rightarrow x^{-1}\circ x=e$</legacy></FMP>
+</assertion>
+
+</omdoc>

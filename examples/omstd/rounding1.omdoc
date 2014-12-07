@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  
+       xmlns="http://omdoc.org/ns"
+       xmlns:om="http://www.openmath.org/OpenMath"
+       xmlns:m="http://www.w3.org/1998/Math/MathML"
+       xmlns:o="http://omdoc.org/ns"
+       xml:id="rounding1-omdoc">
+
+<metadata>
+  <dc:title>The OpenMath Content Dictionary rounding1.ocd  in OMDoc form</dc:title>
+  <dc:creator role="trl">Michael Kohlhase</dc:creator>
+  <dc:creator role="ant">James Davenport</dc:creator>
+  <dc:date>1999-10-24T00:00:00</dc:date>
+  <dc:source>Derived from the OpenMath CD http://www.openmath.org/cd/rounding1.ocd.</dc:source>
+  <dc:type>Text</dc:type>
+  <dc:format>application/omdoc+xml</dc:format>
+  <dc:rights>Copyright (c) 2000-2002 Michael Kohlhase;
+    This OMDoc content dictionary is released under the OpenMath license:
+    http://monet.nag.co.uk/openmath/cdfiles/license.html
+  </dc:rights>
+  <dc:description> A CD of basic rounding concepts</dc:description>
+</metadata>
+
+<theory xml:id="rounding1">
+  <imports xml:id="rounding1-imports-sts" from="sts.omdoc#sts"/>
+  <imports xml:id="rounding1-imports-setname1" from="setname1.omdoc#setname1"/>
+  <imports xml:id="rounding1-imports-quant1" from="quant1.omdoc#quant1"/>
+  <imports xml:id="rounding1-imports-logic1" from="logic1.omdoc#logic1"/>
+  <imports xml:id="rounding1-imports-relation1" from="relation1.omdoc#relation1"/>
+  <imports xml:id="rounding1-imports-arith1" from="arith1.omdoc#arith1"/>
+  <imports xml:id="rounding1-imports-alg1" from="alg1.omdoc#alg1"/>
+  <imports xml:id="rounding1-imports-set1" from="set1.omdoc#set1"/>
+
+<symbol name="ceiling" xml:id="ceiling">
+  <metadata>
+  <dc:description>The round up (to +infinity) operation.</dc:description><dc:subject>ceiling</dc:subject></metadata>
+  <type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMS name="R" cd="setname1"/>
+	<OMS name="Z" cd="setname1"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="rounding1" name="ceiling" o:cr="fun"/>
+        <expr name="arg"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="rounding1" o:cr="fun">ceiling</m:csymbol>
+        <expr name="arg"/>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <m:mrow>
+        <m:mo fence="true" o:cr="fun">⌈</m:mo>
+        <render name="arg"/>
+        <m:mo fence="true" o:cr="fun">⌉</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+  
+<assertion xml:id="ceiling-prop-1" type="lemma">
+  <CMP> for all x | ceiling(x)-1 &lt; x &lt;= ceiling x </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMBIND>
+	<OMS cd="quant1" name="forall"/>
+	<OMBVAR>
+	  <OMV name="x"/>
+	</OMBVAR>
+	<OMA>
+	  <OMS cd="logic1" name="and"/>
+	  <OMA>
+	    <OMS cd="relation1" name="lt"/>
+	    <OMA>
+	      <OMS cd="arith1" name="minus"/>
+	      <OMA>
+		<OMS cd="rounding1" name="ceiling"/>
+		<OMV name="x"/>
+	      </OMA>
+	      <OMS cd="alg1" name="one"/>
+	    </OMA>
+	    <OMV name="x"/>
+	  </OMA>
+	  <OMA>
+	    <OMS cd="relation1" name="leq"/>
+	    <OMV name="x"/>
+	    <OMA>
+	      <OMS cd="rounding1" name="ceiling"/>
+	      <OMV name="x"/>
+	    </OMA>
+	  </OMA>
+	</OMA>
+      </OMBIND>
+    </OMOBJ>
+  </FMP>
+</assertion>
+<symbol name="floor" xml:id="floor">
+  <metadata>
+  <dc:description>The round down (to -infinity) operation.</dc:description><dc:subject>floor</dc:subject></metadata>
+  <type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMS name="R" cd="setname1"/>
+	<OMS name="Z" cd="setname1"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="rounding1" name="floor" o:cr="fun"/>
+        <expr name="arg"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="rounding1" o:cr="fun">floor</m:csymbol>
+        <expr name="arg"/>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <m:mrow>
+        <m:mo fence="true" o:cr="fun">⌊</m:mo>
+        <render name="arg"/>
+        <m:mo fence="true" o:cr="fun">⌋</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+
+<assertion xml:id="floor-prop-1" type="lemma">
+  <CMP> for all x | floor(x) &lt;= x &lt; floor(x)+1 </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMBIND>
+	<OMS cd="quant1" name="forall"/>
+	<OMBVAR>
+	  <OMV name="x"/>
+	</OMBVAR>
+	<OMA>
+	  <OMS cd="logic1" name="and"/>
+	  <OMA>
+	    <OMS cd="relation1" name="lt"/>
+	    <OMV name="x"/>
+	    <OMA>
+	      <OMS cd="arith1" name="plus"/>
+	      <OMA>
+		<OMS cd="rounding1" name="floor"/>
+		<OMV name="x"/>
+	      </OMA>
+	      <OMS cd="alg1" name="one"/>
+	    </OMA>
+	  </OMA>
+	  <OMA>
+	    <OMS cd="relation1" name="leq"/>
+	    <OMA>
+	      <OMS cd="rounding1" name="floor"/>
+	      <OMV name="x"/>
+	    </OMA>
+	    <OMV name="x"/>
+	  </OMA>
+	</OMA>
+      </OMBIND>
+    </OMOBJ>
+  </FMP>
+</assertion>
+<symbol name="trunc" xml:id="trunc">
+<metadata>
+<dc:description>
+    The round to zero operation.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMS name="R" cd="setname1"/>
+	<OMS name="Z" cd="setname1"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+<assertion xml:id="trunc-prop-1" type="lemma">
+  <CMP> for all x | trunc(x) &lt;= x &lt; trunc(x)+1 (x&gt;0) </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMBIND>
+	<OMS cd="quant1" name="forall"/>
+	<OMBVAR>
+	  <OMV name="x"/>
+	</OMBVAR>
+	<OMA>
+	  <OMS cd="logic1" name="implies"/>
+	  <OMA>
+	    <OMS cd="relation1" name="geq"/>
+	    <OMV name="x"/>
+	    <OMS cd="alg1" name="zero"/>
+	  </OMA>
+	  <OMA>
+	    <OMS cd="logic1" name="and"/>
+	    <OMA>
+	      <OMS cd="relation1" name="lt"/>
+	      <OMV name="x"/>
+	      <OMA>
+		<OMS cd="arith1" name="plus"/>
+		<OMA>
+		  <OMS cd="rounding1" name="trunc"/>
+		  <OMV name="x"/>
+		</OMA>
+		<OMS cd="alg1" name="one"/>
+	      </OMA>
+	    </OMA>
+	    <OMA>
+	      <OMS cd="relation1" name="leq"/>
+	      <OMA>
+		<OMS cd="rounding1" name="trunc"/>
+		<OMV name="x"/>
+	      </OMA>
+	      <OMV name="x"/>
+	    </OMA>
+	  </OMA>
+	</OMA>
+      </OMBIND>
+    </OMOBJ>
+  </FMP>
+</assertion>
+<assertion xml:id="trunc-prop-3" type="lemma">
+  <CMP> for all x | trunc(x) &gt;= x &gt; trunc(x)-1 (x&lt;0) </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMBIND>
+	<OMS cd="quant1" name="forall"/>
+	<OMBVAR>
+	  <OMV name="x"/>
+	</OMBVAR>
+	<OMA>
+	  <OMS cd="logic1" name="implies"/>
+	  <OMA>
+	    <OMS cd="relation1" name="leq"/>
+	    <OMV name="x"/>
+	    <OMS cd="alg1" name="zero"/>
+	  </OMA>
+	  <OMA>
+	    <OMS cd="logic1" name="and"/>
+	    <OMA>
+	      <OMS cd="relation1" name="gt"/>
+	      <OMV name="x"/>
+	      <OMA>
+		<OMS cd="arith1" name="minus"/>
+		<OMA>
+		  <OMS cd="rounding1" name="trunc"/>
+		  <OMV name="x"/>
+		</OMA>
+		<OMS cd="alg1" name="one"/>
+	      </OMA>
+	    </OMA>
+	    <OMA>
+	      <OMS cd="relation1" name="geq"/>
+	      <OMA>
+		<OMS cd="rounding1" name="trunc"/>
+		<OMV name="x"/>
+	      </OMA>
+	      <OMV name="x"/>
+	    </OMA>
+	  </OMA>
+	</OMA>
+      </OMBIND>
+    </OMOBJ>
+  </FMP>
+</assertion>
+<symbol name="round" xml:id="round">
+<metadata>
+<dc:description>
+    The round to nearest operation.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMS name="R" cd="setname1"/>
+	<OMS name="Z" cd="setname1"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+<assertion xml:id="round-prop-1" type="lemma">
+  <CMP> for all x | x &lt;= round(x)+1/2 and x &lt;= round(x)-1/2 </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMBIND>
+	<OMS cd="quant1" name="forall"/>
+	<OMBVAR>
+	  <OMV name="x"/>
+	</OMBVAR>
+	<OMA>
+	  <OMS cd="logic1" name="and"/>
+	  <OMA>
+	    <OMS cd="relation1" name="leq"/>
+	    <OMV name="x"/>
+	    <OMA>
+	      <OMS cd="arith1" name="plus"/>
+	      <OMA>
+		<OMS cd="rounding1" name="round"/>
+		<OMV name="x"/>
+	      </OMA>
+	      <OMA>
+		<OMS cd="arith1" name="divide"/>
+		<OMS cd="alg1" name="one"/>
+		<OMI> 2 </OMI>
+	      </OMA>
+	    </OMA>
+	  </OMA>
+	  <OMA>
+	    <OMS cd="relation1" name="geq"/>
+	    <OMV name="x"/>
+	    <OMA>
+	      <OMS cd="arith1" name="minus"/>
+	      <OMA>
+		<OMS cd="rounding1" name="round"/>
+		<OMV name="x"/>
+	      </OMA>
+	      <OMA>
+		<OMS cd="arith1" name="divide"/>
+		<OMS cd="alg1" name="one"/>
+		<OMI> 2 </OMI>
+	      </OMA>
+	    </OMA>
+	  </OMA>
+	</OMA>
+      </OMBIND>
+    </OMOBJ>
+  </FMP>
+</assertion>
+<assertion xml:id="round-prop-3" type="lemma">
+  <CMP> for all x | Also round to even in event of a tie </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMBIND>
+	<OMS cd="quant1" name="forall"/>
+	<OMBVAR>
+	  <OMV name="x"/>
+	</OMBVAR>
+	<OMA>
+	  <OMS cd="logic1" name="implies"/>
+	  <OMA>
+	    <OMS cd="logic1" name="and"/>
+	    <OMA>
+	      <OMS cd="logic1" name="not"/>
+	      <OMA>
+		<OMS cd="set1" name="in"/>
+		<OMV name="x"/>
+		<OMS cd="setname1" name="Z"/>
+	      </OMA>
+	    </OMA>
+	    <OMA>
+	      <OMS cd="set1" name="in"/>
+	      <OMA>
+		<OMS cd="arith1" name="times"/>
+		<OMV name="x"/>
+		<OMI> 2 </OMI>
+	      </OMA>
+	      <OMS cd="setname1" name="Z"/>
+	    </OMA>
+	  </OMA>
+	  <OMA>
+	    <OMS cd="set1" name="in"/>
+	    <OMA>
+	      <OMS cd="arith1" name="divide"/>
+	      <OMA>
+		<OMS cd="rounding1" name="round"/>
+		<OMV name="x"/>
+	      </OMA>
+	      <OMI> 2 </OMI>
+	    </OMA>
+	    <OMS cd="setname1" name="Z"/>
+	  </OMA>
+	</OMA>
+      </OMBIND>
+    </OMOBJ>
+  </FMP>
+</assertion>
+</theory>
+</omdoc>
+

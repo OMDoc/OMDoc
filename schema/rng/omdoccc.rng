@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  A RelaxNG for Open Mathematical documents (OMDoc 1.6) Module META
+  $Id: omdoccc.rnc 8422 2009-07-16 01:54:21Z kohlhase $
+  $HeadURL: https://svn.omdoc.org/repos/omdoc/trunk/schema/rnc/omdoccc.rnc $
+  See the documentation and examples at http://www.omdoc.org
+  Copyright (c) 2007-2008 Michael Kohlhase, released under the GNU Public License (GPL) 
+-->
+<grammar xmlns="http://relaxng.org/ns/structure/1.0">
+  <!-- we include the OMDoc version of cc metadata and specialize the description -->
+  <define name="license">
+    <grammar>
+      <include href="creativecommons.rng">
+        <define name="description">
+          <zeroOrMore>
+            <parentRef name="p"/>
+          </zeroOrMore>
+        </define>
+      </include>
+    </grammar>
+  </define>
+  <define name="metadata.class" combine="interleave">
+    <zeroOrMore>
+      <ref name="license"/>
+    </zeroOrMore>
+  </define>
+</grammar>

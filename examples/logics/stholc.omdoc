@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/" 
+       xmlns="http://omdoc.org/ns"
+       xmlns:om="http://www.openmath.org/OpenMath"
+       xmlns:m="http://www.w3.org/1998/Math/MathML"
+       xml:id="stholc.omdoc">
+
+ <metadata>
+  <dc:title>Simply Typed Higher-Order Logic with Choice.</dc:title>
+  <dc:creator role="aut">Michael Kohlhase</dc:creator>
+  <dc:date>2008-07-04T18:28:06</dc:date>
+  <dc:rights>Copyright (c) 2008 Michael Kohlhase</dc:rights>
+  <license xmlns="http://creativecommons.org/ns">
+    <permissions reproduction="permitted" distribution="permitted" derivative_works="permitted"/>
+    <prohibitions commercial_use="permitted"/>
+    <requirements notice="required" copyleft="required" attribution="required"/>
+  </license>
+ </metadata>
+
+<theory xml:id="stholc">
+  <metadata>
+    <dc:title>Higher-order logic with Choice</dc:title>
+    <dc:description>The theory of higher-order logic with a choice operator.</dc:description>
+  </metadata>
+  <imports from="sthold.omdoc#sthold"/>
+  
+  <symbol name="choose">
+    <metadata><dc:subject>choose</dc:subject>
+      <dc:description>This symbol is the binding symbol for choice
+	operator.</dc:description>
+    </metadata>
+  </symbol>
+
+  <presentation xml:id="pr-choose" for="#choose">
+    <use  format="TeX">\gamma</use>
+    <use  format="html|pmml">&#x02129;</use>
+  </presentation>
+
+  <axiom xml:id="choice-ax">
+    <metadata>
+      <dc:title>The axiom of choice for <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="stholc" name="choose"/></OMOBJ>.</dc:title>
+    </metadata>
+    <CMP>For any property <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="P"/></OMOBJ>,  that can be satisfied
+      by some <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="x"/></OMOBJ>, <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="choice-ax.1"/></OMOBJ> 
+     chooses a concrete witness.
+   </CMP>
+<FMP>
+   <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+     <OMBIND>
+     <OMS cd="sthol" name="forall"/>
+     <OMBVAR><OMV name="P"/></OMBVAR>
+     <OMA>
+       <OMS cd="pl0" name="implies"/>
+       <OMBIND>
+	 <OMS cd="sthol" name="exists"/>
+	 <OMBVAR><OMV name="X"/></OMBVAR>
+	 <OMA><OMV name="P"/><OMV name="x"/></OMA>
+       </OMBIND>
+       <OMA>
+	 <OMV name="P"/>
+	 <OMBIND id="choice-ax.1">
+	   <OMS cd="stholc" name="choose"/>
+	   <OMBVAR><OMV name="y"/></OMBVAR>
+	   <OMV name="S"/>
+	 </OMBIND>
+       </OMA>
+     </OMA>
+</OMBIND>
+   </OMOBJ>
+</FMP>
+ </axiom>
+
+
+<symbol name="choice-op">
+   <metadata>
+     <dc:subject>choice operator</dc:subject>
+     <dc:description>This symbol is a choice function.</dc:description>
+</metadata>
+</symbol>
+
+  <presentation xml:id="pr-choice-op" for="#choice-op">
+   <use  format="TeX">{\gamma}</use>
+   <use  format="html|pmml">&#x003B9;</use>
+  </presentation>
+
+  <axiom xml:id="choice-op-ax">
+    <metadata>
+      <dc:title>The axiom of choice for <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="stholc" name="choice-op"/></OMOBJ>.</dc:title>
+    </metadata>
+    <CMP>For any non-empty set <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="S"/></OMOBJ>,
+      <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMS cd="stholc" name="choice-op"/></OMOBJ>
+       returns a member of <OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMV name="S"/></OMOBJ>.
+   </CMP>
+   <FMP>
+     <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+       <OMBIND>
+	 <OMS cd="sthol" name="forall"/>
+	 <OMBVAR><OMV name="S"/></OMBVAR>
+	 <OMA>
+	   <OMS cd="pl0" name="implies"/>
+	   <OMBIND>
+	     <OMS cd="sthol" name="exists"/>
+	     <OMBVAR><OMV name="X"/></OMBVAR>
+	     <OMA><OMV name="S"/><OMV name="x"/></OMA>
+	   </OMBIND>
+	   <OMA>
+	     <OMV name="S"/>
+	     <OMA>
+	       <OMS cd="stholc" name="choose"/>
+	       <OMV name="S"/>
+	     </OMA>
+	   </OMA>
+	 </OMA>
+       </OMBIND>
+     </OMOBJ>
+   </FMP>
+ </axiom>
+</theory>
+
+</omdoc>

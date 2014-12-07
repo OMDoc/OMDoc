@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  
+       xmlns:om="http://www.openmath.org/OpenMath"
+       xmlns:m="http://www.w3.org/1998/Math/MathML"
+       xmlns="http://omdoc.org/ns"
+       xml:id="inference-rules.omdoc">
+
+ <metadata>
+  <dc:title>Inference Rules.</dc:title>
+  <dc:creator role="aut">Michael Kohlhase</dc:creator>
+  <dc:date>2002-06-24T00:00:00</dc:date>
+  <dc:rights>Copyright (c) 2008 Michael Kohlhase</dc:rights>
+  <license xmlns="http://creativecommons.org/ns">
+    <permissions reproduction="permitted" distribution="permitted" derivative_works="permitted"/>
+    <prohibitions commercial_use="permitted"/>
+    <requirements notice="required" copyleft="required" attribution="required"/>
+  </license>
+ </metadata>
+
+ <theory xml:id="inference-rules">
+   <metadata>
+      <dc:title>Inference Rules.</dc:title>
+      <dc:description>
+	This theory introduces content markup for inference rules.
+      </dc:description>
+   </metadata>
+ 
+<omtext xml:id="inference-rules-intro">
+  <CMP>An inference rule is a relation on (sets of) judgements, read with the
+    intuition that</CMP>
+</omtext>
+
+<symbol xml:id="inference-rules.schema" name="schema">
+<metadata>
+<dc:description>This is the binding symbols for schematic inference rules. All the bound
+    variables may be freely instantiated.</dc:description>
+</metadata>
+</symbol>
+
+
+<!-- we normally do not want to see the schema variable declaration -->
+<presentation for="#schema" role="binding">
+  <style format="default"><recurse select="*[3]"/></style>
+</presentation>
+
+<symbol xml:id="inferencerules.rule" name="rule">
+<metadata>
+<dc:description> 
+  An inference rule is an n+1-ary relation on judgments. The first n
+  arguments are called the antecedents, and the last one the consequent. We read
+  an inference rule with the intuition that if the antecedents have been
+  derived, then the consequent can be.
+</dc:description>
+</metadata>
+</symbol>
+
+
+<presentation for="#rule" role="applied" arity="nary">
+   <style format="TeX">
+     <text>{\displaystyle{{</text>
+     <map select="*[position() &gt;1 and position() &lt;last()]">
+      <text>{</text><recurse select="."/><text>}\;\;\;</text>
+    </map>
+    <text>}\over{</text>
+    <recurse select="*[last()]"/>
+    <text>}}}</text>
+  </style>
+   <style format="html">
+   <element name="table" ns="http://www.w3.org/1999/xhtml">
+     <attribute name="rules"><text>rows</text></attribute>
+     <element name="tr" ns="http://www.w3.org/1999/xhtml">
+       <element name="td" ns="http://www.w3.org/1999/xhtml">
+	 <attribute name="align"><text>center</text></attribute>
+	 <map select="*[position() &gt;1 and position() &lt;last()]">
+	   <text>&amp;nbsp;&amp;nbsp;&amp;nbsp;</text>
+	   <recurse select="."/>
+	 </map>
+       </element>
+     </element>
+    <element name="tr" ns="http://www.w3.org/1999/xhtml">
+      <element name="td" ns="http://www.w3.org/1999/xhtml">
+	<attribute name="align"><text>center</text></attribute>
+	  <recurse select="*[last()]"/>
+	</element>
+      </element>
+    </element>
+   </style>
+   <style format="pmml">
+     <element name="mtable" ns="http://www.w3.org/1998/Math/MathML">
+       <attribute name="rowlines"><text>solid</text></attribute>       
+       <element name="mtr" ns="http://www.w3.org/1998/Math/MathML">
+	 <element name="mtd" ns="http://www.w3.org/1998/Math/MathML">
+	   <map select="*[position() &gt;1 and position() &lt;last()]">
+	     <separator>
+	       <element name="mspace" ns="http://www.w3.org/1998/Math/MathML">
+		 <attribute name="width"><text>2em</text></attribute>
+	       </element>
+	     </separator>
+	     <recurse select="."/>
+	   </map>
+	 </element>
+       </element>
+       <element name="mtr" ns="http://www.w3.org/1998/Math/MathML">
+	 <element name="mtd" ns="http://www.w3.org/1998/Math/MathML">
+	   <recurse select="*[last()]"/>
+	 </element>
+       </element>
+     </element>
+   </style>
+</presentation>
+ 
+<theory xml:id="exmp.thy">
+  <imports from="pl0.omdoc#pl0"/>
+<example xml:id="exmp" for="#inference-rules.schema #inference-rules.rule">
+  <CMP>Modus Ponens is an inference rule</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath" style="display:block">
+    <OMBIND>
+      <OMS cd="inference-rules" name="schema"/>
+      <OMBVAR><OMV name="A"/><OMV name="B"/></OMBVAR>
+      <OMA>
+	<OMS cd="inference-rules" name="rule"/>
+	<OMA>
+	  <OMS cd="pl0" name="implies"/>
+	  <OMV name="A"/>
+	  <OMV name="B"/>
+	</OMA>
+	<OMV name="A"/>
+	<OMV name="B"/>
+      </OMA>
+    </OMBIND>
+  </OMOBJ>
+</example>
+</theory>
+
+</theory>
+</omdoc>

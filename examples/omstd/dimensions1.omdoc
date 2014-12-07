@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  xmlns="http://omdoc.org/ns"
+xml:id="dimensions1-omdoc">
+
+
+  <dc:title>The OpenMath Content Dictionary dimensions1.ocd  in OMDoc form</dc:title>
+  <dc:creator role="trl">Michael Kohlhase</dc:creator>
+  <dc:creator role="ant">The OpenMath Society</dc:creator>
+  <dc:date> 2000-08-13T00:00:00</dc:date>
+  <dc:source>Derived from the OpenMath CD http://www.openmath.org/cd/dimensions1.ocd.</dc:source>
+  <dc:type>Text</dc:type>
+  <dc:format>application/omdoc+xml</dc:format>
+  <dc:rights>Copyright (c) 2000-2002 Michael Kohlhase;
+    This OMDoc content dictionary is released under the OpenMath license:
+    http://monet.nag.co.uk/openmath/cdfiles/license.html
+  </dc:rights>
+  <dc:description> This CD defines symbols which represent basic physical dimensions.</dc:description>
+
+
+<theory xml:id="dimensions1" cdbase="http://www.openmath.org/cd">
+
+<symbol name="length" xml:id="length">
+  
+  <dc:description>This symbol represents the length physical dimension.</dc:description><dc:subject>length</dc:subject>
+  <type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMV name="PhysicalDimension"/>
+    </OMOBJ>
+  </type>
+</symbol>
+<symbol name="area" xml:id="area">
+
+<dc:description>
+    This symbol represents the area physical dimension.
+</dc:description>
+
+<type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMV name="PhysicalDimension"/>
+    </OMOBJ>
+  </type>
+</symbol>
+<symbol name="volume" xml:id="volume">
+
+<dc:description>
+    This symbol represents the volume physical dimension.
+</dc:description>
+
+<type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMV name="PhysicalDimension"/>
+    </OMOBJ>
+  </type>
+</symbol>
+<symbol name="speed" xml:id="speed">
+
+<dc:description>
+    This symbol represents the speed physical dimension. It is the size of the
+    derivative of distance with respect to time.
+</dc:description>
+
+</symbol>
+<symbol name="velocity" xml:id="velocity">
+
+<dc:description>
+    This symbol represents the velocity physical dimension. It is the
+    derivative of distance with respect to time.
+</dc:description>
+
+<type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMV name="PhysicalDimension"/>
+    </OMOBJ>
+  </type>
+</symbol>
+<symbol name="acceleration" xml:id="acceleration">
+
+<dc:description>
+    This symbol represents the acceleration physical dimension. It is the
+    second derivative distance with respect to time.
+</dc:description>
+
+<type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMV name="PhysicalDimension"/>
+    </OMOBJ>
+  </type>
+</symbol>
+<symbol name="time" xml:id="time">
+
+<dc:description>
+    This symbol represents the time physical dimension.
+</dc:description>
+
+<type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMV name="PhysicalDimension"/>
+    </OMOBJ>
+  </type>
+</symbol>
+<symbol name="mass" xml:id="mass">
+
+<dc:description>
+    This symbol represents the mass physical dimension.
+</dc:description>
+
+<type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMV name="PhysicalDimension"/>
+    </OMOBJ>
+  </type>
+</symbol>
+<symbol name="force" xml:id="force">
+
+<dc:description>
+    This symbol represents the force physical dimension. 
+</dc:description>
+
+<type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMV name="PhysicalDimension"/>
+    </OMOBJ>
+  </type>
+</symbol>
+<symbol name="temperature" xml:id="temperature">
+
+<dc:description>
+    This symbol represents the temperature physical dimension.
+</dc:description>
+
+<type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMV name="PhysicalDimension"/>
+    </OMOBJ>
+  </type>
+</symbol>
+<symbol name="pressure" xml:id="pressure">
+
+<dc:description>
+    This symbol represents the pressure physical dimension.
+</dc:description>
+
+<type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMV name="PhysicalDimension"/>
+    </OMOBJ>
+  </type>
+</symbol>
+<symbol name="charge" xml:id="charge">
+
+<dc:description>
+    This symbol represents the charge physical dimension.
+</dc:description>
+
+<type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMV name="PhysicalDimension"/>
+    </OMOBJ>
+  </type>
+</symbol>
+<symbol name="current" xml:id="current">
+
+<dc:description>
+    This symbol represents the current physical dimension.
+</dc:description>
+
+<type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMV name="PhysicalDimension"/>
+    </OMOBJ>
+  </type>
+</symbol>
+<symbol name="voltage" xml:id="voltage">
+
+<dc:description>
+    This symbol represents the voltage physical dimension.
+</dc:description>
+
+<type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMV name="PhysicalDimension"/>
+    </OMOBJ>
+  </type>
+</symbol>
+</theory>
+</omdoc>

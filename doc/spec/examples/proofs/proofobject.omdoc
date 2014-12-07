@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xml:id="proofobject.omdoc"
+  xmlns="http://omdoc.org/ns"
+  xmlns:cc="http://creativecommons.org/ns"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  version="1.6">
+<metadata>
+  <dc:date action="created"> 2004-10-08T12:43:22Z </dc:date>
+  <dc:title xml:lang="en"> proofobject </dc:title>
+  <dc:creator role="aut"> Michael Kohlhase </dc:creator>
+  <dc:source>  </dc:source>
+  <dc:date action="updated"> 2004-10-08T12:43:22Z </dc:date>
+  <dc:type> Text </dc:type>
+  <dc:format> application/omdoc+xml </dc:format>
+  <dc:rights>Copyright (c) 2004 Michael Kohlhase</dc:rights>
+  <cc:license>
+    <cc:permissions reproduction="permitted" distribution="permitted" derivative_works="permitted"/>
+    <cc:prohibitions commercial_use="permitted"/>
+    <cc:requirements notice="required" copyleft="required" attribution="required"/>
+  </cc:license>
+</metadata>
+
+<proofobject xml:id="ac.p" for="#and-comm">
+  <metadata>
+    <dc:description>
+      Assuming $A\land B$ we have $B$ and $A$ from which we can derive $B\land A$.
+    </dc:description>
+  </metadata>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMBIND>
+      <OMS cd="FoND" name="impliesI"/>
+      <OMBVAR>
+	<OMATTR>
+	  <OMATP>
+	    <OMS cd="openproof" name="type"/>
+	    <OMSTR>$A\land{B}$</OMSTR>
+	  </OMATP>
+	  <OMV name="X"/>
+	</OMATTR>
+      </OMBVAR>
+      <OMA>
+	<OMS cd="FoND" name="andI"/>
+	<OMA>
+	  <OMA>
+	    <OMS cd="FoND" name="andEr"/>
+	    <OMV name="X"/>
+	  </OMA>
+	  <OMA>
+	    <OMS cd="FoND" name="andEl"/>
+	    <OMV name="X"/>
+	  </OMA>
+	</OMA>
+      </OMA>
+    </OMBIND>
+  </OMOBJ>
+</proofobject>
+
+</omdoc>

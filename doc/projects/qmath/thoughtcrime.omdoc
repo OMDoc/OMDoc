@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<omdoc xmlns='http://omdoc.org/ns' version='1.6'
+       xmlns:dc='http://purl.org/dc/elements/1.1/'>
+ <metadata>
+  <dc:language>en</dc:language>
+  <dc:title>Diary</dc:title>
+  <dc:creator role='aut'>W. Smith</dc:creator>
+  <dc:date>1994-04-04T18:43:00+00:00</dc:date>
+ </metadata>
+ <theory xml:id='thoughtcrime'>
+  <imports from="arith1"/>
+  <imports from="relation1"/>
+  <omtext>
+   <metadata><dc:title>Down with Big Brother</dc:title></metadata>
+   <CMP>
+    Freedom is the freedom to say 
+    <OMOBJ xmlns='http://www.openmath.org/OpenMath'>
+     <OMA>
+      <OMS cd='relation1' name='eq'/>
+      <OMA>
+       <OMS cd='arith1' name='plus'/>
+       <OMI>2</OMI><OMI>2</OMI>
+      </OMA> 
+      <OMI>4</OMI>
+     </OMA>
+    </OMOBJ>.
+    If that is granted, all else follows. 
+   </CMP>
+  </omtext>
+ </theory>
+</omdoc>

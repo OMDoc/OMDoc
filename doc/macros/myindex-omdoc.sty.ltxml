@@ -1,0 +1,51 @@
+# -*- CPERL -*-
+# /=======================================================\ #
+# |  myindex.sty - Implementation for LaTeXML           | #
+# |                                                       | #
+# |=======================================================| #
+# | Not Part of LaTeXML : http://dlmf.nist.gov/LaTeXML/   | #
+# | Copyright (c) 2006 arXMLiv group                      | #
+# | Released under the GNU Public License                 | #
+# \=======================================================/ #
+
+package LaTeXML::Package::Pool;
+use strict;
+use LaTeXML::Package;
+
+
+
+
+DefMacro('\emin{}','{\emph{\index{#1}#1}}');
+
+DefConstructor('\@defin{}',"<ltx:text class='definiendum'>#1</ltx:text>");
+
+DefMacro('\defin{}','\@defin{#1}\@index[definitional]{\@indexphrase{#1}}');
+
+DefConstructor('\@termin{}',"<ltx:text class='term'>#1</ltx:text>");
+DefMacro('\termin{}','\@index{\@indexphrase{#1}}');
+
+DefMacro('\twin{}{}',
+	       '\@index{\@indexphrase{#1}\@indexphrase{#2}}'
+	     . '\@index{\@indexphrase{#2}\@indexphrase{#1}}');
+
+DefMacro('\twintoo{}{}','\twin{#1}{#2}#1 #2');
+DefMacro('\twinemph{}{}','\twin{#1}{#2}{\emph{#1 #2}}');
+
+DefMacro('\twindef{}{}','\@defin{#1 #2}'
+        . '\@index[definitional]{\@indexphrase{#1}\@indexphrase{#2}}'
+        . '\@index[definitional]{\@indexphrase{#2}\@indexphrase{#1}}');
+
+#DefMacro('\twindef{}{}','\@defin{#1 #2}');
+
+DefMacro('\atwin{}{}{}',
+	 '\@index{\@indexphrase{#1}\@indexphrase{#2}\@indexphrase{#3}}'
+       . '\@index{\@indexphrase{#3}\@indexphrase{#2}\@indexphrase{(#1)}}');
+
+DefMacro('\atwintoo{}{}','\atwin{#1}{#2}{#3}#1 #2 #3');
+
+DefMacro('\atwindef{}{}{}','\@defin{#1 #2 #3}'
+       . '\@index[definitional]{\@indexphrase{#1}\@indexphrase{#2}\@indexphrase{#3}}'
+       . '\@index[definitional]{\@indexphrase{#3}\@indexphrase{#2}\@indexphrase{(#1)}}');
+
+#**********************************************************************
+1;

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xml:id="mixfix.omdoc" version="1.6"
+       xmlns:dc="http://purl.org/dc/elements/1.1/" 
+       xmlns:cc="http://creativecommons.org/ns" 
+       xmlns:m="http://www.w3.org/1998/Math/MathML"
+       xmlns="http://omdoc.org/ns">
+
+<metadata>
+  <dc:title>A Test for Pragmatic Notation Elements</dc:title>
+  <dc:creator role="trl">Michael Kohlhase</dc:creator>
+  <dc:date action="updated">2008-09-20</dc:date>
+  <dc:format>application/omdoc+xml</dc:format>
+  <dc:rights>Copyright (c) 2008 Michael Kohlhase</dc:rights>
+  <!-- 
+  $Id: mixfix.omdoc 8056 2008-09-20 05:31:30Z kohlhase $
+  $HeadURL: https://svn.omdoc.org/repos/omdoc/trunk/doc/blue/pres-pragmatic/examples/mixfix.omdoc $
+  -->
+</metadata>
+
+<mixfix format="MathML" role="application"
+    cd="lambda-calc" name="well-typed"
+    args="3" assoc="1">
+  <m:mrow>
+    <iterate name="arg1">
+      <separator><m:mo>,</m:mo></separator>
+      <render name="aargs"/>
+    </iterate>
+    <m:mo>&#x22A2;</m:mo>
+    <render name="arg2"/>
+    <m:mo>:</m:mo>
+    <render name="arg3"/>
+  </m:mrow>
+</mixfix>
+
+<infix cd="arith1" name="plus" precedence="500" elide="left">+</infix>
+<prefix cd="arith1" name="unary_minus" precedence="700">-</prefix>
+<prefix cd="arith1" name="factorial" precedence="500">!</prefix>
+</omdoc>

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  xmlns="http://omdoc.org/ns"
+xml:id="ecc-omdoc">
+
+
+  <dc:title>The OpenMath Content Dictionary ecc.ocd  in OMDoc form</dc:title>
+  <dc:creator role="trl">Michael Kohlhase</dc:creator>
+  <dc:creator role="ant">The OpenMath Society</dc:creator>
+  <dc:date> 1999-09-07T00:00:00</dc:date>
+  <dc:source>Derived from the OpenMath CD http://www.openmath.org/cd/ecc.ocd.</dc:source>
+  <dc:type>Text</dc:type>
+  <dc:format>application/omdoc+xml</dc:format>
+  <dc:rights>Copyright (c) 2000-2002 Michael Kohlhase;
+    This OMDoc content dictionary is released under the OpenMath license:
+    http://monet.nag.co.uk/openmath/cdfiles/license.html
+  </dc:rights>
+  <dc:description> Extended Calculus of Constructions Primitives </dc:description>
+
+
+<theory xml:id="ecc" cdbase="http://www.openmath.org/cd">
+  <include from="relation1.omdoc#relation1"/>
+
+<symbol name="type" xml:id="type">
+
+<dc:description> Attribution tag to denote type-judgement
+</dc:description>
+
+</symbol>
+<presentation for="#type" xref="cc.omdoc#pr-type"/>
+<symbol name="typecoerce" xml:id="typecoerce">
+
+<dc:description> Attribution tag to denote type-judgement with coercion
+</dc:description>
+
+</symbol>
+<symbol name="SigmaType" xml:id="SigmaType">
+
+<dc:description> The binder symbol used to construct the
+    type of Cartesian products.  The (either plain or attributed)
+    variables might occur in the body OM object.
+</dc:description>
+
+</symbol>
+<symbol name="Pair" xml:id="Pair">
+
+<dc:description> The pairing constructor. It takes two 
+    OpenMath objects as first element and second 
+    element of the pair, and a third optional 
+    OpenMath object that represents the type of 
+    the pair.  
+</dc:description>
+
+</symbol>
+<example xml:id="Pair-ex-1" type="for" for="#Pair">
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="ecc" name="Pair"/>
+      <OMI>0</OMI>
+      <OMI>1</OMI>
+    </OMA>
+  </OMOBJ>
+</example>
+<symbol name="PairProj1" xml:id="PairProj1">
+
+<dc:description> The first projection function that extracts the first
+    component of a Pair. It satisfies the sigma-reduction rule.
+</dc:description>
+
+</symbol>
+<example xml:id="PairProj1-ex-1" type="for" for="#PairProj1">
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="relation1" name="eq"/>
+      <OMA>
+	<OMS cd="ecc" name="PairProj1"/>
+	<OMA>
+	  <OMS cd="ecc" name="Pair"/>
+	  <OMI>0</OMI>
+	  <OMI>1</OMI>
+	</OMA>
+      </OMA>
+      <OMI>0</OMI>
+    </OMA>
+  </OMOBJ>
+</example>
+<symbol name="PairProj2" xml:id="PairProj2">
+
+<dc:description> The second projection function that extracts the second
+    component of a Pair. It satisfies sigma-reduction rule.
+</dc:description>
+
+</symbol>
+<example xml:id="PairProj2-ex-1" type="for" for="#PairProj2">
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="relation1" name="eq"/>
+      <OMA>
+	<OMS cd="ecc" name="PairProj2"/>
+	<OMA>
+	  <OMS cd="ecc" name="Pair"/>
+	  <OMI>0</OMI>
+	  <OMI>1</OMI>
+	</OMA>
+      </OMA>
+      <OMI>1</OMI>
+    </OMA>
+  </OMOBJ>
+</example>
+<symbol name="Tuple" xml:id="Tuple">
+
+<dc:description> The n-ary tupling constructor when n&gt;2.  The
+    arguments are the element of the tuple. Tuple objects can also
+    be constructed by successive nesting of Pair.
+</dc:description>
+
+</symbol>
+<example xml:id="Tuple-ex-1" type="for" for="#Tuple">
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="relation1" name="eq"/>
+      <OMA>
+	<OMS cd="ecc" name="Pair"/>
+	<OMI>0</OMI>
+	<OMA>
+	  <OMS cd="ecc" name="Pair"/>
+	  <OMI>1</OMI>
+	  <OMI>2</OMI>
+	</OMA>
+      </OMA>
+      <OMA>
+	<OMS cd="ecc" name="Tuple"/>
+	<OMI>0</OMI>
+	<OMI>1</OMI>
+	<OMI>2</OMI>
+      </OMA>
+    </OMA>
+  </OMOBJ>
+</example>
+</theory>
+</omdoc>

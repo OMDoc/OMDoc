@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  xmlns="http://omdoc.org/ns"
+xml:id="linalg3-omdoc">
+
+
+  <dc:title>The OpenMath Content Dictionary linalg3.ocd  in OMDoc form</dc:title>
+  <dc:creator role="trl">Michael Kohlhase</dc:creator>
+  <dc:creator role="ant">The OpenMath Society</dc:creator>
+  <dc:date> 2000-04-14T00:00:00</dc:date>
+  <dc:source>Derived from the OpenMath CD http://www.openmath.org/cd/linalg3.ocd.</dc:source>
+  <dc:type>Text</dc:type>
+  <dc:format>application/omdoc+xml</dc:format>
+  <dc:rights>Copyright (c) 2000-2002 Michael Kohlhase;
+    This OMDoc content dictionary is released under the OpenMath license:
+    http://monet.nag.co.uk/openmath/cdfiles/license.html
+  </dc:rights>
+  <dc:description>
+    This CD  treats matrices and vectors in a column oriented fashion
+    (using matrixcolumn's).
+  </dc:description>
+
+
+<theory xml:id="linalg3" cdbase="http://www.openmath.org/cd">
+
+<include from="sts.omdoc#sts"/>
+<include from="mathmltypes.omdoc#mathmltypes"/>
+
+<symbol name="vector" xml:id="vector">
+
+<dc:description>
+    This symbol represents an n-ary function used to construct (or describe)
+    vectors.  Vectors in this CD are considered to be column vectors, and must 
+    therefore be transposed to be considered as row vectors.
+</dc:description>
+
+<type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMA>
+	  <OMS name="nary" cd="sts"/>
+	  <OMV name="AbelianGroupMult"/>
+	</OMA>
+	<OMV name="Vector"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+<example xml:id="vector-ex-1" type="for" for="#vector">
+  <CMP>An example of vector using n arguments. 
+    The specific vector constructed in this example is transpose of [3,6,9].
+  </CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="linalg3" name="vector"/>
+      <OMI> 3 </OMI>
+      <OMI> 6 </OMI>
+      <OMI> 9 </OMI>
+    </OMA>
+  </OMOBJ>
+</example>
+<symbol name="matrixcolumn" xml:id="matrixcolumn">
+
+<dc:description> 
+    This symbol is an n-ary constructor used to represent columns of
+    matrices. Its arguments should be members of a ring.
+</dc:description>
+
+<type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMA>
+	  <OMS name="nary" cd="sts"/>
+	  <OMV name="Ring"/>
+	</OMA>
+	<OMS name="vector_type" cd="mathmltypes"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+<example xml:id="matrixcolumn-ex-1" type="for" for="#matrixcolumn">
+  <CMP>
+    Representation of a column of a matrix of length two containing the integers
+    [1,0]</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="linalg3" name="matrixcolumn"/>
+      <OMI> 1 </OMI>
+      <OMI> 0 </OMI>
+    </OMA>
+  </OMOBJ>
+</example>
+<symbol name="matrix" xml:id="matrix">
+
+<dc:description>
+    This symbol is an n-ary matrix constructor which requires matrixcolumn's
+    as arguments. It is used to represent matrices.
+</dc:description>
+
+<type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMA>
+	  <OMS name="nary" cd="sts"/>
+	  <OMV name="MatrixRow"/>
+	</OMA>
+	<OMV name="Matrix"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+<example xml:id="matrix-ex-1" type="for" for="#matrix">
+  <CMP>Representation of a 2x2 identity matrix</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="linalg3" name="matrix"/>
+      <OMA>
+	<OMS cd="linalg3" name="matrixcolumn"/>
+	<OMI> 1 </OMI>
+	<OMI> 0 </OMI>
+      </OMA>
+      <OMA>
+	<OMS cd="linalg3" name="matrixcolumn"/>
+	<OMI> 0 </OMI>
+	<OMI> 1 </OMI>
+      </OMA>
+    </OMA>
+  </OMOBJ>
+</example>
+</theory>
+</omdoc>

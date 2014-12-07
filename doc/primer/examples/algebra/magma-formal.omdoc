@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<omdoc xml:id="las_of_composition-formal.omdoc"
+  xmlns="http://omdoc.org/ns"
+  xmlns:cc="http://creativecommons.org/ns"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  version="1.6">
+<metadata>
+  <dc:date action="created"> 2004-10-04T17:50:22Z </dc:date>
+  <dc:title xml:lang="en"> las_of_composition-formal </dc:title>
+  <dc:creator role="aut"> Michael Kohlhase </dc:creator>
+  <dc:source>  </dc:source>
+  <dc:date action="updated"> 2004-10-04T17:50:22Z </dc:date>
+  <dc:type> Text </dc:type>
+  <dc:format> application/omdoc+xml </dc:format>
+  <dc:rights>Copyright (c) 2004 Michael Kohlhase</dc:rights>
+  <cc:license>
+    <cc:permissions reproduction="permitted" distribution="permitted" derivative_works="permitted"/>
+    <cc:prohibitions commercial_use="permitted"/>
+    <cc:requirements notice="required" copyleft="required" attribution="required"/>
+  </cc:license>
+</metadata>
+
+<theory xml:id="magmas">
+  <imports xml:id="imp3" from="background.omdoc#products"/>
+  <imports xml:id="imp2" 
+      from="https://svn.omdoc.org/repos/trunk/omdoc/examples/omstd/relation1.omdoc#relation1"/>
+
+<definition xml:id="magma.def" for="#magma" type="implicit">
+  <CMP> A set with a law of composition is called a 
+    <term cd="magmas" name="magma" role="definiens">magma</term>.
+  </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMBIND><OMS cd="pl1" name="forall"/>
+        <OMBVAR><OMV name="M"/></OMBVAR>
+        <OMA><OMS cd="pl0" name="iff"/>
+          <OMA><OMS cd="magmas" name="magma"/><OMV name="M"/></OMA>
+          <OMBIND>
+            <OMS cd="pl1" name="exists"/>
+            <OMBVAR><OMV name="E"/><OMV name="C"/></OMBVAR>
+            <OMA><OMS cd="pl0" name="and"/>
+              <OMA><OMS cd="relation1" name="eq"/>
+                <OMV name="M"/>
+                <OMA><OMS cd="products" name="cartesian-product"/>
+                  <OMV name="E"/>
+                  <OMV name="C"/>
+                </OMA>
+              </OMA>
+              <OMA><OMS cd="magmas" name="law_of_composition"/>
+                <OMV name="E"/>
+                <OMV name="F"/>
+              </OMA>
+            </OMA>
+          </OMBIND>
+        </OMA>
+      </OMBIND>
+    </OMOBJ>
+  </FMP>
+</definition>
+</theory>
+</omdoc>

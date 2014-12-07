@@ -1,0 +1,65 @@
+\begin{omgroup}[id=intro]{Introduction}
+
+Each chapter of the {\omdoc} primer deals with a different category of mathematical
+document and introduces new features of the {\omdoc} format in the context of concrete
+examples.
+
+\paragraph{\sref{algebra}: Mathematical Textbooks and Articles} discusses the markup
+process for an informal but rigorous mathematical texts.  We will use a fragment of
+Bourbaki's ``Algebra'' as an example.  The development marks up the content in four steps,
+from the document structure to a full formalization of the content that could be used by
+automated theorem provers.  The first page of Bourbaki's ``Algebra'' serves as an example
+of the treatment of a rigorous presentation of pure mathematics, as it can be found in
+textbooks and articles.
+
+\paragraph{\sref{omcds} OpenMath Content Dictionaries} transforms an {\openmath}
+content dictionary into an {\omdoc} document. {\openmath} content dictionaries are
+semi-formal documents that serve as references for mathematical symbols in {\openmath}
+encoded formulae.  As of {\openmath}2, {\omdoc} is an admissible {\openmath} content
+dictionary format. They are a good example for mathematical glossaries, and background
+references, both formal and informal.
+
+\paragraph{\sref{natlist} Structured and Parametrized Theories} shows the power of
+theory markup in {\omdoc} for theory reuse and modular specification. The example builds a
+theory of ordered lists of natural numbers from a generic theory of ordered lists and the
+theory of natural numbers which acts as a parameter in the actualization process.
+
+\paragraph{\sref{dg-elal} A Development Graph for Elementary Algebra} extends the
+range of theory-level structure by specifying the elementary algebraic hierarchy. The rich
+fabric of relations between these theories is made explicit in the form of theory
+morphisms, and put to use for proof reuse.
+
+\paragraph{\sref{courseware} Courseware and the Narrative/Content Distinction}
+covers markup for a fragment of a computer science course in the {\omdoc} format, dwelling
+on the difference between the narrative structure of the course and the background
+knowledge. Course materials like slides or writings on blackboards are usually much more
+informal than textbook presentations of mathematics. They also openly structure materials
+by didactic criteria and leave out important parts of the rigorous development, which the
+student is required to pick up from background materials like textbooks or the teacher's
+recitation.
+
+\paragraph{\sref{rpc} Communication with and between Mathematical Software Systems}
+uses an {\omdoc} fragment as content for communication protocols between mathematical
+software systems on the Internet.  Since the communicating parties in this situation are
+machines, {\omdoc} fragments are embedded into other {\xml} markup that serves as a
+protocol for the distribution layer.
+
+\medskip 
+
+Together these examples cover many of the mathematical documents involved in communicating
+mathematics. As the first two chapters build upon each other and introduce features of the
+{\omdoc} format, they should be read in succession.  The remaining three chapters build on
+these, but are largely independent.
+
+To keep the presentation of the examples readable, we will only present salient parts of
+the {\omdoc} representations in the discussion. The full text of the examples can be
+accessed at
+\url{https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.6/examples/spec/}\ednote{For the
+  moment, this URI is not valid yet, use
+  {\texttt{https://svn.omdoc.org/repos/omdoc/trunk/examples/spec/}}}
+\end{omgroup}
+
+%%% Local Variables: 
+%%% mode: LaTeX
+%%% TeX-master: "work"
+%%% End: 

@@ -1,0 +1,81 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This file is part of the LaTeX sources of the OMDoc 1.6 specification
+% Copyright (c) 2006 Michael Kohlhase
+% This work is licensed by the Creative Commons Share-Alike license
+% see http://creativecommons.org/licenses/by-sa/2.5/ for details
+\svnInfo $Id: examples.tex 8427 2009-07-19 10:01:23Z kohlhase $
+\svnKeyword $HeadURL: https://svn.omdoc.org/repos/omdoc/trunk/doc/spec/examples.tex $
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{omgroup}[id=examples]{The Listings of the Primer Examples}
+
+  We list the full text of the examples discussed in the {\omdoc} primer and
+  specification.
+
+\begin{omgroup}[id=examples.algebra]{Bourbaki's Algebra  Fragment}
+
+\begin{omgroup}[id=examples.algebra1]{Top-Level Markup}
+\lstinputlisting[nolol,index={DOCTYPE,omdoc,metadata,dc:title,dc:creator,dc:date,dc:description,
+  dc:source,dc:type,dc:format,theory,symbol,definition,omtext,omdoc,example}]
+  {../../examples/spec/combined/algebra1.omdoc}
+\end{omgroup}
+
+\begin{omgroup}[id=examples.algebra2]{Formula Markup}
+\lstinputlisting[nolol,index={DOCTYPE,omdoc,metadata,dc:title,dc:creator,dc:date,dc:description,
+  dc:source,dc:type,dc:format,theory,symbol,definition,omtext,omdoc,example,
+  presentation,OMA,OMS,OMBIND,OMBVAR}]
+  {../../examples/spec/combined/algebra2.omdoc}
+\end{omgroup}
+
+\begin{omgroup}[id=examples.algebra3]{Full Formalization}
+\lstinputlisting[nolol,index={DOCTYPE,omdoc,metadata,dc:title,dc:creator,dc:date,dc:description,
+  dc:source,dc:type,dc:format,theory,symbol,definition,omtext,omdoc,example,
+  presentation,OMA,OMS,OMBIND,OMBVAR}]
+  {../../examples/spec/combined/algebra3.omdoc}
+\end{omgroup}
+
+\begin{omgroup}[id=examples.background]{The Background Theories}
+\lstinputlisting[nolol,index={DOCTYPE,omdoc,metadata,dc:title,dc:creator,dc:date,dc:description,
+  dc:source,dc:type,dc:format,theory,symbol,definition,omtext,omdoc,example,
+  presentation,OMA,OMS,OMBIND,OMBVAR}]
+  {../../examples/spec/combined/background.omdoc}
+\end{omgroup}
+\end{omgroup}
+
+\begin{omgroup}[id=examples.arith1]{A Fragment from a Content Dictionary}
+
+\lstinputlisting[nolol,index={DOCTYPE,omdoc,metadata,dc:title,dc:creator,dc:date,dc:description,
+  dc:source,dc:type,dc:format,theory,symbol,definition,omtext,omdoc,example,
+  presentation,OMA,OMS,OMBIND,OMBVAR}]
+  {../../examples/spec/combined/arith1.omdoc}
+\end{omgroup}
+
+\begin{omgroup}[id=examples.courseware]{Courseware}
+
+This example comes in two parts, we first list the data-structured document and
+then the narrative-structured one.
+\lstinputlisting[nolol,index={DOCTYPE,omdoc,metadata,dc:title,dc:creator,dc:date,dc:description,
+  dc:source,dc:type,dc:format,theory,symbol,definition,omtext,omdoc,example,
+  presentation,OMA,OMS,OMBIND,OMBVAR}] {../../examples/spec/combined/15-211-thy.omdoc}
+
+\lstinputlisting[nolol,index={DOCTYPE,omdoc,metadata,dc:title,dc:creator,dc:date,dc:description,
+  dc:source,dc:type,dc:format,theory,symbol,definition,omtext,omdoc,example,
+  presentation,OMA,OMS,OMBIND,OMBVAR}]
+  {../../examples/spec/combined/15-211-narrative.omdoc}
+\end{omgroup}
+
+\begin{omgroup}[id=examples.natlist,short=Lists of Natural Numbers]
+                           {A Parameterized Theory  of Lists of Natural Numbers}
+
+\lstinputlisting[nolol,index={DOCTYPE,omdoc,metadata,dc:title,dc:creator,dc:date,dc:description,
+  dc:source,dc:type,dc:format,theory,symbol,definition,omtext,omdoc,example,
+  presentation,OMA,OMS,OMBIND,OMBVAR}]
+  {../../examples/spec/combined/natlist.omdoc}
+\end{omgroup}
+\end{omgroup}
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "main"
+%%% End: 
+
+% LocalWords:  arith dc natlist nolol

@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  A RelaxNG schema for Open Mathematical documents (OMDoc 1.6) Module QUIZ 
+  $Id: omdocquiz.rnc 8432 2009-07-19 13:18:40Z kohlhase $
+  $HeadURL: https://svn.omdoc.org/repos/omdoc/trunk/schema/rnc/omdocquiz.rnc $
+  See the documentation and examples at http://www.omdoc.org
+  Copyright (c) 2004-2007 Michael Kohlhase, released under the GNU Public License (GPL) 
+-->
+<grammar ns="http://omdoc.org/ns" xmlns="http://relaxng.org/ns/structure/1.0">
+  <define name="omdoc.class" combine="interleave">
+    <interleave>
+      <zeroOrMore>
+        <ref name="exercise"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="hint"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="mc"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="solution"/>
+      </zeroOrMore>
+    </interleave>
+  </define>
+  <define name="exercise.attribs">
+    <interleave>
+      <ref name="id.attribs"/>
+      <ref name="fori.attrib"/>
+    </interleave>
+  </define>
+  <define name="exercise.model">
+    <interleave>
+      <zeroOrMore>
+        <ref name="p"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="hint"/>
+      </zeroOrMore>
+      <choice>
+        <zeroOrMore>
+          <ref name="solution"/>
+        </zeroOrMore>
+        <zeroOrMore>
+          <ref name="mc"/>
+        </zeroOrMore>
+      </choice>
+    </interleave>
+  </define>
+  <define name="exercise">
+    <element name="exercise">
+      <interleave>
+        <ref name="exercise.attribs"/>
+        <ref name="exercise.model"/>
+      </interleave>
+    </element>
+  </define>
+  <define name="hint.attribs">
+    <interleave>
+      <ref name="omdoc.toplevel.attribs"/>
+      <ref name="fori.attrib"/>
+    </interleave>
+  </define>
+  <define name="hint.model">
+    <zeroOrMore>
+      <ref name="p"/>
+    </zeroOrMore>
+  </define>
+  <define name="hint">
+    <element name="hint">
+      <interleave>
+        <ref name="hint.attribs"/>
+        <ref name="hint.model"/>
+      </interleave>
+    </element>
+  </define>
+  <define name="solution.attribs">
+    <interleave>
+      <ref name="omdoc.toplevel.attribs"/>
+      <ref name="fori.attrib"/>
+    </interleave>
+  </define>
+  <define name="solution.model">
+    <optional>
+      <ref name="metadata"/>
+    </optional>
+    <interleave>
+      <ref name="omdoc.class"/>
+      <zeroOrMore>
+        <ref name="p"/>
+      </zeroOrMore>
+    </interleave>
+  </define>
+  <define name="solution">
+    <element name="solution">
+      <interleave>
+        <ref name="solution.attribs"/>
+        <ref name="solution.model"/>
+      </interleave>
+    </element>
+  </define>
+  <define name="mc.attribs">
+    <interleave>
+      <ref name="omdoc.toplevel.attribs"/>
+      <ref name="fori.attrib"/>
+    </interleave>
+  </define>
+  <define name="mc.model">
+    <ref name="choice"/>
+    <optional>
+      <ref name="hint"/>
+    </optional>
+    <ref name="answer"/>
+  </define>
+  <define name="mc">
+    <element name="mc">
+      <interleave>
+        <ref name="mc.attribs"/>
+        <ref name="mc.model"/>
+      </interleave>
+    </element>
+  </define>
+  <define name="choice.attribs">
+    <ref name="id.attribs"/>
+  </define>
+  <define name="choice.model">
+    <zeroOrMore>
+      <ref name="p"/>
+    </zeroOrMore>
+  </define>
+  <define name="choice">
+    <element name="choice">
+      <interleave>
+        <ref name="choice.attribs"/>
+        <ref name="choice.model"/>
+      </interleave>
+    </element>
+  </define>
+  <define name="answer.attribs">
+    <interleave>
+      <ref name="id.attribs"/>
+      <optional>
+        <attribute name="verdict">
+          <choice>
+            <value>true</value>
+            <value>false</value>
+          </choice>
+        </attribute>
+      </optional>
+    </interleave>
+  </define>
+  <define name="answer.model">
+    <zeroOrMore>
+      <ref name="p"/>
+    </zeroOrMore>
+  </define>
+  <define name="answer">
+    <element name="answer">
+      <interleave>
+        <ref name="answer.attribs"/>
+        <ref name="answer.model"/>
+      </interleave>
+    </element>
+  </define>
+</grammar>

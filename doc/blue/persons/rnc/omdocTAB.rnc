@@ -1,0 +1,28 @@
+# A RelaxNG schema for Open Mathematical documents (OMDoc 1.6) Module DOC 
+# $Id: omdocTAB.rnc 8004 2008-09-07 17:20:30Z clange $
+# $HeadURL: https://svn.omdoc.org/repos/omdoc/trunk/doc/blue/persons/rnc/omdocTAB.rnc $
+# See the documentation and examples at http://www.omdoc.org
+# Copyright (c) 2004-2007 Michael Kohlhase, released under the GNU Public License (GPL) 
+
+default namespace omdoc = "http://omdoc.org/ns"
+
+start = table
+
+id.attrib = attribute xml:id {xsd:ID}
+name.attrib = attribute name {xsd:string}
+range.attrib = attribute range {xsd:string}
+header.attrib = attribute header {xsd:string}
+
+tabrep = sparse
+
+table = element table {id.attrib?,(block|function)*,tabrep}
+
+sparse = element sparse {cell*}
+
+cell = element cell {attribute idx {xsd:string},text}
+
+block = element block {name.attrib?,range.attrib, header.attrib?}
+
+function = element function {attribute args1 {xsd:string}?,
+	                     attribute args2 {xsd:string}?,
+			     attribute vals {xsd:string}}

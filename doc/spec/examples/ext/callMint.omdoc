@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xml:id="callMint.omdoc"
+  xmlns="http://omdoc.org/ns"
+  xmlns:cc="http://creativecommons.org/ns"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  version="1.6">
+<metadata>
+  <dc:date action="created"> 2004-10-05T11:41:47Z </dc:date>
+  <dc:title xml:lang="en"> callMint </dc:title>
+  <dc:creator role="aut"> Michael Kohlhase </dc:creator>
+  <dc:source>  </dc:source>
+  <dc:date action="updated"> 2004-10-05T11:41:47Z </dc:date>
+  <dc:type> Text </dc:type>
+  <dc:format> application/omdoc+xml </dc:format>
+  <dc:rights>Copyright (c) 2004 Michael Kohlhase</dc:rights>
+  <cc:license>
+    <cc:permissions reproduction="permitted" distribution="permitted" derivative_works="permitted"/>
+    <cc:prohibitions commercial_use="permitted"/>
+    <cc:requirements notice="required" copyleft="required" attribution="required"/>
+  </cc:license>
+</metadata>
+
+<code xml:id="callMint" requires="org.riaca.cas">
+  <metadata>
+    <dc:description>
+      The multiple integrator applet. It puts up a user interface, queries the user for a 
+      function, which it then integrates by calling one of several computer algebra systems. 
+    </dc:description>
+  </metadata>
+  <data format="application/x-java-applet">
+    <![CDATA[... %{\em the callMint code goes here}% ...]]>
+  </data> 
+  <input><CMP>None: the applet handles input itself.</CMP></input> 
+  <output><CMP>The result of the integration.</CMP></output>
+  <effect><CMP>None.</CMP></effect> 
+</code>
+
+</omdoc>

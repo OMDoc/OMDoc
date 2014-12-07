@@ -1,0 +1,130 @@
+<?xml version="1.0"?>
+<notations xmlns="http://www.w3.org/ns/mathml-cd" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:om="http://www.openmath.org/OpenMath" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+
+  <notation>
+    <prototype>
+      <om:OMS cd="simpletypes" name="all-types"/>
+    </prototype>
+    <prototype>
+      <m:csymbol cd="simpletypes">all-types</m:csymbol>
+    </prototype>
+    <rendering xml:lang="en"><m:mo>∀</m:mo></rendering>
+  </notation>
+
+<!--     <notation>
+      <prototype>
+        <om:OMBIND>
+          <om:OMS cd="simpletypes" name="all-types"/>
+          <om:OMBVAR>
+            <exprlist name="bvars"><expr name="bvar"/></exprlist>
+          </om:OMBVAR>
+	  <expr name="scope"/>
+        </om:OMBIND>
+      </prototype>
+      <prototype>
+        <m:bind>
+          <m:csymbol cd="simpletypes">all-types</m:csymbol>
+          <m:bvar>
+            <exprlist name="bvars">
+              <expr name="bvar"/>
+            </exprlist>
+          </m:bvar>
+          <expr name="scope"/>
+        </m:bind>
+      </prototype>
+      <rendering precedence="1000">
+        <m:mrow>
+          <m:mo>∀</m:mo>
+	  <render name="bvars">
+	    <separator><m:mo separator="true">,</m:mo></separator>
+	    <render name="bvar"/>
+	  </render>
+	  <m:mo separator="true">.</m:mo>
+	  <render name="scope"/>
+        </m:mrow>
+      </rendering>
+    </notation> -->
+
+  <notation cdbase="FIXME" cd="simpletypes" name="oftype">
+    <prototype>
+      <om:OMATTR>
+        <om:OMATP>
+          <om:OMS cd="simpletypes" name="oftype"/>
+          <expr name="val"/>
+        </om:OMATP>
+        <expr name="scope"/>
+      </om:OMATTR>
+    </prototype>
+    <prototype>
+      <m:semantics>
+        <expr name="scope"/>
+        <m:annotation-xml cd="simpletypes" name="oftype">
+          <expr name="val"/>
+        </m:annotation-xml>
+      </m:semantics>
+    </prototype>
+    <rendering>
+      <m:msub>
+        <render name="scope"/>
+        <render name="val"/>
+      </m:msub>
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="simpletypes" name="recordtype">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="simpletypes" name="recordtype"/>
+        <exprlist name="args">
+          <expr name="arg"/>
+        </exprlist>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="simpletypes">recordtype</m:csymbol>
+        <expr name="arg"/>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <!--SPECIFYME: no rendering generated-->
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="simpletypes" name="tupletype">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="simpletypes" name="tupletype"/>
+        <exprlist name="args">
+          <expr name="arg"/>
+        </exprlist>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="simpletypes">tupletype</m:csymbol>
+        <expr name="arg"/>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <!--SPECIFYME: no rendering generated-->
+    </rendering>
+  </notation>
+  <notation cdbase="FIXME" cd="simpletypes" name="cotupletype">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="simpletypes" name="cotupletype"/>
+        <exprlist name="args">
+          <expr name="arg"/>
+        </exprlist>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="simpletypes">cotupletype</m:csymbol>
+        <expr name="arg"/>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <!--SPECIFYME: no rendering generated-->
+    </rendering>
+  </notation>
+</notations>

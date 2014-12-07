@@ -1,0 +1,186 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This file is part of the LaTeX sources of the OMDoc 1.6 specification
+% Copyright (c) 2006 Michael Kohlhase
+% This work is licensed by the Creative Commons Share-Alike license
+% see http://creativecommons.org/licenses/by-sa/2.5/ for details
+\svnInfo $Id: quickref.tex 8425 2009-07-17 11:59:54Z kohlhase $
+\svnKeyword $HeadURL: https://svn.omdoc.org/repos/omdoc/trunk/doc/spec/quickref.tex $
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{omgroup}[id=table,short=Quick-Reference]
+                           {Quick-Reference Table to the {\omdoc} Elements}
+\def\tabelt#1#2#3#4#5#6{{#1}&\sref{eldef.#1}&{#2}&{#3}&{#4}&{#5}&{#6}\\\hline}
+\def\mathmlcat{MML}\def\omcat{OM}
+\begin{scriptsize}
+\begin{longtable}{|>{\tt}p{1.8cm}|l|l|>{\tt}p{1.8cm}|>{\tt}p{1.8cm}|c|>{\tt}p{2.2cm}|}\hline
+{\rm Element}& p. & Mod.  & {\rm Required}  & {\rm Optional} & M & Content \\\hline
+             &    &       & {\rm Attribs}   & {\rm Attribs}  & D &        \\\hline\hline
+\tabelt{adt}{\ADTmodule{spec}}{}{xml:id, type, style, class, theory, generated-from, generated-via}{+}{sortdef+}
+% theory is not mandatory for alternative, is it? --clange
+\tabelt{alternative}{\STmodule{spec}}{for, entailed-by, entails,
+             entailed-by-thm, entails-thm}{xml:id, type, theory,
+  generated-from, generated-via, uniqueness, exhaustivity, consistency, existence,
+             style, class}{+}{CMP*, (FMP| requation*| ({\mobjabbr})*)}
+\tabelt{answer}{\QUIZmodule{spec}}{verdict}{xml:id, style, class}{+}{CMP*, FMP*}
+\tabelt{m:apply}\mathmlcat{}{id, xlink:href}{--}{bvar?,\llquote{CMel}*}
+\tabelt{argument}{\ADTmodule{spec}}{sort}{}{+}{selector?}
+\tabelt{assertion}{\STmodule{spec}}{}{xml:id, type, theory,
+  generated-from, generated-via, style, class}{+}{CMP*, FMP*}
+\tabelt{assumption}{\MTXTmodule{spec}}{}{xml:id, inductive, style, class}{+}{CMP*, (\mobjabbr)?}
+\tabelt{attribute}{\PRESmodule{spec}}{name}{}{--}{(value-of| text)*}
+\tabelt{axiom}{\STmodule{spec}}{name}{xml:id, type, generated-from, generated-via, style, class}{+}{CMP*, FMP*}
+\tabelt{axiom-inclusion}{\CTHmodule{spec}}{from, to}{xml:id, style, class, theory,
+  generated-from, generated-via}{+}{morphism?, (path-just| obligation*)}\hline
+\tabelt{m:bvar}\mathmlcat{}{id, xlink:href}{--}{ci*}
+\tabelt{m:ci}\mathmlcat{}{id, xlink:href}{--}{PCDATA}
+\tabelt{m:cn}\mathmlcat{}{id, xlink:href}{--}{([0-9]|,|.) (*|e([0-9]|,|.)*)?}
+\tabelt{choice}{\QUIZmodule{spec}}{}{xml:id, style, class}{+}{CMP*, FMP*}
+\tabelt{CMP}{\MTXTmodule{spec}}{}{xml:lang, xml:id}{--}{({\rm text}| {\mobjabbr} | with | term | omlet)*}
+\tabelt{code}{\EXTmodule{spec}}{}{xml:id, for, theory,
+  generated-from, generated-via, requires, style, class}{+}{input?, output?, effect?, data+}
+\tabelt{conclusion}{\MTXTmodule{spec}}{}{xml:id, style, class}{+}{CMP*, (\mobjabbr)?}
+\tabelt{constructor}{\ADTmodule{spec}}{name}{type, scope, style, class, theory,
+  generated-from, generated-via}{+}{argument*, recognizer?}
+\tabelt{dc:contributor}{\METAmodule{spec}}{}{xml:id, role, style, class}{--}{\llquote{text}}
+\tabelt{dc:creator}{\METAmodule{spec}}{}{xml:id, role, style, class}{--}{\llquote{text}}\hline
+\tabelt{m:csymbol}\mathmlcat{definitionURL}{id, xlink:href}{--}{EMPTY}
+\tabelt{data}{\EXTmodule{spec}}{}{format, href, size, original}{--}{<![CDATA[\ldots]]>}
+\tabelt{dc:date}{\METAmodule{spec}}{}{action, who}{--}{{\atwintoo{ISO}{8601}{norm}}}
+\tabelt{dd}{\RTmodule{spec}}{}{xml:id, style, class, index, verbalizes}{+}{{\rm{\element{CMP}}content}}
+\tabelt{di}{\RTmodule{spec}}{}{xml:id, style, class, index, verbalizes}{+}{dt+,dd*}
+\tabelt{dl}{\RTmodule{spec}}{}{xml:id, style, class, index, verbalizes}{+}{{li*}}
+\tabelt{dt}{\RTmodule{spec}}{}{xml:id, style, class, index, verbalizes}{+}{{\rm{\element{CMP}}content}}
+\tabelt{decomposition}{\DGmodule{spec}}{links}{theory, generated-from, generated-via}{--}{EMPTY}
+\tabelt{definition}{\STmodule{spec}}{xml:id, for}{uniqueness, existence, consistency, exhaustivity, type, generated-from, generated-via, style, class}{+}{CMP*,
+             (FMP| requation+| \mobjabbr)?, measure?, ordering?}
+\tabelt{dc:description}{\METAmodule{spec}}{}{xml:lang}{--}{{\rm{\element{CMP}}content}}
+\tabelt{derive}{\PFmodule{spec}}{}{xml:id, style, class}{--}{CMP*, FMP?, method?}\hline
+\tabelt{effect}{\EXTmodule{spec}}{}{xml:id, style, class}{--}{CMP*,FMP*}
+\tabelt{element}{\PRESmodule{spec}}{name}{xml:id, cr, ns}{--}{(attribute| element| text| recurse)*}
+\tabelt{example}{\STmodule{spec}}{for}{xml:id, type, assertion, proof, style, class, theory,
+  generated-from, generated-via}{+}{CMP*| (\mobjabbr)?}
+\tabelt{exercise}{\QUIZmodule{spec}}{}{xml:id, type, for, from, style, class, theory,
+  generated-from, generated-via}{+}{CMP*, FMP*, hint?, (solution*|mc*)}
+\tabelt{FMP}{\MTXTmodule{spec}}{}{logic, xml:id}{--}{(assumption*, conclusion*)|\mobjabbr}
+\tabelt{dc:format}{\METAmodule{spec}}{}{}{--}{{\rm fixed:} "application/omdoc+xml"}\hline
+\tabelt{hint}{\QUIZmodule{spec}}{}{xml:id, style, class, theory,
+  generated-from, generated-via}{+}{CMP*, FMP*}
+\tabelt{hypothesis}{\PFmodule{spec}}{}{xml:id, style, class, inductive}{--}{CMP*, FMP*}\hline
+\tabelt{dc:identifier}{\METAmodule{spec}}{}{scheme}{--}{ANY}
+\tabelt{ide}{\RTmodule{spec}}{index}{xml:id,sort-by,see, seealso, links, style, class}{--}{idp*}
+\tabelt{idp}{\RTmodule{spec}}{}{xml:id,sort-by,see, seealso, links, style, class}{--}{\rm{\element{CMP}}content}
+\tabelt{idt}{\RTmodule{spec}}{}{style, class}{--}{\rm{\element{CMP}}content}
+\tabelt{idx}{\RTmodule{spec}}{}{xml:id,sort-by,see, seealso, links, style, class}{--}{idt?,idp+}
+\tabelt{ignore}{\DOCmodule{spec}}{}{type, comment}{--}{ANY}
+\tabelt{imports}{\CTHmodule{spec}}{from}{xml:id, type, style, class}{+}{morphism?}
+\tabelt{inclusion}{\CTHmodule{spec}}{for}{xml:id}{--}{}
+\tabelt{input}{\EXTmodule{spec}}{}{xml:id, style, class}{--}{CMP*,FMP*}
+\tabelt{insort}{\ADTmodule{spec}}{for}{}{--}{}\hline
+\tabelt{dc:language}{\METAmodule{spec}}{}{}{--}{{\atwintoo{ISO}{8601}{norm}}}
+\tabelt{li}{\RTmodule{spec}}{}{xml:id, style, class, index, verbalizes}{--}{{Math Vernacular}}\hline
+\tabelt{cc:license}{\METAmodule{spec}}{}{jurisdiction}{--}{permissions, prohibitions, requirements}
+\tabelt{link}{\RTmodule{spec}}{}{xml:id, style, class, index, verbalizes}{--}{{Math Vernacular}}
+\tabelt{m:math}\mathmlcat{}{id, xlink:href}{--}{\llquote{CMel}+}
+\tabelt{mc}{\QUIZmodule{spec}}{}{xml:id, style, class, theory,
+  generated-from, generated-via}{--}{choice, hint?, answer}
+\tabelt{measure}{\STmodule{spec}}{}{xml:id}{--}{\mobjabbr}
+\tabelt{metadata}{\METAmodule{spec}}{}{inherits}{--}{({\rm dc-element})*}
+\tabelt{method}{\PFmodule{spec}}{xref}{}{--}{(\mobjabbr | premise | proof | proofobject)*}
+\tabelt{morphism}{\CTHmodule{spec}}{}{xml:id, base, consistency, exhaustivity, type, hiding, style, class}{--}{requation*, measure?, ordering?}\hline
+\tabelt{note}{\RTmodule{spec}}{}{type,xml:id, style, class, index, verbalizes}{--}{{Math Vernacular}}
+\tabelt{obligation}{\CTHmodule{spec}}{induced-by, assertion}{xml:id}{--}{EMPTY}
+\tabelt{om:OMA}\omcat{}{id, cdbase}{--}{\llquote{OMel}*}
+\tabelt{om:OMATTR}\omcat{}{id, cdbase}{--}{\llquote{OMel}}
+\tabelt{om:OMATP}\omcat{}{cdbase}{--}{(OMS, (\llquote{OMel} | om:OMFOREIGN))+}
+\tabelt{om:OMB}\omcat{}{id, class, style, class}{--}{\#PCDATA}
+\tabelt{om:OMBIND}\omcat{}{id, cdbase}{--}{\llquote{OMel}, om:OMBVAR, \llquote{OMel}?}
+\tabelt{om:OMBVAR}\omcat{}{}{--}{(om:OMV | om:OMATTR)+}
+\tabelt{om:OMFOREIGN}\omcat{}{id, cdbase}{--}{ANY}
+\tabelt{omdoc}{\DOCmodule{spec}}{}{xml:id,type, version, style, class, xmlns, theory,
+  generated-from, generated-via}{+}{({\rm top-level element})*}
+\tabelt{om:OME}\omcat{}{xml:id}{--}{(\llquote{OMel})?}
+\tabelt{om:OMR}\omcat{href}{}{--}{}
+\tabelt{om:OMF}\omcat{}{id, dec, hex}{--}{\#PCDATA}
+\tabelt{ol}{\RTmodule{spec}}{}{xml:id, style, class, index, verbalizes}{--}{{li*}}
+\tabelt{om:OMI}\omcat{}{id, class, style}{--}{[0-9]*}
+\tabelt{omlet}{\EXTmodule{spec}}{}{id, argstr, type, function, action, data, style, class}{+}{ANY}
+\tabelt{omstyle}{\PRESmodule{spec}}{element}{for, xml:id, xref, style, class}{--}{(style|xslt)*}
+\tabelt{om:OMS}\omcat{cd, name}{class, style}{--}{EMPTY}
+\tabelt{omtext}{\MTXTmodule{spec}}{}{xml:id, type, for, from, style, theory,
+  generated-from, generated-via}{+}{CMP+, FMP?}
+\tabelt{om:OMV}\omcat{name}{class, style}{--}{EMPTY}
+\tabelt{ordering}{\STmodule{spec}}{}{xml:id}{--}{\mobjabbr}
+\tabelt{output}{\EXTmodule{spec}}{}{xml:id, style, class}{--}{CMP*,FMP*}\hline
+\tabelt{p}{\RTmodule{spec}}{}{xml:id, style, class, index, verbalizes}{--}{{Math Vernacular}}
+\tabelt{param}{\EXTmodule{spec}}{name}{value, valuetype}{--}{EMPTY}
+\tabelt{path-just}{\DGmodule{spec}}{local, globals}{for, xml:id}{--}{EMPTY}
+\tabelt{cc:permissions}{\METAmodule{spec}}{}{reproduction, distribution, derivative\_works}{--}{EMPTY}
+\tabelt{premise}{\PFmodule{spec}}{xref}{}{--}{EMPTY}
+\tabelt{presentation}{\PRESmodule{spec}}{for}{xml:id, xref, fixity, role, lbrack, rbrack, separator, 
+                        bracket-style, style, class, precedence, crossref-symbol}
+                        {--}{(use | xslt | style)* }
+\tabelt{private}{\EXTmodule{spec}}{}{xml:id, for, theory,
+  generated-from, generated-via, requires, reformulates, style, class}{+}{data+}
+\tabelt{cc:prohibitions}{\METAmodule{spec}}{}{commercial\_use}{--}{EMPTY}
+\tabelt{proof}{\PFmodule{spec}}{}{xml:id, for,theory,
+  generated-from, generated-via, style, class}{+}{(symbol | definition | omtext |
+             derive | hypothesis)*}
+\tabelt{proofobject}{\PFmodule{spec}}{}{xml:id, for, theory,
+  generated-from, generated-via, style, class}{+}{CMP*, (\mobjabbr)}
+\tabelt{dc:publisher}{\METAmodule{spec}}{}{xml:id, style, class}{--}{ANY}\hline
+\tabelt{ref}{\DOCmodule{spec}}{}{xref, type}{--}{ANY}
+\tabelt{recognizer}{\ADTmodule{spec}}{name}{type, scope, role, style, class}{+}{}
+\tabelt{recurse}{\PRESmodule{spec}}{}{select}{--}{EMPTY}
+\tabelt{dc:relation}{\METAmodule{spec}}{}{}{--}{ANY}
+\tabelt{requation}{\STmodule{spec}}{}{xml:id, style, class}{--}{(\mobjabbr),(\mobjabbr)}
+\tabelt{cc:requirements}{\METAmodule{spec}}{}{notice, copyleft,  attribution}{--}{EMPTY}
+\tabelt{dc:rights}{\METAmodule{spec}}{}{}{--}{ANY}\hline
+\tabelt{selector}{\ADTmodule{spec}}{name}{type, scope, role, total, style, class}{+}{}
+\tabelt{solution}{\QUIZmodule{spec}}{}{xml:id, for, style, class, theory,
+  generated-from, generated-via}{+}{(CMP*, FMP*) | proof}
+\tabelt{sortdef}{\ADTmodule{spec}}{name}{role, scope, style, class}{+}{(constructor|insort)*}
+\tabelt{dc:source}{\METAmodule{spec}}{}{}{--}{ANY}
+\tabelt{style}{\PRESmodule{spec}}{format}{xml:lang, requires}{--}{(element | text | recurse | value-of)*}
+\tabelt{dc:subject}{\METAmodule{spec}}{}{xml:lang}{--}{{\rm{\element{CMP}}content}}
+\tabelt{symbol}{\STmodule{spec}}{name}{role, scope, style, class,generated-from,generated-via}{+}{type*}\hline
+\tabelt{table}{\RTmodule{spec}}{}{xml:id, style, class, index, verbalizes}{--}{{tr*}}
+\tabelt{term}{\MTXTmodule{spec}}{cd, name}{xml:id, role, style, class}{--}{{\rm {\element{CMP}} content}}
+\tabelt{text}{\PRESmodule{spec}}{}{}{--}{\#PCDATA}
+\tabelt{td}{\RTmodule{spec}}{}{xml:id, style, class, index, verbalizes}{--}{{Math Vernacular}}
+\tabelt{th}{\RTmodule{spec}}{}{xml:id, style, class, index, verbalizes}{--}{{Math Vernacular}}
+\tabelt{theory}{\STmodule{spec}}{xml:id}{cdbase, style, class}{+}{({\rm statement}|theory)*}
+\tabelt{theory-inclusion}{\CTHmodule{spec}}{from, to}{xml:id, style, class, theory,
+  generated-from, generated-via}{+}{(morphism, decomposition?)}
+\tabelt{tr}{\RTmodule{spec}}{}{xml:id, style, class, index, verbalizes}{--}{{(td|th)*}}
+\tabelt{dc:title}{\METAmodule{spec}}{}{xml:lang}{--}{{\rm{\element{CMP}}content}}
+\tabelt{tgroup}{\DOCmodule{spec}}{}{xml:id, type, style, class, modules,
+  generated-from, generated-via}{+}{{\rm top-level or theory-constitutive element}*}
+\tabelt{type}{\STmodule{spec}}{system}{xml:id, for, style, class}{--}{CMP*, (\mobjabbr)}
+\tabelt{dc:type}{\METAmodule{spec}}{}{}{--}{{\rm fixed:} "Dataset" {\rm or} "Text" {\rm or} "Collection"}\hline
+\tabelt{ul}{\RTmodule{spec}}{}{xml:id, style, class, index, verbalizes}{--}{{li*}}
+\tabelt{use}{\PRESmodule{spec}}{format}{xml:lang, requires, fixity,
+             lbrack, rbrack, separator, crossref-symbol, element, attributes}
+                        {--}{(use | xslt | style)* }
+\tabelt{value-of}{\PRESmodule{spec}}{select}{}{--}{EMPTY}
+\tabelt{phrase}{\MTXTmodule{spec}}{}{xml:id, style, class, index, verbalizes, type}{--}{{\rm {\element{CMP}} content}}
+\tabelt{xslt}{\PRESmodule{spec}}{format}{xml:lang, requires}{--}{{\xslt} fragment}
+\end{longtable}
+\end{scriptsize}
+\end{omgroup}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "main"
+%%% End: 
+
+% LocalWords:  stat prf adt aux pres Attribs sortdef requation lang mml RT bvar
+% LocalWords:  PCDATA omlet pto classid codebase href mc dc attr thm CMP FMP di
+% LocalWords:  insort metacomment xref xmlns xsi xsl schemaLocation tgroup
+% LocalWords:  argstr omstyle xslt lbrack rbrack crossref proofobject ref larg
+% LocalWords:  rarg argstring attibutes cd loc cmml mathematica pmml aqt aui ci
+% LocalWords:  aut clb edt ths trc trl obj xlink CMel cn csymbol definitionURL
+% LocalWords:  crid cr ns li om cdbase OMel OMATP OMFOREIGN OMB OME OMR OMF dec
+% LocalWords:  ol mobjabbr tr td Dataset ul att CC cc onPresent onLoad cref dt
+% LocalWords:  onRequest IANA param valuetype CDATA dl recurse ide
+% LocalWords:  omdoc seealso idp idt idx metadata OMA OMATTR OMBIND OMBVAR OMV
+% LocalWords:  omdoc OMI omtext globals th

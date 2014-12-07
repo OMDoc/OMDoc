@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<notations xmlns="http://www.w3.org/ns/mathml-cd" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:om="http://www.openmath.org/OpenMath" xmlns:mcd="http://www.w3.org/ns/mathml-cd">
+  <notation cdbase="FIXME" cd="cases" name="cases">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="cases" name="cases"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="cases">cases</m:csymbol>
+        <expr name="arg"/>
+      </m:apply>
+    </prototype>
+    <!--REPLACEME: This is just copied for manual intervention:-->
+    <element xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath" name="mrow" cr="yes">
+      <element name="mo" cr="yes"><text>case</text></element> 
+      <recurse select="*[2]"/>
+      <element name="mo" cr="yes"><text>of</text></element>
+      <recurse select="*[position()&gt;2]"/>
+      <element name="mo" cr="yes"><text> esac</text></element>
+    </element>
+    <!--/REPLACEME-->
+  </notation>
+  <notation cdbase="FIXME" cd="cases" name="case">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="cases" name="case"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="cases">case</m:csymbol>
+        <expr name="arg"/>
+      </m:apply>
+    </prototype>
+    <!--REPLACEME: This is just copied for manual intervention:-->
+    <element xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath" name="mrow" cr="yes">
+      <recurse select="*[2]"/>
+      <element name="mo" cr="yes"><text>: </text></element>
+      <recurse select="*[3]"/>
+      <text>
+</text>
+    </element>
+    <!--/REPLACEME-->
+  </notation>
+  <notation cdbase="FIXME" cd="cases" name="case-other">
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="cases" name="case-other"/>
+        <expr name="arg"/>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="cases">case-other</m:csymbol>
+        <expr name="arg"/>
+      </m:apply>
+    </prototype>
+    <!--REPLACEME: This is just copied for manual intervention:-->
+    <element xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://omdoc.org/ns" xmlns:om="http://www.openmath.org/OpenMath" name="mrow" cr="yes">
+      <element name="mo" cr="yes"><text>other: </text></element>
+      <recurse select="*[2]"/>
+      <text>
+</text>
+    </element>
+    <!--/REPLACEME-->
+  </notation>
+</notations>

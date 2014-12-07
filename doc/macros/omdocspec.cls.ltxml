@@ -1,0 +1,163 @@
+# -*- CPERL -*-
+package LaTeXML::Package::Pool;
+use strict;
+use LaTeXML::Package;
+LoadClass('omdoc');
+NewCounter('part',         'document',     idprefix=>'Pt', nested=>['chapter']);
+NewCounter('chapter',      'document',     idprefix=>'Ch', nested=>['section']);
+RequirePackage('graphicx');
+RequirePackage('array');
+RequirePackage('longtable');
+RequirePackage('moreverb');
+RequirePackage('amssymb');
+RequirePackage('wrapfig');
+RequirePackage('makeidx');
+RequirePackage('wasysym');
+RequirePackage('acronyms');
+RequirePackage('ded');
+RequirePackage('myref');
+RequirePackage('xmlindex-omdoc'); 
+RequirePackage('lstomdoc-omdoc');
+RequirePackage('tikz');
+RequirePackage('svninfo');
+RequirePackage('alltt');
+RequirePackage('dcm');
+#RequirePackage('statements');
+RawTeX('\RequirePackage[report]{statements}');
+RequirePackage('modules');
+RequirePackage('comment');
+RawTeX('\excludecomment{presonly}');
+
+DefConstructor('\llquote{}',"<omdoc:phrase class='llquote'>#1</omdoc:phrase>");
+
+RawTeX('\def\NN{\bbN} % natural numbers
+\def\PP{\bbP} % positive natural numbers
+\def\ZZ{\bbZ} % integers
+\def\RR{\bbR} % real numbers
+\def\CC{\bbC} % complex numbers
+\def\QQ{\bbQ} % rational numbers
+
+\def\Set#1{\left\{#1\right\}}\def\set#1{\{#1\}}
+\def\Setst#1#2{\left\{#1\right\left|#2\}}\def\setst#1#2{\{#1\bigl|#2\}}
+\def\allcdot#1#2{{\forall{#1}.{#2}}}
+\def\excdot#1#2{{\exists{#1}.{#2}}}
+\def\exucdot#1#2{{\exists^1{#1}.{#2}}}
+\def\thatcdot#1#2{{\tau{#1}.{#2}}}
+\def\implies{\Rightarrow}
+\def\webpageat{web page at }
+\def\July{ July}
+\def\boexchen{\hbox{\vrule\vbox{\hrule width 6 pt\vskip 6pt\hrule}\vrule}}
+\def\kasten{\hfil\null\nobreak\hfill\boexchen\par\smallskip}
+\def\seen#1{seen #1}
+');
+
+DefConstructor('\omds@module{}{}{}',
+    "<omdoc:idx>"
+   .  "<omdoc:idt>#1</omdoc:idt>"
+   .  "<omdoc:ide index='default'>"
+   .    "<omdoc:idp>#1 (#3)</omdoc:idp>"
+   .    "<omdoc:idp>#2 Module</omdoc:idp>"
+   .  "</omdoc:ide>"
+   .  "<omdoc:ide index='default'>"
+   .    "<omdoc:idp>#2 Module</omdoc:idp>"
+   .    "<omdoc:idp>#1 (#3) Module</omdoc:idp>"
+   .  "</omdoc:ide>"
+   .  "<omdoc:ide index='default'>"
+   .    "<omdoc:idp>#3</omdoc:idp>"
+   .    "<omdoc:idp>#2 Module #1</omdoc:idp>"
+   .  "</omdoc:ide>"
+   ."</omdoc:idx>");
+
+RawTeX('\def\DCmodule#1{\omds@module{DC}{#1}{Dublin Core Metadata}} 
+\def\CCmodule#1{\omds@module{CC}{#1}{Creative Commons Metadata}} 
+\def\CDMmodule#1{\omds@module{CDM}{#1}{Content Dictionary Metadata}} 
+\def\METAmodule#1{\omds@module{META}{#1}{Metadata}} 
+\def\MOBJmodule#1{\omds@module{MOBJ}{#1}{Mathematical Objects}} 
+\def\MTXTmodule#1{\omds@module{MTXT}{#1}{Mathematical Text}} 
+\def\STmodule#1{\omds@module{ST}{#1}{Mathematical Statements}} 
+\def\ADTmodule#1{\omds@module{ADT}{#1}{Abstract Data Types}} 
+\def\PFmodule#1{\omds@module{PF}{#1}{Proofs and Arguments}} 
+\def\CTHmodule#1{\omds@module{CTH}{#1}{Complex Theories}} 
+\def\DGmodule#1{\omds@module{DG}{#1}{Development Graphs}} 
+\def\EXTmodule#1{\omds@module{EXT}{#1}{Extensions}} 
+\def\PRESmodule#1{\omds@module{PRES}{#1}{Presentation}} 
+\def\QUIZmodule#1{\omds@module{QUIZ}{#1}{Exercises}} 
+\def\DOCmodule#1{\omds@module{DOC}{#1}{Document Structure}} 
+\def\RTmodule#1{\omds@module{RT}{#1}{Rich Text Structure}}'); 
+
+RawTeX('\newcommand{\bA}{{\bf A}}\newcommand{\bB}{{\bf B}}
+\newcommand{\bC}{{\bf C}}\newcommand{\bE}{{\bf E}}
+\newcommand{\bF}{{\bf F}}\newcommand{\bG}{{\bf G}}
+\newcommand{\bH}{{\bf H}}\newcommand{\bI}{{\bf I}}
+\newcommand{\bJ}{{\bf J}}\newcommand{\bK}{{\bf K}}
+\newcommand{\bL}{{\bf L}}\newcommand{\bO}{{\bf O}}
+\newcommand{\bP}{{\bf P}}\newcommand{\bQ}{{\bf Q}}
+\newcommand{\bS}{{\bf S}}\newcommand{\bT}{{\bf T}}
+\newcommand{\bU}{{\bf U}}\newcommand{\bV}{{\bf V}}
+\newcommand{\bW}{{\bf W}}\newcommand{\bX}{{\bf X}}
+\newcommand{\bY}{{\bf Y}}\newcommand{\bZ}{{\bf Z}}
+\newcommand{\bN}{{\bf N}}\newcommand{\bM}{{\bf M}}
+\newcommand{\bD}{{\bf D}}\newcommand{\bR}{{\bf R}}');
+
+RawTeX('\def\cA{{\cal A}}\def\cB{{\cal B}}\def\cC{{\cal C}}
+\def\cD{{\cal D}}\def\cE{{\cal E}}\def\cF{{\cal F}}
+\def\cG{{\cal G}}\def\cH{{\cal H}}\def\cI{{\cal I}}
+\def\cJ{{\cal J}}\def\cK{{\cal K}}\def\cL{{\cal L}}
+\def\cM{{\cal M}}\def\cN{{\cal N}}\def\cO{{\cal O}}
+\def\cP{{\cal P}}\def\cQ{{\cal Q}}\def\cR{{\cal R}}
+\def\cS{{\cal S}}\def\cT{{\cal T}}\def\cU{{\cal U}}
+\def\cV{{\cal V}}\def\cW{{\cal W}}\def\cX{{\cal X}}
+\def\cY{{\cal Y}}\def\cZ{{\cal Z}}');
+
+RawTeX('\newcommand{\bbA}{{\mathbb{A}}}\newcommand{\bbB}{{\mathbb{B}}}
+\newcommand{\bbC}{{\mathbb{C}}}\newcommand{\bbE}{{\mathbb{E}}}
+\newcommand{\bbF}{{\mathbb{F}}}\newcommand{\bbG}{{\mathbb{G}}}
+\newcommand{\bbH}{{\mathbb{H}}}\newcommand{\bbI}{{\mathbb{I}}}
+\newcommand{\bbJ}{{\mathbb{J}}}\newcommand{\bbK}{{\mathbb{K}}}
+\newcommand{\bbL}{{\mathbb{L}}}\newcommand{\bbO}{{\mathbb{O}}}
+\newcommand{\bbP}{{\mathbb{P}}}\newcommand{\bbQ}{{\mathbb{Q}}}
+\newcommand{\bbS}{{\mathbb{S}}}\newcommand{\bbT}{{\mathbb{T}}}
+\newcommand{\bbU}{{\mathbb{U}}}\newcommand{\bbV}{{\mathbb{V}}}
+\newcommand{\bbW}{{\mathbb{W}}}\newcommand{\bbX}{{\mathbb{X}}}
+\newcommand{\bbY}{{\mathbb{Y}}}\newcommand{\bbZ}{{\mathbb{Z}}}
+\newcommand{\bbN}{{\mathbb{N}}}\newcommand{\bbM}{{\mathbb{M}}}
+\newcommand{\bbD}{{\mathbb{D}}}\newcommand{\bbR}{{\mathbb{R}}}');
+
+RawTeX('\def\mobjabbr{OMOBJ |m:math |legacy}
+ \def\sdot{.}\def\deq{\colon=}
+
+\def\boexchen{\hbox{\vrule\vbox{\hrule width 6 pt\vskip 6pt\hrule}\vrule}}
+\def\kasten{\hfil\null\nobreak\hfill\boexchen\par\smallskip}
+\def\seen#1{seen #1}
+
+\def\@endpart{\par\strut\vspace*{4cm}\par\noindent}');
+
+DefConstructor('\cite[]{}',"<omdoc:citation ref='#2'/>");
+
+# Remember; \par closes, not opens, paragraphs!
+# Here, we want to close both an open p and para (if either are open).
+DefConstructor('\par', 
+	       sub { $_[0]->maybeCloseElement('omdoc:p');
+		     $_[0]->maybeCloseElement('omdoc:CMP'); 
+		     $_[0]->maybeCloseElement('omdoc:omtext'); },
+	       alias=>"\\par\n");
+Tag('omdoc:omtext', autoClose=>1, autoOpen=>1);
+Tag('omdoc:CMP', autoClose=>1, autoOpen=>1);
+Tag('omdoc:p', autoClose=>1, autoOpen=>1);
+
+
+DefConstructor('\url Semiverbatim',"<omdoc:link href='#1'>#1</omdoc:link>");
+DefConstructor('\lstinputlisting [] Semiverbatim',"<omdoc:link href='#2'>#2</omdoc:link>");
+
+DefConstructor('\tracticket{}',
+	       "<omdoc:link href='https://trac.omdoc.org/OMDoc/ticket/#1'>Ticket #1<omdoc:link> in the OMDoc TRAC");
+
+DefMacro('\frontmatter','');
+DefMacro('\mainmatter','');
+DefMacro('\backmatter','');
+DefMacro('\report','specification');
+################ presentational matters ####################
+DefMacro('\presem','');
+DefMacro('\presbf','');
+######################################################################
+1;

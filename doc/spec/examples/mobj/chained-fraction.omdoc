@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xml:id="chained-fraction.omdoc"
+  xmlns="http://omdoc.org/ns"
+  xmlns:cc="http://creativecommons.org/ns"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  version="1.6">
+<metadata>
+  <dc:date action="created"> 2004-10-05T11:59:55Z </dc:date>
+  <dc:title xml:lang="en"> chained-fraction </dc:title>
+  <dc:creator role="aut"> Michael Kohlhase </dc:creator>
+  <dc:source>  </dc:source>
+  <dc:date action="updated"> 2004-10-05T11:59:55Z </dc:date>
+  <dc:type> Text </dc:type>
+  <dc:format> application/omdoc+xml </dc:format>
+  <dc:rights>Copyright (c) 2004 Michael Kohlhase</dc:rights>
+  <cc:license>
+    <cc:permissions reproduction="permitted" distribution="permitted" derivative_works="permitted"/>
+    <cc:prohibitions commercial_use="permitted"/>
+    <cc:requirements notice="required" copyleft="required" attribution="required"/>
+  </cc:license>
+</metadata>
+
+<omtext xml:id="test">
+  <CMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+  <OMA id="foo">
+    <OMS cd="nat" name="divide"/>
+    <OMI>1</OMI>
+    <OMA><OMS cd="nat" name="plus"/>
+      <OMI>1</OMI>
+      <OMR href="#foo"/>
+    </OMA> 
+  </OMA>
+</OMOBJ>
+</CMP>
+</omtext>
+</omdoc>

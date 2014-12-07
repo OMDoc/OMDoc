@@ -1,0 +1,255 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This file is part of the LaTeX sources of the OMDoc 1.6 primer
+% Copyright (c) 2006 Michael Kohlhase
+% This work is licensed by the Creative Commons Share-Alike license
+% see http://creativecommons.org/licenses/by-sa/2.5/ for details
+\svnInfo $Id: xmlrpc.tex 8431 2009-07-19 11:33:00Z kohlhase $
+\svnKeyword $HeadURL: https://svn.omdoc.org/repos/omdoc/trunk/doc/primer/xmlrpc.tex $
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{omgroup}[id=rpc,short=Communication between Systems]
+                           {Communication with and between Mathematical Software Systems}
+
+{\omdoc} can be used as content language for communication protocols between
+mathematical software systems on the Internet. The ability to specify the context
+and meaning of the mathematical objects makes the {\omdoc} format ideally suited
+for this task.
+
+In this chapter we will discuss a message interface in a fictitious software system
+{\mathwebws}\footnote{``{\mathweb} {\bf{W}}eb {\bf{S}}ervices''; The examples discussed in
+  this chapter are inspired by the {\mathwebsb}~\cite{FraKoh:mabdl99,ZimKoh:tmsbdmr02}
+  (``{\mathweb} {\bf{S}}oftware {\bf{B}}us'') service infrastructure, which offers similar
+  functionality based on the {\xmlrpc} protocol (an {\xml} encoding of Remote Procedure
+  Calls (RPC)~\cite{xmlrpc}). We use the {\soap}-based formulation, since {\soap}
+  ({\bf{S}}imple {\bf{O}}bject {\bf{A}}ccess {\bf{P}}rotocol) is the relevant
+  {\indextoo{W3C}} standard and we can show the embedding of {\omdoc} fragments into other
+  {\xml} namespaces. In {\xmlrpc}, the {\xml} representations of the content language
+  {\omdoc} would be transported as base-64-encoded strings, not as embedded {\xml}
+  fragments. }, which connects a wide-range of {\twintoo{reasoning}{system}s}
+({\emph{\twintoo{mathematical}{service}s}}), such as {\atwintoo{automated}{theorem}
+  {prover}s}, {\atwintoo{automated}{proof}{assistant}s}, {\twintoo{computer
+    algebra}{system}s}, {\twintoo{model}{generator}s}, {\twintoo{constraint}{solver}s},
+human interaction units, and {\atwintoo{automated}{concept formation} {system}s}, by a
+common {\emph{\twintoo{mathematical}{software bus}}}.  Reasoning systems integrated in
+{\mathwebws} can therefore offer new services to the pool of services, and can in turn use
+all services offered by other systems.
+
+On the protocol level, {\mathwebws} uses {\soap} remote procedure calls with the HTTP
+binding~\cite{GudHad:soapad03} (see~\cite{Mitra:soapPrimer03} for an introduction to
+{\soap}) interface that allows client applications to request service objects and to use
+their service methods. For instance, a client can simply request a service object for the
+automated theorem prover {\spass}~\cite{Weidenbach:sv97} via the {\http} {\sf{GET}}
+request in {\mylstref{discover-spass}} to a {\mathwebws} broker node.
+
+\begin{lstlisting}[label=lst:discover-spass,
+          caption={Discovering Automated Theorem Provers (Request)}]
+GET /ws.mathweb.org/broker/getService?name=SPASS  HTTP/1.1
+Host: ws.mathweb.org
+Accept: application/soap+xml
+\end{lstlisting}
+
+As a result, the client receives a {\soap} message like the one in
+{\mylstref{rpc-spass}} containing information about various instances of
+services embodying the {\spass} prover known to the broker service.
+
+\begin{lstlisting}[label=lst:rpc-spass,
+          caption={Discovering Automated Theorem Provers (Response)}]
+HTTP/1.1 200 OK
+Content-Type: application/soap+xml
+Content-Length: 990
+
+<?xml version='1.0'?>
+<env:Envelope xmlns:env="http://www.w3.org/2003/05/soap-envelope">
+  <env:Body>
+    <ws:prover env:encodingStyle="http://www.w3.org/2003/05/soap-encoding"
+        xmlns:ws="http://www.mathweb.org/ws-fictional">
+      <ws:name>SPASS</ws:name>
+      <ws:version>2.1</ws:version>
+      <ws:URL>http://spass.mpi-sb.mpg.de/webspass/soap</ws:URL>
+      <ws:uptime>P3D5H6M45S</ws:uptime>
+      <ws:sysinfo>
+        <ws:ostype>SunOS 5.6</ws:ostype>
+        <ws:mips>3825</ws:mips>
+      </ws:sysinfo>
+    </ws:prover>
+    <ws:prover env:encodingStyle="http://www.w3.org/2003/05/soap-encoding"
+        xmlns:ws="http://www.mathweb.org/ws-fictional">
+      <ws:name>SPASS</ws:name>
+      <ws:version>2.0</ws:version>
+      <ws:URL>http://asuka.mt.cs.cmu.edu/atp/spass/soap</ws:URL>
+      <ws:uptime>P5M2D15H56M5S</ws:uptime>
+      <ws:sysinfo>
+        <ws:ostype>linux-2.4.20</ws:ostype>
+        <ws:mips>1468</ws:mips>
+      </ws:sysinfo>
+    <ws:prover>
+  </env:Body>
+</end:Envelope>
+\end{lstlisting}
+
+The client can then select one of the provers (say the first one, because it runs
+on the faster machine) and post theorem proving requests like the one in
+{\mylstref{rpc-prover}}\footnote{We have made the namespaces involved explicit
+  with prefixes in the examples, to show the mixing of different {\xml}
+  languages.} to the URL which uniquely identifies the service object in the
+Internet (this was part of the information given by the broker; see line 11 in
+{\mylstref{rpc-spass}}).
+
+\begin{lstlisting}[label=lst:rpc-prover,
+  caption={A {\soap} RPC call to {\spass}}]
+POST http://spass.mpi-sb.mpg.de/webspass/soap HTTP/1.1
+Host: http://spass.mpi-sb.mpg.de/webspass/soap
+Content-Type: application/soap+xml; 
+Content-Length: 1123
+
+<?xml version='1.0'?>
+<env:Envelope xmlns:env="http://www.w3.org/2003/05/soap-envelope">
+  <env:Body>
+    <ws:prove env:encodingStyle="http://www.w3.org/2003/05/soap-encoding"
+        xmlns:ws="http://www.mathweb.org/ws-fictional">
+      <omdoc:assertion xml:id="peter-hates-somebody" type="conjecture"
+             xmlns:omdoc="http://omdoc.org/ns"
+             theory="http://mbase.mathweb.org:8080/RPC2#lovelife"> 
+        <h:p>Peter hates somebody</h:p> 
+        <omdoc:FMP> 
+         <om:OMBIND xmlns:om="http://www.openmath.org/OpenMath"> 
+           <om:OMS cd="quant1" name="exists"/> 
+           <om:OMBVAR><om:OMV name="X"/></om:OMBVAR> 
+           <om:OMA> 
+             <om:OMS cd="lovelife" name="hate"/> 
+              <om:OMS cd="lovelife" name="peter"/> 
+              <om:OMV name="X"/> 
+            </om:OMA> 
+          </om:OMBIND> 
+       </omdoc:FMP> 
+      </omdoc:assertion> 
+      <ws:replyWith><ws:state>proof</ws:state></ws:replyWith>
+      <ws:timeout>20</ws:timeout>
+    </ws:prove>
+  </env:Body>
+</env:Envelope>
+\end{lstlisting}
+This {\soap} remote procedure call uses a generic method ``{\snippet{prove}}'' that can be
+understood by the {\atwintoo{first-order}{theorem}{prover}s} on {\mathwebsb}, and in
+particular the {\spass} system. This method is encoded as a {\element[ns-elt=ws]{prove}}
+element; its children describe the proof problem and are interpreted by the {\soap} RPC
+node as a parameter list for the method invocation.  The first parameter is an {\omdoc}
+representation of the assertion to be proven. The other parameters instruct the theorem
+prover service to reply with the proof (instead of e.g. just a yes/no answer) and gives it
+a time limit of 20 seconds to find it.
+
+Note that {\omdoc} fragments can be seamlessly integrated into an {\xml} message format
+like {\soap}. A {\soap} implementation in the client's implementation language simplifies
+this process drastically since it abstracts from {\http} protocol details and offers
+{\soap} nodes using data structures of the host language.  As a consequence, developing
+{\mathweb} clients is quite simple in such languages.  Last but not least, both {\msie}
+and the open source WWW browser {\firefox} now allow to perform {\soap} calls within
+JavaScript. This opens new opportunities for building user interfaces based on web
+browsers.
+
+Note furthermore that the example in {\mylstref{rpc-prover}} depends on the information
+given in the theory {\snippet{lovelife}} referenced in the {\attribute{theory}{assertion}}
+attribute in the {\element{assertion}} element (see {\extref{spec}{theories}} for a
+discussion of the theory structure in {\omdoc}). In our instance, this theory might
+contain formalizations (in first-order logic) of the information that Peter hates
+everybody that Mary loves and that Mary loves Peter, which would allow {\spass} to prove
+the assertion. To get the information, the {\mathwebws} service based on {\spass} would
+first have to retrieve the relevant information from a knowledge base like the {\mbase}
+system described in {\extref{projects}{mbase}} and pass it to the {\spass} theorem prover
+as background information. As {\mbase} is also a {\mathwebws} server, this can be done by
+sending the query in {\mylstref{rpc-getTheory}} to the {\mbase} service at
+\url{http://mbase.mathweb.org:8080}.
+
+\begin{lstlisting}[label=lst:rpc-getTheory,  
+  caption={Requesting a Theory from {\mbase}}]
+GET /mbase.mathweb.org:8080/soap/getTheory?name=lovelife  HTTP/1.1
+Host: mbase.mathweb.org:8080
+Accept: application/soap+xml
+\end{lstlisting}
+The answer would be of the form given in {\mylstref{rpc-theory}}. Here, the
+{\soap} envelope contains the {\omdoc} representation of the requested theory
+(irrespective of what the internal representation of {\mbase} was).
+\begin{lstlisting}[label=lst:rpc-theory,mathescape,
+  caption={The Background Theory for Message {\ref{lst:rpc-prover}}}]
+HTTP/1.1 200 OK
+Content-Type: application/soap+xml
+Content-Length: 602
+
+<?xml version='1.0'?>
+<env:Envelope xmlns:env="http://www.w3.org/2003/05/soap-envelope">
+  <env:Body>
+    <theory xml:id="lovelife" xmlns="http://omdoc.org/ns"> 
+      <symbol name="peter"/><symbol name="mary"/> 
+      <symbol name="love"/><symbol name="hate"/> 
+      <axiom xml:id="opposite"> 
+        <h:p>Peter hates everybody Mary loves</h:p> 
+        <FMP>$\allcdot{x}{loves(mary,x)\Rightarrow hates(peter,x)}$</FMP> 
+      </axiom> 
+      <axiom xml:id="mary-loves-peter"> 
+        <h:p>Mary loves Peter</h:p> 
+        <FMP>$loves(mary,peter)$</FMP>
+      </axiom>
+    </theory>
+  </env:Body>
+</env:Envelope>
+\end{lstlisting}
+This information is sufficient to prove the theorem in {\mylstref{rpc-prover}}; and the
+{\spass} service might reply to the request with the message in {\mylstref{rpc-proof}}
+which contains an {\omdoc} representation of a proof (see {\extref{spec}{proofs}} for
+details). Note that the {\attribute{for}{proof}} attribute in the {\element{proof}}
+element points to the original assertion from {\mylstref{rpc-prover}}.
+\begin{lstlisting}[label=lst:rpc-proof,mathescape,
+  caption={A proof that Peter hates someone}]
+HTTP/1.1 200 OK
+Content-Type: application/soap+xml
+Content-Length: 588
+
+<?xml version='1.0'?>
+<env:Envelope xmlns:env="http://www.w3.org/2003/05/soap-envelope">
+  <env:Body>
+    <proof xml:id="p347" for="#peter-hates-somebody"
+           xmlns="http://omdoc.org/ns"> 
+      <derive xml:id="d1">
+        <FMP>$hates(peter,peter)$</FMP>
+        <method xref="nd.omdoc#ND.chain">
+          <premise xref="#lovelife.mary-loves-peter"/>
+          <premise xref="#lovelife.opposite"/>
+        </method>
+      </derive>
+      <derive xml:id="concl">
+        <method xref="nd.omdoc#ND.ExI"><premise xref="#d1"/></method>
+      </derive>
+    </proof>
+  </env:Body>
+</env:Envelope>
+\end{lstlisting} 
+The proof has two steps: The first one is represented in the {\element{derive}} element,
+which states that ``Peter hates Peter''. This fact is derived from the two axioms in the
+theory {\snippet{lovelife}} in {\mylstref{rpc-theory}} (the {\element{premise}} elements
+point to them) by the ``chaining rule'' of the
+{\atwintoo{natural}{deduction}{calculus}}. This inference rule is represented by a symbol
+in the theory {\snippet{ND}} and referred to by the {\attribute{xref}{method}} attribute
+in the {\element{method}} element.  The second proof step is given in the second
+{\element{derive}} element and concludes the proof. Since the assertion of the conclusion
+is the statement of the proven assertion, we do not have a separate {\element{FMP}}
+element that states this here. The sole premise of this proof step is the previous one.
+For details on the representation of proofs in {\omdoc} see {\extref{spec}{proofs}}.
+
+Note that the {\spass} theorem prover does not in itself give proofs in the
+{\atwintoo{natural}{deduction}{calculus}}, so the {\spass} service that provided this
+answer presumably enlisted the help of another {\mathwebws} service like the {\tramp}
+system~\cite{Meier:sdttom00} that transforms resolution proofs (the native format of the
+{\spass} prover) to natural deduction proofs.
+\end{omgroup}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "main"
+%%% End: 
+
+% LocalWords:  xmlrpc spass methodCall methodName getService params param h:p
+% LocalWords:  struct lovelife FMP cd quant replyWith timeout JavaScript mary
+% LocalWords:  getTheory mathescape methodResponse lst int xref concl ExI
+% LocalWords:  nnnn env encodingStyle uptime sysinfo ostype SunOS mips omdoc om
+% LocalWords:  mbase rpc eb ervices oftware imple bject ccess rotocol xmlns ws
+% LocalWords:  ns elt OMBIND OMBVAR OMV OMA

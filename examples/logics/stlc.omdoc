@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/" 
+       xmlns="http://omdoc.org/ns"
+       xmlns:om="http://www.openmath.org/OpenMath"
+       xmlns:m="http://www.w3.org/1998/Math/MathML"
+       xml:id="stlc.omdoc" >
+
+<metadata>
+ <dc:creator role="aut">Michael Kohlhase</dc:creator>
+ <dc:date action="created">2002-06-12T00:00:00</dc:date>
+ <dc:title>The simply typed lambda calculus</dc:title>
+  <dc:rights>Copyright (c) 2008 Michael Kohlhase</dc:rights>
+  <license xmlns="http://creativecommons.org/ns">
+    <permissions reproduction="permitted" distribution="permitted" derivative_works="permitted"/>
+    <prohibitions commercial_use="permitted"/>
+    <requirements notice="required" copyleft="required" attribution="required"/>
+  </license>
+</metadata>
+
+
+
+<theory xml:id="stlc">
+  <metadata>
+    <dc:title>The simply typed lambda calculus</dc:title>
+  <dc:description>This theory defines the simply typed lambda calculus.</dc:description>
+  </metadata>
+
+<imports from="simpletypes.omdoc#simpletypes"/>
+<imports from="ind.omdoc#ind"/>
+<imports from="lambda-calc.omdoc#lambda-calc"/>
+
+<example xml:id="typed-identity" for="lambda-calc.omdoc#lambda-calc.lambda">
+  <CMP><OMOBJ xmlns="http://www.openmath.org/OpenMath"><OMR href="typed-id1"/></OMOBJ> represents the identity function on individuals.</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMBIND id="typed-id1">
+      <OMS cd="lambda-calc" name="lambda"/>
+      <OMBVAR>
+	<OMATTR>
+	  <OMATP>
+	    <OMS cd="simpletypes" name="oftype"/>
+	    <OMS cd="ind" name="ind"/>
+	  </OMATP>
+	  <OMV name="X"/>
+	</OMATTR>
+      </OMBVAR>
+      <OMV name="X"/>
+    </OMBIND>
+  </OMOBJ>
+</example>
+
+</theory>
+</omdoc>

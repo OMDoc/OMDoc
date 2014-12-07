@@ -1,0 +1,15 @@
+truthval.omdoc
+truthtables.omdoc
+pl0.omdoc
+skl0.omdoc
+ind.omdoc
+pl1.omdoc
+undefined.omdoc
+partial1.omdoc
+skl1.omdoc
+lambda-calc.omdoc
+record-calc.omdoc
+substitution.omdoc
+simpletypes.omdoc
+deptypes.omdoc
+sthol.omdoc

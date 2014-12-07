@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html id="dependent.omdoc" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <link rel="stylesheet" type="text/css" href="omdoc-default.css"/>
+    <title>Dependent Types</title>
+  </head>
+  <body>
+    <div class="dc-titleblock">
+      <div class="dc-title">Dependent Types</div>
+      <div class="dc-authors">Michael Kohlhase</div>
+      <div class="dc-date">2001-05-19</div>
+    </div>
+    <div class="omdoc-omtext" id="intro">
+      <p>This document defines the dependent types discipline.</p>
+    </div>
+    <div class="theory" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dc="http://purl.org/dc/elements/1.1/">
+      <h1 id="deptypes">1. Dependent Types</h1>
+      <div class="omdoc-symbol" id="function-term" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#deptypes"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>function-term
+        </div>The dependent function term constructor. It returns a dependent function that abstracts over a typed variable and returns a term. It can be applied to a term. 
+      </div>
+      <div class="omdoc-symbol" id="function-type" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#deptypes"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>function-type
+        </div>The dependent function type constructor. It returns the type of dependent functions that abstracting over a typed variable and returning a term. 
+      </div>
+      <div class="omdoc-symbol" id="function-application" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#deptypes"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>function-application
+        </div>The application operator that applies terms (functions) to terms. 
+      </div>
+      <div class="omdoc-symbol" id="type-family" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#deptypes"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>type-family
+        </div>The dependent type constructor. It returns a type family by abstracting over a typed variable and returning a type. It can be applied to a term. 
+      </div>
+      <div class="omdoc-symbol" id="type-family-kind" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#deptypes"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>type-family-kind
+        </div>The dependent function kind constructor. It returns the kind of type families that abstracts over a typed variable and returns a type. 
+      </div>
+      <div class="omdoc-symbol" id="type-family-application" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#deptypes"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>type-family-application
+        </div>The application operator that applies types (type families) to terms. 
+      </div>
+      <div class="omdoc-symbol" id="dependent-recordtype" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#deptypes"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>dependent-recordtype
+        </div>The dependent record type constructor. It takes an even number of arguments. The even ones are field names (currently they are OMS symbols in the pseudo-theory 'record-field' and the odd ones their values.
+      </div>
+      <div class="omdoc-symbol" id="dependent-tupletype" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#deptypes"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>dependent-tupletype
+        </div>The dependent tuple type constructor.
+      </div>
+      <div class="omdoc-symbol" id="dependent-cotupletype" role="Symbol" about="#" xml:id="">
+        <a class="omdoc" rel="oso:homeTheory" href="#deptypes"/>
+        <div class="omdoc-titlebox">
+          <span class="omdoc-titleword">Concept</span>dependent-cotupletype
+        </div>The dependent-co-tuple type constructor (useful for formalizing co-algebras).
+      </div>
+      <div class="omdoc-omtext" id="no-term-constructors">
+        <p>We do not need any term constructors for dependent types, we can take the ones defined in theory simpletypes </p>
+      </div>
+    </div>
+  </body>
+</html>

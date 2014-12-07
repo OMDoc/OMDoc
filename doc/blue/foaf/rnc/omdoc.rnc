@@ -1,0 +1,8 @@
+# A variant OMDoc schema for testing new metadata
+# $Id: omdoc.rnc 7877 2008-07-28 04:52:46Z kohlhase $
+# $HeadURL: https://svn.omdoc.org/repos/omdoc/trunk/rnc/omdoc.rnc $
+# See the documentation and examples at http://www.omdoc.org
+# Copyright (c) 2004-2007 Michael Kohlhase, released under the GNU Public License (GPL) 
+
+include "omdocmeta.rnc"
+include "../../../../rnc/omdoc.rnc" {metadata.class = (meta|mlink)*}

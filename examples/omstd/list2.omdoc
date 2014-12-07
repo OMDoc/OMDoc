@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  xmlns="http://omdoc.org/ns"
+xml:id="list2-omdoc">
+
+
+  <dc:title>The OpenMath Content Dictionary list2.ocd  in OMDoc form</dc:title>
+  <dc:creator role="trl">Michael Kohlhase</dc:creator>
+  <dc:creator role="ant">The OpenMath Society</dc:creator>
+  <dc:date> 1999-05-10T00:00:00</dc:date>
+  <dc:source>Derived from the OpenMath CD http://www.openmath.org/cd/list2.ocd.</dc:source>
+  <dc:type>Text</dc:type>
+  <dc:format>application/omdoc+xml</dc:format>
+  <dc:rights>Copyright (c) 2000-2002 Michael Kohlhase;
+    This OMDoc content dictionary is released under the OpenMath license:
+    http://monet.nag.co.uk/openmath/cdfiles/license.html
+  </dc:rights>
+  <dc:description>
+    Several basic list functions are given in this CD.
+  </dc:description>
+
+
+<theory xml:id="list2" cdbase="http://www.openmath.org/cd">
+
+<include from="sts.omdoc#sts"/>
+<include from="list1.omdoc#list1"/>
+<include from="quant1.omdoc#quant1"/>
+<include from="relation1.omdoc#relation1"/>
+
+<symbol name="first" xml:id="first">
+
+<dc:description> 
+    This symbol represents a function which returns the first elements of
+    its argument, which should be a list.
+</dc:description>
+
+<type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMV name="List"/>
+	<OMS name="Object" cd="sts"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+<example xml:id="first-ex-1" type="for" for="#first">
+  <CMP>Specification of the first element of the list [1,2,3]</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="list2" name="first"/>
+      <OMA>
+	<OMS cd="list1" name="list"/>
+	<OMI> 1 </OMI>
+	<OMI> 2 </OMI>
+	<OMI> 3 </OMI>
+      </OMA>
+    </OMA>
+  </OMOBJ>
+</example>
+<symbol name="rest" xml:id="rest">
+
+<dc:description> 
+    This symbol represents a function which returns a list made up of all
+    the elements except the first of its argument, which should be a list.
+</dc:description>
+
+<type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMV name="List"/>
+	<OMV name="List"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+<example xml:id="rest-ex-1" type="for" for="#rest">
+  <CMP>Specification of the list [1,2,3], apart from the first element</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="list2" name="rest"/>
+      <OMA>
+	<OMS cd="list1" name="list"/>
+	<OMI> 1 </OMI>
+	<OMI> 2 </OMI>
+	<OMI> 3 </OMI>
+      </OMA>
+    </OMA>
+  </OMOBJ>
+</example>
+<symbol name="cons" xml:id="cons">
+
+<dc:description> 
+    This symbol represents the cons list function. It takes 2 arguments:
+    the second must be a list, where the elements have the same type as
+    the type of the first. The function denotes a new list which has
+    the first argument as its first element followed by the elements of
+    the second argument.
+</dc:description>
+
+<type>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMS name="Object" cd="sts"/>
+	<OMV name="List"/>
+	<OMV name="List"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+<assertion xml:id="cons-prop-1" type="lemma">
+  <CMP>
+    cons(first(lst),rest(lst))=lst
+  </CMP>
+  <FMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMBIND>
+	<OMS cd="quant1" name="forall"/>
+	<OMBVAR>
+	  <OMV name="lst"/>
+	</OMBVAR>
+	<OMA>
+	  <OMS cd="relation1" name="eq"/>
+	  <OMA>
+	    <OMS cd="list2" name="cons"/>
+	    <OMA>
+	      <OMS cd="list2" name="first"/>
+	      <OMV name="lst"/>
+	    </OMA>
+	    <OMA>
+	      <OMS cd="list2" name="rest"/>
+	      <OMV name="lst"/>
+	    </OMA>
+	  </OMA>
+	  <OMV name="lst"/>
+	</OMA>
+      </OMBIND>
+    </OMOBJ>
+  </FMP>
+</assertion>
+</theory>
+</omdoc>

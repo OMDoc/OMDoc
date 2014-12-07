@@ -1,0 +1,419 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:model="http://www.modeldriven.org/2008/ArchitectureOntology/model.owl#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns="http://www.modeldriven.org/2008/ArchitectureOntology/Versioning.owl#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:Map="http://www.modeldriven.org/2008/ArchitectureOntology/Map.owl#"
+    xmlns:daml="http://www.daml.org/2001/03/daml+oil#"
+  xml:base="http://www.modeldriven.org/2008/ArchitectureOntology/Versioning.owl">
+  <owl:Ontology rdf:about="">
+    <rdfs:comment>This information is made available through the OSERA program (&lt;a href='http://www.osera.gov'&gt;http://www.osera.gov&lt;/a&gt;) of the U.S. General Services Administration under the terms and conditions of the license located at &lt;a href='http://www.osera.gov/license.html'&gt;http://www.osera.gov/license.html&lt;/a&gt;.  
+Copyright (c) 2008 by Data Access Technologies as an unpublished work.  All other rights reserved, Worldwide.  
+Further information and community support may be found on &lt;a href='http://www.ModelDriven.org'&gt;http://www.ModelDriven.org&lt;/a&gt;</rdfs:comment>
+    <owl:imports rdf:resource="http://www.modeldriven.org/2008/ArchitectureOntology/Map.owl"/>
+    <owl:imports rdf:resource="http://www.modeldriven.org/2008/ArchitectureOntology/model.owl"/>
+    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Created with TopBraid Composer</owl:versionInfo>
+  </owl:Ontology>
+  <rdfs:Class rdf:ID="Triple_retraction">
+    <rdfs:comment>An triple retraction statement removes a new triple in a structured data resource.  A structured data asset chnage &lt;states&gt; a set of changes, such as this one.  Each such change is made to a new version of the structured data asset.  If the containing transaction is sucessfull, the triple is removed from the subject data asset.  Note that a retraction may not fully remove a triple if some other statement or inference is also causing the triple to exist.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Change"/>
+    </rdfs:subClassOf>
+  </rdfs:Class>
+  <owl:Class rdf:ID="Successful_act">
+    <rdfs:comment>A speech act (or transaction) which completed sucessfully.</rdfs:comment>
+    <rdfs:subClassOf>
+      <rdf:Description rdf:about="http://www.modeldriven.org/2008/ArchitectureOntology/Authority.owl#Speech_act">
+        <rdfs:subClassOf rdf:resource="http://www.modeldriven.org/2008/ArchitectureOntology/proposition.owl#Proposition"/>
+      </rdf:Description>
+    </rdfs:subClassOf>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Failed_act"/>
+    </owl:disjointWith>
+  </owl:Class>
+  <owl:Class rdf:ID="Isomorphic_synchronization_rule">
+    <rdfs:comment>Maintains a "file" asset with an RDF graph representation of the same information.  The isomorphic mapping will result in an assset expressed in the same terms as the file, but using the RDF repository.  This allows all structured assets to have an RDF representation.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom>
+          <owl:Class rdf:ID="Unstructured_data_asset"/>
+        </owl:allValuesFrom>
+        <owl:onProperty rdf:resource="http://www.modeldriven.org/2008/ArchitectureOntology/Map.owl#spoke"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom>
+          <owl:Class rdf:ID="Structured_data_asset"/>
+        </owl:allValuesFrom>
+        <owl:onProperty rdf:resource="http://www.modeldriven.org/2008/ArchitectureOntology/Map.owl#hub"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Data_synchronization_rule"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Value_change">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Change"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <rdf:Description rdf:about="http://www.modeldriven.org/2008/ArchitectureOntology/proposition.owl#states">
+            <rdfs:subPropertyOf rdf:resource="http://www.modeldriven.org/2008/ArchitectureOntology/composition.owl#has_part"/>
+          </rdf:Description>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="#Triple_retraction"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <rdf:Description rdf:about="http://www.modeldriven.org/2008/ArchitectureOntology/proposition.owl#Proposition_group">
+        <rdfs:subClassOf rdf:resource="http://www.modeldriven.org/2008/ArchitectureOntology/composition.owl#Composite"/>
+      </rdf:Description>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.modeldriven.org/2008/ArchitectureOntology/proposition.owl#states"/>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="Triple_assertion"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:comment>Value change records a new value for a property.  The new old triples that are the subject of the change will be at least one &lt;Asset_statement&gt; and cooresponding &lt;Retract_statement&gt;, forming the change.  Each of these will be stated by the value change.
+In the case of numeric summation properties this may be used to compute a delta which may then be added to create a final value, even if other transactions have altered the prior value.  Understanding of what to do in the case that a prior value does not match what is in the current graph is noted in a concurrency policy.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Knowledge_base">
+    <rdfs:comment>A Knowledge base is a managed container of information.  A knowledge base generaly represents the information about a group of subject areas of interest to and managed by a person or organization.  The knowledge base may contain structured and unstructured data resources.  Structured data resources are prepresented in RDF.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Data_asset_container"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Branched_asset">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Data_asset"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Data_asset_container">
+    <rdfs:comment>A Data Asset Container (or folder) is container for other artifacts.  A D.A. Container is expected to accessible, traversable and "own" the artifacts within it.  Folders are typically hierarchical, containing other folders and artifacts.  Typical examples of D.A. Containers are directories and URI suffixes (such as http://URI/folder-a/folder-b.  The URI of the folder is also the URL of the folder (the physical address).
+A Data Asset is owned by one or more Data Asset Containers and will be "in" each of these folders.  An artifact that is not in any folder no longer exists.  (Similar to the Unix "iname" structure).
+A  Data Asset Container is a context for the contained Data Assets.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.modeldriven.org/2008/ArchitectureOntology/aobase.owl#Concept"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Data_asset"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Data_asset">
+    <rdfs:comment>An data asset is a resource cooresponding to physical and accessible information, such as a document, model, image, etc.  Such an asset is expected to exist and change over time and have multiple versions - each of which is an Artifact_version.  The URI of the asset is also the URL to accese the head version of the asset.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.modeldriven.org/2008/ArchitectureOntology/context.owl#Context"/>
+    <rdfs:subClassOf rdf:resource="http://www.modeldriven.org/2008/ArchitectureOntology/Authority.owl#Managed_asset"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Data_asset_version">
+    <rdfs:comment>A data asset is allowed to change over time while retaining its identity (in a given situation).  An Data_asset_version is a "snapshot" of an artifact at a particular time and context.  An artifact version is a "version_of" one or more of these more dynamic artifacts.  Versions are connected by a "Data asset change" which shows the sources used for any particular version.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.modeldriven.org/2008/ArchitectureOntology/aobase.owl#Concept"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Failed_act">
+    <rdfs:comment>A speech act (or transaction) which terminated in a failure state and thus had no effect on the subject data resources.  ToDo - add reasons for failure linked to the changes.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.modeldriven.org/2008/ArchitectureOntology/Authority.owl#Speech_act"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Structured_syncronization_change">
+    <rdfs:comment>A structured syncronization change records a change in one structrued asset caused by a change in another, based on a syncronization rule.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Structured_data_change"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Data_syncronization_change"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Structured_data_version">
+    <rdfs:subClassOf rdf:resource="#Data_asset_version"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="contents"/>
+        </owl:onProperty>
+        <owl:allValuesFrom rdf:resource="http://www.modeldriven.org/2008/ArchitectureOntology/aobase.owl#Graph"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="version_of"/>
+        </owl:onProperty>
+        <owl:allValuesFrom>
+          <owl:Class rdf:about="#Structured_data_asset"/>
+        </owl:allValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:comment>A structured data version is a version of a structured data asset.  The changes within the asset are understood and tracked.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#Data_syncronization_change">
+    <rdfs:comment>Records a change in an asset based on the firing of a data syncronization rule</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Data_asset_change"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Rule_change"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom>
+          <owl:Class rdf:about="#Data_synchronization_rule"/>
+        </owl:allValuesFrom>
+        <owl:onProperty rdf:resource="http://www.modeldriven.org/2008/ArchitectureOntology/behavior.owl#reason"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom>
+          <owl:Class rdf:about="#Data_asset_change"/>
+        </owl:allValuesFrom>
+        <owl:onProperty rdf:resource="http://www.modeldriven.org/2008/ArchitectureOntology/behavior.owl#trigger"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Structured_data_asset">
+    <rdfs:subClassOf rdf:resource="#Data_asset"/>
+    <rdfs:comment>A Structured Data Asset is any data asset that has an internal structured defined and accessible.  Examples of structured data resources would be DBMS files, RDF, XML, Etc.  While some documents have structure, that structure is limiited to its representation in some tool or technology and does not convey semantics about the document. Such technology specfic structure does not make it a structured data resource.  A structured data asset is structured based on domain semantics (Vs. application structural semantics).</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#Triple_assertion">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Change"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement"/>
+    <rdfs:comment>A triple assertion statement creates a new triple in a structured data resource.  A structured data asset change &lt;states&gt; a set of changes, such as this one, directly or indirectly.  Each such change is made to a new version of the structured data resource.  If the containing transaction is sucessfull, the new triple is created in the subject data resource.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#Rule_change">
+    <rdfs:subClassOf rdf:resource="http://www.modeldriven.org/2008/ArchitectureOntology/proposition.owl#Proposition_group"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Change"/>
+    </rdfs:subClassOf>
+    <rdfs:comment>A change caused by the firing of a rule, which may then cause other changes.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Identity_change">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Change"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.modeldriven.org/2008/ArchitectureOntology/proposition.owl#Proposition_group"/>
+    <rdfs:comment>Idenity_change records that the identity (URI) os a resource has been changed (renamed) from "prior_identity" to "effected_resource"</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#Change">
+    <rdfs:subClassOf rdf:resource="http://www.modeldriven.org/2008/ArchitectureOntology/behavior.owl#Happening"/>
+    <rdfs:comment>Change is an abstract class representing any "act" that makes a change in a data resource.  These changes may then be used to propagate structural and business rules.
+Changes may also be reflected in the more general addition and deletion of triples as reflected in "assert_statements" and "retract_statements".
+Rules may monitor changes and when they apply, such rules may then make a new speech act wich will then casue other changes.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.modeldriven.org/2008/ArchitectureOntology/proposition.owl#Proposition"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Shared_concept_synchronization_rule">
+    <rdfs:comment>This syncronizes an "isomorphic" data asset with a shred concept representation of the same information.  The shared concepts are normalized in the shared concept (hub) side based on how they coorespond to the "spoke" side.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="#Structured_data_asset"/>
+        <owl:onProperty rdf:resource="http://www.modeldriven.org/2008/ArchitectureOntology/Map.owl#hub"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="#Structured_data_asset"/>
+        <owl:onProperty rdf:resource="http://www.modeldriven.org/2008/ArchitectureOntology/Map.owl#spoke"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Data_synchronization_rule"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Structured_data_change">
+    <rdfs:comment>A structured data change is a data asset change where the versions are of a Structured Data Asset.  Since the asset is structured the change may contain additional information that details the specific changes made from one version to another in terms of triples added or removed and specific changes.  A structured data change &lt;states&gt; a set of changes, which are the specific changes made to the structured data asset in terms of triples being added and removed or other chnages.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Data_asset_change"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Data_synchronization_rule">
+    <rdfs:comment>A data syncronization rule assets an obligation on the EKB to keep two data assets in syc as either changes.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="#Data_asset"/>
+        <owl:onProperty rdf:resource="http://www.modeldriven.org/2008/ArchitectureOntology/Map.owl#hub"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.modeldriven.org/2008/ArchitectureOntology/Map.owl#Representation_mapping"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="#Data_asset"/>
+        <owl:onProperty rdf:resource="http://www.modeldriven.org/2008/ArchitectureOntology/Map.owl#spoke"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Unstructured_data_asset">
+    <rdfs:comment>An external artifact has a URI that cooresponds to the URL of a physical artifact - such as a file and there is no known dmain structure for the contents of that file or resource.  This is intended for word documents, presentations, pictures, etc.  Unstructured data assets can be managed and versioned, but the semantics of any changes can not be understood.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Data_asset"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Resource_deletion">
+    <rdfs:subClassOf rdf:resource="#Change"/>
+    <rdfs:subClassOf rdf:resource="http://www.modeldriven.org/2008/ArchitectureOntology/proposition.owl#Proposition_group"/>
+    <rdfs:comment>Reslurce deletion records that the "effected_resource"  has been removed from a resource to allow for propagation of structural and business rules.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Transaction">
+    <rdfs:comment>A transaction makes a set of coordinated changes to a set of data resources with ACID properties.  Each resource change is represented as a speach act which the transaction &lt;states&gt;.  A transaction may be further classified as a "sucessfull_act" or "failed_act".  A transaction must be the responsibility of a &lt;performer&gt; who must have the authority for the transactions actions.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="#Knowledge_base"/>
+        <owl:onProperty rdf:resource="http://www.modeldriven.org/2008/ArchitectureOntology/Authority.owl#effective_in"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.modeldriven.org/2008/ArchitectureOntology/proposition.owl#states"/>
+        <owl:allValuesFrom>
+          <owl:Class rdf:about="#Data_asset_change"/>
+        </owl:allValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.modeldriven.org/2008/ArchitectureOntology/Authority.owl#Speech_act"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Data_asset_change">
+    <rdfs:comment>A data asset change relates two versions of the same data asset, over time.  The 2 versions are "later_version" and "prior_version".  Since it is expected that artifacts may "branch and merge" it is not required that both versions are versions_of the same Artifact but it is expected that they are related by common ancestry.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Change"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.modeldriven.org/2008/ArchitectureOntology/Authority.owl#effective_in"/>
+        <owl:allValuesFrom rdf:resource="#Data_asset"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:ObjectProperty rdf:ID="contained_in">
+    <rdfs:subPropertyOf rdf:resource="http://www.modeldriven.org/2008/ArchitectureOntology/aobase.owl#owner"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:ID="contains_resource"/>
+    </owl:inverseOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="expressed_in_language">
+    <rdfs:range rdf:resource="http://www.modeldriven.org/2008/ArchitectureOntology/model.owl#Language"/>
+    <rdfs:domain rdf:resource="#Data_asset"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="prior_version">
+    <rdfs:comment>Relates a data resource version to a prior version of the same artifact.  Due to merging there may be more than one prior_version.</rdfs:comment>
+    <rdfs:range rdf:resource="#Data_asset_version"/>
+    <rdfs:domain rdf:resource="#Data_asset_change"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#contains_resource">
+    <rdfs:range rdf:resource="#Data_asset"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.modeldriven.org/2008/ArchitectureOntology/structure.owl#has_structural_part"/>
+    <rdfs:domain rdf:resource="#Data_asset_container"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="has_version">
+    <rdfs:comment>has_version records the version(s) of a data resource</rdfs:comment>
+    <rdfs:domain rdf:resource="#Data_asset"/>
+    <rdfs:range rdf:resource="#Data_asset_version"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="effected_resource">
+    <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Resource_deletion"/>
+          <owl:Class rdf:about="#Identity_change"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:comment>The resource effected by a change</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="records_changes">
+    <rdfs:comment>Records the changes made from one version of a model to another.  These chnages may then be used to propagate business and structural rules.</rdfs:comment>
+    <rdfs:range rdf:resource="#Change"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#contents">
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Data_asset_version"/>
+          <owl:Class rdf:about="#Data_asset"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#version_of">
+    <rdfs:comment>States that an artifact_version os a version of the given artifact.  Due to branching and merging an Artifact_version may be a version of more than one artifact.</rdfs:comment>
+    <rdfs:range rdf:resource="#Data_asset"/>
+    <rdfs:domain rdf:resource="#Data_asset_version"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="deletes_statements">
+    <rdfs:comment>A model delta may create or delete statements (RDF triples) from a graph.  "deletes_statements" are the triples removed.</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.modeldriven.org/2008/ArchitectureOntology/aobase.owl#Graph"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="depends_on">
+    <rdfs:comment>Artifacts (which are versioned) frequently depend on other artifacts (which are versioned).  A typical example of this is imports and includes which are used in UML and OWL.  “depends_on” records the dependency between specific versions such that as one artifact changes there is sufficient information to update all the artifacts that depend on it.  This update may be done by manual or automated processes.  
+In the case of models, changes to a model may have side effects on any model that depend on it. 
+For example, if Model-B imports Model-A and a resource is deleted from Model-B, Model-A may have to propagate effects of this deletion, thus making a new version of Model-B.  Such propagations may be required for any change on Model-A, based on structural or business rules that apply to Model-B.</rdfs:comment>
+    <rdfs:domain rdf:resource="#Data_asset_version"/>
+    <rdfs:range rdf:resource="#Data_asset_version"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="current_version">
+    <rdfs:comment>Records the current or "head" version of a data resource</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="#has_version"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="creates_statements">
+    <rdfs:range rdf:resource="http://www.modeldriven.org/2008/ArchitectureOntology/aobase.owl#Graph"/>
+    <rdfs:comment>A model delta may create or delete statements (RDF triples) from a graph.  "creates_statements" are the triples added.</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="reasons">
+    <rdfs:domain rdf:resource="#Failed_act"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="trigger">
+    <rdfs:range rdf:resource="http://www.modeldriven.org/2008/ArchitectureOntology/proposition.owl#Proposition"/>
+  </owl:ObjectProperty>
+  <rdf:Property rdf:ID="prior_identity">
+    <rdfs:comment>A property that relates a Change_identity to the prior identity</rdfs:comment>
+    <rdfs:domain rdf:resource="#Identity_change"/>
+  </rdf:Property>
+  <rdf:Property rdf:ID="Branched_from">
+    <rdfs:domain rdf:resource="#Branched_asset"/>
+    <rdfs:range rdf:resource="#Data_asset_version"/>
+  </rdf:Property>
+  <rdf:Property rdf:ID="performer">
+    <rdfs:subPropertyOf rdf:resource="http://www.modeldriven.org/2008/ArchitectureOntology/Authority.owl#stated_by"/>
+    <rdfs:domain rdf:resource="#Transaction"/>
+  </rdf:Property>
+  <owl:DatatypeProperty rdf:ID="corrective_action_needed">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="#Data_asset"/>
+  </owl:DatatypeProperty>
+  <owl:FunctionalProperty rdf:ID="created_by_act">
+    <rdfs:comment>An data resource version must be created in a repository by some act.  "created_by_act" relates an resource or resource version to such an act.</rdfs:comment>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Data_asset_version"/>
+          <owl:Class rdf:about="#Data_asset"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:range rdf:resource="#Data_asset_change"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="later_version">
+    <rdfs:comment>Defines the later or sebsequent version referenced by a data resource change.</rdfs:comment>
+    <rdfs:range rdf:resource="#Data_asset_version"/>
+    <rdfs:domain rdf:resource="#Data_asset_change"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </owl:FunctionalProperty>
+  <rdf:Description rdf:about="http://www.modeldriven.org/2008/ArchitectureOntology/proposition.owl#Rule">
+    <rdfs:comment>A rule is an obligation on the part of some actor to perform or restrict behaviors.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.modeldriven.org/2008/ArchitectureOntology/model.owl#Model">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="#contents"/>
+        <owl:allValuesFrom rdf:resource="http://www.modeldriven.org/2008/ArchitectureOntology/aobase.owl#Graph"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </rdf:Description>
+</rdf:RDF>
+
+<!-- Created with TopBraid Composer -->

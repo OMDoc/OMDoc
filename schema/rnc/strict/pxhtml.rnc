@@ -1,0 +1,24 @@
+# XHTML for paragraphs in OMDoc 
+# this is a subset of the xhtml RelaxNG schema for XHTML we use it for paragraphs in OMDoc2
+
+default namespace xhtml = "http://www.w3.org/1999/xhtml"
+
+include "xhtml/xhtml-datatypes.rnc"
+include "xhtml/xhtml-attribs.rnc"
+include "xhtml/xhtml-text.rnc"
+include "xhtml/xhtml-hypertext.rnc"
+include "xhtml/xhtml-list.rnc"
+include "xhtml/xhtml-image.rnc"
+include "xhtml/xhtml-ssismap.rnc"
+include "xhtml/xhtml-base.rnc"
+include "xhtml/xhtml-link.rnc"
+include "xhtml/xhtml-param.rnc"
+include "xhtml/xhtml-object.rnc"
+include "xhtml/xhtml-bdo.rnc"
+include "xhtml/xhtml-pres.rnc"
+include "xhtml/xhtml-edit.rnc"
+include "xhtml/xhtml-applet.rnc"
+include "xhtml/xhtml-table.rnc"
+include "xhtml/xhtml-csismap.rnc"
+include "xhtml/xhtml-events.rnc"
+include "xhtml/xhtml-inlstyle.rnc"

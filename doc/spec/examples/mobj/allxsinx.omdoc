@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xml:id="allxsinx.omdoc"
+  xmlns="http://omdoc.org/ns"
+  xmlns:cc="http://creativecommons.org/ns"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  version="1.6">
+<metadata>
+  <dc:date action="created"> 2004-10-05T11:52:15Z </dc:date>
+  <dc:title xml:lang="en"> allxsinx </dc:title>
+  <dc:creator role="aut"> Michael Kohlhase </dc:creator>
+  <dc:source>  </dc:source>
+  <dc:date action="updated"> 2004-10-05T11:52:15Z </dc:date>
+  <dc:type> Text </dc:type>
+  <dc:format> application/omdoc+xml </dc:format>
+  <dc:rights>Copyright (c) 2004 Michael Kohlhase</dc:rights>
+  <cc:license>
+    <cc:permissions reproduction="permitted" distribution="permitted" derivative_works="permitted"/>
+    <cc:prohibitions commercial_use="permitted"/>
+    <cc:requirements notice="required" copyleft="required" attribution="required"/>
+  </cc:license>
+</metadata>
+<omtext xml:id="test"><CMP>
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+  <OMBIND>
+    <OMS cd="quant1" name="forall"/>
+    <OMBVAR><OMV name="x"/></OMBVAR>
+    <OMA>
+      <OMS cd="arith1" name="geq"/>
+      <OMA><OMS cd="transc1" name="sin"/><OMV name="x"/></OMA>
+      <OMI>1</OMI>
+    </OMA>
+  </OMBIND>
+</OMOBJ>   
+</CMP>
+</omtext>
+</omdoc>

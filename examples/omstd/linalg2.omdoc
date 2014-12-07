@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<omdoc xmlns:dc="http://purl.org/dc/elements/1.1/"  
+       xmlns="http://omdoc.org/ns"
+       xmlns:om="http://www.openmath.org/OpenMath"
+       xmlns:m="http://www.w3.org/1998/Math/MathML"
+       xmlns:o="http://omdoc.org/ns"
+       xml:id="linalg2-omdoc">
+
+<metadata>
+  <dc:title>The OpenMath Content Dictionary linalg2.ocd  in OMDoc form</dc:title>
+  <dc:creator role="trl">Michael Kohlhase</dc:creator>
+  <dc:creator role="ant">The OpenMath Society</dc:creator>
+  <dc:date> 2001-03-12T00:00:00</dc:date>
+  <dc:source>Derived from the OpenMath CD http://www.openmath.org/cd/linalg2.ocd.</dc:source>
+  <dc:type>Text</dc:type>
+  <dc:format>application/omdoc+xml</dc:format>
+  <dc:rights>Copyright (c) 2000-2002 Michael Kohlhase;
+    This OMDoc content dictionary is released under the OpenMath license:
+    http://monet.nag.co.uk/openmath/cdfiles/license.html
+  </dc:rights>
+  <dc:description>
+    This CD  treats matrices and vectors in a row oriented fashion
+    (using matrixrow's).
+  </dc:description>
+</metadata>
+
+<theory xml:id="linalg2">
+
+<imports xml:id="linalg2-imports-sts" from="sts.omdoc#sts"/>
+<imports xml:id="linalg2-imports-mathmltypes" from="mathmltypes.omdoc#mathmltypes"/>
+
+<symbol name="vector" xml:id="vector">
+<metadata>
+<dc:description>
+    This symbol represents an n-ary function used to construct (or describe)
+    vectors.  Vectors in this CD are considered to be row vectors and must 
+    therefore be transposed to be considered as column vectors.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMA>
+	  <OMS name="nary" cd="sts"/>
+	  <OMV name="AbelianGroupMult"/>
+	</OMA>
+	<OMV name="Vector"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+
+
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="linalg2" name="vector" o:cr="fun"/>
+        <exprlist name="args"><expr name="arg"/></exprlist>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="linalg2">vector</m:csymbol>
+        <exprlist name="args"><expr name="arg"/></exprlist>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <m:mrow>
+        <m:mo/>
+        <m:mo fence="true" o:cr="fun">(</m:mo>
+        <iterate name="args">
+	  <separator><m:mo o:cr="fun" separator="true">,</m:mo></separator>
+	  <render name="arg"/>
+	</iterate>
+        <m:mo fence="true" o:cr="fun">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+	      
+<example xml:id="vector-ex-1" type="for" for="#vector">
+  <CMP>
+    An example of vector using n arguments. 
+    The specific vector constructed in this example is [3,6,9].</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="linalg2" name="vector"/>
+      <OMI> 3 </OMI>
+      <OMI> 6 </OMI>
+      <OMI> 9 </OMI>
+    </OMA>
+  </OMOBJ>
+</example>
+
+<symbol name="matrixrow" xml:id="matrixrow">
+<metadata>
+<dc:description> This symbol is an n-ary constructor used to represent rows of
+    matrices. Its arguments should be members of a ring.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMA>
+	  <OMS name="nary" cd="sts"/>
+	  <OMV name="Ring"/>
+	</OMA>
+	<OMS name="vector_type" cd="mathmltypes"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="linalg2" name="matrixrow" o:cr="fun"/>
+        <exprlist name="args"><expr name="arg"/></exprlist>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+	<m:csymbol cd="linalg2" o:cr="fun">matrixrow</m:csymbol>
+        <exprlist name="args"><expr name="arg"/></exprlist>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <m:mrow>
+        <m:mo/>
+        <m:mo fence="true" o:cr="fun">(</m:mo>
+        <iterate name="args">
+          <separator><m:mo separator="true">,</m:mo></separator>
+          <render name="arg"/>
+        </iterate>
+        <m:mo fence="true" o:cr="fun">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+  
+
+<example xml:id="matrixrow-ex-1" type="for" for="#matrixrow">
+  <CMP> Representation of a row of a matrix of length two containing 
+    the integers [1,0]</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA>
+      <OMS cd="linalg2" name="matrixrow"/>
+      <OMI> 1 </OMI>
+      <OMI> 0 </OMI>
+    </OMA>
+  </OMOBJ>
+</example>
+
+<symbol name="matrix" xml:id="matrix">
+<metadata>
+<dc:description>
+    This symbol is an n-ary matrix constructor which requires matrixrow's
+    as arguments. It is used to represent matrices.
+</dc:description>
+</metadata>
+<type system="sts.omdoc#sts">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+	<OMS name="mapsto" cd="sts"/>
+	<OMA>
+	  <OMS name="nary" cd="sts"/>
+	  <OMV name="MatrixRow"/>
+	</OMA>
+	<OMV name="Matrix"/>
+      </OMA>
+    </OMOBJ>
+  </type>
+</symbol>
+
+  <notation>
+    <prototype>
+      <om:OMA>
+        <om:OMS cd="linalg2" name="matrix" o:cr="mat"/>
+	<exprlist name="rows">
+	  <om:OMA>
+	    <om:OMS cd="linalg2" name="matrixrow" o:cr="row"/>
+	    <exprlist name="row"><expr name="elt"/></exprlist>
+	  </om:OMA>
+	</exprlist>
+      </om:OMA>
+    </prototype>
+    <prototype>
+      <m:apply>
+        <m:csymbol cd="linalg2" o:cr="mat">matrix</m:csymbol>
+	<exprlist name="rows">
+	  <m:apply>
+	    <m:csymbol cd="linalg2" o:cr="row">matrixrow</m:csymbol>
+	    <exprlist name="row"><expr name="elt"/></exprlist>
+	  </m:apply>
+	</exprlist>
+      </m:apply>
+    </prototype>
+    <rendering>
+      <m:mrow>
+	<m:mo fence="true">(</m:mo>
+	<m:mtable o:cr="mat">
+	  <iterate name="rows">
+	    <separator/>
+	    <m:mtr o:cr="row">
+	      <iterate name="row">
+		<separator/>
+		<m:mtd><render name="elt"/></m:mtd>
+	      </iterate>
+	    </m:mtr>
+	  </iterate>
+	</m:mtable>
+	<m:mo fence="true">)</m:mo>
+      </m:mrow>
+    </rendering>
+  </notation>
+
+<example xml:id="matrix-ex-1" type="for" for="#matrix">
+  <CMP>Representation of a 2x2 identity matrix</CMP>
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath" style="display:block">
+    <OMA>
+      <OMS cd="linalg2" name="matrix"/>
+      <OMA>
+	<OMS cd="linalg2" name="matrixrow"/>
+	<OMI> 1 </OMI>
+	<OMI> 0 </OMI>
+      </OMA>
+      <OMA>
+	<OMS cd="linalg2" name="matrixrow"/>
+	<OMI> 0 </OMI>
+	<OMI> 1 </OMI>
+      </OMA>
+    </OMA>
+  </OMOBJ>
+</example>
+</theory>
+</omdoc>
+

@@ -1,0 +1,31 @@
+# A RelaxNG schema for Open Mathematical documents (OMDoc 1.6)           
+# $Id: omdoc.rnc 8553 2009-11-07 15:42:34Z kohlhase $
+# $HeadURL: https://svn.omdoc.org/repos/omdoc/trunk/schema/rnc/omdoc.rnc $
+# See the documentation and examples at http://www.omdoc.org
+# Copyright (c) 2004-2007 Michael Kohlhase, released under the GNU Public License (GPL) 
+
+include "strict/omdoc-strict.rnc"
+
+# the attributes for CSS and PRES styling
+css.attribs = attribute style {xsd:string}?&attribute class {xsd:string}?
+xref.attrib = attribute xref {MMTURI}
+idrest.attribs &= css.attribs&attribute xml:base {MMTURI}?
+id.attrib &= idrest.attribs
+fori.attrib = attribute for {MMTURI}?
+
+tref = attribute tref {MMTURI}
+
+# ********* think about his again. 
+omdoc.toplevel.attribs = id.attribs, attribute generated-from {MMTURI}?
+
+include "pragmatic/omdocdc.rnc" 
+include "pragmatic/omdoccc.rnc" 
+include "pragmatic/omdocdoc.rnc"
+include "pragmatic/omdocmtxt.rnc"
+
+include "pragmatic/notation-mmt.rnc"
+include "pragmatic/omdocst.rnc"
+include "pragmatic/omdocpf.rnc"
+include "pragmatic/omdocadt.rnc"
+include "pragmatic/omdocext.rnc"
+include "pragmatic/omdocquiz.rnc"
