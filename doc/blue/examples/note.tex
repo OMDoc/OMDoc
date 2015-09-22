@@ -78,7 +78,8 @@ epistemic level into the following categories:
   is an example the property of being a ``prime number'', i.e. the predicate ``prime''
   evaluates true on ``13'' or in other words $13\in\cn{prime}$. We observe that every
   example carries a proof obligation. We have to prove that the object we exhibit indeed
-  has the desired property it exemplifies.
+  has the desired property it exemplifies. Note that in many instances in the literatures
+  the proofs are elided -- presumably because they are considered trivial. 
 \item \emph{generic object-level}, e.g. ``All differentiable functions are continuous.''
   here any object that is a differentiable function is an example for being continuous. In
   other words the set of differentiable functions is a subset of continuous functions. In
@@ -136,7 +137,7 @@ elided) identified above.
 In the process of mathematical discovery, examples are used to strengthen conjectures, to
 show that concepts are non-vacuous or consistent, and to elucidate concepts.
 
-Counterexamples are used to prove the boundaries of possible theorems. By using
+Counterexamples are used to delineate the boundaries of possible theorems. By using
 counterexamples to show that certain conjectures are false, mathematical researchers avoid
 going down blind alleys and learn how to modify conjectures to produce provable
 theorems. \ednote{integrate Lakatos view on counterexamples
@@ -169,7 +170,8 @@ content and narrative by cross-references (the \lstinline|<meta>| elements with 
     13 is a prime number.
   </assertion>
   <proof for="p13" name="p13.p">
-    <CMP>13 is indivisible by 2, 3, and 4.</CMP>
+    <CMP>13 is indivisible by 2, 3, and 4
+      and $\om{4^2>13}$.</CMP>
   </proof>
 <example>
 \end{lstlisting}
@@ -231,9 +233,10 @@ we assume one of the two representations, but omit them to avoid clutter.
     <meta rel="o:verbalizes" 
                resource="?cont-diff.ex"/>
      <uses from="?diff"/>
-     <assertion>
+     <assertion name="cd.ex.p">
        All differentiable functions are continuous.
      </assertion>
+     <proof for="#cd.ex.p">$\ldots$</proof>
   <example>
   $\ldots$
 </theory>
@@ -260,9 +263,8 @@ implicitly introduces a scope (of visibility of symbols and assumptions in effec
 includes all from theory \lstinline|cont| it is nested in and includes the material from
 theory \lstinline|diff| via the \lstinline|uses| directive.
 
-The examples we have looked up so far are immediate in that they do not involve any
-structural substitutions, we think of them as \defemph{immediate}: they correspond to
-simple set membership or subsumption. 
+The examples we have looked up so far are \defemph{immediate} in that they do not involve
+any structural substitutions: they correspond to simple set membership or subsumption.
 
 
 \section{Examples via Morphisms}\label{sec:thygraph}
@@ -328,6 +330,35 @@ which by construction is also a theory morphism. But in an situation where group
 just been introduced as special monoids, this example might be considered too immediate to
 mention it.
 
+\subsection{Compiling Narrative Examples into Theory Graphs}
+
+Note that immediate examples can be ``compiled'' into a theory graph. For instance the one
+in Figure  ~\ref  {fig:simple-object} directly corresponds to the theory graph in
+Figure~\ref{fig:so-tg}
+\begin{figure}[ht]\centering
+\begin{tikzpicture}[scale=2]
+  \node[thy] (arith) at (0,0) {\begin{tabular}{l}
+                                 \textsf{NatArith}\\\hline
+                                 $\mathbb{N},+,*,0,1$
+                               \end{tabular}};
+  \node[thy] (prime) at (-1.5,1) {\begin{tabular}{l}
+                                 \textsf{prime}\\\hline
+                                 $prim:\mathbb{N}\rightarrow \mathbb{B}ool$\\\hline
+                                 $prim(x)\Leftrightarrow \not\exists i<n,m<x.n\cdot m=x$
+                               \end{tabular}};
+  \node[thy] (tteen) at (1,1.5) {\begin{tabular}{l}
+                                 \textsf{prime-ex}\\\hline
+                                 $n:\mathbb{N}$\\\hline
+                                 $prim(n)$
+                               \end{tabular}};
+  \draw[conservative] (arith) -- (prime);
+  \draw[include] (prime) -- (tteen);
+  \draw[view] (tteen) -- node[right] {$n:=13$} (arith);
+\end{tikzpicture}
+\caption{The Immediate Example from Figure ~\ref {fig:simple-object} as a Theory Graph}\label{fig:so-tg}
+\end{figure}
+\ednote{describe what goes on in Fig~\ref{fig:so}}
+
 \subsection{Counterexamples in Theory Graphs}
 
 The case of counterexamples is a completely different matter; naturally, the theory
@@ -381,6 +412,73 @@ compose with theory morphisms in the obvious ways: the set of antimorphisms is c
 under extension with morphisms by post-composition and by pre-composition of kernel
 morphisms.
 
+\section{Induced Examples and Practical Matters}
+
+\begin{wrapfigure}r{5.5cm}\vspace*{-1.5em}
+  \begin{tikzpicture}[yscale=.9,xscale=1.3]
+    \node[thy] (monoid) at (0,3) {\textsf{monoid}};
+    \node[thy] (cgp) at (0,4) {\textsf{cgp}};
+    \node[thy] (field) at (0,5.5) {\textsf{field}};
+    \draw[include] (monoid) -- (cgp);
+    \draw[struct] (cgp) to[bend left=20] node[left] {\textsf{\footnotesize add}} (field);
+    \draw[struct] (cgp) to[bend right=20] node[right] {\textsf{\footnotesize mul}} (field);
+
+    \node[thy] (rp) at (-2,3.8) {$\mathbb{R}^+$};
+    \node[thy] (rm) at (-3,4.2) {$\mathbb{R}^*$};
+    \node[thy] (rpm) at (-2.5,5.5) {$\mathbb{R}^{+*}$};
+    \draw[view] (cgp) to[bend left=15] node[above,near end] {\textsf{\footnotesize i}} (rp);
+    \draw[view] (cgp) to[bend right=15] node[above] {\textsf{\footnotesize j}} (rm);
+    \draw[include] (rp) -- (rpm);
+    \draw[include] (rm) -- (rpm);
+    \draw[view] (field) -- node[above] {$\scriptsize\mathsf{i}\cup\mathsf{j}$} (rpm);
+    \draw[view,red] (monoid) to[bend left=25] node[above,near start] {$\scriptsize\mathsf{i}'$} (rp);
+    \draw[view,red] (monoid) to[bend left=35] node[above,near end] {$\scriptsize\mathsf{j}'$} (rm);
+  \end{tikzpicture}
+  \caption{Induced Examples}\label{fig:induced}\vspace*{-1em}
+\end{wrapfigure}
+Another advantage of the theory graph realization of examples is that we can induce
+examples from the represented structures. Take for instance the situation in
+Figure~\ref{fig:induced}. Here we have the example morphisms \textsf{i} and \textsf{j} for
+commutative groups (theory \textsf{cgp}). Composing them with the inclusion from
+\textsf{monoid} to \textsf{cgp} yields the two red views $\mathsf{i}'$ and $\mathsf{j}'$
+that make $\mathbb{R}^+$ and $\mathbb{R}^*$ examples for a monoid. We call such example
+morphisms that are formed by composition \defemph{induced examples}. Note that induced
+examples are redundant in a theory graph since they can be computed from material in the
+remaining graph.
+
+Obviously, the possibility of inducing examples suggests that examples should be specified
+as ``high'' in the theory graph as possible, since that maximize induced
+examples. However, this only seems to work along structures and inclusions as the
+construction with fields in Figure~\ref{fig:induced}\ednote{MK: the graph does not
+  work. $\mathsf{i}\cup\mathsf{j}$ is not the right graph. We seem to have R+* as the push
+  out of i and j somehow; fix the graph and then argue why this precludes the top-down
+  induction of i and j from the R+* example} shows.
+
+\section{Flexiformal Theory Graphs and Narrative Examples}
+
+In SMGlom we would split the example morphism into a signature and a language binding,
+where the language binding would say something like 
+\begin{quote}
+  $\langle\mathbb{R},+,0,-\rangle$ is a commutative group, since [proofs of the cgroup
+  axioms in $\langle\mathbb{R},+,0,-\rangle$]
+\end{quote}
+In the purely formal setting of MMT, we can compute the composition morphisms like
+$\mathsf{i}'$. But we in general cannot compute the language bindings for $\mathsf{i}'$,
+which would be something like 
+\begin{quote}
+  $\langle\mathbb{R},+,0\rangle$ is a monoid, since [proofs of the monoid axioms in $\langle\mathbb{R},+,0\rangle$]
+\end{quote}
+since natural language is opaque to the theory graph algorithms. What we can however
+compute is an explanation like 
+\begin{quote}
+  $\langle\mathbb{R},+,0,-\rangle$ is a commutative group, since [proofs of the monoid
+  axioms in $\langle\mathbb{R},+,0,-\rangle$] and commutative groups are monoids by
+  definition.
+\end{quote}
+by combining the language binding of $\mathsf{i}$ with an explanation for the inclusion
+from \textsf{monoid} to \textsf{cgp}. Note that this explanation directly corresponds to
+the structure of the composition that defines $\mathsf{i}'$.
+
 \section{Conclusion}
 \ednote{Say something about~\cite{Rabe:ttbor12} that mediates between the theory-level and
   object-level representations of examples.}  
@@ -429,3 +527,8 @@ future.
 %  LocalWords:  natmon.ex termref termref conass conass neutax nmmtar modelsof modelsof
 %  LocalWords:  modelsof xscale yscale ns setdiff antimorphism elalg antimorphisms ng mtt
 %  LocalWords:  NonMonGrp Rabe mkm11 IanJucKoh sdm14 CarFarKoh rsckmt14
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
