@@ -1,6 +1,5 @@
 # A RelaxNG for Open Mathematical documents (OMDoc 1.3) Module VERB (verbalizations)
-# $Id: omdocpres.rnc 9259 2012-08-31 06:30:08Z kohlhase $
-# $HeadURL: https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.3/schema/rnc/omdocpres.rnc $
+# original in  http://github.com/KWARC/OMDoc-1.3/schema/rnc
 # See the documentation and examples at http://www.omdoc.org
 # Copyright (c) 2004-2008 Michael Kohlhase, released under the GNU Public License (GPL) 
 

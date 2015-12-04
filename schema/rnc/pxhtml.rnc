@@ -1,4 +1,5 @@
 # XHTML for paragraphs in OMDoc 
+# original in  http://github.com/KWARC/OMDoc-1.3/schema/rnc
 # this is a subset of the xhtml RelaxNG schema for XHTML we use it for paragraphs in OMDoc1.3
 
 default namespace xhtml = "http://www.w3.org/1999/xhtml"

@@ -1,6 +1,5 @@
 # RELAX NG Schema for OpenMath 2
-# $Id: openmath2.rnc 8959 2011-09-02 06:01:43Z kohlhase $
-# $HeadURL: https://svn.omdoc.org/repos/omdoc/branches/omdoc-1.3/schema/rnc/openmath2.rnc $
+# original in  http://github.com/KWARC/OMDoc-1.3/schema/rnc
 # See the documentation and examples at http://www.openmath.org
 
 default namespace om = "http://www.openmath.org/OpenMath"

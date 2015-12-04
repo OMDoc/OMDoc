@@ -1,5 +1,6 @@
 # the MARC relator set; see http://www.loc.gov/marc/relators
-MARCRelators = 
+# original in  http://github.com/KWARC/OMDoc-1.3/schema/rnc
+ MARCRelators = 
 	 "act" | "adp" | "aft" | "ann" | "ant" | "app" | "aqt" |
          "arc" | "arr" | "art" | "asg" | "asn" | "att" | "auc" | "aud" | "aui" |
          "aus" | "aut" | "bdd" | "bjd" | "bkd" | "bkp" | "bnd" | "bpd" | "bsl" |
