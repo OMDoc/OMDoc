@@ -3,8 +3,7 @@
 % Copyright (c) 2006 Michael Kohlhase
 % This work is licensed by the Creative Commons Share-Alike license
 % see http://creativecommons.org/licenses/by-sa/2.5/ for details
-\svnInfo $Id: main.tex 8392 2009-06-17 04:21:23Z kohlhase $
-\svnKeyword $HeadURL: https://svn.omdoc.org/repos/omdoc/trunk/doc/projects/stex/main.tex $
+% The source original is at https://github.com/KWARC/OMDoc/doc/projects/stex
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{omgroup}[id=stex,creators=miko]
@@ -109,6 +108,7 @@ the advantages detailed in this book.
   arguments $n$ and $k$) from the presentation alone short of understanding the underlying
   mathematics.
  
+\begin{omtext}
   The apparent solution to this problem is to dump the extra work on the author (after all
   she knows what she is talking about) and give her the chance to specify the intended
   structure. The markup infrastructure supplied by the {\stex} collection lets the author
@@ -126,6 +126,7 @@ $\infty$ ({\sl{iv}}) \verb|\Cexp{x}k| (i.e. $x$ to the power $k$).  In the secon
 merely specify hat {\LaTeX} should draw a capital sigma character ($\Sigma$) whose
 subscript is the equation $k=1$ and whose superscript is $\infty$. Then it should place
 next to it an $x$ with an upper index $k$.
+\end{omtext}
 
 Of course human readers (who understand the math) can infer the content structure from the
 expression $\sum_{k=1}^\infty x^k$ of the right-hand representation in

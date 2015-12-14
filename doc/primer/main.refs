@@ -1,32 +1,32 @@
 \@sref@def{primer@intro}{page}{3}
-\@sref@def{primer@intro}{label}{Chapter 1}
+\@sref@def{primer@intro}{label}{Part\nobreakspace  {}}
 \@sref@def{primer@algebra}{page}{5}
-\@sref@def{primer@algebra}{label}{Chapter 2}
-\@sref@def{primer@algebra.minimal-omdoc}{page}{5}
-\@sref@def{primer@algebra.minimal-omdoc}{label}{Section 2.1}
-\@sref@def{primer@algebra.top-level}{page}{8}
-\@sref@def{primer@algebra.top-level}{label}{Section 2.2}
-\@sref@def{primer@algebra.formulae}{page}{10}
-\@sref@def{primer@algebra.formulae}{label}{Section 2.3}
-\@sref@def{primer@algebra.formalization}{page}{13}
-\@sref@def{primer@algebra.formalization}{label}{Section 2.4}
-\@sref@def{primer@omcds}{page}{16}
-\@sref@def{primer@omcds}{label}{Chapter 3}
-\@sref@def{primer@ontology}{page}{20}
-\@sref@def{primer@ontology}{label}{Chapter 4}
-\@sref@def{primer@natlist}{page}{21}
-\@sref@def{primer@natlist}{label}{Chapter 5}
-\@sref@def{primer@dg-elal}{page}{25}
-\@sref@def{primer@dg-elal}{label}{Chapter 6}
-\@sref@def{primer@courseware}{page}{29}
-\@sref@def{primer@courseware}{label}{Chapter 7}
-\@sref@def{primer@courseware.knowledge-centered}{page}{30}
-\@sref@def{primer@courseware.knowledge-centered}{label}{Section 7.1}
-\@sref@def{primer@courseware.narrative-structured}{page}{34}
-\@sref@def{primer@courseware.narrative-structured}{label}{Section 7.2}
-\@sref@def{primer@courseware.choreographing}{page}{35}
-\@sref@def{primer@courseware.choreographing}{label}{Section 7.3}
-\@sref@def{primer@courseware.summary}{page}{36}
-\@sref@def{primer@courseware.summary}{label}{Section 7.4}
-\@sref@def{primer@rpc}{page}{37}
-\@sref@def{primer@rpc}{label}{Chapter 8}
+\@sref@def{primer@algebra}{label}{Part\nobreakspace  {}I}
+\@sref@def{primer@algebra.minimal-omdoc}{page}{7}
+\@sref@def{primer@algebra.minimal-omdoc}{label}{Chapter\nobreakspace  {}0}
+\@sref@def{primer@algebra.top-level}{page}{11}
+\@sref@def{primer@algebra.top-level}{label}{Chapter\nobreakspace  {}1}
+\@sref@def{primer@algebra.formulae}{page}{13}
+\@sref@def{primer@algebra.formulae}{label}{Chapter\nobreakspace  {}2}
+\@sref@def{primer@algebra.formalization}{page}{17}
+\@sref@def{primer@algebra.formalization}{label}{Chapter\nobreakspace  {}3}
+\@sref@def{primer@omcds}{page}{21}
+\@sref@def{primer@omcds}{label}{Part\nobreakspace  {}II}
+\@sref@def{primer@ontology}{page}{27}
+\@sref@def{primer@ontology}{label}{Part\nobreakspace  {}III}
+\@sref@def{primer@natlist}{page}{29}
+\@sref@def{primer@natlist}{label}{Part\nobreakspace  {}IV}
+\@sref@def{primer@dg-elal}{page}{33}
+\@sref@def{primer@dg-elal}{label}{Part\nobreakspace  {}V}
+\@sref@def{primer@courseware}{page}{37}
+\@sref@def{primer@courseware}{label}{Part\nobreakspace  {}VI}
+\@sref@def{primer@courseware.knowledge-centered}{page}{39}
+\@sref@def{primer@courseware.knowledge-centered}{label}{Chapter\nobreakspace  {}4}
+\@sref@def{primer@courseware.narrative-structured}{page}{43}
+\@sref@def{primer@courseware.narrative-structured}{label}{Chapter\nobreakspace  {}5}
+\@sref@def{primer@courseware.choreographing}{page}{45}
+\@sref@def{primer@courseware.choreographing}{label}{Chapter\nobreakspace  {}6}
+\@sref@def{primer@courseware.summary}{page}{47}
+\@sref@def{primer@courseware.summary}{label}{Chapter\nobreakspace  {}7}
+\@sref@def{primer@rpc}{page}{49}
+\@sref@def{primer@rpc}{label}{Part\nobreakspace  {}VII}

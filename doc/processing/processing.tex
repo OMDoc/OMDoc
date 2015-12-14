@@ -3,8 +3,7 @@
 % Copyright (c) 2006 Michael Kohlhase
 % This work is licensed by the Creative Commons Share-Alike license
 % see http://creativecommons.org/licenses/by-sa/2.5/ for details
-\svnInfo $Id: processing.tex 8393 2009-06-17 04:23:06Z kohlhase $
-\svnKeyword $HeadURL: https://svn.omdoc.org/repos/omdoc/trunk/doc/processing/processing.tex $
+% The source original is at https://github.com/KWARC/OMDoc/doc/processing
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{omgroup}[id=transform-xsl,short=Transforming OMDoc]
@@ -111,7 +110,7 @@ We will make use of this general architecture based on extraction and linking vi
 
 
 
-\section[Interfaces for Systems]{{\omdoc} Interfaces for Mathematical Software Systems}\label{sec:omdoctosys}
+\section[short=Interfaces for Systems]{{\omdoc} Interfaces for Mathematical Software Systems}\label{sec:omdoctosys}
   One of the original goals of the {\openmath}, {\cmathml} and {\omdoc} languages is to
   provide a communication language for mathematical software systems. The main idea behind
   this is to supply systems with interfaces to a universally accepted communication
@@ -219,9 +218,11 @@ systems, based on a series of experiments of interfacing with the theorem provin
 
 \section{Presenting OMDoc to Humans}\label{sec:omdoc2pres}
 
+\begin{omtext}
 We will now discuss the software infrastructure needed to transform {\omdoc} documents
 into human-readable form in various formats. \inlinedef{We speak of of {\omdoc}
   {\defin{presentation}} for this task}.
+\end{omtext}
 
 Due to the complex nature of {\omdoc} presentation, only part of it can actually be
 performed by {\xslt} style sheets. For instance, sub-tasks like reasoning about the prior

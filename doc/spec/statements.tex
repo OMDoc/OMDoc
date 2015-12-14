@@ -3,8 +3,7 @@
 % Copyright (c) 2006 Michael Kohlhase
 % This work is licensed by the Creative Commons Share-Alike license
 % see http://creativecommons.org/licenses/by-sa/2.5/ for details
-\svnInfo $Id: statements.tex 8904 2011-01-25 06:37:12Z kohlhase $
-\svnKeyword $HeadURL: https://svn.omdoc.org/repos/omdoc/trunk/doc/spec/statements.tex $
+% The source original is at https://github.com/KWARC/OMDoc/doc/spec 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{omgroup}[short=Mathematical Statements,id=statements]
@@ -41,6 +40,7 @@
   in the theory by explicitly stating the properties that are implicitly determined by the
   constitutive statements.
   
+\begin{omtext}
 To support this notion of context {\omdoc} supports an infrastructure for theories using
 special {\element{theory}} elements, which we will introduce in {\sref{theories-contexts}} and
 extend in {\sref{complex-theories}}.
@@ -53,7 +53,8 @@ theory, \inlinedef{which we will call their {\twindef{home}{theory}}} in a speci
 {\attribute{theory}{statement}} attribute. This situates them into the context provided by
 this theory and gives them access to all its knowledge. The home theory of
 theory-constitutive statements is given by the theory they are contained in.
-  
+\end{omtext}
+
 The division of statements into constitutive and non-constitutive ones and the
 encapsulation of constitutive elements in {\element{theory}} elements add a certain
 measure of safety to the knowledge management aspect of {\omdoc}.  Since {\xml} elements
@@ -80,6 +81,7 @@ best-known are the five Peano Axioms for natural numbers.
  \end{minipage}}
 \end{myfig}
 
+\begin{omtext}
 The {\twintoo{Peano}{axioms}} in {\myfigref{peano}} (implicitly) introduce three
 {\indextoo{symbol}s}: the number 0, the successor function $s$, and the set $\NN$ of
 natural numbers. The five axioms in {\myfigref{peano}} jointly constrain their meaning
@@ -91,18 +93,21 @@ difficult to obtain. The latter condition (\inlinedef{{\defin{inconsistent}} the
 especially unsatisfactory, since any statement is a theorem in such theories. As
 consistency can easily be lost by adding axioms, mathematicians try to keep
 {\twintoo{axiom}{system}s} minimal and only add axioms that are safe.
-  
-Sometimes, we can determine that an axiom does not destroy {\indextoo{consistency}} of a
-theory $\cT$ by just looking at its form: for instance, axioms of the form $s=\bA$, where
-$s$ is a symbol that does not occur in $\cT$ and $\bA$ is a formula containing only
-symbols from $\cT$ will introduce no constraints on the meaning of $\cT$-symbols. The
-axiom $s=\bA$ only constrains the meaning of the {\twintoo{new}{symbol}} to be a unique
-object: the one denoted by $\bA$. \inlinedef{We speak of a
-  {\twindef{conservative}{extension}} in this case}. So, if $\cT$ was a consistent theory,
-the extension of $\cT$ with the symbol $s$ and the axiom $s=\bA$ must be one too. Thus
-axioms that result in {\twintoo{conservative}{extension}s} can be added safely ---
-i.e. without endangering consistency --- to theories.
-  
+\end{omtext}
+
+\begin{omtext}
+  Sometimes, we can determine that an axiom does not destroy {\indextoo{consistency}} of a
+  theory $\cT$ by just looking at its form: for instance, axioms of the form $s=\bA$,
+  where $s$ is a symbol that does not occur in $\cT$ and $\bA$ is a formula containing
+  only symbols from $\cT$ will introduce no constraints on the meaning of
+  $\cT$-symbols. The axiom $s=\bA$ only constrains the meaning of the
+  {\twintoo{new}{symbol}} to be a unique object: the one denoted by $\bA$. \inlinedef{We
+    speak of a {\twindef{conservative}{extension}} in this case}. So, if $\cT$ was a
+  consistent theory, the extension of $\cT$ with the symbol $s$ and the axiom $s=\bA$ must
+  be one too. Thus axioms that result in {\twintoo{conservative}{extension}s} can be added
+  safely --- i.e. without endangering consistency --- to theories.
+\end{omtext}
+
 \begin{definition}[display=flow,id=conservative-extension.def]
   Generally an axiom $\cA$ that results in a {\twintoo{conservative}{extension}} is called
   a {\defin{definition}} and any new symbol it introduces a {\defin{definiendum}} (usually
@@ -265,17 +270,19 @@ be done by suitable {\element[ns-elt=dc]{subject}} elements.
 
 \begin{omgroup}[id=type-axioms]{Type Declarations}
 
-{\indexalt{Types}{type}} (also called {\indextoo{sort}s} in some contexts) are
-representations of certain simple sets that are treated specially in (human or mechanical)
-{\twintoo{reasoning}{process}es}. \inlinedef{A {\twindef{type}{declaration}} $e\colon t$
-  makes the information that a symbol or expression $e$ is in a set represented by a type
-  $t$ available to a specified mathematical process}.  For instance, we might know that
-$7$ is a natural number, or that expressions of the form $\sum_{i=1}^n a_ix^{i}$ are
-polynomials, if the $a_i$ are real numbers, and exploit this information in mathematical
-processes like proving, pattern matching, or while choosing intuitive notations.
-\inlinedef{If a type is declared for an expression that is not a symbol, we will speak of
-  a {\twindef{term}{declaration}}}.
-  
+\begin{omtext}
+  {\indexalt{Types}{type}} (also called {\indextoo{sort}s} in some contexts) are
+  representations of certain simple sets that are treated specially in (human or
+  mechanical) {\twintoo{reasoning}{process}es}. \inlinedef{A {\twindef{type}{declaration}}
+    $e\colon t$ makes the information that a symbol or expression $e$ is in a set
+    represented by a type $t$ available to a specified mathematical process}.  For
+  instance, we might know that $7$ is a natural number, or that expressions of the form
+  $\sum_{i=1}^n a_ix^{i}$ are polynomials, if the $a_i$ are real numbers, and exploit this
+  information in mathematical processes like proving, pattern matching, or while choosing
+  intuitive notations.  \inlinedef{If a type is declared for an expression that is not a
+    symbol, we will speak of a {\twindef{term}{declaration}}}.
+\end{omtext}
+
 \begin{definition} [id=type.def]
   {\omdoc} uses the {\eldef{type}} element for type declarations. The optional attribute
   {\attribute{system}{type}} contains a {\indextoo{URI}} reference that identifies the
@@ -303,11 +310,13 @@ processes like proving, pattern matching, or while choosing intuitive notations.
   arguments the base set, the operation, and a neutral element).
 \end{definition}    
 
-As reasoning processes vary, information pertaining to multiple {\twintoo{type}{system}s}
-may be associated with a single symbol and there can be more than one {\element{type}}
-declaration per expression and {\twintoo{type}{system}}, this just means that the object
-has more than one type in the respective type system (not all type systems admit
-{\twintoo{principal}{type}s}).
+\begin{omtext}
+  As reasoning processes vary, information pertaining to multiple
+  {\twintoo{type}{system}s} may be associated with a single symbol and there can be more
+  than one {\element{type}} declaration per expression and {\twintoo{type}{system}}, this
+  just means that the object has more than one type in the respective type system (not all
+  type systems admit {\twintoo{principal}{type}s}).
+\end{omtext}
 \end{omgroup}
 
 \begin{omgroup}[id=definitions]{Definitions}

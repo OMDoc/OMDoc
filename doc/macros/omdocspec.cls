@@ -40,11 +40,11 @@
 \RequirePackage{tikz}
 \usetikzlibrary{shapes}
 \usetikzlibrary{arrows}
-\RequirePackage[today,eso-foot]{svninfo}
 \RequirePackage{alltt}
 \RequirePackage{dcm}
 \RequirePackage{omdoc}
-\RequirePackage{keyval}
+\RequirePackage{paralist}
+\RequirePackage{gitinfo2}
 
 \newenvironment{presonly}{}{}
 

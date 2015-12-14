@@ -3,8 +3,7 @@
 % Copyright (c) 2006 Michael Kohlhase
 % This work is licensed by the Creative Commons Share-Alike license
 % see http://creativecommons.org/licenses/by-sa/2.5/ for details
-\svnInfo $Id: math-markup.tex 8438 2009-07-25 14:11:14Z kohlhase $
-\svnKeyword $HeadURL: https://svn.omdoc.org/repos/omdoc/trunk/doc/book/math-markup.tex $
+% The source original is at https://github.com/KWARC/OMDoc/doc/book
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{omgroup}[id=math-markup]{Markup for Mathematical Knowledge}
@@ -536,12 +535,14 @@ library~\cite{MizarKB} are solitary examples).
   (e.g. by the title of a book) or implicitly (e.g. by the fact that the e-mail comes from
   a person that we know works on finite groups, and that she is talking about math).
 
+\begin{omtext}
   If we make the structure of the context as explicit as the structure of the mathematical
-  objects (\inlinedef{we will speak of {\twindef{context}{markup}}}), then mathematical software
-  systems will be able to provide novel services that rely on this structure. We contend
-  that without an explicit representation of context structure, tasks like semantics-based
-  searching and navigation or object classification can only be performed by human
-  mathematicians that can understand the implicitly given structure.
+  objects (\inlinedef{we will speak of {\twindef{context}{markup}}}), then mathematical
+  software systems will be able to provide novel services that rely on this structure. We
+  contend that without an explicit representation of context structure, tasks like
+  semantics-based searching and navigation or object classification can only be performed
+  by human mathematicians that can understand the implicitly given structure.
+\end{omtext}
 
   {\twinalt{Mathematical theories}{mathematical}{theory}} have been studied by mathematicians
   and logicians in the search of a rigorous foundation for mathematical practice. They
@@ -554,24 +555,28 @@ library~\cite{MizarKB} are solitary examples).
     valid.}, and therefore only consistent theories make interesting statements about
   mathematical objects.
 
-It is one of the critical observations of meta-mathematics that theories can be extended
-without endangering consistency, if the added formulae can be proven from the formulae
-already in the theory (such formulae are called {\indextoo{theorem}s}). As a consequence,
-consistency of a theory can be determined by examining \inlinedef{the {\defin{axiom}s}
-  (formulae without a proof)} alone. Thus the role of proofs is twofold, they allow to
-push back the assumptions about the world to simpler and simpler axioms, and they allow to
-test the model by deriving consequences of these basic assumptions that can be tested
-against the data.
-  
-A second important observation is that new symbols together with axioms defining their
-properties can be added to a theory without endangering consistency, if they are of a
-certain restricted syntactical form. These \inlinedef{{\twindef{definitional}{form}s}
-  mirror the various types of mathematical {\defin{definition}s} (e.g. equational,
-  recursive, implicit definitions)}.  This leads to the ``{\emph{\atwintoo{principle
-      of}{conservative}{extension}}}'', which states that conservative extensions to
-theories (by {\indextoo{theorem}s} and {\indextoo{definition}s}) are safe for mathematical
-theories, and that possible sources for inconsistencies\index{inconsistent} can be
-narrowed down to small sets of axioms.
+\begin{omtext}
+  It is one of the critical observations of meta-mathematics that theories can be extended
+  without endangering consistency, if the added formulae can be proven from the formulae
+  already in the theory (such formulae are called {\indextoo{theorem}s}). As a
+  consequence, consistency of a theory can be determined by examining \inlinedef{the
+    {\defin{axiom}s} (formulae without a proof)} alone. Thus the role of proofs is
+  twofold, they allow to push back the assumptions about the world to simpler and simpler
+  axioms, and they allow to test the model by deriving consequences of these basic
+  assumptions that can be tested against the data.
+\end{omtext}
+
+\begin{omtext}
+  A second important observation is that new symbols together with axioms defining their
+  properties can be added to a theory without endangering consistency, if they are of a
+  certain restricted syntactical form. These \inlinedef{{\twindef{definitional}{form}s}
+    mirror the various types of mathematical {\defin{definition}s} (e.g. equational,
+    recursive, implicit definitions)}.  This leads to the ``{\emph{\atwintoo{principle
+        of}{conservative}{extension}}}'', which states that conservative extensions to
+  theories (by {\indextoo{theorem}s} and {\indextoo{definition}s}) are safe for
+  mathematical theories, and that possible sources for inconsistencies\index{inconsistent}
+  can be narrowed down to small sets of axioms.
+\end{omtext}
 
   Even though all of this has theoretically been known to (meta)-mathema\-ticians for
   almost a century, it has only been an explicit object of formal study and exploited by

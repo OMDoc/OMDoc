@@ -1,28 +1,56 @@
-\@sref@def{projects@qmath}{label}{Chapter 2}
-\@sref@def{projects@sentido}{label}{Chapter 3}
-\@sref@def{projects@mbase}{label}{Chapter 4}
-\@sref@def{projects@mathwebsearch}{label}{Chapter 5}
-\@sref@def{projects@mws.runnex}{label}{Section 5.1}
-\@sref@def{projects@mws.query}{label}{Section 5.3}
-\@sref@def{projects@mws.input-processing}{label}{Section 5.4}
-\@sref@def{projects@mws.result-reporting}{label}{Section 5.5}
-\@sref@def{projects@mws.case-study}{label}{Section 5.6}
-\@sref@def{projects@MMiSS}{label}{Chapter 6}
-\@sref@def{projects@mathdox2}{label}{Chapter 7}
-\@sref@def{projects@mathdox.ui}{label}{Section 7.2}
-\@sref@def{projects@mathdox.cont_theory}{label}{Section 7.3}
-\@sref@def{projects@activemath}{label}{Chapter 8}
-\@sref@def{projects@jeditoqmath}{label}{Chapter 9}
-\@sref@def{projects@swim}{label}{Chapter 10}
-\@sref@def{projects@maya}{label}{Chapter 11}
-\@sref@def{projects@cpoint}{label}{Chapter 13}
-\@sref@def{projects@cpoint.background}{label}{Section 13.1}
-\@sref@def{projects@cpoint.app}{label}{Section 13.2}
-\@sref@def{projects@stex}{label}{Chapter 14}
-\@sref@def{projects@logics}{label}{Chapter 15}
-\@sref@def{projects@logics.integrating-libraries}{label}{Section 15.1}
-\@sref@def{projects@logics.integrating}{label}{Section 15.2}
-\@sref@def{projects@logic.morphisms}{label}{Section 15.3}
-\@sref@def{projects@logical-system.def}{label}{definition 15.3.1}
-\@sref@def{projects@texmacs-omega}{label}{Chapter 16}
-\@sref@def{projects@verifun}{label}{Chapter 17}
+\@sref@def{projects@qmath}{page}{7}
+\@sref@def{projects@qmath}{label}{Part\nobreakspace  {}}
+\@sref@def{projects@sentido}{page}{11}
+\@sref@def{projects@sentido}{label}{Part\nobreakspace  {}I}
+\@sref@def{projects@mbase}{page}{19}
+\@sref@def{projects@mbase}{label}{Part\nobreakspace  {}II}
+\@sref@def{projects@mathwebsearch}{page}{21}
+\@sref@def{projects@mathwebsearch}{label}{Part\nobreakspace  {}III}
+\@sref@def{projects@mws.runnex}{page}{23}
+\@sref@def{projects@mws.runnex}{label}{Chapter\nobreakspace  {}4}
+\@sref@def{projects@mws.query}{page}{27}
+\@sref@def{projects@mws.query}{label}{Chapter\nobreakspace  {}6}
+\@sref@def{projects@mws.input-processing}{page}{29}
+\@sref@def{projects@mws.input-processing}{label}{Chapter\nobreakspace  {}7}
+\@sref@def{projects@mws.result-reporting}{page}{31}
+\@sref@def{projects@mws.result-reporting}{label}{Chapter\nobreakspace  {}8}
+\@sref@def{projects@mws.case-study}{page}{33}
+\@sref@def{projects@mws.case-study}{label}{Chapter\nobreakspace  {}9}
+\@sref@def{projects@MMiSS}{page}{35}
+\@sref@def{projects@MMiSS}{label}{Part\nobreakspace  {}IV}
+\@sref@def{projects@mathdox2}{page}{45}
+\@sref@def{projects@mathdox2}{label}{Part\nobreakspace  {}V}
+\@sref@def{projects@mathdox.ui}{page}{49}
+\@sref@def{projects@mathdox.ui}{label}{Chapter\nobreakspace  {}15}
+\@sref@def{projects@mathdox.cont_theory}{page}{51}
+\@sref@def{projects@mathdox.cont_theory}{label}{Chapter\nobreakspace  {}16}
+\@sref@def{projects@activemath}{page}{55}
+\@sref@def{projects@activemath}{label}{Part\nobreakspace  {}VI}
+\@sref@def{projects@jeditoqmath}{page}{63}
+\@sref@def{projects@jeditoqmath}{label}{Part\nobreakspace  {}VII}
+\@sref@def{projects@swim}{page}{69}
+\@sref@def{projects@swim}{label}{Part\nobreakspace  {}VIII}
+\@sref@def{projects@maya}{page}{77}
+\@sref@def{projects@maya}{label}{Part\nobreakspace  {}IX}
+\@sref@def{projects@cpoint}{page}{99}
+\@sref@def{projects@cpoint}{label}{Part\nobreakspace  {}XI}
+\@sref@def{projects@cpoint.background}{page}{101}
+\@sref@def{projects@cpoint.background}{label}{Chapter\nobreakspace  {}35}
+\@sref@def{projects@cpoint.app}{page}{103}
+\@sref@def{projects@cpoint.app}{label}{Chapter\nobreakspace  {}36}
+\@sref@def{projects@stex}{page}{109}
+\@sref@def{projects@stex}{label}{Part\nobreakspace  {}XII}
+\@sref@def{projects@logics}{page}{119}
+\@sref@def{projects@logics}{label}{Part\nobreakspace  {}XIII}
+\@sref@def{projects@logics.integrating-libraries}{page}{121}
+\@sref@def{projects@logics.integrating-libraries}{label}{Chapter\nobreakspace  {}42}
+\@sref@def{projects@logics.integrating}{page}{123}
+\@sref@def{projects@logics.integrating}{label}{Chapter\nobreakspace  {}43}
+\@sref@def{projects@logic.morphisms}{page}{125}
+\@sref@def{projects@logic.morphisms}{label}{Chapter\nobreakspace  {}44}
+\@sref@def{projects@logical-system.def}{page}{125}
+\@sref@def{projects@logical-system.def}{label}{Definition\nobreakspace  {}45.0.{1}}
+\@sref@def{projects@texmacs-omega}{page}{127}
+\@sref@def{projects@texmacs-omega}{label}{Part\nobreakspace  {}XIV}
+\@sref@def{projects@verifun}{page}{131}
+\@sref@def{projects@verifun}{label}{Part\nobreakspace  {}XV}

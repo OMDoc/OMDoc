@@ -3,8 +3,7 @@
 % Copyright (c) 2006 Michael Kohlhase
 % This work is licensed by the Creative Commons Share-Alike license
 % see http://creativecommons.org/licenses/by-sa/2.5/ for details
-\svnInfo $Id: validating.tex 8904 2011-01-25 06:37:12Z kohlhase $
-\svnKeyword $HeadURL: https://svn.omdoc.org/repos/omdoc/trunk/doc/processing/validating.tex $
+% The source original is at https://github.com/KWARC/OMDoc/doc/processing
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{module}[id=validating]
@@ -21,27 +20,29 @@ trees\footnote{Actually, a recent extension of the {\xml} standard ({\xlink}) al
 reject {\xml} documents that do not conform to the constraints expressed in the {\omdoc}
 DTD or schemata discussed here.
 
-Note that none of these grammars can enforce all constraints that the {\omdoc}
-specification in {\mypartref{specification}} of this {\report} imposes on documents.
-Therefore grammar-based validation is only a necessary condition for
-\inlinedef{{\omdoc}-{\defin{validity}}}. Still, {\omdoc} documents should be validated to
-ensure proper function of {\omdoc} tools, such as the ones discussed in
-{\mychapsref{transform-xsl}{projects}}.  Validation against multiple grammars gives the
-best results. With the current state of validation technology, there is no clear
-recommendation, which of the validation approaches to prefer for {\omdoc}. DTD validation
-is currently best supported by standard {\xml} applications and supports default values
-for attributes. This allows the author who writes {\omdoc} documents by hand to elide
-implicit attributes and make the marked-up text more readable.  {\xml}- and {\relaxng}
-schema validation have the advantage that they are namespace-aware and support more
-syntactic constraints.  Neither of these support mnemonic {\xml} entities, such as the
-ones used for {\unicode} characters in {\pmathml}, so that these have to be encoded as
-{\unicode} code points. Finally {\relaxng} schemata do not fully support default values
-for attributes, so that {\omdoc} documents have to be normalized\footnote{\inlinedef{An
-    {\omdoc} document is called {\defin{normalized}}, iff all required attributes are
-    present}. Given a {\indextoo{DTD}} or {\xml} schema that specifies
-  default values, there are standard {\xml} tools for {\xml}-normalization that can be
-  pipelined to allow {\relaxng} validation, so this is not a grave restriction.} to be
-{\relaxng}-valid.
+\begin{omtext}
+  Note that none of these grammars can enforce all constraints that the {\omdoc}
+  specification in {\mypartref{specification}} of this {\report} imposes on documents.
+  Therefore grammar-based validation is only a necessary condition for
+  \inlinedef{{\omdoc}-{\defin{validity}}}. Still, {\omdoc} documents should be validated
+  to ensure proper function of {\omdoc} tools, such as the ones discussed in
+  {\mychapsref{transform-xsl}{projects}}.  Validation against multiple grammars gives the
+  best results. With the current state of validation technology, there is no clear
+  recommendation, which of the validation approaches to prefer for {\omdoc}. DTD
+  validation is currently best supported by standard {\xml} applications and supports
+  default values for attributes. This allows the author who writes {\omdoc} documents by
+  hand to elide implicit attributes and make the marked-up text more readable.  {\xml}-
+  and {\relaxng} schema validation have the advantage that they are namespace-aware and
+  support more syntactic constraints.  Neither of these support mnemonic {\xml} entities,
+  such as the ones used for {\unicode} characters in {\pmathml}, so that these have to be
+  encoded as {\unicode} code points. Finally {\relaxng} schemata do not fully support
+  default values for attributes, so that {\omdoc} documents have to be
+  normalized\footnote{\inlinedef{An {\omdoc} document is called {\defin{normalized}}, iff
+      all required attributes are present}. Given a {\indextoo{DTD}} or {\xml} schema that
+    specifies default values, there are standard {\xml} tools for {\xml}-normalization
+    that can be pipelined to allow {\relaxng} validation, so this is not a grave
+    restriction.} to be {\relaxng}-valid.
+\end{omtext}
 
 We will now discuss the particulars of the respective validation formats. As the
 {\relaxng} schema is the most expressive and readable for humans we consider it as the
@@ -200,18 +201,21 @@ namespaces to a certain extent. The {\omdoc} DTD follows the approach
 of~\cite{AltBou:mox01} that parametrizes namespace prefixes in element names to deal
 gracefully with syntactic effects of namespaced documents like we have in {\omdoc}.
   
-Recall that element names are \inlinedef{{\twindef{qualified}{name}s}, i.e. pairs
-  consisting of a {\twintoo{namespace}{URI}} and a {\twintoo{local}{name}}}. To save
-typing effort, {\xml} allows to abbreviate qualified names by namespace declarations via
-{\snippetin{xmlns}} pseudo-attribute: the element and all its descendants are in this
-namespace, unless they have a namespace attribute of their own or there is a namespace
-declaration in a closer ancestor that overwrites it.  Similarly, a
-{\twintoo{namespace}{abbreviation}} can be declared on any element by an attribute of the
-form {\snippet{xmlns:nsa="nsURI"}}, where {\snippet{nsa}} is a name space abbreviation,
-i.e. a simple name, and {\snippet{nsURI}} is the URI of the namespace.  In the scope of
-this declaration (in all descendants, where it is not overwritten) a qualified name
-{\snippet{nsa:n}} denotes the qualified name {\snippet{nsURI:n}}.
+\begin{omtext}
+  Recall that element names are \inlinedef{{\twindef{qualified}{name}s}, i.e. pairs
+    consisting of a {\twintoo{namespace}{URI}} and a {\twintoo{local}{name}}}. To save
+  typing effort, {\xml} allows to abbreviate qualified names by namespace declarations via
+  {\snippetin{xmlns}} pseudo-attribute: the element and all its descendants are in this
+  namespace, unless they have a namespace attribute of their own or there is a namespace
+  declaration in a closer ancestor that overwrites it.  Similarly, a
+  {\twintoo{namespace}{abbreviation}} can be declared on any element by an attribute of
+  the form {\snippet{xmlns:nsa="nsURI"}}, where {\snippet{nsa}} is a name space
+  abbreviation, i.e. a simple name, and {\snippet{nsURI}} is the URI of the namespace.  In
+  the scope of this declaration (in all descendants, where it is not overwritten) a
+  qualified name {\snippet{nsa:n}} denotes the qualified name {\snippet{nsURI:n}}.
+\end{omtext}
 
+\begin{omtext}
   The mechanisms described in~\cite{AltBou:mox01} provide a way to allow for namespace
   declarations even in the (namespace-agnostic) DTD setting simply by setting a
   {\indextoo{parameter entity}}. If {\snippetin{NS.prefixed}} is declared to be
@@ -224,6 +228,7 @@ this declaration (in all descendants, where it is not overwritten) a qualified n
   parameter entity {\snippetin{omdoc.prefix}}. For example, {\snippet{<!ENTITY \%
       omdoc.prefix "o">}} would set the prefix for the {\omdoc} namespace to
   {\snippetin{o:}}.
+\end{omtext}
 
 Note that while the Namespaces Recommendation~\cite{BraHol:xmlns99} provides
 mechanisms to change the prefix at arbitrary points in the document, this
