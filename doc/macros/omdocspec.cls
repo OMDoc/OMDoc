@@ -3,8 +3,7 @@
 % Copyright (c) 2007 Michael Kohlhase
 % This work is licensed by the Creative Commons Share-Alike license
 % see http://creativecommons.org/licenses/by-sa/2.5/ for details
-% $Id: omdocspec.cls 9004 2012-02-21 07:37:42Z kohlhase $
-% $HeadURL: https://svn.omdoc.org/repos/omdoc/trunk/doc/macros/omdocspec.cls $
+% The source original is at https://github.com/KWARC/OMDoc/doc/macros
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
