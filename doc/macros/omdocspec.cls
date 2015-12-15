@@ -69,23 +69,23 @@ breaklinks=true, bookmarksopen=true]{hyperref}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Modules %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\def\@module#1#2#3{% module name, DTD/Schema/spec
+\def\@@module#1#2#3{% module name, DTD/Schema/spec
 \index{#1 (#3)!#2 Module}%
 \index{#2 Module!#1 (#3)}%
 \index{#3!#2 Module #1}#1}   
-\def\METAmodule#1{\@module{DC}{#1}{Metadata}} 
-\def\MOBJmodule#1{\@module{MOBJ}{#1}{Mathematical Objects}} 
-\def\MTXTmodule#1{\@module{MTXT}{#1}{Mathematical Text}} 
-\def\STmodule#1{\@module{ST}{#1}{Mathematical Statements}} 
-\def\ADTmodule#1{\@module{ADT}{#1}{Abstract Data Types}} 
-\def\PFmodule#1{\@module{PF}{#1}{Proofs and Arguments}} 
-\def\CTHmodule#1{\@module{CTH}{#1}{Complex Theories}} 
-\def\DGmodule#1{\@module{DG}{#1}{Development Graphs}} 
-\def\EXTmodule#1{\@module{EXT}{#1}{Extensions}} 
-\def\PRESmodule#1{\@module{PRES}{#1}{Presentation}} 
-\def\QUIZmodule#1{\@module{QUIZ}{#1}{Exercises}} 
-\def\DOCmodule#1{\@module{DOC}{#1}{Document Structure}} 
-\def\RTmodule#1{\@module{RT}{#1}{Rich Text Structure}} 
+\def\METAmodule#1{\@@module{DC}{#1}{Metadata}} 
+\def\MOBJmodule#1{\@@module{MOBJ}{#1}{Mathematical Objects}} 
+\def\MTXTmodule#1{\@@module{MTXT}{#1}{Mathematical Text}} 
+\def\STmodule#1{\@@module{ST}{#1}{Mathematical Statements}} 
+\def\ADTmodule#1{\@@module{ADT}{#1}{Abstract Data Types}} 
+\def\PFmodule#1{\@@module{PF}{#1}{Proofs and Arguments}} 
+\def\CTHmodule#1{\@@module{CTH}{#1}{Complex Theories}} 
+\def\DGmodule#1{\@@module{DG}{#1}{Development Graphs}} 
+\def\EXTmodule#1{\@@module{EXT}{#1}{Extensions}} 
+\def\PRESmodule#1{\@@module{PRES}{#1}{Presentation}} 
+\def\QUIZmodule#1{\@@module{QUIZ}{#1}{Exercises}} 
+\def\DOCmodule#1{\@@module{DOC}{#1}{Document Structure}} 
+\def\RTmodule#1{\@@module{RT}{#1}{Rich Text Structure}} 
 
 %=====================================================
 %fette Buchstaben
