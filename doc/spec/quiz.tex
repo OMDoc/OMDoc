@@ -12,16 +12,16 @@
 Exercises and study problems are vital parts of mathematical documents like textbooks or
 exams, in particular, mathematical exercises contain mathematical vernacular and pose the
 same requirements on context like mathematical statements. Therefore markup for exercises
-has to be tightly integrated into the document format, so {\omdoc} provides a module for
+has to be tightly integrated into the document format, so \omdoc provides a module for
 them.
 
 Note that the functionality provided in this module is very limited, and largely serves as
 a place-holder for more pedagogically informed developments in the future (see
-{\extref{projects}{activemath}} and~\cite{GogMelUllCai:psmmee03} for an example in the {\omdoc}
+{\extref{projects}{activemath}} and~\cite{GogMelUllCai:psmmee03} for an example in the \omdoc
 framework).
 
 \begin{presonly}
-\begin{myfig}{qtex}{The {\omdoc} Auxiliary Elements for Exercises}
+\begin{myfig}{qtex}{The \omdoc Auxiliary Elements for Exercises}
 \begin{scriptsize}
 \begin{tabular}{|>{\tt}l|>{\tt}l|>{\tt}p{3.3truecm}|c|>{\tt}p{4truecm}|}\hline
 {\rm Element}& \multicolumn{2}{l|}{Attributes\hspace*{2.25cm}} & M & Content  \\\hline
@@ -39,26 +39,26 @@ framework).
 
 \begin{definition}[id=exercise.def]
   The {\QUIZmodule{spec}} module provides the top-level elements {\eldef{exercise}},
-  {\element{hint}}, and {\element{solution}}. The first one is used for
+  \element{hint}, and \element{solution}. The first one is used for
   {\indextoo{exercise}s} and {\indextoo{assessment}s}. The question statement is
-  represented as mathematical vernacular in a sequence of {\element[ns-elt=h]{p}}
+  represented as mathematical vernacular in a sequence of \element[ns-elt=h]{p}
   elements. This information can be augmented by {\indextoo{hint}s}
-  (using the {\element{hint}} element) and a {\indextoo{solution}}/{\indextoo{assessment}}
-  block (using the {\element{solution}} and {\element{mc}} elements).
+  (using the \element{hint} element) and a {\indextoo{solution}}/{\indextoo{assessment}}
+  block (using the \element{solution} and \element{mc} elements).
 \end{definition}
 
-The {\element{hint}} and {\element{solution}} elements can occur as children of
-{\element{exercise}}; or outside, referencing it in their optional
-{\attribute{for}{solution}} attribute. This allows a flexible positioning of the hints and
+The \element{hint} and \element{solution} elements can occur as children of
+\element{exercise}; or outside, referencing it in their optional
+\attribute{for}{solution} attribute. This allows a flexible positioning of the hints and
 solutions, e.g. in separate documents that can be distributed separately from the
-{\element{exercise}} elements. 
+\element{exercise} elements. 
 
 \begin{definition}[id=hint.def]
   The {\eldef{hint}} element contains mathematical vernacular as a sequence of
-  {\element[ns-elt=h]{p}} elements for the hint text. The {\eldef{solution}} element can contain any
-  number of {\omdoc} top-level elements to explain and justify the solution.  This is the
+  \element[ns-elt=h]{p} elements for the hint text. The {\eldef{solution}} element can contain any
+  number of \omdoc top-level elements to explain and justify the solution.  This is the
   case, where the question contains an assertion whose proof is not displayed and left to
-  the reader. Here, the {\element{solution}} contains a proof.
+  the reader. Here, the \element{solution} contains a proof.
 \end{definition}
 
 \begin{lstlisting}[label=lst:texbook-exercise,escapechar=\%,
@@ -100,32 +100,32 @@ solutions, e.g. in separate documents that can be distributed separately from th
 \end{lstlisting}
 
  {\indextoo{Multiple-choice exercise}s} (see {\mylstref{exercise}}) are represented by a
-  group of {\element{mc}} elements inside an {\element{exercise}} element.
+  group of \element{mc} elements inside an \element{exercise} element.
 
 \begin{definition}[id=mc.def] 
   An {\eldef{mc}} element represents a single choice in a multiple choice element. It
   contains the elements below (in this order).
 \begin{description}
-\item[{\element{choice}}] for the description of the choice (the text the user gets to see
+\item[\element{choice}] for the description of the choice (the text the user gets to see
   and is asked to make a decision on). The {\eldef{choice}} element carries the
   {\attributeshort[ns-attr=xml]{id}}, {\attributeshort{style}}, and
   {\attributeshort{class}} attributes and contains mathematical vernacular in a sequence
-  of {\element[ns-elt=h]{p}} elements.
-\item[{\element{hint}}] (optional) for a hint to the user, see above for a description.
-\item[{\element{answer}}] for the feedback to the user. This can be the correct answer, or
+  of \element[ns-elt=h]{p} elements.
+\item[\element{hint}] (optional) for a hint to the user, see above for a description.
+\item[\element{answer}] for the feedback to the user. This can be the correct answer, or
   some other feedback (e.g. another hint, without revealing the correct answer).  The
-  {\attribute{verdict}{answer}} attribute specifies the truth of the answer, it can have
-  the values {\attval{true}{verdict}{answer}} or {\attval{false}{verdict}{answer}}. This
-  element is required, inside a {\element{mc}}, since the {\attribute{verdict}{answer}} is
+  \attribute{verdict}{answer} attribute specifies the truth of the answer, it can have
+  the values \attribute{true}{verdict}{answer} or \attribute{false}{verdict}{answer}. This
+  element is required, inside a \element{mc}, since the \attribute{verdict}{answer} is
   needed. It can be empty if no feedback is available. Furthermore, the {\eldef{answer}}
   element carries the {\attributeshort[ns-attr=xml]{id}}, {\attributeshort{style}}, and
   {\attributeshort{class}} attributes and contains mathematical vernacular as a sequence
-  of {\element[ns-elt=h]{p}} elements.
+  of \element[ns-elt=h]{p} elements.
 \end{description}
 \end{definition}
 
 \begin{lstlisting}[label=lst:exercise,mathescape,
-  caption={A Multiple-Choice Exercise in {\omdoc}},
+  caption={A Multiple-Choice Exercise in \omdoc},
   index={exercise,mc,choice,answer}]
 <exercise for="#ida.c6s1p4.l1" xml:id="ida.c6s1p4.mc1">
   <h:p>

@@ -12,16 +12,16 @@
 \begin{module}[id=presintro]
 \begin{oldpart}{All the material in this chapter is obsolete and will be replaced by the
     new notation definition system presented in~\cite{KMR:NoLMD08}}
-  As we have seen, {\omdoc} is concerned mainly with the content and structure of
+  As we have seen, \omdoc is concerned mainly with the content and structure of
   mathematical documents, and offers a complex infrastructure for dealing with that.
   However, mathematical texts often carry typographic conventions that cannot be
   determined by general principles alone. Moreover, non-standard presentations of
   fragments of mathematical texts sometimes carry meanings that do not correspond to the
-  mathematical content or structure proper. In order to accommodate this, {\omdoc}
+  mathematical content or structure proper. In order to accommodate this, \omdoc
   provides a limited functionality for embedding style information into the document.
 
 \begin{presonly}
-\begin{myfig}{qtpres}{The {\omdoc} Elements for Notation Information}
+\begin{myfig}{qtpres}{The \omdoc Elements for Notation Information}
 \begin{scriptsize}
 \begin{tabular}{|>{\tt}l|>{\tt}l|>{\tt}p{4.7truecm}|>{\tt}p{2truecm}|}\hline
 {\rm Element}& \multicolumn{2}{l|}{Attributes\hspace*{2.25cm}} & Content  \\\hline
@@ -42,26 +42,26 @@
   produce the desired output.
 \end{omtext}
 
-The general approach to presentation and notation in {\omdoc} is not to provide
+The general approach to presentation and notation in \omdoc is not to provide
 general-purpose presentational primitives that can be sprinkled over the document, since
 that would distract the author from the mathematical content, but to support the
-specification of general style information for {\omdoc} elements and mathematical symbols
+specification of general style information for \omdoc elements and mathematical symbols
 in separate elements.
 
-In the case of a single {\omdoc} document it is possible to write a specialized style
+In the case of a single \omdoc document it is possible to write a specialized style
 sheet that transforms the content-oriented markup used in the document into mathematical
-notation. However, if we have to deal with a large collection of {\omdoc} representations,
+notation. However, if we have to deal with a large collection of \omdoc representations,
 then we can either write a specialized style sheet for each document (this is clearly
 infeasible to do by hand), or we can develop a style sheet for the whole collection (such
 style sheets tend to get large and unmanageable).
 
-The {\omdoc} format allows to generate specialized style sheets that are tailored to the
-presentation of (collections of) {\omdoc} documents. The mechanism will be discussed in
-{\extref{processing}{transform-xsl}}, here we only concern ourselves with the {\omdoc}
+The \omdoc format allows to generate specialized style sheets that are tailored to the
+presentation of (collections of) \omdoc documents. The mechanism will be discussed in
+{\extref{processing}{transform-xsl}}, here we only concern ourselves with the \omdoc
 primitives for representing the necessary data. In the next section, we will address the
-specification of style information for {\omdoc} elements by {\element{omstyle}} elements,
+specification of style information for \omdoc elements by \element{omstyle} elements,
 and then the question of the specification of notation for mathematical symbols in
-{\element{presentation}} elements.
+\element{presentation} elements.
 \end{oldpart}
 \end{module}
 

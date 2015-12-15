@@ -10,27 +10,27 @@
   {Mathematical Objects (Module {\MOBJmodule{spec}})}
 
   A distinguishing feature of mathematics is its ability to represent and manipulate ideas
-  and objects in symbolic form as mathematical \indexalt{formulae}{formula}.  {\omdoc}
+  and objects in symbolic form as mathematical \indexalt{formulae}{formula}.  \omdoc
   uses the {\openmath} and {\cmathml} formats to represent mathematical formulae and
   objects.  Therefore, the {\openmath} standard~\cite{BusCapCar:2oms04} and the {\mathml}
   2.0 recommendation (second edition)~\cite{CarIon:MathML03} are part of this
   specification. \ednote{discuss MathML3 and the relation between MathML and OpenMath and
-    what that means for {\omdoc}} 
+    what that means for \omdoc} 
 
   We will review {\openmath} objects in {\sref{openmath}} and {\cmathml} in {\sref{cmml}},
-  and specify an {\omdoc} element for entering mathematical formulae (element
-  {\element{legacy}}) in {\sref{legacy}}.
+  and specify an \omdoc element for entering mathematical formulae (element
+  \element{legacy}) in {\sref{legacy}}.
 
 \begin{presonly}
-\begin{myfig}{mobjtable}{Mathematical Objects in {\omdoc}}
+\begin{myfig}{mobjtable}{Mathematical Objects in \omdoc}
 \begin{scriptsize}
 \begin{tabular}{|l|p{1.5truecm}|l|l|}\hline
 Element & \multicolumn{2}{l|}{Attributes\hspace*{2.25cm}} & Content  \\\hline
              & Required  & Optional     &           \\\hline\hline
- {\element{legacy}}  & 
- {\attribute{format}{legacy}} & 
- {\attribute[ns-attr=xml]{id}{legacy}}, 
- {\attribute{formalism}{legacy}}  &  
+ \element{legacy}  & 
+ \attribute{format}{legacy} & 
+ \attribute[ns-attr=xml]{id}{legacy}, 
+ \attribute{formalism}{legacy}  &  
 \#PCDATA \\\hline
 \end{tabular}
 \end{scriptsize}
@@ -52,37 +52,37 @@ concepts, the content dictionaries.  \inlinedef{\adefii{These}{content}{dictiona
   are {\indextoo{machine-readable}} documents that define the meaning of mathematical
   concepts expressed by {\openmath} symbols.} The current released version of the
 {\openmath} standard is {\openmath}2, which incorporates many of the experiences of the
-last years, particularly with embedding {\openmath} into the {\omdoc}
+last years, particularly with embedding {\openmath} into the \omdoc
 format.
 \end{omtext}
 
 We will only review the {\xml} encoding of {\openmath} objects here, since it is most
-relevant to the {\omdoc} format. All elements of the {\xml} encoding live in the
+relevant to the \omdoc format. All elements of the {\xml} encoding live in the
 {\twinalt{namespace}{OpenMath}{namespace}} \url{http://www.openmath.org/OpenMath}, for
 which we traditionally use the {\twintoo{namespace}{prefix}}
-\atwinalt{\snippetin{om:}}{OpenMath}{namespace}{URI}. In {\omdoc} we embed {\openmath}
-expressions without the enclosing {\element[ns-elt=om]{OMOBJ}} element, since this does
+\atwinalt{\snippetin{om:}}{OpenMath}{namespace}{URI}. In \omdoc we embed {\openmath}
+expressions without the enclosing \element[ns-elt=om]{OMOBJ} element, since this does
 not seem to add anything.
 
 \begin{presonly}
-\begin{myfig}{om}{{\openmath} Objects in {\omdoc}}
+\begin{myfig}{om}{{\openmath} Objects in \omdoc}
 \begin{scriptsize}
 \begin{tabular}{|>{\tt}l|>{\tt}l|>{\tt}l|>{\tt}l|}\hline
 {\rm Element}& \multicolumn{2}{l|}{Attributes\hspace*{2.25cm}} & Content  \\\hline
              & {\rm Required}  & {\rm Optional}     &           \\\hline\hline
- {\element[ns-elt=om]{OMS}}          & cd, name  & id, cdbase, class, style   &  EMPTY \\\hline
-  {\element[ns-elt=om]{OMV}}          & name & id, class, style   &  EMPTY \\\hline
-  {\element[ns-elt=om]{OMA}}          & & id, cdbase, class, style   & \llquote{OMel}* \\\hline
-  {\element[ns-elt=om]{OMBIND}}    & & id, cdbase, class, style   & \llquote{OMel},OMBVAR,\llquote{OMel} \\\hline
-  {\element[ns-elt=om]{OMBVAR}}    & & id, class, style   & (OMV | OMATTR)+ \\\hline
-  {\element[ns-elt=om]{OMFOREIGN}} & & id, cdbase, class, style   & ANY \\\hline
-  {\element[ns-elt=om]{OMATTR}}    & & id, cdbase, class, style   & \llquote{OMel}\\\hline
-  {\element[ns-elt=om]{OMATP}}     & & id, cdbase, class, style   & (OMS, (\llquote{OMel}|OMFOREIGN))+ \\\hline
-  {\element[ns-elt=om]{OMI}}         & & id, class, style   &  [0-9]* \\\hline 
-  {\element[ns-elt=om]{OMB}}        & & id,  class, style   &  \#PCDATA \\\hline 
-  {\element[ns-elt=om]{OMF}}        & & id, class, style, dec, hex &  \#PCDATA \\\hline 
-  {\element[ns-elt=om]{OME}}        & & id, class, style   & \llquote{OMel}?\\\hline
-  {\element[ns-elt=om]{OMR}}       & href &      & \llquote{OMel}?\\\hline
+ \element[ns-elt=om]{OMS}          & cd, name  & id, cdbase, class, style   &  EMPTY \\\hline
+  \element[ns-elt=om]{OMV}          & name & id, class, style   &  EMPTY \\\hline
+  \element[ns-elt=om]{OMA}          & & id, cdbase, class, style   & \llquote{OMel}* \\\hline
+  \element[ns-elt=om]{OMBIND}    & & id, cdbase, class, style   & \llquote{OMel},OMBVAR,\llquote{OMel} \\\hline
+  \element[ns-elt=om]{OMBVAR}    & & id, class, style   & (OMV | OMATTR)+ \\\hline
+  \element[ns-elt=om]{OMFOREIGN} & & id, cdbase, class, style   & ANY \\\hline
+  \element[ns-elt=om]{OMATTR}    & & id, cdbase, class, style   & \llquote{OMel}\\\hline
+  \element[ns-elt=om]{OMATP}     & & id, cdbase, class, style   & (OMS, (\llquote{OMel}|OMFOREIGN))+ \\\hline
+  \element[ns-elt=om]{OMI}         & & id, class, style   &  [0-9]* \\\hline 
+  \element[ns-elt=om]{OMB}        & & id,  class, style   &  \#PCDATA \\\hline 
+  \element[ns-elt=om]{OMF}        & & id, class, style, dec, hex &  \#PCDATA \\\hline 
+  \element[ns-elt=om]{OME}        & & id, class, style   & \llquote{OMel}?\\\hline
+  \element[ns-elt=om]{OMR}       & href &      & \llquote{OMel}?\\\hline
  \multicolumn{4}{|l|}{where {\llquote{OMel}} is {\tt{(OMS|OMV|OMI|OMB|OMSTR|OMF|OMA|OMBIND|OME|OMATTR)}}}\\\hline
 \end{tabular}
 \end{scriptsize}
@@ -95,12 +95,12 @@ not seem to add anything.
   The central construct of the {\openmath} is that of an {\twinalt{{\openmath}
       object}{OpenMath}{object}}, which has a tree-like representation made up of
   {\indextoo{application}s} ({\eldef[ns-elt=om]{OMA}}), {\indextoo{binding structure}s}
-  ({\element[ns-elt=om]{OMBIND}} using {\element[ns-elt=om]{OMBVAR}} to tag
+  (\element[ns-elt=om]{OMBIND} using \element[ns-elt=om]{OMBVAR} to tag
   {\twintoo{bound}{variable}s}), {\indextoo{variable}s} ({\eldef[ns-elt=om]{OMV}}), and
   {\indextoo{symbol}s} ({\eldef[ns-elt=om]{OMS}}).
 \end{definition}
 
-The {\element[ns-elt=om]{OMA}} element contains representations of the function and its
+The \element[ns-elt=om]{OMA} element contains representations of the function and its
 argument in ``\twinalt{prefix-}{prefix}{notation}'' or ``{\twintoo{Polish}{notation}}'',
 i.e. the first child is the representation of the function and all the subsequent ones are
 representations of the arguments in order.
@@ -108,22 +108,22 @@ representations of the arguments in order.
 \begin{omtext}
 Objects and concepts that carry meaning independent of the local context (\inlinedef{they
   are called \defi{symbol}s} in {\openmath}) are represented as
-{\element[ns-elt=om]{OMS}} elements, where the value of the
-{\attribute[ns-elt=om]{name}{OMS}} attribute gives the name of the symbol.  The
-{\attribute[ns-elt=om]{cd}{OMS}} attribute specifies the relevant {\indextoo{content
+\element[ns-elt=om]{OMS} elements, where the value of the
+\attribute[ns-elt=om]{name}{OMS} attribute gives the name of the symbol.  The
+\attribute[ns-elt=om]{cd}{OMS} attribute specifies the relevant {\indextoo{content
     dictionary}}, a document that defines the meaning of a collection of symbols including
-the one referenced by the {\element[ns-elt=om]{OMS}}.  This document can either be an
-original {\openmath} content dictionary or an {\omdoc} document that serves as one (see
+the one referenced by the \element[ns-elt=om]{OMS}.  This document can either be an
+original {\openmath} content dictionary or an \omdoc document that serves as one (see
 {\sref{identifying}} for a discussion). The optional {\attributeshort{cdbase}} on
-an {\element[ns-elt=om]{OMS}} element contains a {\indextoo{URI}} that can be used to
+an \element[ns-elt=om]{OMS} element contains a {\indextoo{URI}} that can be used to
 disambiguate the content dictionary.  Alternatively, the {\attributeshort{cdbase}}
 attribute can be given on an {\openmath} element that is a parent to the
-{\element[ns-elt=om]{OMS}} in question: The {\element[ns-elt=om]{OMS}} inherits the
+\element[ns-elt=om]{OMS} in question: The \element[ns-elt=om]{OMS} inherits the
 {\attributeshort{cdbase}} of the nearest ancestor (inducing the usual {\xml} scoping rules
 for declarations).\footnote{Note that while the {\attributeshort{cdbase}} inheritance
   mechanism described here remains in effect for {\openmath} objects embedded in to the
-  {\omdoc} format, it is augmented by one in {\omdoc}. As a consequence, {\openmath}
-  objects in {\omdoc} documents will usually not contain {\attributeshort{cdbase}}
+  \omdoc format, it is augmented by one in \omdoc. As a consequence, {\openmath}
+  objects in \omdoc documents will usually not contain {\attributeshort{cdbase}}
   attributes; see {\sref{identifying}} for a discussion.}
 \end{omtext}
 
@@ -132,14 +132,14 @@ identifying {\indextoo{URI}} for the symbol declaration referenced by an {\openm
 symbol of the form {\snippet{<OMS cd="foo" name="bar"/>}} with the
 {\attributeshort{cdbase}}-value e.g.  \url{http://www.openmath.org/cd}: it is the URI
 reference \url{http://www.openmath.org/cd/foo#bar}, which by convention identifies an
-{\element[ns-elt=omcd]{CDDefinition}} element with a child {\element[ns-elt=omcd]{Name}}
+\element[ns-elt=omcd]{CDDefinition} element with a child \element[ns-elt=omcd]{Name}
 whose value is {\snippet{bar}} in a content dictionary resource
 \url{http://www.openmath.org/cd/foo.ocd} (see {\extref{book}{math-markup.openmath}} for a
 very brief introduction to {\openmath} content dictionaries). 
 
-Variables are represented as {\element[ns-elt=om]{OMV}} element.  As variables do not
-carry a meaning independent of their local content, {\element[ns-elt=om]{OMV}} only
-carries a {\attribute[ns-elt=om]{name}{OMV}} attribute (see {\sref{sem-var}} for
+Variables are represented as \element[ns-elt=om]{OMV} element.  As variables do not
+carry a meaning independent of their local content, \element[ns-elt=om]{OMV} only
+carries a \attribute[ns-elt=om]{name}{OMV} attribute (see {\sref{sem-var}} for
 further discussion).
 
 For instance, the formula $\sin(x)$ would be modeled as an application of the
@@ -154,17 +154,17 @@ variable:
 </OMA>
 \end{lstlisting}
 
-In our case, the function $\sin$ is represented as an {\element[ns-elt=om]{OMS}} element
+In our case, the function $\sin$ is represented as an \element[ns-elt=om]{OMS} element
 with name {\snippet{sin}} from the {\indextoo{content dictionary}}
-{\snippet{transc1}}. The {\element[ns-elt=om]{OMS}} inherits the
+{\snippet{transc1}}. The \element[ns-elt=om]{OMS} inherits the
 {\attributeshort{cdbase}}-value \url{http://www.openmath.org/cd}, which shows that it
 comes from the {\openmath} standard collection of content dictionaries from the
-{\element[ns-elt=om]{OMA}} element above.\ednote{MK: no, it does not, but from the theory
-  in {\omdoc}, probably we should talk about this here.}  The variable $x$ is represented
-in an {\element[ns-elt=om]{OMV}} element with {\attribute[ns-elt=om]{name}{OMV}}-value
+\element[ns-elt=om]{OMA} element above.\ednote{MK: no, it does not, but from the theory
+  in \omdoc, probably we should talk about this here.}  The variable $x$ is represented
+in an \element[ns-elt=om]{OMV} element with \attribute[ns-elt=om]{name}{OMV}-value
 {\snippet{x}}.
 
-For the {\element[ns-elt=om]{OMBIND}} element consider the following representation of the
+For the \element[ns-elt=om]{OMBIND} element consider the following representation of the
 formula $\allcdot{x}{\sin(x)\leq\pi}$.
 \begin{lstlisting}[label=allxsinx,language=OpenMath,numbers=none,
    index={OMA,OMV,OMBIND,OMBVAR}]
@@ -183,19 +183,19 @@ formula $\allcdot{x}{\sin(x)\leq\pi}$.
   ``{\twintoo{binding}{operator}}''\footnote{%\label {foot:binding-operator}
     The binding operator must be a symbol which either has the {\indextoo{role}}
     {\attvalshort{binder}{role}} assigned by the {\openmath} content dictionary
-    (see~\cite{BusCapCar:2oms04} for details) or the symbol declaration in the {\omdoc}
-    content dictionary must have the value {\attval{binder}{role}{symbol}} for the
-    attribute {\attribute{role}{symbol}} (see {\sref{symbol-dec}}).} --- in this case the
+    (see~\cite{BusCapCar:2oms04} for details) or the symbol declaration in the \omdoc
+    content dictionary must have the value \attribute{binder}{role}{symbol} for the
+    attribute \attribute{role}{symbol} (see {\sref{symbol-dec}}).} --- in this case the
   universal quantifier, the second one is a list of {\twintoo{bound}{variable}s} that must
   be encapsulated in an {\eldef[ns-elt=om]{OMBVAR}} element, and the third is the
   {\indextoo{body}} of the binding object, in which the bound variables can be used.
-  {\openmath} uses the {\element[ns-elt=om]{OMBIND}} element to unambiguously specify the
+  {\openmath} uses the \element[ns-elt=om]{OMBIND} element to unambiguously specify the
   scope of bound variables in expressions: the bound variables in the
-  {\element[ns-elt=om]{OMBVAR}} element can be used only inside the mother
-  {\element[ns-elt=om]{OMBIND}} element, moreover they can be systematically
+  \element[ns-elt=om]{OMBVAR} element can be used only inside the mother
+  \element[ns-elt=om]{OMBIND} element, moreover they can be systematically
   \twinalt{renamed}{variable}{renaming} without changing the meaning of the binding
   expression. As a consequence, bound variables in the scope of an
-  {\element[ns-elt=om]{OMBIND}} are distinct as {\openmath} objects from any variables
+  \element[ns-elt=om]{OMBIND} are distinct as {\openmath} objects from any variables
   outside it, even if they share a name.
 \end{definition}
 
@@ -205,16 +205,16 @@ formula $\allcdot{x}{\sin(x)\leq\pi}$.
 \begin{definition}[id=omattr.def]
   The {\eldef[ns-elt=om]{OMATTR}} element that pairs an {\openmath} object with an
   attribute-value list. To annotate an {\openmath} object, it is embedded as the second
-  child in an {\element[ns-elt=om]{OMATTR}} element. The attribute-value list is specified
+  child in an \element[ns-elt=om]{OMATTR} element. The attribute-value list is specified
   by children of the preceding {\eldef[ns-elt=om]{OMATP}} (Attribute value Pair) element,
   which has an even number of children: children at odd positions must be
-  {\element[ns-elt=om]{OMS}} (specifying the attribute, they are called \defis{key} or
+  \element[ns-elt=om]{OMS} (specifying the attribute, they are called \defis{key} or
   \defis{feature})\footnote{There are two kinds of keys in {\openmath} distinguished
-    according to the {\attribute{role}{symbol}} value on their {\element{symbol}}
+    according to the \attribute{role}{symbol} value on their \element{symbol}
     declaration in the {\indextoo{content}{dictionary}}:
-    {\attval{attribution}{role}{symbol}} specifies that this attribute value pair may be
+    \attribute{attribution}{role}{symbol} specifies that this attribute value pair may be
     ignored by an application, so it should be used for information which does not change
-    the meaning of the attributed {\openmath} object. The {\attribute{role}{symbol}} is
+    the meaning of the attributed {\openmath} object. The \attribute{role}{symbol} is
     used for keys that modify the meaning of the attributed {\openmath} object and thus
     cannot be ignored by an application.}, and children at even positions are the
   \defis{value} of the keys specified by their immediately preceding siblings. In the
@@ -246,14 +246,14 @@ formula $\allcdot{x}{\sin(x)\leq\pi}$.
 </OMATTR>
 \end{lstlisting}
 
-A special application of the {\element[ns-elt=om]{OMATTR}} element is associating
+A special application of the \element[ns-elt=om]{OMATTR} element is associating
 non-{\sc{Open\-Math}} objects with {\openmath} objects.
 
 \begin{definition}[id=omforeign.def]
   For this, {\openmath}2 allows to use an {\eldef[ns-elt=om]{OMFOREIGN}} element in the
-  even positions of an {\element[ns-elt=om]{OMATP}}. This element can be used to hold
+  even positions of an \element[ns-elt=om]{OMATP}. This element can be used to hold
   arbitrary {\xml} content (in our example above SVG: Scalable Vector
-  Graphics~\cite{W3C:svg02}), its required {\attribute[ns-elt=om]{encoding}{OMFOREIGN}}
+  Graphics~\cite{W3C:svg02}), its required \attribute[ns-elt=om]{encoding}{OMFOREIGN}
   attribute specifies the format of the content.
 \end{definition}
 
@@ -268,7 +268,7 @@ application).
   provides other basic data types: {\eldef[ns-elt=om]{OMI}} for {\indextoo{integer}s},
   {\eldef[ns-elt=om]{OMB}} for {\indextoo{byte array}s}, {\eldef[ns-elt=om]{OMSTR}} for
   {\indextoo{string}s}, and {\eldef[ns-elt=om]{OMF}} for floating point numbers. These do
-  not play a large role in the context of {\omdoc}, so we refer the reader to the
+  not play a large role in the context of \omdoc, so we refer the reader to the
   {\openmath} standard~\cite{BusCapCar:2oms04} for details.
 \end{definition}
 
@@ -277,12 +277,12 @@ application).
   {\openmath} objects, it can be used almost everywhere in {\openmath} elements. It has
   two children; the first one is an {\twintoo{error}{operator}}\footnote{An error operator
     is like a {\twintoo{binding}{operator}}, only the symbol has role
-    {\attval{error}{role}{symbol}}.}, i.e. an {\openmath} symbol that specifies the kind
+    \attribute{error}{role}{symbol}.}, i.e. an {\openmath} symbol that specifies the kind
   of error, and the second one is the faulty {\openmath} object fragment. Note that since
   the whole object must be a valid {\openmath} object, the second child must be a
   well-formed {\openmath} object fragment.
 \end{definition}
-As a consequence, the {\element[ns-elt=om]{OME}} element can only be used for
+As a consequence, the \element[ns-elt=om]{OME} element can only be used for
 ``{\twintoo{semantic}{error}s}'' like non-existing content dictionaries, out-of-bounds
 errors, etc.  {\xml}-well-formedness and DTD-validity errors will have to be handled by
 the {\xml} tools involved. In the following example, we have marked up two errors in a
@@ -387,22 +387,22 @@ representation of the constant $\pi$ (we used the name {\snippet{po}} instead of
   {\attributeshortcomment{id}{in {\sc{OpenMath}} objects}} on all {\openmath} objects and
   an element {\eldef[ns-elt=om]{OMR}}\footnote{{\openmath}1 and {\omdocv{1.0}} did now
     know structure sharing, {\omdocv{1.1}} added {\attributeshort{xref}} attributes to the
-    {\openmath} elements {\element[ns-elt=om]{OMA}}, {\element[ns-elt=om]{OMBIND}} and
-    {\element[ns-elt=om]{OMATTR}} instead of {\element[ns-elt=om]{OMR}} elements. This
+    {\openmath} elements \element[ns-elt=om]{OMA}, \element[ns-elt=om]{OMBIND} and
+    \element[ns-elt=om]{OMATTR} instead of \element[ns-elt=om]{OMR} elements. This
     usage is deprecated in {\omdocv{1.2}}, in favor of the
-    {\element[ns-elt=om]{OMR}}-based solution from the {\openmath}2 standard. Obviously,
+    \element[ns-elt=om]{OMR}-based solution from the {\openmath}2 standard. Obviously,
     both representations are equivalent, and a transformation from
-    {\attributeshort{xref}}-based mechanism to the {\element[ns-elt=om]{OMR}}-based one is
+    {\attributeshort{xref}}-based mechanism to the \element[ns-elt=om]{OMR}-based one is
     immediate.} for the purpose of \indexalt{cross-referencing}{cross-reference}. The
-  {\element[ns-elt=om]{OMR}} element is empty and has the required attribute
-  {\attribute[ns-elt=om]{href}{OMR}}; The {\openmath} element represented by this
-  {\element[ns-elt=om]{OMR}} element is a copy of the {\openmath} element pointed to in
-  the {\attribute[ns-elt=om]{href}{OMR}} attribute.
+  \element[ns-elt=om]{OMR} element is empty and has the required attribute
+  \attribute[ns-elt=om]{href}{OMR}; The {\openmath} element represented by this
+  \element[ns-elt=om]{OMR} element is a copy of the {\openmath} element pointed to in
+  the \attribute[ns-elt=om]{href}{OMR} attribute.
 \end{definition}
-Note that the representation of the {\element[ns-elt=om]{OMR}} element is
+Note that the representation of the \element[ns-elt=om]{OMR} element is
 {\em{structurally equal}}, but not identical to the element it points to.
 
-Using the {\element[ns-elt=om]{OMR}} element, we can represent the {\openmath} objects in
+Using the \element[ns-elt=om]{OMR} element, we can represent the {\openmath} objects in
 {\myfigref{sharing}} as the {\xml} representations in {\myfigref{explosion}}.
 
 \begin{myfig}{explosion}{The {\openmath} Objects from {\myfigref{sharing}} in {\xml} Encoding}
@@ -478,17 +478,17 @@ Shared & Exploded \\\hline\hline
 
 \begin{omtext}
   To ensure that the {\xml} representations actually correspond to
-  \atwintoo{directed}{acyclic}{graph}s, the occurrences of the {\element[ns-elt=om]{OMR}}
+  \atwintoo{directed}{acyclic}{graph}s, the occurrences of the \element[ns-elt=om]{OMR}
   must obey the global acyclicity constraint below, \inlinedef{where we say that an
     {\openmath} element \defi{dominates} all its children and all elements they dominate};
-  The {\element[ns-elt=om]{OMR}} also dominates its \inlinedef{\defi{target}\footnote{The
+  The \element[ns-elt=om]{OMR} also dominates its \inlinedef{\defi{target}\footnote{The
       target of an {\openmath} element with an {\attributeshortcomment{id}{in
           {\sc{OpenMath}} objects}} attribute is defined analogously}, i.e. the element
     that carries the {\attributeshortcomment{id}{in {\sc{OpenMath}} objects}} attribute
-    pointed to by the {\attribute[ns-elt=om]{href}{OMR}} attribute}.  For instance, in the
-  representation in {\myfigref{explosion}} the {\element[ns-elt=om]{OMA}} element with
-  {\snippet{xml:id="t1"}} and also the second {\element[ns-elt=om]{OMA}} element dominate
-  the {\element[ns-elt=om]{OMA}} element with {\snippet{xml:id="t11"}}.
+    pointed to by the \attribute[ns-elt=om]{href}{OMR} attribute}.  For instance, in the
+  representation in {\myfigref{explosion}} the \element[ns-elt=om]{OMA} element with
+  {\snippet{xml:id="t1"}} and also the second \element[ns-elt=om]{OMA} element dominate
+  the \element[ns-elt=om]{OMA} element with {\snippet{xml:id="t11"}}.
 \end{omtext}
 
 \begin{axiom}[title=Acyclicity Constraint]
@@ -507,9 +507,9 @@ Shared & Exploded \\\hline\hline
   </OMA> 
 </OMA>
 \end{lstlisting}
-In {\mylstref{chained-fraction}} the {\element[ns-elt=om]{OMA}} element with {\snippet{xml:id="foo"}}
-dominates its third child, which dominates the {\element[ns-elt=om]{OMR}} with
-{\snippet{href="foo"}}, which dominates its target: the {\element[ns-elt=om]{OMA}} element
+In {\mylstref{chained-fraction}} the \element[ns-elt=om]{OMA} element with {\snippet{xml:id="foo"}}
+dominates its third child, which dominates the \element[ns-elt=om]{OMR} with
+{\snippet{href="foo"}}, which dominates its target: the \element[ns-elt=om]{OMA} element
 with {\snippet{xml:id="foo"}}. So by transitivity, this element dominates itself, and by
 the acyclicity constraint, it is not the {\xml} representation of an {\openmath}
 object.  Even though it could be given the interpretation of the continued
@@ -517,12 +517,12 @@ fraction
 \[1\over{1 + {1\over {1+\cdots}}}\] this would correspond to an infinite tree of
 applications, which is not admitted by the {\openmath} standard. Note that the acyclicity
 constraint is not restricted to such simple cases, as the example in {\mylstref{2cycle}}
-shows.  Here, the {\element[ns-elt=om]{OMA}} with {\snippet{xml:id="bar"}} dominates its
-third child, the {\element[ns-elt=om]{OMR}} element with {\snippet{href="baz"}}, which
-dominates its target {\element[ns-elt=om]{OMA}} with {\snippet{xml:id="baz"}}, which in
-turn dominates its third child, the {\element[ns-elt=om]{OMR}} with
+shows.  Here, the \element[ns-elt=om]{OMA} with {\snippet{xml:id="bar"}} dominates its
+third child, the \element[ns-elt=om]{OMR} element with {\snippet{href="baz"}}, which
+dominates its target \element[ns-elt=om]{OMA} with {\snippet{xml:id="baz"}}, which in
+turn dominates its third child, the \element[ns-elt=om]{OMR} with
 {\snippet{href="bar"}}, this finally dominates its target, the original
-{\element[ns-elt=om]{OMA}} element with {\snippet{xml:id="bar"}}. So again, this pair of
+\element[ns-elt=om]{OMA} element with {\snippet{xml:id="bar"}}. So again, this pair of
 {\openmath} objects violates the acyclicity constraint and is not the {\xml} encoding of
 an {\openmath} object.
 \begin{lstlisting}[language=OpenMath,numbers=none,label=lst:2cycle,
@@ -550,69 +550,69 @@ The current released version of the {\mathml} recommendation is the second editi
 {\mathml} 2.0~\cite{CarIon:MathML03}, a maintenance release for the {\mathml} 2.0
 recommendation~\cite{CarIon:MathML01} that cleans up many semantic issues in the content
 {\mathml} part. We will now review those parts of {\mathml} 2.0 that are relevant to
-{\omdoc}; for the full story see~\cite{CarIon:MathML03}.
+\omdoc; for the full story see~\cite{CarIon:MathML03}.
 
-Even though {\omdoc} allows full {\cmathml}, we will advocate the use of the {\cmathml}
+Even though \omdoc allows full {\cmathml}, we will advocate the use of the {\cmathml}
 fragment described in this section, which is largely isomorphic to {\openmath}
 (see~\sref{omvscmml} for a discussion).
 
 \begin{presonly}
-\begin{myfig}{cmml}{{\cmathml} in {\omdoc}}
+\begin{myfig}{cmml}{{\cmathml} in \omdoc}
 \begin{scriptsize}
 \begin{tabular}{|l|l|p{2truecm}|p{4truecm}|}\hline
 {\rm Element}& \multicolumn{2}{l|}{Attributes\hspace*{2.25cm}}  & Content  \\\hline
               & {\rm Required}  & {\rm Optional}     &            \\\hline\hline
- {\element[ns-elt=m]{math}}       & & 
+ \element[ns-elt=m]{math}       & & 
  \attribute[ns-elt=m]{id}{math}, 
  \attribute[ns-elt=m]{xlink:href}{math}                   & \llquote{CMel}+\\\hline
 
- {\element[ns-elt=m]{apply}}  & &
+ \element[ns-elt=m]{apply}  & &
  \attribute[ns-elt=m]{id}{apply}, 
    \attribute[ns-elt=m]{xlink:href}{apply}                   &
- {\element[ns-elt=m]{bvar?}},\llquote{CMel}*\\\hline
+ \element[ns-elt=m]{bvar?},\llquote{CMel}*\\\hline
 
-\ {\element[ns-elt=m]{csymbol}}    & 
+\ \element[ns-elt=m]{csymbol}    & 
  \attribute[ns-elt=m]{definitionURL}{csymbol}  & 
 \attribute[ns-elt=m]{id}{csymbol}, 
 \attribute[ns-elt=m]{xlink:href}{csymbol}    & 
 EMPTY \\\hline
 
- {\element[ns-elt=m]{ci}}        & & 
+ \element[ns-elt=m]{ci}        & & 
 \attribute[ns-elt=m]{id}{ci}, 
 \attribute[ns-elt=m]{xlink:href}{ci}  &
  \#PCDATA \\\hline       
 
- {\element[ns-elt=m]{cn}}         & & 
+ \element[ns-elt=m]{cn}         & & 
 \attribute[ns-elt=m]{id}{cn}, 
 \attribute[ns-elt=m]{xlink:href}{cn}         &
  ([0-9]|,|.)(*|e([0-9]|,|.)*)?\\\hline       
 
- {\element[ns-elt=m]{bvar}}       & &
+ \element[ns-elt=m]{bvar}       & &
  \attribute[ns-elt=m]{id}{bvar}, 
  \attribute[ns-elt=m]{xlink:href}{bvar}                   &
- {\element[ns-elt=m]{ci}}|
-{\element[ns-elt=m]{semantics}}\\\hline
+ \element[ns-elt=m]{ci}|
+\element[ns-elt=m]{semantics}\\\hline
 
- {\element[ns-elt=m]{semantics}}  & & 
+ \element[ns-elt=m]{semantics}  & & 
 \attribute[ns-elt=m]{id}{semantics}, 
 \attribute[ns-elt=m]{xlink:href}{semantics}, 
 \attribute[ns-elt=m]{definitionURL}{semantics} & 
-\llquote{CMel},({\element[ns-elt=m]{annotation}} | 
-                        {\element[ns-elt=m]{annotation-xml}})*\\\hline
+\llquote{CMel},(\element[ns-elt=m]{annotation} | 
+                        \element[ns-elt=m]{annotation-xml})*\\\hline
 
- {\element[ns-elt=m]{annotation}} & & 
+ \element[ns-elt=m]{annotation} & & 
 \attribute[ns-elt=m]{definitionURL}{annotation}, \attribute[ns-elt=m]{encoding}{annotation}      &
  \#PCDATA \\\hline
 
- {\element[ns-elt=m]{annotation-xml}} & & 
+ \element[ns-elt=m]{annotation-xml} & & 
 \attribute[ns-elt=m]{definitionURL}{annotation-xml}, 
 \attribute[ns-elt=m]{encoding}{annotation-xml}      &
  ANY \\\hline
  \multicolumn{4}{|l|}{where {\llquote{CMel}} is 
-{\element[ns-elt=m]{apply}}|
-     {\element[ns-elt=m]{csymbol}}|
-{\element[ns-elt=m]{ci}}|
-{\element[ns-elt=m]{cn}}|{\element[ns-elt=m]{semantics}}}\\\hline
+\element[ns-elt=m]{apply}|
+     \element[ns-elt=m]{csymbol}|
+\element[ns-elt=m]{ci}|
+\element[ns-elt=m]{cn}|\element[ns-elt=m]{semantics}}\\\hline
 \end{tabular}
 \end{scriptsize}
 \end{myfig}
@@ -622,10 +622,10 @@ EMPTY \\\hline
 
 \begin{definition}[id=math.def]
   The top-level element of {\mathml} is the {\eldef[ns-elt=m]{math}}\footnote{For DTD
-    validation {\omdoc} uses the {\twintoo{namespace}{prefix}} ``{\snippetin{m:}}'' for
-    {\mathml} elements, since the {\omdoc} DTD needs to include the {\mathml} DTD with an
-    {\atwintoo{explicit}{namespace}{prefix}}, as both {\mathml} and {\omdoc} have a
-    {\element{selector}} element that would clash otherwise (DTDs are not
+    validation \omdoc uses the {\twintoo{namespace}{prefix}} ``{\snippetin{m:}}'' for
+    {\mathml} elements, since the \omdoc DTD needs to include the {\mathml} DTD with an
+    {\atwintoo{explicit}{namespace}{prefix}}, as both {\mathml} and \omdoc have a
+    \element{selector} element that would clash otherwise (DTDs are not
     {\indextoo{namespace-aware}}).} element, see {\myfigref{om-commutativity}} for an
   example.
 \end{definition}
@@ -635,17 +635,17 @@ Like {\openmath}, {\cmathml} organizes the mathematical objects into a functiona
   The basic objects ({\mathml} calls them \defiis{token}{element}) are
 \begin{description}
   \item[{\defis{identifier}}] (element \eldef[ns-elt=m]{ci}) corresponding to
-    {\indextoo{variable}s}. The content of the {\element[ns-elt=m]{ci}} element is
+    {\indextoo{variable}s}. The content of the \element[ns-elt=m]{ci} element is
     arbitrary {\pmathml}, used as the name of the identifier.
   \item[{\defis{number}}] (element \eldef[ns-elt=m]{cn}) for number
-    expressions. The attribute {\attribute[ns-elt=m]{type}{cn}} can be used to specify the
+    expressions. The attribute \attribute[ns-elt=m]{type}{cn} can be used to specify the
     mathematical type of the number, e.g. {\snippet{complex}}, {\snippet{real}}, or
-    {\snippet{integer}}. The content of the {\element[ns-elt=m]{cn}} element is
+    {\snippet{integer}}. The content of the \element[ns-elt=m]{cn} element is
     interpreted as the value of the number expression.
   \item[{\defis{symbol}}] (element \eldef[ns-elt=m]{csymbol}) for arbitrary
     symbols.  Their meaning is determined by a {\snippetin{definitionURL}} attribute that
     is a {\twintoo{URI}{reference}} that points to a symbol declaration in a defining
-    document. The content of the {\element[ns-elt=m]{csymbol}} element is a {\pmathml}
+    document. The content of the \element[ns-elt=m]{csymbol} element is a {\pmathml}
     representation that used to depict the symbol.
   \end{description}
 \end{definition}
@@ -663,13 +663,13 @@ see {\myfigref{om-commutativity}} below for a use case in a universal quantifier
 
 \begin{definition}[id=semantics.def]
   The {\eldef[ns-elt=m]{semantics}} element provides a way to annotate {\cmathml} elements
-  with arbitrary information. The first child of the {\element[ns-elt=m]{semantics}}
+  with arbitrary information. The first child of the \element[ns-elt=m]{semantics}
   element is annotated with the information in the {\eldef[ns-elt=m]{annotation-xml}} (for
   {\xml}-based information) and {\eldef[ns-elt=m]{annotation}} (for other information)
   elements that follow it. These elements carry
-  {\attribute[ns-elt=m]{definitionURL}{annotation}} attributes that point to a
+  \attribute[ns-elt=m]{definitionURL}{annotation} attributes that point to a
   ``definition'' of the kind of information provided by them. The optional
-  {\attribute[ns-elt=m]{encoding}{annotation}} is a string that describes the format of
+  \attribute[ns-elt=m]{encoding}{annotation} is a string that describes the format of
   the content.
 \end{definition}
 \end{omgroup}
@@ -677,22 +677,22 @@ see {\myfigref{om-commutativity}} below for a use case in a universal quantifier
 \begin{omgroup}[id=omvscmml]{OpenMath vs. Content MathML}
 
 {\openmath} and {\mathml} are well-integrated; there are semantics-preserving converters
-between the two formats. {\mathml} supports the {\element[ns-elt=m]{semantics}} element,
+between the two formats. {\mathml} supports the \element[ns-elt=m]{semantics} element,
 that can be used to annotate {\mathml} presentations of mathematical objects with their
 {\openmath} encoding. Analogously, {\openmath} supports the {\snippet{presentation}}
-symbol in the {\element[ns-elt=om]{OMATTR}} element, that can be used for annotating with
+symbol in the \element[ns-elt=om]{OMATTR} element, that can be used for annotating with
 {\mathml} presentation. {\openmath} is the designated extension mechanism for {\mathml}
 beyond {\twintoo{K-14}{mathematics}}: Any symbol outside can be encoded as a
-{\element[ns-elt=m]{csymbol}} element, whose
-{\attribute[ns-elt=m]{definitionURL}{csymbol}} attribute points to the {\openmath} CD that
+\element[ns-elt=m]{csymbol} element, whose
+\attribute[ns-elt=m]{definitionURL}{csymbol} attribute points to the {\openmath} CD that
 defines the meaning of the symbol. Moreover all of the {\mathml} content elements have
 counterparts in the {\openmath} core \indexalt{contentdictionaries}{content
-  dictionary}~\cite{URL:omcd-core}. For the purposes of {\omdoc}, we will consider the
+  dictionary}~\cite{URL:omcd-core}. For the purposes of \omdoc, we will consider the
 various representations following four representations of a content symbol in
 {\myfigref{content-symbols}} as equivalent.  Note that the URI in the
-{\attribute[ns-elt=m]{definitionURL}{csymbol}} attribute does not point to a specific
+\attribute[ns-elt=m]{definitionURL}{csymbol} attribute does not point to a specific
 file, but rather uses its base name for the reference.  This allows a {\mathml} (or
-{\omdoc}) application to select the format most suitable for it.
+\omdoc) application to select the format most suitable for it.
 
 
 \begin{myfig}{content-symbols}{Four equivalent Representations of a Content Symbol}
@@ -702,12 +702,12 @@ file, but rather uses its base name for the reference.  This allows a {\mathml} 
   \snippet{<m:plus definitionURL="http://www.openmath.org/cd/arith1\#plus"/>}a\\\hline
     {\cmathml} token element with explicit pointer\\\hline\hline
 \snippet{<m:csymbol definitionURL="http://www.openmath.org/cd/arith1\#plus"/>}\\\hline
-    empty {\cmathml} {\element[ns-elt=m]{csymbol}} \\\hline\hline
+    empty {\cmathml} \element[ns-elt=m]{csymbol} \\\hline\hline
 \snippet{<m:csymbol
         definitionURL="http://www.openmath.org/cd/arith1\#plus">}\\
     \hspace{2ex}{\snippet{<m:mo>+</m:mo>}}\\
    {\snippet{</m:csymbol>}}\\\hline
-    {\cmathml} {\element[ns-elt=m]{csymbol}} with presentation\\\hline\hline
+    {\cmathml} \element[ns-elt=m]{csymbol} with presentation\\\hline\hline
 \snippet{<OMS cdbase="http://www.openmath.org/cd" cd="arith1" name="plus"/>}  \\\hline
     {\openmath} symbol\\\hline
   \end{tabular}
@@ -813,18 +813,18 @@ specially in (human or mechanical) {\twintoo{reasoning}{process}es}. In typed
 representations variables and constants are usually associated with types to support more
 guided reasoning processes. Types are structurally like mathematical objects
 (i.e. arbitrary complex trees). Since types are ubiquitous in representations of
-mathematics, we will briefly review the best practices for representing them in {\omdoc}.
+mathematics, we will briefly review the best practices for representing them in \omdoc.
 
 {\mathml} supplies the {\attributeshortcomment{type}{on {\sc{MathML}} objects}} attribute
 to specify types that can be taken from an open-ended list of type names.  {\openmath}
-uses the {\element[ns-elt=om]{OMATTR}} element to associate a type (in this case the set
+uses the \element[ns-elt=om]{OMATTR} element to associate a type (in this case the set
 of real numbers as specified in the {\snippetin{setname1}} content dictionary) with the
 variable, using the {\twintoo{feature}{symbol}} {\snippetin{type}} from the
 {\snippetin{sts}} content dictionary. This mechanism is much more heavy-weight in our
 special case, but also more expressive: it allows to use arbitrary content expressions for
 types, which is necessary if we were to assign e.g. the type $(\RR\to\RR)\to(\RR\to\RR)$
 for functionals on the real numbers. In such cases, the second edition of the {\mathml}2
-Recommendation advises a construction using the {\element[ns-elt=m]{semantics}} element
+Recommendation advises a construction using the \element[ns-elt=m]{semantics} element
 (see~\cite{DevKoh:stm03} for details).  {\Mylstsref{complex-type-om}{complex-type-mathml}}
 show the realizations of a quantification over a variable of functional type in both
 formats.
@@ -900,36 +900,36 @@ a particular type system).
 \begin{omtext}
 A more subtle, but nonetheless crucial difference between {\openmath} and {\mathml} is the
 handling of variables, symbols, their names, and equality conditions.  {\openmath} uses
-the {\attribute[ns-elt=om]{name}{OMV, om:OMS}} attribute to identify a variable or symbol,
+the \attribute[ns-elt=om]{name}{OMV, om:OMS} attribute to identify a variable or symbol,
 and delegates the presentation of its name to other methods such as style sheets. As a
-consequence, the elements {\element[ns-elt=om]{OMS}} and {\element[ns-elt=om]{OMV}} are
+consequence, the elements \element[ns-elt=om]{OMS} and \element[ns-elt=om]{OMV} are
 empty, and we have to understand the value of the {\attribute[ns-elt=om]{name}{OMV,
     om:OMS}} attribute as a {\indextoo{pointer}} to a defining occurrence. In case of
 symbols, this is the symbol declaration in the {\twintoo{content}{dictionary}} identified
-in the {\attribute[ns-elt=om]{cd}{OMS}} attribute. A symbol {\snippet{<OMS
+in the \attribute[ns-elt=om]{cd}{OMS} attribute. A symbol {\snippet{<OMS
     cd="\llquote{$cd_1$}" name="\llquote{$name_1$}"/>}} is equal to {\snippet{<OMS
     cd="\llquote{$cd_2$}" name="\llquote{$name_2$}"/>}}, iff
 {\llquote{$cd_1$}=\llquote{$cd_2$}} and {\llquote{$name_1$}=\llquote{$name_2$}} as {\xml}
 simple names.  In case of variables this is more difficult: if the variable is
-\twinalt{bound}{bound}{variable} by an {\element[ns-elt=om]{OMBIND}} element
-{\inlinedef{We say that an {\element[ns-elt=om]{OMBIND}} element \defi{binds} an
+\twinalt{bound}{bound}{variable} by an \element[ns-elt=om]{OMBIND} element
+{\inlinedef{We say that an \element[ns-elt=om]{OMBIND} element \defi{binds} an
     {\openmath} variable {\snippet{<OMV name="x"/>}}, iff this
-    {\element[ns-elt=om]{OMBIND}} element is the nearest one, such that {\snippet{<OMV
-        name="x"/>}} occurs in (second child of the {\element[ns-elt=om]{OMATTR}} element
-    in) the {\element[ns-elt=om]{OMBVAR}} child (this is the
+    \element[ns-elt=om]{OMBIND} element is the nearest one, such that {\snippet{<OMV
+        name="x"/>}} occurs in (second child of the \element[ns-elt=om]{OMATTR} element
+    in) the \element[ns-elt=om]{OMBVAR} child (this is the
     \defii{defining}{occurrence} of {\snippet{<OMV name="x"/>}} here).}}, then we
 interpret all the variables {\snippet{<OMV name="x"/>}} in the
-{\element[ns-elt=om]{OMBIND}} element as equal and different from any variables
+\element[ns-elt=om]{OMBIND} element as equal and different from any variables
 {\snippet{<OMV name="x"/>}} outside. In fact the {\openmath} standard states that bound
 variables can be \twinalt{renamedo}{renaming}{variable} without changing the object
 ({\twinalt{$\alpha$-conversion}{alpha}{conversion}}). If {\snippet{<OMV name="x"/>}} is
 not bound, then the scope of the variable cannot be reliably defined; so equality with
 other occurrences of the variable {\snippet{<OMV name="x"/>}} becomes an ill-defined
-problem.  We therefore discourage the use of unbound variables in {\omdoc}; they are very
+problem.  We therefore discourage the use of unbound variables in \omdoc; they are very
 simple to avoid by using symbols instead, introducing suitable theories if necessary (see
 {\sref{theories-contexts}}).
 
-{\mathml} goes a different route: the {\element[ns-elt=m]{csymbol}} and {\element[ns-elt=m]{ci}}
+{\mathml} goes a different route: the \element[ns-elt=m]{csymbol} and \element[ns-elt=m]{ci}
 elements have content that is {\pmathml}, which is used for the presentation of the
 variable or symbol name.\footnote{Note that surprisingly, the empty {\cmathml} elements
   are treated more in the {\openmath} spirit.}  While this gives us a much better handle
@@ -938,17 +938,17 @@ to make due with the ASCII\footnote{In the current {\openmath} standard, variabl
   are restricted to alphanumeric characters starting with a letter. Note that unlike with
   symbols, we cannot associate presentation information with variables via style sheets,
   since these are not globally unique (see {\sref{pres-bound}} for a discussion of the
-  {\omdoc} solution to this problem).}  representation of the variable name), the question
+  \omdoc solution to this problem).}  representation of the variable name), the question
 of scope and equality becomes much more difficult: Are two variables (semantically) the
 same, even if they have different colors, sizes, or font families? Again, for symbols the
-situation is simpler, since the {\attribute[ns-elt=m]{definitionURL}{csymbol}} attribute on the
-{\element[ns-elt=m]{csymbol}} element establishes a global identity criterion (two symbols are
-equal, iff they have the same {\attribute[ns-elt=m]{definitionURL}{csymbol}} value (as URI
+situation is simpler, since the \attribute[ns-elt=m]{definitionURL}{csymbol} attribute on the
+\element[ns-elt=m]{csymbol} element establishes a global identity criterion (two symbols are
+equal, iff they have the same \attribute[ns-elt=m]{definitionURL}{csymbol} value (as URI
 strings; see~\cite{BerFie:uri98}).) The second edition of the {\mathml} standard adopts
-the same solution for bound variables: it recommends to annotate the {\element[ns-elt=m]{bvar}}
-elements that declare the bound variable with an {\attribute[ns-elt=m]{id}{bvar}} attribute and
-use the {\attribute[ns-elt=m]{definitionURL}{ci}} attribute on the {\twintoo{bound}{occurrence}s}
-of the {\element[ns-elt=m]{ci}} element to point to those. The following example is taken
+the same solution for bound variables: it recommends to annotate the \element[ns-elt=m]{bvar}
+elements that declare the bound variable with an \attribute[ns-elt=m]{id}{bvar} attribute and
+use the \attribute[ns-elt=m]{definitionURL}{ci} attribute on the {\twintoo{bound}{occurrence}s}
+of the \element[ns-elt=m]{ci} element to point to those. The following example is taken
 from~\cite{KohDev:bvm03}, which has more details.
 \end{omtext}
 
@@ -965,9 +965,9 @@ from~\cite{KohDev:bvm03}, which has more details.
 \end{lstlisting}
 
 For presentation in {\mathml}, this gives us the best of both approaches, the
-{\element[ns-elt=m]{ci}} content can be used, and the {\indextoo{pointer}} gives a simple
+\element[ns-elt=m]{ci} content can be used, and the {\indextoo{pointer}} gives a simple
 semantic equivalence criterion. For presenting {\openmath} and {\cmathml} in other
-formats {\omdoc} makes use of the infrastructure introduced in module
+formats \omdoc makes use of the infrastructure introduced in module
 {\PRESmodule{spec}}; see {\sref{pres-bound}} for a discussion.
 \end{omgroup}
 \end{module}
@@ -975,30 +975,30 @@ formats {\omdoc} makes use of the infrastructure introduced in module
 \begin{module}[id=legacy]
 \begin{omgroup}[id=legacy]{Legacy Representation for Migration}
 
-  Sometimes, {\omdoc} is used as a migration format from {\indextoo{legacy}} texts (see
+  Sometimes, \omdoc is used as a migration format from {\indextoo{legacy}} texts (see
   {\extref{primer}{algebra}} for an example). In such documents it can be too much effort
   to convert all mathematical objects and formulae into {\openmath} or {\cmathml} form.
 
 \begin{definition}[id=legacy.def]
-  For this situation {\omdoc} provides the {\eldef{legacy}} element, which can contain
+  For this situation \omdoc provides the {\eldef{legacy}} element, which can contain
   arbitrary math markup\footnote{If the content is an {\xml}-based, format like Scalable
     Vector Graphics~\cite{W3C:svg02}, the {\indextoo{DTD}} must be augmented accordingly
-    for validation.}. The {\element{legacy}} element can occur wherever an {\openmath}
+    for validation.}. The \element{legacy} element can occur wherever an {\openmath}
   object or {\cmathml} expression can and has an optional
-  {\attribute[ns-attr=xml]{id}{legacy}} attribute for identification. The content is
+  \attribute[ns-attr=xml]{id}{legacy} attribute for identification. The content is
   described by a pair of attributes:
   \begin{itemize}
-  \item {\attribute{format}{legacy}} (required) specifies the format of the content using
-    URI reference. {\omdoc} does not restrict the possible values, possible values include
-    {\attval{TeX}{format}{legacy}}, {\attval{pmml}{format}{legacy}},
-    {\attval{html}{format}{legacy}}, and {\attval{qmath}{format}{legacy}}.
-  \item {\attribute{formalism}{legacy}} is optional and describes the formalism (if
+  \item \attribute{format}{legacy} (required) specifies the format of the content using
+    URI reference. \omdoc does not restrict the possible values, possible values include
+    \attribute{TeX}{format}{legacy}, \attribute{pmml}{format}{legacy},
+    \attribute{html}{format}{legacy}, and \attribute{qmath}{format}{legacy}.
+  \item \attribute{formalism}{legacy} is optional and describes the formalism (if
     applicable) the content is expressed in. Again, the value is unrestricted character
     data to allow a {\twintoo{URI}{reference}} to a definition of a formalism.
   \end{itemize}
 \end{definition}
 
-For instance in the following {\element{legacy}} element, the identity function is encoded
+For instance in the following \element{legacy} element, the identity function is encoded
 in the untyped $\lambda$-calculus, which is characterized by a reference to the relevant
 Wikipedia article.
 

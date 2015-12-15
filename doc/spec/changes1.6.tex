@@ -1,10 +1,10 @@
 \begin{omgroup}[id=changes1.6]{Changes from {\omdocv{1.2}} to  {\omdocv{1.6}}}
-{\omdocv{1.6}} is the first step towards a second version of the {\omdoc} format, the
+{\omdocv{1.6}} is the first step towards a second version of the \omdoc format, the
 changes we see here are more disruptive, aimed at regularizing the concepts underlying the
 language. Old functionality will largely be kept for backwards
 compatibility. \ednote{describe the changes conceptually}
 
-One of the larger technical changes is that the {\omdoc} namespace changed from
+One of the larger technical changes is that the \omdoc namespace changed from
 {\url{http://www.mathweb.org/omdoc}} to {\url{http://omdoc.org/ns}} for the {\omdocv2}
 format (see \sref{omdoc-ns}).
 
@@ -12,54 +12,54 @@ format (see \sref{omdoc-ns}).
 \begin{center}
 \begin{longtable}{|l|c|p{6cm}|l|}\hline
   element & state & comments & cf.\\\hline\hline 
-{\element{definition}} & cha
-  & The {\attribute{type}{definition}} may no longer have the value 
-    {\attval{informal}{type}{definition}}, definitions are ``informal'', 
+\element{definition} & cha
+  & The \attribute{type}{definition} may no longer have the value 
+    \attribute{informal}{type}{definition}, definitions are ``informal'', 
     iff they do not have formal parts.
   & \sref{eldef.definition}\\\hline
-{\element[ns-elt=om]{*}} & cha
+\element[ns-elt=om]{*} & cha
   & The  {\oldattribute[ns-elt=om]{cref}{*}{1.6}} attributes that were introduced in
   {\omdocv{1.2}} for parallel markup with {\indextoo{cross-reference}s} are no longer
   needed.    
   & \sref{eldef.om:OMA}\\\hline
-% {\element{omgroup}} & del
-%   & The {\oldelement{omgroup}{1.6}} is now replaced by the {\element{omdoc}} element, which
+% \element{omgroup} & del
+%   & The {\oldelement{omgroup}{1.6}} is now replaced by the \element{omdoc} element, which
 %   we allow to nest arbitrarily.
 %   & \sref{eldef.omdoc}\\\hline
-{\element{p}} & cha
-  & The {\element{p}} has been shifted to module {\DOCmodule{spec}}
+\element{p} & cha
+  & The \element{p} has been shifted to module {\DOCmodule{spec}}
   & \sref{eldef.p}\\\hline
-{\element{omd}} & new
-  & The {\element{metadata}} element can now contain an element {\element{omd}} for a 
+\element{omd} & new
+  & The \element{metadata} element can now contain an element \element{omd} for a 
     generic metadatum.
   & \sref{eldef.omd}\\\hline
-{\element[ns-elt=cc]{license}} & ext
-  & The {\element[ns-elt=cc]{license}}  license can now contain a multilingual
-  {\element{CMP}} group can be used to give a natural language explanation 
+\element[ns-elt=cc]{license} & ext
+  & The \element[ns-elt=cc]{license}  license can now contain a multilingual
+  \element{CMP} group can be used to give a natural language explanation 
   of the license grant. 
   & \sref{eldef.cc:license}\\\hline
-{\element[ns-elt=cc]{permissions}} & ext
-  & The {\element[ns-elt=cc]{permissions}}  license can now contain a multilingual
-  {\element{CMP}} group can be used to give a natural language explanation 
+\element[ns-elt=cc]{permissions} & ext
+  & The \element[ns-elt=cc]{permissions}  license can now contain a multilingual
+  \element{CMP} group can be used to give a natural language explanation 
   of the license grant. 
   & \sref{eldef.cc:permissions}\\\hline
-{\element[ns-elt=cc]{prohibitions}} & ext
-  & The {\element[ns-elt=cc]{prohibitions}}  license can now contain a multilingual
-  {\element{CMP}} group can be used to give a natural language explanation 
+\element[ns-elt=cc]{prohibitions} & ext
+  & The \element[ns-elt=cc]{prohibitions}  license can now contain a multilingual
+  \element{CMP} group can be used to give a natural language explanation 
   of the license grant. 
   & \sref{eldef.cc:prohibitions}\\\hline
-{\element[ns-elt=cc]{requirements}} & ext
-  & The {\element[ns-elt=cc]{requirements}}  license can now contain a multilingual
-  {\element{CMP}} group can be used to give a natural language explanation 
+\element[ns-elt=cc]{requirements} & ext
+  & The \element[ns-elt=cc]{requirements}  license can now contain a multilingual
+  \element{CMP} group can be used to give a natural language explanation 
   of the license grant. 
   & \sref{eldef.cc:requirements}\\\hline
-{\element{phrase}} & cha 
-  & {\attribute{type}{phrase}} attribute no longer supports the values of the \element{omtext}
-  {\attribute{type}{omtext}} attribute but accepts the values nucleus and satellite.
-  {\attribute{for}{phrase}} and {\attribute{relation}{phrase}} attributes are
-  introduced as additional support for the satellite value of the {\attribute{type}{phrase}}
-  attribute. The values for the {\attribute{relation}{phrase}} attribute are editted variant
-  of the values for the {\attribute{type}{phrase}} attribute used in {\omdocv{1.2}}. 
+\element{phrase} & cha 
+  & \attribute{type}{phrase} attribute no longer supports the values of the \element{omtext}
+  \attribute{type}{omtext} attribute but accepts the values nucleus and satellite.
+  \attribute{for}{phrase} and \attribute{relation}{phrase} attributes are
+  introduced as additional support for the satellite value of the \attribute{type}{phrase}
+  attribute. The values for the \attribute{relation}{phrase} attribute are editted variant
+  of the values for the \attribute{type}{phrase} attribute used in {\omdocv{1.2}}. 
   & \sref{eldef.phrase}\\\hline 
 \end{longtable}
 \end{center}

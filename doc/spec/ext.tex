@@ -13,23 +13,23 @@
 \begin{omtext}
 Up to now, we have been mainly concerned with providing elements for marking up the
 inherent structure of mathematical knowledge in mathematical statements and theories. Now,
-we interface {\omdoc} documents with the Internet in general and mathematical software
-systems in particular. We can thereby generate presentations from {\omdoc} documents where
+we interface \omdoc documents with the Internet in general and mathematical software
+systems in particular. We can thereby generate presentations from \omdoc documents where
 formulae, statements or even theories that are active components that can directly be
 manipulated by the user or mathematical software systems. \inlinedef{We call these
   documents \defii{active}{document}s}.  For this we have to solve two problems: an
 abstract interface for calls to external (web) services\footnote{Compare {\extref{primer}{rpc}}
-  in the {\omdoc} Primer.} and a way of storing application-specific data in {\omdoc}
+  in the \omdoc Primer.} and a way of storing application-specific data in \omdoc
 documents (e.g. as arguments to the system calls).
 \end{omtext}
 
 The module {\EXTmodule{spec}} provides a basic infrastructure for these tasks in
-{\omdoc}. The main purpose of this module is to serve as an initial point of entry. We
+\omdoc. The main purpose of this module is to serve as an initial point of entry. We
 envision that over time, more sophisticated replacements will be developed driven by
 applications.
 
 \begin{presonly}
-\begin{myfig}{qtcode}{The {\omdoc} Auxiliary Elements for Non-{\xml} Data}
+\begin{myfig}{qtcode}{The \omdoc Auxiliary Elements for Non-{\xml} Data}
 \begin{scriptsize}
 \begin{tabular}{|>{\tt}l|>{\tt}l|>{\tt}p{4.5truecm}|c|>{\tt}p{3truecm}|}\hline
 {\rm Element}& \multicolumn{2}{l|}{Attributes\hspace*{2.25cm}} & M & Content  \\\hline
@@ -53,52 +53,52 @@ applications.
 
 \begin{omgroup}[id=private]{Non-XML Data and Program Code in OMDoc}
 
-The representational infrastructure for mathematical knowledge provided by {\omdoc} is
+The representational infrastructure for mathematical knowledge provided by \omdoc is
 sufficient as an output- and library format for
 {\atwintoo{mathematical}{software}{system}s} like {\twintoo{computer algebra}{system}s},
 {\twintoo{theorem}{prover}s}, or {\atwintoo{theory}{development}{system}s}. In particular,
-having a standardized output- and library format like {\omdoc} will enhance system
+having a standardized output- and library format like \omdoc will enhance system
 interoperability, and allows to build and deploy general storage and library management
-systems (see {\extref{projects}{mbase}} for an {\omdoc} example). In fact this was one of the
+systems (see {\extref{projects}{mbase}} for an \omdoc example). In fact this was one of the
 original motivations for developing the format.
   
 However, most mathematical software systems need to store and communicate system-specific
 data that cannot be standardized in a general knowledge-representation format like
-{\omdoc}. Examples of this are pieces of {\indextoo{program}} code, like tactics or proof
+\omdoc. Examples of this are pieces of {\indextoo{program}} code, like tactics or proof
 search heuristics of tactical theorem provers or linguistic data of
 {\atwintoo{proof}{presentation}{system}s}.  Only if these data can be integrated into
-{\omdoc}, it will become a full storage and communication format for mathematical software
+\omdoc, it will become a full storage and communication format for mathematical software
 systems. One characteristic of such system-specific data is that it is often not in {\xml}
 syntax, or its format is not fixed enough to warrant for a general {\xml} encoding.
   
 \begin{definition}[id=privatecode.def]
-  For this kind of data, {\omdoc} provides the {\eldef{private}} and {\eldef{code}}
+  For this kind of data, \omdoc provides the {\eldef{private}} and {\eldef{code}}
   elements. As the name suggests, the latter is intended for program code\footnote{There
-    is a more elaborate proposal for treating program code in the {\omdoc} arena
-    at~\cite{Kohlhase:codemlspec}, which may be integrated into {\omdoc} as a separate
+    is a more elaborate proposal for treating program code in the \omdoc arena
+    at~\cite{Kohlhase:codemlspec}, which may be integrated into \omdoc as a separate
     module in the future, for the moment we stick to the basic approach.} and the former
   for system-specific data that is not program code.
   
 The attributes of these elements are almost identical and contain metadata information
-identifying system requirements and relations to other {\omdoc} elements. We will first
+identifying system requirements and relations to other \omdoc elements. We will first
 describe the shared attributes and then describe the elements themselves.
 \begin{description}
 \item[{\attribute[ns-attr=xml]{id}{private, code}}] for identification.
 \item[{\attribute{theory}{private, code}}] specifies the mathematical theory (see
   {\sref{theories-contexts}}) that the data is associated with.
-\item[{\attribute{for}{private, code}}] allows to attach data to some other {\omdoc}
-  element. Attaching {\element{private}} elements to {\omdoc} elements is the main
-  mechanism for system-specific extension of {\omdoc}.
+\item[{\attribute{for}{private, code}}] allows to attach data to some other \omdoc
+  element. Attaching \element{private} elements to \omdoc elements is the main
+  mechanism for system-specific extension of \omdoc.
 \item[{\attribute{requires}{private, code}}] specifies other data this element depends
   upon as a whitespace-separated list of {\twintoo{URI}{reference}s}.  This allows to
   factor private data into smaller parts, allowing more flexible data storage and
   retrieval which is useful for program code or private data that relies on program
   code. Such data can be broken up into procedures and the call-hierarchy can be encoded
-  in {\attribute{requires}{private, code}} attributes. With this information, a storage
-  application based on {\omdoc} can always communicate a minimal complete code set to the
+  in \attribute{requires}{private, code} attributes. With this information, a storage
+  application based on \omdoc can always communicate a minimal complete code set to the
   requesting application.
-\item[{\attribute{reformulates}{private}}] ({\element{private}} only) specifies a set of
-  {\omdoc} elements whose knowledge content is reformulated by the {\element{private}}
+\item[{\attribute{reformulates}{private}}] (\element{private} only) specifies a set of
+  \omdoc elements whose knowledge content is reformulated by the \element{private}
   element as a whitespace-separated list of {\twintoo{URI}{reference}s}. For instance, the
   knowledge in the assertion in {\mylstref{private-simplify}} can be used as an algebraic
   simplification rule in the {\scsys{Analytica}}
@@ -106,8 +106,8 @@ describe the shared attributes and then describe the elements themselves.
   {\twintoo{computer algebra}{system}}.
 \end{description}
 
-The {\element{private}} and {\element{code}} elements contain an optional
-{\element{metadata}} element and a set of {\element{data}} elements that contain or
+The \element{private} and \element{code} elements contain an optional
+\element{metadata} element and a set of \element{data} elements that contain or
 reference the actual data.
 \end{definition}
 
@@ -125,44 +125,44 @@ reference the actual data.
 
 \begin{definition}[id=data.def]
   The {\eldef{data}} element contains the data in a {\snippetin{CDATA}} section.  Its
-  {\attribute{pto}{data}} attribute contains a whitespace-separated list of
+  \attribute{pto}{data} attribute contains a whitespace-separated list of
   {\twintoo{URI}{reference}s} which specifies the set of systems to which the data are
   related.  The intention of this field is that the data is visible to all systems, but
   should only manipulated by a system that is mentioned here. The
-  {\attribute{pto-version}{data}} attribute contains a whitespace-separated list of
+  \attribute{pto-version}{data} attribute contains a whitespace-separated list of
   version number strings; this only makes sense, if the value of the corresponding
-  {\attribute{pto}{data}} is a singleton. Specifying this may be necessary, if the data or
+  \attribute{pto}{data} is a singleton. Specifying this may be necessary, if the data or
   even their format change with versions.
 
-  If the content of the {\element{data}} element is too large to store directly in the
-  {\omdoc} or changes often, then the {\element{data}} element can be augmented by a link,
-  specified by a {\twintoo{URI}{reference}} in the {\attribute{href}{data}} attribute. If
-  the {\element{data}} element is non-empty and there is a
-  {\attribute{href}{data}}\footnote{e.g. if the {\element{data}} content serves as a cache
-    for the data at the URI, or the {\element{data}} content fixes a snapshot of the
-    resource at the URI}, then the optional attribute {\attribute{original}{data}}
-  specifies whether the {\element{data}} content (value {\attval{local}{original}{data}})
-  or the external resource (value {\attval{external}{original}{data}}) is the
-  original. The optional {\attribute{size}{data}} attribute can be used to specify the
-  content size (if known) or the resource identified in the {\attribute{href}{data}}
-  attribute. The {\element{data}} element has the (optional) attribute
-  {\attribute{format}{data}} to specify the format the data are in, e.g.
-  {\attval{image/jpeg}{format}{data}} or {\attval{image/gif}{format}{data}} for image
-  data, {\attval{text/plain}{format}{data}} for text data, {\attval{binary}{format}{data}}
+  If the content of the \element{data} element is too large to store directly in the
+  \omdoc or changes often, then the \element{data} element can be augmented by a link,
+  specified by a {\twintoo{URI}{reference}} in the \attribute{href}{data} attribute. If
+  the \element{data} element is non-empty and there is a
+  \attribute{href}{data}\footnote{e.g. if the \element{data} content serves as a cache
+    for the data at the URI, or the \element{data} content fixes a snapshot of the
+    resource at the URI}, then the optional attribute \attribute{original}{data}
+  specifies whether the \element{data} content (value \attribute{local}{original}{data})
+  or the external resource (value \attribute{external}{original}{data}) is the
+  original. The optional \attribute{size}{data} attribute can be used to specify the
+  content size (if known) or the resource identified in the \attribute{href}{data}
+  attribute. The \element{data} element has the (optional) attribute
+  \attribute{format}{data} to specify the format the data are in, e.g.
+  \attribute{image/jpeg}{format}{data} or \attribute{image/gif}{format}{data} for image
+  data, \attribute{text/plain}{format}{data} for text data, \attribute{binary}{format}{data}
   for system-specific binary data, etc. It is good practice to use the
   {\twintoo{MIME}{type}s}~\cite{FreBor:MIME96} for this purpose whenever applicable.  Note
-  that in a {\element{private}} or {\element{code}} element, the {\element{data}} elements
-  must differ in their {\attribute{format}{data}} attribute. Their order carries no
+  that in a \element{private} or \element{code} element, the \element{data} elements
+  must differ in their \attribute{format}{data} attribute. Their order carries no
   meaning.
 \end{definition}
 
-In {\mylstref{private-fig}} we use a {\element{private}} element to specify data for an
+In {\mylstref{private-fig}} we use a \element{private} element to specify data for an
 image\footnote{actually {\myfigref{bourbaki}} from {\extref{primer}{algebra}}} in various
-formats, which is useful in a content markup format like {\omdoc} as the transformation
+formats, which is useful in a content markup format like \omdoc as the transformation
 process can then choose the most suitable one for the target.
 
 \begin{lstlisting}[label=lst:private-fig,index={private,data},
-  caption={A {\element{private}} Element for an Image}]
+  caption={A \element{private} Element for an Image}]
 <private xml:id="legacy">
   <metadata>
     <dc:title>A fragment of Bourbaki's Algebra</dc:title>
@@ -180,14 +180,14 @@ process can then choose the most suitable one for the target.
 \end{lstlisting}
 
 \begin{definition}[id=xputeffect.def]
-  The {\element{code}} element is used for embedding pieces of program code into an
-  {\omdoc} document.  It contains the documentation elements {\eldef{input}},
+  The \element{code} element is used for embedding pieces of program code into an
+  \omdoc document.  It contains the documentation elements {\eldef{input}},
   {\eldef{output}}, and {\eldef{effect}} that specify the behavior of the procedure
-  defined by the code fragment.  The {\element{input}} element describes the structure and
-  scope of the input arguments, {\element{output}} the outputs produced by calling this
-  code on these elements, and {\element{effect}} any side effects the procedure may have.
+  defined by the code fragment.  The \element{input} element describes the structure and
+  scope of the input arguments, \element{output} the outputs produced by calling this
+  code on these elements, and \element{effect} any side effects the procedure may have.
   They contain a {\twintoo{mathematical}{vernacular}} marked up in a sequence of
-  {\element[ns-elt=h]{p}} elements\ednote{OMDoc1.2 had the possibility to express FMPs in
+  \element[ns-elt=h]{p} elements\ednote{OMDoc1.2 had the possibility to express FMPs in
     there. The latter may be used for program verification purposes.  Do we want to enable
     this again?}. If any of these elements are missing it means that we may not make any
   assumptions about them, not that there are no inputs, outputs or effects.\ednote{Maybe }
@@ -198,9 +198,9 @@ like
 <effect><h:p>None.</h:p></effect>
 \end{lstlisting}
 
-These documentation elements are followed by a set of {\element{data}} elements
+These documentation elements are followed by a set of \element{data} elements
 that contain or reference the program code itself. {\Mylstref{omlet1}} shows an
-example of a {\element{code}} element used to store {\indextoo{Java}} code for an
+example of a \element{code} element used to store {\indextoo{Java}} code for an
 applet.
 
 \begin{lstlisting}[label=lst:callMint,mathescape,escapechar=\%,
@@ -224,7 +224,7 @@ applet.
 \end{omgroup}
 
 \begin{oldpart}{MK: this to be rethought and possibly integrated with the
-    {\element{h:object}} element, see \tracticket{1547} for a discussion}
+    \element{h:object} element, see \tracticket{1547} for a discussion}
 \begin{omgroup}[id=applets]{Applets and External Objects in OMDoc}
 
 Web-based text markup formats like {\html} have the concept of an
@@ -235,10 +235,10 @@ to change the {\twintoo{document}{object model}} via an embedded programming lan
 (e.g.  {\indextoo{JavaScript}}). As this method ({\twintoo{dynamic}{HTML}}) is
 format-dependent\footnote{In particular, the JavaScript references the {\html} DOM, which
   in our model is created by a presentation engine on the fly.}, it seems difficult to
-support in a content markup format like {\omdoc}.
+support in a content markup format like \omdoc.
   
 The challenge here is to come up with a format-independent representation of the applet
-functionality, so that the {\omdoc} representation can be transformed into the specific
+functionality, so that the \omdoc representation can be transformed into the specific
 form needed by the respective presentation format.  Most user agents for these
 presentation formats have built-in mechanisms for processing common data types such as
 text and various image types. In some instances the user agent may pass the processing to
@@ -248,7 +248,7 @@ and additional values required for the appropriate processing of the object data
 object handler at run-time.
 
 \begin{presonly}
-\begin{myfig}{qtomlet}{The {\omdoc} Elements for External Objects}
+\begin{myfig}{qtomlet}{The \omdoc Elements for External Objects}
 \begin{scriptsize}
 \begin{tabular}{|>{\tt}l|>{\tt}l|>{\tt}p{4cm}|c|>{\tt}l|}\hline
 {\rm Element}& \multicolumn{2}{l|}{Attributes} & M & Content  \\\hline
@@ -262,92 +262,92 @@ object handler at run-time.
 \end{presonly}
 
 \begin{definition}[id=omlet.def]
-  In {\omdoc}, we use the {\eldef{omlet}} element for applets. It generalizes the {\html}
+  In \omdoc, we use the {\eldef{omlet}} element for applets. It generalizes the {\html}
   {\indextoo{applet}} concept in two ways: The computational engine is not restricted to
   {\indextoo{plug-in}s} of the browser (we do not know what the result format and
-  presentation engine will be) and the program code can be included in the {\omdoc}
+  presentation engine will be) and the program code can be included in the \omdoc
   document, making document-centered computation easier to manage.
 \end{definition}  
 
-Like the {\element[ns-elt=xhtml]{object}} tag, the {\element{omlet}} element can be used
-to wrap any text. In the {\omdoc} context, this means that the children of the
-{\element{omlet}} element can be any elements or text that can occur in the
-{\element{h:p}} element together with {\element{param}} elements to specify the
+Like the \element[ns-elt=xhtml]{object} tag, the \element{omlet} element can be used
+to wrap any text. In the \omdoc context, this means that the children of the
+\element{omlet} element can be any elements or text that can occur in the
+\element{h:p} element together with \element{param} elements to specify the
 arguments. The main presentation intuition is that the applet reserves a rectangular space
 of a given pre-defined size (specified in the {\css} \twinalt{markup}{CSS}{markup} in the
-{\attribute{style}{omlet}} attribute; see {\mylstref{omlet1}}) in the result document
+\attribute{style}{omlet} attribute; see {\mylstref{omlet1}}) in the result document
 presentation, and hands off the presentation and interaction with the document in this
 space to the applet process. The data for the external object is referenced in two
-possible ways. Either via the {\attribute{data}{omlet}} attribute, which contains a
-{\twintoo{URI}{reference}} that points to an {\omdoc} {\element{code}} or
-{\element{private}} element that is accessible (e.g. in the same {\omdoc}) or by embedding
-the respective {\element{code}} or {\element{private}} elements as children at the end of
-the {\element{omlet}} element. This indirection allows us to reuse the machinery for
-storing code in {\omdoc}s. For a simple example see {\mylstref{omlet1}}.
+possible ways. Either via the \attribute{data}{omlet} attribute, which contains a
+{\twintoo{URI}{reference}} that points to an \omdoc \element{code} or
+\element{private} element that is accessible (e.g. in the same \omdoc) or by embedding
+the respective \element{code} or \element{private} elements as children at the end of
+the \element{omlet} element. This indirection allows us to reuse the machinery for
+storing code in \omdoc documents. For a simple example see {\mylstref{omlet1}}.
   
 The behavior of the external object is specified in the attributes
-{\attribute{action}{omlet}}, {\attribute{show}{omlet}} and {\attribute{actuate}{omlet}}
+\attribute{action}{omlet}, \attribute{show}{omlet} and \attribute{actuate}{omlet}
 attributes\footnote{These latter two attributes are modeled after the
   {\xlink}~\cite{DeRMal:xlink01} attributes {\attributeshort{show}} and
   {\attributeshort{actuate}}.}.
   
-The {\attribute{action}{omlet}} specified the intended action to be performed with the
+The \attribute{action}{omlet} specified the intended action to be performed with the
 data. For most objects, this is clear from the {\twintoo{MIME}{type}}. Images are to be
 displayed, audio formats will be played, and application-specific formats are passed on to
 the appropriate {\indextoo{plug-in}}. However, for the latter (and in particular for
 program code), we might actually be interested to display the data in its raw (or suitably
-presented) form. The {\attribute{action}{omlet}} addresses this need, it has the possible
-values {\attval{execute}{action}{omlet}} (pass the data to the appropriate plug-in or
-execute the program code), {\attval{display}{action}{omlet}} (display it to the user in
-audio- or visual form), and {\attval{other}{action}{omlet}} (the action is left
+presented) form. The \attribute{action}{omlet} addresses this need, it has the possible
+values \attribute{execute}{action}{omlet} (pass the data to the appropriate plug-in or
+execute the program code), \attribute{display}{action}{omlet} (display it to the user in
+audio- or visual form), and \attribute{other}{action}{omlet} (the action is left
 unspecified).
   
-The {\attribute{show}{omlet}} attribute is used to communicate the desired presentation of
+The \attribute{show}{omlet} attribute is used to communicate the desired presentation of
 the ending resource on traversal from the starting resource. It has one of the values
-{\attval{new}{show}{omlet}} (display the object in a new document),
-{\attval{replace}{show}{omlet}} (replace the current document with the presentation of the
-external object), {\attval{embed}{show}{omlet}} (replace the {\element{omlet}} element
+\attribute{new}{show}{omlet} (display the object in a new document),
+\attribute{replace}{show}{omlet} (replace the current document with the presentation of the
+external object), \attribute{embed}{show}{omlet} (replace the \element{omlet} element
 with the presentation of the external object in the current document), and
-{\attval{other}{show}{omlet}} (the presentation is left unspecified).
+\attribute{other}{show}{omlet} (the presentation is left unspecified).
   
-The {\attribute{actuate}{omlet}} attribute is used to communicate the desired timing of
-the action specified in the {\attribute{action}{omlet}} attribute.  Recall that {\omdoc}
+The \attribute{actuate}{omlet} attribute is used to communicate the desired timing of
+the action specified in the \attribute{action}{omlet} attribute.  Recall that \omdoc
 documents as content representations are not intended for direct viewing by the user, but
 appropriate presentation formats are derived from it by a ``presentation process'' (which
 may or may not be incorporated into the user agent). Therefore the
-{\attribute{actuate}{omlet}} attribute can take the values
-{\attval{onPresent}{action}{omlet}} (when the presentation document is generated),
-{\attval{onLoad}{action}{omlet}} (when the user loads the presentation document),
-{\attval{onRequest}{action}{omlet}} (when the user requests it, e.g. by clicking in the
-presentation document), and {\attval{other}{action}{omlet}} (the timing is left
+\attribute{actuate}{omlet} attribute can take the values
+\attribute{onPresent}{action}{omlet} (when the presentation document is generated),
+\attribute{onLoad}{action}{omlet} (when the user loads the presentation document),
+\attribute{onRequest}{action}{omlet} (when the user requests it, e.g. by clicking in the
+presentation document), and \attribute{other}{action}{omlet} (the timing is left
 unspecified).
   
-The simplest form of an {\element{omlet}} is just the embedding of an external object like
-an image as in {\mylstref{omlet-image}}, where the {\attribute{data}{omlet}} attribute
-points to the {\element{private}} element in {\mylstref{private-fig}}. For presentation,
+The simplest form of an \element{omlet} is just the embedding of an external object like
+an image as in {\mylstref{omlet-image}}, where the \attribute{data}{omlet} attribute
+points to the \element{private} element in {\mylstref{private-fig}}. For presentation,
 e.g. as {\xhtml} in a modern browser, this would be transformed into an
-{\element[ns-elt=xhtml]{object}} element~\cite{W3C:xhtml2000}, whose specific attributes
-are determined by the information in the {\element{omlet}} element here and those
-{\element{data}} children of the {\element{private}} element specified in the
-{\attribute{data}{omlet}} attribute of the {\element{omlet}} that are chosen for
-presentation in {\xhtml}. If the action specified in the {\attribute{action}{omlet}}
-attribute is impossible (e.g. if the contents of the {\attribute{data}{omlet}} target
-cannot be presented), then the content of the {\element{omlet}} element is processed as a
+\element[ns-elt=xhtml]{object} element~\cite{W3C:xhtml2000}, whose specific attributes
+are determined by the information in the \element{omlet} element here and those
+\element{data} children of the \element{private} element specified in the
+\attribute{data}{omlet} attribute of the \element{omlet} that are chosen for
+presentation in {\xhtml}. If the action specified in the \attribute{action}{omlet}
+attribute is impossible (e.g. if the contents of the \attribute{data}{omlet} target
+cannot be presented), then the content of the \element{omlet} element is processed as a
 fallback.
 
 \begin{lstlisting}[label=lst:omlet-image,
-  caption={An {\element{omlet}} for an Image},index={omlet}]
+  caption={An \element{omlet} for an Image},index={omlet}]
 <omlet data="#legacy" show="embed">A Fragment of Bourbaki's Algebra</omlet>
 \end{lstlisting}
 
 In {\mylstref{omlet1}} we present an example of a conventional
-{\twintoo{Java}{applet}} in a mathematical text: the {\attribute{data}{omlet}}
-attribute points to a {\element{code}} element, which will be executed (if the
-value of the {\attribute{action}{omlet}} attribute were
-{\attval{display}{action}{omlet}}, the code would be displayed).
+{\twintoo{Java}{applet}} in a mathematical text: the \attribute{data}{omlet}
+attribute points to a \element{code} element, which will be executed (if the
+value of the \attribute{action}{omlet} attribute were
+\attribute{display}{action}{omlet}, the code would be displayed).
 
 \begin{lstlisting}[label=lst:omlet1,
-  caption={An {\element{omlet}} that Calls the Java Applet from {\mylstref{callMint}}.},
+  caption={An \element{omlet} that Calls the Java Applet from {\mylstref{callMint}}.},
   index={omlet}]
 <omtext xml:id="monp_1">    
  <h:p>Let practice integration!</h:p>
@@ -358,16 +358,16 @@ value of the {\attribute{action}{omlet}} attribute were
 \end{lstlisting}
 
 In this example, the Java applet did not need any parameters (compare the
-documentation in the {\element{input}} element in {\mylstref{callMint}}). 
+documentation in the \element{input} element in {\mylstref{callMint}}). 
 
 In the applet in {\mylstref{omlet2}} we assume a code fragment or plug-in (in a
-{\element{code}} element whose {\attribute[ns-attr=xml]{id}{code}} attribute has the value
+\element{code} element whose \attribute[ns-attr=xml]{id}{code} attribute has the value
 {\snippet{sendtoTP}}, which we have not shown) that processes a set of named arguments
 (parameter passing with keywords) and calls the theorem prover, e.g. via a web-service as
 described in {\extref{primer}{rpc}}.
 
 \begin{lstlisting}[label=lst:omlet2,mathescape,
-  caption={An {\element{omlet}} for Connecting to a Theorem Prover},
+  caption={An \element{omlet} for Connecting to a Theorem Prover},
   index={omlet}]
 <h:p> Let us prove it interactively:
   <omlet data="#sendtoTP" action="display">
@@ -388,33 +388,33 @@ described in {\extref{primer}{rpc}}.
 \begin{definition}[id=parameter.def]
   For parameter passing, we use the {\eldef{param}} elements which specify a set of values
   that may be required to process the object data by a plug-in at run-time. Any number of
-  {\element{param}} elements may appear in the content of an {\element{omlet}}
-  element. Their order does not carry any meaning. The {\element{param}} element carries
+  \element{param} elements may appear in the content of an \element{omlet}
+  element. Their order does not carry any meaning. The \element{param} element carries
   the attributes
 \begin{description}
-\item[{\attribute{name}{param}}] This required attribute defines the name of a
-  run-time parameter, assumed to be known by the plug-in. Any two {\element{param}}
-  children of an {\element{omlet}} element must have different
-  {\attribute{name}{param}} values.
-\item[{\attribute{value}{param}}] This attribute specifies the value of a run-time
-  parameter passed to the plug-in for the key {\attribute{name}{param}}. Property
-  values have no meaning to {\omdoc}; their meaning is determined by the plug-in in
+\item[\attribute{name}{param}] This required attribute defines the name of a
+  run-time parameter, assumed to be known by the plug-in. Any two \element{param}
+  children of an \element{omlet} element must have different
+  \attribute{name}{param} values.
+\item[\attribute{value}{param}] This attribute specifies the value of a run-time
+  parameter passed to the plug-in for the key \attribute{name}{param}. Property
+  values have no meaning to \omdoc; their meaning is determined by the plug-in in
   question.
-\item[{\attribute{valuetype}{param}}] This attribute specifies the type of the
-  {\attribute{value}{param}} attribute. The value
-  {\attval{data}{valuetype}{param}} (the default) means that the value of the
-  {\attribute{value}{param}} will be passed to the plug-in as a string.  The value
-  {\attval{ref}{valuetype}{param}} specifies that the value of the
-  {\attribute{value}{param}} attribute is to be interpreted as a
+\item[\attribute{valuetype}{param}] This attribute specifies the type of the
+  \attribute{value}{param} attribute. The value
+  \attribute{data}{valuetype}{param} (the default) means that the value of the
+  \attribute{value}{param} will be passed to the plug-in as a string.  The value
+  \attribute{ref}{valuetype}{param} specifies that the value of the
+  \attribute{value}{param} attribute is to be interpreted as a
   {\twintoo{URI}{reference}} that designates a resource where run-time values are
-  stored. Finally, the value {\attval{object}{valuetype}{param}} specifies that
-  the {\attribute{value}{param}} value points to a {\element{private}} or
-  {\element{code}} element that contains a {\twintoo{multi-format}{collection}} of
-  {\element{data}} elements that carry the data.
+  stored. Finally, the value \attribute{object}{valuetype}{param} specifies that
+  the \attribute{value}{param} value points to a \element{private} or
+  \element{code} element that contains a {\twintoo{multi-format}{collection}} of
+  \element{data} elements that carry the data.
 \end{description}
-If the {\element{param}} element does not have a {\attribute{value}{param}} attribute,
+If the \element{param} element does not have a \attribute{value}{param} attribute,
 then it may contain a list of mathematical objects encoded as {\openmath}, content
-{\mathml}, or {\element{legacy}} elements.
+{\mathml}, or \element{legacy} elements.
 \end{definition}
 \end{omgroup}
 \end{oldpart}

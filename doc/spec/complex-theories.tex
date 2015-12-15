@@ -24,10 +24,10 @@ In this chapter, we will generalize the {\twintoo{inheritance}{relation}} from
 elsewhere~\cite{Farmer93}.  This infrastructure allows to structure a collection of
 theories into a complex theory graph that particularly supports modularization and reuse
 of parts of specifications and theories. This gives rise to the name ``complex theories''
-of the {\omdoc} module.
+of the \omdoc module.
 
 \begin{presonly}
-\begin{myfig}{cpx-thy}{Complex Theories in {\omdoc}}
+\begin{myfig}{cpx-thy}{Complex Theories in \omdoc}
 \begin{scriptsize}
 \begin{tabular}{|>{\tt}l|>{\tt}p{1.1truecm}|>{\tt}p{3.3truecm}|c|>{\tt}p{2.9truecm}|}\hline
 {\rm Element}& \multicolumn{2}{l|}{Attributes\hspace*{2.25cm}}  & M & Content  \\\hline
@@ -175,23 +175,23 @@ belongs\footnote{On any monoid $M=(S,\circ,e)$, we have the $\cdot^*$ operator, 
 
 \begin{definition}[id=morphism.def]
   To specify the formula mapping function, module {\CTHmodule{spec}} extends the
-  {\element{imports}} element by allowing it to have a child element {\eldef{morphism}},
+  \element{imports} element by allowing it to have a child element {\eldef{morphism}},
   which specifies a formula mapping by a set of recursive equations using the
-  {\element{requation}} element described in {\sref{definitions}}. The optional attribute
-  {\attribute{type}{morphism}} allows to specify whether the function is really recursive
-  (value {\attval{recursive}{type}{morphism}}) or pattern-defined (value
-  {\attval{pattern}{type}{morphism}}).
+  \element{requation} element described in {\sref{definitions}}. The optional attribute
+  \attribute{type}{morphism} allows to specify whether the function is really recursive
+  (value \attribute{recursive}{type}{morphism}) or pattern-defined (value
+  \attribute{pattern}{type}{morphism}).
 \end{definition}
 
-As in the case of the {\element{definition}} element, termination of the defined function
-can be specified using the optional child elements {\element{measure}} and
-{\element{ordering}}, or the optional attributes {\attribute{uniqueness}{morphism}} and
-{\attribute{existence}{morphism}}, which point to uniqueness and existence
+As in the case of the \element{definition} element, termination of the defined function
+can be specified using the optional child elements \element{measure} and
+\element{ordering}, or the optional attributes \attribute{uniqueness}{morphism} and
+\attribute{existence}{morphism}, which point to uniqueness and existence
 assertions. {\indexalt{Consistency}{consistency}} and {\indextoo{exhaustivity}} of the
 recursive equations are specified by the optional attributes
-{\attribute{consistency}{morphism}} and {\attribute{exhaustivity}{morphism}}.
+\attribute{consistency}{morphism} and \attribute{exhaustivity}{morphism}.
 
-{\Mylstref{rings}} gives the {\omdoc} representation of the theory graph in
+{\Mylstref{rings}} gives the \omdoc representation of the theory graph in
 {\myfigref{rings-math}}, assuming the theories in {\mylstref{def-group}}.
 
 \begin{lstlisting}[label=lst:rings,
@@ -226,16 +226,16 @@ recursive equations are specified by the optional attributes
 </theory>
 \end{lstlisting}
 
-To conserve space and avoid redundancy, {\omdoc} morphisms need only specify the values of
+To conserve space and avoid redundancy, \omdoc morphisms need only specify the values of
 symbols that are translated; all other symbols are inherited literally.  Thus the set of
-symbols inherited by an {\element{imports}} element consists of the symbols of the source
+symbols inherited by an \element{imports} element consists of the symbols of the source
 theory that are not in the domain of the morphism. In our example, the symbols $R$, $+$,
 $0$, $-$, $*$, $1$ are visible in the theory of rings (and any other symbols the theory of
 semigroups may have inherited). Note that we do not have a name clash from multiple
 inheritance.
   
 Finally, it is possible to hide symbols from the source theory by specifying them in the
-{\attribute{hiding}{morphism}} attribute. The intended meaning is that the underlying
+\attribute{hiding}{morphism} attribute. The intended meaning is that the underlying
 signature mapping is defined (total) on all symbols in the source theory except on the
 hidden ones. This allows to define symbols that are local to a given theory, which helps
 achieve data protection. Unfortunately, there is no simple interpretation of hiding in the
@@ -256,15 +256,15 @@ that returns a permutation of the input list that is ordered) with the help of p
 of the definition of the latter, they would typically be hidden in order to refrain from
 polluting the name space.
 
-As morphisms often contain common prefixes, the {\element{morphism}} element has an
-optional {\attribute{base}{morphism}} attribute, which points to a chain of morphisms,
+As morphisms often contain common prefixes, the \element{morphism} element has an
+optional \attribute{base}{morphism} attribute, which points to a chain of morphisms,
 whose {\indextoo{composition}} is taken to be the base of this morphism. The intended
 meaning is that the new morphism coincides as a function with the base morphism, wherever
 the specified pattern do not match, otherwise their corresponding values take precedence
 over those in the {\twintoo{base}{morphism}}.  Concretely, the
-{\attribute{base}{morphism}} contains a whitespace-separated list of
-{\twintoo{URI}{reference}s} to {\element{theory-inclusion}}, {\element{axiom-inclusion}},
-and {\element{imports}} elements. Note that the order of the references matters: they are
+\attribute{base}{morphism} contains a whitespace-separated list of
+{\twintoo{URI}{reference}s} to \element{theory-inclusion}, \element{axiom-inclusion},
+and \element{imports} elements. Note that the order of the references matters: they are
 ordered in order of the path in the local chain, i.e if we have
 {\snippet{base="\#\llquote{ref1}\ldots \#\llquote{refn}"}} there must be theory inclusions
 $\sigma_i$ with {\snippet{xml:id="}\llquote{refi}\snippet{"}}, such that the target theory
@@ -273,8 +273,8 @@ $\sigma_1$ and the target theory of $\sigma_n$ are the same as those of the curr
 inclusion.
 
 Finally, the {\CTHmodule{spec}} module adds two the optional attributes
-{\attribute{conservativity}{imports}} and {\attribute{conservativity-just}{imports}} to
-the {\element{imports}} element for stating and justifying {\indextoo{conservativity}}
+\attribute{conservativity}{imports} and \attribute{conservativity-just}{imports} to
+the \element{imports} element for stating and justifying {\indextoo{conservativity}}
 (see the discussion below).
 \end{module}
 \end{omgroup}
@@ -287,7 +287,7 @@ and re-using theories and contexts. It turns out that the distinguishing feature
 morphisms is that all theory-constitutive elements of the source theory are valid in the
 target theory (possibly after translation). This can be generalized to obtain even more
 structuring relations and thus possibilities for reuse among theories. Before we go into
-the {\omdoc} infrastructure, we will briefly introduce the mathematical model (see
+the \omdoc infrastructure, we will briefly introduce the mathematical model (see
 e.g.~\cite{Hutter:mocsv00} for details).
 
 \begin{definition}[display=flow,id=theory-inclusion.def]
@@ -299,7 +299,7 @@ e.g.~\cite{Hutter:mocsv00} for details).
   is a \defi[theorem-of]{$\cT$-theorem}).
 \end{definition}   
 
-In {\omdoc}, we weaken this logical property to a structural one: 
+In \omdoc, we weaken this logical property to a structural one: 
 \begin{definition}[id=structurally-included.def,display=flow]
   We say that a theory-constitutive statement $\bS$ in theory $\cS$ is
   \defii{structurally}{included} in theory $\cT$ via $\sigma$, if there is an
@@ -307,8 +307,8 @@ In {\omdoc}, we weaken this logical property to a structural one:
   $\sigma(\bS)$.
 \end{definition}
 Note that strictly speaking, $\sigma$ is only defined on formulae, so that if a statement
-$\bS$ is only given by a {\element{CMP}}, $\sigma(\bS)$ is not defined. In such cases, we
-assume $\sigma(\bS)$ to contain a {\element{CMP}} element containing suitably translated
+$\bS$ is only given by a \element{CMP}, $\sigma(\bS)$ is not defined. In such cases, we
+assume $\sigma(\bS)$ to contain a \element{CMP} element containing suitably translated
 mathematical vernacular.
 
 \begin{definition}[id=structural.theory.inclusion.def]
@@ -318,10 +318,10 @@ mathematical vernacular.
 \end{definition}
 
 \begin{omtext}
-  Note that an {\element{imports}} element in a theory $\cT$ with source theory $\cS$ as
+  Note that an \element{imports} element in a theory $\cT$ with source theory $\cS$ as
   discussed in {\sref{morphisms}} induces a theory inclusion from $\cS$ into
   $\cT$\footnote{Note that in contrast to the inheritance relation induced by the
-    {\element{imports}} elements the relation induced by general theory inclusions may be
+    \element{imports} elements the relation induced by general theory inclusions may be
     cyclic. A cycle just means that the theories participating in it are semantically
     equivalent.} (the theory-constitutive statements of $\cS$ are accessible in $\cT$
   after translation and are therefore structurally included trivially).  \inlinedef{We
@@ -363,22 +363,22 @@ above. There is a third value: {\attvalshort{conservative}{conservativity}}, whi
 not explain here, but refer the reader to~\cite{MAH-06-a}.
 
 \begin{definition}[id=theory-inclusion.def]
-  {\omdoc} implements the concept of postulated theory inclusions in the
+  \omdoc implements the concept of postulated theory inclusions in the
   {\indextoo{top-level}} {\eldef{theory-inclusion}} element. It has the required
-  attributes {\attribute{from}{theory-inclusion}} and {\attribute{to}{theory-inclusion}},
-  which point to the source- and target theories and contains a {\element{morphism}} child
+  attributes \attribute{from}{theory-inclusion} and \attribute{to}{theory-inclusion},
+  which point to the source- and target theories and contains a \element{morphism} child
   element as described above to define the translation function. A subsequent (possibly
-  empty) set of {\element{obligation}} elements can be used to mark up proof obligations
+  empty) set of \element{obligation} elements can be used to mark up proof obligations
   for the theory-constitutive elements of the source theory.
 \end{definition}
 
 \begin{definition}[id=obligation.def]
-  An {\eldef{obligation}} is an empty element whose {\attribute{assertion}{obligation}}
-  attribute points to an {\element{assertion}} element that states that the
-  theory-constitutive statement specified by the {\attribute{induced-by}{obligation}}
-  (translated by the morphism in the parent {\element{theory-inclusion}}) is provable in
-  the target theory.  Note that a {\element{theory-inclusion}} element must contain
-  {\element{obligation}} elements for all theory-constitutive elements (inherited or
+  An {\eldef{obligation}} is an empty element whose \attribute{assertion}{obligation}
+  attribute points to an \element{assertion} element that states that the
+  theory-constitutive statement specified by the \attribute{induced-by}{obligation}
+  (translated by the morphism in the parent \element{theory-inclusion}) is provable in
+  the target theory.  Note that a \element{theory-inclusion} element must contain
+  \element{obligation} elements for all theory-constitutive elements (inherited or
   local) of the source theory to be correct.
 \end{definition}
 
@@ -419,12 +419,12 @@ intuitively does not make sense. So rather than simply stating (or importing) th
 assumptions as theory-constitutive statements --- which would make the theory
 inconsistent, when they are not met --- they can be stated as well-definedness
 conditions. Usually, these conditions can be posited as theory inclusions, so checking
-these conditions is a purely structural matter, and comes into the realm of {\omdoc}'s
+these conditions is a purely structural matter, and comes into the realm of \omdoc's
 structural methods.
 
 \begin{definition}[id=inclusion.def] 
-  {\omdoc} provides the empty {\eldef{inclusion}} element for this purpose. It can occur
-  anywhere as a child of a {\element{theory}} element and its {\attribute{via}{inclusion}}
+  \omdoc provides the empty {\eldef{inclusion}} element for this purpose. It can occur
+  anywhere as a child of a \element{theory} element and its \attribute{via}{inclusion}
   attribute points to a theory inclusion, which is required to hold in order for the
   parent theory to be well-defined.
 \end{definition}  
@@ -436,7 +436,7 @@ totally ordered set, since we want to talk about ordered lists). We want to to i
 {\snippet{OrdList}} by applying it to the theory {\snippet{NatOrd}} of natural numbers and
 obtain a theory {\snippet{NatOrdList}} of lists of natural numbers by importing the theory
 {\snippet{OrdList}} in {\snippet{NatOrdList}}. This only makes sense, if
-{\snippet{NatOrd}} is a totally ordered set, so we add an {\element{inclusion}} element in
+{\snippet{NatOrd}} is a totally ordered set, so we add an \element{inclusion} element in
 the statement of theory {\snippet{NatOrdList}} that points to a theory inclusion of
 {\snippet{TOSet}} into {\snippet{OrdNat}}, which forces us to verify the axioms of
 {\snippet{TOSet}} in {\snippet{OrdNat}}.
@@ -455,7 +455,7 @@ the statement of theory {\snippet{NatOrdList}} that points to a theory inclusion
 Furthermore note, that the inclusion of {\snippet{OrdList}} into {\snippet{NatOrdList}}
 should not include the {\snippet{TOSet}} axioms on orderings, since this would defeat the
 purpose of making them a precondition to well-definedness of the theory
-{\snippet{NatOrdList}}. Therefore {\omdoc} follows the ``development graph model'' put
+{\snippet{NatOrdList}}. Therefore \omdoc follows the ``development graph model'' put
 forward in~\cite{Hutter:mocsv00} and generalizes the notion of theory inclusions even
 further:
 \begin{definition}[display=flow,id=local.theory.inclusion]
@@ -476,18 +476,18 @@ further:
 
 \begin{omtext}
   To allow for a local variant of inheritance, the {\CTHmodule{spec}} module adds an
-  attribute {\attribute{type}{imports}} to the {\element{imports}} element. This can take
-  the values {\attval{global}{type}{imports}} (the default) and
-  {\attval{local}{type}{imports}}. In the latter case, only the theory-constitutive
+  attribute \attribute{type}{imports} to the \element{imports} element. This can take
+  the values \attribute{global}{type}{imports} (the default) and
+  \attribute{local}{type}{imports}. In the latter case, only the theory-constitutive
   statements that are local to the source theory are imported.
 \end{omtext}
 
 \begin{definition}[id=axiom-inclusion.def]
   Furthermore, the {\CTHmodule{spec}} module introduces the {\eldef{axiom-inclusion}}
   element for {\atwintoo{local}{theory}{inclusion}s}. This has the same attributes as
-  {\element{theory-inclusion}}: {\attribute{from}{axiom-inclusion}} to specify source
-  theory, {\attribute{to}{axiom-inclusion}} for the target theory. It also allows
-  {\element{obligation}} elements as children.
+  \element{theory-inclusion}: \attribute{from}{axiom-inclusion} to specify source
+  theory, \attribute{to}{axiom-inclusion} for the target theory. It also allows
+  \element{obligation} elements as children.
 \end{definition}
 \end{module}
 \end{omgroup}
@@ -499,12 +499,12 @@ further:
 
 The main motivation of theory inclusions is to be able to transport mathematical
 statements from the {\twintoo{source}{theory}} to the {\twintoo{target}{theory}}. In
-{\omdoc}, this operation can be made explicit by the attributes
+\omdoc, this operation can be made explicit by the attributes
 {\attributeshort{generated-from}} and {\attributeshort{generated-via}} that the module
 {\CTHmodule{spec}} adds to all {\twintoo{mathematical}{statement}s}.  On a statement
 $\bT$, the second attribute points to a {\twintoo{theory}{inclusion}} $\sigma$ whose
 target is (imported into the) current theory, the first attribute points to a statement
-$\bS$ in that theory which is of the same type (i.e. has the same {\omdoc} element name)
+$\bS$ in that theory which is of the same type (i.e. has the same \omdoc element name)
 as $\bT$.  The content of $\bT$ must be (equivalent to) the content of $\bS$ translated by
 the morphism of $\sigma$.
   
@@ -524,7 +524,7 @@ Here, the second assertion is induced by the first one via the theory inclusion 
 particular, the proof of the second theorem comes for free, since it can also be induced
 from the proof of the first one.
 
-In particular we see that in {\omdoc} documents, not all statements are automatically
+In particular we see that in \omdoc documents, not all statements are automatically
 generated by translation e.g. the proof of the second assertion is not explicitly stated.
 Mathematical knowledge management systems like knowledge bases might choose to do so, but
 at the document level we do not mandate this, as it would lead to an explosion of the
@@ -536,7 +536,7 @@ inclusions, but also whole documents: Say that we have course materials for elem
 algebra introducing monoids and groups via {\twintoo{left}{unit}s} and
 {\twintoo{left}{inverse}s}, but want to use examples and exercises from a book that
 introduces them using {\twintoo{right}{unit}s} and {\twintoo{right}{inverse}s}. Assuming
-that both are formalized in {\omdoc}, we can just establish a theory morphism much like
+that both are formalized in \omdoc, we can just establish a theory morphism much like
 the one in {\mylstref{theory-inclusion}}. Then we can automatically translate the
 exercises and examples via this theory inclusion to our own setting by just applying the
 morphism to all formulae in the text\footnote{There may be problems, if mathematical
@@ -561,7 +561,7 @@ different angles or in different representations. Moreover, no single representa
 ``better'' than the other, since different views reveal or highlight different aspects of
 the object (see~\cite{KohKoh:esmk05} for a systematic account). Theory inclusions seem
 uniquely suited to formalize the structure of different views in mathematics and their
-interplay, and the structural markup for theories in {\omdoc} seems an ideal platform for
+interplay, and the structural markup for theories in \omdoc seems an ideal platform for
 offering added-value services that feed on these structures without committing to a
 particular formalization or foundation of mathematics.
 \end{module}
@@ -571,7 +571,7 @@ particular formalization or foundation of mathematics.
   {\DGmodule{spec}})}
 \begin{module}[id=dgraph]
   
-The {\omdoc} module {\DGmodule{spec}} for {\twintoo{development}{graph}s} complements
+The \omdoc module {\DGmodule{spec}} for {\twintoo{development}{graph}s} complements
 module {\CTHmodule{spec}} with high-level justifications for the theory inclusions.
 Concretely, the module provides an infrastructure for dealing efficiently with the proof
 obligations induced by theory inclusions and forms the basis for a
@@ -583,7 +583,7 @@ software systems, but will form the basis for high-level document- and
 \begin{omgroup}[id=dg-intro,short=Introduction]{Introduction}
 
 As we have seen in the example in {\mylstref{theory-inclusion}}, the burden of specifying
-an {\element{obligation}} element for each theory-constitutive element of the source
+an \element{obligation} element for each theory-constitutive element of the source
 theory can make the establishment of a theory inclusion quite cumbersome --- theories high
 up in inheritance hierarchies can have a lot (often hundreds) of inherited,
 theory-constitutive statements.  Even more problematically, such obligations are a source
@@ -784,23 +784,23 @@ justified and $\sigma$ is indeed a theory inclusion.
 \begin{definition}[id=decomposition.def]
   The {\DGmodule{spec}} module provides the {\eldef{decomposition}} element to model
   justification by decomposition situations.  This empty element can occur at
-  {\indextoo{top-level}} or inside a {\element{theory-inclusion}} element.
+  {\indextoo{top-level}} or inside a \element{theory-inclusion} element.
  
-  The {\element{decomposition}} element can occur as a child to a
-  {\element{theory-inclusion}} element and carries the required attribute
-  {\attribute{links}{decomposition}} that contains a whitespace-separated list of
-  {\twintoo{URI}{reference}s} to the {\snippet{axiom-}} and {\element{theory-inclusion}}
+  The \element{decomposition} element can occur as a child to a
+  \element{theory-inclusion} element and carries the required attribute
+  \attribute{links}{decomposition} that contains a whitespace-separated list of
+  {\twintoo{URI}{reference}s} to the {\snippet{axiom-}} and \element{theory-inclusion}
   elements that make up the decomposition situation justifying the parent
-  {\element{theory-inclusion}} element. Note that the order of references in
-  {\attribute{links}{decomposition}} is irrelevant. If the {\element{decomposition}}
-  appears on top-level, then the optional {\attribute{for}{decomposition}} attribute must
-  be used to point to the {\element{theory-inclusion}} it justifies. In this situation the
-  {\element{decomposition}} element behaves towards a {\element{theory-inclusion}} much
-  like a {\element{proof}} for an {\element{assertion}}.
+  \element{theory-inclusion} element. Note that the order of references in
+  \attribute{links}{decomposition} is irrelevant. If the \element{decomposition}
+  appears on top-level, then the optional \attribute{for}{decomposition} attribute must
+  be used to point to the \element{theory-inclusion} it justifies. In this situation the
+  \element{decomposition} element behaves towards a \element{theory-inclusion} much
+  like a \element{proof} for an \element{assertion}.
 \end{definition}
 
 \begin{presonly}
-\begin{myfig}{dg-thy}{Development Graphs in {\omdoc}}
+\begin{myfig}{dg-thy}{Development Graphs in \omdoc}
 \begin{scriptsize}
 \begin{tabular}{|>{\tt}l|>{\tt}p{1.3truecm}|>{\tt}p{1.6truecm}|c|>{\tt}p{4.1truecm}|}\hline
 {\rm Element}& \multicolumn{2}{l|}{Attributes} & M & Content  \\\hline
@@ -818,37 +818,37 @@ justified and $\sigma$ is indeed a theory inclusion.
 \end{myfig}
 \end{presonly}
 
-Furthermore module {\DGmodule{spec}} provides {\element{path-just}} elements as children
-to the {\element{axiom-inclusion}} elements to justify that this relation holds, much like
-a {\element{proof}} element provides a justification for an {\element{assertion}} element
+Furthermore module {\DGmodule{spec}} provides \element{path-just} elements as children
+to the \element{axiom-inclusion} elements to justify that this relation holds, much like
+a \element{proof} element provides a justification for an \element{assertion} element
 for some property of mathematical objects.
 
 \begin{definition}[id=path-just.def]
-  A {\eldef{path-just}} element justifies an {\element{axiom-inclusion}} by reference to
-  other {\element{axiom-inclusion}} or {\element{theory-inclusion}}
+  A {\eldef{path-just}} element justifies an \element{axiom-inclusion} by reference to
+  other \element{axiom-inclusion} or \element{theory-inclusion}
   elements. \adefii{Local chains}{local}{chain} are encoded in the empty
-  {\element{path-just}} element via the required attributes {\attribute{local}{path-just}}
-  (for the first {\element{axiom-inclusion}}) and the attribute
-  {\attribute{globals}{path-just}} attribute, which contains a whitespace-separated list
+  \element{path-just} element via the required attributes \attribute{local}{path-just}
+  (for the first \element{axiom-inclusion}) and the attribute
+  \attribute{globals}{path-just} attribute, which contains a whitespace-separated list
   of {\twintoo{URI}{reference}s} to {\element{theory-inclusion}s}. Note that the order of
-  the references in the {\attribute{globals}{axiom-inclusion}} matters: they are ordered
+  the references in the \attribute{globals}{axiom-inclusion} matters: they are ordered
   in order of the path in the local chain, i.e if we have {\snippet{globals="\ldots{}
       \#ref1 \#ref2 \ldots"}} there must be theory inclusions $\sigma_i$ with
   {\snippet{xml:id="ref$i$"}}, such that the target theory of $\sigma_1$ is the source
   theory of $\sigma_2$.
 \end{definition}
 
-Like the {\element{decomposition}} element, {\element{path-just}} can appear at top-level,
-if it specifies the {\element{axiom-inclusion}} it justifies in the (otherwise optional)
-{\attribute{for}{path-just}} attribute.
+Like the \element{decomposition} element, \element{path-just} can appear at top-level,
+if it specifies the \element{axiom-inclusion} it justifies in the (otherwise optional)
+\attribute{for}{path-just} attribute.
 
 Let us now fortify our intuition by casting the situation in {\mylstlref{thi}{thi-proof}}
-in {\omdoc} syntax. Another --- more mathematical --- example is carried out in detail in
+in \omdoc syntax. Another --- more mathematical --- example is carried out in detail in
 {\extref{primer}{dg-elal}}.
 
 \begin{lstlisting}[label=lst:thi,mathescape,
                    index={theory,imports,axiom},
-                   caption={The {\omdoc} representation of the theories
+                   caption={The \omdoc representation of the theories
                    in {\myfigref{thi-proof}}.}]
 <theory xml:id="t1">$\ldots$</theory>              <theory xml:id="t2">$\ldots$</theory> 
 
@@ -871,13 +871,13 @@ in {\omdoc} syntax. Another --- more mathematical --- example is carried out in 
 </theory>                                     </theory>
 \end{lstlisting}
 Here we set up the theory structure with the theory inclusions given by the
-{\element{imports}} elements (without morphism to simplify the presentation). Note
-that these have {\attribute[ns-attr=xml]{id}{imports}} attributes, since we need them to
+\element{imports} elements (without morphism to simplify the presentation). Note
+that these have \attribute[ns-attr=xml]{id}{imports} attributes, since we need them to
 construct axiom- and theory inclusions later. We have also added axioms to induce
 proof obligations in the axiom inclusions:
 \begin{lstlisting}[label=lst:thi-inclusions,
                    index={obligation,axiom-inclusion},
-                   caption={The {\omdoc} Representation of the Inclusions
+                   caption={The \omdoc Representation of the Inclusions
                    in {\myfigref{thi-proof}}.}]
 <axiom-inclusion xml:id="aia" from="#a1" to="#a2">
   <obligation induced-by="#axa11" assertion="#th-axa11"/>
@@ -920,7 +920,7 @@ robust against change; if one fails, the axiom inclusion still remains justified
 Finally, we can assemble all of this information into a decomposition that
 justifies the theory inclusion $\Gamma$:
 \begin{lstlisting}[label=lst:thi-proof,index={theory-inclusion,decomposition}
-                   caption={Justifying {\element{theory-inclusion}s} via {\element{decompositions}}}]
+                   caption={Justifying \element{theory-inclusion}s} via {\element{decompositions}}]
 <theory-inclusion xml:id="tcic" from="#c1" to="#c2">
   <decomposition links="#t1ic #t2ic #aic #bic #cic"/>
 </theory-inclusion>

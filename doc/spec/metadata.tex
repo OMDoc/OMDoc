@@ -12,14 +12,14 @@
 
 \begin{newpart}{@CL, please re-read and expand}
   \indexalt{Metadata}{metadata} is ``{\twintoo{data}{about data}}'' --- in the case of
-  {\omdoc} data about documents fragments, such as titles, authorship, language usage, or
+  \omdoc data about documents fragments, such as titles, authorship, language usage, or
   administrative aspects like modification dates, distribution rights, identifiers, or
-  version information. {\omdoc} documents also contain data about realations between
+  version information. \omdoc documents also contain data about realations between
   mathematical objects, statements, and theories, that other applications would consider
   as metadata. To ensure interoperability with such applications and the Semantic Web,
-  {\omdoc} supports the extraction of {\omdoc}-specific metadata to the RDF
+  \omdoc supports the extraction of \omdoc-specific metadata to the RDF
   format\ednote{MK@CL write up something about processing in projects or processing and
-    reference it here} and the annotation of many {\omdoc} elements with web-ontology
+    reference it here} and the annotation of many \omdoc elements with web-ontology
   metadata.
 
   In this section we will introduce the metadata framework for {\twintoo{strict}{omdoc}},
@@ -27,24 +27,24 @@
   recently stabilized RDFa~\cite{AdidaEtAl08:RDFa} a standard for flexibly embedding
   metadata into X(HT)ML documents. This design decision allows us to separate the
   {\emph{syntax}} (which is standardized in RDFa) from the {\emph{semantics}}, which we
-  externalize in metadata ontologies, which can be encoded in {\omdoc}; see
+  externalize in metadata ontologies, which can be encoded in \omdoc; see
   {\extref{primer}{ontology}}.
 
 
 
 \begin{omtext}
-  The {\omdoc} format will incorporate various concrete metadata vocabularies as part of
-  the document format. These are given as documented ontologies encoded as {\omdoc}
+  The \omdoc format will incorporate various concrete metadata vocabularies as part of
+  the document format. These are given as documented ontologies encoded as \omdoc
   theories and are normative parts of the format specification. Note that these metadata
   theories\ednote{MK@MK: reference theory framework (probably the strict one)} can be
   thought of as the minimal specifications of the metadata: Refinements are admissible, if
-  they are formulated as {\omdoc} theories that entertain views into the normative
+  they are formulated as \omdoc theories that entertain views into the normative
   theories.\ednote{MK@MK: dream up a framework how to include the ontologies into the spec
     (probably as the DC and CC chapters; but do not forget the assertion type ontology,
     see \tracticket{1511}).}
 \end{omtext}
 
-\begin{myfig}{qtmetadata}{Metadata in {\omdoc}}
+\begin{myfig}{qtmetadata}{Metadata in \omdoc}
   \begin{scriptsize}
 \begin{tabular}{|>{\tt}l|>{\tt}l|>{\tt}l|>{\tt}l|}\hline
 {\rm Element}& \multicolumn{2}{l|}{Attributes\hspace*{2.25cm}} & Content  \\\hline
@@ -65,7 +65,7 @@ resource   & & typeof, about & (meta|link)*\\\hline
 \ednote{@CL: need a simple example here, best DC  metadata that we can take up later. }
 
 \begin{omgroup}{Pragmatic to Strict Translation}
-  Every {\omdoc} element that admits a {\element{metadata}} child can serve as a metadata
+  Every \omdoc element that admits a \element{metadata} child can serve as a metadata
   subject, so we can offer the following pragmatic (abbreviative) syntax:
 \begin{center}\lstset{frame=none,numbers=none,lineskip=-.7ex,aboveskip=-.5em,belowskip=-1em,mathescape}
  \begin{tabular}{|p{5cm}|p{5cm}|}\hline

@@ -22,7 +22,7 @@
 \end{omtext}
 
 \begin{presonly}
-\begin{myfig}{qtcfmp}{The {\omdoc} Elements for Specifying Mathematical Properties}
+\begin{myfig}{qtcfmp}{The \omdoc Elements for Specifying Mathematical Properties}
 \begin{scriptsize}
 \begin{tabular}{|>{\tt}l|>{\tt}l|>{\tt}p{2.8truecm}|c|>{\tt}p{4truecm}|}\hline
 {\rm Element}& \multicolumn{2}{l|}{Attributes\hspace*{2.25cm}} & M & Content  \\\hline
@@ -39,36 +39,36 @@
 
 \begin{omgroup}[id=mathvernacular]{Mathematical Vernacular}
 
-  {\omdoc} models mathematical vernacular as parsed text interspersed with
+  \omdoc models mathematical vernacular as parsed text interspersed with
   content-carrying elements. Most prominently, the {\openmath} objects, {\cmathml}
-  expressions, and {\element{legacy}} elements are used for mathematical objects, see
+  expressions, and \element{legacy} elements are used for mathematical objects, see
   {\sref{mobj}}. The text structure is marked up with the inline fragment of {\xhtml}
   1.0~\cite{W3C:xhtml2000}.
 
   In {\myfigref{modstable}} we have given an overview over the ones described in this
   book. The last two modules in {\myfigref{modstable}} are optional (see
-  {\sref{sub-languages}}).  Other (external or future) {\omdoc} modules can introduce
-  further elements; natural extensions come when {\omdoc} is applied to areas outside
+  {\sref{sub-languages}}).  Other (external or future) \omdoc modules can introduce
+  further elements; natural extensions come when \omdoc is applied to areas outside
   mathematics, for instance {\twintoo{computer science}{vernacular}} needs to talk about
   {\twintoo{code}{fragment}s} (see {\sref{private}} and~\cite{Kohlhase:codemlspec}),
   {\twintoo{chemistry}{vernacular}} about chemical formulae (e.g. represented in Chemical
   Markup Language~\cite{CML:web}).
 
-\begin{myfig}{modstable}{{\omdoc} Modules Contributing to Mathematical Vernacular}
+\begin{myfig}{modstable}{\omdoc Modules Contributing to Mathematical Vernacular}
 \begin{small}
   \begin{tabular}{|l|p{4cm}|p{3.5cm}|l|}\hline
     Module & Elements & Comment & see\\\hline\hline
-    XHTML & {\element[ns-elt=h]{p}} and inline Elements & extended by \MTXTmodule{spec} &\cite{W3C:xhtml2000}\\\hline
-   \MOBJmodule{spec} &  {\element[ns-elt=om]{OM*}}, {\element[ns-elt=m]{*}}, {\element{legacy}}
+    XHTML & \element[ns-elt=h]{p} and inline Elements & extended by \MTXTmodule{spec} &\cite{W3C:xhtml2000}\\\hline
+   \MOBJmodule{spec} &  \element[ns-elt=om]{OM*}, \element[ns-elt=m]{*}, \element{legacy}
     & mathematical Objects 
     & \sref{mobj}\\\hline
-    \MTXTmodule{spec}&  {\element[ns-elt=h]{span}}, {\element{term}}, {\element{note}}, {\element{idx}}, {\element{citation}}  
+    \MTXTmodule{spec}&  \element[ns-elt=h]{span}, \element{term}, \element{note}, \element{idx}, \element{citation}  
     & phrase-level markup
     & below \\\hline                  
-    \DOCmodule{spec}  & {\element{ref}}, {\element{ignore}}
+    \DOCmodule{spec}  & \element{ref}, \element{ignore}
     & document structure
     & \sref{omdoc-infrastructure}\\\hline                  
-   \EXTmodule{spec}  & {\element{omlet}} & for applets, images, \ldots 
+   \EXTmodule{spec}  & \element{omlet} & for applets, images, \ldots 
     & \sref{eldef.omlet}\\\hline
   \end{tabular}
 \end{small}
@@ -76,14 +76,14 @@
 
   As we have explicated above, all mathematical documents state properties of mathematical
   objects --- informally in mathematical vernacular or formally (as logical formulae), or
-  both. {\omdoc} uses the {\element{omtext}} element to mark up text passages that form
+  both. \omdoc uses the \element{omtext} element to mark up text passages that form
   conceptual units, e.g. paragraphs, statements, or remarks.
 
 \begin{definition}[id=omtext.def]
-  {\element{omtext}} elements have an optional {\attribute[ns-attr=xml]{id}{omtext}}
+  \element{omtext} elements have an optional \attribute[ns-attr=xml]{id}{omtext}
   attribute, so that they can be {\indextoo{cross-reference}d}, the intended purpose of
   the text fragment in the larger document context can be described by the optional
-  attribute {\attribute{type}{omtext}}.
+  attribute \attribute{type}{omtext}.
 \end{definition}
 \end{omgroup}
 
@@ -92,21 +92,21 @@
 \begin{oldpart}{The rhethorical relations will be completely reworked taking the SALT
     ontology into account. For the moment we liberalize the RNC schema to allow
     {\texttt{xsd:anyURI}} here } This can take e.g. the values
-  {\attval{abstract}{type}{omtext}}, {\attval{introduction}{type}{omtext}},
-  {\attval{conclusion}{type}{omtext}}, {\attval{comment}{type}{omtext}},
-  {\attval{thesis}{type}{omtext}}, {\attval{antithesis}{type}{omtext}},
-  {\attval{elaboration}{type}{omtext}}, {\attval{motivation}{type}{omtext}},
-  {\attval{evidence}{type}{omtext}}, {\attval{transition}{type}{omtext}} with the obvious
-  meanings. In the last five cases {\element{omtext}} also has the extra attribute
-  {\attribute{for}{omtext}}, and in the last one, also an attribute
-  {\attribute{from}{omtext}}, since these are in reference to other {\omdoc} elements.
+  \attribute{abstract}{type}{omtext}, \attribute{introduction}{type}{omtext},
+  \attribute{conclusion}{type}{omtext}, \attribute{comment}{type}{omtext},
+  \attribute{thesis}{type}{omtext}, \attribute{antithesis}{type}{omtext},
+  \attribute{elaboration}{type}{omtext}, \attribute{motivation}{type}{omtext},
+  \attribute{evidence}{type}{omtext}, \attribute{transition}{type}{omtext} with the obvious
+  meanings. In the last five cases \element{omtext} also has the extra attribute
+  \attribute{for}{omtext}, and in the last one, also an attribute
+  \attribute{from}{omtext}, since these are in reference to other \omdoc elements.
 \end{oldpart}
-The content of an {\element{omtext}} element is {\twintoo{mathematical}{vernacular}}
-contained in a sequence of {\element[ns-elt=h]{p}} elements. This can be preceded by a
-{\element{metadata}} element that can be used to specify authorship, give the passage a
+The content of an \element{omtext} element is {\twintoo{mathematical}{vernacular}}
+contained in a sequence of \element[ns-elt=h]{p} elements. This can be preceded by a
+\element{metadata} element that can be used to specify authorship, give the passage a
 title, etc. (see {\sref{dc-elements}}).
 
-We have used the {\attribute{type}{omtext}} attribute on {\element{omtext}} to classify
+We have used the \attribute{type}{omtext} attribute on \element{omtext} to classify
 text fragments by their {\twintoo{rhetoric}{role}}. This is adequate for much of the
 generic text that makes up the {\indextoo{narrative}} and explanatory text in a
 mathematical textbook. But many text fragments in mathematical documents directly state
@@ -117,52 +117,52 @@ infrastructure). These are usually classified as {\indextoo{definition}s},
 formalized up to the level of logical formula; in fact, mathematical vernacular is seen by
 mathematicians as a more convenient form of communication for mathematical statements that
 can ultimately be translated into a foundational logical system like axiomatic set
-theory~\cite{Bernays:ast91}.  For such text fragments, {\omdoc} reserves the following
-values for the {\attribute{type}{omtext}} attribute:
+theory~\cite{Bernays:ast91}.  For such text fragments, \omdoc reserves the following
+values for the \attribute{type}{omtext} attribute:
 \begin{description}
-\item[{\attval{axiom}{type}{omtext}}] (fixes or restricts the meaning of certain
+\item[{\attribute{axiom}{type}{omtext}}] (fixes or restricts the meaning of certain
   symbols or concepts.) An axiom is a piece of mathematical knowledge that cannot
   be derived from anything else we know.
-\item[{\attval{definition}{type}{omtext}}] (introduces new concepts or symbols.) A
+\item[{\attribute{definition}{type}{omtext}}] (introduces new concepts or symbols.) A
   definition is an axiom that introduces a new symbol or construct, without restricting
   the meaning of others.
-\item[{\attval{example}{type}{omtext}}] (for or against a mathematical property).
-\item[{\attval{proof}{type}{omtext}}] (a proof), i.e. a rigorous --- but maybe informal
+\item[{\attribute{example}{type}{omtext}}] (for or against a mathematical property).
+\item[{\attribute{proof}{type}{omtext}}] (a proof), i.e. a rigorous --- but maybe informal
   --- argument that a mathematical statement holds.
-\item[{\attval{hypothesis}{type}{omtext}}] (a local assumption in a proof that will be
+\item[{\attribute{hypothesis}{type}{omtext}}] (a local assumption in a proof that will be
   discharged later) for text fragments that come from (parts of) proofs.
-\item[{\attval{derive}{type}{omtext}}] (a step in a proof), we will specify the exact
+\item[{\attribute{derive}{type}{omtext}}] (a step in a proof), we will specify the exact
   meanings of this and the two above in {\sref{proofs}} and present more structured
   counterparts.
 \end{description} 
-For the first four values, {\element{omtext}} also provides the attribute 
-{\attribute{for}{omtext}}, as they point to other mathematical aspects such as symbols, 
+For the first four values, \element{omtext} also provides the attribute 
+\attribute{for}{omtext}, as they point to other mathematical aspects such as symbols, 
 assertions, definitions, axioms or alternatives.
 
-Finally, {\omdoc} also reserves the values {\attval{theorem}{type}{omtext}},
-{\attval{proposition}{type}{omtext}}, {\attval{lemma}{type}{omtext}},
-{\attval{corollary}{type}{omtext}}, {\attval{postulate}{type}{omtext}},
-{\attval{conjecture}{type}{omtext}}, {\attval{false-conjecture}{type}{omtext}},
-{\attval{formula}{type}{omtext}}, {\attval{obligation}{type}{omtext}},
-{\attval{assumption}{type}{omtext}}, {\attval{rule}{type}{omtext}} and
-{\attval{assertion}{type}{omtext}} for statements that assert properties of mathematical
+Finally, \omdoc also reserves the values \attribute{theorem}{type}{omtext},
+\attribute{proposition}{type}{omtext}, \attribute{lemma}{type}{omtext},
+\attribute{corollary}{type}{omtext}, \attribute{postulate}{type}{omtext},
+\attribute{conjecture}{type}{omtext}, \attribute{false-conjecture}{type}{omtext},
+\attribute{formula}{type}{omtext}, \attribute{obligation}{type}{omtext},
+\attribute{assumption}{type}{omtext}, \attribute{rule}{type}{omtext} and
+\attribute{assertion}{type}{omtext} for statements that assert properties of mathematical
 objects (see {\myfigref{assertion-types}} in {\sref{assertions}} for explanations). Note
 that the differences between these values are largely pragmatic or proof-theoretic
 (conjectures become theorems once there is a proof).  Further types of text can be
 specified by providing a URI that points to a description of the text type (much like the
-{\attribute[ns-elt=m]{definitionURL}{csymbol}} attribute on the
-{\element[ns-elt=m]{csymbol}} elements in {\cmathml}).
+\attribute[ns-elt=m]{definitionURL}{csymbol} attribute on the
+\element[ns-elt=m]{csymbol} elements in {\cmathml}).
 
-Of course, the {\attribute{type}{omtext}} only allows a rough classification of the
+Of course, the \attribute{type}{omtext} only allows a rough classification of the
 {\twintoo{mathematical}{statement}s} at the text level, and does not make the underlying
 {\twintoo{content}{structure}} explicit or reveals their contribution and interaction with
-{\twintoo{mathematical}{context}}.  For that purpose {\omdoc} supplies a set of
+{\twintoo{mathematical}{context}}.  For that purpose \omdoc supplies a set of
 specialized elements, which we will discuss in {\sref{statements}}.  Thus
-{\element{omtext}} elements will be used to give informal accounts of mathematical
+\element{omtext} elements will be used to give informal accounts of mathematical
 statements that are better and more fully annotated by the infrastructure introduced in
 {\sref{statements}}. However, in narrative documents, we often want to be informal, while
-maintaining a link to the formal element. For this purpose {\omdoc} provides the optional
-{\attribute{verbalizes}{omtext}} attribute on the {\element{omtext}} element. Its value is
+maintaining a link to the formal element. For this purpose \omdoc provides the optional
+\attribute{verbalizes}{omtext} attribute on the \element{omtext} element. Its value is
 a whitespace-separated list of URI references to formal representations (see
 {\sref{inline-statements}} for further discussion).
 \end{omgroup}
@@ -171,119 +171,119 @@ a whitespace-separated list of URI references to formal representations (see
 
 \begin{omtext}
   To make the sentence-internal structure of mathematical vernacular more explicit,
-  {\omdoc} provides an infrastructure to mark up natural language phrases in
+  \omdoc provides an infrastructure to mark up natural language phrases in
   sentences. Linguistically, \inlinedef{a \defi{phrase} is a group of words that
     functions as a single unit in the syntax of a sentence}. Examples include ``noun
-  phrases, verb phrases, or prepositional phrases''. In {\omdoc} we use the
-  {\element[ns-elt=h]{span}} element from {\xhtml} a general wrapper for sentence-level
+  phrases, verb phrases, or prepositional phrases''. In \omdoc we use the
+  \element[ns-elt=h]{span} element from {\xhtml} a general wrapper for sentence-level
   phrases that allows to mark their specific properties with special attributes and a
-  {\element{metadata}} child. The {\element{term}} element is naturally restricted to
+  \element{metadata} child. The \element{term} element is naturally restricted to
   phrases by construction.
 \end{omtext}
 
 \begin{definition}[id=span.def]
   The {\eldef[ns-elt=h]{span}} element has the optional attribute
-  {\attribute[ns-attr=xml,ns-elt=h]{id}{span}} for referencing the text fragment and the {\css}
-  attributes {\attribute[ns-elt=h]{style}{span}} and {\attribute[ns-elt=h]{class}{span}}
+  \attribute[ns-attr=xml,ns-elt=h]{id}{span} for referencing the text fragment and the {\css}
+  attributes \attribute[ns-elt=h]{style}{span} and \attribute[ns-elt=h]{class}{span}
   to associate presentation information with it (see the discussion in
   {\srefs{common-attribs}{omstyle}}).
 \end{definition}
 
-The semantics of the {\element[ns-elt=h]{span}} element is defined by mapping to the SALT
+The semantics of the \element[ns-elt=h]{span} element is defined by mapping to the SALT
 Rhetorical Ontology~\cite{Groza:SALT07} i.e. for example we define a
-{\attval[ns-elt=h]{nucleus}{type}{span}} phrase to be an instance of
+\attval[ns-elt=h]{nucleus}{type}{span} phrase to be an instance of
 \url{http://salt.semanticauthoring.org/onto/rhetorical-ontology#nucleus}.  The
-{\attribute[ns-elt=h]{type}{span}} attribute serves a linguistic purpose. A
-{\element[ns-elt=h]{span}} denoting a part of a sentence that plays an important role in
+\attribute[ns-elt=h]{type}{span} attribute serves a linguistic purpose. A
+\element[ns-elt=h]{span} denoting a part of a sentence that plays an important role in
 the understanding of the entire text or is simply basic information essential to the
-author's purpose takes the value of a {\attval[ns-elt=h]{nucleus}{type}{span}}. A
-{\element[ns-elt=h]{span}} that plays a secondary role in the text, i.e. that serves
-primarily to further explain or support the {\attval[ns-elt=h]{nucleus}{type}{span}} with
+author's purpose takes the value of a \attval[ns-elt=h]{nucleus}{type}{span}. A
+\element[ns-elt=h]{span} that plays a secondary role in the text, i.e. that serves
+primarily to further explain or support the \attval[ns-elt=h]{nucleus}{type}{span} with
 additional information takes the value of a
-{\attval[ns-elt=h]{satellite}{type}{span}}. The main difference between these two concepts
-is that a {\attval[ns-elt=h]{nucleus}{type}{span}} can be comprehended in a context of a
-text by iself, while on the other hand a {\attval[ns-elt=h]{satellite}{type}{span}} is
-incomprehensible without its corresponding {\attval[ns-elt=h]{nucleus}{type}{span}}
+\attval[ns-elt=h]{satellite}{type}{span}. The main difference between these two concepts
+is that a \attval[ns-elt=h]{nucleus}{type}{span} can be comprehended in a context of a
+text by iself, while on the other hand a \attval[ns-elt=h]{satellite}{type}{span} is
+incomprehensible without its corresponding \attval[ns-elt=h]{nucleus}{type}{span}
 phrase. In order to further clarify and annotate this dependence, if a
-{\element[ns-elt=h]{span}} element has a value {\attval[ns-elt=h]{satellite}{type}{span}}
-for the {\attribute[ns-elt=h]{type}{span}} attribute, it also has the optional attributes
-{\attribute[ns-elt=h]{for}{span}} and {\attribute[ns-elt=h]{relation}{span}}, which are
+\element[ns-elt=h]{span} element has a value \attval[ns-elt=h]{satellite}{type}{span}
+for the \attribute[ns-elt=h]{type}{span} attribute, it also has the optional attributes
+\attribute[ns-elt=h]{for}{span} and \attribute[ns-elt=h]{relation}{span}, which are
 explained below.
 
-  The {\attribute[ns-elt=h]{relation}{span}} attribute gives the type of dependency relation 
-  connecting the {\attval[ns-elt=h]{satellite}{type}{span}} phrase with its corresponding 
-  {\attval[ns-elt=h]{nucleus}{type}{span}} phrase. It can take one of the following values: 
-  {\attval[ns-elt=h]{antithesis}{relation}{span}}, {\attval[ns-elt=h]{circumstance}{relation}{span}}, 
-  {\attval[ns-elt=h]{concession}{relation}{span}}, {\attval[ns-elt=h]{condition}{relation}{span}}, 
-  {\attval[ns-elt=h]{evidence}{relation}{span}}, {\attval[ns-elt=h]{means}{relation}{span}}, 
-  {\attval[ns-elt=h]{preparation}{relation}{span}}, {\attval[ns-elt=h]{purpose}{relation}{span}}, 
-  {\attval[ns-elt=h]{cause}{relation}{span}}, {\attval[ns-elt=h]{consequence}{relation}{span}}, 
-  {\attval[ns-elt=h]{elaboration}{relation}{span}}, {\attval[ns-elt=h]{restatement}{relation}{span}} and 
-  {\attval[ns-elt=h]{solutionhood}{relation}{span}}. We go through each of these terms 
+  The \attribute[ns-elt=h]{relation}{span} attribute gives the type of dependency relation 
+  connecting the \attval[ns-elt=h]{satellite}{type}{span} phrase with its corresponding 
+  \attval[ns-elt=h]{nucleus}{type}{span} phrase. It can take one of the following values: 
+  \attval[ns-elt=h]{antithesis}{relation}{span}, \attval[ns-elt=h]{circumstance}{relation}{span}, 
+  \attval[ns-elt=h]{concession}{relation}{span}, \attval[ns-elt=h]{condition}{relation}{span}, 
+  \attval[ns-elt=h]{evidence}{relation}{span}, \attval[ns-elt=h]{means}{relation}{span}, 
+  \attval[ns-elt=h]{preparation}{relation}{span}, \attval[ns-elt=h]{purpose}{relation}{span}, 
+  \attval[ns-elt=h]{cause}{relation}{span}, \attval[ns-elt=h]{consequence}{relation}{span}, 
+  \attval[ns-elt=h]{elaboration}{relation}{span}, \attval[ns-elt=h]{restatement}{relation}{span} and 
+  \attval[ns-elt=h]{solutionhood}{relation}{span}. We go through each of these terms 
   separately to further clarify their role and meaning.
 
 \begin{description}
 \item[{\attval[ns-elt=h]{antithesis}{relation}{span}}] is a relation where the author has a
-  positive regard for the {\attval[ns-elt=h]{nucleus}{type}{span}}. The
-  {\attval[ns-elt=h]{nucleus}{type}{span}} and the {\attval[ns-elt=h]{satellite}{type}{span}} are in
+  positive regard for the \attval[ns-elt=h]{nucleus}{type}{span}. The
+  \attval[ns-elt=h]{nucleus}{type}{span} and the \attval[ns-elt=h]{satellite}{type}{span} are in
   contrast i.e. both can not be true, and the intention of the author is to increase the
-  reader's positive regard towards the {\attval[ns-elt=h]{nucleus}{type}{span}}.
+  reader's positive regard towards the \attval[ns-elt=h]{nucleus}{type}{span}.
 \item[{\attval[ns-elt=h]{circumstance}{relation}{span}}] is a relation where the situation
-  presented in the {\attval[ns-elt=h]{satellite}{type}{span}} is unrealized. It simply provides a
+  presented in the \attval[ns-elt=h]{satellite}{type}{span} is unrealized. It simply provides a
   framework in the subject matter within which the reader is to interpret the
-  {\attval[ns-elt=h]{nucleus}{type}{span}}.
+  \attval[ns-elt=h]{nucleus}{type}{span}.
 \item[{\attval[ns-elt=h]{concession}{relation}{span}}] is a relation where the author yet again
   wants to increase the reader's positive regard for the
-  {\attval[ns-elt=h]{nucleus}{type}{span}}. This time, by acknowledging a potential or apparent
-  incompatibility between the {\attval[ns-elt=h]{nucleus}{type}{span}} and the
-  {\attval[ns-elt=h]{satellite}{type}{span}}.
+  \attval[ns-elt=h]{nucleus}{type}{span}. This time, by acknowledging a potential or apparent
+  incompatibility between the \attval[ns-elt=h]{nucleus}{type}{span} and the
+  \attval[ns-elt=h]{satellite}{type}{span}.
 \item[{\attval[ns-elt=h]{condition}{relation}{span}}] is a relation in which the
-  {\attval[ns-elt=h]{satellite}{type}{span}} represents a hypothetical future, i.e. unrealized
+  \attval[ns-elt=h]{satellite}{type}{span} represents a hypothetical future, i.e. unrealized
   situation and the realization of the statement given in the
-  {\attval[ns-elt=h]{nucleus}{type}{span}} phrase depends on the realization of the situation
-  described in the {\attval[ns-elt=h]{satellite}{type}{span}} phrase.
+  \attval[ns-elt=h]{nucleus}{type}{span} phrase depends on the realization of the situation
+  described in the \attval[ns-elt=h]{satellite}{type}{span} phrase.
 \item[{\attval[ns-elt=h]{evidence}{relation}{span}}] is a relation where the author wants to
-  increase the reader's belief in the {\attval[ns-elt=h]{nucleus}{type}{span}} by providing the
-  {\attval[ns-elt=h]{satellite}{type}{span}}, which is something that the reader believes in or
+  increase the reader's belief in the \attval[ns-elt=h]{nucleus}{type}{span} by providing the
+  \attval[ns-elt=h]{satellite}{type}{span}, which is something that the reader believes in or
   will find credible.
 \item[{\attval[ns-elt=h]{means}{relation}{span}}] is a relation where the
-  {\attval[ns-elt=h]{satellite}{type}{span}} represents a method or an instrument which tends to
-  make the realization of the situation presented in the {\attval[ns-elt=h]{nucleus}{type}{span}}
+  \attval[ns-elt=h]{satellite}{type}{span} represents a method or an instrument which tends to
+  make the realization of the situation presented in the \attval[ns-elt=h]{nucleus}{type}{span}
   phrase more likely.  For instance: {\presbf{The Gaussian algorithm solves a linear
       system of equations}}, by first reducing the given system to a triangular or echelon
   form using elementary row operations and then using a back substitution to find the
   solution.
 \item[{\attval[ns-elt=h]{preparation}{relation}{span}}] is a relation where the
-  {\attval[ns-elt=h]{satellite}{type}{span}} precedes the {\attval[ns-elt=h]{nucleus}{type}{span}} in the
+  \attval[ns-elt=h]{satellite}{type}{span} precedes the \attval[ns-elt=h]{nucleus}{type}{span} in the
   text, and tends to make the reader more ready, interested or oriented for reading what
-  is to be stated in the {\attval[ns-elt=h]{nucleus}{type}{span}} phrase.
+  is to be stated in the \attval[ns-elt=h]{nucleus}{type}{span} phrase.
 \item[{\attval[ns-elt=h]{purpose}{relation}{span}}] is a relation where the author wants the
-  reader to recognize that the activity described in the {\attval[ns-elt=h]{nucleus}{type}{span}}
+  reader to recognize that the activity described in the \attval[ns-elt=h]{nucleus}{type}{span}
   phrase is initiated in order to realize what is described in the
-  {\attval[ns-elt=h]{satellite}{type}{span}} phrase.
+  \attval[ns-elt=h]{satellite}{type}{span} phrase.
 \item[{\attval[ns-elt=h]{cause}{relation}{span}}] is a relation where the author wants the reader
-  to recognize that the {\attval[ns-elt=h]{satellite}{type}{span}} is the cause for the action
-  described in the {\attval[ns-elt=h]{nucleus}{type}{span}} phrase.
+  to recognize that the \attval[ns-elt=h]{satellite}{type}{span} is the cause for the action
+  described in the \attval[ns-elt=h]{nucleus}{type}{span} phrase.
 \item[{\attval[ns-elt=h]{consequence}{relation}{span}}] is a relation where the author wants the
-  reader to recognize that the action described in the {\attval[ns-elt=h]{nucleus}{type}{span}} is
-  to have a result or consequences, as described in the {\attval[ns-elt=h]{satellite}{type}{span}}
+  reader to recognize that the action described in the \attval[ns-elt=h]{nucleus}{type}{span} is
+  to have a result or consequences, as described in the \attval[ns-elt=h]{satellite}{type}{span}
   phrase.
 \item[{\attval[ns-elt=h]{elaboration}{relation}{span}}] is a relation where the
-  {\attval[ns-elt=h]{satellite}{type}{span}} phrase provides additional detail for the
-  {\attval[ns-elt=h]{nucleus}{type}{span}}.  For instance: {\presbf{In elementary number theory,
+  \attval[ns-elt=h]{satellite}{type}{span} phrase provides additional detail for the
+  \attval[ns-elt=h]{nucleus}{type}{span}.  For instance: {\presbf{In elementary number theory,
       integers are studied without the use of techniques from other mathematical fields.}}
   Questions of divisibility, factorization into prime numbers, investigation of perfect
   numbers, use of the Euclidean algorithm to compute the GCD and congruences belong here.
 \item[{\attval[ns-elt=h]{restatement}{relation}{span}}] is a relation where the
-  {\attval[ns-elt=h]{satellite}{type}{span}} simply restates what is said in the
-  {\attval[ns-elt=h]{nucleus}{type}{span}} phrase. However the {\attval[ns-elt=h]{nucleus}{type}{span}} is
-  more central to the authors purposes than the {\attval[ns-elt=h]{satellite}{type}{span}} is.
+  \attval[ns-elt=h]{satellite}{type}{span} simply restates what is said in the
+  \attval[ns-elt=h]{nucleus}{type}{span} phrase. However the \attval[ns-elt=h]{nucleus}{type}{span} is
+  more central to the authors purposes than the \attval[ns-elt=h]{satellite}{type}{span} is.
   For instance: The somewhat older term arithmetic is also used to refer to number theory,
   but is no longer as popular as it once was\ldots \ldots {\presbf{Number theory used to
       be called "the higher arithmetic", but this is dropping out of use.}}
 \item[{\attval[ns-elt=h]{solutionhood}{relation}{span}}] is a relation in which the
-  {\attval[ns-elt=h]{nucleus}{type}{span}} phrase represents a solution to the problem(s)
-  presented in the {\attval[ns-elt=h]{satellite}{type}{span}} phrase.
+  \attval[ns-elt=h]{nucleus}{type}{span} phrase represents a solution to the problem(s)
+  presented in the \attval[ns-elt=h]{satellite}{type}{span} phrase.
 \end{description}
 
 \begin{lstlisting}[label=lst:phrase-type-attribute, caption= Phrases and their attribute 
@@ -298,33 +298,32 @@ usage, index={h:span}]
 </omtext>
 \end{lstlisting}
 
-  The {\attribute[ns-elt=h]{for}{span}} attribute, available when a {\element[ns-elt=h]{span}} is denoted to be a 
-  {\attval[ns-elt=h]{satellite}{type}{span}}, is there to link the {\element[ns-elt=h]{span}} to its 
-  corresponding {\attval[ns-elt=h]{nucleus}{type}{span}} phrase i.e. serves only for referential 
-  purposes, holding the value of the URI of the {\attval[ns-elt=h]{nucleus}{type}{span}} phrase. 
-  Thus having the phrases uniquely identified by the {\attribute[ns-attr=xml,ns-elt=h]{id}{span}} 
+  The \attribute[ns-elt=h]{for}{span} attribute, available when a \element[ns-elt=h]{span} is denoted to be a 
+  \attval[ns-elt=h]{satellite}{type}{span}, is there to link the \element[ns-elt=h]{span} to its 
+  corresponding \attval[ns-elt=h]{nucleus}{type}{span} phrase i.e. serves only for referential 
+  purposes, holding the value of the URI of the \attval[ns-elt=h]{nucleus}{type}{span} phrase. 
+  Thus having the phrases uniquely identified by the \attribute[ns-attr=xml,ns-elt=h]{id}{span} 
   attribute is highly encouraged due to its great relevance for weaving the semantics of 
   a text at this granularity level.
 
-  Furthermore, the {\element[ns-elt=h]{span}} element allows the attribute
-  {\attribute[ns-elt=h]{index}{span}} for
-  {\atwintoo{parallel}{multilingual}{markup}}: Recall that sibling
-  {\element{omtext}} elements form {\twintoo{multilingual}{group}s} of text fragments.  We
-  can use the {\element[ns-elt=h]{span}} element to make the correspondence relation on
-  text fragments more fine-grained: {\element[ns-elt=h]{span}} elements in sibling
-  {\element{omtext}s} that have the same {\attribute[ns-elt=h]{index}{span}} value are
-  considered to be equivalent.  Of course, the value of an
-  {\attribute[ns-elt=h]{index}{span}} has to be unique in the dominating {\element{omtext}}
-  element (but not beyond). Thus the {\attribute[ns-elt=h]{index}{span}} attributes
-  simplify manipulation of {\indextoo{multilingual}} texts, see
+  Furthermore, the \element[ns-elt=h]{span} element allows the attribute
+  \attribute[ns-elt=h]{index}{span} for {\atwintoo{parallel}{multilingual}{markup}}:
+  Recall that sibling \element{omtext} elements form {\twintoo{multilingual}{group}s} of
+  text fragments.  We can use the \element[ns-elt=h]{span} element to make the
+  correspondence relation on text fragments more fine-grained: \element[ns-elt=h]{span}
+  elements in sibling \element{omtext}s that have the same
+  \attribute[ns-elt=h]{index}{span} value are considered to be equivalent.  Of course, the
+  value of an \attribute[ns-elt=h]{index}{span} has to be unique in the dominating
+  \element{omtext} element (but not beyond). Thus the \attribute[ns-elt=h]{index}{span}
+  attributes simplify manipulation of {\indextoo{multilingual}} texts, see
   {\mylstref{parallel-multiling}} for an example at the discourse level.
 
-  Finally, the {\element[ns-elt=h]{span}} element can carry a {\attribute[ns-elt=h]{verbalizes}{span}}
+  Finally, the \element[ns-elt=h]{span} element can carry a \attribute[ns-elt=h]{verbalizes}{span}
   attribute whose value is a whitespace-separated list of URI references that act as
-  pointers to other {\omdoc} elements. This has two applications: 
+  pointers to other \omdoc elements. This has two applications: 
   \begin{example}[display=flow] the first is another kind of parallel markup where we can
     state that a phrase corresponds to (and thus ``verbalizes'') a part of formula in a
-    sibling {\element{FMP}} element.\ednote{MK: this needs to be done differently, rework
+    sibling \element{FMP} element.\ednote{MK: this needs to be done differently, rework
       this example}
 
 \begin{lstlisting}[label=lst:parallel-formal-informal,mathescape,
@@ -348,7 +347,7 @@ usage, index={h:span}]
 </FMP>
 \end{lstlisting}
 \end{example}
-Another important application of the {\attribute[ns-elt=h]{verbalizes}{span}} is the case of
+Another important application of the \attribute[ns-elt=h]{verbalizes}{span} is the case of
 inline mathematical statements, which we will discuss in {\sref{inline-statements}}.
 
 \end{omgroup}
@@ -357,7 +356,7 @@ inline mathematical statements, which we will discuss in {\sref{inline-statement
 \begin{omgroup}[id=terms]{Technical Terms}
 
 \begin{omtext}
-  In {\omdoc} we can give the notion of a \inlinedef{\defii{technical}{term} a very
+  In \omdoc we can give the notion of a \inlinedef{\defii{technical}{term} a very
     precise meaning: it is a {\indextoo{span}} representing a {\indextoo{concept}} for
     which a {\indextoo{declaration}} exists in a {\twintoo{content}{dictionary}} (see
     {\sref{symbol-dec}})}. In this respect it is the natural language equivalent for an
@@ -376,7 +375,7 @@ with the effect that the components of the formula are disambiguated by pointing
 respective content dictionaries. Moreover, this information can be used by added-value
 services e.g. to cross-link the symbol presentations in the formula to their definition
 (see {\extref{processing}{transform-xsl}}), or to detect logical dependencies. To allow
-this for mathematical vernacular as well, we provide the {\element{term}} element: in our
+this for mathematical vernacular as well, we provide the \element{term} element: in our
 example we might use the following markup.
 \begin{lstlisting}[language=OpenMath,numbers=none,mathescape]
 $\ldots$<term  cd="nat" name="zero">the number zero</term> is an 
@@ -385,19 +384,19 @@ $\ldots$<term  cd="nat" name="zero">the number zero</term> is an
 \end{omtext}
 
 \begin{definition}[id=term.def]
-  The {\eldef{term}} element has one required attribute: {\attribute{name}{term}} and two
-  optional ones: {\attribute{cd}{term}} and {\attribute{cdbase}{term}}.  Together they
-  determine the meaning of the phrase just like they do for {\element[ns-elt=om]{OMS}}
+  The {\eldef{term}} element has one required attribute: \attribute{name}{term} and two
+  optional ones: \attribute{cd}{term} and \attribute{cdbase}{term}.  Together they
+  determine the meaning of the phrase just like they do for \element[ns-elt=om]{OMS}
   elements (see the discussion in {\sref{openmath}} and {\sref{identifying}}). The
-  {\element{term}} element also allows the attribute {\attribute[ns-attr=xml]{id}{term}}
+  \element{term} element also allows the attribute \attribute[ns-attr=xml]{id}{term}
   for identification of the phrase occurrence, the {\css}
   \twinalt{attributes}{CSS}{attribute} for styling and the optional
-  {\attribute{role}{term}} attribute that allows to specify the role the respective phrase
-  plays. We reserve the value {\attval{definiens}{role}{term}} for the defining occurrence
+  \attribute{role}{term} attribute that allows to specify the role the respective phrase
+  plays. We reserve the value \attribute{definiens}{role}{term} for the defining occurrence
   of a phrase in a definition.  This will in general mark the exact point to point to when
   presenting other occurrences of the same\footnote{We understand this to mean with the
-    same {\attribute{cd}{term}} and {\attribute{name}{term}} attributes.} phrase. Other
-  attribute values for the {\attribute{role}{term}} are possible, {\omdoc} does not fix
+    same \attribute{cd}{term} and \attribute{name}{term} attributes.} phrase. Other
+  attribute values for the \attribute{role}{term} are possible, \omdoc does not fix
   them at the current time.  Consider for instance the following text fragment from
   {\myfigref{bourbaki}} in {\extref{primer}{algebra}}.
 \end{definition}
@@ -422,7 +421,7 @@ The value $f(x,y)$ of $f$ for an ordered pair $(x,y)\in E\times E$ is called the
 $x$ and $y$ under this law.
 \end{lstlisting}
 There are probably more such systematic correlations; we leave their categorization and
-modeling in {\omdoc} to the future.
+modeling in \omdoc to the future.
 \end{omgroup}
 
 \begin{omgroup}[id=rt]{Index and Bibliography}
@@ -432,7 +431,7 @@ modeling in {\omdoc} to the future.
     doc!}
 
 \begin{presonly}
-\begin{myfig}{rt}{Rich Text Format {\omdoc}}
+\begin{myfig}{rt}{Rich Text Format \omdoc}
   \begin{scriptsize}
 \begin{tabular}{|>{\tt}l|>{\tt}l|>{\tt}l|c|>{\tt}l|}\hline
 {\rm Element}& \multicolumn{2}{l|}{Attributes\hspace*{2.25cm}} &MD& Content  \\\hline
@@ -448,29 +447,29 @@ modeling in {\omdoc} to the future.
 \end{presonly}
 
 \begin{definition}[id=idx.def,title=Index Markup]
-  The {\eldef{idx}} element is used for index markup in {\omdoc}. It contains an optional
+  The {\eldef{idx}} element is used for index markup in \omdoc. It contains an optional
   {\eldef{idt}} element that contains the {\twintoo{index}{text}}, i.e. the phrase that is
   indexed. The remaining content of the index element specifies what is entered into
   various indexes. For every index this phrase is registered to there is one {\eldef{ide}}
   element ({\twintoo{index}{entry}}); the respective entry is specified by name in its
-  optional {\attribute{index}{ide}} attribute. The {\element{ide}} element contains a
+  optional \attribute{index}{ide} attribute. The \element{ide} element contains a
   sequence of {\twintoo{index}{phrase}s} given in {\eldef{idp}} elements. The content of
-  an {\element{idp}} element is regular mathematical text. Since index entries are usually
+  an \element{idp} element is regular mathematical text. Since index entries are usually
   sorted, (and mathematical text is difficult to sort), they carry an attribute
-  {\attribute{sort-by}{idp}} whose value (a sequence of Unicode characters) can be sorted
-  lexically~\cite{Unicode:collation}. Moreover, each {\element{idp}} and {\element{ide}}
-  element carries the attributes {\attribute{see}{idp,ide}},
-  {\attribute{seealso}{idp,ide}}, and {\attribute{links}{idp,ide}}, that allow to specify
+  \attribute{sort-by}{idp} whose value (a sequence of Unicode characters) can be sorted
+  lexically~\cite{Unicode:collation}. Moreover, each \element{idp} and \element{ide}
+  element carries the attributes \attribute{see}{idp,ide},
+  \attribute{seealso}{idp,ide}, and \attribute{links}{idp,ide}, that allow to specify
   extra information on these. The values of the first ones are references to
-  {\element{idx}} elements, while the value of the {\attribute{links}{idp}} attribute is a
+  \element{idx} elements, while the value of the \attribute{links}{idp} attribute is a
   whitespace-separated list of (external) URI references.  The formatting of the
   {\twintoo{index}{text}} is governed by the attributes {\attributeshort{style}} and
-  {\attributeshort{class}} on the {\element{idt}} element. The {\element{idx}} element can
-  carry either an {\attribute[ns-attr=xml]{id}{idx}} attribute (if this is the defining
-  occurrence of the index text) or an {\attribute{xref}{idx}} attribute. In the latter
-  case, all the {\element{ide}} elements from the defining {\element{idx}} (the one that
-  has the {\attribute[ns-attr=xml]{id}{idx}} attribute) are imported into the referring
-  {\element{idx}} element (the one that has the {\attribute{xref}{idx}} attribute).
+  {\attributeshort{class}} on the \element{idt} element. The \element{idx} element can
+  carry either an \attribute[ns-attr=xml]{id}{idx} attribute (if this is the defining
+  occurrence of the index text) or an \attribute{xref}{idx} attribute. In the latter
+  case, all the \element{ide} elements from the defining \element{idx} (the one that
+  has the \attribute[ns-attr=xml]{id}{idx} attribute) are imported into the referring
+  \element{idx} element (the one that has the \attribute{xref}{idx} attribute).
 \end{definition}
 
 
@@ -507,18 +506,18 @@ modeling in {\omdoc} to the future.
 \begin{definition}[id=note.def,title=Notes]
   The {\eldef{note}} element is the closest approximation to a {\indextoo{footnote}} or
   {\indextoo{endnote}}, where the kind of note is determined by the
-  {\attribute{type}{note}} attribute. {\omdoc} supplies {\attval{footnote}{type}{note}} as
-  a default value, but does not restrict the range of values. Its {\attribute{for}{note}}
-  attribute allows it to be attached to other {\omdoc} elements externally where it is not
-  allowed by the {\omdoc} document type. In our example, we have attached a footnote by
-  reference to a table row, which does not allow {\element{note}} children.
+  \attribute{type}{note} attribute. \omdoc supplies \attribute{footnote}{type}{note} as
+  a default value, but does not restrict the range of values. Its \attribute{for}{note}
+  attribute allows it to be attached to other \omdoc elements externally where it is not
+  allowed by the \omdoc document type. In our example, we have attached a footnote by
+  reference to a table row, which does not allow \element{note} children.
 \end{definition}
 
 \begin{oldpart}{do we want to support parallel path markup in the future? It has not been
     used that much. Also, there is another place where this is explained.}
   All elements in the {\RTmodule{spec}} module carry an optional
   {\attributeshortcomment{xml:id}{in module RT}} attribute for identification and an
-  {\attribute{index}{in module RT}} attribute for
+  \attribute{index}{in module RT} attribute for
   {\atwintoo{parallel}{multilingual}{markup}} (e.g. {\sref{phrases}} for an explanation
   and {\mylstref{parallel-multiling}} for a {\indextoo{translation}} example).
 

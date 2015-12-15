@@ -7,12 +7,12 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{module}[id=dc-elements]
-  \begin{omgroup}[id=dc-elements]{Dublin Core Metadata in {\omdoc}}
+  \begin{omgroup}[id=dc-elements]{Dublin Core Metadata in \omdoc}
 
 The most commonly used metadata standard is the Dublin Core vocabulary, which is
-supported in some form by most formats. {\omdoc} uses this vocabulary for compatibility
+supported in some form by most formats. \omdoc uses this vocabulary for compatibility
 with other metadata applications and extends it for {\twintoo{document}{management}}
-purposes in {\omdoc}.  Most importantly {\omdoc} extends the use of metadata from
+purposes in \omdoc.  Most importantly \omdoc extends the use of metadata from
 documents to other (even mathematical) elements and {\twintoo{document}{fragment}s} to
 ensure a fine-grained authorship and {\twintoo{rights}{management}}.
 
@@ -25,21 +25,21 @@ ensure a fine-grained authorship and {\twintoo{rights}{management}}.
 \begin{omgroup}{Pragmatic Dublin Core Elements}
 
 In the following we will describe the variant of Dublin Core metadata elements used in
-{\omdoc}.  Here, the {\element{metadata}} element can contain any number of instances of
+\omdoc.  Here, the \element{metadata} element can contain any number of instances of
 any Dublin Core elements described below in any order. In fact, multiple instances of the
-same element type (multiple {\element[ns-elt=dc]{creator}} elements for example) can be
-interspersed with other elements without change of meaning.  {\omdoc} extends the Dublin
+same element type (multiple \element[ns-elt=dc]{creator} elements for example) can be
+interspersed with other elements without change of meaning.  \omdoc extends the Dublin
 Core framework with a set of roles (from the MARC relator set~\cite{Marc:relators03}) on
 the authorship elements and with a rights management system based on the Creative Commons
 Initiative.
 
 
 The descriptions in this section are adapted from~\cite{DCMI:dmt03}, and augmented for the
-application in {\omdoc} where necessary. All these elements live in the {\twintoo{Dublin
+application in \omdoc where necessary. All these elements live in the {\twintoo{Dublin
     Core}{namespace}} \url{http://purl.org/dc/elements/1.1/}, for which we traditionally
 use the {\twintoo{namespace}{prefix}}\atwinalt {\snippetin{dc:}}{Dublin
   Core}{namespace}{URI}.
-\begin{myfig}{qtdc}{Dublin Core Metadata in {\omdoc}}
+\begin{myfig}{qtdc}{Dublin Core Metadata in \omdoc}
   \begin{scriptsize}
 \begin{tabular}{|>{\tt}l|>{\tt}l|>{\tt}l|>{\tt}l|}\hline
 {\rm Element}& \multicolumn{2}{l|}{Attributes\hspace*{2.25cm}} & Content  \\\hline
@@ -64,29 +64,29 @@ use the {\twintoo{namespace}{prefix}}\atwinalt {\snippetin{dc:}}{Dublin
 \end{myfig}
 
 \begin{definition}[id=dc.title.def,title=Titles]
-  The title of the element --- note that {\omdoc} metadata can be specified at multiple
+  The title of the element --- note that \omdoc metadata can be specified at multiple
   levels, not only at the document level, in particular, the Dublin Core
   {\eldef[ns-elt=dc]{title}} element can be given to assign a title to a theorem, e.g. the
   ``Substitution Value Theorem''.
   
-  The {\element[ns-elt=dc]{title}} element can contain
+  The \element[ns-elt=dc]{title} element can contain
   {\twintoo{mathematical}{vernacular}} (see {\sref{mtext}}). Multiple
-  {\element[ns-elt=dc]{title}} elements inside a {\element{metadata}} element are assumed
+  \element[ns-elt=dc]{title} elements inside a \element{metadata} element are assumed
   to be translations of each other.\ednote{do we still want this?}
 \end{definition}
 
 \begin{definition}[id=dc.creator.def,title=Creators]
   A primary creator or author of the publication.  Additional contributors whose
   contributions are secondary to those listed in {\eldef[ns-elt=dc]{creator}} elements
-  should be named in {\element[ns-elt=dc]{contributor}} elements.  Documents with multiple
-  co-authors should provide multiple {\element[ns-elt=dc]{creator}} elements, each
-  containing one author.  The order of {\element[ns-elt=dc]{creator}} elements is presumed
+  should be named in \element[ns-elt=dc]{contributor} elements.  Documents with multiple
+  co-authors should provide multiple \element[ns-elt=dc]{creator} elements, each
+  containing one author.  The order of \element[ns-elt=dc]{creator} elements is presumed
   to define the order in which the creators' names should be presented.
   
-  As markup for names across cultures is still un-standardized, {\omdoc} recommends that
-  the content of a {\element[ns-elt=dc]{creator}} element consists in a single name (as it
-  would be presented to the user). The {\element[ns-elt=dc]{creator}} element has an
-  optional attribute {\attribute[ns-elt=xml,ns-attr=dc]{id}{creator}} so that it can be
+  As markup for names across cultures is still un-standardized, \omdoc recommends that
+  the content of a \element[ns-elt=dc]{creator} element consists in a single name (as it
+  would be presented to the user). The \element[ns-elt=dc]{creator} element has an
+  optional attribute \attribute[ns-elt=xml,ns-attr=dc]{id}{creator} so that it can be
   {\indextoo{cross-reference}d} and a {\attributeshort{role}} attribute to further
   classify the concrete contribution to the element. We will discuss its values in
   {\sref{dc-roles}}.
@@ -94,24 +94,24 @@ use the {\twintoo{namespace}{prefix}}\atwinalt {\snippetin{dc:}}{Dublin
 
 \begin{definition}[id=dc.contributor.def,title=Contributors]
   A party whose contribution to the publication is secondary to those named in
-  {\element[ns-elt=dc]{creator}} elements.  Apart from the significance of contribution,
+  \element[ns-elt=dc]{creator} elements.  Apart from the significance of contribution,
   the semantics of the {\eldef[ns-elt=dc]{contributor}} is identical to that of
-  {\element[ns-elt=dc]{creator}}, it has the same restriction content and carries the same
-  attributes plus a {\attribute[ns-elt=xml,ns-attr=dc]{lang}{contributor}} attribute that
+  \element[ns-elt=dc]{creator}, it has the same restriction content and carries the same
+  attributes plus a \attribute[ns-elt=xml,ns-attr=dc]{lang}{contributor} attribute that
   specifies the target language in case the contribution is a translation.
 \end{definition}
 
 \begin{definition}[id=dc.subject.def,title=Subjects]
   This element contains an arbitrary phrase or keyword, the attribute
-  {\attribute[ns-elt=xml,ns-attr=dc]{lang}{subject}} is used for the language. Multiple
+  \attribute[ns-elt=xml,ns-attr=dc]{lang}{subject} is used for the language. Multiple
   instances of the {\eldef[ns-elt=dc]{subject}} element are supported per
-  {\attribute[ns-elt=xml,ns-attr=dc]{lang}{subject}} for multiple keywords.
+  \attribute[ns-elt=xml,ns-attr=dc]{lang}{subject} for multiple keywords.
 \end{definition}
 
 \begin{definition}[id=dc.description.def,title=Descriptions]
   A text describing the containing element's content; the attribute
-  {\attribute[ns-elt=xml,ns-attr=dc]{lang}{description}} is used for the language. As
-  description of mathematical objects or {\omdoc} fragments may contain formulae, the
+  \attribute[ns-elt=xml,ns-attr=dc]{lang}{description} is used for the language. As
+  description of mathematical objects or \omdoc fragments may contain formulae, the
   content of this element is of the form ``{\twintoo{mathematical}{text}}'' described in
   {\sref{mtext}}.
 \end{definition}
@@ -119,8 +119,8 @@ use the {\twintoo{namespace}{prefix}}\atwinalt {\snippetin{dc:}}{Dublin
 \begin{definition}[id=dc.publisher.def,title=Publishers]
   The entity for making the document available in its present form, such as a publishing
   house, a university department, or a corporate entity. The
-  {\eldef[ns-elt=dc]{publisher}} element only applies if the {\element{metadata}} is a
-  direct child of the root element ({\element{omdoc}}) of a
+  {\eldef[ns-elt=dc]{publisher}} element only applies if the \element{metadata} is a
+  direct child of the root element (\element{omdoc}) of a
   \twinalt{document}{document}{root}.
 \end{definition}
 
@@ -140,23 +140,23 @@ use the {\twintoo{namespace}{prefix}}\atwinalt {\snippetin{dc:}}{Dublin
   be used to increase the precision of fractional seconds if desired, i.e the format
   {\snippet{\llquote{ss}.\llquote{sss\ldots}}} with any number of digits after the decimal
   point is supported.  The {\eldef[ns-elt=dc]{date}} element has the attributes
-  {\attribute[ns-elt=dc]{action}{date}} and {\attribute[ns-elt=dc]{who}{date}} to specify
-  who did what: The value of {\attribute[ns-elt=dc]{who}{date}} is a reference to a
-  {\element[ns-elt=dc]{creator}} or {\element[ns-elt=dc]{contributor}} element and
-  {\attribute[ns-elt=dc]{action}{date}} is a keyword for the action
+  \attribute[ns-elt=dc]{action}{date} and \attribute[ns-elt=dc]{who}{date} to specify
+  who did what: The value of \attribute[ns-elt=dc]{who}{date} is a reference to a
+  \element[ns-elt=dc]{creator} or \element[ns-elt=dc]{contributor} element and
+  \attribute[ns-elt=dc]{action}{date} is a keyword for the action
   undertaken. Recommended values include the short forms
-  {\attval[ns-elt=dc]{updated}{action}{date}},
-  {\attval[ns-elt=dc]{created}{action}{date}},
-  {\attval[ns-elt=dc]{imported}{action}{date}},
-  {\attval[ns-elt=dc]{frozen}{action}{date}},
-  {\attval[ns-elt=dc]{review-on}{action}{date}},
-  {\attval[ns-elt=dc]{normed}{action}{date}} with the obvious meanings. Other actions may
+  \attval[ns-elt=dc]{updated}{action}{date},
+  \attval[ns-elt=dc]{created}{action}{date},
+  \attval[ns-elt=dc]{imported}{action}{date},
+  \attval[ns-elt=dc]{frozen}{action}{date},
+  \attval[ns-elt=dc]{review-on}{action}{date},
+  \attval[ns-elt=dc]{normed}{action}{date} with the obvious meanings. Other actions may
   be specified by {\indextoo{URI}s} pointing to documents that explain the action.
 \end{definition}
 
 \begin{definition}[id=dc.type.def,title=Types]
   Dublin Core defines a vocabulary for the document types in {\cite{DCMI:dtv03}}. The best
-  fit values for {\omdoc} are
+  fit values for \omdoc are
   \begin{description}
   \item[{\snippetin{Dataset}}] defined as ``{\presem{information encoded in a defined
         structure (for example lists, tables, and databases), intended to be useful for
@@ -172,8 +172,8 @@ use the {\twintoo{namespace}{prefix}}\atwinalt {\snippetin{dc:}}{Dublin
   The more appropriate should be selected for the element that contains the
   {\eldef[ns-elt=dc]{type}}. If it consists mainly of formal mathematical formulae, then
   {\snippetin{Dataset}} is better, if it is mainly given as text, then {\snippetin{Text}}
-  should be used. More specifically, in {\omdoc} the value {\snippetin{Dataset}} signals
-  that the order of children in the parent of the {\element{metadata}} is not relevant to
+  should be used. More specifically, in \omdoc the value {\snippetin{Dataset}} signals
+  that the order of children in the parent of the \element{metadata} is not relevant to
   the meaning. This is the case for instance in formal developments of mathematical
   theories, such as the specifications in {\sref{complex-theories}}.
 \end{definition}
@@ -182,14 +182,14 @@ use the {\twintoo{namespace}{prefix}}\atwinalt {\snippetin{dc:}}{Dublin
   The physical or digital manifestation of the resource.  Dublin Core suggests using
   {\twintoo{MIME}{type}s}~\cite{FreBor:MIME96}.  Following~\cite{MurLau:xmt01} we fix the
   content of the {\eldef[ns-elt=dc]{format}} element to be the string
-  {\snippet{application/omdoc+xml}} as the {\twintoo{MIME}{type}} for {\omdoc}.
+  {\snippet{application/omdoc+xml}} as the {\twintoo{MIME}{type}} for \omdoc.
 \end{definition}
 
 \begin{definition}[id=dc.identifier.def,title=Identifiers]
   A string or number used to uniquely identify the element.  The
   {\eldef[ns-elt=dc]{identifier}} element should only be used for public identifiers like
   {\indextoo{ISBN}} or {\indextoo{ISSN}} numbers. The numbering scheme can be specified in
-  the {\attribute[ns-elt=dc]{scheme}{identifier}} attribute.
+  the \attribute[ns-elt=dc]{scheme}{identifier} attribute.
 \end{definition}
 
 \begin{definition}[id=dc.source.def,title=Sources]
@@ -201,7 +201,7 @@ use the {\twintoo{namespace}{prefix}}\atwinalt {\snippetin{dc:}}{Dublin
 
 \begin{definition}[id=dc.relation.def,title=Relations]
   Relation of this document to others.  The content model of the
-  {\eldef[ns-elt=dc]{relation}} element is not specified in the {\omdoc} format.
+  {\eldef[ns-elt=dc]{relation}} element is not specified in the \omdoc format.
 \end{definition}
 
 \begin{definition}[id=dc.language.def,title=Languages]
@@ -216,28 +216,28 @@ use the {\twintoo{namespace}{prefix}}\atwinalt {\snippetin{dc:}}{Dublin
   Information about rights held in and over the document or element content or a reference
   to such a statement. Typically, a {\eldef[ns-elt=dc]{rights}} element will contain a
   rights management statement, or reference a service providing such
-  information. {\element[ns-elt=dc]{rights}} information often encompasses Intellectual
+  information. \element[ns-elt=dc]{rights} information often encompasses Intellectual
   Property rights (IPR), Copyright, and various other property rights. If the
-  {\element[ns-elt=dc]{rights}} element is absent (and no {\element[ns-elt=dc]{rights}}
+  \element[ns-elt=dc]{rights} element is absent (and no \element[ns-elt=dc]{rights}
   information is inherited), no assumptions can be made about the status of these and
   other rights with respect to the document or element.
   
-  {\omdoc} supplies specialized elements for the Creative Commons licenses to support the
+  \omdoc supplies specialized elements for the Creative Commons licenses to support the
   sharing of mathematical content. We will discuss them in {\sref{creativecommons}}.
 \end{definition}
 
 Note that Dublin Core also defines a {\oldelement{Coverage}{1.1}} element that specifies
 the place or time which the publication's contents addresses. This does not seem
-appropriate for the mathematical content of {\omdoc}, which is largely independent of time
+appropriate for the mathematical content of \omdoc, which is largely independent of time
 and geography.
 
 \begin{omgroup}[id=dc-roles]{Roles in Dublin Core Elements}
 
-Because the Dublin Core metadata fields for {\element[ns-elt=dc]{creator}} and
-{\element[ns-elt=dc]{contributor}} do not distinguish roles of specific parties (such as
+Because the Dublin Core metadata fields for \element[ns-elt=dc]{creator} and
+\element[ns-elt=dc]{contributor} do not distinguish roles of specific parties (such as
 author, editor, and illustrator), we will follow the {\indextoo{Open eBook}}
-specification~\cite{OpenEBook:oeps99} and use an optional {\attribute[ns-elt=dc]{role}{*}}
-attribute for this purpose, which is adapted for {\omdoc} from the MARC relator code
+specification~\cite{OpenEBook:oeps99} and use an optional \attribute[ns-elt=dc]{role}{*}
+attribute for this purpose, which is adapted for \omdoc from the MARC relator code
 list~\cite{Marc:relators03}.
 \begin{description}
 \item[{\attval[ns-elt=dc]{aut}{role}{*}}] ({\indextoo{author}}) Use for a
@@ -261,19 +261,19 @@ list~\cite{Marc:relators03}.
 \item[{\attval[ns-elt=dc]{trc}{role}{*}}] ({\indextoo{transcriber}}) Use
   for a person who prepares a handwritten or typewritten copy from original
   material, including from dictated or orally recorded material. This is also the
-  role (on the {\element[ns-elt=dc]{creator}} element) for someone who prepares the {\omdoc}
+  role (on the \element[ns-elt=dc]{creator} element) for someone who prepares the \omdoc
   version of some mathematical content.
 \item[{\attval[ns-elt=dc]{trl}{role}{*}}] ({\indextoo{translator}}) Use
   for a person who renders a text from one language into another, or from an older
   form of a language into the modern form. The target language can be specified by
-  {\attribute[ns-elt=xml,ns-attr=dc]{lang}{*}}.
+  \attribute[ns-elt=xml,ns-attr=dc]{lang}{*}.
 \end{description}
-As {\omdoc} documents are often used to formalize existing mathematical texts for use in
+As \omdoc documents are often used to formalize existing mathematical texts for use in
 mechanized reasoning and computation systems, it is sometimes subtle to specify
 authorship.  We will discuss some typical examples to give a guiding intuition.
 {\mylstref{sec-edt}} shows metadata for a situation where editor $R$ gives the sources
 (e.g. in {\LaTeX}) of an element written by author $A$ to secretary $S$ for conversion
-into {\omdoc} format.
+into \omdoc format.
 \begin{lstlisting}[label=lst:sec-edt,mathescape,
   caption={A Document with Editor ({\snippet{edt}}) and  Transcriber ({\snippet{trc}})},
   index={metadata,dc:title,dc:creator,dc:contributor}]

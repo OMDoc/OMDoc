@@ -10,12 +10,12 @@
 \begin{omgroup}[id=creativecommons,short=Managing Rights]
                            {Managing Rights by Creative Commons Licenses}
 
-The Dublin Core vocabulary provides the {\element[ns-elt=dc]{rights}} element for
+The Dublin Core vocabulary provides the \element[ns-elt=dc]{rights} element for
 information about rights held in and over the document or element content, but leaves the
 content model unspecified. While it is legally sufficient to describe this information in
-natural language, a content markup format like {\omdoc} should support a
-machine-understandable format. As one of the purposes of the {\omdoc} format is to support
-the sharing and re-use of mathematical content, {\omdoc} provides markup for rights
+natural language, a content markup format like \omdoc should support a
+machine-understandable format. As one of the purposes of the \omdoc format is to support
+the sharing and re-use of mathematical content, \omdoc provides markup for rights
 management via the {\twinalt{Creative Commons}{Creative Commons}{license}}
 ({\twinalt{CC}{CC}{license}}) licenses.  \atwinalt{Digital rights
   management}{digital}{rights}{management} (\indextoo{DRM}) and licensing of
@@ -24,20 +24,20 @@ feel that the {\twintoo{Creative Commons}{license}s} that encourage sharing of c
 enhance the (scientific) public domain while giving authors some control over their
 intellectual property establish a good middle ground. Specifying rights is important,
 since in the absence of an explicit or implicit (via inheritance)
-{\element[ns-elt=dc]{rights}} element no assumptions can be made about the status of the
-document or fragment.  Therefore {\omdoc} adds another child to the {\element{metadata}}
+\element[ns-elt=dc]{rights} element no assumptions can be made about the status of the
+document or fragment.  Therefore \omdoc adds another child to the \element{metadata}
 element.  
 
-This {\element[ns-elt=cc]{license}} element is a symbolic representation of the Creative
-Commons legal framework, adapted to the {\omdoc} setting: The Creative Commons Metadata
+This \element[ns-elt=cc]{license} element is a symbolic representation of the Creative
+Commons legal framework, adapted to the \omdoc setting: The Creative Commons Metadata
 Initiative specifies various ways of embedding {\twintoo{CC}{metadata}} into documents and
 {\twintoo{electronic}{artefacts}} like {\indextoo{picture}s} or
-{\twintoo{MP3}{recording}s}. As {\omdoc} is a source format, from which various
+{\twintoo{MP3}{recording}s}. As \omdoc is a source format, from which various
 presentation formats are generated, we need a content representation of the CC metadata
 from which the end-user representations for the respective formats can be generated.
 
 \begin{presonly}
-\begin{myfig}{cctable}{The {\omdoc} Elements for Creative Commons Metadata}
+\begin{myfig}{cctable}{The \omdoc Elements for Creative Commons Metadata}
 \begin{scriptsize}
 \begin{tabular}{|>{\tt}l|>{\tt}l|>{\tt}p{2.2truecm}|>{\tt}l|}\hline
 {\rm Element}& \multicolumn{2}{l|}{Attributes\hspace*{2.25cm}} & Content  \\\hline
@@ -56,7 +56,7 @@ from which the end-user representations for the respective formats can be genera
   characteristics in three types: \defi{permissions}, \defi{prohibitions} and
   \defi{requirements}, which are represented by the three elements, which can occur as
   children of the {\eldef[ns-elt=cc]{license}} element. After these, a a natural language
-  explanation of the license grant in a math text (see {\sref{mtext}}). The {\element[ns-elt=cc]{license}}
+  explanation of the license grant in a math text (see {\sref{mtext}}). The \element[ns-elt=cc]{license}
   element has two optional arguments:
 \begin{description}
 \item[{\attribute[ns-elt=cc]{jurisdiction}{license}}] which allows to specify the country
@@ -73,13 +73,13 @@ from which the end-user representations for the respective formats can be genera
 \end{description}
 \end{definition}
 
-The following three elements can occur as children of the {\element[ns-elt=cc]{license}}
+The following three elements can occur as children of the \element[ns-elt=cc]{license}
 element; their attribute specify the rights bestowed on the user by the license.  All
 these elements have the {\twinalt{namespace}{Creative Commons}{namespace}}
 \url{http://creativecommons.org/ns}, for which we traditionally use the
 {\twintoo{namespace}{prefix}} {\snippetin{cc:}}. All three elements can contain a natural
 language explanation of their particular contribution to the license grant in a sequence
-of {\element[ns-elt=h]{p}} elements.
+of \element[ns-elt=h]{p} elements.
 
 \begin{definition}[id=cc.permissions.def,title=Permissions]
   {\eldef[ns-elt=cc]{permissions}} are the rights granted by the license, to model them
@@ -90,12 +90,12 @@ of {\element[ns-elt=h]{p}} elements.
   \begin{center}
     \begin{tabular}{|l|p{6truecm}|>{\tt}l|}\hline
       Attribute & Permission & Default\\\hline\hline
-      {\attribute[ns-elt=cc]{reproduction}{permissions}} 
+      \attribute[ns-elt=cc]{reproduction}{permissions} 
       & the work may be reproduced & permitted\\\hline
-      {\attribute[ns-elt=cc]{distribution}{permissions}}  
+      \attribute[ns-elt=cc]{distribution}{permissions}  
       & the work may be distributed, publicly displayed, and
       publicly performed & permitted \\\hline
-      {\attribute[ns-elt=cc]{derivative\_works}{permissions}}  
+      \attribute[ns-elt=cc]{derivative\_works}{permissions}  
       & derivative works may be created and reproduced & permitted \\\hline
     \end{tabular}
   \end{center}
@@ -108,7 +108,7 @@ of {\element[ns-elt=h]{p}} elements.
    \begin{center}
     \begin{tabular}{|l|p{6truecm}|>{\tt}l|}\hline
       Attribute & Prohibition & Default\\\hline\hline
-      {\attribute[ns-elt=cc]{commercial\_use}{permission}} 
+      \attribute[ns-elt=cc]{commercial\_use}{permission} 
       &  stating that rights may be exercised for commercial purposes.
       & permitted \\\hline
     \end{tabular}
@@ -122,11 +122,11 @@ of {\element[ns-elt=h]{p}} elements.
      \begin{center}
       \begin{tabular}{|l|p{6.5truecm}|>{\tt}l|}\hline
       Attribute & Requirement & Default\\\hline\hline
-      {\attribute[ns-elt=cc]{notice}{requirements}}  
+      \attribute[ns-elt=cc]{notice}{requirements}  
       & copyright and license notices must be kept intact & required \\\hline
-      {\attribute[ns-elt=cc]{attribution}{requirements}}  
+      \attribute[ns-elt=cc]{attribution}{requirements}  
       & credit must be given to copyright holder and/or author & required\\\hline
-      {\attribute[ns-elt=cc]{copyleft}{requirements}}  
+      \attribute[ns-elt=cc]{copyleft}{requirements}  
       & derivative works, if authorized, must be licensed under the same terms as
       the work & required \\\hline
     \end{tabular}
@@ -137,9 +137,9 @@ of {\element[ns-elt=h]{p}} elements.
 This vocabulary is directly modeled after the Creative Commons
 Metadata~\cite{URL:creativecommonsMetadata} which defines the meaning, and provides an
 {\rdf}~\cite{LasSwi:rdf99} based implementation. As we have discussed in
-{\sref{docmetadata}}, {\omdoc} follows an approach that specifies metadata in the document
+{\sref{docmetadata}}, \omdoc follows an approach that specifies metadata in the document
 itself; thus we have provided the elements described here. In contrast to many other
-situations in {\omdoc}, the rights model is not extensible, since only the current model
+situations in \omdoc, the rights model is not extensible, since only the current model
 is backed by legal licenses provided by the creative commons initiative.
 
 {\Mylstref{ccc-copyleft}} specifies a license grant using the Creative Commons

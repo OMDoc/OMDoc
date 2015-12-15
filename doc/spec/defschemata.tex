@@ -60,7 +60,7 @@ adding such definitions to a theory always results in a conservative extension.
 \end{omtext}
 
 \begin{presonly}
-  \begin{myfig}{alternative-theory}{Theory-Constitutive Elements in {\omdoc}}
+  \begin{myfig}{alternative-theory}{Theory-Constitutive Elements in \omdoc}
     \begin{scriptsize}
       \begin{tabular}{|>{\snippet}l|>{\tt}l|>{\tt}p{3.6truecm}|c|>{\tt}p{3.2truecm}|}\hline
         {\rm Element}& \multicolumn{2}{l|}{Attributes\hspace*{2.25cm}} & M & Content  \\\hline
@@ -79,10 +79,10 @@ adding such definitions to a theory always results in a conservative extension.
 \end{presonly}
 
 In {\myfigref{math-def}} we have seen that there are many ways to fix the meaning of a
-symbol, therefore {\omdoc} {\element{definition}} elements are more complex than
-{\element{axiom}s}.  In particular, the {\element{definition}} element supports several
-kinds of definition mechanisms with specialized content models specified in the
-{\attribute{type}{definition}} attribute (cf. the discussion at the end of
+symbol, therefore \omdoc \element{definition} elements are more complex than
+\element{axiom}s.  In particular, the \element{definition} element supports several kinds
+of definition mechanisms with specialized content models specified in the
+\attribute{type}{definition} attribute (cf. the discussion at the end of
 {\sref{statements-constitutive}}):
 
 \begin{module}[id=implicit-defs]
@@ -91,12 +91,12 @@ kinds of definition mechanisms with specialized content models specified in the
 This kind of definition is often (more accurately) called ``{\emph{\indextoo{definition by
       description}}}'', since the {\indextoo{definiendum}} is described so accurately,
 that there is exactly one object satisfying the description. The ``description'' of the
-defined symbol is given as a multi-system {\element{FMP}} group whose content uniquely
+defined symbol is given as a multi-system \element{FMP} group whose content uniquely
 determines the value of the symbols that are specified in the
-{\attribute{for}{definition}} attribute of the {\element{definition}} element with
-{\attribute{type}{definition}} {\attval{implicit}{type}{definition}}.  The necessary
-statement of unique existence can be specified in the {\attribute{existence}{definition}}
-and {\attribute{uniqueness}{definition}} attribute, whose values are
+\attribute{for}{definition} attribute of the \element{definition} element with
+\attribute{type}{definition} \attribute{implicit}{type}{definition}.  The necessary
+statement of unique existence can be specified in the \attribute{existence}{definition}
+and \attribute{uniqueness}{definition} attribute, whose values are
 {\twintoo{URI}{reference}s} to to assertional statements (see
 \sref{assertional-statements}) that represent the respective properties.  We give
 an example of an implicit definition in {\mylstref{exp-def}}.
@@ -127,17 +127,17 @@ an example of an implicit definition in {\mylstref{exp-def}}.
 \begin{omgroup}{Inductive Definitions}
 
 \begin{omtext}
-  This is a variant of the {\attval{implicit}{type}{definition}} case above. It defines a
+  This is a variant of the \attribute{implicit}{type}{definition} case above. It defines a
   {\twintoo{recursive}{function}} by a set of {\twintoo{recursive}{equation}s}
   \inlinedef{in {\eldef{requation}} elements whose left and right hand sides are specified
     by the two children}. The first one is called \inlinedef{the \defi{pattern}}, and
   the second one \inlinedef{the \defi{value}}. The intended meaning of the defined
   symbol is, that the value (with the variables suitably substituted) can be substituted
-  for a formula that matches the pattern element. In this case, the {\element{definition}}
-  element carries a {\attribute{type}{definition}} with value
-  {\attval{inductive}{type}{definition}} and the optional attributes
-  {\attribute{exhaustivity}{definition}} and {\attribute{consistency}{definition}}, which
-  point to {\element{assertion}}s stating that the cases spanned by the patterns are
+  for a formula that matches the pattern element. In this case, the \element{definition}
+  element carries a \attribute{type}{definition} with value
+  \attribute{inductive}{type}{definition} and the optional attributes
+  \attribute{exhaustivity}{definition} and \attribute{consistency}{definition}, which
+  point to \element{assertion}s stating that the cases spanned by the patterns are
   exhaustive (i.e. all cases are considered), or that the values are consistent (where the
   cases overlap, the values are equal).
 \end{omtext}
@@ -157,30 +157,30 @@ natural numbers.
 \end{lstlisting} 
 To guarantee termination of the recursive instantiation (necessary to ensure
 well-definedness), it is possible to specify a {\indextoo{measure function}} and
-well-founded {\indextoo{ordering}} by the optional {\element{measure}} and
-{\element{ordering}} elements which contain mathematical objects. The elements contain
+well-founded {\indextoo{ordering}} by the optional \element{measure} and
+\element{ordering} elements which contain mathematical objects. The elements contain
 mathematical objects.
 
 \begin{definition}[id=measure.def]
   The content of the {\eldef{measure}} element specifies a measure function, i.e. a
   function from argument tuples for the function defined in the parent
-  {\element{definition}} element to a space with an ordering relation which is specified
+  \element{definition} element to a space with an ordering relation which is specified
   in the {\eldef{ordering}} element. This element also carries an optional attribute
-  {\attribute{terminating}{measure}} that points to an {\element{assertion}} element that
+  \attribute{terminating}{measure} that points to an \element{assertion} element that
   states that this ordering relation is a terminating partial ordering.
 \end{definition}
 
 \begin{definition}[id=pattern.def] 
   \adefii{Pattern definitions}{pattern}{definition} are a special degenerate cases
-  of the recursive definition. A function is defined by a set of {\element{requation}}
+  of the recursive definition. A function is defined by a set of \element{requation}
   elements, but the defined function does not occur in the second children.
 \end{definition}
-This form of definition is often used instead of {\attval{simple}{type}{definition}} in
+This form of definition is often used instead of \attribute{simple}{type}{definition} in
 logical languages that do not have a function constructor. It allows to define a function
 by its behavior on patterns of arguments. Since termination is trivial in this case, no
-{\element{measure}} and {\snippet{ordering}} elements appear in the body of a
-{\element{definition}} element whose {\attribute{type}{definition}} has value
-{\attval{pattern}{type}{definition}}.
+\element{measure} and {\snippet{ordering}} elements appear in the body of a
+\element{definition} element whose \attribute{type}{definition} has value
+\attribute{pattern}{type}{definition}.
 \end{omgroup}
 \end{module}
 \end{oldpart}
@@ -196,7 +196,7 @@ by its behavior on patterns of arguments. Since termination is trivial in this c
 sets that are inductively generated by a set of constructors and
 {\twintoo{recursive}{function}s} on these under the heading of {\twintoo{abstract}{data
     type}s}. Prominent examples of abstract data types are natural numbers, lists, trees,
-etc. The module {\ADTmodule{spec}} presented in this chapter extends {\omdoc} by a concise
+etc. The module {\ADTmodule{spec}} presented in this chapter extends \omdoc by a concise
 syntax for abstract data types that follows the model used in the {\casl} (Common Abstract
 Specification Language~\cite{CoFI:2004:CASL-RM}) standard.
 
@@ -239,7 +239,7 @@ Specification Language~\cite{CoFI:2004:CASL-RM}) standard.
 \end{definition}
 
 \begin{presonly}
-\begin{myfig}{adtheory}{Abstract data types in {\omdoc}}
+\begin{myfig}{adtheory}{Abstract data types in \omdoc}
 \begin{scriptsize}
 \begin{tabular}{|>{\tt}l|>{\tt}l|>{\tt}p{3.3truecm}|c|>{\tt}p{3truecm}|}\hline
 {\rm Element}& \multicolumn{2}{l|}{Attributes\hspace*{2.25cm}} & M & Content  \\\hline
@@ -258,12 +258,12 @@ Specification Language~\cite{CoFI:2004:CASL-RM}) standard.
 \end{presonly}
 
 \begin{definition}[id=adt.def]
-  In {\omdoc}, we use the {\eldef{adt}} element to specify abstract data types possibly
+  In \omdoc, we use the {\eldef{adt}} element to specify abstract data types possibly
   consisting of multiple sorts.  It is a {\indextoo{theory-constitutive}} statement and
-  can only occur as a child of a {\element{theory}} element (see
-  {\sref{statements-constitutive}} for a discussion). An {\element{adt}} element contains
-  one or more {\element{sortdef}} elements that define the {\indextoo{sort}s} and specify
-  their members and it can carry a {\attribute{parameters}{adt}} attribute that contains a
+  can only occur as a child of a \element{theory} element (see
+  {\sref{statements-constitutive}} for a discussion). An \element{adt} element contains
+  one or more \element{sortdef} elements that define the {\indextoo{sort}s} and specify
+  their members and it can carry a \attribute{parameters}{adt} attribute that contains a
   whitespace-separated list of parameter variable names. If these are present, they
   declare type variables that can be used in the specification of the new sort and
   constructor symbols see {\extref{projects}{verifun}} for an example.
@@ -271,7 +271,7 @@ Specification Language~\cite{CoFI:2004:CASL-RM}) standard.
 
 We will use an augmented representation of the abstract data type of natural numbers as a
 running example for introduction of the functionality added by the {\ADTmodule{spec}}
-module; {\mylstref{nat-adt}} contains the listing of the {\omdoc} encoding. In this
+module; {\mylstref{nat-adt}} contains the listing of the \omdoc encoding. In this
 example, we introduce a second sort $\bbP$ for {\atwintoo{positive}{natural}{number}s} to
 make it more interesting and to pin down the {\indextoo{type}} of the
 {\twintoo{predecessor}{function}}.
@@ -280,50 +280,50 @@ make it more interesting and to pin down the {\indextoo{type}} of the
   A {\eldef{sortdef}} element is a highly condensed piece of syntax that declares a
   {\twintoo{sort}{symbol}} together with the {\twintoo{constructor}{symbol}s} and their
   {\twintoo{selector}{symbol}s} of the corresponding sort. It has a required
-  {\attribute{name}{sortdef}} attribute that specifies the symbol name, an optional
-  {\attribute{type}{adt}} attribute that can have the values {\attval{free}{type}{adt}},
-  {\attval{generated}{type}{adt}}, and {\attval{loose}{type}{adt}} with the meaning
-  discussed above. A {\element{sortdef}} element contains a set of {\eldef{constructor}}
+  \attribute{name}{sortdef} attribute that specifies the symbol name, an optional
+  \attribute{type}{adt} attribute that can have the values \attribute{free}{type}{adt},
+  \attribute{generated}{type}{adt}, and \attribute{loose}{type}{adt} with the meaning
+  discussed above. A \element{sortdef} element contains a set of {\eldef{constructor}}
   and {\eldef{insort}} elements.  The latter are empty elements which refer to a sort
-  declared elsewhere in a {\element{sortdef}} with their {\attribute{for}{insort}}
-  attribute: An {\element{insort}} element with
+  declared elsewhere in a \element{sortdef} with their \attribute{for}{insort}
+  attribute: An \element{insort} element with
   {\snippet{for="}}\llquote{URI}{\snippet{\#\llquote{name}"}} specifies that all the
   constructors of the sort {\snippet{\llquote{name}}} are also constructors for the one
-  defined in the parent {\element{sortdef}}. Furthermore, the type of a sort given by a
-  {\element{sortdef}} element can only be as strict as the types of any sorts included by
-  its {\element{insort}} children.
+  defined in the parent \element{sortdef}. Furthermore, the type of a sort given by a
+  \element{sortdef} element can only be as strict as the types of any sorts included by
+  its \element{insort} children.
 \end{definition}
 
 {\Mylstref{nat-adt}} introduces the {\twintoo{sort}{symbol}s} {\snippet{pos-nats}}
 (positive natural numbers) and {\snippet{nats}} (natural numbers) , the symbol names are
-given by the required {\attribute{name}{constructor}} attribute. Since a constructor is in
-general an $n$-ary function, a {\element{constructor}} element contains $n$
-{\element{argument}} children that specify the argument sorts of this function along with
+given by the required \attribute{name}{constructor} attribute. Since a constructor is in
+general an $n$-ary function, a \element{constructor} element contains $n$
+\element{argument} children that specify the argument sorts of this function along with
 possible selector functions.
 
 \begin{definition}[id=argument.def]
   The argument sort is given as the first child of the {\eldef{argument}} element: a
-  {\element{type}} element as described in {\sref{type-axioms}}.
+  \element{type} element as described in {\sref{type-axioms}}.
 \end{definition}
-Note that $n$ may be 0 and thus the constructor element may not have {\element{argument}}
-children (see for instance the {\element{constructor}} for {\snippet{zero}} in
-{\mylstref{nat-adt}}). The first {\element{sortdef}} element there introduces the
+Note that $n$ may be 0 and thus the constructor element may not have \element{argument}
+children (see for instance the \element{constructor} for {\snippet{zero}} in
+{\mylstref{nat-adt}}). The first \element{sortdef} element there introduces the
 constructor symbol {\snippet{succ@Nat}} for the {\twintoo{successor}{function}}. This
 function has one argument, which is a natural number (i.e. a member of the sort
 {\snippet{nats}}).
 
 Sometimes it is convenient to specify the inverses of a constructors that are
-functions. For this {\omdoc} offers the possibility to add an empty {\element{selector}}
-element as the second child of an {\element{argument}} child of a
-{\element{constructor}}.
+functions. For this \omdoc offers the possibility to add an empty \element{selector}
+element as the second child of an \element{argument} child of a
+\element{constructor}.
 
 \begin{definition}[id=selector.def]
-  The {\eldef{selector}} element has a required attribute {\attribute{name}{selector}}
-  specifies the symbol name, the optional {\attribute{total}{selector}} attribute of the
-  {\element{selector}} element specifies whether the function represented by this symbol
-  is \twinalt{total}{total}{function} (value {\attval{yes}{total}{selector}}) or
-  \twinalt{partial}{partial}{function} (value {\attval{no}{total}{selector}}).  In
-  {\mylstref{nat-adt}} the {\element{selector}} element in the first {\element{sortdef}}
+  The {\eldef{selector}} element has a required attribute \attribute{name}{selector}
+  specifies the symbol name, the optional \attribute{total}{selector} attribute of the
+  \element{selector} element specifies whether the function represented by this symbol
+  is \twinalt{total}{total}{function} (value \attribute{yes}{total}{selector}) or
+  \twinalt{partial}{partial}{function} (value \attribute{no}{total}{selector}).  In
+  {\mylstref{nat-adt}} the \element{selector} element in the first \element{sortdef}
   introduces a {\twintoo{selector}{symbol}} for the {\twintoo{successor}{function}}
   {\snippet{succ}}. As {\snippet{succ}} is a function from {\snippet{nats}} to
   {\snippet{pos-nats}}, {\snippet{pred}} is a total function from {\snippet{pos-nats}} to
@@ -331,27 +331,27 @@ element as the second child of an {\element{argument}} child of a
 \end{definition}
 
 \begin{definition}[id=recognizer.def]
-  Finally, a {\element{sortdef}} element can contain a {\eldef{recognizer}} child that
+  Finally, a \element{sortdef} element can contain a {\eldef{recognizer}} child that
   specifies a symbol for a {\indextoo{predicate}} that is true, iff its argument is of the
   respective sort. The name of the predicate symbol is specified in the required
-  {\attribute{name}{recognizer}} attribute.
+  \attribute{name}{recognizer} attribute.
 \end{definition} 
 
 \begin{omtext} 
   \Mylstref{nat-adt} introduces such a \inlinedef{\defii{recognizer}{predicate}} as
-  the last child of the {\element{sortdef}} element for the sort {\snippet{pos-nats}}.
+  the last child of the \element{sortdef} element for the sort {\snippet{pos-nats}}.
 \end{omtext}
 
-Note that the {\element{sortdef}}, {\element{constructor}}, {\element{selector}},
-and {\element{recognizer}} elements define symbols of the name specified by their
-{\attribute{name}{symbol}} element in the theory that contains the {\element{adt}}
+Note that the \element{sortdef}, \element{constructor}, \element{selector},
+and \element{recognizer} elements define symbols of the name specified by their
+\attribute{name}{symbol} element in the theory that contains the \element{adt}
 element. To govern the visibility, they carry the attribute
-{\attribute{scope}{symbol}} (with values {\attval{global}{scope}{symbol}} and
-{\attval{local}{scope}{symbol}}) and the attribute {\attribute{role}{symbol}}
-(with values {\attval{type}{role}{symbol}}, {\attval{sort}{role}{symbol}},
-{\attval{object}{role}{symbol}}).
+\attribute{scope}{symbol} (with values \attribute{global}{scope}{symbol} and
+\attribute{local}{scope}{symbol}) and the attribute \attribute{role}{symbol}
+(with values \attribute{type}{role}{symbol}, \attribute{sort}{role}{symbol},
+\attribute{object}{role}{symbol}).
 \begin{lstlisting}[label=lst:nat-adt,
-  caption={The natural numbers using {\element{adt}} in {\omdoc}},
+  caption={The natural numbers using \element{adt} in \omdoc},
   index={adt,sortdef,constructor,argument,selector,recognizer,insort}]
 <theory xml:id="Nat">
   <adt xml:id="nat-adt">
@@ -403,9 +403,9 @@ definition implies the five well-known Peano Axioms: the first two specify the
 constructors, the third and fourth exclude identities between constructor terms, while the
 induction axiom states that {\snippet{nats}} is generated by {\snippet{zero}} and
 {\snippet{succ}}.  The document that contains the {\snippet{nat-adt}} could also contain
-the symbols and axioms defined implicitly in the {\element{adt}} element explicitly as
-{\element{symbol}} and {\element{axiom}} elements for reference.  These would then carry
-the {\attribute{generated-from}{axiom}} attribute with value
+the symbols and axioms defined implicitly in the \element{adt} element explicitly as
+\element{symbol} and \element{axiom} elements for reference.  These would then carry
+the \attribute{generated-from}{axiom} attribute with value
 {\snippet{nat-adt}}.
 \end{module}
 \end{omgroup}
@@ -414,7 +414,7 @@ the {\attribute{generated-from}{axiom}} attribute with value
 \begin{omgroup}[id=adt-strict]{Strict Translations}
 
   We will now give the a formal\ednote{do we really want to call it ``formal''?} semantics
-  of the {\STmodule{spec}} elements in terms of strict {\omdoc} (see
+  of the {\STmodule{spec}} elements in terms of strict \omdoc (see
   {\sref{strict}}).\ednote{what do we do if there is both FMP and CMPs in an
     axiom?}\ednote{what do we do if there is more than one symbol per
     definition?}\ednote{what do we do for non-simple definitions}
@@ -425,7 +425,7 @@ description operator {\llquote{that}} we have\ednote{point to a theory with desc
   operator or similar functionality. Maybe give a special theory $D$ and allow all
   meta-theories {\llquote{t}} that have a view from $D$.}\ednote{do we want a description
   operator that takes the existence and uniqueness proofs as arguments? Can we point to
-  {\element{proof}} elements somehow? What do we really do with the attributes?}
+  \element{proof} elements somehow? What do we really do with the attributes?}
 \begin{center}\lstset{frame=none,numbers=none,lineskip=-.7ex,aboveskip=-.5em,belowskip=-1em,mathescape}
  \begin{tabular}{|p{6.5cm}|p{7.5cm}|}\hline
     pragmatic & strict\\\hline

@@ -72,14 +72,14 @@ Proofs form an essential part of mathematics and modern sciences.
   \end{minipage}}
 \end{myfig}
 
-Since proofs can be marked up on several levels, we will introduce the {\omdoc}
+Since proofs can be marked up on several levels, we will introduce the \omdoc
 markup for proofs in stages: We will first concentrate on proofs as structured
 texts, marking up the discourse structure in example
 {\myfigref{pf-example1-math}}. Then we will concentrate on the justifications of
 proof steps, and finally we will discuss the scoping and hierarchical structure of
 proofs.
 
-The development of the representational infrastructure in {\omdoc} has a long history:
+The development of the representational infrastructure in \omdoc has a long history:
 From the beginning the format strived to allow structural semantic markup for textbook
 proofs as well as accommodate a wide range of formal proof systems without over-committing
 to a particular system. However, the proof representation infrastructure from
@@ -88,7 +88,7 @@ to a particular system. However, the proof representation infrastructure from
 has been redesigned~\cite{AspKohSac:dtdop03} as part of the {\scsys{MoWGLI}}
 project~\cite{AspKoht:mimp02}.  The current version of the {\PFmodule{spec}} module is an
 adaptation of this proposal to be as compatible as possible with earlier versions of
-{\omdoc}. It has been validated by interpreting it as an implementation of the
+\omdoc. It has been validated by interpreting it as an implementation of the
 {\twintoo{$\overline\lambda\mu\tilde\mu$}{calculus}}~\cite{SacerdotiCoen:enlt05} proof
 representation calculus.
 \end{module}
@@ -98,14 +98,14 @@ representation calculus.
 \begin{omgroup}[id=proof-text]{Proof Structure}
 
 In this section, we will concentrate on the structure of proofs apparent in the proof text
-and introduce the {\omdoc} infrastructure needed for marking up this aspect. Even if the
+and introduce the \omdoc infrastructure needed for marking up this aspect. Even if the
 proof in {\myfigref{pf-example1-math}} is very short and simple, we can observe several
 characteristics of a typical mathematical proof.  The proof starts with the thesis that is
 followed by nine main ``steps'' (numbered from 1 to 10). A very direct representation of
 the content of {\myfigref{pf-example1-math}} is given in {\mylstref{primes-omdoc-text}}.
 
 \begin{lstlisting}[label=lst:primes-omdoc-text,mathescape,
-  caption={An {\omdoc} Representation of {\myfigref{pf-example1-math}}.},
+  caption={An \omdoc Representation of {\myfigref{pf-example1-math}}.},
   index={symbol,definition}]
 <assertion xml:id="a1">
   <h:p>There are infinitely many prime numbers.</h:p>
@@ -155,18 +155,18 @@ the content of {\myfigref{pf-example1-math}} is given in {\mylstref{primes-omdoc
 </proof>
 \end{lstlisting}
 \begin{definition}[id=proof.def]
-  Proofs are specified by {\eldef{proof}} elements in {\omdoc} that have the optional
-  attributes {\attribute[ns-attr=xml]{id}{proof}} and {\attribute{theory}{proof}} and the
-  required attribute {\attribute{for}{proof}}. The {\attribute{for}{proof}} attribute
+  Proofs are specified by {\eldef{proof}} elements in \omdoc that have the optional
+  attributes \attribute[ns-attr=xml]{id}{proof} and \attribute{theory}{proof} and the
+  required attribute \attribute{for}{proof}. The \attribute{for}{proof} attribute
   points to the assertion that is justified by this proof (this can be an
-  {\element{assertion}} element or a {\element{derive}} proof step (see below), thereby
+  \element{assertion} element or a \element{derive} proof step (see below), thereby
   making it possible to specify expansions of justifications and thus hierarchical
   proofs).
 \end{definition}
 Note that there can be more than one proof for a given assertion.
 
 \begin{presonly}
-\begin{myfig}{qtproof}{The {\omdoc} Proof Elements}
+\begin{myfig}{qtproof}{The \omdoc Proof Elements}
 \begin{scriptsize}
 \begin{tabular}{|>{\tt}l|>{\tt}l|>{\tt}p{2.6truecm}|c|>{\tt}p{4.2truecm}|}\hline
 {\rm Element}& \multicolumn{2}{l|}{Attributes\hspace*{2.25cm}} & M & Content  \\\hline
@@ -186,9 +186,9 @@ Note that there can be more than one proof for a given assertion.
 \begin{omtext}
 The content of a proof consists of a sequence of proof steps, whose {\indextoo{DAG}}
 structure is given by \indexalt{cross-referencing}{cross-reference}. These proof steps are
-specified in four kinds of {\omdoc} elements:
+specified in four kinds of \omdoc elements:
 \begin{description}
-\item[{\element{omtext}}] {\omdoc} allows this element to allow for intermediate text in
+\item[{\element{omtext}}] \omdoc allows this element to allow for intermediate text in
   proofs that does not have to have a logical correspondence to a proof step, but e.g.
   guides the reader through the proof. Examples for this are remarks by the proof author,
   e.g.  an explanation why some other proof method will not work. We can see another
@@ -198,53 +198,52 @@ specified in four kinds of {\omdoc} elements:
   already known ones, from {\indextoo{assertion}s} or {\indextoo{axiom}s} in the current
   theory, or from the {\indextoo{assumption}s} of the assertion that is under
   consideration in the proof.  See for example lines $12ff$ in
-  {\mylstref{primes-omdoc-text}} for examples of {\element{derive}} proof steps that only
+  {\mylstref{primes-omdoc-text}} for examples of \element{derive} proof steps that only
   state the local assertion. We will consider the specification of justifications in
   detail in {\sref{proofs.justifications}} below.  \inlinedef{The {\eldef{derive}} element
-    carries an optional {\attribute[ns-attr=xml]{id}{derive}} attribute for identification
-    and an optional {\attribute{type}{derive}} to single out special cases of proofs
+    carries an optional \attribute[ns-attr=xml]{id}{derive} attribute for identification
+    and an optional \attribute{type}{derive} to single out special cases of proofs
     steps.}
   
-  The value {\attval{conclusion}{type}{derive}} is reserved for the concluding step of a
+  The value \attribute{conclusion}{type}{derive} is reserved for the concluding step of a
   proof\footnote{As the argumentative structure of the proof is encoded in the
     justification structure to be detailed in {\sref{proofs.justifications}}, the
     concluding step of a proof need not be the last child of a proof element.}, i.e. the
   one that derives the assertion made in the corresponding theorem.  
   
-  The value {\attval{gap}{type}{derive}} is used for proof steps that are not justified
+  The value \attribute{gap}{type}{derive} is used for proof steps that are not justified
   (yet): \inlinedef{we call them \defii{gap}{steps}}. Note that the presence of gap
-  steps allows {\omdoc} to specify {\twintoo{incomplete}{proof}s} as proofs with gap
+  steps allows \omdoc to specify {\twintoo{incomplete}{proof}s} as proofs with gap
   steps.
 \item[{\element{hypothesis}}] elements allow to specify {\twintoo{local}{assumption}s}
   that allow the hypothetical reasoning discipline needed for instance to specify proof by
   contradiction, by case analysis, or simply to show that $A$ implies $B$, by assuming $A$
   and then deriving $B$ from this local hypothesis. The scope of an hypothesis extends to
-  the end of the {\element{proof}} element containing it. \inlinedef{In
+  the end of the \element{proof} element containing it. \inlinedef{In
     {\mylstref{primes-omdoc-text}} the classification of step 2 from
     {\myfigref{pf-example1-math}} as the {\eldef{hypothesis}} element {\snippet{h2}}
-    forces us to embed it into a {\element{derive}} element with a {\element{proof}}
+    forces us to embed it into a \element{derive} element with a \element{proof}
     grandchild, making a structure apparent that was hidden in the original.}
   
   An important special case of hypothesis is the case of
   ``{\twintoo{inductive}{hypothesis}}'', this can be flagged by setting the value of the
-  attribute {\attribute{inductive}{hypothesis}} to {\attval{yes}{inductive}{hypothesis}};
-  the default value is {\attval{no}{inductive}{hypothesis}}.
+  attribute \attribute{inductive}{hypothesis} to \attribute{yes}{inductive}{hypothesis};
+  the default value is \attribute{no}{inductive}{hypothesis}.
 
   \setbox0=\hbox{\element{symbol}/\element{definition}}\item[\box0] These elements allow
-  to introduce new local symbols that are local to the containing {\element{proof}}
-  element.  Their meaning is just as described in {\sref{definitions}}, only that the
-  role of the {\element{axiom}} element described there is taken by the
-  {\element{hypothesis}} element. In {\mylstref{primes-omdoc-text}} step 4 in the proof
-  is represented by a {\element{symbol}}/{\element{definition}} pair. Like in the
-  {\element{hypothesis}} case, the scope of this symbol extends to the end of the
-  {\element{proof}} element containing it.
+  to introduce new local symbols that are local to the containing \element{proof} element.
+  Their meaning is just as described in {\sref{definitions}}, only that the role of the
+  \element{axiom} element described there is taken by the \element{hypothesis} element. In
+  {\mylstref{primes-omdoc-text}} step 4 in the proof is represented by a
+  \element{symbol}/\element{definition} pair. Like in the \element{hypothesis} case, the
+  scope of this symbol extends to the end of the \element{proof} element containing it.
 \end{description}
 \end{omtext}
 
 These elements contain an informal (natural language) representation of the proof step in
-a multilingual \twinalt{{\element{CMP}} group}{multilingual}{group} and possibly an
-{\element{FMP}} element that gives a formal representation of the claim made by this proof
-step. A {\element{derive}} element can furthermore contain a {\element{method}} element
+a multilingual \twinalt{\element{CMP} group}{multilingual}{group} and possibly an
+\element{FMP} element that gives a formal representation of the claim made by this proof
+step. A \element{derive} element can furthermore contain a \element{method} element
 that specifies how the assertion is derived from already-known facts (see the next section
 for details). All of the proof step elements have an optional
 {\attributeshort[ns-attr=xml]{id}} attribute for identification and the {\css} attributes.
@@ -266,7 +265,7 @@ is important, since it will be initially infeasible to totally formalize all
 \begin{omtext}
   So far we have only concerned ourselves with the linear structure of the proof, we have
   identified the proof steps and classified them by their function in the proof. A central
-  property of the {\element{derive}} elements is that their content (the local claim)
+  property of the \element{derive} elements is that their content (the local claim)
   follows from statements that we consider true. These can be earlier steps in the proof
   or general knowledge. To convince the reader of a proof, the steps are often accompanied
   with \inlinedef{a \defi{justification}}.  This can be given either by a logical
@@ -275,8 +274,8 @@ is important, since it will be initially infeasible to totally formalize all
   prove the assertion, or in a separate subproof, that could be presented if the consumer
   was unconvinced.  Conceptually, both possibilities are equivalent, since the
   {\indextoo{method}} can be used to compute the subproof (\inlinedef{called its
-    \defi{expansion}}). Justifications are represented in {\omdoc} by the
-  {\element{method}} children of {\element{derive}} elements\footnote{The structural and
+    \defi{expansion}}). Justifications are represented in \omdoc by the
+  \element{method} children of \element{derive} elements\footnote{The structural and
     formal justification elements discussed in this section are derived from hierarchical
     data structures developed for semi-automated theorem proving (satisfying the logical
     side). They allow natural language representations at every level (allowing for
@@ -288,64 +287,64 @@ is important, since it will be initially infeasible to totally formalize all
 
 \begin{definition}[id=method.def]
   The {\eldef{method}} element contains a structural specification of the justification of
-  the claim made in the {\element{FMP}} of a {\element{derive}} element.
+  the claim made in the \element{FMP} of a \element{derive} element.
 \end{definition}
-So the {\element{FMP}} together with the {\element{method}} element jointly form the
-counterpart to the natural language content of the {\element{CMP}} group, they are sibling
-to: The {\element{FMP}} formalizes the local claim, and the {\element{method}} stands for
-the justification. In {\mylstref{derive}} the formula in the {\element{CMP}} element
+So the \element{FMP} together with the \element{method} element jointly form the
+counterpart to the natural language content of the \element{CMP} group, they are sibling
+to: The \element{FMP} formalizes the local claim, and the \element{method} stands for
+the justification. In {\mylstref{derive}} the formula in the \element{CMP} element
 corresponds to the claim, whereas the part ``By \ldots, we have'' is the justification. In
-other words, a {\element{method}} element specifies a proof method or inference rule with
-its arguments that justifies the assertion made in the {\element{FMP}} elements.  It has
-an optional {\attribute{xref}{method}} attribute whose target is an {\omdoc} definition of
+other words, a \element{method} element specifies a proof method or inference rule with
+its arguments that justifies the assertion made in the \element{FMP} elements.  It has
+an optional \attribute{xref}{method} attribute whose target is an \omdoc definition of
 an {\twintoo{inference}{rule}} or {\twintoo{proof}{method}}.\footnote{At the moment
-  {\omdoc} does not provide markup for such objects, so that they should best be
-  represented by {\element{symbol}}s with {\element{definition}} where the inference rule
-  is explained in the {\element{CMP}} (see the lower part of {\mylstref{derive}}), and the
-  {\element{FMP}} holds a content representation for the inference rule, e.g.  using the
+  \omdoc does not provide markup for such objects, so that they should best be
+  represented by \element{symbol}s with \element{definition} where the inference rule
+  is explained in the \element{CMP} (see the lower part of {\mylstref{derive}}), and the
+  \element{FMP} holds a content representation for the inference rule, e.g.  using the
   content dictionary~\cite{CD:inference-rules}.  A good enhancement is to encapsulate
-  system-specific encodings of the inference rules in {\element{private}} or
-  {\element{code}} elements and have the {\attribute{xref}{method}} attribute point to
+  system-specific encodings of the inference rules in \element{private} or
+  \element{code} elements and have the \attribute{xref}{method} attribute point to
   these.} A method may have {\openmath} objects, {\cmathml} expressions,
-{\element{legacy}}, {\element{premise}}, {\element{proof}}, and
-{\element{proofobject}}\footnote{This object is an alternative representation of certain
+\element{legacy}, \element{premise}, \element{proof}, and
+\element{proofobject}\footnote{This object is an alternative representation of certain
   proofs, see {\sref{proofobjects}}.} children.  These act as {\indextoo{parameter}}s to
 the method, e.g. for the repeated universal instantiation method in {\mylstref{derive}}
 the parameters are the terms to instantiate the bound variables.
   
 \begin{definition}[id=premise.def]
   The {\eldef{premise}} elements are used to refer to already established assertions:
-  other proof steps or statements --- e.g. ones given as {\element{assertion}},
-  {\element{definition}}, or {\element{axiom}} elements --- the method was applied to to
-  obtain the local claim of the proof step. The {\element{premise}} elements are empty and
-  carry the required attribute {\attribute{xref}{premise}}, which contains the URI of the
+  other proof steps or statements --- e.g. ones given as \element{assertion},
+  \element{definition}, or \element{axiom} elements --- the method was applied to to
+  obtain the local claim of the proof step. The \element{premise} elements are empty and
+  carry the required attribute \attribute{xref}{premise}, which contains the URI of the
   assertion.
 \end{definition}
-Thus the {\element{premise}} elements specify the {\indextoo{DAG}} structure of the
+Thus the \element{premise} elements specify the {\indextoo{DAG}} structure of the
 proof. Note that even if we do not mark up the method in a justification (e.g. if it is
 unknown or obvious) it can still make sense to structure the argument in
-{\element{premise}} elements. We have done so in {\mylstref{primes-omdoc-text}} to make
+\element{premise} elements. We have done so in {\mylstref{primes-omdoc-text}} to make
 the dependencies of the argumentation explicit.
   
-  If a {\element{derive}} step is a logically (or even mathematically) complex step, an
-  expansion into sub-steps can be specified in a {\element{proof}} or
-  {\element{proofobject}} element embedded into the justifying {\element{method}} element.
+  If a \element{derive} step is a logically (or even mathematically) complex step, an
+  expansion into sub-steps can be specified in a \element{proof} or
+  \element{proofobject} element embedded into the justifying \element{method} element.
   An embedded proof allows us to specify generic markup for the hierarchic structure of
   proofs. Expansions of nodes justified by method applications are computed, but the
   information about the method itself is not discarded in the process as in tactical
   theorem provers like {\isabelle}~\cite{Paulson:iagtp94} or {\nuprl}~\cite{Constable86}.
   Thus, proof nodes may have justifications at multiple levels of abstraction in an
-  hierarchical proof data structure.  Thus the {\element{method}} elements allow to
+  hierarchical proof data structure.  Thus the \element{method} elements allow to
   augment the linear structure of the proof by a {\indextoo{tree}}/{\indextoo{DAG}}-like
-  secondary structure given by the {\element{premise}} links. Due to the complex
+  secondary structure given by the \element{premise} links. Due to the complex
   hierarchical structure of proofs, we cannot directly utilize the tree-like structure
   provided by {\xml}, but use \indexalt{cross-referencing}{cross-reference}.  The
-  {\element{derive}} step in {\mylstref{derive}} represents an inner node of the proof
+  \element{derive} step in {\mylstref{derive}} represents an inner node of the proof
   tree/DAG with three children (the elements with identifiers {\snippet{A2}},
   {\snippet{A4}}, and {\snippet{A5}}).
 
 \begin{lstlisting}[label=lst:derive,mathescape,
-  caption={A {\element{derive}} Proof Step},index={derive,method,premise}]
+  caption={A \element{derive} Proof Step},index={derive,method,premise}]
 <proof xml:id="proof.2.1.2.proof.D2.1" for="#assertion.2.1.2">
   $\ldots$
   <derive xml:id="D2.1">
@@ -381,31 +380,31 @@ $\ldots$
 \end{lstlisting}
 
 \begin{omtext}
-  In {\omdoc} the {\element{premise}} elements must reference proof steps in the current
-  proof or statements ({\element{assertion}} or {\element{axiom}} elements) in the scope
+  In \omdoc the \element{premise} elements must reference proof steps in the current
+  proof or statements (\element{assertion} or \element{axiom} elements) in the scope
   of the current theory: \inlinedef{A statement is in \defi{scope} of the \twinalt{current
       theory}{theory}{in scope of}, if its home theory is the current theory or imported
     (directly or indirectly) by the current theory.}
 \end{omtext}
 
-Furthermore note that a proof containing a {\element{premise}} element is not
-self-contained evidence for the validity of the {\element{assertion}} it proves.
+Furthermore note that a proof containing a \element{premise} element is not
+self-contained evidence for the validity of the \element{assertion} it proves.
 Of course it is only evidence for the validity at all (we call such a proof
 {\indextoo{grounded}}), if all the statements that are targets of
-{\element{premise}} references have grounded proofs themselves\footnote{For
-  {\element{assertion}} targets this requirement is obvious. Obviously,
+\element{premise} references have grounded proofs themselves\footnote{For
+  \element{assertion} targets this requirement is obvious. Obviously,
   {\element{axiom}s} do not need proofs, but certain forms of definitions need
   well-definedness proofs (see {\sref{definitions}}). These are included in
   the definition of a grounded proof.} and the reference relation does not contain
 cycles. A grounded proof can be made self-contained by inserting the target
-statements as {\element{derive}} elements before the referencing
-{\element{premise}} and embedding at least one {\element{proof}} into the
-{\element{derive}} as a justification.
+statements as \element{derive} elements before the referencing
+\element{premise} and embedding at least one \element{proof} into the
+\element{derive} as a justification.
 
 Let us now consider another proof example ({\mylstref{expansion}}) to fortify our intuition.
 
 \begin{lstlisting}[label=lst:expansion,mathescape,
-  caption={An {\omdoc} Representation of a Proof by Cases},
+  caption={An \omdoc Representation of a Proof by Cases},
   index={proof,derive,method,assumption,conclusion}]
 <assertion xml:id="t1" theory="sets">
   <h:p>If $a\in{U}$ or $a\in{V}$, then $a\in{U}\cup{V}$.</h:p>
@@ -441,20 +440,20 @@ Let us now consider another proof example ({\mylstref{expansion}}) to fortify ou
 \end{lstlisting}
 This \twinalt{proof}{sequent}{proof} is in {\twintoo{sequent}{style}}: The statement of
 all local claims is in self-contained {\element{FMP}s} that mark up the statement in
-{\element{assumption}}/{\element{conclusion}} form, which makes the logical dependencies
+\element{assumption}/\element{conclusion} form, which makes the logical dependencies
 explicit. In this example we use inference rules from the calculus ``SK'',Gentzen's
 sequent calculus for {\atwintoo{classical}{first-order}{logic}}~\cite{Gentzen:uudlsiii35},
 which we assume to be formalized in a theory {\snippet{SK}}.  Note that local assumptions
-from the {\element{FMP}} should not be referenced outside the {\element{derive}} step they
-were made in. In effect, the {\element{derive}} element serves as a grouping device for
+from the \element{FMP} should not be referenced outside the \element{derive} step they
+were made in. In effect, the \element{derive} element serves as a grouping device for
 local assumptions.
 
-Note that the same effect as embedding a {\element{proof}} element into a
-{\element{derive}} step can be obtained by specifying the {\element{proof}} at top-level
-and using the optional {\attribute{for}{proof}} attribute to refer to the identity of the
-enclosing proof step (given by its optional {\attribute[ns-attr=xml]{id}{derive}}
+Note that the same effect as embedding a \element{proof} element into a
+\element{derive} step can be obtained by specifying the \element{proof} at top-level
+and using the optional \attribute{for}{proof} attribute to refer to the identity of the
+enclosing proof step (given by its optional \attribute[ns-attr=xml]{id}{derive}
 attribute), we have done this in the proof in {\mylstref{expansion2}}, which expands the
-{\element{derive}} step with identifier {\snippet{t1\_p1\_l1}} in {\mylstref{expansion}}.
+\element{derive} step with identifier {\snippet{t1\_p1\_l1}} in {\mylstref{expansion}}.
 
 \begin{lstlisting}[label=lst:expansion2,mathescape,
   caption={An External Expansion of Step {\snippet{t\_1\_p1\_l1}} in {\mylstref{expansion}}},
@@ -508,11 +507,11 @@ attribute), we have done this in the proof in {\mylstref{expansion2}}, which exp
 Unlike the {\atwintoo{sequent}{style}{proof}s} we discussed in the last section, many
 informal proofs use the \atwintoo{natural}{deduction}{style}~\cite{Gentzen:uudlsiii35},
 which allows to reason from local assumptions. We have already seen such hypotheses as
-{\element{hypothesis}} elements in {\mylstref{primes-omdoc-text}}. The main new feature is
+\element{hypothesis} elements in {\mylstref{primes-omdoc-text}}. The main new feature is
 that hypotheses can be introduced at some point in the proof, and are discharged later.
 As a consequence, they can only be used in certain parts of the proof.  The hypothesis is
-inaccessible for inference outside the nearest ancestor {\element{proof}} element of the
-{\element{hypothesis}}.
+inaccessible for inference outside the nearest ancestor \element{proof} element of the
+\element{hypothesis}.
   
 \begin{omtext}
   Let us now reconsider the proof in {\myfigref{pf-example1-math}}. Some of the steps (2,
@@ -553,8 +552,8 @@ To sum up, every proof step is characterized by a current thesis and a {\emph{\i
 which is the set of all the local declarations, hypotheses, and local definitions in
 scope. Furthermore, a step can either introduce a new hypothesis, definition, or
 declaration or can just be a forward or backward reasoning step.  It is a forward
-reasoning {\element{derive}} step if it leaves the current thesis as it is.  It is a
-backward reasoning {\element{derive}} step if it opens new subproofs, each one
+reasoning \element{derive} step if it leaves the current thesis as it is.  It is a
+backward reasoning \element{derive} step if it opens new subproofs, each one
 characterized by a new thesis and possibly a new context.
 
 \begin{lstlisting}[label=lst:primes-omdoc,mathescape,
@@ -616,8 +615,8 @@ characterized by a new thesis and possibly a new context.
 </proof>
 \end{lstlisting}
 
-{\element{proof}} elements are considered to be
-\twinalt{non-assertional}{assertional}{element} in {\omdoc}, since they do not make
+\element{proof} elements are considered to be
+\twinalt{non-assertional}{assertional}{element} in \omdoc, since they do not make
 assertions about mathematical objects themselves, but only justify such assertions.
 The assertional elements inside the proofs are governed by the scoping mechanisms
 discussed there, so that using them in a context where assertional elements are
@@ -629,8 +628,8 @@ needed, can be forbidden.
 \begin{omgroup}[id=proofobjects]{Formal Proofs as Mathematical Objects}
 
 \begin{omtext}
-  In {\omdoc}, the notion of fully formal proofs is accommodated by the
-  {\element{proofobject}} element. In logic, \inlinedef{the term \defii{proof}{object}
+  In \omdoc, the notion of fully formal proofs is accommodated by the
+  \element{proofobject} element. In logic, \inlinedef{the term \defii{proof}{object}
     is used for term representations of formal proofs via the Curry/Howard/DeBruijn
     Isomorphism} (see e.g.~\cite{Thompson91} for an introduction and
   {\myfigref{proofobject}} for an example).  $\lambda$-terms are among the most succinct
@@ -645,9 +644,9 @@ needed, can be forbidden.
 
 \begin{definition}[id=proofobject.def]
   The {\eldef{proofobject}} element contains an optional multilingual group of
-  {\element{h:p}} elements which describes the formal proof as well as a
+  \element{h:p} elements which describes the formal proof as well as a
   {\twintoo{proof}{object}} which can be an {\openmath} object, {\cmathml} expression, or
-  {\element{legacy}} element.
+  \element{legacy} element.
 \end{definition}
 
 \begin{myfig}{proofobject}{A Proof Object for the Commutativity of Conjunction}
@@ -703,7 +702,7 @@ needed, can be forbidden.
 \end{minipage}}
 \setbox2=\hbox{\begin{minipage}{11cm}
   The schema on the left shows the proof as a natural deduction proof tree, the
-  {\omdoc} representation gives the proof object as a $\lambda$ term. This term
+  \omdoc representation gives the proof object as a $\lambda$ term. This term
   would be written as the following term in traditional (mathematical) notation:
   $\Rightarrow\kern-.3em{I}(\lambda{X:A\wedge{B}}.\wedge\kern-.3em{I}(\wedge{E_r}(X),\wedge{E_l}(X)))$
 \end{minipage}}
@@ -713,7 +712,7 @@ needed, can be forbidden.
  \multicolumn{2}{|c|}{\box2}\\\hline
 \end{tabular}
 \end{myfig}
-Note that using {\omdoc} symbols for inference rules and mathematical objects for proofs
+Note that using \omdoc symbols for inference rules and mathematical objects for proofs
 reifies them to the object level and allows us to treat them at par with any other
 mathematical objects. We might have the following theory for natural deduction in
 propositional logic as a reference target for the second inference rule in
@@ -739,7 +738,7 @@ propositional logic as a reference target for the second inference rule in
 </theory>
 \end{lstlisting}
 
-In particular, it is possible to use a {\element{definition}}
+In particular, it is possible to use a \element{definition}
 element to define a {\atwintoo{derived}{inference}{rule}} by simply specifying the proof
 term as a {\indextoo{definiens}}:
 \begin{lstlisting}[mathescape]
@@ -752,7 +751,7 @@ term as a {\indextoo{definiens}}:
 </definition>
 \end{lstlisting}
 Like {\element{proof}s}, {\element{proofobject}s} elements are considered to be
-\twinalt{non-assertional}{assertional}{element} in {\omdoc}, since they do not make
+\twinalt{non-assertional}{assertional}{element} in \omdoc, since they do not make
 assertions about mathematical objects themselves, but only justify such assertions.
 \end{omgroup}
 \end{module}

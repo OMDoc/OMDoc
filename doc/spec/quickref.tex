@@ -7,7 +7,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{omgroup}[id=table,short=Quick-Reference]
-                           {Quick-Reference Table to the {\omdoc} Elements}
+                           {Quick-Reference Table to the \omdoc Elements}
 \def\tabelt#1#2#3#4#5#6{{#1}&\sref{eldef.#1}&{#2}&{#3}&{#4}&{#5}&{#6}\\\hline}
 \def\mathmlcat{MML}\def\omcat{OM}
 \begin{scriptsize}
@@ -45,14 +45,14 @@
 \tabelt{m:csymbol}\mathmlcat{definitionURL}{id, xlink:href}{--}{EMPTY}
 \tabelt{data}{\EXTmodule{spec}}{}{format, href, size, original}{--}{<![CDATA[\ldots]]>}
 \tabelt{dc:date}{\METAmodule{spec}}{}{action, who}{--}{{\atwintoo{ISO}{8601}{norm}}}
-\tabelt{dd}{\RTmodule{spec}}{}{xml:id, style, class, index, verbalizes}{+}{{\rm{\element{CMP}}content}}
+\tabelt{dd}{\RTmodule{spec}}{}{xml:id, style, class, index, verbalizes}{+}{{\rm\element{CMP}content}}
 \tabelt{di}{\RTmodule{spec}}{}{xml:id, style, class, index, verbalizes}{+}{dt+,dd*}
 \tabelt{dl}{\RTmodule{spec}}{}{xml:id, style, class, index, verbalizes}{+}{{li*}}
-\tabelt{dt}{\RTmodule{spec}}{}{xml:id, style, class, index, verbalizes}{+}{{\rm{\element{CMP}}content}}
+\tabelt{dt}{\RTmodule{spec}}{}{xml:id, style, class, index, verbalizes}{+}{{\rm\element{CMP}content}}
 \tabelt{decomposition}{\DGmodule{spec}}{links}{theory, generated-from, generated-via}{--}{EMPTY}
 \tabelt{definition}{\STmodule{spec}}{xml:id, for}{uniqueness, existence, consistency, exhaustivity, type, generated-from, generated-via, style, class}{+}{CMP*,
              (FMP| requation+| \mobjabbr)?, measure?, ordering?}
-\tabelt{dc:description}{\METAmodule{spec}}{}{xml:lang}{--}{{\rm{\element{CMP}}content}}
+\tabelt{dc:description}{\METAmodule{spec}}{}{xml:lang}{--}{{\rm\element{CMP}content}}
 \tabelt{derive}{\PFmodule{spec}}{}{xml:id, style, class}{--}{CMP*, FMP?, method?}\hline
 \tabelt{effect}{\EXTmodule{spec}}{}{xml:id, style, class}{--}{CMP*,FMP*}
 \tabelt{element}{\PRESmodule{spec}}{name}{xml:id, cr, ns}{--}{(attribute| element| text| recurse)*}
@@ -67,8 +67,8 @@
 \tabelt{hypothesis}{\PFmodule{spec}}{}{xml:id, style, class, inductive}{--}{CMP*, FMP*}\hline
 \tabelt{dc:identifier}{\METAmodule{spec}}{}{scheme}{--}{ANY}
 \tabelt{ide}{\RTmodule{spec}}{index}{xml:id,sort-by,see, seealso, links, style, class}{--}{idp*}
-\tabelt{idp}{\RTmodule{spec}}{}{xml:id,sort-by,see, seealso, links, style, class}{--}{\rm{\element{CMP}}content}
-\tabelt{idt}{\RTmodule{spec}}{}{style, class}{--}{\rm{\element{CMP}}content}
+\tabelt{idp}{\RTmodule{spec}}{}{xml:id,sort-by,see, seealso, links, style, class}{--}{\rm\element{CMP}content}
+\tabelt{idt}{\RTmodule{spec}}{}{style, class}{--}{\rm\element{CMP}content}
 \tabelt{idx}{\RTmodule{spec}}{}{xml:id,sort-by,see, seealso, links, style, class}{--}{idt?,idp+}
 \tabelt{ignore}{\DOCmodule{spec}}{}{type, comment}{--}{ANY}
 \tabelt{imports}{\CTHmodule{spec}}{from}{xml:id, type, style, class}{+}{morphism?}
@@ -140,10 +140,10 @@
 \tabelt{sortdef}{\ADTmodule{spec}}{name}{role, scope, style, class}{+}{(constructor|insort)*}
 \tabelt{dc:source}{\METAmodule{spec}}{}{}{--}{ANY}
 \tabelt{style}{\PRESmodule{spec}}{format}{xml:lang, requires}{--}{(element | text | recurse | value-of)*}
-\tabelt{dc:subject}{\METAmodule{spec}}{}{xml:lang}{--}{{\rm{\element{CMP}}content}}
+\tabelt{dc:subject}{\METAmodule{spec}}{}{xml:lang}{--}{{\rm\element{CMP}content}}
 \tabelt{symbol}{\STmodule{spec}}{name}{role, scope, style, class,generated-from,generated-via}{+}{type*}\hline
 \tabelt{table}{\RTmodule{spec}}{}{xml:id, style, class, index, verbalizes}{--}{{tr*}}
-\tabelt{term}{\MTXTmodule{spec}}{cd, name}{xml:id, role, style, class}{--}{{\rm {\element{CMP}} content}}
+\tabelt{term}{\MTXTmodule{spec}}{cd, name}{xml:id, role, style, class}{--}{{\rm \element{CMP} content}}
 \tabelt{text}{\PRESmodule{spec}}{}{}{--}{\#PCDATA}
 \tabelt{td}{\RTmodule{spec}}{}{xml:id, style, class, index, verbalizes}{--}{{Math Vernacular}}
 \tabelt{th}{\RTmodule{spec}}{}{xml:id, style, class, index, verbalizes}{--}{{Math Vernacular}}
@@ -151,7 +151,7 @@
 \tabelt{theory-inclusion}{\CTHmodule{spec}}{from, to}{xml:id, style, class, theory,
   generated-from, generated-via}{+}{(morphism, decomposition?)}
 \tabelt{tr}{\RTmodule{spec}}{}{xml:id, style, class, index, verbalizes}{--}{{(td|th)*}}
-\tabelt{dc:title}{\METAmodule{spec}}{}{xml:lang}{--}{{\rm{\element{CMP}}content}}
+\tabelt{dc:title}{\METAmodule{spec}}{}{xml:lang}{--}{{\rm\element{CMP}content}}
 \tabelt{tgroup}{\DOCmodule{spec}}{}{xml:id, type, style, class, modules,
   generated-from, generated-via}{+}{{\rm top-level or theory-constitutive element}*}
 \tabelt{type}{\STmodule{spec}}{system}{xml:id, for, style, class}{--}{CMP*, (\mobjabbr)}
@@ -161,7 +161,7 @@
              lbrack, rbrack, separator, crossref-symbol, element, attributes}
                         {--}{(use | xslt | style)* }
 \tabelt{value-of}{\PRESmodule{spec}}{select}{}{--}{EMPTY}
-\tabelt{phrase}{\MTXTmodule{spec}}{}{xml:id, style, class, index, verbalizes, type}{--}{{\rm {\element{CMP}} content}}
+\tabelt{phrase}{\MTXTmodule{spec}}{}{xml:id, style, class, index, verbalizes, type}{--}{{\rm \element{CMP} content}}
 \tabelt{xslt}{\PRESmodule{spec}}{format}{xml:lang, requires}{--}{{\xslt} fragment}
 \end{longtable}
 \end{scriptsize}

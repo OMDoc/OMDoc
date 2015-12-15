@@ -8,8 +8,8 @@
 
 \begin{omgroup}[id=rnc]{The RelaxNG Schema for OMDoc}
 
-We reprint the modularized {\relaxng} schema for {\omdoc} here. It is available at
-\url{http://www.omdoc.org/rnc} and consists of separate files for the {\omdoc} modules,
+We reprint the modularized {\relaxng} schema for \omdoc here. It is available at
+\url{http://www.omdoc.org/rnc} and consists of separate files for the \omdoc modules,
 which are loaded by the schema driver {\snippet{omdoc.rnc}} in this directory. We will use
 the abbreviated syntax for {\relaxng} here, since the {\xml} syntax, \indexalt{document
   typedefinitions}{DTD} and even \twinalt{{\xml} schemata}{XML}{schema} can be generated
@@ -20,11 +20,11 @@ The {\relaxng} schema consists of the grammar fragments for the modules (see
 
 \begin{omgroup}[id=rnc.drivers]{The Sub-Language Drivers}
 
-The Schema comes in two parts: strict {\omdoc}
+The Schema comes in two parts: strict \omdoc
 
 \lstinputlisting[language=RNC,nolol]{../../schema/rnc/strict/omdoc-strict.rnc}
  
-and pragmatic {\omdoc}
+and pragmatic \omdoc
 
 \lstinputlisting[language=RNC,nolol]{../../schema/rnc/omdoc.rnc}
 \end{omgroup}
@@ -32,9 +32,9 @@ and pragmatic {\omdoc}
 \begin{omgroup}[id=rnc.math]{Module {\MOBJmodule{RNC}}: Mathematical Objects and Text}
 
 The RNC module {\MOBJmodule{RNC}} includes the representations for mathematical objects
-and defines the {\element{legacy}} element (see {\sref{mobj}} for a discussion). It
+and defines the \element{legacy} element (see {\sref{mobj}} for a discussion). It
 includes the standard {\relaxng} schema for {\openmath} (we have reprinted it in
-{\myappsecref{rnc.openmath}}) adding the {\omdoc} identifier and {\css}
+{\myappsecref{rnc.openmath}}) adding the \omdoc identifier and {\css}
 \twinalt{attributes}{CSS}{attribute} to all elements. If also includes a schema for
 {\mathml} (see {\myappsecref{rnc.mathml}}).
 
@@ -82,7 +82,7 @@ index={contributor,creator,title,subject,description,publisher,type,
 \end{omgroup}
 
 \begin{omgroup}[id=rnc.doc]{Module {\DOCmodule{RNC}}: Document Infrastructure}
-  The RNC module {\DOCmodule{RNC}} specifies the document infrastructure of {\omdoc}
+  The RNC module {\DOCmodule{RNC}} specifies the document infrastructure of \omdoc
   documents (see {\sref{omdoc-infrastructure}} for a discussion).
   \lstinputlisting[language=RNC, index={omdoc},nolol]{../../schema/rnc/strict/doc-strict.rnc}
   \lstinputlisting[language=RNC, index={},nolol]{../../schema/rnc/pragmatic/omdocdoc.rnc}
@@ -91,8 +91,8 @@ index={contributor,creator,title,subject,description,publisher,type,
 \begin{omgroup}[id=rnc.st]{Module {\STmodule{RNC}}: Mathematical Statements}
 
 The RNC module {\STmodule{RNC}} deals with mathematical statements like assertions and
-examples in {\omdoc} and provides an infrastructure for mathematical theories as contexts,
-for the {\omdoc} elements that fix the meaning for symbols, see {\sref{statements}}
+examples in \omdoc and provides an infrastructure for mathematical theories as contexts,
+for the \omdoc elements that fix the meaning for symbols, see {\sref{statements}}
 for a discussion.
 \lstinputlisting[language=RNC,nolol,
 index={theory,constant,definition,type,include}] {../../schema/rnc/strict/st-strict.rnc}
@@ -102,7 +102,7 @@ index={assertion,alternative,example,imports}] {../../schema/rnc/pragmatic/omdoc
 
 \begin{omgroup}[id=rnc.adt]{Module {\ADTmodule{RNC}}: Abstract Data Types}
 The RNC module {\ADTmodule{RNC}} specifies the grammar for abstract data types in 
-{\omdoc}, see {\sref{adt}} for a discussion.
+\omdoc, see {\sref{adt}} for a discussion.
 \lstinputlisting[language=RNC,nolol,
 index={adt,sortdef,insort,constructor,recognizer,argument,destructor}]
 {../../schema/rnc/pragmatic/omdocadt.rnc}
@@ -110,7 +110,7 @@ index={adt,sortdef,insort,constructor,recognizer,argument,destructor}]
 
 \begin{omgroup}[id=rnc.proof]{Module {\PFmodule{RNC}}: Proofs and Proof objects}
 The RNC module {\PFmodule{RNC}} deals with mathematical argumentations and proofs in
-{\omdoc}, see {\sref{proofs}} for a discussion.
+\omdoc, see {\sref{proofs}} for a discussion.
 \lstinputlisting[language=RNC,nolol,
 index={proof,proofobject,derive,hypothesis,method,premise}]
 {../../schema/rnc/pragmatic/omdocpf.rnc}
@@ -125,7 +125,7 @@ index={omlet,private,code,input,output,effect,data}] {../../schema/rnc/pragmatic
 
 \begin{omgroup}[id=rnc.pres]{Module {\PRESmodule{RNC}}: Adding Presentation Information}
 The RNC module {\PRESmodule{RNC}} provides a sub-language for defining notations for
-mathematical symbols and for styling {\omdoc} elements (see {\sref{pres}} for a
+mathematical symbols and for styling \omdoc elements (see {\sref{pres}} for a
 discussion).
 \lstinputlisting[language=RNC,nolol]
 {../../schema/rnc/strict/notation-strict.rnc}

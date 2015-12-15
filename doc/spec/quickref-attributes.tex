@@ -7,7 +7,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{omgroup}[id=att-table,short=Table of Attributes]
-               {Quick-Reference Table to the {\omdoc} Attributes}
+               {Quick-Reference Table to the \omdoc Attributes}
 \def\atabelt#1#2#3#4{\hline{}{#1}&{#2}&{#3}\\\hline&\multicolumn{2}{|p{9cm}|}{#4}\\\hline}
 \begin{footnotesize}
 \begin{longtable}{|>{\tt}p{2.5cm}|>{\tt}p{4cm}|>{\tt}p{5cm}|}\hline
@@ -15,11 +15,11 @@
 \atabelt{action}{dc:date}{unspecified}{specifies the action taken on the document on this date.}
 
 \atabelt{action}{omlet}{execute, display, other}
- {specifies the action to be taken when executing the {\element{omlet}}, the value is
+ {specifies the action to be taken when executing the \element{omlet}, the value is
      application-defined.}
 
 \atabelt{actuate}{omlet}{onPresent, onLoad, onRequest, other}{specifies the timing of the
-  action specified in the {\attribute{action}{omlet}} attribute}
+  action specified in the \attribute{action}{omlet} attribute}
 
 \atabelt{assertion}{example}{}
  {specifies the assertion that states that the objects given in the example really have
@@ -32,7 +32,7 @@
 
 \atabelt{attributes}{use}{}
  {the attribute string for the start tag of the {\xml} element  substituted for
- the brackets (this is specified in the {\element{element}} attribute).}
+ the brackets (this is specified in the \element{element} attribute).}
 \atabelt{attribution}{cc:requirements}{required, not\_required}
 {Specifies whether the copyright holder/author must be given credit in derivative works}
 
@@ -78,7 +78,7 @@
 \atabelt{class}{*}{}{specifies the {\css} class}
 \atabelt{commercial\_use}{cc:permissions}{permitted, prohibited}{specifies, whether commercial use of the
   document with this license is permitted}
-\atabelt{consistency}{morphism, definition}{OMDoc reference}{points to an {\element{assertion}}
+\atabelt{consistency}{morphism, definition}{OMDoc reference}{points to an \element{assertion}
   stating that the cases are consistent, i.e. that they give the same values, where they
   overlap}
 \atabelt{copyleft}{cc:restrictions}{required, not\_required}{specifies whether derived works must be licensed
@@ -90,7 +90,7 @@
 \atabelt{crossref-symbol}{presentation, use}{no, yes, brackets, separator, lbrack, rbrack, all}
 {specifies which generated presentation elements should carry cross-references to the definition.}
 \atabelt{data}{omlet}{}
- {points to a {\element{private}} element that contains the data for this {\element{omlet}}}
+ {points to a \element{private} element that contains the data for this \element{omlet}}
 \atabelt{definitionURL}{m:*}{URI}{points to the definition of a mathematical concept}
 \atabelt{derivative\_works}{cc:permissions}{permitted, not\_permitted}{specifies whether
   the document may be used for making derivative works.}
@@ -99,7 +99,7 @@
 \atabelt{element}{use}{}
  {the {\xml} element tags to be substituted for the brackets.}
 \atabelt{element}{omstyle}{}
- {the {\xml} element, the presentation information contained in the {\element{omstyle}}
+ {the {\xml} element, the presentation information contained in the \element{omstyle}
    element should be applied to.}
 \atabelt{encoding}{m:annotation,om:OMFOREIGN}{MIME type of the content}{specifies the
   format of the content}
@@ -120,9 +120,9 @@
    displayed in the output format}
 
 \atabelt{function}{omlet}{}
- {specifies the function to be called when this {\element{omlet}} is activated.}
+ {specifies the function to be called when this \element{omlet} is activated.}
  
- \atabelt{format}{data}{} {specifies the format of the data specified by a {\element{data}}
+ \atabelt{format}{data}{} {specifies the format of the data specified by a \element{data}
    element. The value should e.g. be a {\twintoo{MIME}{type}}~\cite{FreBor:MIME96}.}
 
 \atabelt{for}{*}{}
@@ -139,7 +139,7 @@
  {specifies the output format for which the notation is specified}
 
 \atabelt{from}{imports, theory-inclusion, axiom-inclusion}{URI reference}{pointer to source
-  {\element{theory}} of a theory morphism}
+  \element{theory} of a theory morphism}
 \atabelt{from}{omtext}{URI reference}{points to the source of a relation given by a text type}
 
 \atabelt{generated-from}{top-level elements}{URI reference}
@@ -198,16 +198,16 @@
 
 \atabelt{links}{decomposition}{}
  {specifies a list of theory-  or axiom-inclusions that justify (by decomposition)
- the {\element{theory-inclusion}} specified  in the {\attributeshort{for}} attribute.}
+ the \element{theory-inclusion} specified  in the {\attributeshort{for}} attribute.}
 
 \atabelt{local}{path-just}{}
- {points to the {\element{axiom-inclusion}} that is the first element in the path.}
+ {points to the \element{axiom-inclusion} that is the first element in the path.}
 
 \atabelt{logic}{FMP}{{\rm token}}
  {specifies the logical system used to encode the property.} 
 
 \atabelt{modules}{omdoc, omdoc}{module and sub-language shorthands, URI
- reference}{specifies the modules or {\omdoc} sub-language used in this document fragment}
+ reference}{specifies the modules or \omdoc sub-language used in this document fragment}
 
 \atabelt{name}{om:OMS, om:OMV, symbol, term}{}
  {the name of a concept referenced by a symbol, variable, or technical term.}
@@ -225,8 +225,8 @@
 or attribute node}
 
 \atabelt{original}{data}{local, external}{specifies whether the local copy in the
-  {\element{data}} element is the original or the external resource pointed to by the
-  {\attribute{href}{data}} attribute.}
+  \element{data} element is the original or the external resource pointed to by the
+  \attribute{href}{data} attribute.}
 
 \atabelt{parameters}{adt}{}
   {The list of formal parameters of a higher-order abstract data type}
@@ -235,7 +235,7 @@ or attribute node}
  {the precedence of a function symbol (for elision of brackets)}
  
  \atabelt{just-by}{assertion}{} {specifies a list of URIs to proofs or other
-   justifications for the proof status given in the {\attribute{status}{assertion}}
+   justifications for the proof status given in the \attribute{status}{assertion}
    attribute.}
 
 \atabelt{pto, pto-version}{private, code}{}
@@ -248,13 +248,13 @@ or attribute node}
 
 \atabelt{reformulates}{private}{}
  {points to a set of  elements whose content is reformulated by the content 
-  of the {\element{private}} element for the system.}
+  of the \element{private} element for the system.}
 
 \atabelt{reproduction}{cc:permissions}{permitted,not\_permitted}{specifies whether
   reproduction of the current document fragment is permitted by the licensor}
 
 \atabelt{requires}{private, code, use, xslt, style}{URI reference}
- {points to a {\element{code}} element that is needed for the execution of this data by
+ {points to a \element{code} element that is needed for the execution of this data by
   the system.}
 
 \atabelt{role}{dc:creator, dc:collaborator}
@@ -286,7 +286,7 @@ or attribute node}
   external object.}
 
 \atabelt{size}{data}{}
- {specifies the size the data specified by a {\element{data}} element. The value should
+ {specifies the size the data specified by a \element{data} element. The value should
   be number of kilobytes}
 
 \atabelt{sort}{argument}{}
@@ -294,14 +294,14 @@ or attribute node}
 
 \atabelt{style}{*}{}
  {specifies a token for a presentation style to be picked up in a
- {\element{presentation}} element.}
+ \element{presentation} element.}
 
 \atabelt{system}{type}{}
  {A token that specifies the logical type system that governs the type specified
  in the type element.}
 
 \atabelt{theory}{*}{}
- {specifies the home theory of an {\omdoc} statement.}
+ {specifies the home theory of an \omdoc statement.}
 
 \atabelt{to}{theory-inclusion, axiom-inclusion}{}
  {specifies the target theory}
@@ -348,9 +348,9 @@ markup}
 \atabelt{type}{phrase}{}{the linguistic or mathematical type of the phrase}
 
 \atabelt{type}{ref}{include, cite}{specifies whether to replace the {\element{ref} element
-  by the fragment referenced by {\attribute{href}{ref}} attribute or to merely cite it.}}
+  by the fragment referenced by \attribute{href}{ref} attribute or to merely cite it.}}
 
-\atabelt{uniqueness}{definition}{URI reference}{points to an {\element{assertion}} that
+\atabelt{uniqueness}{definition}{URI reference}{points to an \element{assertion} that
   states the uniqueness of the concept described in an implicit definition}
 
 \atabelt{value}{param}{}{specifies the value of the parameter}
@@ -358,7 +358,7 @@ markup}
 \atabelt{valuetype}{param}{}{specifies the type of the value of the parameter}
 
 \atabelt{verbalizes}{on {\RTmodule{spec}} elements}{URI references}{contains a
-  whitespace-separated list of pointers to {\omdoc} elements that are verbalized}
+  whitespace-separated list of pointers to \omdoc elements that are verbalized}
 
 \atabelt{verdict}{answer}{}
  {specifies the truth or falsity of the answer. This can be used e.g. 

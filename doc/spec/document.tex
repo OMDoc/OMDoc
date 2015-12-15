@@ -50,7 +50,7 @@ it by the index and the table of contents.  The way humans work with knowledge a
 involves a change of state. When we are taught or explore a mathematical domain, we have a
 linear/narrative path through the material, from which we abstract more and more, finally
 settling for a semantic representation that is relatively independent from the path we
-acquired it by.  Systems like {\activemath} (see {\extref{projects}{activemath}}) use the {\omdoc}
+acquired it by.  Systems like {\activemath} (see {\extref{projects}{activemath}}) use the \omdoc
 format in exactly that way playing on the difference between the two classes and
 generating narrative-structured representations from knowledge-structured ones on the fly.
 
@@ -58,7 +58,7 @@ So, maybe the best way to think about this is that the question whether a docume
 is narrative- or knowledge-structured is not a property of the document itself,
 but a property of the application processing this document.
 
-{\omdoc} provides markup infrastructure for both aspects. In this chapter, we will discuss
+\omdoc provides markup infrastructure for both aspects. In this chapter, we will discuss
 the infrastructure for the narrative aspect --- for a working example we refer the reader
 to {\extref{primer}{courseware}}. We will look at markup elements for knowledge-structured
 documents in {\sref{theories-contexts}}.
@@ -75,45 +75,45 @@ information can be specified in the {\css} {\attributeshort{style}} and
 \begin{module}[id=omdoc-root]
 
 \begin{definition}[id=omdoc.def]
-  The {\xml} root element of the {\omdoc} format is the {\eldef{omdoc}} element, it
-  contains all other elements described here.  We call an {\omdoc} element a
+  The {\xml} root element of the \omdoc format is the {\eldef{omdoc}} element, it
+  contains all other elements described here.  We call an \omdoc element a
   \defii{top-level}{element}, if it can appear as a direct child of the
-  {\element{omdoc}} element.  The {\element{omdoc}} element has an optional attribute
-  {\attribute[ns-attr=xml]{id}{omdoc}} that can be used to reference the whole
-  document. The optional attribute {\attribute{version}{omdoc}} is used to specify the
-  version of the {\omdoc} format the contens of the element conforms to.  It is fixed to
+  \element{omdoc} element.  The \element{omdoc} element has an optional attribute
+  \attribute[ns-attr=xml]{id}{omdoc} that can be used to reference the whole
+  document. The optional attribute \attribute{version}{omdoc} is used to specify the
+  version of the \omdoc format the contens of the element conforms to.  It is fixed to
   the string {\snippet{1.6}} by this specification. This will prevent validation with a
   different version of the {\indextoo{DTD}} or {\indextoo{schema}}, or processing with an
-  application using a different version of the {\omdoc} specification. The (optional)
-  attribute {\attributeshort{modules}} allows to specify the {\omdoc} modules that are
+  application using a different version of the \omdoc specification. The (optional)
+  attribute {\attributeshort{modules}} allows to specify the \omdoc modules that are
   used in this element. The value of this attribute is a whitespace-separated list of
   module identifiers (e.g. {\MOBJmodule{spec}} the left column in
-  {\myfigref{omdoc-modules}}), {\omdoc} sub-language identifiers (see
+  {\myfigref{omdoc-modules}}), \omdoc sub-language identifiers (see
   {\myfigref{omdoc-sub-languages}}), or {\twintoo{URI}{reference}s} for externally given
-  {\omdoc} modules or sub-language identifiers.\footnote{Allowing these external module
-    references keeps the {\omdoc} format extensible. Like in the case with
-    {\twintoo{namespace}{URI}s} {\omdoc} do not mandate that these
+  \omdoc modules or sub-language identifiers.\footnote{Allowing these external module
+    references keeps the \omdoc format extensible. Like in the case with
+    {\twintoo{namespace}{URI}s} \omdoc do not mandate that these
     {\twintoo{URI}{reference}s} reference an actual resource. They merely act as
     identifiers for the modules.} The intention is that if present, the
   {\attributeshort{modules}} specifies the list of all the modules used in the document
   (fragment).  If a {\attributeshort{modules}} attribute is present, then it is an error,
   if the content of this element contains elements from a module that is not specified;
-  spurious module declarations in the {\attribute{modules}{omdoc}} attributes are allowed.
+  spurious module declarations in the \attribute{modules}{omdoc} attributes are allowed.
 \end{definition}
 
 Here and in the following we will use tables as the one in {\myfigref{qtgeneral}} to give
-an overview over the respective {\omdoc} elements described in a chapter or section. The
+an overview over the respective \omdoc elements described in a chapter or section. The
 first column gives the element name, the second and third columns specify the required and
 optional attributes. We will use the fourth column labeled ``MD'' to indicate whether an
-{\omdoc} element can have a {\element{metadata}} child (see {\sref{eldef.metadata}}), which
+\omdoc element can have a \element{metadata} child (see {\sref{eldef.metadata}}), which
 will be described in the next section. Finally the fifth column describes the content
 model --- i.e. the allowable children --- of the element.  For this, we will use a form of
 \twintoo{Backus Naur form}{notation} also used in the DTD: {\snippet{\#PCDATA}} stands for
-``{\twintoo{parsed}{character data}}'', i.e. text intermixed with legal {\omdoc}
+``{\twintoo{parsed}{character data}}'', i.e. text intermixed with legal \omdoc
 elements.) A synopsis of all elements is provided in {\sref{table}}.
 
 \begin{presonly}
-\begin{myfig}{qtgeneral}{{\omdoc} Elements for Specifying  Document Structure.}
+\begin{myfig}{qtgeneral}{\omdoc Elements for Specifying  Document Structure.}
 \begin{scriptsize}
 \begin{tabular}{|>{\tt}l|>{\tt}p{1truecm}|>{\tt}p{4truecm}|c|>{\tt}p{3.1truecm}|}\hline
 {\rm Element}& \multicolumn{2}{l|}{Attributes\hspace*{2.25cm}} & M & Content  \\\hline
@@ -122,7 +122,7 @@ elements.) A synopsis of all elements is provided in {\sref{table}}.
                                                      & +  & (\llquote{top-level})* \\\hline
  ref         & xref & type, class, style             & -- &     \\\hline
  ignore      &      & type, comment                  & -- & ANY\\\hline
- \multicolumn{5}{|p{11cm}|}{where \llquote{top-level} stands for top-level {\omdoc} elements}\\\hline
+ \multicolumn{5}{|p{11cm}|}{where \llquote{top-level} stands for top-level \omdoc elements}\\\hline
 \end{tabular}
 \end{scriptsize}
 \end{myfig}
@@ -144,14 +144,14 @@ and identifiers.
 In general, metadata can either be embedded in the respective document, or be stated in a
 separate one. The first facilitates maintenance and control (metadata is always at your
 fingertips, and it can only be manipulated by the document's authors), the second one
-enables inference and distribution. {\omdoc} allows to embed metadata into the document,
+enables inference and distribution. \omdoc allows to embed metadata into the document,
 from where it can be harvested for external metadata formats, such as the {\xml}
 {\indextoo{resource description format}} ({\rdf}~\cite{LasSwi:rdf99}).  We use one of the
 best-known metadata schemata for documents -- the {\emph{\indextoo{Dublin Core}}} (cf.
-{\srefs{dc-elements}{dc-roles}}). The purpose of annotating metadata in {\omdoc} is to
+{\srefs{dc-elements}{dc-roles}}). The purpose of annotating metadata in \omdoc is to
 facilitate the administration of documents, e.g.  digital {\twintoo{rights}{management}},
 and to generate input for metadata-based tools, e.g.  RDF-based navigation and indexing of
-document collections. Unlike most other document formats {\omdoc} allows to add metadata
+document collections. Unlike most other document formats \omdoc allows to add metadata
 at many levels, also making use of the metadata for document-internal markup purposes to
 ensure consistency.
   
@@ -161,14 +161,14 @@ ensure consistency.
   information from the {\twintoo{Creative Commons}{Initiative}} (see
   {\sref{creativecommons}}), as well as information for {\openmath} content dictionary
   management. Application-specific metadata elements can be specified by adding
-  corresponding {\omdoc} modules that extend the content model of the {\element{metadata}}
+  corresponding \omdoc modules that extend the content model of the \element{metadata}
   element.
 \end{definition}
 
-The {\omdoc} {\element{metadata}} element can be used to provide information about the
-document as a whole (as the first child of the {\element{omdoc}} element), as well as
+The \omdoc \element{metadata} element can be used to provide information about the
+document as a whole (as the first child of the \element{omdoc} element), as well as
 about specific fragments of the document, and even about the top-level mathematical
-elements in {\omdoc}. This reinterpretation of bibliographic metadata as general data
+elements in \omdoc. This reinterpretation of bibliographic metadata as general data
 about knowledge items allows us to extract document fragments and re-assemble them to new
 aggregates without losing information about authorship, source, etc.
 \end{module}
@@ -182,21 +182,21 @@ understanding; in fact {\twintoo{source}{comment}s} are considered a vital part 
 document markup. However, as {\xml} \twinalt{comments}{XML}{comment} (i.e. anything
 between ``{\snippetin{<\char33--}}'' and ``{\snippetin{-->}}'' in a document) need not
 even be read by some {\xml} \twinalt{parsers}{XML}{parser}, we cannot guarantee that they
-will survive any {\xml} manipulation of the {\omdoc} source.
+will survive any {\xml} manipulation of the \omdoc source.
 
 Therefore, anything that would normally go into comments should be modeled with an
-{\element{omtext}} element ({\attribute{type}{omtext}} {\attval{comment}{type}{omtext}},
-if it is a text-level comment; see {\sref{omtext}}) or with the {\element{ignore}}
+\element{omtext} element (\attribute{type}{omtext} \attribute{comment}{type}{omtext},
+if it is a text-level comment; see {\sref{omtext}}) or with the \element{ignore}
 element for {\twintoo{persistent}{comment}s}, i.e.  comments that survive processing. 
 
 \begin{definition}[id=ignore.def]
-  The content of the {\eldef{ignore}} element can be any well-formed {\omdoc}, it can
-  occur as an {\omdoc} top-level element or inside mathematical texts (see
+  The content of the {\eldef{ignore}} element can be any well-formed \omdoc, it can
+  occur as an \omdoc top-level element or inside mathematical texts (see
   {\sref{mtext}}).
 \end{definition}
-This element should be used if the author wants to comment the {\omdoc} representation,
+This element should be used if the author wants to comment the \omdoc representation,
 but the end user should not see their content in a final presentation of the document, so
-that {\omdoc} text elements are not suitable, e.g. in
+that \omdoc text elements are not suitable, e.g. in
 
 \begin{lstlisting}[numbers=none,index={ignore},mathescape]
 <ignore type="todo" comment="this does not make sense yet, rework">
@@ -204,7 +204,7 @@ that {\omdoc} text elements are not suitable, e.g. in
 </ignore>
 \end{lstlisting}
 
-Of course, {\element{ignore}} elements can be nested, e.g. if we want to mark up
+Of course, \element{ignore} elements can be nested, e.g. if we want to mark up
 the comment text (a pure string as used in the example above is not enough to
 express the mathematics). This might lead to markup like 
 
@@ -221,18 +221,18 @@ express the mathematics). This might lead to markup like
 
 \begin{oldpart}{MK: cannot make this example any more, think of a new one}
 \begin{example}
-  Another good use of the {\element{ignore}} element is to use it as an analogon to the
+  Another good use of the \element{ignore} element is to use it as an analogon to the
   {\atwintoo{in-place}{error}{markup}} in {\openmath} objects (see {\sref{om.error}}). In
-  this case, we use the {\attribute{type}{ignore}} attribute to specify the kind of error
-  and the content for the faulty {\omdoc} fragment. Note that since the whole object must
-  be {\xml} valid. As a consequence, the {\element{ignore}} element can only be used for
-  ``{\twintoo{mathematical}{error}s}'' like sibling {\element{CMP}} or {\element{FMP}}
+  this case, we use the \attribute{type}{ignore} attribute to specify the kind of error
+  and the content for the faulty \omdoc fragment. Note that since the whole object must
+  be {\xml} valid. As a consequence, the \element{ignore} element can only be used for
+  ``{\twintoo{mathematical}{error}s}'' like sibling \element{CMP} or \element{FMP}
   elements that do not have the same meaning as in
   {\mylstref{ignore-error}}. {\xml}-well-formedness and validity errors will have to be
   handled by the {\xml} tools involved.
 
 \begin{lstlisting}[label=lst:ignore-error,
-  caption={Marking up Mathematical Errors Using {\element{ignore}}},
+  caption={Marking up Mathematical Errors Using \element{ignore}},
   numbers=none,index={ignore}]
   <ignore type="CMP-lang-error" 
           comment="multilingual CMPs are not translations of each other">
@@ -242,7 +242,7 @@ express the mathematics). This might lead to markup like
     </assertion>
   </ignore>
 \end{lstlisting}    
-For another use of the {\element{ignore}} element, see {\myfigref{flatten}} in
+For another use of the \element{ignore} element, see {\myfigref{flatten}} in
 {\sref{sharing}}.
 \end{example}
 \end{oldpart}
@@ -253,31 +253,31 @@ For another use of the {\element{ignore}} element, see {\myfigref{flatten}} in
 \begin{module}[id=sectioning]
 
 Like other documents mathematical ones are often divided into units like chapters,
-sections, and paragraphs by tags and nesting information. {\omdoc} makes these document
-relations explicit by using the {\element{omdoc}} element with an optional attribute
-{\attribute{type}{omdoc}}. It can take the values
+sections, and paragraphs by tags and nesting information. \omdoc makes these document
+relations explicit by using the \element{omdoc} element with an optional attribute
+\attribute{type}{omdoc}. It can take the values
 \begin{description}
-\item[\attval{sequence}{type}{omdoc}] for a succession of paragraphs. This is the
+\item[{\attval{sequence}{type}{omdoc}}] for a succession of paragraphs. This is the
   default, and the normal way narrative texts are built up from paragraphs, mathematical
-  statements, figures, etc. Thus, if no {\attribute{type}{omdoc}} is given the type
-  {\attval{sequence}{type}{omdoc}} is assumed.
-\item[\attval{itemize}{type}{omdoc}] for unordered lists. The children of this type of
-  {\element{omdoc}} will usually be presented to the user as indented paragraphs
+  statements, figures, etc. Thus, if no \attribute{type}{omdoc} is given the type
+  \attribute{sequence}{type}{omdoc} is assumed.
+\item[{\attval{itemize}{type}{omdoc}}] for unordered lists. The children of this type of
+  \element{omdoc} will usually be presented to the user as indented paragraphs
   preceded by a {\twintoo{bullet}{symbol}}. Since the choice of this symbol is purely
-  presentational, {\omdoc} use the {\css} {\attributeshort{style}} or
+  presentational, \omdoc use the {\css} {\attributeshort{style}} or
   {\attributeshort{class}} \twinalt{attributes}{CSS}{attribute} on the children to specify the
   presentation of the bullet symbols (see {\sref{common-attribs}}).
-\item[\attval{enumeration}{type}{omdoc}] for ordered lists. The children of this
-  type of {\element{omdoc}} are usually presented like unordered lists, only
+\item[{\attval{enumeration}{type}{omdoc}}] for ordered lists. The children of this
+  type of \element{omdoc} are usually presented like unordered lists, only
   that they are preceded by a running number of some kind (e.g. ``1.'', ``2.''\ldots
   or ``a)'', ``b)''\ldots; again the
   {\attributeshort{style}} or {\attributeshort{class}} attributes apply).
-\item[\attval{sectioning}{type}{omdoc}] The children of this type of
-  {\element{omdoc}} will be interpreted as sections. This means that the
+\item[{\attval{sectioning}{type}{omdoc}}] The children of this type of
+  \element{omdoc} will be interpreted as sections. This means that the
   children will be usually numbered hierarchically, and their metadata will be
   interpreted as section heading information. For instance the
-  {\element{metadata}}/{\element[ns-elt=dc]{title}} information (see {\sref{dc-elements}}
-  for details) will be used as the section title. Note that {\omdoc} does not
+  \element{metadata}/\element[ns-elt=dc]{title} information (see {\sref{dc-elements}}
+  for details) will be used as the section title. Note that \omdoc does not
   provide direct markup for particular hierarchical levels like
   ``{\indextoo{chapter}}'', ``{\indextoo{section}}'', or
   ``{\indextoo{paragraph}}'', but assumes that these are determined by the
@@ -287,10 +287,10 @@ relations explicit by using the {\element{omdoc}} element with an optional attri
 Other values for the {\attributeshort{type}} attribute are also admissible, they should be
 {\twintoo{URI}{reference}s} to documents explaining their intension.
   
-We consider the {\element{omdoc}} element as an implicit {\element{omdoc}}, in order to
-allow plugging together the content of different {\omdoc} documents as
+We consider the \element{omdoc} element as an implicit \element{omdoc}, in order to
+allow plugging together the content of different \omdoc documents as
 {\element{omdoc}s} in a larger document. Therefore, all the attributes of the
-{\element{omdoc}} element also appear on {\element{omdoc}} elements and behave exactly
+\element{omdoc} element also appear on \element{omdoc} elements and behave exactly
 like those.
 \end{module}
 \end{omgroup}
@@ -300,64 +300,64 @@ like those.
 {Sharing and Referring to Document Parts}
 
 \begin{definition}[id=ref.def]
-  As the document structure need not be a tree in hypertext documents, {\element{omdoc}}
-  elements also allow empty {\eldef{ref}} elements whose {\attribute{xref}{ref}} attribute
-  can be used to reference {\omdoc} elements defined elsewhere. The optional
-  {\attribute[ns-attr=xml]{id}{ref}} (its value must be document-unique) attribute
+  As the document structure need not be a tree in hypertext documents, \element{omdoc}
+  elements also allow empty {\eldef{ref}} elements whose \attribute{xref}{ref} attribute
+  can be used to reference \omdoc elements defined elsewhere. The optional
+  \attribute[ns-attr=xml]{id}{ref} (its value must be document-unique) attribute
   identifies it and can be used for building reference labels for the included parts. Even
   though this attribute is optional, it is highly recommended to supply it.  The
-  {\attribute{type}{ref}} attribute can be used to describe the reference type.  Currently
-  {\omdoc} supports two values: {\attval{include}{type}{ref}} (the default) for in-text
-  replacement and {\attval{cite}{type}{ref}} for a proper reference. The first kind of
-  reference requires the {\omdoc} application to process the document as if the
-  {\element{ref}} element were replaced with the {\omdoc} fragment specified in the
-  {\attribute{xref}{ref}}. The processing of the type {\attval{cite}{type}{ref}} is
+  \attribute{type}{ref} attribute can be used to describe the reference type.  Currently
+  \omdoc supports two values: \attribute{include}{type}{ref} (the default) for in-text
+  replacement and \attribute{cite}{type}{ref} for a proper reference. The first kind of
+  reference requires the \omdoc application to process the document as if the
+  \element{ref} element were replaced with the \omdoc fragment specified in the
+  \attribute{xref}{ref}. The processing of the type \attribute{cite}{type}{ref} is
   application specific. It is recommended to generate an appropriate label and
   (optionally) supply a hyper-reference.  There may be more supported values for
-  {\attribute{type}{ref}} in time.
+  \attribute{type}{ref} in time.
 \end{definition}
 
-\begin{oldpart}{reconsider this, we may change the {\element{omgroup}} element to
-    {\element{omdoc}}}
-  Let $R$ be a {\element{ref}} element of type {\attval{include}{type}{ref}}.
+\begin{oldpart}{reconsider this, we may change the \element{omgroup} element to
+    \element{omdoc}}
+  Let $R$ be a \element{ref} element of type \attribute{include}{type}{ref}.
   \begin{definition}[display=flow,id=ref-target.def]
-    We call the element the URI in the {\attribute{xref}{ref}} points to its
-    \defi[ref-target]{target} unless it is an {\element{omdoc}} element; in this case, the
-    target is an {\element{omdoc}} element which has the same children as the original
-    {\element{omdoc}} element\footnote{This transformation is necessary, since {\omdoc}
-      does not allow to nest {\element{omdoc}} elements, which would be the case if we
-      allowed verbatim replacement for {\element{omdoc}} elements. As we have stated
-      above, the {\element{omdoc}} has an implicit {\element{omdoc}} element, and thus
-      behaves like one.}.  We call the process of replacing a {\element{ref}} element by
+    We call the element the URI in the \attribute{xref}{ref} points to its
+    \defi[ref-target]{target} unless it is an \element{omdoc} element; in this case, the
+    target is an \element{omdoc} element which has the same children as the original
+    \element{omdoc} element\footnote{This transformation is necessary, since \omdoc
+      does not allow to nest \element{omdoc} elements, which would be the case if we
+      allowed verbatim replacement for \element{omdoc} elements. As we have stated
+      above, the \element{omdoc} has an implicit \element{omdoc} element, and thus
+      behaves like one.}.  We call the process of replacing a \element{ref} element by
     its target in a document \defii{ref}{reduction} and the document resulting from the
-    process of systematically and recursively reducing all the {\element{ref}} elements
+    process of systematically and recursively reducing all the \element{ref} elements
     the \defii{ref-normal}{form} of the source document. Note that
-    {\element{ref}}-normalization may not always be possible, e.g.  if the ref-targets do
+    \element{ref}-normalization may not always be possible, e.g.  if the ref-targets do
     not exist or are inaccessible --- or worse yet, if the relation given by the
-    {\element{ref}} elements is {\indextoo{cyclic}}. Moreover, even if it is possible to
-    {\element{ref}}-normalize, this may not lead to a valid {\omdoc} document, e.g.  since
+    \element{ref} elements is {\indextoo{cyclic}}. Moreover, even if it is possible to
+    \element{ref}-normalize, this may not lead to a valid \omdoc document, e.g.  since
     \twinalt{\snippet{ID} type}{ID}{type} attributes that were unique in the target
-    documents are no longer in the {\element{ref}}-reduced one. We will call a document
-    \defii{ref}{reducible}, iff its {\element{ref}}-normal form exists, and
-    \defii{ref}{valid}, iff the {\element{ref}} normal form exists and is a valid {\omdoc}
+    documents are no longer in the \element{ref}-reduced one. We will call a document
+    \defii{ref}{reducible}, iff its \element{ref}-normal form exists, and
+    \defii{ref}{valid}, iff the \element{ref} normal form exists and is a valid \omdoc
     document.
   \end{definition}
 \end{oldpart}
   
-Note that it may make sense to use documents that are not {\element{ref}}-valid for
+Note that it may make sense to use documents that are not \element{ref}-valid for
 {\indextoo{narrative-centered}} documents, such as courseware or slides for talks that
 only allude to, but do not fully specify the knowledge structure of the mathematical
 knowledge involved. For instance the slides discussed in {\extref{primer}{coursewmare.narrative-structured}}
-do not contain the {\element{theory}} elements that would be needed to make the documents
-{\element{ref}}-valid.
+do not contain the \element{theory} elements that would be needed to make the documents
+\element{ref}-valid.
 
-The {\element{ref}} elements also allow to ``{\indextoo{flatten}}'' the tree
+The \element{ref} elements also allow to ``{\indextoo{flatten}}'' the tree
 structure in a document into a list of leaves and relation declarations (see
 {\myfigref{flatten}} for an example). It also makes it possible to have more than
-one view on a document using {\element{omdoc}} structures that reference a
-shared set of {\omdoc} elements. Note that we have embedded the
-{\element{ref}}-targets of the top-level {\element{omdoc}} element into an
-{\element{ignore}} comment, so that an {\omdoc} transformation (e.g. to text form)
+one view on a document using \element{omdoc} structures that reference a
+shared set of \omdoc elements. Note that we have embedded the
+\element{ref}-targets of the top-level \element{omdoc} element into an
+\element{ignore} comment, so that an \omdoc transformation (e.g. to text form)
 does not encounter the same content twice.
 
 \begin{myfig}{flatten}{Flattening a Tree Structure}
@@ -400,11 +400,11 @@ does not encounter the same content twice.
 \end{tabular}
 \end{myfig}
 
-While the {\omdoc} approach to specifying document structure is a much more flexible
+While the \omdoc approach to specifying document structure is a much more flexible
 (database-like) approach to representing structured documents\footnote{The simple tree
   model is sufficient for simple markup of existing mathematical texts and to replay them
   verbatim in a browser, but is insufficient e.g. for generating individualized
-  presentations at multiple levels of abstractions from the representation. The {\omdoc}
+  presentations at multiple levels of abstractions from the representation. The \omdoc
   text model --- if taken to its extreme --- allows to specify the respective role and
   contributions of smaller text units, even down to the sub-sentence level, and to make
   the structure of mathematical texts machine-understandable. Thus, an advanced
@@ -412,22 +412,22 @@ While the {\omdoc} approach to specifying document structure is a much more flex
   instance --- extract document fragments based on the preferences of the respective
   user.}  than the tree model, it puts a much heavier load on a system for presenting the
 text to humans. In essence the presentation system must be able to recover the left
-representation from the right one in {\myfigref{flatten}}.  Generally, any {\omdoc}
-element defines a fragment of the {\omdoc} it is contained in: everything between the
+representation from the right one in {\myfigref{flatten}}.  Generally, any \omdoc
+element defines a fragment of the \omdoc it is contained in: everything between the
 start and end tags and (recursively) those elements that are reached from it by following
-the {\indextoo{cross-reference}s} specified in {\element{ref}} elements.  In particular,
+the {\indextoo{cross-reference}s} specified in \element{ref} elements.  In particular,
 the text fragment corresponding to the element with
-{\attribute[ns-attr=xml]{id}{omtext}}={\snippet{"text"}} in the right {\omdoc}
+\attribute[ns-attr=xml]{id}{omtext}={\snippet{"text"}} in the right \omdoc
 of~\myfigref{flatten} is just the one on the left.\ednote{make the model of first
   normalizing and then presentation and what this entais. cf. the TRAC issues.}
 
 In {\sref{common-attribs}} we have introduced the {\css}
-\twinalt{attributes}{CSS}{attribute} {\attribute{style}{ref}} and {\attribute{class}{ref}},
-which are present on all {\omdoc} elements. In the case of the {\element{ref}} element,
+\twinalt{attributes}{CSS}{attribute} \attribute{style}{ref} and \attribute{class}{ref},
+which are present on all \omdoc elements. In the case of the \element{ref} element,
 there is a problem, since the content of these can be incompatible. In general, the rule
 for determining the style information for an element is that we treat the replacement
-element as if it were a child of the {\element{ref}} element, and then determine the
-values of the {\css} \twinalt{properties}{CSS}{property} of the {\element{ref}} element by
+element as if it were a child of the \element{ref} element, and then determine the
+values of the {\css} \twinalt{properties}{CSS}{property} of the \element{ref} element by
 inheritance.
 \end{omgroup}
 \end{module}
@@ -436,7 +436,7 @@ inheritance.
 \begin{omgroup}{Abstract Documents}
 
 \begin{definition}[id=docalt.def]
-  To be able to support {\twintoo{abstract}{documents}} that can be concretized, {\omdoc}
+  To be able to support {\twintoo{abstract}{documents}} that can be concretized, \omdoc
   supplies the {\eldef{docalt}}\ednote{name is provisional, Christine will develop this
     more fully} element that groups alternative document fragments so that the
   presentation process can chose among them.
@@ -454,7 +454,7 @@ inheritance.
   assumed as the default value. 
 
 \begin{lstlisting}[escapechar=\%,label=lst:multiling,mathescape,
-  caption={A Multilingual Group of {\element{CMP}} Elements},
+  caption={A Multilingual Group of \element{CMP} Elements},
   index={trl,xml:lang}]
  <omtext>
    Let <om:OMV id="set"name="V"/> be a set. 

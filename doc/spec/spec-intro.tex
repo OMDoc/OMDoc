@@ -6,46 +6,46 @@
 % The source original is at https://github.com/KWARC/OMDoc/doc/spec 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{omgroup}[creators=miko,id=spec-intro]{The {\omdoc} Format}
+\begin{omgroup}[creators=miko,id=spec-intro]{The \omdoc Format}
 
-In this chapter we will discuss issues that pertain to the general setup of the {\omdoc}
+In this chapter we will discuss issues that pertain to the general setup of the \omdoc
 format, before we present the respective modules in later chapters. {\omdocv{1.6}} is the
-first step towards a second version of the {\omdoc} format.
+first step towards a second version of the \omdoc format.
 
 
-\begin{omgroup}[id=syntax-semantics]{Dimensions of Representation in {\omdoc}}
+\begin{omgroup}[id=syntax-semantics]{Dimensions of Representation in \omdoc}
 \begin{newpart}{re-read and strengthen the argumentation}
 \begin{wrapfigure}r{8.5cm}\vspace*{-1em}
 \fbox{\includegraphics[width=8.2cm]{../figures/omdoc-dimensions}}
-\caption{Dimensions of Representation in {\omdoc}}\label{fig:dimensions}\vspace*{-1em}
+\caption{Dimensions of Representation in \omdoc}\label{fig:dimensions}\vspace*{-1em}
 \end{wrapfigure}
-\paragraph{Strict vs. Pragmatic} The {\omdoc} format is divided into two sub-languages:
-``Strict'' {\omdoc} (in the lower half of Figure~\ref{fig:dimensions}) and ``Pragmatic''
-{\omdoc} (in the upper half\ednote{add the words ``strict'' and ``pragmatic'' to the
+\paragraph{Strict vs. Pragmatic} The \omdoc format is divided into two sub-languages:
+``Strict'' \omdoc (in the lower half of Figure~\ref{fig:dimensions}) and ``Pragmatic''
+\omdoc (in the upper half\ednote{add the words ``strict'' and ``pragmatic'' to the
   picture}). The first subset uses a minimal set of elements representing the meaning of a
 mathematical expression in a uniform structure, while the second one tries to strike a
 pragmatic balance between verbosity and formality. Both forms of content expressions are
-legitimate and have their role in representing mathematics. The strict {\omdoc} format
+legitimate and have their role in representing mathematics. The strict \omdoc format
 features a minimal set of conceptually orthogonal representational primitives, resulting
-in expressions with canonical structure, which simplifies the implementation of {\omdoc}
-processors as well as the comparison of content expressions.  The pragmatic {\omdoc}
+in expressions with canonical structure, which simplifies the implementation of \omdoc
+processors as well as the comparison of content expressions.  The pragmatic \omdoc
 format provides a large representational infrastructure that aims at being intuitive for
 humans to understand, read, and write.\ednote{maybe state the numbers of elements in the
-  end} In particular, the simplicity and conceptual clarity of strict {\omdoc} make allow
-to express structural well-formedness constraints, whereas the vocabulary of pragmatic
-\omdoc is much nearer to mathematical practice and is thus easier to learn. It is a
-crucial design choice of the \omdoc format that the meaning fo pragmatic representations
-is defined entirely interms of strict representations\footnote{The strategy of dividing a
+  end} In particular, the simplicity and conceptual clarity of strict \omdoc allow to
+express structural well-formedness constraints, whereas the vocabulary of pragmatic \omdoc
+is much nearer to mathematical practice and is thus easier to learn. It is a crucial
+design choice of the \omdoc format that the meaning fo pragmatic representations is
+defined entirely interms of strict representations\footnote{The strategy of dividing a
   markup format into a simple and structurally elegant core language and a larger set of
   pragmatic extensions which can be given a meaning by translating into the core was first
   pioneered by the author for content {\mathml}3~\cite{CarlisleEd:MathML08}}. Note that
 there may be multiple ``pragmatic vocabularies'' defined in terms of the strict core
 catering to different communities and their tastes.
 
-The introduction of strict {\omdoc} and the re-interpretation of pragmatic {\omdoc} in
-terms of it is radical redesign of the {\omdoc} format, which is new in {\omdocv{1.6}}.
+The introduction of strict \omdoc and the re-interpretation of pragmatic \omdoc in
+terms of it is radical redesign of the \omdoc format, which is new in {\omdocv{1.6}}.
 For this reason we consider {\omdocv{1.6}} the first step into the direction of
-{\omdocv{2}}. With the development of strict {\omdoc} we aim to identify the
+{\omdocv{2}}. With the development of strict \omdoc we aim to identify the
 representational primitives for representing mathematical documents, which can be given a
 simple and elegant semantics.
 
@@ -177,20 +177,20 @@ generate presentation markup from content markup, based on general presentation
 principles, also on this level. For instance, the {\sc{ActiveMath}}
 system~\cite{MelBue:krma03} generates a simple narrative structure (the
 presentation; called a personalized book) from the underlying content structure (given in
-{\omdoc}) and a user model.
+\omdoc) and a user model.
 
 \paragraph{Coverage} 
 Currently our understanding of these primitives is largely limited to formal parts of
 mathematics, therefore strict {\omdocv{1.6}} covers significantly less of informal
 mathematical documents than {\omdocv{1.2}}, so the meaning-giving translation from
-pragmatic {\omdoc} elements to strict {\omdoc} is partial. We plan to develop strict
-{\omdoc} into a system with greater coverage in the upcoming versions of {\omdoc}.
-{\omdocv{2.0}} will be the first stable version where the coverage of strict {\omdoc} is
+pragmatic \omdoc elements to strict \omdoc is partial. We plan to develop strict
+\omdoc into a system with greater coverage in the upcoming versions of \omdoc.
+{\omdocv{2.0}} will be the first stable version where the coverage of strict \omdoc is
 complete.
 \end{newpart}
 \end{omgroup}
 
-\begin{omgroup}[id=spec-intro.modular]{{\omdoc} as a Modular Format}
+\begin{omgroup}[id=spec-intro.modular]{\omdoc as a Modular Format}
 
 A modular approach to design is generally accepted as best practice in the development of
 any type of complex application. It separates the application's functionality into a
@@ -203,21 +203,21 @@ application's functionality and thus decreases debugging time by localizing erro
 design changes. Finally, flexibility and maintainability of the application are increased
 because single modules can be upgraded or replaced independently of others.
 
-The {\omdoc} vocabulary has been split by thematic role, which we will briefly overview in
+The \omdoc vocabulary has been split by thematic role, which we will briefly overview in
 {\myfigref{omdoc-modules}} before we go into the specifics of the respective modules in
 {\srefl{mobj}{quiz}}. To avoid repetition, we will introduce some attributes already in
 this chapter that are shared by elements from all modules. In {\sref{document-model}} we
-will discuss the {\omdoc} document model and possible sub-languages of {\omdoc} that only
+will discuss the \omdoc document model and possible sub-languages of \omdoc that only
 make use of parts of the functionality (\sref{sub-languages}).
 
-\begin{myfig}{omdoc-modules}{The {\omdoc} Modules}
+\begin{myfig}{omdoc-modules}{The \omdoc Modules}
 \begin{small}
 \begin{tabular}{|l|l|l|l|}\hline
   Module & Title & Required? & Chapter\\\hline\hline
   {\presbf\MOBJmodule{spec}} &  Mathematical Objects & yes & {\sref{mobj}}\\\hline
     \multicolumn{4}{|p{11cm}|}{\presem Formulae are a central part of mathematical
        documents; this module integrates the content-oriented representation
-       formats {\openmath} and {\mathml} into {\omdoc}}\\\hline\hline
+       formats {\openmath} and {\mathml} into \omdoc}\\\hline\hline
   {\presbf\MTXTmodule{spec}} &  Mathematical Text & yes & {\sref{mtext}}\\\hline
     \multicolumn{4}{|p{11cm}|}{\presem Mathematical vernacular,
   i.e. natural language with embedded formulae}\\\hline\hline
@@ -228,7 +228,7 @@ make use of parts of the functionality (\sref{sub-languages}).
   {\presbf\METAmodule{spec}} &  Metadata & yes &   {\srefs{dc-elements}{dc-roles}}\\\hline
     \multicolumn{4}{|p{11cm}|}{\presem Contains bibliographical and licensing metadata 
       (``{\twintoo{data}{about data}}'') 
-      which can be used to annotate many {\omdoc} elements by descriptive and
+      which can be used to annotate many \omdoc elements by descriptive and
       administrative information that facilitates navigation and organization}\\\hline\hline 
   {\presbf\RTmodule{spec}} & Rich Text Structure & no & {\sref{rt}}\\\hline
     \multicolumn{4}{|p{11cm}|}{\presem Rich text structure in
@@ -260,7 +260,7 @@ make use of parts of the functionality (\sref{sub-languages}).
       conventions  that cannot be determined by general principles alone}\\\hline\hline
   {\presbf\QUIZmodule{spec}} &  Infrastructure for Assessments & no & {\sref{quiz}}\\\hline
     \multicolumn{4}{|p{11cm}|}{\presem Markup for exercises integrated
-    into the {\omdoc} document model}\\\hline 
+    into the \omdoc document model}\\\hline 
   \end{tabular}
 \end{small}
 \end{myfig}
@@ -275,29 +275,29 @@ particular document (see {\sref{omdoc-infrastructure}} and
 \begin{omgroup}[id=omdoc-ns]{The OMDoc Namespaces}
 
 The namespace for the {\omdocv2} format is the \atwinalt{URI}{OMDoc}{namespace}{URI}
-\url{http://omdoc.org/ns}. Note that the {\omdoc} \twinalt{namespace}{OMDoc}{namespace}
+\url{http://omdoc.org/ns}. Note that the \omdoc \twinalt{namespace}{OMDoc}{namespace}
 does not reflect the versions\footnote{The namespace is different from the {\omdocv1}
   formats (versions 1.0, 1.1, and 1.2), which was
   {\snippet{http://www.mathweb.org/omdoc}}, but the {\omdocv2} namespace will stay
   constant over all versions of the {\omdocv2} format.}, this is done in the
 {\attributeshort{version}} attribute on the {\twintoo{document}{root}} element
-{\element{omdoc}} (see {\sref{omdoc-infrastructure}}).  As a consequence, the
-{\omdoc} vocabulary identified by this namespace is not static, it can change with each
-new {\omdoc} version. However, if it does, the changes will be documented in later
+\element{omdoc} (see {\sref{omdoc-infrastructure}}).  As a consequence, the
+\omdoc vocabulary identified by this namespace is not static, it can change with each
+new \omdoc version. However, if it does, the changes will be documented in later
 versions of the specification: the latest released version can be found
 at~\cite{URL:omdocspec}.
 
-In an {\omdoc} document, the {\omdoc} namespace must be specified either using a
+In an \omdoc document, the \omdoc namespace must be specified either using a
 {\twintoo{namespace}{declaration}} of the form
-{\snippet{xmlns="}}\url{http://omdoc.org/ns}{\snippet{"}} on the {\element{omdoc}} element
-or by prefixing the {\twintoo{local}{name}s} of the {\omdoc} elements by a namespace
-prefix ({\omdoc} customarily use the prefixes {\snippet{omdoc:}} or {\snippet{o:}}) that
+{\snippet{xmlns="}}\url{http://omdoc.org/ns}{\snippet{"}} on the \element{omdoc} element
+or by prefixing the {\twintoo{local}{name}s} of the \omdoc elements by a namespace
+prefix (\omdoc customarily use the prefixes {\snippet{omdoc:}} or {\snippet{o:}}) that
 is declared by a {\atwintoo{namespace}{prefix}{declaration}} of the form
 {\snippet{xmlns:o="}}\url{http://omdoc.org/ns}{\snippet{"}} on some element dominating the
-{\omdoc} element in question (see {\extref{book}{xml}} for an introduction). {\omdoc} also
+\omdoc element in question (see {\extref{book}{xml}} for an introduction). \omdoc also
 uses the following namespaces\footnote{In this specification we will use the
   {\twintoo{namespace}{prefix}es} above on all the elements we reference in text unless
-  they are in the {\omdoc} namespace.}:
+  they are in the \omdoc namespace.}:
 
 \begin{scriptsize}
   \begin{center}
@@ -311,7 +311,7 @@ uses the following namespaces\footnote{In this specification we will use the
     \end{tabular}
   \end{center}
 \end{scriptsize}
-Thus a typical document root of an {\omdoc} document looks as follows:
+Thus a typical document root of an \omdoc document looks as follows:
   \begin{lstlisting}[mathescape]
 <?xml version="1.0" encoding="utf-8"?>
 <omdoc xml:id="test.omdoc" version="1.6"
@@ -327,15 +327,15 @@ $\ldots$
 
 \begin{omgroup}[id=common-attribs]{Common Attributes in OMDoc}
 
-Generally, the {\omdoc} format allows any attributes from foreign (i.e. non-{\omdoc})
-\twinalt{namespaces}{foreign}{namespace} on the {\omdoc} elements. This is a commonly
-found feature that makes the {\xml} encoding of the {\omdoc} format extensible. Note
+Generally, the \omdoc format allows any attributes from foreign (i.e. non-\omdoc)
+\twinalt{namespaces}{foreign}{namespace} on the \omdoc elements. This is a commonly
+found feature that makes the {\xml} encoding of the \omdoc format extensible. Note
 that the attributes defined in this specification are in the default (empty)
 \twinalt{namespace}{default}{namespace}: they do not carry a namespace prefix. So any
 attribute of the form {\snippet{na:xxx}} is allowed as long as it is in the scope of a
 suitable {\atwintoo{namespace}{prefix}{declaration}}.
 
-Many {\omdoc} elements have optional {\attributeshort[ns-attr=xml]{id}} attributes that
+Many \omdoc elements have optional {\attributeshort[ns-attr=xml]{id}} attributes that
 can be used as identifiers to reference them. These attributes are of type
 \twinalt{\snippet{ID}}{type}{ID}, they must be unique in the document which is important,
 since many {\xml} \twinalt{applications}{XML}{application} offer functionality for
@@ -346,27 +346,27 @@ Note that unlike other {\snippet{ID}}-attributes, in this special case it is the
 declaration in the {\indextoo{DTD}} or {\twintoo{XML}{schema}} (see
 {\extref{book}{xml.validation}} for a discussion).
 
-  Note that in the {\omdoc} format proper, all {\twintoo{ID}{type}} attributes are of the
+  Note that in the \omdoc format proper, all {\twintoo{ID}{type}} attributes are of the
   form {\attributeshort[ns-attr=xml]{id}}. However in the older {\openmath} and {\mathml}
   standards, they still have the form {\attributeshort{id}}. The latter are only
   recognized to be of type {\snippet{ID}}, if a document type or {\xml}schema is
   present. Therefore it depends on the application context, whether a DTD should be
-  supplied with the {\omdoc} document.
+  supplied with the \omdoc document.
 
-  For many occasions (e.g. for printing {\omdoc} documents), authors want to control a
-  wide variety of aspects of the presentation. {\omdoc} is a content-oriented format, and
+  For many occasions (e.g. for printing \omdoc documents), authors want to control a
+  wide variety of aspects of the presentation. \omdoc is a content-oriented format, and
   as such only supplies an infrastructure to mark up content-relevant information in
-  {\omdoc} elements. To address this dilemma {\xml} offers an interface to 
+  \omdoc elements. To address this dilemma {\xml} offers an interface to 
   {\twintoo{Cascading}{Style Sheet}s} ({\css})~\cite{BosHak:css98}, which allow to specify
   presentational traits like {\twintoo{text}{color}}, {\twintoo{font}{variant}},
   {\indextoo{positioning}}, {\indextoo{padding}}, or {\indextoo{frame}s} of
   {\twintoo{layout}{box}es}, and even {\indextoo{aural}} aspects of the text.
 
-  To make use of {\css}, most {\omdoc} elements (all that have
+  To make use of {\css}, most \omdoc elements (all that have
   {\attributeshort[ns-attr=xml]{id}} attributes) have {\attributeshort{style}} attributes
   that can be used to specify {\css} \twinalt{directives}{CSS}{directive} for them. In the
-  {\omdoc} fragment in {\mylstref{css-basic}} we have used the {\attribute{style}{omtext}}
-  attribute to specify that the text content of the {\element{omtext}} element should be
+  \omdoc fragment in {\mylstref{css-basic}} we have used the \attribute{style}{omtext}
+  attribute to specify that the text content of the \element{omtext} element should be
   formatted in a centered box whose width is 80\% of the surrounding box (probably the
   page box), and that has a 2 pixel wide solid frame of the specified RGB color. Generally
   {\css} directives are of the form {\snippet{A:V}}, where {\snippet{A}} is the name of
@@ -393,7 +393,7 @@ declaration in the {\indextoo{DTD}} or {\twintoo{XML}{schema}} (see
 
 Note that many {\css} properties of parent elements are inherited by the children,
 if they are not explicitly specified in the child. We could for instance have set
-the {\twintoo{font}{family}} of all the children of the {\element{omtext}} element
+the {\twintoo{font}{family}} of all the children of the \element{omtext} element
 by adding a directive {\snippet{font-family:sans-serif}} there and then override it by
 a directive for the property {\snippet{font-family}} in one of the children.
 
@@ -404,12 +404,12 @@ with the class {\snippet{emphasize}}, which we assume to be defined in the style
 {\snippet{style.css}} associated with the document in the ``{\twintoo{style
     sheet}{processing instruction}}'' in the prolog\footnote{i.e. at the very beginning of
   the {\xml} document before the document type declaration} of the {\xml} document
-(see~\cite{Clark:assxd99} for details).  Note that an {\omdoc} element can have both
+(see~\cite{Clark:assxd99} for details).  Note that an \omdoc element can have both
 {\attributeshort{class}} and {\attributeshort{style}} attributes, in this case, precedence
 is determined by the rules for {\css} style sheets as specified in~\cite{BosHak:css98}. In
 our example in {\mylstref{css-basic}} the directives in the {\attributeshort{style}}
 attribute take precedence over the {\css} directives in the style sheet referenced by the
-{\attributeshort{class}} attribute on the {\element{phrase}} element. As a consequence,
+{\attributeshort{class}} attribute on the \element{phrase} element. As a consequence,
 the word ``stylish'' would appear in green, bold italics.
 \end{omgroup}
 \end{omgroup}

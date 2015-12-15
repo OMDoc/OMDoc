@@ -354,7 +354,7 @@
 \@sref@def{spec@eldef.measure}{label}{Definition ????}
 \@sref@def{spec@eldef.ordering}{page}{59}
 \@sref@def{spec@eldef.ordering}{label}{Definition ????}
-\@sref@def{spec@pattern.def}{page}{59}
+\@sref@def{spec@pattern.def}{page}{60}
 \@sref@def{spec@pattern.def}{label}{Definition\nobreakspace  {}10.{2}}
 \@sref@def{spec@adt}{page}{60}
 \@sref@def{spec@adt}{label}{Subsection\nobreakspace  {}10.1}
@@ -408,9 +408,9 @@
 \@sref@def{spec@method.def}{label}{Definition\nobreakspace  {}11.{2}}
 \@sref@def{spec@eldef.method}{page}{67}
 \@sref@def{spec@eldef.method}{label}{Definition ????}
-\@sref@def{spec@premise.def}{page}{67}
+\@sref@def{spec@premise.def}{page}{68}
 \@sref@def{spec@premise.def}{label}{Definition\nobreakspace  {}11.{3}}
-\@sref@def{spec@eldef.premise}{page}{67}
+\@sref@def{spec@eldef.premise}{page}{68}
 \@sref@def{spec@eldef.premise}{label}{Definition ????}
 \@sref@def{spec@proofs.scoping}{page}{70}
 \@sref@def{spec@proofs.scoping}{label}{Subsection\nobreakspace  {}11.2}
