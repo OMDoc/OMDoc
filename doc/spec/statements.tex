@@ -574,6 +574,7 @@ character, declaring a symbol to be of a certain type, which makes this informat
 available to type checkers that can check well-typedness (and thus plausibility) of the
 represented mathematical objects.
 
+\begin{omtext}
 However, not all type information is axiomatic, it can also be deduced from other sources
 knowledge. We use the same {\element{type}} element we have discussed in
 {\sref{type-axioms}} for such \inlinedef{{\twindef{type}{assertions}},
@@ -581,7 +582,8 @@ knowledge. We use the same {\element{type}} element we have discussed in
 {\element{type}} element can occur at top level, and even outside a {\element{theory}}
 element (in which case they have to specify their home theory in the
 {\attribute{theory}{type}} attribute).
-  
+\end{omtext}
+
 {\Mylstref{term-declaration}} contains a type assertion $x+x\colon evens$, which makes the
 information that doubling an integer number results in an even number available to the
 reasoning process.
@@ -1052,13 +1054,15 @@ is possible to re-use parts of theories and add structure to specifications. For
 it would be very simple to define a theory of {\twintoo{Abelian}{semigroup}s} by adding a
 {\twintoo{commutativity}{axiom}}.
 
-The set of symbols, axioms, and definitions available for use in proofs in the importing
-theory consists of the ones directly specified as {\element{symbol}}, {\element{axiom}},
-and {\element{definition}} elements in the target theory itself (we speak of
-{\termref{local}} axioms and definitions in this case and the ones that are inherited from
-the source theories via {\element{imports}} elements.  Note that these symbols, axioms,
-and definitions (we call them {\termref{inherited}}) can consist of the local ones in the
-source theories and the ones that are inherited there.
+\begin{omtext}
+  The set of symbols, axioms, and definitions available for use in proofs in the importing
+  theory consists of the ones directly specified as {\element{symbol}}, {\element{axiom}},
+  and {\element{definition}} elements in the target theory itself (\inlinedef{we speak of
+    \defi{local} axioms and definitions in this case} and the ones that are inherited from
+  the source theories via {\element{imports}} elements.  Note that these symbols, axioms,
+  and definitions (\inlinedef{we call them \defi{inherited}}) can consist of the local
+  ones in the source theories and the ones that are inherited there.
+\end{omtext}
 
 The local and inherited symbols, definitions, and axioms are the only ones
 available to mathematical statements and proofs. If a symbol is not available in
@@ -1073,9 +1077,10 @@ then it cannot be used since its semantics is not defined.
     the future.}
 
 
-  In {\sref{mobj}}, we have introduced the {\openmath} and {\cmathml} representations
-  for mathematical objects and formulae. One of the central concepts there was the notion
-  that the representation of a symbol includes a pointer to a document that defines its
+\begin{omtext}
+  In {\sref{mobj}}, we have introduced the {\openmath} and {\cmathml} representations for
+  mathematical objects and formulae. One of the central concepts there was the notion that
+  the representation of a symbol includes a pointer to a document that defines its
   meaning.  In the {\openmath} standard, these documents are identified as
   \atwinalt{{\openmath} content dictionaries}{OpenMath}{content}{dictionary}, the
   {\mathml} recommendation is not specific.  In the examples above, we have seen that
@@ -1083,15 +1088,16 @@ then it cannot be used since its semantics is not defined.
   they are also candidates for ``defining documents'' for symbols.  By the {\openmath}2
   standard~\cite{BusCapCar:2oms04} suitable classes of {\omdoc} documents can act as
   {\openmath} content dictionaries (\inlinedef{we call them {\omdoc} \twindefalt{content
-      dictionaries}{content dictionary}{OMDoc}}; see {\sref{sub-languages.cd}}).
-  The main distinguishing feature of {\omdoc} content dictionaries is that they include
+      dictionaries}{content dictionary}{OMDoc}}; see {\sref{sub-languages.cd}}).  The main
+  distinguishing feature of {\omdoc} content dictionaries is that they include
   {\element{theory}} elements with {\twintoo{symbol}{declaration}s} (see
   {\sref{definitions}}) that act as the targets for the pointers in the symbol
   representations in {\openmath} and {\cmathml}. The theory name specified in the
   {\attribute[ns-attr=xml]{id}{theory}} attribute of the {\element{theory}} element takes
   the place of the {\snippet{CDname}} defined in the \atwinalt{{\openmath} content
     dictionary}{OpenMath}{content}{dictionary}.
- 
+\end{omtext}
+
 Furthermore, the {\indextoo{URI}} specified in the {\attribute{cdbase}{theory}} attribute
 is the one used for disambiguation on {\element[ns-elt=om]{OMS}} elements (see
 {\sref{openmath}} for a discussion).
@@ -1112,18 +1118,22 @@ be able to express {\twintoo{content dictionary}{metadata}} (see {\mylstref{omcd
 example). For this, the {\element{theory}} element carries some optional attributes that
 allow to specify the administrative metadata of {\openmath} content dictionaries.
 
-The {\attribute{cdstatus}{theory}} attribute specifies \inlinedef{the {\twindef{content
-      dictionary}{status}}}, which can take one of the following values:
-{\attval{official}{cdstatus}{theory}} (i.e. approved by the {\openmath} Society),
-{\attval{experimental}{cdstatus}{theory}} (i.e. under development and thus liable to
-change), {\attval{private}{cdstatus}{theory}} (i.e. used by a private group of {\openmath}
-users) or {\attval{obsolete}{cdstatus}{theory}} (i.e. only for archival purposes). The
-attributes {\attribute{cdversion}{theory}} and {\attribute{cdrevision}{theory}} jointly
-specify \inlinedef{the {\twindef{content dictionary}{version number}}, which consists of
-  two parts, a major {\defin{version}} and a {\defin{revision}}, both of which are
-  non-negative integers}. For details between the relation between content dictionary
-status and versions consult the {\openmath} standard~\cite{BusCapCar:2oms04}.
+\begin{omtext}
+  The {\attribute{cdstatus}{theory}} attribute specifies \inlinedef{the {\twindef{content
+        dictionary}{status}}}, which can take one of the following values:
+  {\attval{official}{cdstatus}{theory}} (i.e. approved by the {\openmath} Society),
+  {\attval{experimental}{cdstatus}{theory}} (i.e. under development and thus liable to
+  change), {\attval{private}{cdstatus}{theory}} (i.e. used by a private group of
+  {\openmath} users) or {\attval{obsolete}{cdstatus}{theory}} (i.e. only for archival
+  purposes). The attributes {\attribute{cdversion}{theory}} and
+  {\attribute{cdrevision}{theory}} jointly specify \inlinedef{the {\twindef{content
+        dictionary}{version number}}, which consists of two parts, a major
+    {\defin{version}} and a {\defin{revision}}, both of which are non-negative
+    integers}. For details between the relation between content dictionary status and
+  versions consult the {\openmath} standard~\cite{BusCapCar:2oms04}.
+\end{omtext}
 
+\begin{omtext}
 Furthermore, the {\element{theory}} element can have the following attributes:
 \begin{description}
 \item[\attribute{cdbase}{theory}] for the {\twintoo{content dictionary}{base}} which, when
@@ -1136,6 +1146,7 @@ Furthermore, the {\element{theory}} element can have the following attributes:
     content dictionary, i.e. the date until which the content dictionary is guaranteed to
     remain unchanged}.
 \end{description}
+\end{omtext}
 \end{oldpart}
 \end{omgroup}
 \end{module}

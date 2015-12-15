@@ -18,19 +18,21 @@ contain knowledge about mathematical objects that are encoded as formulae, and w
 at content markup for mathematical documents by treating knowledge fragments (statements
 and theories) as objects in their own right that can be inspected and reasoned about.
 
-In {\srefl{mobj}{quiz}}, we have defined what {\omdoc} documents look like and motivated
-this by the mathematical objects they encode. But we have not really defined the
-properties of these documents as objects themselves (\inlinedef{we will speak of the
-  {\omdoc} {\twindef{document}{object model}} ({\indextoo{OMDOM}})}). To get a feeling for
-the issues involved, let us take stock of what we mean by the object view of data. In
-mathematics, when we define a class of mathematical objects (e.g.  vector spaces), we have
-to say which objects belong to this class, and when they are to be considered equal (e.g.
-vector spaces are equal, iff they are isomorphic). When defining the intended behavior of
-operations, we need to care only about objects of this class, and we can only make use of
-properties that are invariant under object equality. In particular, we cannot use
-properties of a particular realization of a vector space that are not preserved under
-isomorphism. For document models, we do the same, only that the objects are documents.
-
+\begin{omtext}
+  In {\srefl{mobj}{quiz}}, we have defined what {\omdoc} documents look like and motivated
+  this by the mathematical objects they encode. But we have not really defined the
+  properties of these documents as objects themselves (\inlinedef{we will speak of the
+    {\omdoc} {\twindef{document}{object model}} ({\indextoo{OMDOM}})}). To get a feeling
+  for the issues involved, let us take stock of what we mean by the object view of
+  data. In mathematics, when we define a class of mathematical objects (e.g.  vector
+  spaces), we have to say which objects belong to this class, and when they are to be
+  considered equal (e.g.  vector spaces are equal, iff they are isomorphic). When defining
+  the intended behavior of operations, we need to care only about objects of this class,
+  and we can only make use of properties that are invariant under object equality. In
+  particular, we cannot use properties of a particular realization of a vector space that
+  are not preserved under isomorphism. For document models, we do the same, only that the
+  objects are documents.
+\end{omtext}
 
 \begin{omgroup}[id=xml-DOM]{XML Document Models}
 \begin{module}[id=XMLDom]
@@ -225,20 +227,22 @@ constraints in the {\xml} schema for {\omdoc} in~\cite{KohAng:tccmvc03}.
 \end{scriptsize}
 \end{myfig}
 
-The last rule in {\myfigref{omdom}} is probably the most interesting, as we have seen in
-{\sref{omdoc-infrastructure}}, {\omdoc} documents have both formal and informal aspects,
-they can contain {\emph{\indextoo{narrative}}} as well as
-{\emph{\indextoo{narrative-structured}}} information.  The latter kind of document
-contains a formalization of a mathematical theory, as a reference for automated theorem
-proving systems. There, logical dependencies play a much greater role than the order of
-serialization in mathematical objects.  \inlinedef{We call such documents {\defin{content
-      OMDoc}}} and specify the value {\snippetin{Dataset}} in the
-{\element[ns-elt=dc]{type}} element of the {\omdoc} metadata for such documents.  On the
-other extreme we have human-oriented presentations of mathematical knowledge, e.g.  for
-educational purposes, where didactic considerations determine the order of
-presentation. \inlinedef{We call such documents {\defin{narrative-structured}}} and
-specify this by the value {\snippetin{Text}} (also see the discussion in
-{\sref{dc-elements}})
+\begin{omtext}
+  The last rule in {\myfigref{omdom}} is probably the most interesting, as we have seen in
+  {\sref{omdoc-infrastructure}}, {\omdoc} documents have both formal and informal aspects,
+  they can contain {\emph{\indextoo{narrative}}} as well as
+  {\emph{\indextoo{narrative-structured}}} information.  The latter kind of document
+  contains a formalization of a mathematical theory, as a reference for automated theorem
+  proving systems. There, logical dependencies play a much greater role than the order of
+  serialization in mathematical objects.  \inlinedef{We call such documents
+    {\defin{content OMDoc}}} and specify the value {\snippetin{Dataset}} in the
+  {\element[ns-elt=dc]{type}} element of the {\omdoc} metadata for such documents.  On the
+  other extreme we have human-oriented presentations of mathematical knowledge, e.g.  for
+  educational purposes, where didactic considerations determine the order of
+  presentation. \inlinedef{We call such documents {\defin{narrative-structured}}} and
+  specify this by the value {\snippetin{Text}} (also see the discussion in
+  {\sref{dc-elements}})
+\end{omtext}
 \end{module}
 \end{omgroup}
 

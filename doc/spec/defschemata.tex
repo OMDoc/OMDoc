@@ -29,7 +29,9 @@ adding such definitions to a theory always results in a conservative extension.
    $x+0=x$ and $x+s(y)=s(x+y)$. & recursive\\\hline
  \end{tabular}
 \end{myfig}
-Definitions can have many forms, they can be
+
+\begin{omtext}
+  Definitions can have many forms, they can be
 \begin{itemize}
 \item equations where the left hand side is the defined symbol and the right hand side is
   a term that does not contain it, as in our discussion above or the first case in
@@ -55,6 +57,7 @@ Definitions can have many forms, they can be
   right-hand sides. \inlinedef{We call such a definition
     {\twindefalt{inductive}{definition}{inductive}}.}
 \end{itemize}
+\end{omtext}
 
 \begin{presonly}
   \begin{myfig}{alternative-theory}{Theory-Constitutive Elements in {\omdoc}}
@@ -123,6 +126,7 @@ an example of an implicit definition in {\mylstref{exp-def}}.
 \begin{module}[id=inductive-defs]
 \begin{omgroup}{Inductive Definitions}
 
+\begin{omtext}
   This is a variant of the {\attval{implicit}{type}{definition}} case above. It defines a
   {\twintoo{recursive}{function}} by a set of {\twintoo{recursive}{equation}s}
   \inlinedef{in {\eldef{requation}} elements whose left and right hand sides are specified
@@ -136,8 +140,9 @@ an example of an implicit definition in {\mylstref{exp-def}}.
   point to {\element{assertion}}s stating that the cases spanned by the patterns are
   exhaustive (i.e. all cases are considered), or that the values are consistent (where the
   cases overlap, the values are equal).
+\end{omtext}
 
-{\Mylstref{recursive}} gives an example of a a recursive definition of the addition on the
+\Mylstref{recursive} gives an example of a a recursive definition of the addition on the
 natural numbers.
 \begin{lstlisting}[label=lst:recursive,mathescape,
   caption={A recursive definition of addition},
@@ -195,18 +200,20 @@ etc. The module {\ADTmodule{spec}} presented in this chapter extends {\omdoc} by
 syntax for abstract data types that follows the model used in the {\casl} (Common Abstract
 Specification Language~\cite{CoFI:2004:CASL-RM}) standard.
 
-Conceptually, an abstract data type declares a collection of symbols and axioms that can
-be used to construct certain mathematical objects and to group them into sets. For
-instance, the {\twintoo{Peano}{axioms}} (see {\myfigref{peano}}) introduce the symbols $0$
-(the number {\indextoo{zero}}), $s$ (the {\twintoo{successor}{function}}), and $\NN$ (the
-set of {\twintoo{natural}{number}s}) and fix their meaning by five axioms. These state
-that the set $\NN$ contains exactly those objects that can be constructed from $0$ and $s$
-alone (\inlinedef{these symbols are called {\twindef{constructor}{symbol}s} and the
-  representations {\twindef{constructor}{term}s}}). Optionally, an abstract data type can
-also declare \inlinedef{{\twindef{selector}{symbol}s}, for (partial) inverses of the
-  constructors}. In the case of natural numbers the {\twintoo{predecessor}{function}} is a
-selector for $s$: it ``selects'' the argument $n$, from which a (non-zero) number $s(n)$
-has been constructed.
+\begin{omtext}
+  Conceptually, an abstract data type declares a collection of symbols and axioms that can
+  be used to construct certain mathematical objects and to group them into sets. For
+  instance, the {\twintoo{Peano}{axioms}} (see {\myfigref{peano}}) introduce the symbols
+  $0$ (the number {\indextoo{zero}}), $s$ (the {\twintoo{successor}{function}}), and $\NN$
+  (the set of {\twintoo{natural}{number}s}) and fix their meaning by five axioms. These
+  state that the set $\NN$ contains exactly those objects that can be constructed from $0$
+  and $s$ alone (\inlinedef{these symbols are called {\twindef{constructor}{symbol}s} and
+    the representations {\twindef{constructor}{term}s}}). Optionally, an abstract data
+  type can also declare \inlinedef{{\twindef{selector}{symbol}s}, for (partial) inverses
+    of the constructors}. In the case of natural numbers the
+  {\twintoo{predecessor}{function}} is a selector for $s$: it ``selects'' the argument
+  $n$, from which a (non-zero) number $s(n)$ has been constructed.
+\end{omtext}
 
 \begin{definition}[display=flow,id=free.def]
   Following {\casl} we will call sets of objects that can be represented as constructor
@@ -214,13 +221,17 @@ has been constructed.
   between constructor terms, i.e.  two objects represented by different constructor terms
   can never be equal.
 \end{definition}
-The sort $\NN$ of natural numbers is a free sort. An example of a sort that is not free is
-the theory of finite sets given by the constructors $\emptyset$ and the
-{\twintoo{set}{insertion}} function $\iota$ , since the set $\{a\}$ can be obtained by
-inserting $a$ into the empty set an arbitrary (positive) number of times; so
-e.g. $\iota(a,\emptyset)=\iota(a,\iota(a,\emptyset))$. \inlinedef{This kind of sort is called
-{\defin{generated}}, since it only contains elements that are expressible in the
-constructors}. 
+
+\begin{omtext}
+  The sort $\NN$ of natural numbers is a free sort. An example of a sort that is not free
+  is the theory of finite sets given by the constructors $\emptyset$ and the
+  {\twintoo{set}{insertion}} function $\iota$ , since the set $\{a\}$ can be obtained by
+  inserting $a$ into the empty set an arbitrary (positive) number of times; so
+  e.g. $\iota(a,\emptyset)=\iota(a,\iota(a,\emptyset))$. \inlinedef{This kind of sort is
+    called {\defin{generated}}, since it only contains elements that are expressible in
+    the constructors}.
+\end{omtext}
+
 \begin{definition}[display=flow,id=generated.def]
   An abstract data type is called {\defin{loose}}, if it contains elements besides the
   ones generated by the constructors. We consider free sorts more {\defin{strict}} than
@@ -326,8 +337,10 @@ element as the second child of an {\element{argument}} child of a
   {\attribute{name}{recognizer}} attribute.
 \end{definition} 
 
-{\Mylstref{nat-adt}} introduces such a \inlinedef{{\twindef{recognizer}{predicate}}} as
-the last child of the {\element{sortdef}} element for the sort {\snippet{pos-nats}}.
+\begin{omtext} 
+  \Mylstref{nat-adt} introduces such a \inlinedef{{\twindef{recognizer}{predicate}}} as
+  the last child of the {\element{sortdef}} element for the sort {\snippet{pos-nats}}.
+\end{omtext}
 
 Note that the {\element{sortdef}}, {\element{constructor}}, {\element{selector}},
 and {\element{recognizer}} elements define symbols of the name specified by their

@@ -332,15 +332,15 @@ like those.
     its target in a document {\twindef{ref}{reduction}} and the document resulting from
     the process of systematically and recursively reducing all the {\element{ref}}
     elements the {\twindef{ref-normal}{form}} of the source document. Note that
-    {\element{ref}}-normalization may not always be possible, e.g.  if the
-    {\twinref{ref}{target}s} do not exist or are inaccessible --- or worse yet, if the
-    relation given by the {\element{ref}} elements is {\indextoo{cyclic}}. Moreover, even
-    if it is possible to {\element{ref}}-normalize, this may not lead to a valid {\omdoc}
-    document, e.g.  since \twinalt{\snippet{ID} type}{ID}{type} attributes that were
-    unique in the target documents are no longer in the {\element{ref}}-reduced one. We
-    will call a document {\twindef{ref}{reducible}}, iff its {\element{ref}}-normal form
-    exists, and {\twindef{ref}{valid}}, iff the {\element{ref}} normal form exists and is
-    a valid {\omdoc} document.
+    {\element{ref}}-normalization may not always be possible, e.g.  if the ref-targets do
+    not exist or are inaccessible --- or worse yet, if the relation given by the
+    {\element{ref}} elements is {\indextoo{cyclic}}. Moreover, even if it is possible to
+    {\element{ref}}-normalize, this may not lead to a valid {\omdoc} document, e.g.  since
+    \twinalt{\snippet{ID} type}{ID}{type} attributes that were unique in the target
+    documents are no longer in the {\element{ref}}-reduced one. We will call a document
+    {\twindef{ref}{reducible}}, iff its {\element{ref}}-normal form exists, and
+    {\twindef{ref}{valid}}, iff the {\element{ref}} normal form exists and is a valid
+    {\omdoc} document.
   \end{definition}
 \end{oldpart}
   

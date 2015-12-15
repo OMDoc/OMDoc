@@ -44,6 +44,7 @@ standard and the {\mathml} 2.0 Recommendation for details and clarifications.
 \begin{omgroup}[id=openmath]{OpenMath}
 \begin{module}[id=OpenMath]
 
+\begin{omtext}
 {\openmath} is a markup language for mathematical formulae that concentrates on the
 meaning of formulae building on an extremely simple kernel (markup primitive for
 syntactical forms of content formulae), and adds an extension mechanism for mathematical
@@ -53,6 +54,7 @@ concepts, the content dictionaries.  \inlinedef{{\twindefalt{These}{content}{dic
 {\openmath} standard is {\openmath}2, which incorporates many of the experiences of the
 last years, particularly with embedding {\openmath} into the {\omdoc}
 format.
+\end{omtext}
 
 We will only review the {\xml} encoding of {\openmath} objects here, since it is most
 relevant to the {\omdoc} format. All elements of the {\xml} encoding live in the
@@ -103,6 +105,7 @@ argument in ``\twinalt{prefix-}{prefix}{notation}'' or ``{\twintoo{Polish}{notat
 i.e. the first child is the representation of the function and all the subsequent ones are
 representations of the arguments in order.
 
+\begin{omtext}
 Objects and concepts that carry meaning independent of the local context (\inlinedef{they
   are called {\defin{symbol}s} in {\openmath}}) are represented as
 {\element[ns-elt=om]{OMS}} elements, where the value of the
@@ -122,6 +125,7 @@ for declarations).\footnote{Note that while the {\attributeshort{cdbase}} inheri
   {\omdoc} format, it is augmented by one in {\omdoc}. As a consequence, {\openmath}
   objects in {\omdoc} documents will usually not contain {\attributeshort{cdbase}}
   attributes; see {\sref{identifying}} for a discussion.}
+\end{omtext}
 
 The {\openmath}2 standard proposes the following mechanism for determining a canonical
 identifying {\indextoo{URI}} for the symbol declaration referenced by an {\openmath}
@@ -472,21 +476,23 @@ Shared & Exploded \\\hline\hline
 \end{tabular}
 \end{myfig}
 
-To ensure that the {\xml} representations actually correspond to
-\atwintoo{directed}{acyclic}{graph}s, the occurrences of the {\element[ns-elt=om]{OMR}}
-must obey the global acyclicity constraint below, \inlinedef{where we say that an
-  {\openmath} element {\defin{dominate}s} all its children and all elements they
-  dominate}; The {\element[ns-elt=om]{OMR}} also dominates its
-\inlinedef{{\defin{target}}\footnote{The target of an {\openmath} element with an
-    {\attributeshortcomment{id}{in {\sc{OpenMath}} objects}} attribute is defined
-    analogously}, i.e. the element that carries the {\attributeshortcomment{id}{in
-      {\sc{OpenMath}} objects}} attribute pointed to by the
-  {\attribute[ns-elt=om]{href}{OMR}} attribute}.  For instance, in the representation in
-{\myfigref{explosion}} the {\element[ns-elt=om]{OMA}} element with {\snippet{xml:id="t1"}}
-and also the second {\element[ns-elt=om]{OMA}} element dominate the
-{\element[ns-elt=om]{OMA}} element with {\snippet{xml:id="t11"}}.
+\begin{omtext}
+  To ensure that the {\xml} representations actually correspond to
+  \atwintoo{directed}{acyclic}{graph}s, the occurrences of the {\element[ns-elt=om]{OMR}}
+  must obey the global acyclicity constraint below, \inlinedef{where we say that an
+    {\openmath} element {\defin{dominate}s} all its children and all elements they
+    dominate}; The {\element[ns-elt=om]{OMR}} also dominates its
+  \inlinedef{{\defin{target}}\footnote{The target of an {\openmath} element with an
+      {\attributeshortcomment{id}{in {\sc{OpenMath}} objects}} attribute is defined
+      analogously}, i.e. the element that carries the {\attributeshortcomment{id}{in
+        {\sc{OpenMath}} objects}} attribute pointed to by the
+    {\attribute[ns-elt=om]{href}{OMR}} attribute}.  For instance, in the representation in
+  {\myfigref{explosion}} the {\element[ns-elt=om]{OMA}} element with
+  {\snippet{xml:id="t1"}} and also the second {\element[ns-elt=om]{OMA}} element dominate
+  the {\element[ns-elt=om]{OMA}} element with {\snippet{xml:id="t11"}}.
+\end{omtext}
 
-\begin{axiom}[title={\openmath} Acyclicity Constraint]
+\begin{axiom}[title=Acyclicity Constraint]
   An OpenMath element may not dominate itself.
 \end{axiom}
 
@@ -892,6 +898,7 @@ a particular type system).
 \begin{omgroup}[id=sem-var,short=Semantics of Variables]{The Semantics of Variables in
   {\openmath} and {\cmathml}}
  
+\begin{omtext}
 A more subtle, but nonetheless crucial difference between {\openmath} and {\mathml} is the
 handling of variables, symbols, their names, and equality conditions.  {\openmath} uses
 the {\attribute[ns-elt=om]{name}{OMV, om:OMS}} attribute to identify a variable or symbol,
@@ -944,6 +951,7 @@ elements that declare the bound variable with an {\attribute[ns-elt=m]{id}{bvar}
 use the {\attribute[ns-elt=m]{definitionURL}{ci}} attribute on the {\twintoo{bound}{occurrence}s}
 of the {\element[ns-elt=m]{ci}} element to point to those. The following example is taken
 from~\cite{KohDev:bvm03}, which has more details.
+\end{omtext}
 
 \begin{lstlisting}[language=MathML,label=bvar-mathml,
      index={math,bvar,ci,definitionURL}]

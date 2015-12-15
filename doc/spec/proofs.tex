@@ -183,6 +183,7 @@ Note that there can be more than one proof for a given assertion.
 \end{myfig}
 \end{presonly}
 
+\begin{omtext}
 The content of a proof consists of a sequence of proof steps, whose {\indextoo{DAG}}
 structure is given by \indexalt{cross-referencing}{cross-reference}. These proof steps are
 specified in four kinds of {\omdoc} elements:
@@ -238,6 +239,7 @@ specified in four kinds of {\omdoc} elements:
   {\element{hypothesis}} case, the scope of this symbol extends to the end of the
   {\element{proof}} element containing it.
 \end{description}
+\end{omtext}
 
 These elements contain an informal (natural language) representation of the proof step in
 a multilingual \twinalt{{\element{CMP}} group}{multilingual}{group} and possibly an
@@ -261,27 +263,29 @@ is important, since it will be initially infeasible to totally formalize all
 \begin{module}[id=justifications]
 \begin{omgroup}[id=proofs.justifications]{Proof Step Justifications}
 
-So far we have only concerned ourselves with the linear structure of the proof, we have
-identified the proof steps and classified them by their function in the proof. A central
-property of the {\element{derive}} elements is that their content (the local claim)
-follows from statements that we consider true. These can be earlier steps in the proof or
-general knowledge. To convince the reader of a proof, the steps are often accompanied with
-\inlinedef{a {\defin{justification}}}.  This can be given either by a logical
-{\twintoo{inference}{rule}} or {\twintoo{higher-level}{evidence}} for the truth of the
-claim.  The evidence can consist in a {\twintoo{proof}{method}} that can be used to prove
-the assertion, or in a separate subproof, that could be presented if the consumer was
-unconvinced.  Conceptually, both possibilities are equivalent, since the
-{\indextoo{method}} can be used to compute the subproof (\inlinedef{called its
-  {\defin{expansion}}}). Justifications are represented in {\omdoc} by the
-{\element{method}} children of {\element{derive}} elements\footnote{The structural and
-  formal justification elements discussed in this section are derived from hierarchical
-  data structures developed for semi-automated theorem proving (satisfying the logical
-  side). They allow natural language representations at every level (allowing for natural
-  representation of mathematical vernacular at multiple levels of abstraction).  This
-  proof representation (see~\cite{BenzmuellerEtAl:otama97} for a discussion and pointers)
-  is a DAG of nodes which represent the proof steps.}  (see {\mylstref{derive}} for an
-example):
-  
+\begin{omtext}
+  So far we have only concerned ourselves with the linear structure of the proof, we have
+  identified the proof steps and classified them by their function in the proof. A central
+  property of the {\element{derive}} elements is that their content (the local claim)
+  follows from statements that we consider true. These can be earlier steps in the proof
+  or general knowledge. To convince the reader of a proof, the steps are often accompanied
+  with \inlinedef{a {\defin{justification}}}.  This can be given either by a logical
+  {\twintoo{inference}{rule}} or {\twintoo{higher-level}{evidence}} for the truth of the
+  claim.  The evidence can consist in a {\twintoo{proof}{method}} that can be used to
+  prove the assertion, or in a separate subproof, that could be presented if the consumer
+  was unconvinced.  Conceptually, both possibilities are equivalent, since the
+  {\indextoo{method}} can be used to compute the subproof (\inlinedef{called its
+    {\defin{expansion}}}). Justifications are represented in {\omdoc} by the
+  {\element{method}} children of {\element{derive}} elements\footnote{The structural and
+    formal justification elements discussed in this section are derived from hierarchical
+    data structures developed for semi-automated theorem proving (satisfying the logical
+    side). They allow natural language representations at every level (allowing for
+    natural representation of mathematical vernacular at multiple levels of abstraction).
+    This proof representation (see~\cite{BenzmuellerEtAl:otama97} for a discussion and
+    pointers) is a DAG of nodes which represent the proof steps.}  (see
+  {\mylstref{derive}} for an example):
+\end{omtext}
+
 \begin{definition}[id=method.def]
   The {\eldef{method}} element contains a structural specification of the justification of
   the claim made in the {\element{FMP}} of a {\element{derive}} element.
@@ -376,12 +380,14 @@ $\ldots$
 </theory>
 \end{lstlisting}
 
+\begin{omtext}
   In {\omdoc} the {\element{premise}} elements must reference proof steps in the current
   proof or statements ({\element{assertion}} or {\element{axiom}} elements) in the scope
   of the current theory: \inlinedef{A statement is in \defin{scope} of the
     \twinalt{current theory}{theory}{in scope of}, if its home theory is the current
     theory or imported (directly or indirectly) by the current theory.}
-  
+\end{omtext}
+
 Furthermore note that a proof containing a {\element{premise}} element is not
 self-contained evidence for the validity of the {\element{assertion}} it proves.
 Of course it is only evidence for the validity at all (we call such a proof
@@ -508,6 +514,7 @@ As a consequence, they can only be used in certain parts of the proof.  The hypo
 inaccessible for inference outside the nearest ancestor {\element{proof}} element of the
 {\element{hypothesis}}.
   
+\begin{omtext}
 Let us now reconsider the proof in {\myfigref{pf-example1-math}}. Some of the steps (2, 3,
 4, 5, 7) leave the thesis unmodified; \inlinedef{these are called
   {\twindef{forward}{reasoning}} or {\atwindef{bottom-up}{proof}{step}s}}, since they are
@@ -519,7 +526,8 @@ new subproofs, each one characterized with a new local thesis.  \inlinedef{These
   problems (the subproofs)}.  In our example, both backward reasoning steps open just one
 new subproof: Step 1 reduces the goal to proving that the finiteness of $P$ implies a
 contradiction; step 5 reduces the goal to proving that $q$ is prime.
-  
+\end{omtext}
+
 Step 2 is used to introduce a new hypothesis, whose scope extends from the point where it
 is introduced to the end of the current subproof, covering also all the steps inbetween
 and in particular all subproofs that are introduced in these. In our example the scope of
@@ -620,6 +628,7 @@ needed, can be forbidden.
 \begin{module}[id=proofobjects]
 \begin{omgroup}[id=proofobjects]{Formal Proofs as Mathematical Objects}
 
+\begin{omtext}
   In {\omdoc}, the notion of fully formal proofs is accommodated by the
   {\element{proofobject}} element. In logic, \inlinedef{the term {\twindef{proof}{object}}
     is used for term representations of formal proofs via the Curry/Howard/DeBruijn
@@ -632,7 +641,8 @@ needed, can be forbidden.
   {\myfigref{proofobject}} we have assumed a theory {\snippet{PL0ND}} for the calculus of
   {\twintoo{natural}{deduction}} in {\twintoo{propositional}{logic}} which provides the
   necessary symbols (see {\mylstref{plnd}}).
-  
+\end{omtext}
+
 \begin{definition}[id=proofobject.def]
   The {\eldef{proofobject}} element contains an optional multilingual group of
   {\element{h:p}} elements which describes the formal proof as well as a

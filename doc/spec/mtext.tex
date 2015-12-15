@@ -10,14 +10,16 @@
 \begin{omgroup}[id=mtext,short=Mathematical Text]
   {Mathematical Text (Module {\MTXTmodule{spec}})}
 
-The everyday mathematical language used in textbooks, conversations, and written onto
-blackboards all over the world consists of a {\indextoo{rigorous}}, slightly stylized
-version of {\twintoo{natural}{language}} interspersed with mathematical formulae,
-\inlinedef{that is sometimes called {\twindef{mathematical}{vernacular}}\footnote{The term
-    ``mathematical vernacular'' was first introduced by Nicolaas Govert de Bruijn in the
-    1970s (see~\cite{DeBruijn:tmv94} for a discussion). It derives from the word
-    ``vernacular'' used in the {\twintoo{Catholic}{church}} to distinguish the language
-    used by {\indextoo{laymen}} from the official {\indextoo{Latin}}.}.}
+\begin{omtext}
+  The everyday mathematical language used in textbooks, conversations, and written onto
+  blackboards all over the world consists of a {\indextoo{rigorous}}, slightly stylized
+  version of {\twintoo{natural}{language}} interspersed with mathematical formulae,
+  \inlinedef{that is sometimes called {\twindef{mathematical}{vernacular}}\footnote{The
+      term ``mathematical vernacular'' was first introduced by Nicolaas Govert de Bruijn
+      in the 1970s (see~\cite{DeBruijn:tmv94} for a discussion). It derives from the word
+      ``vernacular'' used in the {\twintoo{Catholic}{church}} to distinguish the language
+      used by {\indextoo{laymen}} from the official {\indextoo{Latin}}.}.}
+\end{omtext}
 
 \begin{presonly}
 \begin{myfig}{qtcfmp}{The {\omdoc} Elements for Specifying Mathematical Properties}
@@ -167,6 +169,7 @@ a whitespace-separated list of URI references to formal representations (see
 
 \begin{omgroup}[id=phrases]{Phrase-Level Markup of Mathematical Vernacular}
 
+\begin{omtext}
   To make the sentence-internal structure of mathematical vernacular more explicit,
   {\omdoc} provides an infrastructure to mark up natural language phrases in
   sentences. Linguistically, \inlinedef{a {\defin{phrase}} is a group of words that
@@ -176,6 +179,7 @@ a whitespace-separated list of URI references to formal representations (see
   phrases that allows to mark their specific properties with special attributes and a
   {\element{metadata}} child. The {\element{term}} element is naturally restricted to
   phrases by construction.
+\end{omtext}
 
 \begin{definition}[id=span.def]
   The {\eldef[ns-elt=h]{span}} element has the optional attribute
@@ -304,7 +308,7 @@ usage, index={h:span}]
 
   Furthermore, the {\element[ns-elt=h]{span}} element allows the attribute
   {\attribute[ns-elt=h]{index}{span}} for
-  {\atwintoo[ns-elt=h]{parallel}{multilingual}{markup}}: Recall that sibling
+  {\atwintoo{parallel}{multilingual}{markup}}: Recall that sibling
   {\element{omtext}} elements form {\twintoo{multilingual}{group}s} of text fragments.  We
   can use the {\element[ns-elt=h]{span}} element to make the correspondence relation on
   text fragments more fine-grained: {\element[ns-elt=h]{span}} elements in sibling
@@ -352,6 +356,7 @@ inline mathematical statements, which we will discuss in {\sref{inline-statement
 
 \begin{omgroup}[id=terms]{Technical Terms}
 
+\begin{omtext}
   In {\omdoc} we can give the notion of a \inlinedef{{\twindef{technical}{term}} a very
     precise meaning: it is a {\indextoo{span}} representing a {\indextoo{concept}} for
     which a {\indextoo{declaration}} exists in a {\twintoo{content}{dictionary}} (see
@@ -377,6 +382,8 @@ example we might use the following markup.
 $\ldots$<term  cd="nat" name="zero">the number zero</term> is an 
 <term cd="nat" name="Nats">natural number</term>$\ldots$
 \end{lstlisting}
+\end{omtext}
+
 \begin{definition}[id=term.def]
   The {\eldef{term}} element has one required attribute: {\attribute{name}{term}} and two
   optional ones: {\attribute{cd}{term}} and {\attribute{cdbase}{term}}.  Together they
@@ -440,7 +447,7 @@ modeling in {\omdoc} to the future.
 \end{myfig}
 \end{presonly}
 
-\begin{definition}[id=idx.def,title=\twinalt{Index Markup}{index}{markup}]
+\begin{definition}[id=idx.def,title=Index Markup]
   The {\eldef{idx}} element is used for index markup in {\omdoc}. It contains an optional
   {\eldef{idt}} element that contains the {\twintoo{index}{text}}, i.e. the phrase that is
   indexed. The remaining content of the index element specifies what is entered into
@@ -497,7 +504,7 @@ modeling in {\omdoc} to the future.
 \end{lstlisting}
 
 
-\begin{definition}[id=note.def,title=\indexalt{Notes}{note}]
+\begin{definition}[id=note.def,title=Notes]
   The {\eldef{note}} element is the closest approximation to a {\indextoo{footnote}} or
   {\indextoo{endnote}}, where the kind of note is determined by the
   {\attribute{type}{note}} attribute. {\omdoc} supplies {\attval{footnote}{type}{note}} as
