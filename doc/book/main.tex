@@ -10,7 +10,7 @@
 \usepackage[hide]{ed}     %../macros set to [hide] when publishing
 \usepackage{include}
 \usepackage[backref=true,hyperref=auto,style=alphabetic]{biblatex}
-\bibliography{../bibs/kwarc}
+\bibliography{kwarc}
 \input{dcmcontributors}
 \makeindex
 
@@ -57,14 +57,14 @@
 \Inprocessing{preface}
 \Inprocessing{toc}
 
-\part[Applications and Projects]{{\omdoc} Applications and Projects}\label{part:applications}
+\part[short=Applications and Projects]{{\omdoc} Applications and Projects}\label{part:applications}
 \Inprojects{preface}
 \Inprojects{toc}
 
 \Inspec{partappendix}
 \Inspec{appendix}
 \backmatter
-\printbibliograph\newpage
+\printbibliography\newpage
 {\small\printindex}
 
 \end{document}
