@@ -8,15 +8,12 @@
 
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{omdocspec}[2007/7/11 OMDoc Specification Class]
-\DeclareOption{extrefs}{\PassOptionsToPackage{\CurrentOption}{sref}}
-\DeclareOption{report}{\PassOptionsToPackage{\CurrentOption}{omdoc}}
-\DeclareOption{book}{\PassOptionsToPackage{\CurrentOption}{omdoc}}
+\DeclareOption*{\PassOptionsToClass{\CurrentOption}{omdoc}}
 \ProcessOptions
 %\LoadClass[envcountsame,envcountchap]{svmono}
 \RequirePackage{fancyhdr}
-\LoadClass[twoside,titlepage,a4paper]{report}
+\LoadClass{omdoc}
 \RequirePackage{a4wide}
-\RequirePackage{makeidx}         % allows index generation
 \RequirePackage{graphicx}        % standard LaTeX graphics tool
                              % when including figure files
 \RequirePackage{multicol}        % used for the two-column index
@@ -29,7 +26,6 @@
 \RequirePackage{amstext}
 \RequirePackage{url}
 \RequirePackage{wrapfig}
-\RequirePackage{makeidx}
 \RequirePackage{wasysym}
 \RequirePackage{textcomp} %standard
 \RequirePackage[hyper]{acronyms}
@@ -39,10 +35,7 @@
 \RequirePackage{tikz}
 \usetikzlibrary{shapes}
 \usetikzlibrary{arrows}
-\RequirePackage{alltt}
-\RequirePackage{dcm}
-\RequirePackage{omdoc}
-\RequirePackage{statements}
+%\RequirePackage{alltt}
 \RequirePackage{paralist}
 \RequirePackage{gitinfo2}
 
