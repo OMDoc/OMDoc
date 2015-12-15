@@ -1,8 +1,10 @@
+##################################################################
 # A RelaxNG schema for Open Mathematical documents (OMDoc 1.6) Module BFT
-# $Id: st-strict.rnc 8422 2009-07-16 01:54:21Z kohlhase $
-# $HeadURL: https://svn.omdoc.org/repos/omdoc/trunk/schema/rnc/st-strict.rnc $
+#
+# The source original is at https://github.com/KWARC/OMDoc/schema/rnc
 # See the documentation and examples at http://www.omdoc.org
 # Copyright (c) 2009 Michael Kohlhase, released under the GNU Public License (GPL) 
+##################################################################
 
 default namespace omdoc = "http://omdoc.org/ns"
 

@@ -1,8 +1,10 @@
-# A RelaxNG schema for Open Mathematical documents (OMDoc 1.6) Module MOBJ  
-# $Id: omdocmobj.rnc 8937 2011-08-08 07:26:52Z kohlhase $
-# $HeadURL: https://svn.omdoc.org/repos/omdoc/trunk/schema/rnc/strict/omdocmobj.rnc $
+##################################################################
+# A RelaxNG schema for Open Mathematical documents (OMDoc 1.6) Module MOBJ
+#
+# The source original is at https://github.com/KWARC/OMDoc/schema/rnc
 # See the documentation and examples at http://www.omdoc.org
-# Copyright (c) 2009 Michael Kohlhase, released under the GNU Public License (GPL) 
+# Copyright (c) 2015 Michael Kohlhase, released under the GNU Public License (GPL) 
+##################################################################
 
 default namespace omdoc = "http://omdoc.org/ns"
 namespace om = "http://www.openmath.org/OpenMath"

@@ -1,8 +1,10 @@
+##################################################################
 # A RelaxNG for Open Mathematical documents (OMDoc 1.6) Module META
-# $Id: meta-strict.rnc 8540 2009-10-20 10:14:01Z kohlhase $
-# $HeadURL: https://svn.omdoc.org/repos/omdoc/trunk/schema/rnc/meta-strict.rnc $
+#
+# The source original is at https://github.com/KWARC/OMDoc/schema/rnc
 # See the documentation and examples at http://www.omdoc.org
-# Copyright (c) 2007-2008 Michael Kohlhase, released under the GNU Public License (GPL) 
+# Copyright (c) 2015 Michael Kohlhase, released under the GNU Public License (GPL) 
+##################################################################
 
 default namespace omdoc = "http://omdoc.org/ns"
 
