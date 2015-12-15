@@ -1,4 +1,11 @@
-# the MARC relator set; see http://www.loc.gov/marc/relators
+##################################################################
+# the MARC relator set; see http://www.loc.gov/marc/relators 
+#
+# See the documentation and examples at http://www.omdoc.org
+# The source original is at https://github.com/KWARC/OMDoc/schema/rnc
+# Copyright (c) 2015 Michael Kohlhase, released under the GNU Public License (GPL) 
+##################################################################
+
 MARCRelators = 
 	 "act" | "adp" | "aft" | "ann" | "ant" | "app" | "aqt" |
          "arc" | "arr" | "art" | "asg" | "asn" | "att" | "auc" | "aud" | "aui" |

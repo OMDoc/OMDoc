@@ -1,7 +1,11 @@
+##################################################################
 # A RelaxNG for Creative Commons License Specifications
-# $Id: creativecommons.rnc 8550 2009-11-07 06:38:23Z kohlhase $
-# $HeadURL: https://svn.omdoc.org/repos/omdoc/trunk/schema/rnc/pragmatic/creativecommons.rnc $
-# Copyright (c) 2008 Michael Kohlhase, released under the GNU Public License (GPL) 
+#
+# See the documentation and examples at http://www.omdoc.org
+# Copyright (c) 2015 Michael Kohlhase, released under the GNU Public License (GPL)
+# The source original is at https://github.com/KWARC/OMDoc/schema/rnc
+##################################################################
+
 
 default namespace cc = "http://creativecommons.org/ns"
 

@@ -1,8 +1,10 @@
+##################################################################
 # A RelaxNG schema for the Dublin Core elements
-# $Id: dublincore.rnc 8550 2009-11-07 06:38:23Z kohlhase $
-# $HeadURL: https://svn.omdoc.org/repos/omdoc/trunk/schema/rnc/pragmatic/dublincore.rnc $
+#
+# The source original is at https://github.com/KWARC/OMDoc/schema/rnc
 # See the documentation and examples at http://www.omdoc.org
-# Copyright (c) 2004-2008 Michael Kohlhase, released under the GNU Public License (GPL) 
+# Copyright (c) 2015 Michael Kohlhase, released under the GNU Public License (GPL) 
+##################################################################
 
 default namespace dc = "http://purl.org/dc/elements/1.1/"
 

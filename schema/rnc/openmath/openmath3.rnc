@@ -1,7 +1,8 @@
+##################################################################
 # RELAX NG Schema for OpenMath 3
-# $Id: openmath3.rnc 8550 2009-11-07 06:38:23Z kohlhase $
-# $HeadURL: https://svn.omdoc.org/repos/omdoc/trunk/schema/rnc/openmath/openmath3.rnc $
+#
 # See the documentation and examples at http://www.openmath.org
+##################################################################
 
 default namespace om = "http://www.openmath.org/OpenMath"
 

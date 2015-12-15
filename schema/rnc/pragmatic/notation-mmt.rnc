@@ -1,3 +1,11 @@
+##################################################################
+# A RelaxNG schema for Open Mathematical documents (OMDoc 1.6) Module MMTNOT
+#
+# See the documentation and examples at http://www.omdoc.org
+# Copyright (c) 2015 Michael Kohlhase, released under the GNU Public License (GPL) 
+# The source original is at https://github.com/KWARC/OMDoc/schema/rnc
+##################################################################
+
 default namespace omdoc = "http://www.omdoc.org/ns"
 datatypes xsd = "http://www.w3.org/2001/XMLSchema-datatypes"
 

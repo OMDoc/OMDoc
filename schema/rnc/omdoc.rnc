@@ -1,8 +1,10 @@
+##################################################################
 # A RelaxNG schema for Open Mathematical documents (OMDoc 1.6)           
 # $Id: omdoc.rnc 8553 2009-11-07 15:42:34Z kohlhase $
 # $HeadURL: https://svn.omdoc.org/repos/omdoc/trunk/schema/rnc/omdoc.rnc $
 # See the documentation and examples at http://www.omdoc.org
 # Copyright (c) 2004-2007 Michael Kohlhase, released under the GNU Public License (GPL) 
+##################################################################
 
 include "strict/omdoc-strict.rnc"
 
