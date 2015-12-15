@@ -13,7 +13,7 @@
 \DeclareOption{book}{\PassOptionsToPackage{\CurrentOption}{omdoc}}
 \ProcessOptions
 %\LoadClass[envcountsame,envcountchap]{svmono}
-\RequirePackage{fancyheadings}
+\RequirePackage{fancyhdr}
 \LoadClass[twoside,titlepage,a4paper]{report}
 \RequirePackage{a4wide}
 \RequirePackage{makeidx}         % allows index generation
@@ -42,6 +42,7 @@
 \RequirePackage{alltt}
 \RequirePackage{dcm}
 \RequirePackage{omdoc}
+\RequirePackage{statements}
 \RequirePackage{paralist}
 \RequirePackage{gitinfo2}
 
@@ -63,10 +64,6 @@ breaklinks=true, bookmarksopen=true]{hyperref}
 
 %% to number the listings in sequence with figures
 %\let\c@lstlisting\c@figure
-
-\RequirePackage{statements}
-\RequirePackage{modules}
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Modules %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \def\@@module#1#2#3{% module name, DTD/Schema/spec

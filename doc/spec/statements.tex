@@ -49,7 +49,7 @@ children in a {\element{theory}} element; we will discuss them in
 {\sref{definitions}}, non-constitutive statements will be defined in
 {\sref{assertion}}. They are allowed to occur outside a {\element{theory}} element in
 {\omdoc} documents (e.g. as top-level elements), however, if they do they must reference a
-theory, \inlinedef{which we will call their {\twindef{home}{theory}}} in a special
+theory, \inlinedef{which we will call their \defii{home}{theory}} in a special
 {\attribute{theory}{statement}} attribute. This situates them into the context provided by
 this theory and gives them access to all its knowledge. The home theory of
 theory-constitutive statements is given by the theory they are contained in.
@@ -89,7 +89,7 @@ such that conforming structures exist (the natural numbers we all know and love)
 structures that interpret 0, $s$, and $\NN$ and satisfy these axioms must be isomorphic.
 This is an ideal situation --- the axioms are neither too lax (they allow too many
 mathematical structures) or too strict (there are no mathematical structures) --- which is
-difficult to obtain. The latter condition (\inlinedef{{\defin{inconsistent}} theories}) is
+difficult to obtain. The latter condition (\inlinedef{\defi{inconsistent} theories}) is
 especially unsatisfactory, since any statement is a theorem in such theories. As
 consistency can easily be lost by adding axioms, mathematicians try to keep
 {\twintoo{axiom}{system}s} minimal and only add axioms that are safe.
@@ -102,7 +102,7 @@ consistency can easily be lost by adding axioms, mathematicians try to keep
   only symbols from $\cT$ will introduce no constraints on the meaning of
   $\cT$-symbols. The axiom $s=\bA$ only constrains the meaning of the
   {\twintoo{new}{symbol}} to be a unique object: the one denoted by $\bA$. \inlinedef{We
-    speak of a {\twindef{conservative}{extension}} in this case}. So, if $\cT$ was a
+    speak of a \defii{conservative}{extension} in this case}. So, if $\cT$ was a
   consistent theory, the extension of $\cT$ with the symbol $s$ and the axiom $s=\bA$ must
   be one too. Thus axioms that result in {\twintoo{conservative}{extension}s} can be added
   safely --- i.e. without endangering consistency --- to theories.
@@ -110,8 +110,8 @@ consistency can easily be lost by adding axioms, mathematicians try to keep
 
 \begin{definition}[display=flow,id=conservative-extension.def]
   Generally an axiom $\cA$ that results in a {\twintoo{conservative}{extension}} is called
-  a {\defin{definition}} and any new symbol it introduces a {\defin{definiendum}} (usually
-  marked e.g. in boldface font in mathematical texts), and we call {\defin{definiens}} the
+  a \defi{definition} and any new symbol it introduces a \defi{definiendum} (usually
+  marked e.g. in boldface font in mathematical texts), and we call \defi{definiens} the
   material in the definition that determines the meaning of the definiendum.
 \end{definition}
 \end{module}
@@ -273,14 +273,14 @@ be done by suitable {\element[ns-elt=dc]{subject}} elements.
 \begin{omtext}
   {\indexalt{Types}{type}} (also called {\indextoo{sort}s} in some contexts) are
   representations of certain simple sets that are treated specially in (human or
-  mechanical) {\twintoo{reasoning}{process}es}. \inlinedef{A {\twindef{type}{declaration}}
+  mechanical) {\twintoo{reasoning}{process}es}. \inlinedef{A \defii{type}{declaration}
     $e\colon t$ makes the information that a symbol or expression $e$ is in a set
     represented by a type $t$ available to a specified mathematical process}.  For
   instance, we might know that $7$ is a natural number, or that expressions of the form
   $\sum_{i=1}^n a_ix^{i}$ are polynomials, if the $a_i$ are real numbers, and exploit this
   information in mathematical processes like proving, pattern matching, or while choosing
   intuitive notations.  \inlinedef{If a type is declared for an expression that is not a
-    symbol, we will speak of a {\twindef{term}{declaration}}}.
+    symbol, we will speak of a \defii{term}{declaration}}.
 \end{omtext}
 
 \begin{definition} [id=type.def]
@@ -300,7 +300,7 @@ be done by suitable {\element[ns-elt=dc]{subject}} elements.
   
   The {\element{type}} element contains one or two mathematical objects. In the first
   case, it represents a type declaration for a symbol (we call this a
-  {\twindef{symbol}{declaration}}), which can be specified in the optional
+  \defii{symbol}{declaration}), which can be specified in the optional
   {\attribute{for}{type}} attribute or by embedding the {\element{type}} element into the
   respective {\element{symbol}} element.  A {\element{type}} element with two mathematical
   objects represents a {\twintoo{term}{declaration}} $e\colon t$, where the first object
@@ -328,7 +328,7 @@ symbols.
   Therefore {\eldef{definition}} elements that represent definitions carry the required
   {\attribute{for}{definition}} attribute, which contain a whitespace-separated list of
   names of symbols in the same theory.  We call these symbols
-  {\twindefalt{defined}{defined}{symbol}} and {\twindefalt{primitive}{primitive}{symbol}}
+  \adefii{defined}{defined}{symbol} and \adefii{primitive}{primitive}{symbol}
   otherwise. A {\element{definition}} contains mathematical vernacular as a sequen ce of
   {\element[ns-elt=h]{p}} elements to describe the meaning of the defined symbols.
 
@@ -577,7 +577,7 @@ represented mathematical objects.
 \begin{omtext}
 However, not all type information is axiomatic, it can also be deduced from other sources
 knowledge. We use the same {\element{type}} element we have discussed in
-{\sref{type-axioms}} for such \inlinedef{{\twindef{type}{assertions}},
+{\sref{type-axioms}} for such \inlinedef{\defii{type}{assertions},
   i.e. non-constitutive statements that inform a type-checker}. In this case, the
 {\element{type}} element can occur at top level, and even outside a {\element{theory}}
 element (in which case they have to specify their home theory in the
@@ -661,7 +661,7 @@ whereas other statements do not. For instance, a symbol declaration only declare
 unambiguous name for an object.
 \begin{definition}[display=flow,id=assertional.def]
   We will call the following {\omdoc} elements
-  \twindefalt{assertional}{assertional}{element}: {\element{axiom}} (it asserts central
+  \adefii{assertional}{assertional}{element}: {\element{axiom}} (it asserts central
   properties about an object), {\element{type}} (it asserts type properties about an
   object), {\element{definition}} (this asserts properties of a new object), and of course
   {\element{assertion}}.
@@ -919,16 +919,16 @@ proofs and justifications.
   The meaning of the {\eldef{imports}} element is determined by two attributes:
 \begin{description}
 \item[{\attribute{from}{imports}}] The value of this attribute is a
-  {\twintoo{URI}{reference}} that specifies the {\twindef{source}{theory}},
+  {\twintoo{URI}{reference}} that specifies the \defii{source}{theory},
     i.e. the theory we import from.  The current theory (the one specified in
     the parent of the {\element{imports}} element, we will call it the
-    {\twindef{target}{theory}}) inherits the constitutive elements from the source
+    \defii{target}{theory}) inherits the constitutive elements from the source
   theory.
 \item[{\attribute{type}{imports}}] This optional attribute can have the values
   {\attval{global}{type}{imports}} and {\attval{local}{type}{imports}} (the former is
-  assumed, if the attribute is absent): We call constitutive elements {\defin{local}} to
+  assumed, if the attribute is absent): We call constitutive elements \defi{local} to
   the current theory, if they are explicitly defined as children, and else
-  {\defin{inherited}}.  A {\twindef{local}{import}} (an {\element{imports}} element with
+  \defi{inherited}.  A \defii{local}{import} (an {\element{imports}} element with
   {\snippet{type="local"}}) only imports the local elements of the source theory, a
   {\indextoo{global}} import also the inherited ones.
 \end{description}
@@ -992,7 +992,7 @@ alone, we have to forbid it to be safe.
 
 Let us now formulate the constraint carefully, 
 \begin{definition}[display=flow,id=base.uri.def]
-  the {\twindef{base}{URI}} of an {\xml} document is the {\indextoo{URI}} that has been
+  the \defii{base}{URI} of an {\xml} document is the {\indextoo{URI}} that has been
   used to retrieve it.
 \end{definition}
 We adapt this to {\omdoc} theory elements: the base URI of an imported theory is the URI
@@ -1087,7 +1087,7 @@ then it cannot be used since its semantics is not defined.
   {\omdoc} documents can contain definitions of mathematical concepts and symbols, thus
   they are also candidates for ``defining documents'' for symbols.  By the {\openmath}2
   standard~\cite{BusCapCar:2oms04} suitable classes of {\omdoc} documents can act as
-  {\openmath} content dictionaries (\inlinedef{we call them {\omdoc} \twindefalt{content
+  {\openmath} content dictionaries (\inlinedef{we call them {\omdoc} \adefii{content
       dictionaries}{content dictionary}{OMDoc}}; see {\sref{sub-languages.cd}}).  The main
   distinguishing feature of {\omdoc} content dictionaries is that they include
   {\element{theory}} elements with {\twintoo{symbol}{declaration}s} (see
@@ -1119,18 +1119,18 @@ example). For this, the {\element{theory}} element carries some optional attribu
 allow to specify the administrative metadata of {\openmath} content dictionaries.
 
 \begin{omtext}
-  The {\attribute{cdstatus}{theory}} attribute specifies \inlinedef{the {\twindef{content
+  The {\attribute{cdstatus}{theory}} attribute specifies \inlinedef{the {\defii{content
         dictionary}{status}}}, which can take one of the following values:
   {\attval{official}{cdstatus}{theory}} (i.e. approved by the {\openmath} Society),
   {\attval{experimental}{cdstatus}{theory}} (i.e. under development and thus liable to
   change), {\attval{private}{cdstatus}{theory}} (i.e. used by a private group of
   {\openmath} users) or {\attval{obsolete}{cdstatus}{theory}} (i.e. only for archival
   purposes). The attributes {\attribute{cdversion}{theory}} and
-  {\attribute{cdrevision}{theory}} jointly specify \inlinedef{the {\twindef{content
-        dictionary}{version number}}, which consists of two parts, a major
-    {\defin{version}} and a {\defin{revision}}, both of which are non-negative
-    integers}. For details between the relation between content dictionary status and
-  versions consult the {\openmath} standard~\cite{BusCapCar:2oms04}.
+  {\attribute{cdrevision}{theory}} jointly specify \inlinedef{the \defii{content
+      dictionary}{version number}, which consists of two parts, a major \defi{version} and
+    a \defi{revision}, both of which are non-negative integers}. For details between the
+  relation between content dictionary status and versions consult the {\openmath}
+  standard~\cite{BusCapCar:2oms04}.
 \end{omtext}
 
 \begin{omtext}
@@ -1142,7 +1142,7 @@ Furthermore, the {\element{theory}} element can have the following attributes:
   retrieved.
 \item[\attribute{cdurl}{theory}] for a valid URL where the source file for the content
   dictionary encoding can be found.
-\item[\attribute{cdreviewdate}{theory}] for \inlinedef{the {\twindef{review}{date}} of the
+\item[\attribute{cdreviewdate}{theory}] for \inlinedef{the \defii{review}{date} of the
     content dictionary, i.e. the date until which the content dictionary is guaranteed to
     remain unchanged}.
 \end{description}

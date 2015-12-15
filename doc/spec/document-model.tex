@@ -22,7 +22,7 @@ and theories) as objects in their own right that can be inspected and reasoned a
   In {\srefl{mobj}{quiz}}, we have defined what {\omdoc} documents look like and motivated
   this by the mathematical objects they encode. But we have not really defined the
   properties of these documents as objects themselves (\inlinedef{we will speak of the
-    {\omdoc} {\twindef{document}{object model}} ({\indextoo{OMDOM}})}). To get a feeling
+    {\omdoc} \defii{document}{object model} ({\indextoo{OMDOM}})}). To get a feeling
   for the issues involved, let us take stock of what we mean by the object view of
   data. In mathematics, when we define a class of mathematical objects (e.g.  vector
   spaces), we have to say which objects belong to this class, and when they are to be
@@ -53,13 +53,13 @@ of the intended screen presentation, while still others like the
 
 For a formal definition
 \begin{definition}[display=flow,id=document-model.def]
-  let $\cK$ be a set of documents. We take a {\twindef{document}{model}} to be a partial
+  let $\cK$ be a set of documents. We take a \defii{document}{model} to be a partial
   equivalence relation\footnote{A partial equivalence relation is a symmetric transitive
-    relation. We will use $[d]_\cX$ for the {\twindef{equivalence}{class}} of $d$, i.e.
+    relation. We will use $[d]_\cX$ for the \defii{equivalence}{class} of $d$, i.e.
     $[d]_\cX\colon=\{e|d{\cX}e\}$ $\cX$ on documents, such that $\{d|d{\cX}d\}=\cK$}. In
   particular, a relation $\cX$ is an equivalence relation on $\cK$.  For a given document
   model $\cX$, let us say that two documents $d$ and $d'$ are {\defemph{$\cX$-equal}}, iff
-  $d{\cX}d'$. We call a property $p$ $\cX$-{\defin{invariant}}, iff for all $d{\cX}d'$,
+  $d{\cX}d'$. We call a property $p$ $\cX$-\defi{invariant}, iff for all $d{\cX}d'$,
   $p$ holds on $d$ whenever $p$ holds on $d'$.
 \end{definition}
 
@@ -235,11 +235,11 @@ constraints in the {\xml} schema for {\omdoc} in~\cite{KohAng:tccmvc03}.
   contains a formalization of a mathematical theory, as a reference for automated theorem
   proving systems. There, logical dependencies play a much greater role than the order of
   serialization in mathematical objects.  \inlinedef{We call such documents
-    {\defin{content OMDoc}}} and specify the value {\snippetin{Dataset}} in the
+    \defi{content OMDoc}} and specify the value {\snippetin{Dataset}} in the
   {\element[ns-elt=dc]{type}} element of the {\omdoc} metadata for such documents.  On the
   other extreme we have human-oriented presentations of mathematical knowledge, e.g.  for
   educational purposes, where didactic considerations determine the order of
-  presentation. \inlinedef{We call such documents {\defin{narrative-structured}}} and
+  presentation. \inlinedef{We call such documents \defi{narrative-structured}} and
   specify this by the value {\snippetin{Text}} (also see the discussion in
   {\sref{dc-elements}})
 \end{omtext}

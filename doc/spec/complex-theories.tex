@@ -1,4 +1,4 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % This file is part of the LaTeX sources of the OMDoc 1.6 specification
 % Copyright (c) 2006 Michael Kohlhase
 % This work is licensed by the Creative Commons Share-Alike license
@@ -112,7 +112,7 @@ operations $+$ and $*$ (see {\myfigref{rings-simple}}).
     dependent theories, which becomes an exponentially redundant management nightmare.}
   can be alleviated by allowing theory inheritance via translations.  Instead of literally
   inheriting the symbols and axioms from the source theory, we involve a symbol mapping
-  function (\inlinedef{we call this a {\defin{morphism}}}) in the process. This function
+  function (\inlinedef{we call this a \defi{morphism}}) in the process. This function
   maps source formulae (i.e. built up exclusively from symbols visible in the source
   theory) into formulae in the target theory by translating the source symbols.
 \end{omtext}
@@ -162,15 +162,15 @@ belongs\footnote{On any monoid $M=(S,\circ,e)$, we have the $\cdot^*$ operator, 
 \end{myfig}
 
 \begin{omtext}
-Formally, we extend the notion of inheritance given in {\sref{theories-contexts}} by allowing a
-{\twintoo{target}{theory}} to \inlinedef{import another a {\twintoo{source}{theory}}
-  {\defin{via a morphism}}}: Let $\cS$ be a theory with theory-constitutive
-elements\footnote{which may in turn be inherited from other theories} $t_1,\ldots,t_n$ and
-$\sigma\colon\cS\to\cT$ a morphism, if we declare that $\cT$ imports $\cS$ via $\sigma$,
-\inlinedef{then $\cT$ {\defin{inherit}s} the theory-constitutive statements $\sigma(t_i)$
-  from $\cS$}. For instance, the theory of rings inherits the {\indextoo{axiom}}
-$\allcdot{x}{x+0=x}$ from the theory of monoids as
-$\sigma(\allcdot{x}{x+0=x})=\allcdot{x}{x*1=x}$.
+  Formally, we extend the notion of inheritance given in {\sref{theories-contexts}} by
+  allowing a {\twintoo{target}{theory}} to \inlinedef{import another a
+    {\twintoo{source}{theory}} \defi{via a morphism}}: Let $\cS$ be a theory with
+  theory-constitutive elements\footnote{which may in turn be inherited from other
+    theories} $t_1,\ldots,t_n$ and $\sigma\colon\cS\to\cT$ a morphism, if we declare that
+  $\cT$ imports $\cS$ via $\sigma$, \inlinedef{then $\cT$ \defis{inherit} the
+    theory-constitutive statements $\sigma(t_i)$ from $\cS$}. For instance, the theory of
+  rings inherits the {\indextoo{axiom}} $\allcdot{x}{x+0=x}$ from the theory of monoids as
+  $\sigma(\allcdot{x}{x+0=x})=\allcdot{x}{x*1=x}$.
 \end{omtext}
 
 \begin{definition}[id=morphism.def]
@@ -291,18 +291,18 @@ the {\omdoc} infrastructure, we will briefly introduce the mathematical model (s
 e.g.~\cite{Hutter:mocsv00} for details).
 
 \begin{definition}[display=flow,id=theory-inclusion.def]
-  A {\twindef{theory}{inclusion}} from a {\twindef{source}{theory}} $\cS$ to a
-  {\twindef{target}{theory}} $\cT$ is a mapping $\sigma$ from $\cS$
+  A \defii{theory}{inclusion} from a \defii{source}{theory} $\cS$ to a
+  \defii{target}{theory} $\cT$ is a mapping $\sigma$ from $\cS$
   objects\footnote{Mathematical objects that can be represented using the only symbols of
     the source theory $\cS$.} to those of $\cT$, such that for every theory-constitutive
   statement $\bS$ of $\cS$, $\sigma(\bS)$ is provable in $\cT$ (we say that $\sigma(\bS)$
-  is a {\defin[theorem-of]{$\cT$-theorem}}).
+  is a \defi[theorem-of]{$\cT$-theorem}).
 \end{definition}   
 
 In {\omdoc}, we weaken this logical property to a structural one: 
 \begin{definition}[id=structurally-included.def,display=flow]
   We say that a theory-constitutive statement $\bS$ in theory $\cS$ is
-  {\twindef{structurally}{included}} in theory $\cT$ via $\sigma$, if there is an
+  \defii{structurally}{included} in theory $\cT$ via $\sigma$, if there is an
   \twintoo{assertional}{element} $\bT$ in $\cT$, such that the content of $\bT$ is
   $\sigma(\bS)$.
 \end{definition}
@@ -312,26 +312,26 @@ assume $\sigma(\bS)$ to contain a {\element{CMP}} element containing suitably tr
 mathematical vernacular.
 
 \begin{definition}[id=structural.theory.inclusion.def]
-  In this view, a {\atwindef{structural}{theory}{inclusion}} from $\cS$ to $\cT$ is a
-  morphism $\sigma\colon\cS\to\cT$, such that every theory-constitutive element is
-  structurally included in $\cT$.
+  In this view, a \defiii{structural}{theory}{inclusion} from $\cS$ to $\cT$ is a morphism
+  $\sigma\colon\cS\to\cT$, such that every theory-constitutive element is structurally
+  included in $\cT$.
 \end{definition}
 
 \begin{omtext}
-Note that an {\element{imports}} element in a theory $\cT$ with source theory $\cS$ as
-discussed in {\sref{morphisms}} induces a theory inclusion from $\cS$ into
-$\cT$\footnote{Note that in contrast to the inheritance relation induced by the
-  {\element{imports}} elements the relation induced by general theory inclusions may be
-  cyclic. A cycle just means that the theories participating in it are semantically
-  equivalent.} (the theory-constitutive statements of $\cS$ are accessible in $\cT$ after
-translation and are therefore structurally included trivially).  \inlinedef{We call this
-  kind of theory inclusion \atwinalt
-  {\defin{definitional}}{definitional}{theory}{inclusion}, since it is a theory inclusion
-  by virtue of the definition of the target theory}.  For all other theory inclusions
-(\inlinedef{we call them {\atwindef{postulated}{theory}{inclusion}s}}), we have to
-establish the theory inclusion property by proving the translations of the
-theory-constitutive statements of the source theory (\inlinedef{we call these translated
-  formulae {\twindef{proof}{obligation}}}).
+  Note that an {\element{imports}} element in a theory $\cT$ with source theory $\cS$ as
+  discussed in {\sref{morphisms}} induces a theory inclusion from $\cS$ into
+  $\cT$\footnote{Note that in contrast to the inheritance relation induced by the
+    {\element{imports}} elements the relation induced by general theory inclusions may be
+    cyclic. A cycle just means that the theories participating in it are semantically
+    equivalent.} (the theory-constitutive statements of $\cS$ are accessible in $\cT$
+  after translation and are therefore structurally included trivially).  \inlinedef{We
+    call this kind of theory inclusion
+    \adefiii{definitional}{definitional}{theory}{inclusion}, since it is a theory
+    inclusion by virtue of the definition of the target theory}.  For all other theory
+  inclusions (\inlinedef{we call them \adefii{postulated}{theory}{inclusion}}), we have
+  to establish the theory inclusion property by proving the translations of the
+  theory-constitutive statements of the source theory (\inlinedef{we call these translated
+    formulae \defii{proof}{obligation}}).
 \end{omtext}
 
 \begin{omtext}
@@ -343,12 +343,12 @@ theory-constitutive statements of the source theory (\inlinedef{we call these tr
   definitional ones (see~\cite{FaGu93} for a description of the {\imps} theorem proving
   system that makes heavy use of this idea).  We use the infrastructure presented in this
   chapter to structure a collection of theories as a {\indextoo{graph}} --- \inlinedef{the
-    {\twindef{theory}{graph}}} --- where the nodes are theories and the links are theory
+    \defii{theory}{graph}} --- where the nodes are theories and the links are theory
   inclusions (definitional and postulated ones).
 \end{omtext}
 
 \begin{definition}[display=flow,id=conservative.def]
-  We call a theory inclusion $\sigma\colon\cS\to\cT$ {\defin{conservative}}, iff $\bA$ is
+  We call a theory inclusion $\sigma\colon\cS\to\cT$ \defi{conservative}, iff $\bA$ is
   already a $\cS$-theorem for all $\cT$-theorems of the from $\sigma(\bA)$.
 \end{definition}
 If the morphism $\sigma$ is the identity, then this means the local axioms in $\cT$ only
@@ -460,14 +460,14 @@ forward in~\cite{Hutter:mocsv00} and generalizes the notion of theory inclusions
 further:
 \begin{definition}[display=flow,id=local.theory.inclusion]
   A formula mapping between theories $\cS$ and $\cT$ is called a
-  {\atwindef{local}{theory}{inclusion}} or {\twindef{axiom}{inclusion}}, if the theory
+  \defiii{local}{theory}{inclusion} or \defii{axiom}{inclusion}, if the theory
   inclusion property holds for the local theory-constitutive statements of the source
   theory.
 \end{definition}
 \begin{omtext}
   To distinguish this from the notion of a proper {\twintoo{theory}{inclusion}} --- where
   the theory inclusion property holds for all theory constitutive statements of $\cS$
-  (even the inherited ones) --- \inlinedef{we call the latter one {\defin{global}}}. Of
+  (even the inherited ones) --- \inlinedef{we call the latter one \defi{global}}. Of
   course all global theory inclusions are also local ones, so that the new notion is a
   true generalization. Note that the structural inclusions of an
   {\twintoo{axiom}{inclusion}} are not enough to justify translated source theorems in the
@@ -656,7 +656,7 @@ inclusions and checking translation compatibility.
 \begin{definition}[id=axiom-inclusion.def]
   We will call a situation, where a theory $\cT$ can be reached by an {\indextoo{axiom
       inclusion}} with a subsequent chain of {\twintoo{theory}{inclusion}s} a
-  {\twindef{local}{chain}} (with morphism
+  \defii{local}{chain} (with morphism
   $\tau\colon=\sigma_n\circ\cdots\circ\sigma_1\circ\sigma$), if
   $\cS\stackrel\sigma\longrightarrow\cT_1$ is an {\twintoo{axiom}{inclusion}} or (local
   theory import) and $\cT_i\stackrel{\sigma_i}\longrightarrow\cT_{i+1}$ are
@@ -769,7 +769,7 @@ depicted the situation in {\myfigref{thi-proof-decomposition}}.
 We call a situation where we have a formula mapping
 $\cS\stackrel\sigma\longrightarrow\cT$, and an axiom inclusion
 $\cX\stackrel{\sigma_\cX}\longrightarrow\cT$ for every theory $\cX$ that $\cS$ inherits
-from a \inlinedef{{\defin{decomposition}} for $\sigma$, if the $\sigma_\cX$ and $\sigma$
+from a \inlinedef{\defi{decomposition} for $\sigma$, if the $\sigma_\cX$ and $\sigma$
   are compatible}. As we have seen in the example above, a decomposition for $\sigma$ can
 be used to justify that $\sigma$ a theory inclusion: all theory-constitutive elements in
 $\cS$ are local in itself or one of the theories $\cX$ it inherits from. So if we have
@@ -826,7 +826,7 @@ for some property of mathematical objects.
 \begin{definition}[id=path-just.def]
   A {\eldef{path-just}} element justifies an {\element{axiom-inclusion}} by reference to
   other {\element{axiom-inclusion}} or {\element{theory-inclusion}}
-  elements. \twindefalt{Local chains}{local}{chain} are encoded in the empty
+  elements. \adefii{Local chains}{local}{chain} are encoded in the empty
   {\element{path-just}} element via the required attributes {\attribute{local}{path-just}}
   (for the first {\element{axiom-inclusion}}) and the attribute
   {\attribute{globals}{path-just}} attribute, which contains a whitespace-separated list

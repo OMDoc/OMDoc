@@ -27,8 +27,8 @@ structure of the argument that is used to convey the mathematical knowledge to a
 user.
 
 \begin{definition}[display=flow,id=knowledge-structured.def]
-  We will call a document {\defin{knowledge-structured}} and
-  {\defin{narrative-structured}}, based on which of the two aspects is prevalent in the
+  We will call a document \defi{knowledge-structured} and
+  \defi{narrative-structured}, based on which of the two aspects is prevalent in the
   organization of the material.  Narrative-structured documents in mathematics are
   generally directed at human consumption (even without being in presentation
   markup). They have a general narrative structure: text interleaving with formal elements
@@ -77,7 +77,7 @@ information can be specified in the {\css} {\attributeshort{style}} and
 \begin{definition}[id=omdoc.def]
   The {\xml} root element of the {\omdoc} format is the {\eldef{omdoc}} element, it
   contains all other elements described here.  We call an {\omdoc} element a
-  {\twindef{top-level}{element}}, if it can appear as a direct child of the
+  \defii{top-level}{element}, if it can appear as a direct child of the
   {\element{omdoc}} element.  The {\element{omdoc}} element has an optional attribute
   {\attribute[ns-attr=xml]{id}{omdoc}} that can be used to reference the whole
   document. The optional attribute {\attribute{version}{omdoc}} is used to specify the
@@ -322,25 +322,25 @@ like those.
   Let $R$ be a {\element{ref}} element of type {\attval{include}{type}{ref}}.
   \begin{definition}[display=flow,id=ref-target.def]
     We call the element the URI in the {\attribute{xref}{ref}} points to its
-    {\defin[ref-target]{target}} unless it is an {\element{omdoc}} element; in this case,
-    the target is an {\element{omdoc}} element which has the same children as the original
+    \defi[ref-target]{target} unless it is an {\element{omdoc}} element; in this case, the
+    target is an {\element{omdoc}} element which has the same children as the original
     {\element{omdoc}} element\footnote{This transformation is necessary, since {\omdoc}
       does not allow to nest {\element{omdoc}} elements, which would be the case if we
       allowed verbatim replacement for {\element{omdoc}} elements. As we have stated
       above, the {\element{omdoc}} has an implicit {\element{omdoc}} element, and thus
       behaves like one.}.  We call the process of replacing a {\element{ref}} element by
-    its target in a document {\twindef{ref}{reduction}} and the document resulting from
-    the process of systematically and recursively reducing all the {\element{ref}}
-    elements the {\twindef{ref-normal}{form}} of the source document. Note that
+    its target in a document \defii{ref}{reduction} and the document resulting from the
+    process of systematically and recursively reducing all the {\element{ref}} elements
+    the \defii{ref-normal}{form} of the source document. Note that
     {\element{ref}}-normalization may not always be possible, e.g.  if the ref-targets do
     not exist or are inaccessible --- or worse yet, if the relation given by the
     {\element{ref}} elements is {\indextoo{cyclic}}. Moreover, even if it is possible to
     {\element{ref}}-normalize, this may not lead to a valid {\omdoc} document, e.g.  since
     \twinalt{\snippet{ID} type}{ID}{type} attributes that were unique in the target
     documents are no longer in the {\element{ref}}-reduced one. We will call a document
-    {\twindef{ref}{reducible}}, iff its {\element{ref}}-normal form exists, and
-    {\twindef{ref}{valid}}, iff the {\element{ref}} normal form exists and is a valid
-    {\omdoc} document.
+    \defii{ref}{reducible}, iff its {\element{ref}}-normal form exists, and
+    \defii{ref}{valid}, iff the {\element{ref}} normal form exists and is a valid {\omdoc}
+    document.
   \end{definition}
 \end{oldpart}
   

@@ -13,7 +13,7 @@
 
 \begin{oldpart}{fit into the picture here}
 \begin{definition}[display=flow,id=well-defined.def]
-  We say that a definiendum is {\defin{well-defined}}, iff the corresponding definiens
+  We say that a definiendum is \defi{well-defined}, iff the corresponding definiens
   uniquely determines it;
 \end{definition}
 adding such definitions to a theory always results in a conservative extension.
@@ -36,10 +36,10 @@ adding such definitions to a theory always results in a conservative extension.
 \item equations where the left hand side is the defined symbol and the right hand side is
   a term that does not contain it, as in our discussion above or the first case in
   {\myfigref{math-def}}. \inlinedef{We call such definitions
-    \twindefalt{simple}{simple}{definition}.}
+    \adefii{simple}{simple}{definition}.}
 \item general statements that uniquely determine the meaning of the objects or concepts in
   question, as in the second definition in {\myfigref{math-def}}. \inlinedef{We call such
-    definitions {\twindefalt{implicit}{implicit}{definition}}; the
+    definitions \adefii{implicit}{implicit}{definition}; the
     {\twintoo{Peano}{axioms}} are another example of this category.}
   
   Note that this kind of definitions requires a proof of unique existence to ensure
@@ -48,14 +48,14 @@ adding such definitions to a theory always results in a conservative extension.
   only characterizes the exponential function up to additive real constants. In this case,
   the ``definition'' only restricts the meaning of the exponential function to a set of
   possible values.  \inlinedef{We call such a set of axioms a
-    {\twindefalt{loose}{loose}{definition}} definition.}
+    \adefii{loose}{loose}{definition} definition.}
 \item given as a set of equations, as in the third case of {\myfigref{math-def}}, even
   though this is strictly a special case of an implicit definition: it is a sub-case,
   where well-definedness can be shown by giving an argument why the systematic
   applications of these equations \indexalt{terminates}{termination}, e.g.  by exhibiting
   an {\indextoo{ordering}} that makes the left hand sides strictly smaller than the
   right-hand sides. \inlinedef{We call such a definition
-    {\twindefalt{inductive}{definition}{inductive}}.}
+    \adefii{inductive}{definition}{inductive}.}
 \end{itemize}
 \end{omtext}
 
@@ -130,8 +130,8 @@ an example of an implicit definition in {\mylstref{exp-def}}.
   This is a variant of the {\attval{implicit}{type}{definition}} case above. It defines a
   {\twintoo{recursive}{function}} by a set of {\twintoo{recursive}{equation}s}
   \inlinedef{in {\eldef{requation}} elements whose left and right hand sides are specified
-    by the two children}. The first one is called \inlinedef{the {\defin{pattern}}}, and
-  the second one \inlinedef{the {\defin{value}}}. The intended meaning of the defined
+    by the two children}. The first one is called \inlinedef{the \defi{pattern}}, and
+  the second one \inlinedef{the \defi{value}}. The intended meaning of the defined
   symbol is, that the value (with the variables suitably substituted) can be substituted
   for a formula that matches the pattern element. In this case, the {\element{definition}}
   element carries a {\attribute{type}{definition}} with value
@@ -171,7 +171,7 @@ mathematical objects.
 \end{definition}
 
 \begin{definition}[id=pattern.def] 
-  {\twindefalt{Pattern definitions}{pattern}{definition}} are a special degenerate cases
+  \adefii{Pattern definitions}{pattern}{definition} are a special degenerate cases
   of the recursive definition. A function is defined by a set of {\element{requation}}
   elements, but the defined function does not occur in the second children.
 \end{definition}
@@ -207,19 +207,19 @@ Specification Language~\cite{CoFI:2004:CASL-RM}) standard.
   $0$ (the number {\indextoo{zero}}), $s$ (the {\twintoo{successor}{function}}), and $\NN$
   (the set of {\twintoo{natural}{number}s}) and fix their meaning by five axioms. These
   state that the set $\NN$ contains exactly those objects that can be constructed from $0$
-  and $s$ alone (\inlinedef{these symbols are called {\twindef{constructor}{symbol}s} and
-    the representations {\twindef{constructor}{term}s}}). Optionally, an abstract data
-  type can also declare \inlinedef{{\twindef{selector}{symbol}s}, for (partial) inverses
-    of the constructors}. In the case of natural numbers the
-  {\twintoo{predecessor}{function}} is a selector for $s$: it ``selects'' the argument
-  $n$, from which a (non-zero) number $s(n)$ has been constructed.
+  and $s$ alone (\inlinedef{these symbols are called \defiis{constructor}{symbol} and the
+    representations \defii{constructor}{term}s}). Optionally, an abstract data type can
+  also declare \inlinedef{\defiis{selector}{symbol}, for (partial) inverses of the
+    constructors}. In the case of natural numbers the {\twintoo{predecessor}{function}} is
+  a selector for $s$: it ``selects'' the argument $n$, from which a (non-zero) number
+  $s(n)$ has been constructed.
 \end{omtext}
 
 \begin{definition}[display=flow,id=free.def]
   Following {\casl} we will call sets of objects that can be represented as constructor
-  terms {\defin{sort}s}. A sort is called {\defin{free}}, iff there are no identities
-  between constructor terms, i.e.  two objects represented by different constructor terms
-  can never be equal.
+  terms \defis{sort}. A sort is called\defi{free}, iff there are no identities between
+  constructor terms, i.e.  two objects represented by different constructor terms can
+  never be equal.
 \end{definition}
 
 \begin{omtext}
@@ -228,13 +228,13 @@ Specification Language~\cite{CoFI:2004:CASL-RM}) standard.
   {\twintoo{set}{insertion}} function $\iota$ , since the set $\{a\}$ can be obtained by
   inserting $a$ into the empty set an arbitrary (positive) number of times; so
   e.g. $\iota(a,\emptyset)=\iota(a,\iota(a,\emptyset))$. \inlinedef{This kind of sort is
-    called {\defin{generated}}, since it only contains elements that are expressible in
+    called \defi{generated}, since it only contains elements that are expressible in
     the constructors}.
 \end{omtext}
 
 \begin{definition}[display=flow,id=generated.def]
-  An abstract data type is called {\defin{loose}}, if it contains elements besides the
-  ones generated by the constructors. We consider free sorts more {\defin{strict}} than
+  An abstract data type is called \defi{loose}, if it contains elements besides the
+  ones generated by the constructors. We consider free sorts more \defi{strict} than
   generated ones, which in turn are more strict than loose ones.
 \end{definition}
 
@@ -338,7 +338,7 @@ element as the second child of an {\element{argument}} child of a
 \end{definition} 
 
 \begin{omtext} 
-  \Mylstref{nat-adt} introduces such a \inlinedef{{\twindef{recognizer}{predicate}}} as
+  \Mylstref{nat-adt} introduces such a \inlinedef{\defii{recognizer}{predicate}} as
   the last child of the {\element{sortdef}} element for the sort {\snippet{pos-nats}}.
 \end{omtext}
 

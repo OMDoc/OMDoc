@@ -11,7 +11,7 @@
 \begin{module}[id=proofs-intro]
 Proofs form an essential part of mathematics and modern sciences.
 \begin{definition}[display=flow,id=proof.conceptual.def]
-  Conceptually, a {\defin{proof}} is a representation of uncontroversial evidence for the
+  Conceptually, a \defi{proof} is a representation of uncontroversial evidence for the
   truth of an {\indextoo{assertion}}.
 \end{definition}
   
@@ -212,7 +212,7 @@ specified in four kinds of {\omdoc} elements:
   one that derives the assertion made in the corresponding theorem.  
   
   The value {\attval{gap}{type}{derive}} is used for proof steps that are not justified
-  (yet): \inlinedef{we call them {\twindef{gap}{steps}}}. Note that the presence of gap
+  (yet): \inlinedef{we call them \defii{gap}{steps}}. Note that the presence of gap
   steps allows {\omdoc} to specify {\twintoo{incomplete}{proof}s} as proofs with gap
   steps.
 \item[{\element{hypothesis}}] elements allow to specify {\twintoo{local}{assumption}s}
@@ -269,13 +269,13 @@ is important, since it will be initially infeasible to totally formalize all
   property of the {\element{derive}} elements is that their content (the local claim)
   follows from statements that we consider true. These can be earlier steps in the proof
   or general knowledge. To convince the reader of a proof, the steps are often accompanied
-  with \inlinedef{a {\defin{justification}}}.  This can be given either by a logical
+  with \inlinedef{a \defi{justification}}.  This can be given either by a logical
   {\twintoo{inference}{rule}} or {\twintoo{higher-level}{evidence}} for the truth of the
   claim.  The evidence can consist in a {\twintoo{proof}{method}} that can be used to
   prove the assertion, or in a separate subproof, that could be presented if the consumer
   was unconvinced.  Conceptually, both possibilities are equivalent, since the
   {\indextoo{method}} can be used to compute the subproof (\inlinedef{called its
-    {\defin{expansion}}}). Justifications are represented in {\omdoc} by the
+    \defi{expansion}}). Justifications are represented in {\omdoc} by the
   {\element{method}} children of {\element{derive}} elements\footnote{The structural and
     formal justification elements discussed in this section are derived from hierarchical
     data structures developed for semi-automated theorem proving (satisfying the logical
@@ -383,9 +383,9 @@ $\ldots$
 \begin{omtext}
   In {\omdoc} the {\element{premise}} elements must reference proof steps in the current
   proof or statements ({\element{assertion}} or {\element{axiom}} elements) in the scope
-  of the current theory: \inlinedef{A statement is in \defin{scope} of the
-    \twinalt{current theory}{theory}{in scope of}, if its home theory is the current
-    theory or imported (directly or indirectly) by the current theory.}
+  of the current theory: \inlinedef{A statement is in \defi{scope} of the \twinalt{current
+      theory}{theory}{in scope of}, if its home theory is the current theory or imported
+    (directly or indirectly) by the current theory.}
 \end{omtext}
 
 Furthermore note that a proof containing a {\element{premise}} element is not
@@ -515,17 +515,17 @@ inaccessible for inference outside the nearest ancestor {\element{proof}} elemen
 {\element{hypothesis}}.
   
 \begin{omtext}
-Let us now reconsider the proof in {\myfigref{pf-example1-math}}. Some of the steps (2, 3,
-4, 5, 7) leave the thesis unmodified; \inlinedef{these are called
-  {\twindef{forward}{reasoning}} or {\atwindef{bottom-up}{proof}{step}s}}, since they are
-used to derive new knowledge from the available one with the aim of reaching the
-conclusion.  Some other steps (1, 6) are used to conclude the (current) thesis by opening
-new subproofs, each one characterized with a new local thesis.  \inlinedef{These steps are
-  called {\twindef{backward}{reasoning}} or {\atwindef{top-down}{proof}{step}s} steps,
-  since they are used to reduce a complex problem (proving the thesis) to several simpler
-  problems (the subproofs)}.  In our example, both backward reasoning steps open just one
-new subproof: Step 1 reduces the goal to proving that the finiteness of $P$ implies a
-contradiction; step 5 reduces the goal to proving that $q$ is prime.
+  Let us now reconsider the proof in {\myfigref{pf-example1-math}}. Some of the steps (2,
+  3, 4, 5, 7) leave the thesis unmodified; \inlinedef{these are called
+    \defii{forward}{reasoning} or \defiiis{bottom-up}{proof}{step}}, since they are used
+  to derive new knowledge from the available one with the aim of reaching the conclusion.
+  Some other steps (1, 6) are used to conclude the (current) thesis by opening new
+  subproofs, each one characterized with a new local thesis.  \inlinedef{These steps are
+    called \defii{backward}{reasoning} or \defiiis{top-down}{proof}{step} steps, since
+    they are used to reduce a complex problem (proving the thesis) to several simpler
+    problems (the subproofs)}.  In our example, both backward reasoning steps open just
+  one new subproof: Step 1 reduces the goal to proving that the finiteness of $P$ implies
+  a contradiction; step 5 reduces the goal to proving that $q$ is prime.
 \end{omtext}
 
 Step 2 is used to introduce a new hypothesis, whose scope extends from the point where it
@@ -630,7 +630,7 @@ needed, can be forbidden.
 
 \begin{omtext}
   In {\omdoc}, the notion of fully formal proofs is accommodated by the
-  {\element{proofobject}} element. In logic, \inlinedef{the term {\twindef{proof}{object}}
+  {\element{proofobject}} element. In logic, \inlinedef{the term \defii{proof}{object}
     is used for term representations of formal proofs via the Curry/Howard/DeBruijn
     Isomorphism} (see e.g.~\cite{Thompson91} for an introduction and
   {\myfigref{proofobject}} for an example).  $\lambda$-terms are among the most succinct

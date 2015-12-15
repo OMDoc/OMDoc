@@ -48,7 +48,7 @@ standard and the {\mathml} 2.0 Recommendation for details and clarifications.
 {\openmath} is a markup language for mathematical formulae that concentrates on the
 meaning of formulae building on an extremely simple kernel (markup primitive for
 syntactical forms of content formulae), and adds an extension mechanism for mathematical
-concepts, the content dictionaries.  \inlinedef{{\twindefalt{These}{content}{dictionary}}
+concepts, the content dictionaries.  \inlinedef{\adefii{These}{content}{dictionary}
   are {\indextoo{machine-readable}} documents that define the meaning of mathematical
   concepts expressed by {\openmath} symbols.} The current released version of the
 {\openmath} standard is {\openmath}2, which incorporates many of the experiences of the
@@ -107,7 +107,7 @@ representations of the arguments in order.
 
 \begin{omtext}
 Objects and concepts that carry meaning independent of the local context (\inlinedef{they
-  are called {\defin{symbol}s} in {\openmath}}) are represented as
+  are called \defi{symbol}s} in {\openmath}) are represented as
 {\element[ns-elt=om]{OMS}} elements, where the value of the
 {\attribute[ns-elt=om]{name}{OMS}} attribute gives the name of the symbol.  The
 {\attribute[ns-elt=om]{cd}{OMS}} attribute specifies the relevant {\indextoo{content
@@ -208,8 +208,8 @@ formula $\allcdot{x}{\sin(x)\leq\pi}$.
   child in an {\element[ns-elt=om]{OMATTR}} element. The attribute-value list is specified
   by children of the preceding {\eldef[ns-elt=om]{OMATP}} (Attribute value Pair) element,
   which has an even number of children: children at odd positions must be
-  {\element[ns-elt=om]{OMS}} (specifying the attribute, they are called {\defin{key}s} or
-  {\defin{feature}s})\footnote{There are two kinds of keys in {\openmath} distinguished
+  {\element[ns-elt=om]{OMS}} (specifying the attribute, they are called \defis{key} or
+  \defis{feature})\footnote{There are two kinds of keys in {\openmath} distinguished
     according to the {\attribute{role}{symbol}} value on their {\element{symbol}}
     declaration in the {\indextoo{content}{dictionary}}:
     {\attval{attribution}{role}{symbol}} specifies that this attribute value pair may be
@@ -217,7 +217,7 @@ formula $\allcdot{x}{\sin(x)\leq\pi}$.
     the meaning of the attributed {\openmath} object. The {\attribute{role}{symbol}} is
     used for keys that modify the meaning of the attributed {\openmath} object and thus
     cannot be ignored by an application.}, and children at even positions are the
-  {\defin{value}s} of the keys specified by their immediately preceding siblings. In the
+  \defis{value} of the keys specified by their immediately preceding siblings. In the
   {\openmath} fragment in {\mylstref{omattr}} the expression $x+\pi$ is annotated with an
   alternative representation and a color.  {\Mylstref{complex-type-om}} has a more complex
   one involving types.
@@ -480,14 +480,13 @@ Shared & Exploded \\\hline\hline
   To ensure that the {\xml} representations actually correspond to
   \atwintoo{directed}{acyclic}{graph}s, the occurrences of the {\element[ns-elt=om]{OMR}}
   must obey the global acyclicity constraint below, \inlinedef{where we say that an
-    {\openmath} element {\defin{dominate}s} all its children and all elements they
-    dominate}; The {\element[ns-elt=om]{OMR}} also dominates its
-  \inlinedef{{\defin{target}}\footnote{The target of an {\openmath} element with an
-      {\attributeshortcomment{id}{in {\sc{OpenMath}} objects}} attribute is defined
-      analogously}, i.e. the element that carries the {\attributeshortcomment{id}{in
-        {\sc{OpenMath}} objects}} attribute pointed to by the
-    {\attribute[ns-elt=om]{href}{OMR}} attribute}.  For instance, in the representation in
-  {\myfigref{explosion}} the {\element[ns-elt=om]{OMA}} element with
+    {\openmath} element \defi{dominates} all its children and all elements they dominate};
+  The {\element[ns-elt=om]{OMR}} also dominates its \inlinedef{\defi{target}\footnote{The
+      target of an {\openmath} element with an {\attributeshortcomment{id}{in
+          {\sc{OpenMath}} objects}} attribute is defined analogously}, i.e. the element
+    that carries the {\attributeshortcomment{id}{in {\sc{OpenMath}} objects}} attribute
+    pointed to by the {\attribute[ns-elt=om]{href}{OMR}} attribute}.  For instance, in the
+  representation in {\myfigref{explosion}} the {\element[ns-elt=om]{OMA}} element with
   {\snippet{xml:id="t1"}} and also the second {\element[ns-elt=om]{OMA}} element dominate
   the {\element[ns-elt=om]{OMA}} element with {\snippet{xml:id="t11"}}.
 \end{omtext}
@@ -633,17 +632,17 @@ EMPTY \\\hline
 Like {\openmath}, {\cmathml} organizes the mathematical objects into a functional tree.
 
 \begin{definition}[display=flow,id=mml.basic.def]
-  The basic objects ({\mathml} calls them {\twindef{token}{element}s}) are
+  The basic objects ({\mathml} calls them \defiis{token}{element}) are
 \begin{description}
-  \item[{\defin{identifier}s}] (element {\eldef[ns-elt=m]{ci}}) corresponding to
+  \item[{\defis{identifier}}] (element \eldef[ns-elt=m]{ci}) corresponding to
     {\indextoo{variable}s}. The content of the {\element[ns-elt=m]{ci}} element is
     arbitrary {\pmathml}, used as the name of the identifier.
-  \item[{\defin{number}s}] (element {\eldef[ns-elt=m]{cn}}) for number
+  \item[{\defis{number}}] (element \eldef[ns-elt=m]{cn}) for number
     expressions. The attribute {\attribute[ns-elt=m]{type}{cn}} can be used to specify the
     mathematical type of the number, e.g. {\snippet{complex}}, {\snippet{real}}, or
     {\snippet{integer}}. The content of the {\element[ns-elt=m]{cn}} element is
     interpreted as the value of the number expression.
-  \item[{\defin{symbol}s}] (element {\eldef[ns-elt=m]{csymbol}}) for arbitrary
+  \item[{\defis{symbol}}] (element \eldef[ns-elt=m]{csymbol}) for arbitrary
     symbols.  Their meaning is determined by a {\snippetin{definitionURL}} attribute that
     is a {\twintoo{URI}{reference}} that points to a symbol declaration in a defining
     document. The content of the {\element[ns-elt=m]{csymbol}} element is a {\pmathml}
@@ -913,12 +912,12 @@ in the {\attribute[ns-elt=om]{cd}{OMS}} attribute. A symbol {\snippet{<OMS
 {\llquote{$cd_1$}=\llquote{$cd_2$}} and {\llquote{$name_1$}=\llquote{$name_2$}} as {\xml}
 simple names.  In case of variables this is more difficult: if the variable is
 \twinalt{bound}{bound}{variable} by an {\element[ns-elt=om]{OMBIND}} element
-{\inlinedef{We say that an {\element[ns-elt=om]{OMBIND}} element {\defin{binds}} an
+{\inlinedef{We say that an {\element[ns-elt=om]{OMBIND}} element \defi{binds} an
     {\openmath} variable {\snippet{<OMV name="x"/>}}, iff this
     {\element[ns-elt=om]{OMBIND}} element is the nearest one, such that {\snippet{<OMV
         name="x"/>}} occurs in (second child of the {\element[ns-elt=om]{OMATTR}} element
     in) the {\element[ns-elt=om]{OMBVAR}} child (this is the
-    {\twindef{defining}{occurrence}} of {\snippet{<OMV name="x"/>}} here).}}, then we
+    \defii{defining}{occurrence} of {\snippet{<OMV name="x"/>}} here).}}, then we
 interpret all the variables {\snippet{<OMV name="x"/>}} in the
 {\element[ns-elt=om]{OMBIND}} element as equal and different from any variables
 {\snippet{<OMV name="x"/>}} outside. In fact the {\openmath} standard states that bound
