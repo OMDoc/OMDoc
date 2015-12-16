@@ -42,12 +42,12 @@
   
 \begin{omtext}
 To support this notion of context \omdoc supports an infrastructure for theories using
-special \element{theory} elements, which we will introduce in {\sref{theories-contexts}} and
-extend in {\sref{complex-theories}}.
+special \element{theory} elements, which we will introduce in \sref{theories-contexts} and
+extend in \sref{complex-theories}.
 \twinalt{Theory-constitutive}{theory-constitutive}{element} elements must be contained as
 children in a \element{theory} element; we will discuss them in
-{\sref{definitions}}, non-constitutive statements will be defined in
-{\sref{assertion}}. They are allowed to occur outside a \element{theory} element in
+\sref{definitions}, non-constitutive statements will be defined in
+\sref{assertion}. They are allowed to occur outside a \element{theory} element in
 \omdoc documents (e.g. as top-level elements), however, if they do they must reference a
 theory, \inlinedef{which we will call their \defii{home}{theory}} in a special
 \attribute{theory}{statement} attribute. This situates them into the context provided by
@@ -169,7 +169,7 @@ as ``symbols'' while the concept of a ``group'' in mathematics would be called a
     colon $\colon$ is not allowed. Note that this is not a problem, since the name is just
     used for identification, and does not necessarily specify how a symbol is presented to
     the human reader. For that, \omdoc provides the notation definition infrastructure
-    presented in {\sref{pres}}.} as defined in {\xml} 1.1~\cite{xml1.1:04}. The optional
+    presented in \sref{pres}.} as defined in {\xml} 1.1~\cite{xml1.1:04}. The optional
   attribute \attribute{scope}{symbol} takes the values \attribute{global}{scope}{symbol}
   and \attval{local}{scope}{symbol}, and allows a simple specification of visibility
   conditions: if the \attribute{scope}{symbol} attribute of a \element{symbol} has
@@ -203,19 +203,19 @@ as ``symbols'' while the concept of a ``group'' in mathematics would be called a
 \item[\attval{type}{role}{symbol}] The symbol denotes a sets that is used in a type
   systems to annotate mathematical objects.
 \item[\attval{sort}{role}{symbol}] The symbol is used for a set that are inductively
-  built up from constructor symbols; see {\sref{adt}}.
+  built up from constructor symbols; see \sref{adt}.
 \end{description}
 If the \attribute{role}{symbol} is not present, the value
 \attval{object}{role}{symbol} is assumed.
 
 The children of the \element{symbol} element consist of a
-{\twintoo{multi-system}{group}} of \element{type} elements (see {\sref{type-axioms}} for
+{\twintoo{multi-system}{group}} of \element{type} elements (see \sref{type-axioms} for
 a discussion). For this group the order does not matter.  In {\mylstref{symbol}} we have a
 symbol declaration for the concept of a {\indextoo{monoid}}.  Keywords or simple phrases
 that describes the symbol in mathematical vernacular can be added in the
 \element{metadata} child of \element{symbol} as \element[ns-elt=dc]{subject} and
 {\element[ns-elt=dc]{description}s}; the latter have the same content model as the
-\element{h:p} elements, see the discussion in {\sref{mtext}}). If the document
+\element{h:p} elements, see the discussion in \sref{mtext}). If the document
 containing their parent \element{symbol} element were stored in a data base system, it
 could be looked up via these metadata. As a consequence the symbol
 \attribute{name}{symbol} need only be used for identification. In particular, it need
@@ -251,7 +251,7 @@ be done by suitable \element[ns-elt=dc]{subject} elements.
   \element[ns-elt=h]{p} elements a \element{FMP} that expresses this as a logical
   formula.  \element{axiom} elements may have a \attribute{generated-from}{axiom}
   attribute, which points to another \omdoc element (e.g. an \element{adt}, see
-  {\sref{adt}}) which subsumes it, since it is a more succinct representation of the same
+  \sref{adt}) which subsumes it, since it is a more succinct representation of the same
   mathematical content. Finally the \element{axiom} element has an optional
   \attribute{for}{axiom} attribute to specify salient semantic objects it uses as a
   {\indextoo{whitespace-separated list}} of {\indextoo{URI}} references to symbols
@@ -366,7 +366,7 @@ theory-constitutive: statements of properties of mathematical objects that are e
 the theory-constitutive ones. As such, these statements are logically redundant, they do
 not add new information about the mathematical objects, but they do make their properties
 explicit. In practice, the entailment is confirmed e.g.  by exhibiting a proof of the
-assertion; we will introduce the infrastructure for proofs in {\sref{proofs}}.
+assertion; we will introduce the infrastructure for proofs in \sref{proofs}.
 
 \begin{presonly}
 \begin{myfig}{qttheory}{Assertions, Examples, and Alternatives in \omdoc}
@@ -434,7 +434,7 @@ to a \attribute{type}{assertion} attribute, which can have the values in
     \multicolumn{2}{|p{11.3cm}|}{ Conjectures are assertions, whose
       semantic value is not yet decided, but which the author considers likely to be
       true. In particular, there is no proof or counter-example (see
-      {\sref{examples}}).}\\\hline\hline
+      \sref{examples}).}\\\hline\hline
     \attval{false-conjecture}{type}{assertion} 
     & an assertion with a counter-example\\\hline
     \multicolumn{2}{|p{11.3cm}|}{ A conjecture that has proven to be false,
@@ -458,7 +458,7 @@ to a \attribute{type}{assertion} attribute, which can have the values in
   {\indextoo{theory}} that provides the {\indextoo{context}} for this assertion, and an
   optional attribute \attribute{generated-from}{assertion}, that points to a higher
   syntactic construct that generates these assertions, e.g. an abstract data type
-  declaration given by an \element{adt} element (see {\sref{adt}}).
+  declaration given by an \element{adt} element (see \sref{adt}).
 \end{definition}  
 
 \begin{lstlisting}[label=lst:assertion,mathescape,
@@ -577,7 +577,7 @@ represented mathematical objects.
 \begin{omtext}
 However, not all type information is axiomatic, it can also be deduced from other sources
 knowledge. We use the same \element{type} element we have discussed in
-{\sref{type-axioms}} for such \inlinedef{\defii{type}{assertions},
+\sref{type-axioms} for such \inlinedef{\defii{type}{assertions},
   i.e. non-constitutive statements that inform a type-checker}. In this case, the
 \element{type} element can occur at top level, and even outside a \element{theory}
 element (in which case they have to specify their home theory in the
@@ -629,7 +629,7 @@ type.
 \begin{omgroup}[id=alternative]{Alternative Definitions}
 
   In contrast to what we have said about {\twintoo{conservative}{extension}s} at the end
-  of {\sref{definitions}}, mathematical documents often contain multiple definitions for a
+  of \sref{definitions}, mathematical documents often contain multiple definitions for a
   concept or mathematical object. However, if they do, they also contain a careful
   analysis of equivalence among them. \omdoc allows us to model this by providing the
   \element{alternative} element.  Conceptually, an alternative definition or axiom is
@@ -672,7 +672,7 @@ declared for an object), \element{alternative} (here the assertional content is 
 by the \element{assertion} elements referenced in the structure-carrying attributes of
 \element{alternative}).  For the elements introduced below we will discuss whether they
 are assertional or not in their context. In a nutshell, only statements introduced by the
-module {\ADTmodule{spec}} (see {\sref{adt}}) will be assertional.
+module {\ADTmodule{spec}} (see \sref{adt}) will be assertional.
 \end{omgroup}
 \end{module}
 \end{omgroup}
@@ -856,14 +856,14 @@ framework for semantically referencing mathematical objects, and to make parts o
 mathematical developments reusable in multiple contexts. The module {\STmodule{spec}}
 presented in this chapter introduces a part of this infrastructure, which can already
 address the first two concerns. For the latter, we need the machinery for complex theories
-introduced in {\sref{complex-theories}}.
+introduced in \sref{complex-theories}.
 
 \begin{definition}[id=theory.def]
   Theories are specified by the {\eldef{theory}} element in \omdoc, which has a required
   \attribute[ns-attr=xml]{id}{theory} attribute for referencing the theory. Furthermore,
   the \element{theory} element can have the \attribute[ns-elt=om]{cdbase}{theory}
   attribute that allows to specify the \attribute{cdbase}{OMS} this theory uses for
-  disambiguation on \element[ns-elt=om]{OMS} elements (see {\sref{openmath}} for a
+  disambiguation on \element[ns-elt=om]{OMS} elements (see \sref{openmath} for a
   discussion).
 \end{definition}
 Additional information about the theory like a title or a short description can be given
@@ -875,8 +875,8 @@ themselves. Note that theory-constitutive elements may {\emph{only}} occur in
 
 \begin{definition}[id=tgroup.def]
   Theories can be structured like documents e.g. into sections and the like (see
-  {\sref{sectioning}} for a discussion) via the {\eldef{tgroup}} element, which behaves
-  exactly like the \element{omdoc} element introduced in {\sref{sectioning}} except that
+  \sref{sectioning} for a discussion) via the {\eldef{tgroup}} element, which behaves
+  exactly like the \element{omdoc} element introduced in \sref{sectioning} except that
   it also allows theory-constitutive elements, but does not allow a
   \attribute{theory}{omdoc} attribute, since this information is already given by the
   dominating \element{theory} element.\footnote{This element has been introduced to keep
@@ -912,7 +912,7 @@ stated in a theory; they can be inherited from other theories. Formally, the set
 theory-constitutive elements in a theory is the union of those that are explicitly
 specified and those that are imported from other theories. This has consequences later on,
 for instance, these are available for use in proofs. See
-{\sref{proofs.justifications}} for details on availability of assertional statements in
+\sref{proofs.justifications} for details on availability of assertional statements in
 proofs and justifications.
 
 \begin{definition}[id=imports.def]
@@ -1078,7 +1078,7 @@ then it cannot be used since its semantics is not defined.
 
 
 \begin{omtext}
-  In {\sref{mobj}}, we have introduced the {\openmath} and {\cmathml} representations for
+  In \sref{mobj}, we have introduced the {\openmath} and {\cmathml} representations for
   mathematical objects and formulae. One of the central concepts there was the notion that
   the representation of a symbol includes a pointer to a document that defines its
   meaning.  In the {\openmath} standard, these documents are identified as
@@ -1088,10 +1088,10 @@ then it cannot be used since its semantics is not defined.
   they are also candidates for ``defining documents'' for symbols.  By the {\openmath}2
   standard~\cite{BusCapCar:2oms04} suitable classes of \omdoc documents can act as
   {\openmath} content dictionaries (\inlinedef{we call them \omdoc \adefii{content
-      dictionaries}{content dictionary}{OMDoc}}; see {\sref{sub-languages.cd}}).  The main
+      dictionaries}{content dictionary}{OMDoc}}; see \sref{sub-languages.cd}).  The main
   distinguishing feature of \omdoc content dictionaries is that they include
   \element{theory} elements with {\twintoo{symbol}{declaration}s} (see
-  {\sref{definitions}}) that act as the targets for the pointers in the symbol
+  \sref{definitions}) that act as the targets for the pointers in the symbol
   representations in {\openmath} and {\cmathml}. The theory name specified in the
   \attribute[ns-attr=xml]{id}{theory} attribute of the \element{theory} element takes
   the place of the {\snippet{CDname}} defined in the \atwinalt{{\openmath} content
@@ -1100,7 +1100,7 @@ then it cannot be used since its semantics is not defined.
 
 Furthermore, the {\indextoo{URI}} specified in the \attribute{cdbase}{theory} attribute
 is the one used for disambiguation on \element[ns-elt=om]{OMS} elements (see
-{\sref{openmath}} for a discussion).
+\sref{openmath} for a discussion).
   
 For instance the symbol declaration in {\mylstref{symbol}} can be referenced as\ednote{is
   this really the right {\texttt{cdbase?}}}
@@ -1156,7 +1156,7 @@ Furthermore, the \element{theory} element can have the following attributes:
 
   We will now give the a formal\ednote{do we really want to call it ``formal''?} semantics
   of the {\STmodule{spec}} elements in terms of strict \omdoc (see
-  {\sref{strict}}).\ednote{what do we do if there is both FMP and CMPs in an
+  \sref{strict}).\ednote{what do we do if there is both FMP and CMPs in an
     axiom?}\ednote{what do we do if there is more than one symbol per
     definition?}\ednote{what do we do for non-simple definitions}
 

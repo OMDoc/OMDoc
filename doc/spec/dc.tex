@@ -58,7 +58,7 @@ use the {\twintoo{namespace}{prefix}}\atwinalt {\snippetin{dc:}}{Dublin
  dc:language    &  &             &  {\twintoo{ISO}{639}} \\\hline
  dc:relation    &  &             &  ANY  \\\hline
  dc:rights      &  &             &  ANY  \\\hline\hline
- \multicolumn{4}{|l|}{for \llquote{math vernacular} see {\sref{mtext}}}\\\hline
+ \multicolumn{4}{|l|}{for \llquote{math vernacular} see \sref{mtext}}\\\hline
 \end{tabular}
 \end{scriptsize}
 \end{myfig}
@@ -70,7 +70,7 @@ use the {\twintoo{namespace}{prefix}}\atwinalt {\snippetin{dc:}}{Dublin
   ``Substitution Value Theorem''.
   
   The \element[ns-elt=dc]{title} element can contain
-  {\twintoo{mathematical}{vernacular}} (see {\sref{mtext}}). Multiple
+  {\twintoo{mathematical}{vernacular}} (see \sref{mtext}). Multiple
   \element[ns-elt=dc]{title} elements inside a \element{metadata} element are assumed
   to be translations of each other.\ednote{do we still want this?}
 \end{definition}
@@ -89,7 +89,7 @@ use the {\twintoo{namespace}{prefix}}\atwinalt {\snippetin{dc:}}{Dublin
   optional attribute \attribute[ns-elt=xml,ns-attr=dc]{id}{creator} so that it can be
   {\indextoo{cross-reference}d} and a {\attributeshort{role}} attribute to further
   classify the concrete contribution to the element. We will discuss its values in
-  {\sref{dc-roles}}.
+  \sref{dc-roles}.
 \end{definition}
 
 \begin{definition}[id=dc.contributor.def,title=Contributors]
@@ -113,7 +113,7 @@ use the {\twintoo{namespace}{prefix}}\atwinalt {\snippetin{dc:}}{Dublin
   \attribute[ns-elt=xml,ns-attr=dc]{lang}{description} is used for the language. As
   description of mathematical objects or \omdoc fragments may contain formulae, the
   content of this element is of the form ``{\twintoo{mathematical}{text}}'' described in
-  {\sref{mtext}}.
+  \sref{mtext}.
 \end{definition}
 
 \begin{definition}[id=dc.publisher.def,title=Publishers]
@@ -175,7 +175,7 @@ use the {\twintoo{namespace}{prefix}}\atwinalt {\snippetin{dc:}}{Dublin
   should be used. More specifically, in \omdoc the value {\snippetin{Dataset}} signals
   that the order of children in the parent of the \element{metadata} is not relevant to
   the meaning. This is the case for instance in formal developments of mathematical
-  theories, such as the specifications in {\sref{complex-theories}}.
+  theories, such as the specifications in \sref{complex-theories}.
 \end{definition}
 
 \begin{definition}[id=dc.format.def,title=Formats]
@@ -223,7 +223,7 @@ use the {\twintoo{namespace}{prefix}}\atwinalt {\snippetin{dc:}}{Dublin
   other rights with respect to the document or element.
   
   \omdoc supplies specialized elements for the Creative Commons licenses to support the
-  sharing of mathematical content. We will discuss them in {\sref{creativecommons}}.
+  sharing of mathematical content. We will discuss them in \sref{creativecommons}.
 \end{definition}
 
 Note that Dublin Core also defines a {\oldelement{Coverage}{1.1}} element that specifies

@@ -207,7 +207,7 @@ because single modules can be upgraded or replaced independently of others.
 The \omdoc vocabulary has been split by thematic role, which we will briefly overview in
 {\myfigref{omdoc-modules}} before we go into the specifics of the respective modules in
 {\srefl{mobj}{quiz}}. To avoid repetition, we will introduce some attributes already in
-this chapter that are shared by elements from all modules. In {\sref{document-model}} we
+this chapter that are shared by elements from all modules. In \sref{document-model} we
 will discuss the \omdoc document model and possible sub-languages of \omdoc that only
 make use of parts of the functionality (\sref{sub-languages}).
 
@@ -215,14 +215,14 @@ make use of parts of the functionality (\sref{sub-languages}).
 \begin{small}
 \begin{tabular}{|l|l|l|l|}\hline
   Module & Title & Required? & Chapter\\\hline\hline
-  {\presbf\MOBJmodule{spec}} &  Mathematical Objects & yes & {\sref{mobj}}\\\hline
+  {\presbf\MOBJmodule{spec}} &  Mathematical Objects & yes & \sref{mobj}\\\hline
     \multicolumn{4}{|p{11cm}|}{\presem Formulae are a central part of mathematical
        documents; this module integrates the content-oriented representation
        formats {\openmath} and {\mathml} into \omdoc}\\\hline\hline
-  {\presbf\MTXTmodule{spec}} &  Mathematical Text & yes & {\sref{mtext}}\\\hline
+  {\presbf\MTXTmodule{spec}} &  Mathematical Text & yes & \sref{mtext}\\\hline
     \multicolumn{4}{|p{11cm}|}{\presem Mathematical vernacular,
   i.e. natural language with embedded formulae}\\\hline\hline
-  {\presbf\DOCmodule{spec}} & Document Infrastructure & yes & {\sref{omdoc-infrastructure}}\\\hline
+  {\presbf\DOCmodule{spec}} & Document Infrastructure & yes & \sref{omdoc-infrastructure}\\\hline
     \multicolumn{4}{|p{11cm}|}{\presem  A basic infrastructure for
       assembling pieces of  mathematical knowledge into functional documents and 
       referencing their parts }\\\hline\hline
@@ -231,35 +231,35 @@ make use of parts of the functionality (\sref{sub-languages}).
       (``{\twintoo{data}{about data}}'') 
       which can be used to annotate many \omdoc elements by descriptive and
       administrative information that facilitates navigation and organization}\\\hline\hline 
-  {\presbf\RTmodule{spec}} & Rich Text Structure & no & {\sref{rt}}\\\hline
+  {\presbf\RTmodule{spec}} & Rich Text Structure & no & \sref{rt}\\\hline
     \multicolumn{4}{|p{11cm}|}{\presem Rich text structure in
   mathematical vernacular (lists, paragraphs, tables, \ldots)}\\\hline\hline
-  {\presbf\STmodule{spec}} &  Mathematical Statements & no  & {\sref{statements}}\\\hline
+  {\presbf\STmodule{spec}} &  Mathematical Statements & no  & \sref{statements}\\\hline
     \multicolumn{4}{|p{11cm}|}{\presem Markup for mathematical forms like 
       {\indextoo{theorem}s},  {\indextoo{axiom}s}, {\indextoo{definition}s}, 
       and {\indextoo{example}s} that can be used to specify or define properties
       of given mathematical objects and theories to group mathematical
   statements and provide a notion of context.}\\\hline\hline
-  {\presbf\PFmodule{spec}} &  Proofs and proof objects & no & {\sref{proofs}}\\\hline 
+  {\presbf\PFmodule{spec}} &  Proofs and proof objects & no & \sref{proofs}\\\hline 
     \multicolumn{4}{|p{11cm}|}{\presem Structure of proofs
      and argumentations at various levels of details and formality}\\\hline\hline
-  {\presbf\ADTmodule{spec}} &  Abstract Data Types & no & {\sref{adt}}\\\hline 
+  {\presbf\ADTmodule{spec}} &  Abstract Data Types & no & \sref{adt}\\\hline 
     \multicolumn{4}{|p{11cm}|}{\presem  Definition schemata for
       sets that are built up inductively from constructor symbols}\\\hline\hline 
-  {\presbf\CTHmodule{spec}} & Complex Theories & no & {\sref{complex-theories}}\\\hline
+  {\presbf\CTHmodule{spec}} & Complex Theories & no & \sref{complex-theories}\\\hline
     \multicolumn{4}{|p{11cm}|}{\presem Theory morphisms; they can be used
     to structure mathematical theories}\\\hline\hline
-  {\presbf\DGmodule{spec}} & Development Graphs & no & {\sref{development-graphs}}\\\hline
+  {\presbf\DGmodule{spec}} & Development Graphs & no & \sref{development-graphs}\\\hline
     \multicolumn{4}{|p{11cm}|}{\presem Infrastructure for managing theory
   inclusions, change management}\\\hline\hline
-  {\presbf\EXTmodule{spec}} & Applets, Code, and Data & no & {\sref{ext}}\\\hline
+  {\presbf\EXTmodule{spec}} & Applets, Code, and Data & no & \sref{ext}\\\hline
     \multicolumn{4}{|p{11cm}|}{\presem Markup for applets, program code,
   and data (e.g. images, measurements, \ldots)}\\\hline\hline
-  {\presbf\PRESmodule{spec}} & Presentation Information & no &  {\sref{pres}}\\\hline
+  {\presbf\PRESmodule{spec}} & Presentation Information & no &  \sref{pres}\\\hline
     \multicolumn{4}{|p{11cm}|}{\presem Limited functionality for
     specifying presentation and notation information for local typographic
       conventions  that cannot be determined by general principles alone}\\\hline\hline
-  {\presbf\QUIZmodule{spec}} &  Infrastructure for Assessments & no & {\sref{quiz}}\\\hline
+  {\presbf\QUIZmodule{spec}} &  Infrastructure for Assessments & no & \sref{quiz}\\\hline
     \multicolumn{4}{|p{11cm}|}{\presem Markup for exercises integrated
     into the \omdoc document model}\\\hline 
   \end{tabular}
@@ -269,8 +269,8 @@ The first four modules in {\myfigref{omdoc-modules}} are required (mathematical 
 without them do not really make sense), the other ones are optional. The
 document-structuring elements in module {\DOCmodule{spec}} have an attribute
 {\attributeshort{modules}} that allows to specify which of the modules are used in a
-particular document (see {\sref{omdoc-infrastructure}} and
-{\sref{sub-languages}}).
+particular document (see \sref{omdoc-infrastructure} and
+\sref{sub-languages}).
 \end{omgroup}
 
 \begin{omgroup}[id=omdoc-ns]{The OMDoc Namespaces}
@@ -282,7 +282,7 @@ does not reflect the versions\footnote{The namespace is different from the {\omd
   {\snippet{http://www.mathweb.org/omdoc}}, but the {\omdocv2} namespace will stay
   constant over all versions of the {\omdocv2} format.}, this is done in the
 {\attributeshort{version}} attribute on the {\twintoo{document}{root}} element
-\element{omdoc} (see {\sref{omdoc-infrastructure}}).  As a consequence, the
+\element{omdoc} (see \sref{omdoc-infrastructure}).  As a consequence, the
 \omdoc vocabulary identified by this namespace is not static, it can change with each
 new \omdoc version. However, if it does, the changes will be documented in later
 versions of the specification: the latest released version can be found
@@ -305,10 +305,10 @@ uses the following namespaces\footnote{In this specification we will use the
     \begin{tabular}{|l|l|l|}\hline
       Format      & namespace URI & see \\\hline\hline
       Dublin Core & \url{http://purl.org/dc/elements/1.1/} &   {\srefs{dc-elements}{dc-roles}}\\\hline
-      Creative Commons & \url{http://creativecommons.org/ns} & {\sref{creativecommons}}\\\hline
-      {\mathml} & \url{http://www.w3.org/1998/Math/MathML} & {\sref{cmml}}\\\hline
-      {\openmath} & \url{http://www.openmath.org/OpenMath} & {\sref{openmath}}\\\hline
-      {\xslt} & \url{http://www.w3.org/1999/XSL/Transform} & {\sref{pres}}\\\hline
+      Creative Commons & \url{http://creativecommons.org/ns} & \sref{creativecommons}\\\hline
+      {\mathml} & \url{http://www.w3.org/1998/Math/MathML} & \sref{cmml}\\\hline
+      {\openmath} & \url{http://www.openmath.org/OpenMath} & \sref{openmath}\\\hline
+      {\xslt} & \url{http://www.w3.org/1999/XSL/Transform} & \sref{pres}\\\hline
     \end{tabular}
   \end{center}
 \end{scriptsize}

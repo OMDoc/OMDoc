@@ -25,7 +25,7 @@ Proofs form an essential part of mathematics and modern sciences.
   common that they are extremely explicit and verbose, and that the proofs even for simple
   theorems can become very large. The advantage of having formal and fully explicit proofs
   is that they can be very easily verified, even by simple computer programs.  We will
-  come back to this notion of {\indextoo{proof}} in {\sref{proofobjects}}.
+  come back to this notion of {\indextoo{proof}} in \sref{proofobjects}.
 
   In mathematical practice the notion of a proof is more flexible, and more geared for
   consumption by humans: any line of argumentation is considered a proof, if it convinces
@@ -200,14 +200,14 @@ specified in four kinds of \omdoc elements:
   consideration in the proof.  See for example lines $12ff$ in
   {\mylstref{primes-omdoc-text}} for examples of \element{derive} proof steps that only
   state the local assertion. We will consider the specification of justifications in
-  detail in {\sref{proofs.justifications}} below.  \inlinedef{The {\eldef{derive}} element
+  detail in \sref{proofs.justifications} below.  \inlinedef{The {\eldef{derive}} element
     carries an optional \attribute[ns-attr=xml]{id}{derive} attribute for identification
     and an optional \attribute{type}{derive} to single out special cases of proofs
     steps.}
   
   The value \attval{conclusion}{type}{derive} is reserved for the concluding step of a
   proof\footnote{As the argumentative structure of the proof is encoded in the
-    justification structure to be detailed in {\sref{proofs.justifications}}, the
+    justification structure to be detailed in \sref{proofs.justifications}, the
     concluding step of a proof need not be the last child of a proof element.}, i.e. the
   one that derives the assertion made in the corresponding theorem.  
   
@@ -232,7 +232,7 @@ specified in four kinds of \omdoc elements:
 
   \setbox0=\hbox{\element{symbol}/\element{definition}}\item[\box0] These elements allow
   to introduce new local symbols that are local to the containing \element{proof} element.
-  Their meaning is just as described in {\sref{definitions}}, only that the role of the
+  Their meaning is just as described in \sref{definitions}, only that the role of the
   \element{axiom} element described there is taken by the \element{hypothesis} element. In
   {\mylstref{primes-omdoc-text}} step 4 in the proof is represented by a
   \element{symbol}/\element{definition} pair. Like in the \element{hypothesis} case, the
@@ -308,7 +308,7 @@ an {\twintoo{inference}{rule}} or {\twintoo{proof}{method}}.\footnote{At the mom
   these.} A method may have {\openmath} objects, {\cmathml} expressions,
 \element{legacy}, \element{premise}, \element{proof}, and
 \element{proofobject}\footnote{This object is an alternative representation of certain
-  proofs, see {\sref{proofobjects}}.} children.  These act as {\indextoo{parameter}}s to
+  proofs, see \sref{proofobjects}.} children.  These act as {\indextoo{parameter}}s to
 the method, e.g. for the repeated universal instantiation method in {\mylstref{derive}}
 the parameters are the terms to instantiate the bound variables.
   
@@ -394,7 +394,7 @@ Of course it is only evidence for the validity at all (we call such a proof
 \element{premise} references have grounded proofs themselves\footnote{For
   \element{assertion} targets this requirement is obvious. Obviously,
   {\element{axiom}s} do not need proofs, but certain forms of definitions need
-  well-definedness proofs (see {\sref{definitions}}). These are included in
+  well-definedness proofs (see \sref{definitions}). These are included in
   the definition of a grounded proof.} and the reference relation does not contain
 cycles. A grounded proof can be made self-contained by inserting the target
 statements as \element{derive} elements before the referencing

@@ -61,14 +61,14 @@ but a property of the application processing this document.
 \omdoc provides markup infrastructure for both aspects. In this chapter, we will discuss
 the infrastructure for the narrative aspect --- for a working example we refer the reader
 to {\extref{primer}{courseware}}. We will look at markup elements for knowledge-structured
-documents in {\sref{theories-contexts}}.
+documents in \sref{theories-contexts}.
 
 Even though the infrastructure for narrative aspects of mathematical documents is somewhat
 presentation-oriented, we will concentrate on content-markup for it. In particular, we
 will not concern ourselves with questions like font families, sizes, alignment, or
 positioning of text fragments. Like in most other {\xml} applications, this kind of
 information can be specified in the {\css} {\attributeshort{style}} and
-{\attributeshort{class}} attributes described in {\sref{common-attribs}}.
+{\attributeshort{class}} attributes described in \sref{common-attribs}.
 \end{module}
 
 \begin{omgroup}[id=root]{The Document Root}
@@ -105,12 +105,12 @@ Here and in the following we will use tables as the one in {\myfigref{qtgeneral}
 an overview over the respective \omdoc elements described in a chapter or section. The
 first column gives the element name, the second and third columns specify the required and
 optional attributes. We will use the fourth column labeled ``MD'' to indicate whether an
-\omdoc element can have a \element{metadata} child (see {\sref{eldef.metadata}}), which
+\omdoc element can have a \element{metadata} child (see \sref{eldef.metadata}), which
 will be described in the next section. Finally the fifth column describes the content
 model --- i.e. the allowable children --- of the element.  For this, we will use a form of
 \twintoo{Backus Naur form}{notation} also used in the DTD: {\snippet{\#PCDATA}} stands for
 ``{\twintoo{parsed}{character data}}'', i.e. text intermixed with legal \omdoc
-elements.) A synopsis of all elements is provided in {\sref{table}}.
+elements.) A synopsis of all elements is provided in \sref{table}.
 
 \begin{presonly}
 \begin{myfig}{qtgeneral}{\omdoc Elements for Specifying  Document Structure.}
@@ -159,7 +159,7 @@ ensure consistency.
   The {\eldef{metadata}} element contains elements for various metadata formats including
   bibliographic data from the Dublin Core vocabulary (as mentioned above), licensing
   information from the {\twintoo{Creative Commons}{Initiative}} (see
-  {\sref{creativecommons}}), as well as information for {\openmath} content dictionary
+  \sref{creativecommons}), as well as information for {\openmath} content dictionary
   management. Application-specific metadata elements can be specified by adding
   corresponding \omdoc modules that extend the content model of the \element{metadata}
   element.
@@ -186,13 +186,13 @@ will survive any {\xml} manipulation of the \omdoc source.
 
 Therefore, anything that would normally go into comments should be modeled with an
 \element{omtext} element (\attribute{type}{omtext} \attribute{comment}{type}{omtext},
-if it is a text-level comment; see {\sref{omtext}}) or with the \element{ignore}
+if it is a text-level comment; see \sref{omtext}) or with the \element{ignore}
 element for {\twintoo{persistent}{comment}s}, i.e.  comments that survive processing. 
 
 \begin{definition}[id=ignore.def]
   The content of the {\eldef{ignore}} element can be any well-formed \omdoc, it can
   occur as an \omdoc top-level element or inside mathematical texts (see
-  {\sref{mtext}}).
+  \sref{mtext}).
 \end{definition}
 This element should be used if the author wants to comment the \omdoc representation,
 but the end user should not see their content in a final presentation of the document, so
@@ -222,7 +222,7 @@ express the mathematics). This might lead to markup like
 \begin{oldpart}{MK: cannot make this example any more, think of a new one}
 \begin{example}
   Another good use of the \element{ignore} element is to use it as an analogon to the
-  {\atwintoo{in-place}{error}{markup}} in {\openmath} objects (see {\sref{om.error}}). In
+  {\atwintoo{in-place}{error}{markup}} in {\openmath} objects (see \sref{om.error}). In
   this case, we use the \attribute{type}{ignore} attribute to specify the kind of error
   and the content for the faulty \omdoc fragment. Note that since the whole object must
   be {\xml} valid. As a consequence, the \element{ignore} element can only be used for
@@ -243,7 +243,7 @@ express the mathematics). This might lead to markup like
   </ignore>
 \end{lstlisting}    
 For another use of the \element{ignore} element, see {\myfigref{flatten}} in
-{\sref{sharing}}.
+\sref{sharing}.
 \end{example}
 \end{oldpart}
 \end{module}
@@ -266,7 +266,7 @@ relations explicit by using the \element{omdoc} element with an optional attribu
   preceded by a {\twintoo{bullet}{symbol}}. Since the choice of this symbol is purely
   presentational, \omdoc use the {\css} {\attributeshort{style}} or
   {\attributeshort{class}} \twinalt{attributes}{CSS}{attribute} on the children to specify the
-  presentation of the bullet symbols (see {\sref{common-attribs}}).
+  presentation of the bullet symbols (see \sref{common-attribs}).
 \item[{\attval{enumeration}{type}{omdoc}}] for ordered lists. The children of this
   type of \element{omdoc} are usually presented like unordered lists, only
   that they are preceded by a running number of some kind (e.g. ``1.'', ``2.''\ldots
@@ -276,7 +276,7 @@ relations explicit by using the \element{omdoc} element with an optional attribu
   \element{omdoc} will be interpreted as sections. This means that the
   children will be usually numbered hierarchically, and their metadata will be
   interpreted as section heading information. For instance the
-  \element{metadata}/\element[ns-elt=dc]{title} information (see {\sref{dc-elements}}
+  \element{metadata}/\element[ns-elt=dc]{title} information (see \sref{dc-elements}
   for details) will be used as the section title. Note that \omdoc does not
   provide direct markup for particular hierarchical levels like
   ``{\indextoo{chapter}}'', ``{\indextoo{section}}'', or
@@ -421,7 +421,7 @@ the text fragment corresponding to the element with
 of~\myfigref{flatten} is just the one on the left.\ednote{make the model of first
   normalizing and then presentation and what this entais. cf. the TRAC issues.}
 
-In {\sref{common-attribs}} we have introduced the {\css}
+In \sref{common-attribs} we have introduced the {\css}
 \twinalt{attributes}{CSS}{attribute} \attribute{style}{ref} and \attribute{class}{ref},
 which are present on all \omdoc elements. In the case of the \element{ref} element,
 there is a problem, since the content of these can be incompatible. In general, the rule
@@ -487,7 +487,7 @@ inheritance.
 \end{lstlisting}
 
   {\mylstref{multiling}} shows an example of a {\twintoo{multilingual}{group}}. Here, the
-  {\openmath} extension by {\indextoo{DAG}} representation (see {\sref{openmath}})
+  {\openmath} extension by {\indextoo{DAG}} representation (see \sref{openmath})
   facilitates multi-language support: Only the language-dependent parts of the text have
   to be rewritten, the (language-independent) formulae can simply be re-used by
   \indexalt{cross-referencing}{cross-reference}.

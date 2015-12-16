@@ -44,7 +44,7 @@ mechanical document validation.  Surprisingly, {\xml} leaves the task of specify
 document equality to be clarified in the (informal) specifications, such as this \omdoc
 specification. As a consequence, current practice for {\xml}
 \twinalt{applications}{application}{XML} is quite varied. For instance, the {\openmath}
-standard (see~\cite{BusCapCar:2oms04} and {\sref{openmath}}) gives a mathematical
+standard (see~\cite{BusCapCar:2oms04} and \sref{openmath}) gives a mathematical
 object model for {\openmath} objects that is specified independently of the {\xml}
 encoding. Other {\xml} applications like e.g.  presentation
 {\mathml}~\cite{CarIon:MathML03} or {\xhtml}~\cite{W3C:xhtml2000} specify models in form
@@ -66,7 +66,7 @@ For a formal definition
 A possible source of confusion is that documents can admit more than one document model
 (see~\cite{KohKoh:esmk05} for an exploration of possible document models for
 mathematics). Concretely, \omdoc documents admit the \omdoc document model that we
-will specify in section {\sref{omdom}} and also the following four {\xml} document
+will specify in section \sref{omdom} and also the following four {\xml} document
 models that can be restricted to \omdoc documents (as a relation).\footnote{Here we
   follow Eliotte Rusty Harold's classification of layers of {\xml} processing
   in~\cite{Harold:ex03}, where he distinguishes the binary, lexical, sequence, structure,
@@ -100,7 +100,7 @@ interpret the encoding string in the {\xml} declaration and present the appropri
 to the user, while the binary document model would be appropriate for a simple ASCII
 editor. Since the last three document models are refinements of the {\xml} document model,
 we will recap this in the next section and define the \omdoc document model in
-{\sref{omdom}}.
+\sref{omdom}.
 
 To get a feeling for the issues involved, let us compare the \omdoc elements in
 {\mylstlref{first}{third}} below. For instance, the serialization in {\mylstref{second}}
@@ -229,7 +229,7 @@ constraints in the {\xml} schema for \omdoc in~\cite{KohAng:tccmvc03}.
 
 \begin{omtext}
   The last rule in {\myfigref{omdom}} is probably the most interesting, as we have seen in
-  {\sref{omdoc-infrastructure}}, \omdoc documents have both formal and informal aspects,
+  \sref{omdoc-infrastructure}, \omdoc documents have both formal and informal aspects,
   they can contain {\emph{\indextoo{narrative}}} as well as
   {\emph{\indextoo{narrative-structured}}} information.  The latter kind of document
   contains a formalization of a mathematical theory, as a reference for automated theorem
@@ -241,7 +241,7 @@ constraints in the {\xml} schema for \omdoc in~\cite{KohAng:tccmvc03}.
   educational purposes, where didactic considerations determine the order of
   presentation. \inlinedef{We call such documents \defi{narrative-structured}} and
   specify this by the value {\snippetin{Text}} (also see the discussion in
-  {\sref{dc-elements}})
+  \sref{dc-elements})
 \end{omtext}
 \end{module}
 \end{omgroup}
@@ -301,7 +301,7 @@ abbreviate the list of modules these sub-languages contain.
 
 Basic \omdoc is sufficient for very simple mathematical documents that do not introduce
 new symbols or concepts, or for early (and non-specific) stages in the migration process
-from legacy representations of mathematical material (see {\sref{top-level}}). This
+from legacy representations of mathematical material (see \sref{top-level}). This
 \omdoc sub-language consists of five modules: we need module {\MOBJmodule{spec}} for
 mathematical objects and formulae, which are present in almost all mathematical documents.
 Module {\DOCmodule{spec}} provides the document infrastructure, and in particular, the
@@ -323,7 +323,7 @@ add the module {\STmodule{spec}} to Basic \omdoc.  It provides the possibility t
 specify the meaning of basic mathematical objects ({\indextoo{symbol}s}) by
 {\indextoo{axiom}s} and {\indextoo{definition}s} together with the infrastructure for
 inheritance, and grouping, and allows to reference the symbols defined via their home
-theory (see the discussion in {\sref{theories-contexts}}).
+theory (see the discussion in \sref{theories-contexts}).
   
 With this extension alone, \omdoc content dictionaries add support for
 {\twintoo{multilingual}{text}}, simple {\indextoo{inheritance}} for theories, and
@@ -339,7 +339,7 @@ notations for the introduced symbols (by module {\PRESmodule{spec}}). So the res
 documents can be used for referencing (as in {\openmath}) and as a resource for deriving
 presentation information for the symbols defined here.  To get a feeling for this
 sub-language, see the example in the \omdoc variant of the {\openmath} content
-dictionary {\snippetin{arith1}} in {\sref{omcds}}, which shows that the {\openmath}
+dictionary {\snippetin{arith1}} in \sref{omcds}, which shows that the {\openmath}
 content dictionary format is (isomorphic to) a subset of the \omdoc format. In fact, the
 {\openmath}2 standard only presents the content dictionary format used here as one of many
 encodings and specifies abstract conditions on content dictionaries that the \omdoc

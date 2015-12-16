@@ -10,7 +10,7 @@
                             creators=miko,contributors=frabe]
                            {Complex Theories (Modules   {\CTHmodule{spec}} and {\DGmodule{spec}})}
 
-In {\sref{theories-contexts}} we have presented a notion of theory and inheritance that is
+In \sref{theories-contexts} we have presented a notion of theory and inheritance that is
 sufficient for simple applications like content dictionaries that informally (though
 presumably rigorously) define the static meaning of symbols. Experience in e.g. program
 verification has shown that this infrastructure is insufficient for large-scale
@@ -19,7 +19,7 @@ to managing complexity. For instance, for a theory of rings we cannot simply inh
 same theory of monoids as both the additive and multiplicative structure.
 
 In this chapter, we will generalize the {\twintoo{inheritance}{relation}} from
-{\sref{theories-contexts}} to that of ``{\twintoo{theory}{inclusion}s}'', also called
+\sref{theories-contexts} to that of ``{\twintoo{theory}{inclusion}s}'', also called
 ``{\twintoo{theory}{morphism}s}'' or ``{\twintoo{theory}{interpretation}s}''
 elsewhere~\cite{Farmer93}.  This infrastructure allows to structure a collection of
 theories into a complex theory graph that particularly supports modularization and reuse
@@ -162,7 +162,7 @@ belongs\footnote{On any monoid $M=(S,\circ,e)$, we have the $\cdot^*$ operator, 
 \end{myfig}
 
 \begin{omtext}
-  Formally, we extend the notion of inheritance given in {\sref{theories-contexts}} by
+  Formally, we extend the notion of inheritance given in \sref{theories-contexts} by
   allowing a {\twintoo{target}{theory}} to \inlinedef{import another a
     {\twintoo{source}{theory}} \defi{via a morphism}}: Let $\cS$ be a theory with
   theory-constitutive elements\footnote{which may in turn be inherited from other
@@ -177,7 +177,7 @@ belongs\footnote{On any monoid $M=(S,\circ,e)$, we have the $\cdot^*$ operator, 
   To specify the formula mapping function, module {\CTHmodule{spec}} extends the
   \element{imports} element by allowing it to have a child element {\eldef{morphism}},
   which specifies a formula mapping by a set of recursive equations using the
-  \element{requation} element described in {\sref{definitions}}. The optional attribute
+  \element{requation} element described in \sref{definitions}. The optional attribute
   \attribute{type}{morphism} allows to specify whether the function is really recursive
   (value \attval{recursive}{type}{morphism}) or pattern-defined (value
   \attval{pattern}{type}{morphism}).
@@ -319,7 +319,7 @@ mathematical vernacular.
 
 \begin{omtext}
   Note that an \element{imports} element in a theory $\cT$ with source theory $\cS$ as
-  discussed in {\sref{morphisms}} induces a theory inclusion from $\cS$ into
+  discussed in \sref{morphisms} induces a theory inclusion from $\cS$ into
   $\cT$\footnote{Note that in contrast to the inheritance relation induced by the
     \element{imports} elements the relation induced by general theory inclusions may be
     cyclic. A cycle just means that the theories participating in it are semantically
@@ -337,7 +337,7 @@ mathematical vernacular.
 \begin{omtext}
   The benefit of a theory inclusion is that all {\indextoo{theorem}s},
   {\indextoo{proof}s}, and {\twintoo{proof}{method}s} of the source theory can be used
-  (after translation) in the target theory (see {\sref{induced-assertions}}).  Obviously,
+  (after translation) in the target theory (see \sref{induced-assertions}).  Obviously,
   the transfer approach only depends on the theorem inclusion property, and we can extend
   its utility by augmenting the theory graph by more theory morphisms than just the
   definitional ones (see~\cite{FaGu93} for a description of the {\imps} theorem proving
@@ -387,7 +387,7 @@ defined in {\mylstref{def-group}} to itself. The morphism just maps each element
 base set to its inverse. A good application for this kind of theory morphism is to import
 claims for symmetric (e.g. with respect to the function {\snippet{inv}}, which serves as
 an involution in {\snippet{group}}) cases via this theory morphism to avoid explicitly
-having to prove them (see {\sref{induced-assertions}}).
+having to prove them (see \sref{induced-assertions}).
 
 \begin{lstlisting}[label=lst:theory-inclusion,mathescape,
   caption={A Theory Inclusion for Groups},

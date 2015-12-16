@@ -83,7 +83,7 @@ symbol, therefore \omdoc \element{definition} elements are more complex than
 \element{axiom}s.  In particular, the \element{definition} element supports several kinds
 of definition mechanisms with specialized content models specified in the
 \attribute{type}{definition} attribute (cf. the discussion at the end of
-{\sref{statements-constitutive}}):
+\sref{statements-constitutive}):
 
 \begin{module}[id=implicit-defs]
 \begin{omgroup}{Implicit Definitions}
@@ -261,7 +261,7 @@ Specification Language~\cite{CoFI:2004:CASL-RM}) standard.
   In \omdoc, we use the {\eldef{adt}} element to specify abstract data types possibly
   consisting of multiple sorts.  It is a {\indextoo{theory-constitutive}} statement and
   can only occur as a child of a \element{theory} element (see
-  {\sref{statements-constitutive}} for a discussion). An \element{adt} element contains
+  \sref{statements-constitutive} for a discussion). An \element{adt} element contains
   one or more \element{sortdef} elements that define the {\indextoo{sort}s} and specify
   their members and it can carry a \attribute{parameters}{adt} attribute that contains a
   whitespace-separated list of parameter variable names. If these are present, they
@@ -303,7 +303,7 @@ possible selector functions.
 
 \begin{definition}[id=argument.def]
   The argument sort is given as the first child of the {\eldef{argument}} element: a
-  \element{type} element as described in {\sref{type-axioms}}.
+  \element{type} element as described in \sref{type-axioms}.
 \end{definition}
 Note that $n$ may be 0 and thus the constructor element may not have \element{argument}
 children (see for instance the \element{constructor} for {\snippet{zero}} in
@@ -415,7 +415,7 @@ the \attribute{generated-from}{axiom} attribute with value
 
   We will now give the a formal\ednote{do we really want to call it ``formal''?} semantics
   of the {\STmodule{spec}} elements in terms of strict \omdoc (see
-  {\sref{strict}}).\ednote{what do we do if there is both FMP and CMPs in an
+  \sref{strict}).\ednote{what do we do if there is both FMP and CMPs in an
     axiom?}\ednote{what do we do if there is more than one symbol per
     definition?}\ednote{what do we do for non-simple definitions}
 

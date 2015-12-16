@@ -42,15 +42,15 @@
   \omdoc models mathematical vernacular as parsed text interspersed with
   content-carrying elements. Most prominently, the {\openmath} objects, {\cmathml}
   expressions, and \element{legacy} elements are used for mathematical objects, see
-  {\sref{mobj}}. The text structure is marked up with the inline fragment of {\xhtml}
+  \sref{mobj}. The text structure is marked up with the inline fragment of {\xhtml}
   1.0~\cite{W3C:xhtml2000}.
 
   In {\myfigref{modstable}} we have given an overview over the ones described in this
   book. The last two modules in {\myfigref{modstable}} are optional (see
-  {\sref{sub-languages}}).  Other (external or future) \omdoc modules can introduce
+  \sref{sub-languages}).  Other (external or future) \omdoc modules can introduce
   further elements; natural extensions come when \omdoc is applied to areas outside
   mathematics, for instance {\twintoo{computer science}{vernacular}} needs to talk about
-  {\twintoo{code}{fragment}s} (see {\sref{private}} and~\cite{Kohlhase:codemlspec}),
+  {\twintoo{code}{fragment}s} (see \sref{private} and~\cite{Kohlhase:codemlspec}),
   {\twintoo{chemistry}{vernacular}} about chemical formulae (e.g. represented in Chemical
   Markup Language~\cite{CML:web}).
 
@@ -104,14 +104,14 @@
 The content of an \element{omtext} element is {\twintoo{mathematical}{vernacular}}
 contained in a sequence of \element[ns-elt=h]{p} elements. This can be preceded by a
 \element{metadata} element that can be used to specify authorship, give the passage a
-title, etc. (see {\sref{dc-elements}}).
+title, etc. (see \sref{dc-elements}).
 
 We have used the \attribute{type}{omtext} attribute on \element{omtext} to classify
 text fragments by their {\twintoo{rhetoric}{role}}. This is adequate for much of the
 generic text that makes up the {\indextoo{narrative}} and explanatory text in a
 mathematical textbook. But many text fragments in mathematical documents directly state
 properties of mathematical objects (we will call them
-{\twintoo{mathematical}{statement}s}; see {\sref{statements}} for a more elaborated markup
+{\twintoo{mathematical}{statement}s}; see \sref{statements} for a more elaborated markup
 infrastructure). These are usually classified as {\indextoo{definition}s},
 {\indextoo{axiom}s}, etc.  Moreover, they are of a form that can (in principle) be
 formalized up to the level of logical formula; in fact, mathematical vernacular is seen by
@@ -132,7 +132,7 @@ values for the \attribute{type}{omtext} attribute:
 \item[{\attval{hypothesis}{type}{omtext}}] (a local assumption in a proof that will be
   discharged later) for text fragments that come from (parts of) proofs.
 \item[{\attval{derive}{type}{omtext}}] (a step in a proof), we will specify the exact
-  meanings of this and the two above in {\sref{proofs}} and present more structured
+  meanings of this and the two above in \sref{proofs} and present more structured
   counterparts.
 \end{description} 
 For the first four values, \element{omtext} also provides the attribute 
@@ -146,7 +146,7 @@ Finally, \omdoc also reserves the values \attval{theorem}{type}{omtext},
 \attval{formula}{type}{omtext}, \attval{obligation}{type}{omtext},
 \attval{assumption}{type}{omtext}, \attval{rule}{type}{omtext} and
 \attval{assertion}{type}{omtext} for statements that assert properties of mathematical
-objects (see {\myfigref{assertion-types}} in {\sref{assertions}} for explanations). Note
+objects (see {\myfigref{assertion-types}} in \sref{assertions} for explanations). Note
 that the differences between these values are largely pragmatic or proof-theoretic
 (conjectures become theorems once there is a proof).  Further types of text can be
 specified by providing a URI that points to a description of the text type (much like the
@@ -157,14 +157,14 @@ Of course, the \attribute{type}{omtext} only allows a rough classification of th
 {\twintoo{mathematical}{statement}s} at the text level, and does not make the underlying
 {\twintoo{content}{structure}} explicit or reveals their contribution and interaction with
 {\twintoo{mathematical}{context}}.  For that purpose \omdoc supplies a set of
-specialized elements, which we will discuss in {\sref{statements}}.  Thus
+specialized elements, which we will discuss in \sref{statements}.  Thus
 \element{omtext} elements will be used to give informal accounts of mathematical
 statements that are better and more fully annotated by the infrastructure introduced in
-{\sref{statements}}. However, in narrative documents, we often want to be informal, while
+\sref{statements}. However, in narrative documents, we often want to be informal, while
 maintaining a link to the formal element. For this purpose \omdoc provides the optional
 \attribute{verbalizes}{omtext} attribute on the \element{omtext} element. Its value is
 a whitespace-separated list of URI references to formal representations (see
-{\sref{inline-statements}} for further discussion).
+\sref{inline-statements} for further discussion).
 \end{omgroup}
 
 \begin{omgroup}[id=phrases]{Phrase-Level Markup of Mathematical Vernacular}
@@ -348,7 +348,7 @@ usage, index={h:span}]
 \end{lstlisting}
 \end{example}
 Another important application of the \attribute[ns-elt=h]{verbalizes}{span} is the case of
-inline mathematical statements, which we will discuss in {\sref{inline-statements}}.
+inline mathematical statements, which we will discuss in \sref{inline-statements}.
 
 \end{omgroup}
 
@@ -359,9 +359,9 @@ inline mathematical statements, which we will discuss in {\sref{inline-statement
   In \omdoc we can give the notion of a \inlinedef{\defii{technical}{term} a very
     precise meaning: it is a {\indextoo{span}} representing a {\indextoo{concept}} for
     which a {\indextoo{declaration}} exists in a {\twintoo{content}{dictionary}} (see
-    {\sref{symbol-dec}})}. In this respect it is the natural language equivalent for an
+    \sref{symbol-dec})}. In this respect it is the natural language equivalent for an
   {\openmath} symbol or a {\cmathml} token\footnote{and is subject to the same visibility
-    and scoping conditions as those; see {\sref{theories-contexts}} for details}. Let us
+    and scoping conditions as those; see \sref{theories-contexts} for details}. Let us
   consider an example: We can equivalently say ``$0\in\NN$'' and ``the number zero is a
   natural number''. The first rendering in a formula, we would cast as the following
   {\openmath} object:
@@ -387,7 +387,7 @@ $\ldots$<term  cd="nat" name="zero">the number zero</term> is an
   The {\eldef{term}} element has one required attribute: \attribute{name}{term} and two
   optional ones: \attribute{cd}{term} and \attribute{cdbase}{term}.  Together they
   determine the meaning of the phrase just like they do for \element[ns-elt=om]{OMS}
-  elements (see the discussion in {\sref{openmath}} and {\sref{identifying}}). The
+  elements (see the discussion in \sref{openmath} and \sref{identifying}). The
   \element{term} element also allows the attribute \attribute[ns-attr=xml]{id}{term}
   for identification of the phrase occurrence, the {\css}
   \twinalt{attributes}{CSS}{attribute} for styling and the optional
@@ -518,7 +518,7 @@ modeling in \omdoc to the future.
   All elements in the {\RTmodule{spec}} module carry an optional
   {\attributeshortcomment{xml:id}{in module RT}} attribute for identification and an
   \attribute{index}{in module RT} attribute for
-  {\atwintoo{parallel}{multilingual}{markup}} (e.g. {\sref{phrases}} for an explanation
+  {\atwintoo{parallel}{multilingual}{markup}} (e.g. \sref{phrases} for an explanation
   and {\mylstref{parallel-multiling}} for a {\indextoo{translation}} example).
 
 \begin{lstlisting}[label=lst:parallel-multiling,caption={Multilingual Parallel Markup},index={omtext,docalt,h:ul,h:li,h:p}]
