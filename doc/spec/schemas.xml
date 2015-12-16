@@ -1,6 +1,0 @@
-<?xml version="1.0"?>
-<locatingRules xmlns="http://thaiopensource.com/ns/locating-rules/1.0">
-  <uri pattern="*.tex.xml" typeId="OMDoc+LTXML"/>
-  <uri pattern="*.xml" typeId="OMDoc"/>
-  <typeId id="OMDoc+LTXML" uri="../stex/rnc/omdoc+ltxml.rnc"/>
-</locatingRules>
