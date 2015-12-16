@@ -3,12 +3,13 @@
 \DeclareOption{nohyper}{\hyperfalse}
 \ProcessOptions
 \ifhyper\else\RequirePackage{nohyperref}\fi
+\RequirePackage{xspace}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Systems of the AGS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\sys}[2][]{\def\@test#1\def\@empty{}
   \ifx\@test\@empty{#2}\index{#2@#2}\else\texorpdfstring{#2}{#1}\index{#1@{#2}}\fi}
-\def\scsys#1{\texorpdfstring{{\scshape{#1}}}{#1}\index{#1@{\scshape{#1}}}}
+\def\scsys#1{\texorpdfstring{{\scshape{#1}}}{#1}\index{#1@{\scshape{#1}}}\xspace}
 \def\ttsys#1{\texorpdfstring{\tt #1}{#1}\index{#1@{\tt #1}}}
 \def\mbase{\scsys{MBase}}
 \def\tramp{\scsys{Tramp}}
@@ -156,9 +157,9 @@
 \def\mathml{\scsys{MathML}}
 \def\mathplayer{\scsys{MathPlayer}}
 \def\cmathml{Content-\texorpdfstring{\scshape{MathML}}{MathML}%
-\index{Content {\sc MathML}}\index{MathML@{\sc MathML}!content}}
+\index{Content {\sc MathML}}\index{MathML@{\sc MathML}!content}\xspace}
 \def\pmathml{Presentation-{\mathml}%
-\index{Presentation \texorpdfstring{\scshape{MathML}}{MathML}}\index{MathML@{\sc MathML}!presentation}}
+\index{Presentation \texorpdfstring{\scshape{MathML}}{MathML}}\index{MathML@{\sc MathML}!presentation}\xspace}
 \def\cmath{\scsys{Content-Math}}
 \def\pmath{\scsys{Presentation-Math}}
 \def\codeml{\protect\scsys{CodeML}}

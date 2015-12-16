@@ -31,14 +31,14 @@
 \begin{omtext}
 We will now recapitulate the representational core of \openmath and \cmathml. Both
 represent mathematical \inlinedef{objects as expressions made up from
-\begin{description}
-\item[\defis{symbol}] which reference previously declared mathematical objects, these are
+\begin{compactenum}
+\item \defis{symbol} which reference previously declared mathematical objects, these are
   identified by referencing a \trefii{content}{dictionary} (see \sref{cd.def}). 
-\item[\defis{application}] of function or relation operators to a sequence of arguments 
-\item[\defiis{binding}{structure}] that represent functional objects with the help of
+\item \defis{application} of function or relation operators to a sequence of arguments 
+\item \defiis{binding}{structure} that represent functional objects with the help of
   \defiis{bound}{variable}.
-\item[\defis{identifier}] for objects that are known locally (usually bound variables). 
-\end{description}}
+\item \defis{identifier} for objects that are known locally (usually bound variables).
+\end{compactenum}}
  In {\myfigref{om-commutativity}} we have put the \openmath and strict \cmathml encodings
 of the law of commutativity for the real numbers side by side to show the similarities and
 differences. There is an obvious line-by-line similarity for the tree constructors and
@@ -46,7 +46,7 @@ token elements.  The main difference is the treatment of annotation, which we wi
 describe in `\sref{annotating}. 
 \end{omtext}
 
-\begin{definition}
+\begin{definition}[id=cd.def]
   A \defii[CD]{content}{dictionary} (\defi{CD}) is a \indextoo{machine-readable} document
   that defines the meaning of mathematical concepts expressed by \openmath/\mathml
   symbols.
@@ -59,13 +59,13 @@ details.
 
 \begin{omtext}
 The central idea is that \trefis{symbol} are identified by a triple: 
-\begin{enumerate}
+\begin{compactenum}
 \item \inlinedef{the URI of the file containing the CD (called the
     \defiii{content}{dictionary}{base})},
 \item the \inlinedef{the name of the CD, called the \defiii{content}{dictionary}{name}},
   and 
 \item the \inlinedef{local name in the CD, called the \defii{symbol}{name}}.
-\end{enumerate}
+\end{compactenum}
 \end{omtext}
 \end{module}
 
@@ -272,24 +272,21 @@ EMPTY \\\hline
 \begin{definition}[id=math.def]
   The top-level element of \mathml is the {\eldef[ns-elt=m]{math}} element it contains an
   functional expression composed
-  \begin{description}
-  \item[\defis{identifier}] (element \eldef[ns-elt=m]{ci}) corresponding to
-    {\indextoo{variable}s}. The content of the \element[ns-elt=m]{ci} element is
-    arbitrary {\pmathml}, used as the name of the identifier.
-  \item[\defis{symbol}] (element \eldef[ns-elt=m]{csymbol}) for arbitrary symbols. The
+  \begin{compactenum}
+  \item \trefis{identifier} (element \eldef[ns-elt=m]{ci}) corresponding to
+    {\indextoo{variable}s}. The content of the \element[ns-elt=m]{ci} element is a unicode
+    string used as the name of the identifier.
+  \item \trefis{symbol} (element \eldef[ns-elt=m]{csymbol}) for arbitrary symbols. The
     content of the \element[ns-elt=m]{csymbol} element is the name of the symbol, its
     meaning is dermined by the \attribute{csymbol}{cd} attribute that contains a content
     dictionary name.
-  \item[\defis{application}] (element\eldef[ns-elt=m]{apply})    
-  \item[\defiis{binding}{structure}] (element \eldef[ns-elt=m]{bind} with
-    \eldef{ns-elt=m}{bvars}). 
-  \end{description}
+  \item \trefis{application} (element\eldef[ns-elt=m]{apply})    
+  \item \trefiis{binding}{structure} (element \eldef[ns-elt=m]{bind} with
+    \eldef[ns-elt=m]{bvars}).
+  \end{compactenum}
 \end{definition}
 \end{omgroup}
 \end{module}
-\end{omgroup}
-
-
 
 \setbox0=\hbox{\begin{minipage}{5.3cm}\def\baselinestretch{.975}
 \begin{lstlisting}[label=omvsmom,language=OpenMath,frame=none,numbers=none,
@@ -397,7 +394,6 @@ EMPTY \\\hline
   children at even positions are the \defis{value} of the keys specified by their
   immediately preceding siblings. In the {\openmath} fragment in {\mylstref{omattr}} the
   expression $x+\pi$ is annotated with an alternative representation and a color.
-  {\Mylstref{complex-type-om}} has a more complex one involving types.
 \end{definition}
 
 A special application of the \element[ns-elt=om]{OMATTR} element is associating
@@ -484,9 +480,10 @@ and \element[ns-elt=m]{annotation-xml} and children carry the annotations.
 </m:semantics>
 \end{lstlisting}
 \end{example}
+\end{omgroup}
 
 
-\begin{omgroup}[id=om.error]{Programming Extensions of {\openmath} Objects}
+\begin{omgroup}[id=om.error]{Programming Extensions of for Mathematical Objects}
 
 \begin{definition}[id=omi.def]
   For representing objects in {\twintoo{computer algebra}{system}s} {\openmath} also
