@@ -130,50 +130,6 @@ elements.) A synopsis of all elements is provided in \sref{table}.
 \end{module}
 \end{omgroup}
 
-\begin{omgroup}[id=docmetadata]{Metadata}
-\begin{module}[id=metadata]
-
-The {\twintoo{World Wide}{Web}} was originally built for human consumption, and although
-everything on it is machine-readable, most of it is not machine-understandable.  The
-accepted solution is to provide {\indextoo{metadata}} ({\twintoo{data}{about data}}) to
-describe the documents on the web in a machine-understandable format that can be processed
-automatically. Metadata commonly specifies aspects of a document like title, authorship,
-language usage, and administrative aspects like modification dates, distribution rights,
-and identifiers.
-  
-In general, metadata can either be embedded in the respective document, or be stated in a
-separate one. The first facilitates maintenance and control (metadata is always at your
-fingertips, and it can only be manipulated by the document's authors), the second one
-enables inference and distribution. \omdoc allows to embed metadata into the document,
-from where it can be harvested for external metadata formats, such as the {\xml}
-{\indextoo{resource description format}} ({\rdf}~\cite{LasSwi:rdf99}).  We use one of the
-best-known metadata schemata for documents -- the {\emph{\indextoo{Dublin Core}}} (cf.
-{\srefs{dc-elements}{dc-roles}}). The purpose of annotating metadata in \omdoc is to
-facilitate the administration of documents, e.g.  digital {\twintoo{rights}{management}},
-and to generate input for metadata-based tools, e.g.  RDF-based navigation and indexing of
-document collections. Unlike most other document formats \omdoc allows to add metadata
-at many levels, also making use of the metadata for document-internal markup purposes to
-ensure consistency.
-  
-\begin{definition}[id=metadata.def]
-  The {\eldef{metadata}} element contains elements for various metadata formats including
-  bibliographic data from the Dublin Core vocabulary (as mentioned above), licensing
-  information from the {\twintoo{Creative Commons}{Initiative}} (see
-  \sref{creativecommons}), as well as information for {\openmath} content dictionary
-  management. Application-specific metadata elements can be specified by adding
-  corresponding \omdoc modules that extend the content model of the \element{metadata}
-  element.
-\end{definition}
-
-The \omdoc \element{metadata} element can be used to provide information about the
-document as a whole (as the first child of the \element{omdoc} element), as well as
-about specific fragments of the document, and even about the top-level mathematical
-elements in \omdoc. This reinterpretation of bibliographic metadata as general data
-about knowledge items allows us to extract document fragments and re-assemble them to new
-aggregates without losing information about authorship, source, etc.
-\end{module}
-\end{omgroup}
-
 \begin{omgroup}[id=comment]{Document Comments}
 \begin{module}[id=comments]
 
