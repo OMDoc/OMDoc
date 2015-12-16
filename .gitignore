@@ -4,4 +4,5 @@ auto
 *.aux
 *.thm
 *.idx
+*.refs
 work.pdf
