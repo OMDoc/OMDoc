@@ -205,13 +205,13 @@ specified in four kinds of \omdoc elements:
     and an optional \attribute{type}{derive} to single out special cases of proofs
     steps.}
   
-  The value \attribute{conclusion}{type}{derive} is reserved for the concluding step of a
+  The value \attval{conclusion}{type}{derive} is reserved for the concluding step of a
   proof\footnote{As the argumentative structure of the proof is encoded in the
     justification structure to be detailed in {\sref{proofs.justifications}}, the
     concluding step of a proof need not be the last child of a proof element.}, i.e. the
   one that derives the assertion made in the corresponding theorem.  
   
-  The value \attribute{gap}{type}{derive} is used for proof steps that are not justified
+  The value \attval{gap}{type}{derive} is used for proof steps that are not justified
   (yet): \inlinedef{we call them \defii{gap}{steps}}. Note that the presence of gap
   steps allows \omdoc to specify {\twintoo{incomplete}{proof}s} as proofs with gap
   steps.
@@ -228,7 +228,7 @@ specified in four kinds of \omdoc elements:
   An important special case of hypothesis is the case of
   ``{\twintoo{inductive}{hypothesis}}'', this can be flagged by setting the value of the
   attribute \attribute{inductive}{hypothesis} to \attribute{yes}{inductive}{hypothesis};
-  the default value is \attribute{no}{inductive}{hypothesis}.
+  the default value is \attval{no}{inductive}{hypothesis}.
 
   \setbox0=\hbox{\element{symbol}/\element{definition}}\item[\box0] These elements allow
   to introduce new local symbols that are local to the containing \element{proof} element.

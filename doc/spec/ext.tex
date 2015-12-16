@@ -141,14 +141,14 @@ reference the actual data.
   \attribute{href}{data}\footnote{e.g. if the \element{data} content serves as a cache
     for the data at the URI, or the \element{data} content fixes a snapshot of the
     resource at the URI}, then the optional attribute \attribute{original}{data}
-  specifies whether the \element{data} content (value \attribute{local}{original}{data})
-  or the external resource (value \attribute{external}{original}{data}) is the
+  specifies whether the \element{data} content (value \attval{local}{original}{data})
+  or the external resource (value \attval{external}{original}{data}) is the
   original. The optional \attribute{size}{data} attribute can be used to specify the
   content size (if known) or the resource identified in the \attribute{href}{data}
   attribute. The \element{data} element has the (optional) attribute
   \attribute{format}{data} to specify the format the data are in, e.g.
-  \attribute{image/jpeg}{format}{data} or \attribute{image/gif}{format}{data} for image
-  data, \attribute{text/plain}{format}{data} for text data, \attribute{binary}{format}{data}
+  \attval{image/jpeg}{format}{data} or \attval{image/gif}{format}{data} for image
+  data, \attval{text/plain}{format}{data} for text data, \attval{binary}{format}{data}
   for system-specific binary data, etc. It is good practice to use the
   {\twintoo{MIME}{type}s}~\cite{FreBor:MIME96} for this purpose whenever applicable.  Note
   that in a \element{private} or \element{code} element, the \element{data} elements
@@ -297,18 +297,18 @@ displayed, audio formats will be played, and application-specific formats are pa
 the appropriate {\indextoo{plug-in}}. However, for the latter (and in particular for
 program code), we might actually be interested to display the data in its raw (or suitably
 presented) form. The \attribute{action}{omlet} addresses this need, it has the possible
-values \attribute{execute}{action}{omlet} (pass the data to the appropriate plug-in or
-execute the program code), \attribute{display}{action}{omlet} (display it to the user in
-audio- or visual form), and \attribute{other}{action}{omlet} (the action is left
+values \attval{execute}{action}{omlet} (pass the data to the appropriate plug-in or
+execute the program code), \attval{display}{action}{omlet} (display it to the user in
+audio- or visual form), and \attval{other}{action}{omlet} (the action is left
 unspecified).
   
 The \attribute{show}{omlet} attribute is used to communicate the desired presentation of
 the ending resource on traversal from the starting resource. It has one of the values
-\attribute{new}{show}{omlet} (display the object in a new document),
-\attribute{replace}{show}{omlet} (replace the current document with the presentation of the
-external object), \attribute{embed}{show}{omlet} (replace the \element{omlet} element
+\attval{new}{show}{omlet} (display the object in a new document),
+\attval{replace}{show}{omlet} (replace the current document with the presentation of the
+external object), \attval{embed}{show}{omlet} (replace the \element{omlet} element
 with the presentation of the external object in the current document), and
-\attribute{other}{show}{omlet} (the presentation is left unspecified).
+\attval{other}{show}{omlet} (the presentation is left unspecified).
   
 The \attribute{actuate}{omlet} attribute is used to communicate the desired timing of
 the action specified in the \attribute{action}{omlet} attribute.  Recall that \omdoc
@@ -316,10 +316,10 @@ documents as content representations are not intended for direct viewing by the 
 appropriate presentation formats are derived from it by a ``presentation process'' (which
 may or may not be incorporated into the user agent). Therefore the
 \attribute{actuate}{omlet} attribute can take the values
-\attribute{onPresent}{action}{omlet} (when the presentation document is generated),
-\attribute{onLoad}{action}{omlet} (when the user loads the presentation document),
-\attribute{onRequest}{action}{omlet} (when the user requests it, e.g. by clicking in the
-presentation document), and \attribute{other}{action}{omlet} (the timing is left
+\attval{onPresent}{action}{omlet} (when the presentation document is generated),
+\attval{onLoad}{action}{omlet} (when the user loads the presentation document),
+\attval{onRequest}{action}{omlet} (when the user requests it, e.g. by clicking in the
+presentation document), and \attval{other}{action}{omlet} (the timing is left
 unspecified).
   
 The simplest form of an \element{omlet} is just the embedding of an external object like
@@ -344,7 +344,7 @@ In {\mylstref{omlet1}} we present an example of a conventional
 {\twintoo{Java}{applet}} in a mathematical text: the \attribute{data}{omlet}
 attribute points to a \element{code} element, which will be executed (if the
 value of the \attribute{action}{omlet} attribute were
-\attribute{display}{action}{omlet}, the code would be displayed).
+\attval{display}{action}{omlet}, the code would be displayed).
 
 \begin{lstlisting}[label=lst:omlet1,
   caption={An \element{omlet} that Calls the Java Applet from {\mylstref{callMint}}.},
@@ -402,12 +402,12 @@ described in {\extref{primer}{rpc}}.
   question.
 \item[\attribute{valuetype}{param}] This attribute specifies the type of the
   \attribute{value}{param} attribute. The value
-  \attribute{data}{valuetype}{param} (the default) means that the value of the
+  \attval{data}{valuetype}{param} (the default) means that the value of the
   \attribute{value}{param} will be passed to the plug-in as a string.  The value
-  \attribute{ref}{valuetype}{param} specifies that the value of the
+  \attval{ref}{valuetype}{param} specifies that the value of the
   \attribute{value}{param} attribute is to be interpreted as a
   {\twintoo{URI}{reference}} that designates a resource where run-time values are
-  stored. Finally, the value \attribute{object}{valuetype}{param} specifies that
+  stored. Finally, the value \attval{object}{valuetype}{param} specifies that
   the \attribute{value}{param} value points to a \element{private} or
   \element{code} element that contains a {\twintoo{multi-format}{collection}} of
   \element{data} elements that carry the data.

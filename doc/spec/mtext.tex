@@ -92,11 +92,11 @@
 \begin{oldpart}{The rhethorical relations will be completely reworked taking the SALT
     ontology into account. For the moment we liberalize the RNC schema to allow
     {\texttt{xsd:anyURI}} here } This can take e.g. the values
-  \attribute{abstract}{type}{omtext}, \attribute{introduction}{type}{omtext},
-  \attribute{conclusion}{type}{omtext}, \attribute{comment}{type}{omtext},
-  \attribute{thesis}{type}{omtext}, \attribute{antithesis}{type}{omtext},
-  \attribute{elaboration}{type}{omtext}, \attribute{motivation}{type}{omtext},
-  \attribute{evidence}{type}{omtext}, \attribute{transition}{type}{omtext} with the obvious
+  \attval{abstract}{type}{omtext}, \attval{introduction}{type}{omtext},
+  \attval{conclusion}{type}{omtext}, \attval{comment}{type}{omtext},
+  \attval{thesis}{type}{omtext}, \attval{antithesis}{type}{omtext},
+  \attval{elaboration}{type}{omtext}, \attval{motivation}{type}{omtext},
+  \attval{evidence}{type}{omtext}, \attval{transition}{type}{omtext} with the obvious
   meanings. In the last five cases \element{omtext} also has the extra attribute
   \attribute{for}{omtext}, and in the last one, also an attribute
   \attribute{from}{omtext}, since these are in reference to other \omdoc elements.
@@ -120,18 +120,18 @@ can ultimately be translated into a foundational logical system like axiomatic s
 theory~\cite{Bernays:ast91}.  For such text fragments, \omdoc reserves the following
 values for the \attribute{type}{omtext} attribute:
 \begin{description}
-\item[{\attribute{axiom}{type}{omtext}}] (fixes or restricts the meaning of certain
+\item[{\attval{axiom}{type}{omtext}}] (fixes or restricts the meaning of certain
   symbols or concepts.) An axiom is a piece of mathematical knowledge that cannot
   be derived from anything else we know.
-\item[{\attribute{definition}{type}{omtext}}] (introduces new concepts or symbols.) A
+\item[{\attval{definition}{type}{omtext}}] (introduces new concepts or symbols.) A
   definition is an axiom that introduces a new symbol or construct, without restricting
   the meaning of others.
-\item[{\attribute{example}{type}{omtext}}] (for or against a mathematical property).
-\item[{\attribute{proof}{type}{omtext}}] (a proof), i.e. a rigorous --- but maybe informal
+\item[{\attval{example}{type}{omtext}}] (for or against a mathematical property).
+\item[{\attval{proof}{type}{omtext}}] (a proof), i.e. a rigorous --- but maybe informal
   --- argument that a mathematical statement holds.
-\item[{\attribute{hypothesis}{type}{omtext}}] (a local assumption in a proof that will be
+\item[{\attval{hypothesis}{type}{omtext}}] (a local assumption in a proof that will be
   discharged later) for text fragments that come from (parts of) proofs.
-\item[{\attribute{derive}{type}{omtext}}] (a step in a proof), we will specify the exact
+\item[{\attval{derive}{type}{omtext}}] (a step in a proof), we will specify the exact
   meanings of this and the two above in {\sref{proofs}} and present more structured
   counterparts.
 \end{description} 
@@ -139,13 +139,13 @@ For the first four values, \element{omtext} also provides the attribute
 \attribute{for}{omtext}, as they point to other mathematical aspects such as symbols, 
 assertions, definitions, axioms or alternatives.
 
-Finally, \omdoc also reserves the values \attribute{theorem}{type}{omtext},
-\attribute{proposition}{type}{omtext}, \attribute{lemma}{type}{omtext},
-\attribute{corollary}{type}{omtext}, \attribute{postulate}{type}{omtext},
-\attribute{conjecture}{type}{omtext}, \attribute{false-conjecture}{type}{omtext},
-\attribute{formula}{type}{omtext}, \attribute{obligation}{type}{omtext},
-\attribute{assumption}{type}{omtext}, \attribute{rule}{type}{omtext} and
-\attribute{assertion}{type}{omtext} for statements that assert properties of mathematical
+Finally, \omdoc also reserves the values \attval{theorem}{type}{omtext},
+\attval{proposition}{type}{omtext}, \attval{lemma}{type}{omtext},
+\attval{corollary}{type}{omtext}, \attval{postulate}{type}{omtext},
+\attval{conjecture}{type}{omtext}, \attval{false-conjecture}{type}{omtext},
+\attval{formula}{type}{omtext}, \attval{obligation}{type}{omtext},
+\attval{assumption}{type}{omtext}, \attval{rule}{type}{omtext} and
+\attval{assertion}{type}{omtext} for statements that assert properties of mathematical
 objects (see {\myfigref{assertion-types}} in {\sref{assertions}} for explanations). Note
 that the differences between these values are largely pragmatic or proof-theoretic
 (conjectures become theorems once there is a proof).  Further types of text can be
@@ -392,7 +392,7 @@ $\ldots$<term  cd="nat" name="zero">the number zero</term> is an
   for identification of the phrase occurrence, the {\css}
   \twinalt{attributes}{CSS}{attribute} for styling and the optional
   \attribute{role}{term} attribute that allows to specify the role the respective phrase
-  plays. We reserve the value \attribute{definiens}{role}{term} for the defining occurrence
+  plays. We reserve the value \attval{definiens}{role}{term} for the defining occurrence
   of a phrase in a definition.  This will in general mark the exact point to point to when
   presenting other occurrences of the same\footnote{We understand this to mean with the
     same \attribute{cd}{term} and \attribute{name}{term} attributes.} phrase. Other

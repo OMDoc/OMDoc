@@ -179,8 +179,8 @@ belongs\footnote{On any monoid $M=(S,\circ,e)$, we have the $\cdot^*$ operator, 
   which specifies a formula mapping by a set of recursive equations using the
   \element{requation} element described in {\sref{definitions}}. The optional attribute
   \attribute{type}{morphism} allows to specify whether the function is really recursive
-  (value \attribute{recursive}{type}{morphism}) or pattern-defined (value
-  \attribute{pattern}{type}{morphism}).
+  (value \attval{recursive}{type}{morphism}) or pattern-defined (value
+  \attval{pattern}{type}{morphism}).
 \end{definition}
 
 As in the case of the \element{definition} element, termination of the defined function
@@ -477,8 +477,8 @@ further:
 \begin{omtext}
   To allow for a local variant of inheritance, the {\CTHmodule{spec}} module adds an
   attribute \attribute{type}{imports} to the \element{imports} element. This can take
-  the values \attribute{global}{type}{imports} (the default) and
-  \attribute{local}{type}{imports}. In the latter case, only the theory-constitutive
+  the values \attval{global}{type}{imports} (the default) and
+  \attval{local}{type}{imports}. In the latter case, only the theory-constitutive
   statements that are local to the source theory are imported.
 \end{omtext}
 

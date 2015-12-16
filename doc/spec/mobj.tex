@@ -184,7 +184,7 @@ formula $\allcdot{x}{\sin(x)\leq\pi}$.
     The binding operator must be a symbol which either has the {\indextoo{role}}
     {\attvalshort{binder}{role}} assigned by the {\openmath} content dictionary
     (see~\cite{BusCapCar:2oms04} for details) or the symbol declaration in the \omdoc
-    content dictionary must have the value \attribute{binder}{role}{symbol} for the
+    content dictionary must have the value \attval{binder}{role}{symbol} for the
     attribute \attribute{role}{symbol} (see {\sref{symbol-dec}}).} --- in this case the
   universal quantifier, the second one is a list of {\twintoo{bound}{variable}s} that must
   be encapsulated in an {\eldef[ns-elt=om]{OMBVAR}} element, and the third is the
@@ -212,7 +212,7 @@ formula $\allcdot{x}{\sin(x)\leq\pi}$.
   \defis{feature})\footnote{There are two kinds of keys in {\openmath} distinguished
     according to the \attribute{role}{symbol} value on their \element{symbol}
     declaration in the {\indextoo{content}{dictionary}}:
-    \attribute{attribution}{role}{symbol} specifies that this attribute value pair may be
+    \attval{attribution}{role}{symbol} specifies that this attribute value pair may be
     ignored by an application, so it should be used for information which does not change
     the meaning of the attributed {\openmath} object. The \attribute{role}{symbol} is
     used for keys that modify the meaning of the attributed {\openmath} object and thus
@@ -277,7 +277,7 @@ application).
   {\openmath} objects, it can be used almost everywhere in {\openmath} elements. It has
   two children; the first one is an {\twintoo{error}{operator}}\footnote{An error operator
     is like a {\twintoo{binding}{operator}}, only the symbol has role
-    \attribute{error}{role}{symbol}.}, i.e. an {\openmath} symbol that specifies the kind
+    \attval{error}{role}{symbol}.}, i.e. an {\openmath} symbol that specifies the kind
   of error, and the second one is the faulty {\openmath} object fragment. Note that since
   the whole object must be a valid {\openmath} object, the second child must be a
   well-formed {\openmath} object fragment.
@@ -990,8 +990,8 @@ formats \omdoc makes use of the infrastructure introduced in module
   \begin{itemize}
   \item \attribute{format}{legacy} (required) specifies the format of the content using
     URI reference. \omdoc does not restrict the possible values, possible values include
-    \attribute{TeX}{format}{legacy}, \attribute{pmml}{format}{legacy},
-    \attribute{html}{format}{legacy}, and \attribute{qmath}{format}{legacy}.
+    \attval{TeX}{format}{legacy}, \attval{pmml}{format}{legacy},
+    \attval{html}{format}{legacy}, and \attval{qmath}{format}{legacy}.
   \item \attribute{formalism}{legacy} is optional and describes the formalism (if
     applicable) the content is expressed in. Again, the value is unrestricted character
     data to allow a {\twintoo{URI}{reference}} to a definition of a formalism.

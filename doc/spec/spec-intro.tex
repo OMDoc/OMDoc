@@ -44,14 +44,14 @@ catering to different communities and their tastes.
 
 The introduction of strict \omdoc and the re-interpretation of pragmatic \omdoc in
 terms of it is radical redesign of the \omdoc format, which is new in {\omdocv{1.6}}.
-For this reason we consider {\omdocv{1.6}} the first step into the direction of
+For this reason we consider {\omdocv{1.6}} the first step into the directiosn of
 {\omdocv{2}}. With the development of strict \omdoc we aim to identify the
 representational primitives for representing mathematical documents, which can be given a
 simple and elegant semantics.
 
 \paragraph{Formal vs. Informal} 
 
-One of the hallmarks of mathematical language is that is very rigorous in structure and
+One of the hallmarks of mathematical language is that it is very rigorous in structure and
 usage in an attempt to fix the meaning of (mathematical) objects and statements about
 them. Indeed, the first decades of the last century established that mathematical language
 can in principle be expanded into logical form, where all objects and statements are fully
@@ -63,7 +63,7 @@ verified with the help of computers. But formalization and formal reasoning is s
 costly and tedious that only a very small part of mathematics is formalized and verified
 in practice. Currently almost all mathematical documents consist of a mix of formal and
 informal (i.e. natural language) elements --- certainly during the development of
-mathematical knowledge, but also in publications. Therefore are representation format for
+mathematical knowledge, but also in publications. Therefore representation formats for
 mathematical documents must allow this as well, consequently, \omdoc has two
 sub-languages, ``formal \omdoc'' (on the left side of Figure~\ref{fig:dimensions}) and
 ``natural \omdoc'' (on the right side).
@@ -73,22 +73,21 @@ sub-languages, ``formal \omdoc'' (on the left side of Figure~\ref{fig:dimensions
 \item[objects] are usually represented as {\emph{formulae}} or \emph{natural language
     phrases} in mathematical documents. In formal \omdoc formulae are marked up according
   to their functional structure (as operator trees) and according to their layout in
-  informal \omdoc (as layout trees). Note that any object can be represented in all three
-  ways and all three ways of representation can be mixed at any level to account for
-  mathematical practice, e.g. for mixed formulae like $\{n\in\mathbb{N}\bigl|n>3 \;\text{
-    is prime}\}$.
+  informal \omdoc (as layout trees). Note that any object can be represented in both ways
+  and both ways of representation can be mixed at any level to account for mathematical
+  practice, e.g. for mixed formulae like $\{n\in\mathbb{N}\bigl|n>3 \;\text{ is prime}\}$.
 \item[statements] are usually represented as \emph{natural language sentences (with
     formulae)}\footnote{or even larger text fragments made up of sentences like
-    paragraphs} in informal settings and as (logical) formulae in formal ones. The
-  discussion about the three ways of representation of objects applies analogously. Note
+    paragraphs} in informal settings and as (closed, logical) formulae in formal ones. The
+  discussion about the two ways of representation of objects applies analogously. Note
   that functional markup in formal \omdoc only addresses part of the requirements of
   formality, since their meaning depends on their context; we will explore this next.
-\item[theory graphs] The context of objects (and the statements that contain
-  them) is given by special statements (declarations). For conciseness and tractability,
-  \omdoc groups declarations into ``theories'' and connects them by ``theory morphisms''
-  into ``theory graphs''. In a nutshell, every object (and thus every statement) has a
-  ``home theory'', in which is meaningful. Theory morphisms make objects and statements
-  available in their target theories. 
+\item[theory graphs] The context of objects (and the statements that contain them) is
+  given by special statements (declarations). For conciseness and tractability, \omdoc
+  groups declarations into ``theories'' and connects them by ``theory morphisms'' into
+  ``theory graphs''. In a nutshell, every object (and thus every statement) has a ``home
+  theory'', in which it is meaningful. Theory morphisms make objects and statements
+  available in their target theories.
 \end{compactdesc}
 As statements, theories and theory graphs are large objects, their informal
 representations (as mathematical text fragments and documents) usually carry linguistic
@@ -99,7 +98,7 @@ structure of statements and theory graphs next.
 
 \paragraph{Discourse vs. Content Structure}
 
-Mathematical Documents are very explicitly structured to help the reader grasp the complex
+Mathematical documents are very explicitly structured to help the reader grasp the complex
 objects, their relationships, and the flow of the argumentation in the proofs: Objects are
 often represented as formulae that reveal their structure, statements are labeled by
 indicators to their epistemic contribution to context (e.g. by labeling them as
@@ -107,18 +106,20 @@ indicators to their epistemic contribution to context (e.g. by labeling them as
 larger documents usually follows a topical structure with superimposed narrative structure
 driven by knowledge dependencies rather than e.g. a temporal dramaturgy driven by
 suspense.  Even so, the structure of an informal document may be quite different from the
-formal structure of the knowledge it introduces. For instance, when we introduce a new
-concept in a course, we often first introduce a naive reduced approximation $\mathcal{N}$
-of the real theory $\mathcal{F}$, only to show an example $\mathcal{E_N}$ of where this is
-insufficient. Then we propose a first (straw-man) solution $\mathcal{S}$, and show an
-example $\mathcal{E_S}$ of why this does not work. Based on the information we gleaned
-from this failed attempt, we build the eventual version $\mathcal{F}$ of the concept or
-theory and demonstrate that this works on $\mathcal{E_F}$.
+formal structure of the knowledge it introduces.
 
-\begin{wrapfigure}l{7cm}
+\begin{wrapfigure}l{7cm}\vspace*{-2em}
   \infigures{content_vs_narrative}
 \caption{Content vs. Narrative Structures}\label{fig:straw-man}
 \end{wrapfigure}
+For instance, when we introduce a new concept in a course, we often first introduce a
+naive reduced approximation $\mathcal{N}$ of the real theory $\mathcal{F}$, only to show
+an example $\mathcal{E_N}$ of where this is insufficient. Then we propose a first
+(straw-man) solution $\mathcal{S}$, and show an example $\mathcal{E_S}$ of why this does
+not work. Based on the information we gleaned from this failed attempt, we build the
+eventual version $\mathcal{F}$ of the concept or theory and demonstrate that this works on
+$\mathcal{E_F}$.
+ 
 The structure with the solid lines and boxes at the bottom of {\myfigref{straw-man}}
 represents the content structure, where the circles $\mathcal{N}$, $\mathcal{E_N}$,
 $\mathcal{S}$, $\mathcal{E_S}$, $\mathcal{F}$, and $\mathcal{E_F}$ signify theories for
@@ -137,7 +138,7 @@ $\mathcal{E_N}$; we have visualized these relations as dotted arrows in
 {\myfigref{straw-man}}) could not be taken advantage of, since they are not explicitly
 represented.
 
-\begin{wrapfigure}r{7cm}\vspace*{-1em}
+\begin{wrapfigure}r{7.5cm}\vspace*{-1em}
 \infigures{adp}
 \caption{The Active Documents Paradigm}\label{fig:adp}\vspace*{-1em}
 \end{wrapfigure}

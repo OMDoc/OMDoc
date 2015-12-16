@@ -127,7 +127,7 @@ an example of an implicit definition in {\mylstref{exp-def}}.
 \begin{omgroup}{Inductive Definitions}
 
 \begin{omtext}
-  This is a variant of the \attribute{implicit}{type}{definition} case above. It defines a
+  This is a variant of the \attval{implicit}{type}{definition} case above. It defines a
   {\twintoo{recursive}{function}} by a set of {\twintoo{recursive}{equation}s}
   \inlinedef{in {\eldef{requation}} elements whose left and right hand sides are specified
     by the two children}. The first one is called \inlinedef{the \defi{pattern}}, and
@@ -135,7 +135,7 @@ an example of an implicit definition in {\mylstref{exp-def}}.
   symbol is, that the value (with the variables suitably substituted) can be substituted
   for a formula that matches the pattern element. In this case, the \element{definition}
   element carries a \attribute{type}{definition} with value
-  \attribute{inductive}{type}{definition} and the optional attributes
+  \attval{inductive}{type}{definition} and the optional attributes
   \attribute{exhaustivity}{definition} and \attribute{consistency}{definition}, which
   point to \element{assertion}s stating that the cases spanned by the patterns are
   exhaustive (i.e. all cases are considered), or that the values are consistent (where the
@@ -175,12 +175,12 @@ mathematical objects.
   of the recursive definition. A function is defined by a set of \element{requation}
   elements, but the defined function does not occur in the second children.
 \end{definition}
-This form of definition is often used instead of \attribute{simple}{type}{definition} in
+This form of definition is often used instead of \attval{simple}{type}{definition} in
 logical languages that do not have a function constructor. It allows to define a function
 by its behavior on patterns of arguments. Since termination is trivial in this case, no
 \element{measure} and {\snippet{ordering}} elements appear in the body of a
 \element{definition} element whose \attribute{type}{definition} has value
-\attribute{pattern}{type}{definition}.
+\attval{pattern}{type}{definition}.
 \end{omgroup}
 \end{module}
 \end{oldpart}
@@ -282,7 +282,7 @@ make it more interesting and to pin down the {\indextoo{type}} of the
   {\twintoo{selector}{symbol}s} of the corresponding sort. It has a required
   \attribute{name}{sortdef} attribute that specifies the symbol name, an optional
   \attribute{type}{adt} attribute that can have the values \attribute{free}{type}{adt},
-  \attribute{generated}{type}{adt}, and \attribute{loose}{type}{adt} with the meaning
+  \attval{generated}{type}{adt}, and \attval{loose}{type}{adt} with the meaning
   discussed above. A \element{sortdef} element contains a set of {\eldef{constructor}}
   and {\eldef{insort}} elements.  The latter are empty elements which refer to a sort
   declared elsewhere in a \element{sortdef} with their \attribute{for}{insort}
@@ -321,8 +321,8 @@ element as the second child of an \element{argument} child of a
   The {\eldef{selector}} element has a required attribute \attribute{name}{selector}
   specifies the symbol name, the optional \attribute{total}{selector} attribute of the
   \element{selector} element specifies whether the function represented by this symbol
-  is \twinalt{total}{total}{function} (value \attribute{yes}{total}{selector}) or
-  \twinalt{partial}{partial}{function} (value \attribute{no}{total}{selector}).  In
+  is \twinalt{total}{total}{function} (value \attval{yes}{total}{selector}) or
+  \twinalt{partial}{partial}{function} (value \attval{no}{total}{selector}).  In
   {\mylstref{nat-adt}} the \element{selector} element in the first \element{sortdef}
   introduces a {\twintoo{selector}{symbol}} for the {\twintoo{successor}{function}}
   {\snippet{succ}}. As {\snippet{succ}} is a function from {\snippet{nats}} to
@@ -347,9 +347,9 @@ and \element{recognizer} elements define symbols of the name specified by their
 \attribute{name}{symbol} element in the theory that contains the \element{adt}
 element. To govern the visibility, they carry the attribute
 \attribute{scope}{symbol} (with values \attribute{global}{scope}{symbol} and
-\attribute{local}{scope}{symbol}) and the attribute \attribute{role}{symbol}
-(with values \attribute{type}{role}{symbol}, \attribute{sort}{role}{symbol},
-\attribute{object}{role}{symbol}).
+\attval{local}{scope}{symbol}) and the attribute \attribute{role}{symbol}
+(with values \attval{type}{role}{symbol}, \attval{sort}{role}{symbol},
+\attval{object}{role}{symbol}).
 \begin{lstlisting}[label=lst:nat-adt,
   caption={The natural numbers using \element{adt} in \omdoc},
   index={adt,sortdef,constructor,argument,selector,recognizer,insort}]

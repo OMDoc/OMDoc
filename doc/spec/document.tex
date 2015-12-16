@@ -260,7 +260,7 @@ relations explicit by using the \element{omdoc} element with an optional attribu
 \item[{\attval{sequence}{type}{omdoc}}] for a succession of paragraphs. This is the
   default, and the normal way narrative texts are built up from paragraphs, mathematical
   statements, figures, etc. Thus, if no \attribute{type}{omdoc} is given the type
-  \attribute{sequence}{type}{omdoc} is assumed.
+  \attval{sequence}{type}{omdoc} is assumed.
 \item[{\attval{itemize}{type}{omdoc}}] for unordered lists. The children of this type of
   \element{omdoc} will usually be presented to the user as indented paragraphs
   preceded by a {\twintoo{bullet}{symbol}}. Since the choice of this symbol is purely
@@ -307,8 +307,8 @@ like those.
   identifies it and can be used for building reference labels for the included parts. Even
   though this attribute is optional, it is highly recommended to supply it.  The
   \attribute{type}{ref} attribute can be used to describe the reference type.  Currently
-  \omdoc supports two values: \attribute{include}{type}{ref} (the default) for in-text
-  replacement and \attribute{cite}{type}{ref} for a proper reference. The first kind of
+  \omdoc supports two values: \attval{include}{type}{ref} (the default) for in-text
+  replacement and \attval{cite}{type}{ref} for a proper reference. The first kind of
   reference requires the \omdoc application to process the document as if the
   \element{ref} element were replaced with the \omdoc fragment specified in the
   \attribute{xref}{ref}. The processing of the type \attribute{cite}{type}{ref} is
@@ -319,7 +319,7 @@ like those.
 
 \begin{oldpart}{reconsider this, we may change the \element{omgroup} element to
     \element{omdoc}}
-  Let $R$ be a \element{ref} element of type \attribute{include}{type}{ref}.
+  Let $R$ be a \element{ref} element of type \attval{include}{type}{ref}.
   \begin{definition}[display=flow,id=ref-target.def]
     We call the element the URI in the \attribute{xref}{ref} points to its
     \defi[ref-target]{target} unless it is an \element{omdoc} element; in this case, the

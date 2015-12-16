@@ -171,9 +171,9 @@ as ``symbols'' while the concept of a ``group'' in mathematics would be called a
     the human reader. For that, \omdoc provides the notation definition infrastructure
     presented in {\sref{pres}}.} as defined in {\xml} 1.1~\cite{xml1.1:04}. The optional
   attribute \attribute{scope}{symbol} takes the values \attribute{global}{scope}{symbol}
-  and \attribute{local}{scope}{symbol}, and allows a simple specification of visibility
+  and \attval{local}{scope}{symbol}, and allows a simple specification of visibility
   conditions: if the \attribute{scope}{symbol} attribute of a \element{symbol} has
-  value \attribute{local}{scope}{symbol}, then it is not \twinalt{exported}{export}{symbol}
+  value \attval{local}{scope}{symbol}, then it is not \twinalt{exported}{export}{symbol}
   outside the theory; The {\oldattribute{scope}{symbol}{1.2}} attribute is deprecated, a
   formalization using the \attribute{hiding}{imports} attribute on the
   \element{imports} element should be used instead.  Finally, the optional attribute
@@ -181,32 +181,32 @@ as ``symbols'' while the concept of a ``group'' in mathematics would be called a
     from the {\openmath}2 standard. They are specified in content dictionaries; therefore
     \omdoc also supplies them.}
 \begin{description}
-\item[\attribute{binder}{role}{symbol}] The symbol may appear as a binding symbol of an
+\item[\attval{binder}{role}{symbol}] The symbol may appear as a binding symbol of an
   {\twintoo{binding}{object}}, i.e. as the first child of an \element[ns-elt=om]{OMBIND}
   object, or as the first child of an \element[ns-elt=m]{apply} element that has an
   \element[ns-elt=m]{bvar} as a second child.
-\item[\attribute{attribution}{role}{symbol}] The symbol may be used as key in an
+\item[\attval{attribution}{role}{symbol}] The symbol may be used as key in an
   {\openmath} \element[ns-elt=om]{OMATTR} element, i.e. as the first element of a
   key-value pair, or in an equivalent context (for example to refer to the value of an
   attribution).  This form of attribution may be ignored by an application, so should be
   used for information which does not change the meaning of the attributed {\openmath}
   object.
-\item[\attribute{semantic-attribution}{role}{symbol}] This is the same as
+\item[\attval{semantic-attribution}{role}{symbol}] This is the same as
   {\attvalveryshort{attribution}} except that it modifies the meaning of the attributed
   {\openmath} object and thus cannot be ignored by an application.
-\item[\attribute{error}{role}{symbol}] The symbol can only appear as the first child of an
+\item[\attval{error}{role}{symbol}] The symbol can only appear as the first child of an
   {\openmath} error object.
-\item[\attribute{application}{role}{symbol}] The symbol may appear as the first child of an
+\item[\attval{application}{role}{symbol}] The symbol may appear as the first child of an
   application object.
-\item[\attribute{constant}{role}{symbol}] The symbol cannot be used to construct a compound
+\item[\attval{constant}{role}{symbol}] The symbol cannot be used to construct a compound
   object.
-\item[\attribute{type}{role}{symbol}] The symbol denotes a sets that is used in a type
+\item[\attval{type}{role}{symbol}] The symbol denotes a sets that is used in a type
   systems to annotate mathematical objects.
-\item[\attribute{sort}{role}{symbol}] The symbol is used for a set that are inductively
+\item[\attval{sort}{role}{symbol}] The symbol is used for a set that are inductively
   built up from constructor symbols; see {\sref{adt}}.
 \end{description}
 If the \attribute{role}{symbol} is not present, the value
-\attribute{object}{role}{symbol} is assumed.
+\attval{object}{role}{symbol} is assumed.
 
 The children of the \element{symbol} element consist of a
 {\twintoo{multi-system}{group}} of \element{type} elements (see {\sref{type-axioms}} for
@@ -335,11 +335,11 @@ symbols.
   A \element{definition} element contains a mathematical object that can be substituted
   for the symbol specified in the \attribute{for}{definition} attribute of the
   definition. The \attribute{type}{definition} is fixed to
-  \attribute{simple}{type}{definition}\ednote{maybe better leave it out}.  {\Mylstref{one}}
+  \attval{simple}{type}{definition}\ednote{maybe better leave it out}.  {\Mylstref{one}}
   gives an example of a simple definition of the number one from the successor function
   and zero. \omdoc treats the \attribute{type}{definition} attribute as an optional
   attribute. If it is not given explicitly, it defaults to
-  \attribute{simple}{type}{definition}.
+  \attval{simple}{type}{definition}.
 \end{definition}
 
 \begin{lstlisting}[label=lst:one,
@@ -410,7 +410,7 @@ to a \attribute{type}{assertion} attribute, which can have the values in
 \begin{myfig}{assertion-types}{Types of Mathematical Assertions}
   \begin{tabular}{|l|l|}\hline
     Value & Explanation \\\hline\hline
-    \attribute{theorem}{type}{assertion}, \attribute{proposition}{type}{assertion} 
+    \attval{theorem}{type}{assertion}, \attval{proposition}{type}{assertion} 
     & an important assertion with a proof\\\hline 
     \multicolumn{2}{|p{11.3cm}|}{ Note that the meaning of the
       \attribute{type}{assertion} (in this case the existence of a proof) is not
@@ -418,34 +418,34 @@ to a \attribute{type}{assertion} attribute, which can have the values in
       the \attribute{type}{assertion} \attribute{theorem}{type}{assertion}, if the
       author knows of a proof (e.g. in the literature), but has not formalized it in
       \omdoc yet.}\\\hline\hline
-    \attribute{lemma}{type}{assertion} & a less important assertion with a proof\\\hline
+    \attval{lemma}{type}{assertion} & a less important assertion with a proof\\\hline
     \multicolumn{2}{|p{11.3cm}|}{ The difference of importance specified in this
       \attribute{type}{assertion} is even softer than the other ones, since e.g. reusing
       a mathematical paper as a chapter in a larger monograph, may make it necessary to
       downgrade a theorem (e.g.  the main theorem of the paper) and give it the status of
       a lemma in the overall work.}\\\hline\hline
-    \attribute{corollary}{type}{assertion} & a simple consequence\\\hline
+    \attval{corollary}{type}{assertion} & a simple consequence\\\hline
     \multicolumn{2}{|p{11.3cm}|}{ An assertion is
       sometimes marked as a corollary to some other statement, if the proof is
       considered simple. This is often the case for important theorems that are simple
       to get from technical lemmata.}\\\hline\hline
-    \attribute{postulate}{type}{assertion}, \attribute{conjecture}{type}{assertion}
+    \attval{postulate}{type}{assertion}, \attval{conjecture}{type}{assertion}
     & an assertion without proof or counter-exam\-ple\\\hline
     \multicolumn{2}{|p{11.3cm}|}{ Conjectures are assertions, whose
       semantic value is not yet decided, but which the author considers likely to be
       true. In particular, there is no proof or counter-example (see
       {\sref{examples}}).}\\\hline\hline
-    \attribute{false-conjecture}{type}{assertion} 
+    \attval{false-conjecture}{type}{assertion} 
     & an assertion with a counter-example\\\hline
     \multicolumn{2}{|p{11.3cm}|}{ A conjecture that has proven to be false,
       i.e. it has a counter-example. Such assertions are often kept for illustration and
       historical purposes.}\\\hline\hline
-    \attribute{obligation}{type}{assertion}, \attribute{assumption}{type}{assertion} 
+    \attval{obligation}{type}{assertion}, \attval{assumption}{type}{assertion} 
     & an assertion on which the proof of another depends\\\hline
     \multicolumn{2}{|p{11.3cm}|}{ These kinds of assertions
       are convenient during the exploration of a mathematical theory. They can be used
       and proven later (or assumed as an axiom).}\\\hline\hline
-    \attribute{formula}{type}{assertion} & if everything else fails\\\hline
+    \attval{formula}{type}{assertion} & if everything else fails\\\hline
     \multicolumn{2}{|p{11.3cm}|}{ This type is the catch-all if none of the others
       applies.}\\\hline 
   \end{tabular}
@@ -485,40 +485,40 @@ mutually exclusive, but have the inclusions depicted in
 \begin{footnotesize}
 \begin{tabular}{|l|l|}\hline
   \attribute{status}{assertion} & \attribute{just-by}{assertion} points to\\\hline\hline
-  \attribute{tautology}{status}{assertion} &
+  \attval{tautology}{status}{assertion} &
   Proof of $\cF$\\
   \mc{All $\cT$-interpretations satisfy $\cA$ and some $\cC_i$}\\\hline
-  \attribute{tautologous-conclusion}{status}{assertion} &
+  \attval{tautologous-conclusion}{status}{assertion} &
   Proof of $\cF_c$.\\
   \mc{All $\cT$-interpretations satisfy some $\cC_j$}\\\hline
-  \attribute{equivalent}{status}{assertion} &
+  \attval{equivalent}{status}{assertion} &
   Proofs of $\cF$  and $\cF^{-1}$\\
   \mc{$\cA$ and $\cC$ have the same $\cT$-models (and there are some)}\\\hline
-  \attribute{theorem}{status}{assertion} &
+  \attval{theorem}{status}{assertion} &
   Proof of $\cF$\\
   \mc{All $\cT$-models of $\cA$ (and there are some) satisfy some $\cC_i$}\\\hline
-  \attribute{satisfiable}{status}{assertion} &
+  \attval{satisfiable}{status}{assertion} &
   Model of $\cA$ and some $\cC_i$\\
   \mc{Some $\cT$-models of $\cA$ (and there are some) satisfy some $\cC_i$}\\\hline
-  \attribute{contradictory-axioms}{status}{assertion} &
+  \attval{contradictory-axioms}{status}{assertion} &
   Refutation of $\cA$ \\
   \mc{There are no $\cT$-models of $\cA$}\\\hline
-  \attribute{no-consequence}{status}{assertion} &
+  \attval{no-consequence}{status}{assertion} &
   $\cT$-model of $\cA$ and some $\cC_i$, $\cT$-model of $\cA\cup\overline\cC$. \\
   \mc{Some $\cT$-models of $\cA$ (and there are some) satisfy  some $\cC_i$, some satisfy $\overline\cC$}\\\hline
-  \attribute{counter-satisfiable}{status}{assertion} &
+  \attval{counter-satisfiable}{status}{assertion} &
   Model of $\cA\cup\overline\cC$\\
   \mc{Some $\cT$-models of $\cA$ (and there are some) satisfy $\overline\cC$}\\\hline
-  \attribute{counter-theorem}{status}{assertion} &
+  \attval{counter-theorem}{status}{assertion} &
   Proof of $\overline\cC$ from $\cA$\\
   \mc{All $\cT$-models of $\cA$ (and there are some) satisfy $\overline\cC$}\\\hline
-  \attribute{counter-equivalent}{status}{assertion} &
+  \attval{counter-equivalent}{status}{assertion} &
   Proof of $\overline\cC$ from $\cA$ and proof of $\cA$ from $\overline\cC$\\
   \mc{$\cA$ and $\overline\cC$ have the same $\cT$-models (and there are some)}\\\hline
-  \attribute{unsatisfiable-conclusion}{status}{assertion} &
+  \attval{unsatisfiable-conclusion}{status}{assertion} &
   Proof of $\overline\cC$\\
   \mc{All $\cT$-interpretations satisfy $\overline\cC$}\\\hline
-  \attribute{unsatisfiable}{status}{assertion} &
+  \attval{unsatisfiable}{status}{assertion} &
   Proof of $\neg\cF$\\
   \mc{All $\cT$-interpretations satisfy $\cA$ and $\overline\cC$}\\\hline\hline
   \mc{\rm Where $\cF$ is an assertion whose \element{FMP}
@@ -535,18 +535,18 @@ mutually exclusive, but have the inclusions depicted in
 \begin{myfig}{proof-status-taxonomy}{Relations of Assertion States}
 \begin{scriptsize}
   \begin{tikzpicture}
-    \node (sat) at (1,4) {\attribute{satisfiable}{status}{assertion}};
-    \node (csat) at (6,4) {\attribute{counter-satisfiable}{status}{assertion}};
-    \node (thm) at (1,3) {\attribute{theorem}{status}{assertion}};
-    \node (cthm) at (6,3) {\attribute{counter-theorem}{status}{assertion}};
-    \node (tcon) at (0,2.25) {\attribute{tautologous-conclusion}{status}{assertion}};
-    \node (eqv) at (2.2,1.75) {\attribute{equivalent}{status}{assertion}};
-    \node (noc) at (3.6,3.5) {\attribute{no-consequence}{status}{assertion}};
-    \node (cax) at (3.6,2.5) {\attribute{contradictory-axioms}{status}{assertion}};
-    \node (ceqv) at (4.7,1.75) {\attribute{counter-equivalent}{status}{assertion}};
-    \node (ucon) at (7,2.25) {\attribute{unsatisfiable-conclusion}{status}{assertion}};
-    \node (taut) at (1,1) {\attribute{tautology}{status}{assertion}};
-    \node (usat) at (6,1) {\attribute{unsatisfiable}{status}{assertion}};
+    \node (sat) at (1,4) {\attval{satisfiable}{status}{assertion}};
+    \node (csat) at (6,4) {\attval{counter-satisfiable}{status}{assertion}};
+    \node (thm) at (1,3) {\attval{theorem}{status}{assertion}};
+    \node (cthm) at (6,3) {\attval{counter-theorem}{status}{assertion}};
+    \node (tcon) at (0,2.25) {\attval{tautologous-conclusion}{status}{assertion}};
+    \node (eqv) at (2.2,1.75) {\attval{equivalent}{status}{assertion}};
+    \node (noc) at (3.6,3.5) {\attval{no-consequence}{status}{assertion}};
+    \node (cax) at (3.6,2.5) {\attval{contradictory-axioms}{status}{assertion}};
+    \node (ceqv) at (4.7,1.75) {\attval{counter-equivalent}{status}{assertion}};
+    \node (ucon) at (7,2.25) {\attval{unsatisfiable-conclusion}{status}{assertion}};
+    \node (taut) at (1,1) {\attval{tautology}{status}{assertion}};
+    \node (usat) at (6,1) {\attval{unsatisfiable}{status}{assertion}};
     \draw (sat) -- (noc);
     \draw (sat) -- (thm);
     \draw (csat) -- (noc);
@@ -707,7 +707,7 @@ $\bC$, then $\bA=\neg\cQ'\bD'$.
     list}} of {\indextoo{URI}} references to \element{symbol},
     \element{definition}, or \element{assertion} elements.
 \item[\attribute{type}{example}] specifying the aspect, the value is one of
-  \attribute{for}{type}{example} or \attribute{against}{type}{example}
+  \attval{for}{type}{example} or \attval{against}{type}{example}
 \item[\attribute{assertion}{example}] a reference to the assertion $\bA$
   mentioned above that formally states that the witnesses really form an example for the
   concept of assertion. In many cases even the statement of this is non-trivial
@@ -801,7 +801,7 @@ following situation, which we might find in a typical mathematical textbook.
 \end{sblockquote}
 The overt role of this text fragment is that of a mathematical theorem --- as indicated by
 the cue word ``{\presbf{Theorem}}'', therefore we would be tempted represent it as an
-\element{omtext} element with the value \attribute{theorem}{type}{attribute} for the
+\element{omtext} element with the value \attval{theorem}{type}{attribute} for the
 \attribute{type}{attribute} attribute. But the relative clause is clearly a
 {\indextoo{definition}} (the {\indextoo{definiens}} is even marked in boldface). What we
 have here is an aggregated verbalization of two mathematical statements. In a simple case
@@ -925,7 +925,7 @@ proofs and justifications.
     \defii{target}{theory}) inherits the constitutive elements from the source
   theory.
 \item[\attribute{type}{imports}] This optional attribute can have the values
-  \attribute{global}{type}{imports} and \attribute{local}{type}{imports} (the former is
+  \attval{global}{type}{imports} and \attval{local}{type}{imports} (the former is
   assumed, if the attribute is absent): We call constitutive elements \defi{local} to
   the current theory, if they are explicitly defined as children, and else
   \defi{inherited}.  A \defii{local}{import} (an \element{imports} element with
@@ -1121,10 +1121,10 @@ allow to specify the administrative metadata of {\openmath} content dictionaries
 \begin{omtext}
   The \attribute{cdstatus}{theory} attribute specifies \inlinedef{the {\defii{content
         dictionary}{status}}}, which can take one of the following values:
-  \attribute{official}{cdstatus}{theory} (i.e. approved by the {\openmath} Society),
-  \attribute{experimental}{cdstatus}{theory} (i.e. under development and thus liable to
-  change), \attribute{private}{cdstatus}{theory} (i.e. used by a private group of
-  {\openmath} users) or \attribute{obsolete}{cdstatus}{theory} (i.e. only for archival
+  \attval{official}{cdstatus}{theory} (i.e. approved by the {\openmath} Society),
+  \attval{experimental}{cdstatus}{theory} (i.e. under development and thus liable to
+  change), \attval{private}{cdstatus}{theory} (i.e. used by a private group of
+  {\openmath} users) or \attval{obsolete}{cdstatus}{theory} (i.e. only for archival
   purposes). The attributes \attribute{cdversion}{theory} and
   \attribute{cdrevision}{theory} jointly specify \inlinedef{the \defii{content
       dictionary}{version number}, which consists of two parts, a major \defi{version} and
