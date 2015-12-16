@@ -1,0 +1,76 @@
+\begin{module}[id=legacy]
+\begin{omgroup}[id=legacy]{Data Types, Literals, and Legacy Representations}
+  \ednote{we should fold in the MMT literals here.  Maybe all legacy is is literals in
+    some way. Maybe also we can use om:OMFOREIGN and m:mtext} Sometimes, \omdoc is used as
+  a migration format from {\indextoo{legacy}} texts (see {\extref{primer}{algebra}} for an
+  example). In such documents it can be too much effort to convert all mathematical
+  objects and formulae into {\openmath} or {\cmathml} form.
+
+\begin{definition}[id=omi.def]
+  For representing objects in {\twintoo{computer algebra}{system}s} {\openmath} also
+  provides other basic data types: {\eldef[ns-elt=om]{OMI}} for {\indextoo{integer}s},
+  {\eldef[ns-elt=om]{OMB}} for {\indextoo{byte array}s}, {\eldef[ns-elt=om]{OMSTR}} for
+  {\indextoo{string}s}, and {\eldef[ns-elt=om]{OMF}} for floating point numbers. These do
+  not play a large role in the context of \omdoc, so we refer the reader to the
+  {\openmath} standard~\cite{BusCapCar:2oms04} for details.
+\end{definition}
+
+\begin{definition}
+  \cmathml uses the \eldef[ns-elt=m]{cn} element for number expressions. The attribute
+  \attribute[ns-elt=m]{type}{cn} can be used to specify the mathematical type of the
+  number, e.g. {\snippet{complex}}, {\snippet{real}}, or {\snippet{integer}}. The content
+  of the \element[ns-elt=m]{cn} element is interpreted as the value of the number
+  expression.\ednote{complete this! e.g. with byte arrays}
+\end{definition}
+
+\begin{presonly}
+\begin{myfig}{mobjtable}{Mathematical Objects in \omdoc}
+\begin{scriptsize}
+\begin{tabular}{|l|p{1.5truecm}|l|l|}\hline
+Element & \multicolumn{2}{l|}{Attributes\hspace*{2.25cm}} & Content  \\\hline
+             & Required  & Optional     &           \\\hline\hline
+ \element{legacy}  & 
+ \attribute{format}{legacy} & 
+ \attribute[ns-attr=xml]{id}{legacy}, 
+ \attribute{formalism}{legacy}  &  
+\#PCDATA \\\hline
+\end{tabular}
+\end{scriptsize}
+\end{myfig}
+\end{presonly}
+
+\begin{definition}[id=legacy.def]
+  For this situation \omdoc provides the {\eldef{legacy}} element, which can contain
+  arbitrary math markup\footnote{If the content is an {\xml}-based, format like Scalable
+    Vector Graphics~\cite{W3C:svg02}, the {\indextoo{DTD}} must be augmented accordingly
+    for validation.}. The \element{legacy} element can occur wherever an {\openmath}
+  object or {\cmathml} expression can and has an optional
+  \attribute[ns-attr=xml]{id}{legacy} attribute for identification. The content is
+  described by a pair of attributes:
+  \begin{itemize}
+  \item \attribute{format}{legacy} (required) specifies the format of the content using
+    URI reference. \omdoc does not restrict the possible values, possible values include
+    \attval{TeX}{format}{legacy}, \attval{pmml}{format}{legacy},
+    \attval{html}{format}{legacy}, and \attval{qmath}{format}{legacy}.
+  \item \attribute{formalism}{legacy} is optional and describes the formalism (if
+    applicable) the content is expressed in. Again, the value is unrestricted character
+    data to allow a {\twintoo{URI}{reference}} to a definition of a formalism.
+  \end{itemize}
+\end{definition}
+
+For instance in the following \element{legacy} element, the identity function is encoded
+in the untyped $\lambda$-calculus, which is characterized by a reference to the relevant
+Wikipedia article.
+
+\begin{lstlisting}[index={legacy}]
+<legacy format="TeX" formalism="http://en.wikipedia.org/wiki/Lambda_calculus">
+  \lambda{x}{x}
+</legacy>
+\end{lstlisting}
+\end{omgroup}
+\end{module}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

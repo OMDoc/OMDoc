@@ -1,0 +1,108 @@
+\begin{omgroup}[id=statements-constitutive]{Types of Statements in Mathematics}
+\begin{module}[id=statementtypes]
+
+  In the last chapter we introduced mathematical statements as special text fragments that
+  state properties of the mathematical objects under discussion and categorized them as
+  definitions, theorems, proofs,\ldots. A set of statements about a related set of objects
+  make up the context that is needed to understand other statements.  For instance, to
+  understand a particular theorem about finite groups, we need to understand the
+  definition of a group, its properties, and some basic facts about finite groups
+  first. Thus statements interact with context in two ways: the context is built up from
+  (clusters of) statements, and statements only make sense with reference to a context. Of
+  course this dual interaction of statements with {\emph{context}}\footnote{In linguistics
+    and the philosophy of language this phenomenon is studied under the heading of
+    ``{\indexalt{discourse theories}{discourse theory}}'', see e.g.~\cite{KamRey:fdtl93}
+    for a start and references.}  applies to any text and to communication in general. In
+  mathematics, where the problem is aggravated by the load of notation and the need for
+  precision for the communicated concepts and objects, contexts are often discussed under
+  the label of \twinalt{mathematical theories}{mathematical}{theory}. We will distinguish
+  two classes of statements with respect to their interaction with theories: We view
+  {\indextoo{axiom}s} and {\indextoo{definition}s} as {\emph{constitutive}} for a given
+  theory, since changing this information will yield a different theory (with different
+  mathematical properties, see the discussion in {\extref{book}{meta-math}}).  Other
+  mathematical statements like {\indextoo{theorem}s} or the {\indextoo{proof}s} that
+  support them are not constitutive, since they only illustrate the mathematical objects
+  in the theory by explicitly stating the properties that are implicitly determined by the
+  constitutive statements.
+  
+\begin{omtext}
+To support this notion of context \omdoc supports an infrastructure for theories using
+special \element{theory} elements, which we will introduce in \sref{theories-contexts} and
+extend in \sref{complex-theories}.
+\twinalt{Theory-constitutive}{theory-constitutive}{element} elements must be contained as
+children in a \element{theory} element; we will discuss them in
+\sref{definitions}, non-constitutive statements will be defined in
+\sref{assertion}. They are allowed to occur outside a \element{theory} element in
+\omdoc documents (e.g. as top-level elements), however, if they do they must reference a
+theory, \inlinedef{which we will call their \defii{home}{theory}} in a special
+\attribute{theory}{statement} attribute. This situates them into the context provided by
+this theory and gives them access to all its knowledge. The home theory of
+theory-constitutive statements is given by the theory they are contained in.
+\end{omtext}
+
+The division of statements into constitutive and non-constitutive ones and the
+encapsulation of constitutive elements in \element{theory} elements add a certain
+measure of safety to the knowledge management aspect of \omdoc.  Since {\xml} elements
+cannot straddle document borders, all constitutive parts of a theory must be contained in
+a single document; no constitutive elements can be added later (by other authors), since
+this would change the meaning of the theory on which other documents may depend on.
+  
+Before we introduce the \omdoc elements for theory-constitutive statements, let us
+fortify our intuition by considering some mathematical examples.  {\emph{Axioms}} are
+assertions about (sets of) mathematical objects and concepts that are assumed to be
+true. There are many forms of axiomatic restrictions of meaning in mathematics. Maybe the
+best-known are the five Peano Axioms for natural numbers.
+
+\begin{myfig}{peano}{The Peano Axioms}
+  \fbox{\begin{minipage}{11cm}
+ \begin{enumerate}
+ \item 0 is a natural number.
+ \item The successor $s(n)$ of a natural number $n$ is a natural number.
+ \item 0 is not a successor of any natural number.
+ \item The successor function is one-one (i.e. injective).
+ \item The set $\NN$ of natural numbers contains only elements that can be
+   constructed by axioms 1. and 2.
+ \end{enumerate}
+ \end{minipage}}
+\end{myfig}
+
+\begin{omtext}
+The {\twintoo{Peano}{axioms}} in {\myfigref{peano}} (implicitly) introduce three
+{\indextoo{symbol}s}: the number 0, the successor function $s$, and the set $\NN$ of
+natural numbers. The five axioms in {\myfigref{peano}} jointly constrain their meaning
+such that conforming structures exist (the natural numbers we all know and love) any two
+structures that interpret 0, $s$, and $\NN$ and satisfy these axioms must be isomorphic.
+This is an ideal situation --- the axioms are neither too lax (they allow too many
+mathematical structures) or too strict (there are no mathematical structures) --- which is
+difficult to obtain. The latter condition (\inlinedef{\defi{inconsistent} theories}) is
+especially unsatisfactory, since any statement is a theorem in such theories. As
+consistency can easily be lost by adding axioms, mathematicians try to keep
+{\twintoo{axiom}{system}s} minimal and only add axioms that are safe.
+\end{omtext}
+
+\begin{omtext}
+  Sometimes, we can determine that an axiom does not destroy {\indextoo{consistency}} of a
+  theory $\cT$ by just looking at its form: for instance, axioms of the form $s=\bA$,
+  where $s$ is a symbol that does not occur in $\cT$ and $\bA$ is a formula containing
+  only symbols from $\cT$ will introduce no constraints on the meaning of
+  $\cT$-symbols. The axiom $s=\bA$ only constrains the meaning of the
+  {\twintoo{new}{symbol}} to be a unique object: the one denoted by $\bA$. \inlinedef{We
+    speak of a \defii{conservative}{extension} in this case}. So, if $\cT$ was a
+  consistent theory, the extension of $\cT$ with the symbol $s$ and the axiom $s=\bA$ must
+  be one too. Thus axioms that result in {\twintoo{conservative}{extension}s} can be added
+  safely --- i.e. without endangering consistency --- to theories.
+\end{omtext}
+
+\begin{definition}[display=flow,id=conservative-extension.def]
+  Generally an axiom $\cA$ that results in a {\twintoo{conservative}{extension}} is called
+  a \defi{definition} and any new symbol it introduces a \defi{definiendum} (usually
+  marked e.g. in boldface font in mathematical texts), and we call \defi{definiens} the
+  material in the definition that determines the meaning of the definiendum.
+\end{definition}
+\end{module}
+\end{omgroup}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

@@ -1,0 +1,86 @@
+\begin{omgroup}[id=spec-intro.modular]{\omdoc as a Modular Format}
+
+A modular approach to design is generally accepted as best practice in the development of
+any type of complex application. It separates the application's functionality into a
+number of "{\indextoo{building blocks}}" or "{\indextoo{module}s}", which are subsequently
+combined according to specific rules to form the entire application. This approach offers
+numerous advantages: The increased {\indextoo{conceptual clarity}} allows developers to
+share ideas and code, and it encourages reuse by creating well-defined modules that
+perform a particular task. Modularization also reduces complexity by decomposition of the
+application's functionality and thus decreases debugging time by localizing errors due to
+design changes. Finally, flexibility and maintainability of the application are increased
+because single modules can be upgraded or replaced independently of others.
+
+The \omdoc vocabulary has been split by thematic role, which we will briefly overview in
+{\myfigref{omdoc-modules}} before we go into the specifics of the respective modules in
+{\srefl{mobj}{quiz}}. To avoid repetition, we will introduce some attributes already in
+this chapter that are shared by elements from all modules. In \sref{document-model} we
+will discuss the \omdoc document model and possible sub-languages of \omdoc that only
+make use of parts of the functionality (\sref{sub-languages}).
+
+\begin{myfig}{omdoc-modules}{The \omdoc Modules}
+\begin{small}
+\begin{tabular}{|l|l|l|l|}\hline
+  Module & Title & Required? & Chapter\\\hline\hline
+  {\presbf\MOBJmodule{spec}} &  Mathematical Objects & yes & \sref{mobj}\\\hline
+    \multicolumn{4}{|p{11cm}|}{\presem Formulae are a central part of mathematical
+       documents; this module integrates the content-oriented representation
+       formats {\openmath} and {\mathml} into \omdoc}\\\hline\hline
+  {\presbf\MTXTmodule{spec}} &  Mathematical Text & yes & \sref{mtext}\\\hline
+    \multicolumn{4}{|p{11cm}|}{\presem Mathematical vernacular,
+  i.e. natural language with embedded formulae}\\\hline\hline
+  {\presbf\DOCmodule{spec}} & Document Infrastructure & yes & \sref{omdoc-infrastructure}\\\hline
+    \multicolumn{4}{|p{11cm}|}{\presem  A basic infrastructure for
+      assembling pieces of  mathematical knowledge into functional documents and 
+      referencing their parts }\\\hline\hline
+  {\presbf\METAmodule{spec}} &  Metadata & yes &   {\srefs{dc-elements}{dc-roles}}\\\hline
+    \multicolumn{4}{|p{11cm}|}{\presem Contains bibliographical and licensing metadata 
+      (``{\twintoo{data}{about data}}'') 
+      which can be used to annotate many \omdoc elements by descriptive and
+      administrative information that facilitates navigation and organization}\\\hline\hline 
+  {\presbf\RTmodule{spec}} & Rich Text Structure & no & \sref{rt}\\\hline
+    \multicolumn{4}{|p{11cm}|}{\presem Rich text structure in
+  mathematical vernacular (lists, paragraphs, tables, \ldots)}\\\hline\hline
+  {\presbf\STmodule{spec}} &  Mathematical Statements & no  & \sref{statements}\\\hline
+    \multicolumn{4}{|p{11cm}|}{\presem Markup for mathematical forms like 
+      {\indextoo{theorem}s},  {\indextoo{axiom}s}, {\indextoo{definition}s}, 
+      and {\indextoo{example}s} that can be used to specify or define properties
+      of given mathematical objects and theories to group mathematical
+  statements and provide a notion of context.}\\\hline\hline
+  {\presbf\PFmodule{spec}} &  Proofs and proof objects & no & \sref{proofs}\\\hline 
+    \multicolumn{4}{|p{11cm}|}{\presem Structure of proofs
+     and argumentations at various levels of details and formality}\\\hline\hline
+  {\presbf\ADTmodule{spec}} &  Abstract Data Types & no & \sref{adt}\\\hline 
+    \multicolumn{4}{|p{11cm}|}{\presem  Definition schemata for
+      sets that are built up inductively from constructor symbols}\\\hline\hline 
+  {\presbf\CTHmodule{spec}} & Complex Theories & no & \sref{complex-theories}\\\hline
+    \multicolumn{4}{|p{11cm}|}{\presem Theory morphisms; they can be used
+    to structure mathematical theories}\\\hline\hline
+  {\presbf\DGmodule{spec}} & Development Graphs & no & \sref{development-graphs}\\\hline
+    \multicolumn{4}{|p{11cm}|}{\presem Infrastructure for managing theory
+  inclusions, change management}\\\hline\hline
+  {\presbf\EXTmodule{spec}} & Applets, Code, and Data & no & \sref{ext}\\\hline
+    \multicolumn{4}{|p{11cm}|}{\presem Markup for applets, program code,
+  and data (e.g. images, measurements, \ldots)}\\\hline\hline
+  {\presbf\PRESmodule{spec}} & Presentation Information & no &  \sref{pres}\\\hline
+    \multicolumn{4}{|p{11cm}|}{\presem Limited functionality for
+    specifying presentation and notation information for local typographic
+      conventions  that cannot be determined by general principles alone}\\\hline\hline
+  {\presbf\QUIZmodule{spec}} &  Infrastructure for Assessments & no & \sref{quiz}\\\hline
+    \multicolumn{4}{|p{11cm}|}{\presem Markup for exercises integrated
+    into the \omdoc document model}\\\hline 
+  \end{tabular}
+\end{small}
+\end{myfig}
+The first four modules in {\myfigref{omdoc-modules}} are required (mathematical documents
+without them do not really make sense), the other ones are optional. The
+document-structuring elements in module {\DOCmodule{spec}} have an attribute
+{\attributeshort{modules}} that allows to specify which of the modules are used in a
+particular document (see \sref{omdoc-infrastructure} and
+\sref{sub-languages}).
+\end{omgroup}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

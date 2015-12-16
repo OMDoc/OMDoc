@@ -1,0 +1,95 @@
+\begin{omgroup}{Parallel Markup}
+  The idea of parallel markup has been pioneered in the MathML
+  language~\cite{CarlisleEd:MathML3}. For parallel markup of a formula, MathML combines
+  the presentation and content trees in a single \xml tree and marks up corresponding
+  subtrees by cross-references. Parallel markup supports two workflows:
+\begin{compactenum}
+\item \emph{formalization}: the annotation of presentation formulae with (multiple)
+  formalizations and
+\item \emph{presentation}: the annotation of content formulae with (multiple)
+  presentations.
+\end{compactenum}
+Let us look at an well-known example: The (presentation) formula $f(a+b)$ can be
+interpreted in two ways: as the application of the function $f$ to the sum $a+b$ or as the
+product of a scalar $f$ with the sum $a+b$. Consequently, we can annotate the presentation
+tree of $f(a+b)$ with two content trees to arrive at the situation depicted in
+Figure~\ref{fig:ptree-parallel}. In MathML, parallel markup is implemented by the
+\lstinline|semantics| element, which has the central element as the first child and the
+annotations in subsequent \lstinline|annotation-xml| children. We will disregard this
+technical level here and concentrate on the concepts here.
+
+\begin{figure}[ht]\centering
+\tikzinput{tikz/ptree-parallel}
+\caption{A presentation tree (center) with content annotations}\label{fig:ptree-parallel}
+\end{figure}
+
+Conversely for the presentation workflow, the product of $f$ with $a+b$ can be presented
+as $f(a+b)$ (as above) but also with $f\cdot(a+b)$, so that we arrive in the situation in
+Figure~\ref{fig:ctree-parallel}.  In both situations, there is a central tree annotated
+with further representations in the respective other language. Which of the situations is
+used depends on the context. In the content commons we would expect to see content trees
+annotated with presentations (as in Figure~\ref{fig:ctree-parallel}) and in the document
+commons the other way around (as in Figure~\ref{fig:ptree-parallel}). Note also that the
+direction of the arrows is always from the (possibly multiple) annotations into the
+center.
+
+\begin{figure}[ht]\centering
+\tikzinput{tikz/ctree-parallel}
+\caption{A content tree (center) with presentation annotations}\label{fig:ctree-parallel}
+\end{figure}
+\end{omgroup}
+
+\begin{omgroup}{Mixing Formal and Informal Markup in Objects}
+  \ednote{Intro here; reference spec-intro}
+\begin{example}
+  The formula $\left\{x\in\mathbb{N}\mid|\text{$x$ is prime and $x>2$}\right\}$ can be represented
+  as
+\begin{lstlisting}[language=MathML]
+<m:bind>
+ <m:apply> 
+  <m:csymbol cd="sets">setst</m:csymbol>
+  <m:csymbol cd="numbersets">N</m:csymbol>
+ </m:apply>
+ <m:bvars><m:ci>x<m:ci></m:bvars>
+ <m:semantics>
+  <m:apply id="a">
+   <m:ci id="ip">ipa</m:ci>
+   <m:ci id="x1">x<m:ci>
+   <m:apply id="xgt2">
+    <m:csymbol cd="relation1" id="gt">greater</m:csymbol>
+    <m:ci id="x2">x<m:ci>
+    <m:cn id="n3">2</m:cn>
+   </m:apply>
+  </m:apply>
+  <m:annotation-xml encoding="pMathML">
+   <m:mrow xref="#a">
+    <m:mi xref="#x1">x</m:mi>
+    <m:mtext xref="#ip">is prime and</m:mtext>
+    <m:mrow xref="#xgt3">
+     <m:mi xref="#x2">x</m:mi>
+     <m:mo xref="gt">&gt;</m:mo>
+     <m:mn xref="n2">2</m:mn>
+    </m:mrow>
+   </m:mrow>
+  </m:annotation-xml>
+ <m:semantics>
+</m:bind>
+\end{lstlisting}
+  We use content markup for the set construct and then use parallel markup for its body:
+  $\text{$x$ is prime}$. The content part is partially opaque to \cmathml\ednote{explain
+    opaque and/or intro above}, so we represent its as an application of an unspecified
+  predicate \lstinline|ipa| applied to the content-regognizable parts $x$ and $x>2$. On
+  the presentation side, we have the obvious markup, which cross-references into the
+  content for parallel markup. Note that we are not assuming any fancy natural language
+  processing here, which might have spotted the fact that we have a conjunction of two
+  atomic requirements ``$x$ is prime'' and ``$x>2$, which would have led to a more
+  strutured \cmathml expression. Instead the cross-references are established in a
+  bottom-up manner; referencing corresponding sub-expressions and defaulting to the
+  unspecified predicate \lstinline|ipa| in doubt.
+ \end{example}
+\end{omgroup}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

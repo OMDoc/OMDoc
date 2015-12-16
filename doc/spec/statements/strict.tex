@@ -1,0 +1,22 @@
+\begin{omgroup}{Strict Statements: Declarations}
+\begin{presonly}
+\begin{myfig}{strict-omdoc}{Strict \omdoc Elements}
+  \begin{scriptsize}
+    \begin{tabular}{|>{\snippet}l|>{\tt}l|>{\tt}p{3truecm}|c|>{\tt}p{3.5truecm}|}\hline
+      {\rm Element}  & \multicolumn{2}{l|}{Attributes\hspace*{2.25cm}} & M & Content  \\\hline
+                     & {\rm Required}   & {\rm Optional}               & D &          \\\hline\hline
+      object         & name, semrole    & xml:id, synrole    & + & type*,definiendum? \\\hline
+      definiendum & & xml:id & + & \llquote{mobj}\\\hline
+      type       &           & xml:id, system, style, class        & -- & h:p*,\llquote{mobj}      \\\hline 
+      \multicolumn{5}{|l|}{where \llquote{mobj} is {\snippet{(\mobjabbr)}}}\\\hline
+    \end{tabular}
+  \end{scriptsize}
+\end{myfig}
+\end{presonly}
+
+\end{omgroup}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

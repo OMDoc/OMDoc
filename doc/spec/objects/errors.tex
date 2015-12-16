@@ -1,0 +1,43 @@
+\begin{omgroup}[id=om.error]{Reporting Errors in  Mathematical Objects}
+\begin{definition}[id=ome.def]
+  The {\eldef[ns-elt=om]{OME}} element is used for {\atwintoo{in-place}{error}{markup}} in
+  {\openmath} objects, it can be used almost everywhere in {\openmath} elements. It has
+  two children; the first one is an {\twintoo{error}{operator}}\footnote{An error operator
+    is like a {\twintoo{binding}{operator}}, only the symbol has role
+    \attval{error}{role}{symbol}.}, i.e. an {\openmath} symbol that specifies the kind
+  of error, and the second one is the faulty {\openmath} object fragment. Note that since
+  the whole object must be a valid {\openmath} object, the second child must be a
+  well-formed {\openmath} object fragment.
+\end{definition}
+As a consequence, the \element[ns-elt=om]{OME} element can only be used for
+``{\twintoo{semantic}{error}s}'' like non-existing content dictionaries, out-of-bounds
+errors, etc.  {\xml}-well-formedness and DTD-validity errors will have to be handled by
+the {\xml} tools involved. In the following example, we have marked up two errors in a
+faulty representation of $\sin(\pi)$.  The outer error flags an arity violation (the
+function $\sin$ only allows one argument), and the inner one flags the typo in the
+representation of the constant $\pi$ (we used the name {\snippet{po}} instead of
+{\snippet{pi}}).
+
+\begin{lstlisting}[label=ome,language=OpenMath,numbers=none,index={OME}]
+<OME>
+  <OMS cd="type-error" name="arity-violation"/>
+  <OMA>
+    <OMS cd="transc1" name="sin"/>
+    <OME>
+      <OMS cd="error" name="unexpected_symbol"/>
+      <OMS cd="nums1" name="po"/>
+    </OME>
+    <OMV name="x"/>
+  </OMA>
+</OME>
+\end{lstlisting}
+  As we can see in this example, errors can be nested to encode multiple faults found by
+  an {\openmath} application.
+
+  \ednote{need to talk about the \element[ns-elt=m]{cerror} element}
+\end{omgroup}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

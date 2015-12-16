@@ -1,0 +1,57 @@
+\begin{omgroup}[id=omdoc-ns]{The OMDoc Namespaces}
+
+The namespace for the {\omdocv2} format is the \atwinalt{URI}{OMDoc}{namespace}{URI}
+\url{http://omdoc.org/ns}. Note that the \omdoc \twinalt{namespace}{OMDoc}{namespace}
+does not reflect the versions\footnote{The namespace is different from the {\omdocv1}
+  formats (versions 1.0, 1.1, and 1.2), which was
+  {\snippet{http://www.mathweb.org/omdoc}}, but the {\omdocv2} namespace will stay
+  constant over all versions of the {\omdocv2} format.}, this is done in the
+{\attributeshort{version}} attribute on the {\twintoo{document}{root}} element
+\element{omdoc} (see \sref{omdoc-infrastructure}).  As a consequence, the
+\omdoc vocabulary identified by this namespace is not static, it can change with each
+new \omdoc version. However, if it does, the changes will be documented in later
+versions of the specification: the latest released version can be found
+at~\cite{URL:omdocspec}.
+
+In an \omdoc document, the \omdoc namespace must be specified either using a
+{\twintoo{namespace}{declaration}} of the form
+{\snippet{xmlns="}}\url{http://omdoc.org/ns}{\snippet{"}} on the \element{omdoc} element
+or by prefixing the {\twintoo{local}{name}s} of the \omdoc elements by a namespace
+prefix (\omdoc customarily use the prefixes {\snippet{omdoc:}} or {\snippet{o:}}) that
+is declared by a {\atwintoo{namespace}{prefix}{declaration}} of the form
+{\snippet{xmlns:o="}}\url{http://omdoc.org/ns}{\snippet{"}} on some element dominating the
+\omdoc element in question (see {\extref{book}{xml}} for an introduction). \omdoc also
+uses the following namespaces\footnote{In this specification we will use the
+  {\twintoo{namespace}{prefix}es} above on all the elements we reference in text unless
+  they are in the \omdoc namespace.}:
+
+\begin{scriptsize}
+  \begin{center}
+    \begin{tabular}{|l|l|l|}\hline
+      Format      & namespace URI & see \\\hline\hline
+      Dublin Core & \url{http://purl.org/dc/elements/1.1/} &   {\srefs{dc-elements}{dc-roles}}\\\hline
+      Creative Commons & \url{http://creativecommons.org/ns} & \sref{creativecommons}\\\hline
+      {\mathml} & \url{http://www.w3.org/1998/Math/MathML} & \sref{cmml}\\\hline
+      {\openmath} & \url{http://www.openmath.org/OpenMath} & \sref{openmath}\\\hline
+      {\xslt} & \url{http://www.w3.org/1999/XSL/Transform} & \sref{pres}\\\hline
+    \end{tabular}
+  \end{center}
+\end{scriptsize}
+Thus a typical document root of an \omdoc document looks as follows:
+  \begin{lstlisting}[mathescape]
+<?xml version="1.0" encoding="utf-8"?>
+<omdoc xml:id="test.omdoc" version="1.6"
+  xmlns="http://omdoc.org/ns"
+  xmlns:cc="http://creativecommons.org/ns"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xmlns:om="http://www.openmath.org/OpenMath"
+  xmlns:m="http://www.w3.org/1998/Math/MathML">
+$\ldots$
+</omdoc>
+\end{lstlisting}  
+\end{omgroup}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

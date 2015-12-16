@@ -1,0 +1,113 @@
+\begin{omgroup}[id=annotating]{Annotating Mathematical Objects}
+  \openmath offers an element for annotating (parts of) formulae with external information
+  (e.g. {\mathml} or {\LaTeX} presentation):
+
+\begin{definition}[id=omattr.def]
+  The {\eldef[ns-elt=om]{OMATTR}} element that pairs an {\openmath} object with an
+  attribute-value list. To annotate an {\openmath} object, it is embedded as the second
+  child in an \element[ns-elt=om]{OMATTR} element. The attribute-value list is specified
+  by children of the preceding {\eldef[ns-elt=om]{OMATP}} (Attribute value Pair) element,
+  which has an even number of children: children at odd positions must be
+  \element[ns-elt=om]{OMS} (specifying the attribute, they are called \defis{key} or
+  \defis{feature})\footnote{There are two kinds of keys in {\openmath} distinguished
+    according to the \attribute{role}{symbol} value on their \element{symbol} declaration
+    in the \twintoo{content}{dictionary}: \attval{attribution}{role}{symbol} specifies
+    that this attribute value pair may be ignored by an application, so it should be used
+    for information which does not change the meaning of the attributed {\openmath}
+    object. The \attribute{role}{symbol} is used for keys that modify the meaning of the
+    attributed {\openmath} object and thus cannot be ignored by an application.}, and
+  children at even positions are the \defis{value} of the keys specified by their
+  immediately preceding siblings. In the {\openmath} fragment in {\mylstref{omattr}} the
+  expression $x+\pi$ is annotated with an alternative representation and a color.
+\end{definition}
+
+A special application of the \element[ns-elt=om]{OMATTR} element is associating
+non-\openmath objects with \openmath objects.
+
+\begin{definition}[id=omforeign.def]
+  For this, {\openmath}2 allows to use an \eldef[ns-elt=om]{OMFOREIGN} element in the even
+  positions of an \element[ns-elt=om]{OMATP}. This element can be used to hold arbitrary
+  {\xml} content (in our example above SVG: Scalable Vector Graphics~\cite{W3C:svg02}),
+  its required \attribute[ns-elt=om]{encoding}{OMFOREIGN} attribute specifies the format
+  of the content.
+\end{definition}
+
+We recommend a \twintoo{MIME}{type}~\cite{FreBor:MIME96} (see \sref{pres-bound} for an
+application).
+
+\begin{example}[id=omattr.ex]
+  Here we use the \element[ns-elt=om]{OMATTR} element to associate various other
+  representationsn with an application.
+\begin{lstlisting}[language=OpenMath,label=lst:omattr,mathescape,
+                   caption={Associating Alternate Representations with an
+                   {\openmath} Object},
+                   numbers=none,index={OMATTR,OMATP}]
+<OMATTR>
+  <OMATP>
+    <OMS cd="alt-rep" name="ascii"/>
+    <OMSTR>(x+1)</OMSTR>
+    <OMS cd="alt-rep" name="svg"/>
+    <OMFOREIGN encoding="application/svg+xml">
+      <svg xmlns='http://www.w3.org/2000/svg'>$\ldots$</svg>
+    </OMFOREIGN>
+    <OMS cd="pres" name="color"/>
+    <OMS cd="pres" name="red"/>
+  </OMATP>
+  <OMA>
+    <OMS cd="arith1" name="plus"/>
+    <OMV name="x"/>
+    <OMS cd="nums1" name="pi"/>
+  </OMA>
+</OMATTR>
+\end{lstlisting}
+\end{example}
+
+In \cmathml, the same effect can be achieved by the \element[ns-elt=m]{semantics} element
+whose first child is the annotated object and subsequent \element[ns-elt=m]{annotation}
+and \element[ns-elt=m]{annotation-xml} and children carry the annotations.
+
+\begin{definition}[id=semantics.def]
+  The \eldef[ns-elt=m]{semantics} element provides a way to annotate {\cmathml} elements
+  with arbitrary information. The first child of the \element[ns-elt=m]{semantics} element
+  is annotated with the information in the {\eldef[ns-elt=m]{annotation-xml}} (for
+  {\xml}-based information) and {\eldef[ns-elt=m]{annotation}} (for other information)
+  elements that follow it. These elements carry
+  \attribute[ns-elt=m]{definitionURL}{annotation} attributes that point to a
+  ``definition'' of the kind of information provided by them. The optional
+  \attribute[ns-elt=m]{encoding}{annotation} is a string that describes the format of the
+  content.
+\end{definition}
+
+\begin{example}[id=semantics.ex]
+  To express the content of \sref{omattr.ex} in \cmathml, we use the
+  \element[ns-elt=m]{semantics}, \element[ns-elt=m]{annotation}, and
+  \element[ns-elt=m]{annotationxml} elements.
+\begin{lstlisting}[language=MathML,label=lst:semantics,mathescape,
+                   caption={Associating Alternate Representations in \cmathml},
+                   numbers=none,index={m:semantics,m:annotation-xml,m:annotation}]
+<m:semantics>
+  <m:apply>
+    <m:csymbol cd="arith1">plus</m:csymbol>
+    <m:ci>x</m:ci>
+    <m:csymbol cd="nums1">pi</m:csymbol>
+  </m:apply>
+  <m:annotation definitionURL="http://omdoc.org/cds/alt-rep#ascii"> 
+    (x+1)
+  </m:annotation>
+  <m:annotation-xml definitionURL="http://omdoc.org/cds/alt-rep#svg" 
+     encoding="application/svg+xml">
+   <svg xmlns='http://www.w3.org/2000/svg'>$\ldots$</svg>
+  </m:annotation-xml>
+  <m:annotation-xml definitionURL="http://omdoc.org/cds/pres#color" 
+     encoding="application/openmath+xml"> 
+   <OMS cd="pres" name="red"/>
+  </m:annotation-xml>
+</m:semantics>
+\end{lstlisting}
+\end{example}
+\end{omgroup}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

@@ -1,0 +1,244 @@
+\begin{omgroup}[id=constitutive-statements]{Theory-Constitutive Statements in OMDoc}
+\begin{module}[id=constitutive-statements]
+
+  The \omdoc format provides an infrastructure for four kinds of theory-constitutive
+  statements: symbol declarations, type declarations, (proper) axioms, and definitions. We
+  will take a look at all of them now.
+
+\begin{presonly}
+  \begin{myfig}{constitutive-theory}{Theory-Constitutive Elements in \omdoc}
+    \begin{scriptsize}
+      \begin{tabular}{|>{\snippet}l|>{\tt}l|>{\tt}p{3.6truecm}|c|>{\tt}p{3.2truecm}|}\hline
+        {\rm Element}& \multicolumn{2}{l|}{Attributes\hspace*{2.25cm}} & M & Content  \\\hline
+                     & {\rm Required}  & {\rm Optional}                & C &          \\\hline\hline
+          symbol     & name      & xml:id, role, scope, style, class   & +  & type*\\\hline
+          axiom      & name      & xml:id, for, type, style, class     & +  & h:*,FMP*   \\\hline
+          definition & for & xml:id, type, style, class                & +  & h:p*, \llquote{mobj})?  \\\hline
+ \multicolumn{5}{|l|}{where \llquote{mobj} is {\tt{(\mobjabbr)}}}\\\hline
+\end{tabular}
+\end{scriptsize}
+\end{myfig}
+\end{presonly}
+
+\begin{omgroup}[id=symbol-dec]{Symbol Declarations}
+
+  The {\element{symbol}} element declares a symbol for a
+  {\twintoo{mathematical}{concept}}, such as 1 for the natural number ``one'', $+$ for
+  addition, $=$ for equality, or {\snippetin{group}} for the property of being a
+  group. Note that we not only use the \element{symbol} element for mathematical objects
+  that are usually written with mathematical symbols, but also for any concept or object
+  that has a definition or is restricted in its meaning by axioms.
+  
+We will refer to the mathematical object declared by a \element{symbol} element as a
+``{\indextoo{symbol}}'', iff it is usually communicated by specialized notation in
+mathematical practice, and as a ``{\indextoo{concept}}'' otherwise.  The name ``symbol''
+of the \element{symbol} element in \omdoc is in accordance with usage in the
+philosophical literature (see e.g.~\cite{NewSim:cseisas81}): A {\defemph{symbol}} is a
+{\emph{{\twinalt{mental}{physical}{representation}} or
+    {\twinalt{physical}{mental}{representation}}}} representation of a concept.  In
+particular, a symbol may, but need not be representable by a (set of) {\indextoo{glyph}s}
+(symbolic notation).  The definiendum objects in {\myfigref{math-def}} would be considered
+as ``symbols'' while the concept of a ``group'' in mathematics would be called a
+``concept''.
+  
+\begin{definition}[id=symbol.def]
+  The {\eldef{symbol}} element has a required attribute \attribute{name}{symbol} whose
+  value uniquely identifies it in a theory.  Since the value of this attribute will be
+  used as an {\openmath} symbol name, it must be an {\xml} name\footnote{This limits the
+    characters allowed in a name to a subset of the characters in Unicode 2.0; e.g. the
+    colon $\colon$ is not allowed. Note that this is not a problem, since the name is just
+    used for identification, and does not necessarily specify how a symbol is presented to
+    the human reader. For that, \omdoc provides the notation definition infrastructure
+    presented in \sref{pres}.} as defined in {\xml} 1.1~\cite{xml1.1:04}. The optional
+  attribute \attribute{scope}{symbol} takes the values \attribute{global}{scope}{symbol}
+  and \attval{local}{scope}{symbol}, and allows a simple specification of visibility
+  conditions: if the \attribute{scope}{symbol} attribute of a \element{symbol} has
+  value \attval{local}{scope}{symbol}, then it is not \twinalt{exported}{export}{symbol}
+  outside the theory; The {\oldattribute{scope}{symbol}{1.2}} attribute is deprecated, a
+  formalization using the \attribute{hiding}{imports} attribute on the
+  \element{imports} element should be used instead.  Finally, the optional attribute
+  \attribute{role}{symbol} that can take the values\footnote{The first six values come
+    from the {\openmath}2 standard. They are specified in content dictionaries; therefore
+    \omdoc also supplies them.}
+\begin{description}
+\item[\attval{binder}{role}{symbol}] The symbol may appear as a binding symbol of an
+  {\twintoo{binding}{object}}, i.e. as the first child of an \element[ns-elt=om]{OMBIND}
+  object, or as the first child of an \element[ns-elt=m]{apply} element that has an
+  \element[ns-elt=m]{bvar} as a second child.
+\item[\attval{attribution}{role}{symbol}] The symbol may be used as key in an
+  {\openmath} \element[ns-elt=om]{OMATTR} element, i.e. as the first element of a
+  key-value pair, or in an equivalent context (for example to refer to the value of an
+  attribution).  This form of attribution may be ignored by an application, so should be
+  used for information which does not change the meaning of the attributed {\openmath}
+  object.
+\item[\attval{semantic-attribution}{role}{symbol}] This is the same as
+  {\attvalveryshort{attribution}} except that it modifies the meaning of the attributed
+  {\openmath} object and thus cannot be ignored by an application.
+\item[\attval{error}{role}{symbol}] The symbol can only appear as the first child of an
+  {\openmath} error object.
+\item[\attval{application}{role}{symbol}] The symbol may appear as the first child of an
+  application object.
+\item[\attval{constant}{role}{symbol}] The symbol cannot be used to construct a compound
+  object.
+\item[\attval{type}{role}{symbol}] The symbol denotes a sets that is used in a type
+  systems to annotate mathematical objects.
+\item[\attval{sort}{role}{symbol}] The symbol is used for a set that are inductively
+  built up from constructor symbols; see \sref{adt}.
+\end{description}
+If the \attribute{role}{symbol} is not present, the value
+\attval{object}{role}{symbol} is assumed.
+
+The children of the \element{symbol} element consist of a
+{\twintoo{multi-system}{group}} of \element{type} elements (see \sref{type-axioms} for
+a discussion). For this group the order does not matter.  In {\mylstref{symbol}} we have a
+symbol declaration for the concept of a {\indextoo{monoid}}.  Keywords or simple phrases
+that describes the symbol in mathematical vernacular can be added in the
+\element{metadata} child of \element{symbol} as \element[ns-elt=dc]{subject} and
+{\element[ns-elt=dc]{description}s}; the latter have the same content model as the
+\element{h:p} elements, see the discussion in \sref{mtext}). If the document
+containing their parent \element{symbol} element were stored in a data base system, it
+could be looked up via these metadata. As a consequence the symbol
+\attribute{name}{symbol} need only be used for identification. In particular, it need
+not be mnemonic, though it can be, and it need not be language-dependent, since this can
+be done by suitable \element[ns-elt=dc]{subject} elements.
+\end{definition}
+
+\begin{lstlisting}[label=lst:symbol,mathescape,
+  caption={An \omdoc \element{symbol} Declaration},
+  index={symbol,type}]
+<symbol name="monoid">
+  <metadata>
+    <dc:subject xml:lang="en">monoid</dc:subject>
+    <dc:subject xml:lang="de">Monoid</dc:subject>
+    <dc:subject xml:lang="it">monoide</dc:subject>
+  </metadata>
+  <type system="simply-typed">$set[any]\rightarrow(any\rightarrow any \rightarrow any)\rightarrow any\rightarrow bool$</type>
+  <type system="props">
+    <OMS cd="arities" name="ternary-relation"/>
+  </type>
+</symbol>
+\end{lstlisting}
+\end{omgroup}
+
+\begin{omgroup}[id=axioms]{Axioms}
+  
+  The relation between the components of a monoid would typically be specified by a set of
+  axioms (e.g. stating that the base set is closed under the operation).  For this purpose
+  \omdoc uses the \element{axiom} element:
+
+\begin{definition}[id=axiom.def]
+  The {\eldef{axiom}} element contains mathematical vernacular as a sequence of
+  \element[ns-elt=h]{p} elements a \element{FMP} that expresses this as a logical
+  formula.  \element{axiom} elements may have a \attribute{generated-from}{axiom}
+  attribute, which points to another \omdoc element (e.g. an \element{adt}, see
+  \sref{adt}) which subsumes it, since it is a more succinct representation of the same
+  mathematical content. Finally the \element{axiom} element has an optional
+  \attribute{for}{axiom} attribute to specify salient semantic objects it uses as a
+  {\indextoo{whitespace-separated list}} of {\indextoo{URI}} references to symbols
+  declared in the same theory, see {\mylstref{axiom}} for an example. Finally, the
+  \element{axiom} element can have an \attribute{type}{axiom} attribute, whose values
+  we leave unspecified for the moment.
+\end{definition}
+
+\begin{lstlisting}[label=lst:axiom,mathescape,
+  caption={An \omdoc \element{axiom}},index={axiom}]
+<axiom xml:id="mon.ax" for="monoid">
+  <h:p>If $\psom{(M,*)}$ is a semigroup with unit $\psom{e}$, then $\psom{(M,*,e)}$ is a monoid.</h:p>
+</axiom>
+\end{lstlisting}
+\end{omgroup}
+
+\begin{omgroup}[id=type-axioms]{Type Declarations}
+
+\begin{omtext}
+  {\indexalt{Types}{type}} (also called {\indextoo{sort}s} in some contexts) are
+  representations of certain simple sets that are treated specially in (human or
+  mechanical) {\twintoo{reasoning}{process}es}. \inlinedef{A \defii{type}{declaration}
+    $e\colon t$ makes the information that a symbol or expression $e$ is in a set
+    represented by a type $t$ available to a specified mathematical process}.  For
+  instance, we might know that $7$ is a natural number, or that expressions of the form
+  $\sum_{i=1}^n a_ix^{i}$ are polynomials, if the $a_i$ are real numbers, and exploit this
+  information in mathematical processes like proving, pattern matching, or while choosing
+  intuitive notations.  \inlinedef{If a type is declared for an expression that is not a
+    symbol, we will speak of a \defii{term}{declaration}}.
+\end{omtext}
+
+\begin{definition} [id=type.def]
+  \omdoc uses the {\eldef{type}} element for type declarations. The optional attribute
+  \attribute{system}{type} contains a {\indextoo{URI}} reference that identifies the
+  {\twintoo{type}{system}} which interprets the content. There may be various sources of
+  the set membership information conveyed by a type declaration, to justify it this source
+  may be specified in the optional \attribute{just-by}{type} attribute. The value of
+  this attribute is a {\indextoo{URI}} reference that points to an \element{assertion}
+  or \element{axiom} element that asserts $\allcdot{x_1,\ldots,x_n}{e\in t}$ for a type
+  declaration $e\colon t$ with variables $x_1,\ldots,x_n$.  If the
+  \attribute{just-by}{type} attribute is not present, then the type declaration is
+  considered to be generated by an {\twintoo{implicit}{axiom}}, which is considered
+  {\indextoo{theory-constitutive}}\footnote{It is considered good practice to make the
+    axiom explicit in formal contexts, as this allows an extended automation of the
+    knowledge management process.}.
+  
+  The \element{type} element contains one or two mathematical objects. In the first
+  case, it represents a type declaration for a symbol (we call this a
+  \defii{symbol}{declaration}), which can be specified in the optional
+  \attribute{for}{type} attribute or by embedding the \element{type} element into the
+  respective \element{symbol} element.  A \element{type} element with two mathematical
+  objects represents a {\twintoo{term}{declaration}} $e\colon t$, where the first object
+  represents the expression $e$ and the second one the type $t$ (see
+  {\mylstref{term-declaration}} for an example). There the type declaration of
+  {\snippet{monoid}} characterizes a monoid as a three-place predicate (taking as
+  arguments the base set, the operation, and a neutral element).
+\end{definition}    
+
+\begin{omtext}
+  As reasoning processes vary, information pertaining to multiple
+  {\twintoo{type}{system}s} may be associated with a single symbol and there can be more
+  than one \element{type} declaration per expression and {\twintoo{type}{system}}, this
+  just means that the object has more than one type in the respective type system (not all
+  type systems admit {\twintoo{principal}{type}s}).
+\end{omtext}
+\end{omgroup}
+
+\begin{omgroup}[id=definitions]{Definitions}
+
+Definitions are a special class {\indextoo{axioms}} that completely fix the meaning of
+symbols. 
+
+\begin{definition}[id=definition.def]
+  Therefore {\eldef{definition}} elements that represent definitions carry the required
+  \attribute{for}{definition} attribute, which contain a whitespace-separated list of
+  names of symbols in the same theory.  We call these symbols
+  \adefii{defined}{defined}{symbol} and \adefii{primitive}{primitive}{symbol}
+  otherwise. A \element{definition} contains mathematical vernacular as a sequen ce of
+  \element[ns-elt=h]{p} elements to describe the meaning of the defined symbols.
+
+  A \element{definition} element contains a mathematical object that can be substituted
+  for the symbol specified in the \attribute{for}{definition} attribute of the
+  definition. The \attribute{type}{definition} is fixed to
+  \attval{simple}{type}{definition}\ednote{maybe better leave it out}.  {\Mylstref{one}}
+  gives an example of a simple definition of the number one from the successor function
+  and zero. \omdoc treats the \attribute{type}{definition} attribute as an optional
+  attribute. If it is not given explicitly, it defaults to
+  \attval{simple}{type}{definition}.
+\end{definition}
+
+\begin{lstlisting}[label=lst:one,
+  caption={A Simple \omdoc \element{definition}.},
+  index={definition}]
+<symbol name="one"/>
+<definition xml:id="one.def" for="one" type="simple">
+ <h:p><OMS cd="nat" name="one"/> is the successor of <om:OMS cd="nat" name="zero"/>.</h:p>
+ <om:OMA>
+   <om:OMS cd="int" name="suc"/>
+   <om:OMS cd="nat" name="zero"/>
+ </om:OMA>
+</definition>
+\end{lstlisting}
+\end{omgroup}
+\end{module}
+\end{omgroup}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
