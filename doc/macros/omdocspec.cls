@@ -49,7 +49,7 @@ breaklinks=true, bookmarksopen=true]{hyperref}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%% listings %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \RequirePackage[savemem]{listings} % assuming ../macros is early on TEXINPUTS path
 \RequirePackage{lstomdoc}
-\lstset{float=htb,columns=flexible,frame=lines,language=[1.6]OMDoc,basicstyle=\scriptsize,
+\lstset{float=htb,columns=flexible,frame=lines,language=[1.6]OMDoc,basicstyle=\scriptsize\sf,
         numbers=left,stepnumber=5,numberstyle=\tiny,showstringspaces=false}
 
 %% to number the listings in sequence with figures
@@ -261,8 +261,8 @@ breaklinks=true, bookmarksopen=true]{hyperref}
 \def\twin#1#2{\@twin{#1}{#2}}
 \def\atwin#1#2{\@atwin{#1}{#2}}
 \newcommand{\eldef}[2][]{% keyval, element
-\def\ns@elt{}\setkeys{ns}{#1}\definiendum{\ns@elt{#2}}
-\sref@label{Definition ????}{eldef.\ns@elt #2}
+\def\ns@elt{}\setkeys{ns}{#1}\textsf{\definiendum{\ns@elt{#2}}}%
+\sref@label{Definition ????}{eldef.\ns@elt #2}%
 \ifmargins\marginpar{\fbox{\snippet{\ns@elt #2}}}\fi%
 \index{#2@{\snippet{\ns@elt #2}! element}}%
 \index{\ns@elt #2@{\snippet{\ns@elt #2}! element}}}
