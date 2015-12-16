@@ -10,15 +10,13 @@
 \ProvidesClass{omdocspec}[2007/7/11 OMDoc Specification Class]
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{omdoc}}
 \ProcessOptions
-%\LoadClass[envcountsame,envcountchap]{svmono}
+\RequirePackage[utf8]{inputenc}    % utf8 support       %!!!!!!!!!!!!!!!!!!!!
+\RequirePackage[T1]{fontenc}       % code for pdf file  %!!!!!!!!!!!!!!!!!!!!
 \RequirePackage{fancyhdr}
 \LoadClass{omdoc}
 \RequirePackage{a4wide}
-\RequirePackage{graphicx}        % standard LaTeX graphics tool
-                             % when including figure files
+\RequirePackage{graphicx}
 \RequirePackage{multicol}        % used for the two-column index
-%\RequirePackage[bottom]{footmisc}% places footnotes at page bottom
-% end Springer recommendation
 \RequirePackage{array}
 \RequirePackage{longtable}
 \RequirePackage{moreverb}
@@ -35,7 +33,6 @@
 \RequirePackage{tikz}
 \usetikzlibrary{shapes}
 \usetikzlibrary{arrows}
-%\RequirePackage{alltt}
 \RequirePackage{paralist}
 \RequirePackage{gitinfo2}
 

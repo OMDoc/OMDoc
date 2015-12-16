@@ -14,17 +14,17 @@
 \@sref@def{spec@openmath}{label}{Subsection\nobreakspace  {}2.0}
 \@sref@def{spec@om.core}{page}{11}
 \@sref@def{spec@om.core}{label}{Subsubsection\nobreakspace  {}2.1.0}
-\@sref@def{spec@omcore.def}{page}{12}
+\@sref@def{spec@omcore.def}{page}{11}
 \@sref@def{spec@omcore.def}{label}{Definition\nobreakspace  {}2.{1}}
-\@sref@def{spec@eldef.om:OMA}{page}{12}
+\@sref@def{spec@eldef.om:OMA}{page}{11}
 \@sref@def{spec@eldef.om:OMA}{label}{Definition ????}
-\@sref@def{spec@eldef.om:OMV}{page}{12}
+\@sref@def{spec@eldef.om:OMV}{page}{11}
 \@sref@def{spec@eldef.om:OMV}{label}{Definition ????}
-\@sref@def{spec@eldef.om:OMS}{page}{12}
+\@sref@def{spec@eldef.om:OMS}{page}{11}
 \@sref@def{spec@eldef.om:OMS}{label}{Definition ????}
-\@sref@def{spec@ombind.def}{page}{12}
+\@sref@def{spec@ombind.def}{page}{13}
 \@sref@def{spec@ombind.def}{label}{Definition\nobreakspace  {}2.{2}}
-\@sref@def{spec@eldef.om:OMBIND}{page}{12}
+\@sref@def{spec@eldef.om:OMBIND}{page}{13}
 \@sref@def{spec@eldef.om:OMBIND}{label}{Definition ????}
 \@sref@def{spec@eldef.om:OMBVAR}{page}{13}
 \@sref@def{spec@eldef.om:OMBVAR}{label}{Definition ????}
@@ -40,15 +40,15 @@
 \@sref@def{spec@eldef.om:OMFOREIGN}{label}{Definition ????}
 \@sref@def{spec@om.error}{page}{13}
 \@sref@def{spec@om.error}{label}{Subsubsection\nobreakspace  {}2.1.1}
-\@sref@def{spec@omi.def}{page}{13}
+\@sref@def{spec@omi.def}{page}{14}
 \@sref@def{spec@omi.def}{label}{Definition\nobreakspace  {}2.{5}}
-\@sref@def{spec@eldef.om:OMI}{page}{13}
+\@sref@def{spec@eldef.om:OMI}{page}{14}
 \@sref@def{spec@eldef.om:OMI}{label}{Definition ????}
-\@sref@def{spec@eldef.om:OMB}{page}{13}
+\@sref@def{spec@eldef.om:OMB}{page}{14}
 \@sref@def{spec@eldef.om:OMB}{label}{Definition ????}
-\@sref@def{spec@eldef.om:OMSTR}{page}{13}
+\@sref@def{spec@eldef.om:OMSTR}{page}{14}
 \@sref@def{spec@eldef.om:OMSTR}{label}{Definition ????}
-\@sref@def{spec@eldef.om:OMF}{page}{13}
+\@sref@def{spec@eldef.om:OMF}{page}{14}
 \@sref@def{spec@eldef.om:OMF}{label}{Definition ????}
 \@sref@def{spec@ome.def}{page}{14}
 \@sref@def{spec@ome.def}{label}{Definition\nobreakspace  {}2.{6}}
@@ -68,9 +68,9 @@
 \@sref@def{spec@math.def}{label}{Definition\nobreakspace  {}2.{9}}
 \@sref@def{spec@eldef.m:math}{page}{16}
 \@sref@def{spec@eldef.m:math}{label}{Definition ????}
-\@sref@def{spec@mml.basic.def}{page}{16}
+\@sref@def{spec@mml.basic.def}{page}{17}
 \@sref@def{spec@mml.basic.def}{label}{Definition\nobreakspace  {}2.2.1}
-\@sref@def{spec@eldef.m:ci}{page}{16}
+\@sref@def{spec@eldef.m:ci}{page}{17}
 \@sref@def{spec@eldef.m:ci}{label}{Definition ????}
 \@sref@def{spec@eldef.m:cn}{page}{17}
 \@sref@def{spec@eldef.m:cn}{label}{Definition ????}
@@ -92,11 +92,11 @@
 \@sref@def{spec@eldef.m:annotation}{label}{Definition ????}
 \@sref@def{spec@omvscmml}{page}{17}
 \@sref@def{spec@omvscmml}{label}{Subsubsection\nobreakspace  {}2.2.1}
-\@sref@def{spec@mobj.types}{page}{18}
+\@sref@def{spec@mobj.types}{page}{19}
 \@sref@def{spec@mobj.types}{label}{Subsection\nobreakspace  {}2.2}
 \@sref@def{spec@sem-var}{page}{20}
 \@sref@def{spec@sem-var}{label}{Subsection\nobreakspace  {}2.3}
-\@sref@def{spec@legacy}{page}{20}
+\@sref@def{spec@legacy}{page}{21}
 \@sref@def{spec@legacy}{label}{Subsection\nobreakspace  {}2.4}
 \@sref@def{spec@legacy.def}{page}{21}
 \@sref@def{spec@legacy.def}{label}{Definition\nobreakspace  {}2.{12}}
