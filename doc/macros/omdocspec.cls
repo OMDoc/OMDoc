@@ -30,7 +30,7 @@
 \RequirePackage{ded}
 \RequirePackage{myref}
 \RequirePackage{xmlindex} % ../macros
-\RequirePackage{tikz}
+\RequirePackage{tikzinput}
 \usetikzlibrary{shapes}
 \usetikzlibrary{arrows}
 \RequirePackage{paralist}
