@@ -630,95 +630,13 @@ representation of the constant $\pi$ (we used the name {\snippet{po}} instead of
   \ednote{need to talk about the \element[ns-elt=m]{cerror} element}
 \end{omgroup}
 
-
-
-
-
-\begin{module}[id=omml-semvar]
-\begin{omgroup}[id=sem-var,short=Semantics of Variables]{The Semantics of Variables in
-  \openmath and \cmathml}
- 
-\begin{omtext}
-A more subtle, but nonetheless crucial difference between {\openmath} and {\mathml} is the
-handling of variables, symbols, their names, and equality conditions.  {\openmath} uses
-the \attribute[ns-elt=om]{name}{OMV, om:OMS} attribute to identify a variable or symbol,
-and delegates the presentation of its name to other methods such as style sheets. As a
-consequence, the elements \element[ns-elt=om]{OMS} and \element[ns-elt=om]{OMV} are
-empty, and we have to understand the value of the {\attribute[ns-elt=om]{name}{OMV,
-    om:OMS}} attribute as a {\indextoo{pointer}} to a defining occurrence. In case of
-symbols, this is the symbol declaration in the \twintoo{content}{dictionary} identified
-in the \attribute[ns-elt=om]{cd}{OMS} attribute. A symbol {\snippet{<OMS
-    cd="\llquote{$cd_1$}" name="\llquote{$name_1$}"/>}} is equal to {\snippet{<OMS
-    cd="\llquote{$cd_2$}" name="\llquote{$name_2$}"/>}}, iff
-{\llquote{$cd_1$}=\llquote{$cd_2$}} and {\llquote{$name_1$}=\llquote{$name_2$}} as {\xml}
-simple names.  In case of variables this is more difficult: if the variable is
-\twinalt{bound}{bound}{variable} by an \element[ns-elt=om]{OMBIND} element
-{\inlinedef{We say that an \element[ns-elt=om]{OMBIND} element \defi{binds} an
-    {\openmath} variable {\snippet{<OMV name="x"/>}}, iff this
-    \element[ns-elt=om]{OMBIND} element is the nearest one, such that {\snippet{<OMV
-        name="x"/>}} occurs in (second child of the \element[ns-elt=om]{OMATTR} element
-    in) the \element[ns-elt=om]{OMBVAR} child (this is the
-    \defii{defining}{occurrence} of {\snippet{<OMV name="x"/>}} here).}}, then we
-interpret all the variables {\snippet{<OMV name="x"/>}} in the
-\element[ns-elt=om]{OMBIND} element as equal and different from any variables
-{\snippet{<OMV name="x"/>}} outside. In fact the {\openmath} standard states that bound
-variables can be \twinalt{renamedo}{renaming}{variable} without changing the object
-({\twinalt{$\alpha$-conversion}{alpha}{conversion}}). If {\snippet{<OMV name="x"/>}} is
-not bound, then the scope of the variable cannot be reliably defined; so equality with
-other occurrences of the variable {\snippet{<OMV name="x"/>}} becomes an ill-defined
-problem.  We therefore discourage the use of unbound variables in \omdoc; they are very
-simple to avoid by using symbols instead, introducing suitable theories if necessary (see
-\sref{theories-contexts}).
-
-{\mathml} goes a different route: the \element[ns-elt=m]{csymbol} and \element[ns-elt=m]{ci}
-elements have content that is {\pmathml}, which is used for the presentation of the
-variable or symbol name.\footnote{Note that surprisingly, the empty {\cmathml} elements
-  are treated more in the {\openmath} spirit.}  While this gives us a much better handle
-on presentation of objects with variables than {\openmath} (where we are basically forced
-to make due with the ASCII\footnote{In the current {\openmath} standard, variable names
-  are restricted to alphanumeric characters starting with a letter. Note that unlike with
-  symbols, we cannot associate presentation information with variables via style sheets,
-  since these are not globally unique (see \sref{pres-bound} for a discussion of the
-  \omdoc solution to this problem).}  representation of the variable name), the question
-of scope and equality becomes much more difficult: Are two variables (semantically) the
-same, even if they have different colors, sizes, or font families? Again, for symbols the
-situation is simpler, since the \attribute[ns-elt=m]{definitionURL}{csymbol} attribute on the
-\element[ns-elt=m]{csymbol} element establishes a global identity criterion (two symbols are
-equal, iff they have the same \attribute[ns-elt=m]{definitionURL}{csymbol} value (as URI
-strings; see~\cite{BerFie:uri98}).) The second edition of the {\mathml} standard adopts
-the same solution for bound variables: it recommends to annotate the \element[ns-elt=m]{bvar}
-elements that declare the bound variable with an \attribute[ns-elt=m]{id}{bvar} attribute and
-use the \attribute[ns-elt=m]{definitionURL}{ci} attribute on the {\twintoo{bound}{occurrence}s}
-of the \element[ns-elt=m]{ci} element to point to those. The following example is taken
-from~\cite{KohDev:bvm03}, which has more details.
-\end{omtext}
-
-\begin{lstlisting}[language=MathML,label=bvar-mathml,
-     index={math,bvar,ci,definitionURL}]
-<m:lambda>
-  <m:bvar><m:ci xml:id="the-boundvar">complex presentation</m:ci></m:bvar>
-  <m:apply>
-    <m:plus/>
-    <m:ci definitionURL="#the-boundvar">complex presentation</m:ci>
-    <m:ci definitionURL="#the-boundvar">complex presentation</m:ci>
-  </m:apply>
-</m:lambda>  
-\end{lstlisting}
-
-For presentation in {\mathml}, this gives us the best of both approaches, the
-\element[ns-elt=m]{ci} content can be used, and the {\indextoo{pointer}} gives a simple
-semantic equivalence criterion. For presenting {\openmath} and {\cmathml} in other
-formats \omdoc makes use of the infrastructure introduced in module
-{\PRESmodule{spec}}; see \sref{pres-bound} for a discussion.
-\end{omgroup}
-\end{module}
-
 \begin{module}[id=legacy]
 \begin{omgroup}[id=legacy]{Legacy Representation for Migration}
-
-  Sometimes, \omdoc is used as a migration format from {\indextoo{legacy}} texts (see
-  {\extref{primer}{algebra}} for an example). In such documents it can be too much effort
-  to convert all mathematical objects and formulae into {\openmath} or {\cmathml} form.
+  \ednote{we should fold in the MMT literals here.  Maybe all legacy is is literals in
+    some way. Maybe also we can use om:OMFOREIGN and m:mtext} Sometimes, \omdoc is used as
+  a migration format from {\indextoo{legacy}} texts (see {\extref{primer}{algebra}} for an
+  example). In such documents it can be too much effort to convert all mathematical
+  objects and formulae into {\openmath} or {\cmathml} form.
 
 \begin{presonly}
 \begin{myfig}{mobjtable}{Mathematical Objects in \omdoc}
@@ -766,6 +684,7 @@ Wikipedia article.
 \end{lstlisting}
 \end{omgroup}
 \end{module}
+\input{pres}
 \end{omgroup}
 %%% Local Variables: 
 %%% mode: latex

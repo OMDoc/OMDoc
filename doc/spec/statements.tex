@@ -117,6 +117,26 @@ consistency can easily be lost by adding axioms, mathematicians try to keep
 \end{module}
 \end{omgroup}
 
+\begin{omgroup}{Strict Statements: Declarations}
+\begin{presonly}
+\begin{myfig}{strict-omdoc}{Strict \omdoc Elements}
+  \begin{scriptsize}
+    \begin{tabular}{|>{\snippet}l|>{\tt}l|>{\tt}p{3truecm}|c|>{\tt}p{3.5truecm}|}\hline
+      {\rm Element}  & \multicolumn{2}{l|}{Attributes\hspace*{2.25cm}} & M & Content  \\\hline
+                     & {\rm Required}   & {\rm Optional}               & D &          \\\hline\hline
+      object         & name, semrole    & xml:id, synrole    & + & type*,definiendum? \\\hline
+      definiendum & & xml:id & + & \llquote{mobj}\\\hline
+      type       &           & xml:id, system, style, class        & -- & h:p*,\llquote{mobj}      \\\hline 
+      \multicolumn{5}{|l|}{where \llquote{mobj} is {\snippet{(\mobjabbr)}}}\\\hline
+    \end{tabular}
+  \end{scriptsize}
+\end{myfig}
+\end{presonly}
+
+\end{omgroup}
+
+\input{mtext}
+
 \begin{omgroup}[id=constitutive-statements]{Theory-Constitutive Statements in OMDoc}
 \begin{module}[id=constitutive-statements]
 
@@ -131,7 +151,6 @@ consistency can easily be lost by adding axioms, mathematicians try to keep
         {\rm Element}& \multicolumn{2}{l|}{Attributes\hspace*{2.25cm}} & M & Content  \\\hline
                      & {\rm Required}  & {\rm Optional}                & C &          \\\hline\hline
           symbol     & name      & xml:id, role, scope, style, class   & +  & type*\\\hline
-          type       &           & xml:id, system, style, class        & -- & h:p*,\llquote{mobj}      \\\hline
           axiom      & name      & xml:id, for, type, style, class     & +  & h:*,FMP*   \\\hline
           definition & for & xml:id, type, style, class                & +  & h:p*, \llquote{mobj})?  \\\hline
  \multicolumn{5}{|l|}{where \llquote{mobj} is {\tt{(\mobjabbr)}}}\\\hline
@@ -848,309 +867,7 @@ definition.\ednote{we probably also need inline examples and inline assertions, 
 \end{module}
 \end{omgroup}
 
-\begin{omgroup}[id=theories-contexts]{Theories as Structured Contexts}
-\begin{module}[id=theories]
-\omdoc provides an infrastructure for mathematical theories as first-class objects that
-can be used to structure larger bodies of mathematics by functional aspects, to serve as a
-framework for semantically referencing mathematical objects, and to make parts of
-mathematical developments reusable in multiple contexts. The module {\STmodule{spec}}
-presented in this chapter introduces a part of this infrastructure, which can already
-address the first two concerns. For the latter, we need the machinery for complex theories
-introduced in \sref{complex-theories}.
-
-\begin{definition}[id=theory.def]
-  Theories are specified by the {\eldef{theory}} element in \omdoc, which has a required
-  \attribute[ns-attr=xml]{id}{theory} attribute for referencing the theory. Furthermore,
-  the \element{theory} element can have the \attribute[ns-elt=om]{cdbase}{theory}
-  attribute that allows to specify the \attribute{cdbase}{OMS} this theory uses for
-  disambiguation on \element[ns-elt=om]{OMS} elements (see \sref{openmath} for a
-  discussion).
-\end{definition}
-Additional information about the theory like a title or a short description can be given
-in the \element{metadata} element. AfTer this, any {\indextoo{top-level}} \omdoc
-element can occur, including the theory-constitutive elements introduced in
-{\srefs{statements-constitutive}{definitions}}, even \element{theory} elements
-themselves. Note that theory-constitutive elements may {\emph{only}} occur in
-\element{theory} elements.
-
-\begin{definition}[id=tgroup.def]
-  Theories can be structured like documents e.g. into sections and the like (see
-  \sref{sectioning} for a discussion) via the {\eldef{tgroup}} element, which behaves
-  exactly like the \element{omdoc} element introduced in \sref{sectioning} except that
-  it also allows theory-constitutive elements, but does not allow a
-  \attribute{theory}{omdoc} attribute, since this information is already given by the
-  dominating \element{theory} element.\footnote{This element has been introduced to keep
-    \omdoc validation manageable: We cannot directly use the \element{omdoc}
-    element,since there is no simple, context-free way to determine whether an
-    \element{omdoc} is dominated by a \element{theory} element.}
-\end{definition}  
-
-\begin{presonly}
-\begin{myfig}{simple-thy}{Theories in \omdoc}
-\begin{scriptsize}
-\begin{tabular}{|>{\tt}l|>{\tt}l|>{\tt}p{5.4truecm}|c|>{\tt}p{2truecm}|}\hline
-{\rm Element}& \multicolumn{2}{l|}{Attributes\hspace*{2.25cm}} & M & Content  \\\hline
-             & {\rm Req.}  & {\rm Optional}                    & D &           \\\hline\hline
- theory      &             & xml:id, class, style, cdbase, 
-                             cdversion, cdrevision, cdstatus, cdurl, 
-                             cdreviewdate                      & + & (\llquote{top+thc} | imports)*\\\hline
- imports     & from        & id, type, class, style            & + & \\\hline
- tgroup      &   & xml:id, modules, type, class, style         & +  & (\llquote{top+thc})* \\\hline
- \multicolumn{5}{|p{11cm}|}{where \llquote{top+thc} stands for top-level and
-   theory-constitutive elements}\\\hline
-\end{tabular}
-\end{scriptsize}
-\end{myfig}
-\end{presonly}
-
-\begin{omgroup}[id=inheritance]{Simple Inheritance}
-
-\element{theory} elements can contain \element{imports} elements (mixed in
-with the top-level ones) to specify inheritance: The main idea behind structured theories
-and specification is that not all theory-constitutive elements need to be explicitly
-stated in a theory; they can be inherited from other theories. Formally, the set of
-theory-constitutive elements in a theory is the union of those that are explicitly
-specified and those that are imported from other theories. This has consequences later on,
-for instance, these are available for use in proofs. See
-\sref{proofs.justifications} for details on availability of assertional statements in
-proofs and justifications.
-
-\begin{definition}[id=imports.def]
-  The meaning of the {\eldef{imports}} element is determined by two attributes:
-\begin{description}
-\item[\attribute{from}{imports}] The value of this attribute is a
-  {\twintoo{URI}{reference}} that specifies the \defii{source}{theory},
-    i.e. the theory we import from.  The current theory (the one specified in
-    the parent of the \element{imports} element, we will call it the
-    \defii{target}{theory}) inherits the constitutive elements from the source
-  theory.
-\item[\attribute{type}{imports}] This optional attribute can have the values
-  \attval{global}{type}{imports} and \attval{local}{type}{imports} (the former is
-  assumed, if the attribute is absent): We call constitutive elements \defi{local} to
-  the current theory, if they are explicitly defined as children, and else
-  \defi{inherited}.  A \defii{local}{import} (an \element{imports} element with
-  {\snippet{type="local"}}) only imports the local elements of the source theory, a
-  {\indextoo{global}} import also the inherited ones.
-\end{description}
-\end{definition}
-
-The meaning of nested \element{theory} elements is given in terms of an implicit imports
-relation: The inner theory imports from the outer one. Thus
-\begin{lstlisting}[label=lst:nested-thy,index={theory}]
-<theory xml:id="a.thy">
-  <symbol name="aa"/>
-  <theory xml:id="b.thy">
-    <symbol name="cc"/>
-    <definition xml:id="cc.def" for="cc" type="simple">
-       <OMS cd="a.thy" name="af"/>
-    </definition>
-  </theory>
-</theory>
-\end{lstlisting}
-is equivalent to 
-\begin{lstlisting}[label=lst:nested-thy-equiv,index={theory}]
-<theory xml:id="a.thy"><symbol name="aa"/></theory>
-<theory xml:id="b.thy">
-  <imports from="#a.thy" type="global"/>
-  <symbol name="cc"/>
-  <definition xml:id="cc.def" for="cc" type="simple">
-     <OMS cd="a.thy" name="af"/>
-  </definition>
-</theory>
-\end{lstlisting}
-In particular, the symbol {\snippet{cc}} is visible only in theory {\snippet{b.thy}}, not
-in the rest of theory {\snippet{a.thy}} in the first representation.
-
-Note that the inherited elements of the current theory can themselves be inherited in the
-source theory. For instance, in the {\mylstref{def-group}} the {\snippet{left-inv}} is the
-only local axiom of the theory {\snippetin{group}}, which has the inherited axioms
-{\snippet{closed}}, {\snippet{assoc}}, {\snippet{left-unit}}.
-
-In order for this import mechanism to work properly, the
-{\twintoo{inheritance}{relation}}, i.e.  the relation on theories induced by the
-\element{imports} elements, must be {\indextoo{acyclic}}. There is another, more subtle
-constraint on the inheritance relation concerning multiple inheritance.  Consider the
-situation in {\mylstref{multiple-inheritance}}: here theories {\snippet{A}} and
-{\snippet{B}} import theories with {\snippet{xml:id="mythy"}}, but from different
-URIs. Thus we have no guarantee that the theories are identical, and semantic integrity of
-the theory {\snippet{C}} is at risk. Note that this situation might in fact be totally
-unproblematic, e.g. if both URIs point to the same document, or if the referenced
-documents are identical or equivalent. But we cannot guarantee this by content markup
-alone, we have to forbid it to be safe.
-
-\begin{lstlisting}[label=lst:multiple-inheritance,
-  caption={Problematic Multiple Inheritance},
-  index={theory,symbol,axiom,imports}]
-<theory xml:id="A">
-  <imports from="http://red.com/theories.omdoc#mythy"/>
-</theory>
-<theory xml:id="B">
-  <imports from="http://blue.org/cd/all.omdoc#mythy"/>
-</theory>
-<theory xml:id="C"><imports from="#A"/><imports from="#B"/></theory>
-\end{lstlisting}
-
-Let us now formulate the constraint carefully, 
-\begin{definition}[display=flow,id=base.uri.def]
-  the \defii{base}{URI} of an {\xml} document is the {\indextoo{URI}} that has been
-  used to retrieve it.
-\end{definition}
-We adapt this to \omdoc theory elements: the base URI of an imported theory is the URI
-declared in the \attribute{cdbase}{theory} attribute of the \element{theory} element
-(if present) or the base URI of the document which contains it\footnote{Note that the base
-  URI of the document is sufficient, since a valid \omdoc document cannot contain more
-  than one \element{theory} element for a given
-  \attribute[ns-attr=xml]{id}{theory}}. For theories that are imported along a chain of
-global imports, which include {\twintoo{relative}{URI}s}, we need to employ
-{\twintoo{URI}{normalization}} to compute the {\twintoo{effective}{URI}}.  Now the
-constraint is that any two imported theories that have the same value of the
-\attribute[ns-attr=xml]{id}{theory} attribute must have the same base URI. Note that
-this does not imply a global unicity constraint for \attribute[ns-attr=xml]{id}{theory}
-values of \element{theory} elements, it only means that the mapping of theory
-identifiers to URIs is unambiguous in the dependency cone of a theory.
-
-In {\mylstref{def-group}} we have specified three algebraic theories that gradually build
-up a theory of groups importing theory-constitutive statements (symbols, axioms, and
-definitions) from earlier theories and adding their own content. The theory
-{\snippetin{semigroup}} provides symbols for an operation {\snippetin{op}} on a base set
-{\snippetin{set}} and has the axioms for closure and associativity of
-{\snippetin{op}}. The theory of monoids imports these without modification and uses them
-to state the {\snippet{left-unit}} axiom. The theory {\snippetin{monoid}} then proceeds to
-add a symbol {\snippetin{neut}} and an axiom that states that it acts as a left unit with
-respect to {\snippetin{set}} and {\snippetin{op}}.  The theory {\snippetin{group}}
-continues this process by adding a symbol {\snippetin{inv}} for the function that gives
-inverses and an axiom that states its meaning.
-
-\begin{lstlisting}[label=lst:def-group,escapechar=\%,mathescape,
-  caption={A Structured Development of Algebraic Theories in \omdoc},
-  index={theory,symbol,axiom,imports}]
-<theory xml:id="semigroup">
-  <symbol name="set"/><symbol name="op"/>
-  <axiom xml:id="closed"> $\ldots$ </axiom><axiom xml:id="assoc"> $\ldots$ </axiom>
-</theory>
-
-<theory xml:id="monoid">
-  <imports from="#semigroup"/>
-  <symbol name="neut"/><symbol name="setstar"/>
-  <axiom xml:id="left-unit">
-    <h:p>%\tt{neut}% is a left unit for %\tt{op}%.</h:p><FMP>$\allcdot{x\in{\tt{set}}}{{\tt{op}}(x,{\tt{neut}})=x}$</FMP>
-  </axiom>
-  <definition xml:id="setstar.def" for="setstar" type="implicit">
-    <h:p>$\cdot^*$ subtracts the unit from a set </h:p><FMP>$\allcdot{S}{S^*=S\backslash\set{\tt{unit}}}$</FMP>
-  </definition>
-</theory>
-
-<theory xml:id="group"> 
-  <imports from="#monoid"/>
-  <symbol name="inv"/>
-  <axiom xml:id="left-inv">
-    <h:p>For every $X\in\tt{set}$ there is an inverse ${\tt{inv}}(X)$ wrt. %\tt{op}%.</h:p>
-  </axiom>
-</theory>
-\end{lstlisting}
-
-The example in {\mylstref{def-group}} shows that with the notion of theory inheritance it
-is possible to re-use parts of theories and add structure to specifications. For instance
-it would be very simple to define a theory of {\twintoo{Abelian}{semigroup}s} by adding a
-{\twintoo{commutativity}{axiom}}.
-
-\begin{omtext}
-  The set of symbols, axioms, and definitions available for use in proofs in the importing
-  theory consists of the ones directly specified as \element{symbol}, \element{axiom},
-  and \element{definition} elements in the target theory itself (\inlinedef{we speak of
-    \defi{local} axioms and definitions in this case} and the ones that are inherited from
-  the source theories via \element{imports} elements.  Note that these symbols, axioms,
-  and definitions (\inlinedef{we call them \defi{inherited}}) can consist of the local
-  ones in the source theories and the ones that are inherited there.
-\end{omtext}
-
-The local and inherited symbols, definitions, and axioms are the only ones
-available to mathematical statements and proofs. If a symbol is not available in
-the home theory (the one given by the dominating \element{theory} element or the
-one specified in the \attribute{theory}{statement} attribute of the statement),
-then it cannot be used since its semantics is not defined.
-\end{omgroup}
-
-\begin{omgroup}[id=identifying]{OMDoc Theories as Content Dictionaries}
-\begin{oldpart}{The discussion here depends on the upcoming OM3 standard and MathML3
-    recommendation. The material is provisional on the expected outcome and may change in
-    the future.}
-
-
-\begin{omtext}
-  In \sref{mobj}, we have introduced the {\openmath} and {\cmathml} representations for
-  mathematical objects and formulae. One of the central concepts there was the notion that
-  the representation of a symbol includes a pointer to a document that defines its
-  meaning.  In the {\openmath} standard, these documents are identified as
-  \atwinalt{{\openmath} content dictionaries}{OpenMath}{content}{dictionary}, the
-  {\mathml} recommendation is not specific.  In the examples above, we have seen that
-  \omdoc documents can contain definitions of mathematical concepts and symbols, thus
-  they are also candidates for ``defining documents'' for symbols.  By the {\openmath}2
-  standard~\cite{BusCapCar:2oms04} suitable classes of \omdoc documents can act as
-  {\openmath} content dictionaries (\inlinedef{we call them \omdoc \adefii{content
-      dictionaries}{content dictionary}{OMDoc}}; see \sref{sub-languages.cd}).  The main
-  distinguishing feature of \omdoc content dictionaries is that they include
-  \element{theory} elements with {\twintoo{symbol}{declaration}s} (see
-  \sref{definitions}) that act as the targets for the pointers in the symbol
-  representations in {\openmath} and {\cmathml}. The theory name specified in the
-  \attribute[ns-attr=xml]{id}{theory} attribute of the \element{theory} element takes
-  the place of the {\snippet{CDname}} defined in the \atwinalt{{\openmath} content
-    dictionary}{OpenMath}{content}{dictionary}.
-\end{omtext}
-
-Furthermore, the {\indextoo{URI}} specified in the \attribute{cdbase}{theory} attribute
-is the one used for disambiguation on \element[ns-elt=om]{OMS} elements (see
-\sref{openmath} for a discussion).
-  
-For instance the symbol declaration in {\mylstref{symbol}} can be referenced as\ednote{is
-  this really the right {\texttt{cdbase?}}}
-\begin{lstlisting}
-<OMS cd="elAlg" name="monoid" cdbase="http://omdoc.org/algebra.omdoc"/>
-\end{lstlisting}
-if it occurs in a theory for elementary algebra whose
-\attribute[ns-attr=xml]{id}{theory} attribute has the value {\snippet{elAlg}} and which
-occurs in a resource with the URI \url{http://omdoc.org/algebra.omdoc} or if the
-\attribute{cdbase}{theory} attribute of the \element{theory} element has the value
-\url{http://omdoc.org/algebra.omdoc}.
-
-To be able to act as an {\openmath}2 {\twintoo{content dictionary}{format}}, \omdoc must
-be able to express {\twintoo{content dictionary}{metadata}} (see {\mylstref{omcd}} for an
-example). For this, the \element{theory} element carries some optional attributes that
-allow to specify the administrative metadata of {\openmath} content dictionaries.
-
-\begin{omtext}
-  The \attribute{cdstatus}{theory} attribute specifies \inlinedef{the {\defii{content
-        dictionary}{status}}}, which can take one of the following values:
-  \attval{official}{cdstatus}{theory} (i.e. approved by the {\openmath} Society),
-  \attval{experimental}{cdstatus}{theory} (i.e. under development and thus liable to
-  change), \attval{private}{cdstatus}{theory} (i.e. used by a private group of
-  {\openmath} users) or \attval{obsolete}{cdstatus}{theory} (i.e. only for archival
-  purposes). The attributes \attribute{cdversion}{theory} and
-  \attribute{cdrevision}{theory} jointly specify \inlinedef{the \defii{content
-      dictionary}{version number}, which consists of two parts, a major \defi{version} and
-    a \defi{revision}, both of which are non-negative integers}. For details between the
-  relation between content dictionary status and versions consult the {\openmath}
-  standard~\cite{BusCapCar:2oms04}.
-\end{omtext}
-
-\begin{omtext}
-Furthermore, the \element{theory} element can have the following attributes:
-\begin{description}
-\item[\attribute{cdbase}{theory}] for the {\twintoo{content dictionary}{base}} which, when
-  combined with the content dictionary name, forms a unique identifier for the content
-  dictionary. It may or may not refer to an actual location from which it can be
-  retrieved.
-\item[\attribute{cdurl}{theory}] for a valid URL where the source file for the content
-  dictionary encoding can be found.
-\item[\attribute{cdreviewdate}{theory}] for \inlinedef{the \defii{review}{date} of the
-    content dictionary, i.e. the date until which the content dictionary is guaranteed to
-    remain unchanged}.
-\end{description}
-\end{omtext}
-\end{oldpart}
-\end{omgroup}
-\end{module}
-\end{omgroup}
+\input{proofs}
 
 \begin{omgroup}[id=st.strict]{Strict Translations}
 

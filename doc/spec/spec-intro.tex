@@ -75,7 +75,8 @@ sub-languages, ``formal \omdoc'' (on the left side of Figure~\ref{fig:dimensions
   to their functional structure (as operator trees) and according to their layout in
   informal \omdoc (as layout trees). Note that any object can be represented in both ways
   and both ways of representation can be mixed at any level to account for mathematical
-  practice, e.g. for mixed formulae like $\{n\in\mathbb{N}\bigl|n>3 \;\text{ is prime}\}$.
+  practice, e.g. for mixed formulae like $\{n\in\mathbb{N}\bigl|\text{$n$ is prime and
+    $n>2$}\}$.
 \item[statements] are usually represented as \emph{natural language sentences (with
     formulae)}\footnote{or even larger text fragments made up of sentences like
     paragraphs} in informal settings and as (closed, logical) formulae in formal ones. The
@@ -413,6 +414,9 @@ attribute take precedence over the {\css} directives in the style sheet referenc
 {\attributeshort{class}} attribute on the \element{phrase} element. As a consequence,
 the word ``stylish'' would appear in green, bold italics.
 \end{omgroup}
+\input{metadata}
+\input{dc}
+\input{cc}
 \end{omgroup}
 
 %%% Local Variables: 

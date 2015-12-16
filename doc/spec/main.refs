@@ -1,96 +1,420 @@
-\@sref@def{spec@spec-intro}{page}{3}
+\@sref@def{spec@spec-intro}{page}{4}
 \@sref@def{spec@spec-intro}{label}{Section\nobreakspace  {}0}
-\@sref@def{spec@syntax-semantics}{page}{3}
+\@sref@def{spec@syntax-semantics}{page}{4}
 \@sref@def{spec@syntax-semantics}{label}{Subsection\nobreakspace  {}1.0}
-\@sref@def{spec@spec-intro.modular}{page}{6}
+\@sref@def{spec@spec-intro.modular}{page}{7}
 \@sref@def{spec@spec-intro.modular}{label}{Subsection\nobreakspace  {}1.1}
-\@sref@def{spec@omdoc-ns}{page}{6}
+\@sref@def{spec@omdoc-ns}{page}{7}
 \@sref@def{spec@omdoc-ns}{label}{Subsection\nobreakspace  {}1.2}
-\@sref@def{spec@common-attribs}{page}{7}
+\@sref@def{spec@common-attribs}{page}{8}
 \@sref@def{spec@common-attribs}{label}{Subsection\nobreakspace  {}1.3}
-\@sref@def{spec@mobj}{page}{10}
+\@sref@def{spec@metadatachap}{page}{10}
+\@sref@def{spec@metadatachap}{label}{Subsection\nobreakspace  {}1.4}
+\@sref@def{spec@metadata.def}{page}{10}
+\@sref@def{spec@metadata.def}{label}{Definition\nobreakspace  {}1.{1}}
+\@sref@def{spec@eldef.metadta}{page}{10}
+\@sref@def{spec@eldef.metadta}{label}{Definition ????}
+\@sref@def{spec@dc-elements}{page}{11}
+\@sref@def{spec@dc-elements}{label}{Subsection\nobreakspace  {}1.5}
+\@sref@def{spec@dc.title.def}{page}{11}
+\@sref@def{spec@dc.title.def}{label}{Definition\nobreakspace  {}1.{2}}
+\@sref@def{spec@eldef.dc:title}{page}{11}
+\@sref@def{spec@eldef.dc:title}{label}{Definition ????}
+\@sref@def{spec@dc.creator.def}{page}{11}
+\@sref@def{spec@dc.creator.def}{label}{Definition\nobreakspace  {}1.{3}}
+\@sref@def{spec@eldef.dc:creator}{page}{11}
+\@sref@def{spec@eldef.dc:creator}{label}{Definition ????}
+\@sref@def{spec@dc.contributor.def}{page}{12}
+\@sref@def{spec@dc.contributor.def}{label}{Definition\nobreakspace  {}1.{4}}
+\@sref@def{spec@eldef.dc:contributor}{page}{12}
+\@sref@def{spec@eldef.dc:contributor}{label}{Definition ????}
+\@sref@def{spec@dc.subject.def}{page}{12}
+\@sref@def{spec@dc.subject.def}{label}{Definition\nobreakspace  {}1.{5}}
+\@sref@def{spec@eldef.dc:subject}{page}{12}
+\@sref@def{spec@eldef.dc:subject}{label}{Definition ????}
+\@sref@def{spec@dc.description.def}{page}{12}
+\@sref@def{spec@dc.description.def}{label}{Definition\nobreakspace  {}1.{6}}
+\@sref@def{spec@dc.publisher.def}{page}{12}
+\@sref@def{spec@dc.publisher.def}{label}{Definition\nobreakspace  {}1.{7}}
+\@sref@def{spec@eldef.dc:publisher}{page}{12}
+\@sref@def{spec@eldef.dc:publisher}{label}{Definition ????}
+\@sref@def{spec@dc.date.def}{page}{12}
+\@sref@def{spec@dc.date.def}{label}{Definition\nobreakspace  {}1.{8}}
+\@sref@def{spec@eldef.dc:date}{page}{12}
+\@sref@def{spec@eldef.dc:date}{label}{Definition ????}
+\@sref@def{spec@dc.type.def}{page}{12}
+\@sref@def{spec@dc.type.def}{label}{Definition\nobreakspace  {}1.{9}}
+\@sref@def{spec@eldef.dc:type}{page}{13}
+\@sref@def{spec@eldef.dc:type}{label}{Definition ????}
+\@sref@def{spec@dc.format.def}{page}{13}
+\@sref@def{spec@dc.format.def}{label}{Definition\nobreakspace  {}1.{10}}
+\@sref@def{spec@eldef.dc:format}{page}{13}
+\@sref@def{spec@eldef.dc:format}{label}{Definition ????}
+\@sref@def{spec@dc.identifier.def}{page}{13}
+\@sref@def{spec@dc.identifier.def}{label}{Definition\nobreakspace  {}1.{11}}
+\@sref@def{spec@eldef.dc:identifier}{page}{13}
+\@sref@def{spec@eldef.dc:identifier}{label}{Definition ????}
+\@sref@def{spec@dc.source.def}{page}{13}
+\@sref@def{spec@dc.source.def}{label}{Definition\nobreakspace  {}1.{12}}
+\@sref@def{spec@eldef.dc:source}{page}{13}
+\@sref@def{spec@eldef.dc:source}{label}{Definition ????}
+\@sref@def{spec@dc.relation.def}{page}{13}
+\@sref@def{spec@dc.relation.def}{label}{Definition\nobreakspace  {}1.{13}}
+\@sref@def{spec@eldef.dc:relation}{page}{13}
+\@sref@def{spec@eldef.dc:relation}{label}{Definition ????}
+\@sref@def{spec@dc.language.def}{page}{13}
+\@sref@def{spec@dc.language.def}{label}{Definition\nobreakspace  {}1.{14}}
+\@sref@def{spec@eldef.dc:language}{page}{13}
+\@sref@def{spec@eldef.dc:language}{label}{Definition ????}
+\@sref@def{spec@dc.rights.def}{page}{13}
+\@sref@def{spec@dc.rights.def}{label}{Definition\nobreakspace  {}1.{15}}
+\@sref@def{spec@eldef.dc:rights}{page}{13}
+\@sref@def{spec@eldef.dc:rights}{label}{Definition ????}
+\@sref@def{spec@creativecommons}{page}{14}
+\@sref@def{spec@creativecommons}{label}{Subsection\nobreakspace  {}1.6}
+\@sref@def{spec@cc.license.def}{page}{15}
+\@sref@def{spec@cc.license.def}{label}{Definition\nobreakspace  {}1.{16}}
+\@sref@def{spec@eldef.cc:license}{page}{15}
+\@sref@def{spec@eldef.cc:license}{label}{Definition ????}
+\@sref@def{spec@cc.permissions.def}{page}{15}
+\@sref@def{spec@cc.permissions.def}{label}{Definition\nobreakspace  {}1.{17}}
+\@sref@def{spec@eldef.cc:permissions}{page}{15}
+\@sref@def{spec@eldef.cc:permissions}{label}{Definition ????}
+\@sref@def{spec@cc.prohibitions.def}{page}{16}
+\@sref@def{spec@cc.prohibitions.def}{label}{Definition\nobreakspace  {}1.{18}}
+\@sref@def{spec@eldef.cc:prohibitions}{page}{16}
+\@sref@def{spec@eldef.cc:prohibitions}{label}{Definition ????}
+\@sref@def{spec@cc.requirements.def}{page}{16}
+\@sref@def{spec@cc.requirements.def}{label}{Definition\nobreakspace  {}1.{19}}
+\@sref@def{spec@eldef.cc:requirements}{page}{16}
+\@sref@def{spec@eldef.cc:requirements}{label}{Definition ????}
+\@sref@def{spec@mobj}{page}{17}
 \@sref@def{spec@mobj}{label}{Section\nobreakspace  {}1}
-\@sref@def{spec@mobj.core}{page}{10}
+\@sref@def{spec@mobj.core}{page}{17}
 \@sref@def{spec@mobj.core}{label}{Subsection\nobreakspace  {}2.0}
-\@sref@def{spec@cd.def}{page}{10}
+\@sref@def{spec@cd.def}{page}{17}
 \@sref@def{spec@cd.def}{label}{Definition\nobreakspace  {}2.{1}}
-\@sref@def{spec@openmath}{page}{10}
+\@sref@def{spec@openmath}{page}{17}
 \@sref@def{spec@openmath}{label}{Subsubsection\nobreakspace  {}2.1.0}
-\@sref@def{spec@eldef.om:OMA}{page}{10}
+\@sref@def{spec@eldef.om:OMA}{page}{17}
 \@sref@def{spec@eldef.om:OMA}{label}{Definition ????}
-\@sref@def{spec@eldef.om:OMS}{page}{11}
+\@sref@def{spec@eldef.om:OMS}{page}{18}
 \@sref@def{spec@eldef.om:OMS}{label}{Definition ????}
-\@sref@def{spec@eldef.om:OMV}{page}{11}
+\@sref@def{spec@eldef.om:OMV}{page}{18}
 \@sref@def{spec@eldef.om:OMV}{label}{Definition ????}
-\@sref@def{spec@ombind.def}{page}{11}
+\@sref@def{spec@ombind.def}{page}{18}
 \@sref@def{spec@ombind.def}{label}{Definition\nobreakspace  {}2.{7}}
-\@sref@def{spec@eldef.om:OMBIND}{page}{11}
+\@sref@def{spec@eldef.om:OMBIND}{page}{18}
 \@sref@def{spec@eldef.om:OMBIND}{label}{Definition ????}
-\@sref@def{spec@eldef.om:OMBVAR}{page}{12}
+\@sref@def{spec@eldef.om:OMBVAR}{page}{19}
 \@sref@def{spec@eldef.om:OMBVAR}{label}{Definition ????}
-\@sref@def{spec@cmml}{page}{12}
+\@sref@def{spec@cmml}{page}{19}
 \@sref@def{spec@cmml}{label}{Subsubsection\nobreakspace  {}2.1.1}
-\@sref@def{spec@math.def}{page}{12}
+\@sref@def{spec@math.def}{page}{19}
 \@sref@def{spec@math.def}{label}{Definition\nobreakspace  {}2.{8}}
-\@sref@def{spec@eldef.m:math}{page}{12}
+\@sref@def{spec@eldef.m:math}{page}{19}
 \@sref@def{spec@eldef.m:math}{label}{Definition ????}
-\@sref@def{spec@eldef.m:ci}{page}{12}
+\@sref@def{spec@eldef.m:ci}{page}{19}
 \@sref@def{spec@eldef.m:ci}{label}{Definition ????}
-\@sref@def{spec@eldef.m:csymbol}{page}{12}
+\@sref@def{spec@eldef.m:csymbol}{page}{19}
 \@sref@def{spec@eldef.m:csymbol}{label}{Definition ????}
-\@sref@def{spec@eldef.m:apply}{page}{12}
+\@sref@def{spec@eldef.m:apply}{page}{19}
 \@sref@def{spec@eldef.m:apply}{label}{Definition ????}
-\@sref@def{spec@eldef.m:bind}{page}{12}
+\@sref@def{spec@eldef.m:bind}{page}{19}
 \@sref@def{spec@eldef.m:bind}{label}{Definition ????}
-\@sref@def{spec@eldef.m:bvars}{page}{12}
+\@sref@def{spec@eldef.m:bvars}{page}{19}
 \@sref@def{spec@eldef.m:bvars}{label}{Definition ????}
-\@sref@def{spec@annotating}{page}{12}
+\@sref@def{spec@annotating}{page}{19}
 \@sref@def{spec@annotating}{label}{Subsection\nobreakspace  {}2.1}
-\@sref@def{spec@omattr.def}{page}{12}
+\@sref@def{spec@omattr.def}{page}{19}
 \@sref@def{spec@omattr.def}{label}{Definition\nobreakspace  {}2.{9}}
-\@sref@def{spec@eldef.om:OMATTR}{page}{12}
+\@sref@def{spec@eldef.om:OMATTR}{page}{19}
 \@sref@def{spec@eldef.om:OMATTR}{label}{Definition ????}
-\@sref@def{spec@eldef.om:OMATP}{page}{12}
+\@sref@def{spec@eldef.om:OMATP}{page}{19}
 \@sref@def{spec@eldef.om:OMATP}{label}{Definition ????}
-\@sref@def{spec@omforeign.def}{page}{13}
+\@sref@def{spec@omforeign.def}{page}{20}
 \@sref@def{spec@omforeign.def}{label}{Definition\nobreakspace  {}2.{10}}
-\@sref@def{spec@eldef.om:OMFOREIGN}{page}{13}
+\@sref@def{spec@eldef.om:OMFOREIGN}{page}{20}
 \@sref@def{spec@eldef.om:OMFOREIGN}{label}{Definition ????}
-\@sref@def{spec@omattr.ex}{page}{13}
+\@sref@def{spec@omattr.ex}{page}{20}
 \@sref@def{spec@omattr.ex}{label}{Example\nobreakspace  {}2.{11}}
-\@sref@def{spec@semantics.def}{page}{14}
+\@sref@def{spec@semantics.def}{page}{21}
 \@sref@def{spec@semantics.def}{label}{Definition\nobreakspace  {}2.{12}}
-\@sref@def{spec@eldef.m:semantics}{page}{14}
+\@sref@def{spec@eldef.m:semantics}{page}{21}
 \@sref@def{spec@eldef.m:semantics}{label}{Definition ????}
-\@sref@def{spec@eldef.m:annotation-xml}{page}{14}
+\@sref@def{spec@eldef.m:annotation-xml}{page}{21}
 \@sref@def{spec@eldef.m:annotation-xml}{label}{Definition ????}
-\@sref@def{spec@eldef.m:annotation}{page}{14}
+\@sref@def{spec@eldef.m:annotation}{page}{21}
 \@sref@def{spec@eldef.m:annotation}{label}{Definition ????}
-\@sref@def{spec@semantics.ex}{page}{14}
+\@sref@def{spec@semantics.ex}{page}{21}
 \@sref@def{spec@semantics.ex}{label}{Example\nobreakspace  {}2.{13}}
-\@sref@def{spec@om.error}{page}{16}
+\@sref@def{spec@om.error}{page}{23}
 \@sref@def{spec@om.error}{label}{Subsection\nobreakspace  {}2.4}
-\@sref@def{spec@omi.def}{page}{16}
+\@sref@def{spec@omi.def}{page}{23}
 \@sref@def{spec@omi.def}{label}{Definition\nobreakspace  {}2.{15}}
-\@sref@def{spec@eldef.om:OMI}{page}{16}
+\@sref@def{spec@eldef.om:OMI}{page}{23}
 \@sref@def{spec@eldef.om:OMI}{label}{Definition ????}
-\@sref@def{spec@eldef.om:OMB}{page}{16}
+\@sref@def{spec@eldef.om:OMB}{page}{23}
 \@sref@def{spec@eldef.om:OMB}{label}{Definition ????}
-\@sref@def{spec@eldef.om:OMSTR}{page}{16}
+\@sref@def{spec@eldef.om:OMSTR}{page}{23}
 \@sref@def{spec@eldef.om:OMSTR}{label}{Definition ????}
-\@sref@def{spec@eldef.om:OMF}{page}{16}
+\@sref@def{spec@eldef.om:OMF}{page}{23}
 \@sref@def{spec@eldef.om:OMF}{label}{Definition ????}
-\@sref@def{spec@eldef.m:cn}{page}{16}
+\@sref@def{spec@eldef.m:cn}{page}{23}
 \@sref@def{spec@eldef.m:cn}{label}{Definition ????}
-\@sref@def{spec@ome.def}{page}{16}
+\@sref@def{spec@ome.def}{page}{23}
 \@sref@def{spec@ome.def}{label}{Definition\nobreakspace  {}2.{17}}
-\@sref@def{spec@eldef.om:OME}{page}{16}
+\@sref@def{spec@eldef.om:OME}{page}{23}
 \@sref@def{spec@eldef.om:OME}{label}{Definition ????}
-\@sref@def{spec@sem-var}{page}{16}
-\@sref@def{spec@sem-var}{label}{Subsection\nobreakspace  {}2.5}
-\@sref@def{spec@legacy}{page}{17}
-\@sref@def{spec@legacy}{label}{Subsection\nobreakspace  {}2.6}
-\@sref@def{spec@legacy.def}{page}{18}
+\@sref@def{spec@legacy}{page}{23}
+\@sref@def{spec@legacy}{label}{Subsection\nobreakspace  {}2.5}
+\@sref@def{spec@legacy.def}{page}{24}
 \@sref@def{spec@legacy.def}{label}{Definition\nobreakspace  {}2.{18}}
-\@sref@def{spec@eldef.legacy}{page}{18}
+\@sref@def{spec@eldef.legacy}{page}{24}
 \@sref@def{spec@eldef.legacy}{label}{Definition ????}
+\@sref@def{spec@pres}{page}{24}
+\@sref@def{spec@pres}{label}{Subsection\nobreakspace  {}2.6}
+\@sref@def{spec@sec:ntn-definition}{page}{25}
+\@sref@def{spec@sec:ntn-definition}{label}{Subsubsection\nobreakspace  {}2.7.0}
+\@sref@def{spec@statements}{page}{32}
+\@sref@def{spec@statements}{label}{Section\nobreakspace  {}2}
+\@sref@def{spec@statements-constitutive}{page}{32}
+\@sref@def{spec@statements-constitutive}{label}{Subsection\nobreakspace  {}3.0}
+\@sref@def{spec@conservative-extension.def}{page}{33}
+\@sref@def{spec@conservative-extension.def}{label}{Definition\nobreakspace  {}3.1}
+\@sref@def{spec@mtext}{page}{33}
+\@sref@def{spec@mtext}{label}{Subsection\nobreakspace  {}3.2}
+\@sref@def{spec@mathvernacular}{page}{33}
+\@sref@def{spec@mathvernacular}{label}{Subsubsection\nobreakspace  {}3.3.0}
+\@sref@def{spec@omtext.def}{page}{34}
+\@sref@def{spec@omtext.def}{label}{Definition\nobreakspace  {}3.{1}}
+\@sref@def{spec@omtext}{page}{34}
+\@sref@def{spec@omtext}{label}{Subsubsection\nobreakspace  {}3.3.1}
+\@sref@def{spec@phrases}{page}{35}
+\@sref@def{spec@phrases}{label}{Subsubsection\nobreakspace  {}3.3.2}
+\@sref@def{spec@span.def}{page}{35}
+\@sref@def{spec@span.def}{label}{Definition\nobreakspace  {}3.{2}}
+\@sref@def{spec@eldef.h:span}{page}{35}
+\@sref@def{spec@eldef.h:span}{label}{Definition ????}
+\@sref@def{spec@terms}{page}{37}
+\@sref@def{spec@terms}{label}{Subsubsection\nobreakspace  {}3.3.3}
+\@sref@def{spec@term.def}{page}{38}
+\@sref@def{spec@term.def}{label}{Definition\nobreakspace  {}3.{3}}
+\@sref@def{spec@eldef.term}{page}{38}
+\@sref@def{spec@eldef.term}{label}{Definition ????}
+\@sref@def{spec@rt}{page}{38}
+\@sref@def{spec@rt}{label}{Subsubsection\nobreakspace  {}3.3.4}
+\@sref@def{spec@idx.def}{page}{38}
+\@sref@def{spec@idx.def}{label}{Definition\nobreakspace  {}3.{4}}
+\@sref@def{spec@eldef.idx}{page}{38}
+\@sref@def{spec@eldef.idx}{label}{Definition ????}
+\@sref@def{spec@eldef.idt}{page}{39}
+\@sref@def{spec@eldef.idt}{label}{Definition ????}
+\@sref@def{spec@eldef.ide}{page}{39}
+\@sref@def{spec@eldef.ide}{label}{Definition ????}
+\@sref@def{spec@eldef.idp}{page}{39}
+\@sref@def{spec@eldef.idp}{label}{Definition ????}
+\@sref@def{spec@note.def}{page}{39}
+\@sref@def{spec@note.def}{label}{Definition\nobreakspace  {}3.{5}}
+\@sref@def{spec@eldef.note}{page}{39}
+\@sref@def{spec@eldef.note}{label}{Definition ????}
+\@sref@def{spec@constitutive-statements}{page}{40}
+\@sref@def{spec@constitutive-statements}{label}{Subsection\nobreakspace  {}3.3}
+\@sref@def{spec@symbol-dec}{page}{40}
+\@sref@def{spec@symbol-dec}{label}{Subsubsection\nobreakspace  {}3.4.0}
+\@sref@def{spec@symbol.def}{page}{40}
+\@sref@def{spec@symbol.def}{label}{Definition\nobreakspace  {}3.{6}}
+\@sref@def{spec@eldef.symbol}{page}{40}
+\@sref@def{spec@eldef.symbol}{label}{Definition ????}
+\@sref@def{spec@axioms}{page}{41}
+\@sref@def{spec@axioms}{label}{Subsubsection\nobreakspace  {}3.4.1}
+\@sref@def{spec@axiom.def}{page}{42}
+\@sref@def{spec@axiom.def}{label}{Definition\nobreakspace  {}3.{7}}
+\@sref@def{spec@eldef.axiom}{page}{42}
+\@sref@def{spec@eldef.axiom}{label}{Definition ????}
+\@sref@def{spec@type-axioms}{page}{42}
+\@sref@def{spec@type-axioms}{label}{Subsubsection\nobreakspace  {}3.4.2}
+\@sref@def{spec@type.def}{page}{42}
+\@sref@def{spec@type.def}{label}{Definition\nobreakspace  {}3.{8}}
+\@sref@def{spec@eldef.type}{page}{42}
+\@sref@def{spec@eldef.type}{label}{Definition ????}
+\@sref@def{spec@definitions}{page}{42}
+\@sref@def{spec@definitions}{label}{Subsubsection\nobreakspace  {}3.4.3}
+\@sref@def{spec@definition.def}{page}{43}
+\@sref@def{spec@definition.def}{label}{Definition\nobreakspace  {}3.{9}}
+\@sref@def{spec@eldef.definition}{page}{43}
+\@sref@def{spec@eldef.definition}{label}{Definition ????}
+\@sref@def{spec@assertion}{page}{43}
+\@sref@def{spec@assertion}{label}{Subsection\nobreakspace  {}3.4}
+\@sref@def{spec@assertions}{page}{43}
+\@sref@def{spec@assertions}{label}{Subsubsection\nobreakspace  {}3.5.0}
+\@sref@def{spec@assertion.def}{page}{43}
+\@sref@def{spec@assertion.def}{label}{Definition\nobreakspace  {}3.{10}}
+\@sref@def{spec@eldef.assertion}{page}{43}
+\@sref@def{spec@eldef.assertion}{label}{Definition ????}
+\@sref@def{spec@assertion.def}{page}{44}
+\@sref@def{spec@assertion.def}{label}{Definition\nobreakspace  {}3.{11}}
+\@sref@def{spec@type-assertions}{page}{45}
+\@sref@def{spec@type-assertions}{label}{Subsubsection\nobreakspace  {}3.5.1}
+\@sref@def{spec@alternative}{page}{46}
+\@sref@def{spec@alternative}{label}{Subsubsection\nobreakspace  {}3.5.2}
+\@sref@def{spec@alternative.def}{page}{46}
+\@sref@def{spec@alternative.def}{label}{Definition\nobreakspace  {}3.{12}}
+\@sref@def{spec@eldef.alternative }{page}{46}
+\@sref@def{spec@eldef.alternative }{label}{Definition ????}
+\@sref@def{spec@assertional-statements}{page}{46}
+\@sref@def{spec@assertional-statements}{label}{Subsubsection\nobreakspace  {}3.5.3}
+\@sref@def{spec@assertional.def}{page}{47}
+\@sref@def{spec@assertional.def}{label}{Definition\nobreakspace  {}3.5.4}
+\@sref@def{spec@examples}{page}{47}
+\@sref@def{spec@examples}{label}{Subsection\nobreakspace  {}3.5}
+\@sref@def{spec@example.def}{page}{47}
+\@sref@def{spec@example.def}{label}{Definition\nobreakspace  {}3.{13}}
+\@sref@def{spec@eldef.example}{page}{47}
+\@sref@def{spec@eldef.example}{label}{Definition ????}
+\@sref@def{spec@inline-statements}{page}{48}
+\@sref@def{spec@inline-statements}{label}{Subsection\nobreakspace  {}3.6}
+\@sref@def{spec@proofs}{page}{49}
+\@sref@def{spec@proofs}{label}{Subsection\nobreakspace  {}3.7}
+\@sref@def{spec@proof.conceptual.def}{page}{49}
+\@sref@def{spec@proof.conceptual.def}{label}{Definition\nobreakspace  {}3.8}
+\@sref@def{spec@proof-text}{page}{50}
+\@sref@def{spec@proof-text}{label}{Subsubsection\nobreakspace  {}3.8.0}
+\@sref@def{spec@proof.def}{page}{51}
+\@sref@def{spec@proof.def}{label}{Definition\nobreakspace  {}3.{14}}
+\@sref@def{spec@eldef.proof}{page}{51}
+\@sref@def{spec@eldef.proof}{label}{Definition ????}
+\@sref@def{spec@eldef.derive}{page}{51}
+\@sref@def{spec@eldef.derive}{label}{Definition ????}
+\@sref@def{spec@eldef.hypothesis}{page}{52}
+\@sref@def{spec@eldef.hypothesis}{label}{Definition ????}
+\@sref@def{spec@proofs.justifications}{page}{52}
+\@sref@def{spec@proofs.justifications}{label}{Subsubsection\nobreakspace  {}3.8.1}
+\@sref@def{spec@method.def}{page}{53}
+\@sref@def{spec@method.def}{label}{Definition\nobreakspace  {}3.{15}}
+\@sref@def{spec@eldef.method}{page}{53}
+\@sref@def{spec@eldef.method}{label}{Definition ????}
+\@sref@def{spec@premise.def}{page}{53}
+\@sref@def{spec@premise.def}{label}{Definition\nobreakspace  {}3.{16}}
+\@sref@def{spec@eldef.premise}{page}{53}
+\@sref@def{spec@eldef.premise}{label}{Definition ????}
+\@sref@def{spec@proofs.scoping}{page}{55}
+\@sref@def{spec@proofs.scoping}{label}{Subsubsection\nobreakspace  {}3.8.2}
+\@sref@def{spec@proofobjects}{page}{57}
+\@sref@def{spec@proofobjects}{label}{Subsubsection\nobreakspace  {}3.8.3}
+\@sref@def{spec@proofobject.def}{page}{57}
+\@sref@def{spec@proofobject.def}{label}{Definition\nobreakspace  {}3.{17}}
+\@sref@def{spec@eldef.proofobject}{page}{57}
+\@sref@def{spec@eldef.proofobject}{label}{Definition ????}
+\@sref@def{spec@st.strict}{page}{57}
+\@sref@def{spec@st.strict}{label}{Subsection\nobreakspace  {}3.8}
+\@sref@def{spec@theories-contexts}{page}{59}
+\@sref@def{spec@theories-contexts}{label}{Section\nobreakspace  {}3}
+\@sref@def{spec@theory.def}{page}{59}
+\@sref@def{spec@theory.def}{label}{Definition\nobreakspace  {}4.{1}}
+\@sref@def{spec@eldef.theory}{page}{59}
+\@sref@def{spec@eldef.theory}{label}{Definition ????}
+\@sref@def{spec@tgroup.def}{page}{59}
+\@sref@def{spec@tgroup.def}{label}{Definition\nobreakspace  {}4.{2}}
+\@sref@def{spec@eldef.tgroup}{page}{59}
+\@sref@def{spec@eldef.tgroup}{label}{Definition ????}
+\@sref@def{spec@inheritance}{page}{59}
+\@sref@def{spec@inheritance}{label}{Subsubsection\nobreakspace  {}4.1.0}
+\@sref@def{spec@imports.def}{page}{59}
+\@sref@def{spec@imports.def}{label}{Definition\nobreakspace  {}4.{3}}
+\@sref@def{spec@eldef.imports}{page}{59}
+\@sref@def{spec@eldef.imports}{label}{Definition ????}
+\@sref@def{spec@base.uri.def}{page}{60}
+\@sref@def{spec@base.uri.def}{label}{Definition\nobreakspace  {}4.1.1}
+\@sref@def{spec@identifying}{page}{61}
+\@sref@def{spec@identifying}{label}{Subsubsection\nobreakspace  {}4.1.1}
+\@sref@def{spec@complex-theories}{page}{62}
+\@sref@def{spec@complex-theories}{label}{Subsection\nobreakspace  {}4.1}
+\@sref@def{spec@morphisms}{page}{62}
+\@sref@def{spec@morphisms}{label}{Subsubsection\nobreakspace  {}4.2.0}
+\@sref@def{spec@morphism.def}{page}{64}
+\@sref@def{spec@morphism.def}{label}{Definition\nobreakspace  {}4.{4}}
+\@sref@def{spec@eldef.morphism}{page}{64}
+\@sref@def{spec@eldef.morphism}{label}{Definition ????}
+\@sref@def{spec@theory-inclusions}{page}{65}
+\@sref@def{spec@theory-inclusions}{label}{Subsubsection\nobreakspace  {}4.2.1}
+\@sref@def{spec@theory-inclusion.def}{page}{65}
+\@sref@def{spec@theory-inclusion.def}{label}{Definition\nobreakspace  {}4.2.2}
+\@sref@def{spec@structurally-included.def}{page}{65}
+\@sref@def{spec@structurally-included.def}{label}{Definition\nobreakspace  {}4.2.2}
+\@sref@def{spec@structural.theory.inclusion.def}{page}{65}
+\@sref@def{spec@structural.theory.inclusion.def}{label}{Definition\nobreakspace  {}4.{5}}
+\@sref@def{spec@conservative.def}{page}{66}
+\@sref@def{spec@conservative.def}{label}{Definition\nobreakspace  {}4.2.2}
+\@sref@def{spec@theory-inclusion.def}{page}{66}
+\@sref@def{spec@theory-inclusion.def}{label}{Definition\nobreakspace  {}4.{6}}
+\@sref@def{spec@eldef.theory-inclusion}{page}{66}
+\@sref@def{spec@eldef.theory-inclusion}{label}{Definition ????}
+\@sref@def{spec@obligation.def}{page}{66}
+\@sref@def{spec@obligation.def}{label}{Definition\nobreakspace  {}4.{7}}
+\@sref@def{spec@eldef.obligation}{page}{66}
+\@sref@def{spec@eldef.obligation}{label}{Definition ????}
+\@sref@def{spec@restricting-inference}{page}{66}
+\@sref@def{spec@restricting-inference}{label}{Subsubsection\nobreakspace  {}4.2.2}
+\@sref@def{spec@inclusion.def}{page}{67}
+\@sref@def{spec@inclusion.def}{label}{Definition\nobreakspace  {}4.{8}}
+\@sref@def{spec@eldef.inclusion}{page}{67}
+\@sref@def{spec@eldef.inclusion}{label}{Definition ????}
+\@sref@def{spec@local.theory.inclusion}{page}{67}
+\@sref@def{spec@local.theory.inclusion}{label}{Definition\nobreakspace  {}4.2.3}
+\@sref@def{spec@axiom-inclusion.def}{page}{67}
+\@sref@def{spec@axiom-inclusion.def}{label}{Definition\nobreakspace  {}4.{9}}
+\@sref@def{spec@eldef.axiom-inclusion}{page}{67}
+\@sref@def{spec@eldef.axiom-inclusion}{label}{Definition ????}
+\@sref@def{spec@induced-assertions}{page}{68}
+\@sref@def{spec@induced-assertions}{label}{Subsubsection\nobreakspace  {}4.2.3}
+\@sref@def{spec@development-graphs}{page}{68}
+\@sref@def{spec@development-graphs}{label}{Subsubsection\nobreakspace  {}4.2.4}
+\@sref@def{spec@axiom-inclusion.def}{page}{69}
+\@sref@def{spec@axiom-inclusion.def}{label}{Definition\nobreakspace  {}4.{10}}
+\@sref@def{spec@decomposition.def}{page}{70}
+\@sref@def{spec@decomposition.def}{label}{Definition\nobreakspace  {}4.{11}}
+\@sref@def{spec@eldef.decomposition}{page}{70}
+\@sref@def{spec@eldef.decomposition}{label}{Definition ????}
+\@sref@def{spec@path-just.def}{page}{70}
+\@sref@def{spec@path-just.def}{label}{Definition\nobreakspace  {}4.{12}}
+\@sref@def{spec@eldef.path-just}{page}{70}
+\@sref@def{spec@eldef.path-just}{label}{Definition ????}
+\@sref@def{spec@omdoc-infrastructure}{page}{73}
+\@sref@def{spec@omdoc-infrastructure}{label}{Section\nobreakspace  {}4}
+\@sref@def{spec@knowledge-structured.def}{page}{73}
+\@sref@def{spec@knowledge-structured.def}{label}{Definition\nobreakspace  {}5}
+\@sref@def{spec@root}{page}{73}
+\@sref@def{spec@root}{label}{Subsection\nobreakspace  {}5.0}
+\@sref@def{spec@omdoc.def}{page}{73}
+\@sref@def{spec@omdoc.def}{label}{Definition\nobreakspace  {}5.{1}}
+\@sref@def{spec@eldef.omdoc}{page}{73}
+\@sref@def{spec@eldef.omdoc}{label}{Definition ????}
+\@sref@def{spec@docmetadata}{page}{74}
+\@sref@def{spec@docmetadata}{label}{Subsection\nobreakspace  {}5.1}
+\@sref@def{spec@metadata.def}{page}{74}
+\@sref@def{spec@metadata.def}{label}{Definition\nobreakspace  {}5.{2}}
+\@sref@def{spec@eldef.metadata}{page}{74}
+\@sref@def{spec@eldef.metadata}{label}{Definition ????}
+\@sref@def{spec@comment}{page}{75}
+\@sref@def{spec@comment}{label}{Subsection\nobreakspace  {}5.2}
+\@sref@def{spec@ignore.def}{page}{75}
+\@sref@def{spec@ignore.def}{label}{Definition\nobreakspace  {}5.{3}}
+\@sref@def{spec@eldef.ignore}{page}{75}
+\@sref@def{spec@eldef.ignore}{label}{Definition ????}
+\@sref@def{spec@sectioning}{page}{76}
+\@sref@def{spec@sectioning}{label}{Subsection\nobreakspace  {}5.3}
+\@sref@def{spec@sharing}{page}{76}
+\@sref@def{spec@sharing}{label}{Subsection\nobreakspace  {}5.4}
+\@sref@def{spec@ref.def}{page}{76}
+\@sref@def{spec@ref.def}{label}{Definition\nobreakspace  {}5.{5}}
+\@sref@def{spec@eldef.ref}{page}{76}
+\@sref@def{spec@eldef.ref}{label}{Definition ????}
+\@sref@def{spec@ref-target.def}{page}{76}
+\@sref@def{spec@ref-target.def}{label}{Definition\nobreakspace  {}5.5}
+\@sref@def{spec@docalt.def}{page}{78}
+\@sref@def{spec@docalt.def}{label}{Definition\nobreakspace  {}5.{6}}
+\@sref@def{spec@eldef.docalt}{page}{78}
+\@sref@def{spec@eldef.docalt}{label}{Definition ????}
+\@sref@def{spec@docmatter}{page}{78}
+\@sref@def{spec@docmatter}{label}{Subsection\nobreakspace  {}5.6}
