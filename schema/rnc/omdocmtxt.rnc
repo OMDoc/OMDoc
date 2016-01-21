@@ -28,7 +28,8 @@ statementtype = "axiom" | "definition" | "example" | "proof" |
 
 assertiontype = "assertion" | "theorem" | "lemma" | "corollary" | "proposition" | 
     		"conjecture" | "false-conjecture" | "obligation" |
-                "postulate" | "formula" | "assumption" | "rule" 
+                "postulate" | "formula" | "assumption" | "rule" |
+		"observation" | "remark"
 
 verbalizes.attrib = attribute verbalizes {omdocrefs}
 omtext.type.attrib = attribute type {rsttype | statementtype | assertiontype | xsd:anyURI}
