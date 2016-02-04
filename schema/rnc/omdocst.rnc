@@ -20,7 +20,7 @@ symbol.attribs = scope.attrib &
 symbol.model = metadata.class & type*
 symbol = element symbol {tref|(symbol.attribs & symbol.model)}
 
-forname.attrib = attribute for {list {xsd:anyURI}}
+forname.attrib = attribute for {list {xsd:anyURI+}}
 axiom.attribs = constitutive.attribs & forname.attrib & attribute type {xsd:string}?
 axiom.model = metadata.class & mcf.class
 axiom = element axiom {tref|(axiom.attribs & axiom.model)}
