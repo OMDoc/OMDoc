@@ -37,8 +37,8 @@ index.attrib = attribute index {xsd:NMTOKEN}
 parallel.attribs = verbalizes.attrib? & index.attrib? & omtext.type.attrib?
 
 omtext.attribs = toplevel.attribs & 
-                         omtext.type.attrib? & 
-                         attribute for {omdocref}? & 
+                         omtext.type.attrib? &
+			 for.attrib? & 
 			 attribute from {omdocref}? &
 			 verbalizes.attrib?
 omtext.model = mcf.class 
@@ -48,13 +48,23 @@ CMP.attribs = xml.lang.attrib &  id.attribs
 CMP.model = plike.class
 CMP = element CMP {tref|(CMP.attribs & CMP.model)}
 
-term.attribs = id.attribs & 
-                     attribute role {text}? & 
-                     attribute cdbase {xsd:anyURI}? & 
-                     attribute cd {xsd:NCName}? & 
-                     attribute name {xsd:NCName}
+role.attrib = attribute role {text}?
+
+term.attribs = id.attribs & role.attrib & triple.att
 term.model = inline.model
 term = element term {tref|(term.attribs & term.model)}
+
+declaration.attribs = id.attribs & role.attrib & name.attrib
+declaration.model = text & inline.class &  identifiers* & restriction* 
+declaration= element declaration {tref|(declaration.attribs & declaration.model)}
+
+identifiers.attribs = id.attribs & attribute refs {omdocrefs}
+identifiers.model = text & inline.class &  identifiers* & restriction* 
+identifiers= element identifiers {tref|(identifiers.attribs & identifiers.model)}
+
+restriction.attribs = id.attribs & role.attrib & for.attrib
+restriction.model = inline.model		     	       
+restriction = element restriction {tref|(restriction.attribs & restriction.model)}
 
 FMP.attribs = id.attribs &  attribute logic {xsd:NMTOKEN}?
 FMP.model = (assumption*,conclusion*)|mobj
@@ -109,6 +119,7 @@ post = element post {id.attribs & inline.model}
 fallback = element fallback {id.attribs & inline.model}
 
 # what can go into a mathematical text
-op.class = \term* & mobj* & note*  & idx*  & citation*  & oref*
+op.class = \term* & mobj* & note*  & idx*  & citation*  & oref* & 
+                 declaration* 
 inline.class &=op.class
 omdoc.class &= oref*
