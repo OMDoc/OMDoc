@@ -6,7 +6,6 @@
 \usetikzlibrary{mmt}
 \usepackage{calbf}
 \usepackage[show]{ed}
-\usepackage[eso-foot,today]{svninfo}
 \usepackage[hyperref=auto,style=alphabetic,isbn=false]{biblatex}
 \usepackage{bibtweaks}
 \addbibresource{kwarcpubs.bib}
@@ -20,8 +19,6 @@
 
 \usepackage{stex-logo}
 \usepackage{hyperref} 
-\svnInfo $Id: note.tex 9333 2014-05-04 10:25:05Z kohlhase $
-\svnKeyword $HeadURL: https://svn.omdoc.org/repos/omdoc/trunk/doc/blue/examples/note.tex $
 \def\KWARCslides#1{/Users/kohlhase/stc/slides/#1} 
 \def\mmt{MMT\xspace}
 \def\omdoc{OMDoc\xspace}
@@ -62,7 +59,7 @@ statements: axiom/definition, theorem, proof. This practice neglects a type of s
 that is at least as important for mathematical practice: examples.  Alison Pease and
 Ursula Martin have a chart of the polymath discussion on a math olympiad problem and find
 that 33\% of the dialogue turns in the proof is about examples. And they keep being strong
-all across the 74 minute length of the proof endeavor~\cite{PeaMar:sfmm12}. In another
+all across the 74 minute length of the proof endeavour~\cite{PeaMar:sfmm12}. In another
 study, Ursula records that about 15\% of the questions on Mathoverflow are about examples
 for some property~\cite{MarPea:wmtapm13}. In this note, we are most interested in the
 structure and epistemic links of examples, so that we can model them adequately in
@@ -412,6 +409,59 @@ compose with theory morphisms in the obvious ways: the set of antimorphisms is c
 under extension with morphisms by post-composition and by pre-composition of kernel
 morphisms.
 
+\subsection{Example-Only Theories}
+\ednote{MK: there must be a better name for such theories}
+\begin{wrapfigure}r{3.7cm}\vspace*{-1em}
+  \begin{tikzpicture}
+    \node[thy] (set) at (2,0) {$\cn{set}$};
+    \node[thy] (f) at (1,1) {$\cn{field}$};
+    \node[thy] (cs) at (3,1) {$\cn{CS}$};
+    \node[thy] (csf) at (2,2) {$\cn{CSF}$};
+    \node[thy] (vr) at (0,2) {$\cn{VR}$};
+    \node[thy] (nat) at (3,0) {$\cn{Nat}$};
+    \draw[struct] (set) -- (f);
+    \draw[include] (set) -- (cs);
+    \draw[include] (nat) -- (cs);
+    \draw[struct] (f) -- (vr);
+    \draw[include] (f) -- (csf);
+    \draw[struct] (cs) -- (csf);
+    \draw[view] (vr) -- node[above] {$\cn{e}:\phi$}(csf);
+    \npushout[.8]{set}{csf};
+  \end{tikzpicture}\vspace*{-1em}
+\end{wrapfigure}
+In the previous sections, we claimed that ``examples are views'' (of various kinds),
+mainly because the motivating examples for examples, the target theories of the views were
+always interesting in their own right. But this is not always the case, consider for
+instance the case of the cartesian space $F^n$ which forms a (an example of a) vector
+space if $F$ is a field. Arguably the theory of ``cartesian spaces of fields'' is not
+``interesting'' in its own right -- though its instances $\mathbb{R}^n$ and $\mathbb{C}^n$
+may be. We model this in the diagram on the right, where $\cn{set}$ is a base theory that
+only introduces a set $S$. The theory $\cn{CS}$ introduces the Cartesian space $S^n$. On
+the other hand $\cn{set}$ is used in $\cn{field}$ base the base set, and $\cn{field}$ is
+in turn used as the scalar field in the theory $\cn{VR}$ of vector spaces. In this
+situation, the example we have in mind can be modeled as the theory $\cn{CSF}$ together
+with the view $\cn{e}$, which has the assignment
+\[
+\phi:=\left\{\begin{array}{rcl}
+a\cdot(v_1,\ldots,v_n) & \mapsto & (a\cdot v_1,\ldots a\cdot v_n)\\
+(v_1,\ldots,v_n)+(w_1,\ldots,w_n) & \mapsto & (v_1+w_1,\ldots v_n\cdot w_n)\\
+0 & \mapsto & (0,\ldots,0) \\
+-(v_1,\ldots,v_n) & \mapsto & (-\cdot v_1,\ldots -\cdot v_n)\\
+             \end{array}\right.
+\]
+where $+$, $\cdot$, $0$, and $-$ on the right hand side are the operations of the field
+$F$.
+
+Note that incidentally, in this example the example target theory $\cn{CSF}$ arises as the
+push-out of the theories $\cn{field}$ and $\cn{CS}$ over the base $\cn{set}$, which means
+that it is indeed ``uninteresting'' since it can be computed from the two morphisms
+between these three.  Given theory expression operators on theories in \mmt, (see
+e.g.~\cite{CarCon:tpc12} for a proposal in the context of MathScheme), this could be
+representing $\cn{CSV}$ as the ``unnamed'' theory expression
+$\cn{F}\uplus_{\cn{set}}\cn{CS}$. It would be interesting to see whether all cases of
+``example-only theories'' can be expressed as theory expressions.
+
+
 \section{Induced Examples and Practical Matters}
 
 \begin{wrapfigure}r{5.5cm}\vspace*{-1.5em}
@@ -506,7 +556,7 @@ and conservatively.
 In the future we want to study how the model of examples proposed here interacts with
 realms~\cite{CarFarKoh:rsckmt14}, whether we can extend it to counter-examples for
 conjectures, and which mathematical practices with examples can be supported in active
-documents. Furthermore, there is clearly a relation between antimorhpisms, the semantic
+documents. Furthermore, there is clearly a relation between antimorphisms, the semantic
 antonym relation (see~\cite{Kohlhase:dmesmgm14} for a discussion of lexical relations and
 their relation with theory morphisms), and counter-examples, which we want to study in the
 future.
@@ -526,9 +576,12 @@ future.
 %  LocalWords:  diffcont Mersenne mathcal mathcal providecommand myxscale myyscale natmon
 %  LocalWords:  natmon.ex termref termref conass conass neutax nmmtar modelsof modelsof
 %  LocalWords:  modelsof xscale yscale ns setdiff antimorphism elalg antimorphisms ng mtt
-%  LocalWords:  NonMonGrp Rabe mkm11 IanJucKoh sdm14 CarFarKoh rsckmt14
+%  LocalWords:  NonMonGrp Rabe mkm11 IanJucKoh sdm14 CarFarKoh rsckmt14 monoids lstinline
 
 %%% Local Variables:
 %%% mode: latex
 %%% TeX-master: t
 %%% End:
+%  LocalWords:  emphasized centering so-tg arith ool cdot tteen characterize csf npushout
+%  LocalWords:  rcl mapsto tpc12 uplus cgp cgp rp realization Flexiformal langle cgroup
+%  LocalWords:  flexiformalize realized dmesmgm14
