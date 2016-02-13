@@ -6,7 +6,7 @@
 default namespace omdoc = "http://omdoc.org/ns"
 omdoc.class &= adt*
 
-adt.sym.attrib = id.attribs,scope.attrib,attribute name {xsd:NCName}
+adt.sym.attrib = id.attribs,scope.attrib,name.attrib
 
 # adts are abstract data types, they are short forms for groups of symbols 
 # and their definitions, therefore, they have much the same attributes.

@@ -55,8 +55,7 @@ omlet.data = attribute data {xsd:anyURI}|(private|code)
 omlet.model = metadata.class &  omlet.param &  omlet.data
 omlet = element omlet {tref|(omlet.attribs & omlet.model)}
 
-param.attribs = id.attribs & 
-   attribute name      {xsd:string} & 
+param.attribs = id.attribs & name.attrib & 
    attribute value     {xsd:string}? & 
    attribute valuetype {"data" | "ref" | "object"}?
 param.model =    mobj?

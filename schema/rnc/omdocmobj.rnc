@@ -8,6 +8,9 @@ default namespace omdoc = "http://omdoc.org/ns"
 namespace om = "http://www.openmath.org/OpenMath"
 namespace local = ""
 
+name.attrib = attribute name {xsd:NCName}?  
+triple.att = attribute cdbase {xsd:anyURI}? & name.attrib & attribute cd {xsd:NCName}?
+
 # the legacy element, it can encapsulate the non-migrated formats
 legacy.attribs = id.attribs & 
                       attribute formalism {xsd:anyURI}? & 

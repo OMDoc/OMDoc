@@ -14,7 +14,7 @@ sym.role.attrib = attribute role {"type" | "sort" | "object" |
 theory-unique  = xsd:NCName 
 scope.attrib = attribute scope {"global" | "local"}?
 symbol.attribs = scope.attrib & 
-                         attribute name {theory-unique}? & 
+                         name.attrib & 
 	  		 constitutive.attribs & 
           	         sym.role.attrib? 
 symbol.model = metadata.class & type*

@@ -58,9 +58,6 @@ iterexp = grammar {include "mathml3.rnc"
 		   TableRowExpression |= parent render.class
 		   TableCellExpression |= parent render.class}
 
- name.attrib = attribute name {xsd:NCName}?  
- triple.att = attribute cdbase {xsd:anyURI}? & name.attrib & attribute cd {xsd:NCName}?
-
 notation.attribs = id.attribs & triple.att	      
 notation.model = metadata.class & CMP* & prototype+ & rendering*
 notation =  element notation {tref|(notation.attribs & notation.model)}
