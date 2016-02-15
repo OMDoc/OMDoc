@@ -2,9 +2,9 @@
 
 ;; nomdoc-mathsearch.el --- nOMDoc math search mode & related routines
 
-;; Author and maintainer: Darko Pesikan <dpesikan@gmail.com>
+;; Author and maintainer: Darko Pesikan <d.pesikan@jacobs-alumni.de>
 ;; Contacts: Michael Kohlhase <m.kohlhase@jacobs-university.de>, 
-;;           Darko Pesikan <dpesikan@gmail.com>
+;;           Darko Pesikan <d.pesikan@jacobs-alumni.de>
 ;; Note: Mode derived from nXML mode
 ;; Keywords: nXML OMDoc (Open Mathematical Documents)
 ;; Created: April 2007
