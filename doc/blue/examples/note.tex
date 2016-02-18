@@ -332,25 +332,21 @@ mention it.
 Note that immediate examples can be ``compiled'' into a theory graph. For instance the one
 in Figure  ~\ref  {fig:simple-object} directly corresponds to the theory graph in
 Figure~\ref{fig:so-tg}
+
 \begin{figure}[ht]\centering
 \begin{tikzpicture}[scale=2]
-  \node[thy] (arith) at (0,0) {\begin{tabular}{l}
-                                 \textsf{NatArith}\\\hline
-                                 $\mathbb{N},+,*,0,1$
-                               \end{tabular}};
-  \node[thy] (prime) at (-1.5,1) {\begin{tabular}{l}
-                                 \textsf{prime}\\\hline
-                                 $prim:\mathbb{N}\rightarrow \mathbb{B}ool$\\\hline
-                                 $prim(x)\Leftrightarrow \not\exists i<n,m<x.n\cdot m=x$
-                               \end{tabular}};
-  \node[thy] (tteen) at (1,1.5) {\begin{tabular}{l}
-                                 \textsf{prime-ex}\\\hline
-                                 $n:\mathbb{N}$\\\hline
-                                 $prim(n)$
-                               \end{tabular}};
+  \node[thy] (arith) at (-1.5,0) {$\mmtthy{NatArith}{\mathbb{N},+,*,0,1,<}{}$};
+  \node[thy] (prime) at (-1.5,1) {$\mmtthy{prime}{prim:\bbN\rightarrow \bbB}{prim(x)\Leftrightarrow \not\exists i<n,m<x.n\cdot m=x}$};
+  \node[thy] (ps) at (1,0) {$\mmtthy{propset}{S:\cn{tpye}, p:S\rightarrow \bbB}{}$};
+  \node[thy] (neprop) at (2.5,1) {$\mmtthy{neprop}{n:S}{\cn{ne}:p(n)}$};
+  \node[thy] (pne) at (1,2) {$\mmtthy{neprim}{}{}$};
   \draw[conservative] (arith) -- (prime);
-  \draw[include] (prime) -- (tteen);
-  \draw[view] (tteen) -- node[right] {$n:=13$} (arith);
+  \draw[include] (prime) -- (pne);
+  \draw[view] (pne) to[bend left=30] node[right] {$n:=13$} (arith);
+  \draw[include] (ps) -- (neprop);
+  \draw[view] (ps) -- node[above,at start]{$\phi$}(prime);
+  \draw[view] (neprop) -- node[above]{$\phi$}(pne);
+  \npushout[.8]{ps}{pne};
 \end{tikzpicture}
 \caption{The Immediate Example from Figure ~\ref {fig:simple-object} as a Theory Graph}\label{fig:so-tg}
 \end{figure}
