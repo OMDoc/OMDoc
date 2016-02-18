@@ -23,6 +23,7 @@
 \def\mmt{MMT\xspace}
 \def\omdoc{OMDoc\xspace}
 \def\omdocv#1{OMDoc#1\xspace}
+\def\smglom{SMGloM}
 
 \lstset{language=[1.6]OMDoc,basicstyle=\footnotesize\sf,columns=fullflexible}
 \lstset{mathescape,aboveskip=-.5em,belowskip=-.5em}
@@ -415,7 +416,7 @@ $\cn{i}\colon\setdiff\sigma{\cn{j}}$: $\cn{i}$ is the name, $\sigma$ the assignm
 $j$ the \defemph{kernel}\ednote{MK: I do not think that kernel is a good name, but I did
   not have any better at the moment.} morphism.
 
-In Figure~\ref{fig:elalg}, we can see the complementarity relation depicted by the dotted
+In Figure~\ref{fig:elal}, we can see the complementarity relation depicted by the dotted
 bidirectional arrow as a pair of antimorphisms $\cn{j}\colon\setdiff\id{\cn{g}}$ and
 $\cn{k}\colon\setdiff\id{\cn{ng}}$ between $\cn{NonMonGrp}$ and $\cn{Group}$. Antimorphisms
 compose with theory morphisms in the obvious ways: the set of antimorphisms is closed
@@ -477,6 +478,9 @@ documents except as an example.
 It would be interesting to see whether all cases of ``example-only theories'' can be
 expressed as theory expressions.
 
+In \smglom we can express example-only theories by module signatures and just not give
+them language bindings. That has the effect that they are not shown in narrative
+documents and only serve a role as (syntactic) target theories. 
 
 \section{Induced Examples and Practical Matters}
 
@@ -522,7 +526,7 @@ construction with fields in Figure~\ref{fig:induced}\ednote{MK: the graph does n
 
 \section{Flexiformal Theory Graphs and Narrative Examples}
 
-In SMGlom we would split the example morphism into a signature and a language binding,
+In \smglom we would split the example morphism into a signature and a language binding,
 where the language binding would say something like 
 \begin{quote}
   $\langle\mathbb{R},+,0,-\rangle$ is a commutative group, since [proofs of the cgroup
@@ -600,4 +604,4 @@ future.
 %%% End:
 %  LocalWords:  emphasized centering so-tg arith ool cdot tteen characterize csf npushout
 %  LocalWords:  rcl mapsto tpc12 uplus cgp cgp rp realization Flexiformal langle cgroup
-%  LocalWords:  flexiformalize realized dmesmgm14 propset neprop neprim mmtthy pne
+%  LocalWords:  flexiformalize realized dmesmgm14 propset neprop neprim mmtthy pne smglom
