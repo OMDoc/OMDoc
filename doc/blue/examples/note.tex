@@ -2,8 +2,6 @@
 \usepackage{url,graphicx,wrapfig}
 \usepackage{amsfonts,amstext}
 \usepackage{lstomdoc}
-\usepackage{tikz,standalone}
-\usetikzlibrary{mmt}
 \usepackage{calbf}
 \usepackage[show]{ed}
 \usepackage[hyperref=auto,style=alphabetic,isbn=false]{biblatex}
@@ -12,6 +10,15 @@
 \addbibresource{extpubs.bib}
 \addbibresource{kwarccrossrefs.bib}
 \addbibresource{extcrossrefs.bib}
+
+% setting up paths for tikzinput
+\usepackage[mh]{tikzinput}
+\usepackage[mh]{smglom}
+% if you have a different MathHub path, just write a file path.tex with 
+% a variant \defpath declaration with your path
+\IfFileExists{path.tex}{}{\defpath{MathHub}{/Users/kohlhase/localmh/MathHub}}
+\mhcurrentrepos{MiKoMH/talks} %that's where most of the tikz is for this note
+\usetikzlibrary{mmt}
 
 \def\modelsof#1{\overline{#1}}
 \def\setdiff#1#2{#1\kern.2em\backslash\kern.1em #2}
@@ -45,8 +52,13 @@
 \begin{document}
 \maketitle
 \begin{abstract}
-  We look at examples in \omdoc, and the tension between examples as views in theory
-  graphs and the practice of writing down examples in mathematical documents. 
+  Examples are a very important part of mathematical practice, they are used to strengthen
+  or refute conjectures, to explain and to guide intuition about mathematical
+  concepts. Given this, they have received surprisingly little attention in mathematical
+  knowledge representation and mechanized reasoning. 
+
+  In this note we look at examples in \omdoc, and the tension between examples as views in
+  theory graphs and the practice of writing down examples in mathematical documents.
 
   This note is part of the ongoing \omdocv2 language design~\cite{Kohlhase:old13} and
   studies an important aspect in more detail.
@@ -56,15 +68,15 @@
 \section{Introduction}
 
 Mathematical knowledge management has focused almost entirely on the ``holy trinity'' of
-statements: axiom/definition, theorem, proof. This practice neglects a type of statement
-that is at least as important for mathematical practice: examples.  Alison Pease and
-Ursula Martin have a chart of the polymath discussion on a math olympiad problem and find
-that 33\% of the dialogue turns in the proof is about examples. And they keep being strong
-all across the 74 minute length of the proof endeavour~\cite{PeaMar:sfmm12}. In another
-study, Ursula records that about 15\% of the questions on Mathoverflow are about examples
-for some property~\cite{MarPea:wmtapm13}. In this note, we are most interested in the
-structure and epistemic links of examples, so that we can model them adequately in
-\omdoc2. 
+statements: axiom/definition, theorem, proof. This neglects a type of statement that is at
+least as important for mathematical practice: examples.  Alison Pease and Ursula Martin
+have a chart of the polymath discussion on a math olympiad problem and find that 33\% of
+the dialogue turns in the proof is about examples. And they keep being strongly
+represented all across the 74 minute length of the proof
+endeavour~\cite{PeaMar:sfmm12}. In another study, Ursula records that about 15\% of the
+questions on Mathoverflow are about examples for some property~\cite{MarPea:wmtapm13}. In
+this note, we are most interested in the structure and epistemic links of examples, so
+that we can model them adequately in \omdoc2.
 
 
 
@@ -82,7 +94,8 @@ epistemic level into the following categories:
   here any object that is a differentiable function is an example for being continuous. In
   other words the set of differentiable functions is a subset of continuous functions. In
   this case, the proof obligation is more conspicuous, the $\epsilon/\delta$ proof of this
-  fact is one of the first in any elementary calculus course.
+  fact is one of the first in any elementary calculus course.\ednote{MK: this is related
+    to the hyponomy relation, cf.~\cite{Kohlhase:dmesmgm14}.}
 \item \emph{specific theory-level} ``$(\mathbb{N},+)$ is a Monoid'', here we interpret
   $(\mathbb{N},+)$ as a mathematical ``theory'' given by the symbols $\mathbb{N}$ (natural
   numbers) and $+$ (addition). Here the relation given by the words ``is a'' has to be
@@ -116,6 +129,16 @@ i.e. the negation of the obligation of the positive example. Counter-examples ar
     counterexamples, recount the analysis from the OMDoc book in a nutshell.}
 \end{compactenum}
 
+\subsection{Examples as Cognitive Devices}
+In the process of mathematical discovery, examples are used to strengthen conjectures, to
+show that concepts are non-vacuous or consistent, and to elucidate concepts.
+
+Counterexamples are used to delineate the boundaries of possible theorems. By using
+counterexamples to show that certain conjectures are false, mathematical researchers avoid
+going down blind alleys and learn how to modify conjectures to produce provable
+theorems. \ednote{integrate Lakatos view on counterexamples
+  from~\cite[pp. 10-11]{Lakatos76}}
+
 \subsection{Examples as Narrative Structures}
 Examples can come in different syntactic forms in a mathematical discourse
 \begin{compactenum} 
@@ -131,21 +154,12 @@ Examples can come in different syntactic forms in a mathematical discourse
 No matter the syntactic structure, they always have the structural parts (which may be
 elided) identified above. 
 
-\subsection{Examples as Cognitive Devices}
-In the process of mathematical discovery, examples are used to strengthen conjectures, to
-show that concepts are non-vacuous or consistent, and to elucidate concepts.
-
-Counterexamples are used to delineate the boundaries of possible theorems. By using
-counterexamples to show that certain conjectures are false, mathematical researchers avoid
-going down blind alleys and learn how to modify conjectures to produce provable
-theorems. \ednote{integrate Lakatos view on counterexamples
-  from~\cite[pp. 10-11]{Lakatos76}}
 
 \section{Parallel Markup for Immediate Examples}\label{sec:immediate}
 
 Following~\cite{KohIan:hlpmo13}, we will use \omdoc markup for the narrative aspects of
-examples and \mmt markup for the formal ones. For object-level example, we have the
-parallel markup in Figure~\ref{fig:simple-object}: we have a narrative representation,
+examples and \mmt markup for the formal ones. For object-level examples, we have the
+parallel markup in Figure~\ref{fig:simple-object}: there is a narrative representation,
 which represents the structure of the presentation of the example as an (embellished)
 paragraph with a statement and a proof as the justification. In this simple case, the
 statement of the justifying assertion is identical to the example text, so we can just
@@ -161,7 +175,7 @@ content and narrative by cross-references (the \lstinline|<meta>| elements with 
 \begin{lstlisting}
 <definition for="?prim">
      A prime number is a natural number that 
-     has only the divisors 1 and itself.
+     has only 1 and itself as divisors.
 </definition>
 <example name="p13" for="prim">
   <assertion xml:id="p13.st">
@@ -215,12 +229,9 @@ differentiable functions from the theory \textsf{diff} of differentiable functio
 do not want to include \textsf{diff} into \textsf{cont}, we have to provide a separate
 theory \textsf{cont-diff.ex} for the example. This includes \textsf{diff} for the exemplar
 class and \textsf{cont} for the exemplified property and we get the markup in
-Figure~\ref{fig:complex-object}. Here we made use of the \lstinline|o:verbalizes| relation
--- which is the converse to \lstinline|o:formalizes| -- for statement-level parallel
-markup and thus resides in the narrative representation. For the remaining examples below,
-we assume one of the two representations, but omit them to avoid clutter.
+Figure~\ref{fig:complex-object}. 
 
-\begin{figure}[ht]\centering
+\begin{figure}[h!]\centering
 \begin{tabular}{|p{7.5cm}|p{6cm}|}\hline
   narrative & content\\\hline
 \begin{lstlisting}
@@ -252,6 +263,13 @@ we assume one of the two representations, but omit them to avoid clutter.
 \end{tabular}
 \caption{A Generic Object-Level Example}\label{fig:complex-object}
 \end{figure}
+
+
+Here we made use of the \lstinline|o:verbalizes| relation
+-- which is the converse to \lstinline|o:formalizes| -- for statement-level parallel
+markup and thus resides in the narrative representation. For the remaining examples below,
+we assume one of the two representations, but omit them to avoid clutter.
+
 The content side in Figure~\ref{fig:complex-object} shows us what is really happening from
 a structural perspective: The example object is a theory of its own, which inherits from
 theories \lstinline|cont| and \lstinline|diff| as shown in Figure~\ref{fig:diffcont}. This
@@ -275,7 +293,7 @@ structural substitutions.
 \begin{figure}[ht]\centering
 \providecommand\myxscale{4.3}
 \providecommand\myyscale{2.5}
-\input{elalg-nat-graph}
+\mhtikzinput{mmt/tikz/elalg-nat-graph}
 \caption{A Theory Graph with Examples}\label{fig:elal}
 \end{figure}
 
@@ -331,14 +349,14 @@ mention it.
 
 Note that immediate examples can be ``compiled'' into a theory graph. For instance the one
 in Figure~\ref{fig:simple-object} directly corresponds to the theory graph in
-Figure~\ref{fig:so-tg}. Background: the theory $\cn{prime}$ introduces the predicate
-$\cn{prim}$ for prime numbers based on natural number arithmetic, in this situation, we
-want to give an object-level example for the prediate $\cn{prim}$, i.e. a numer $n\in\bbN$
-that is prime. For this, we need to ``abstract'' the situation in theory $\cn{prime}$ into
+Figure~\ref{fig:so-tg}. Background: the theory $\cn{primes}$ introduces the predicate
+$\cn{prime}$ for prime numbers based on natural number arithmetic, in this situation, we
+want to give an object-level example for the prediate $\cn{prime}$, i.e. a numer $n\in\bbN$
+that is prime. For this, we need to ``abstract'' the situation in theory $\cn{primes}$ into
 a general situation with a predicate in $\cn{propset}$, which is extended to be non-empty
 (with a witness $n$) in $\cn{neprop}$. Then we construct the push-out theory $\cn{neprim}$
 on top of Figure~\ref{fig:so-tg} that instantiates $S$ with $\bbN$ and $p$ with
-$\cn{prim}$. This is the natural source of an example view $\psi$ that instantiates $n$ to
+$\cn{prime}$. This is the natural source of an example view $\psi$ that instantiates $n$ to
 $13$ and $\cn{ne}$ to the primality proof for it -- see Figure~\ref{fig:simple-object} on
 the lower left.
 
@@ -350,12 +368,12 @@ holds on it.
 \begin{figure}[ht]\centering
 \begin{tikzpicture}[xscale=1 .5, yscale=1 .9]
   \node[thy] (arith) at (-1.5,0) {$\mmtthy{NatArith}{\mathbb{N},+,*,0,1,<}{}$};
-  \node[thy] (prime) at (-1.5,1) {$\mmtthy{prime}{\cn{prim}:\bbN\rightarrow \bbB}{\cn{prim}(x)\Leftrightarrow \not\exists i<n,m<x.n\cdot m=x}$};
+  \node[thy] (prime) at (-1.5,1) {$\mmtthy{primes}{\cn{prime}:\bbN\rightarrow \bbB}{\cn{prime}(x)\Leftrightarrow \not\exists i<n,m<x.n\cdot m=x}$};
   \node[thy] (ps) at (1,0) {$\mmtthy{propset}{S:\cn{type}, p:S\rightarrow \bbB}{}$};
   \node[thy] (neprop) at (2.5,1) {$\mmtthy{neprop}{n:S}{\cn{ne}:p(n)}$};
   \node[thy] (pne) at (1,2) {$\mmtthy{neprim}{}{}$};
   \node at (-1.9,1.9) {$\begin{array}{rcl}
-      \phi & :=& \{S\mapsto\bbN,p\mapsto\cn{prim}\}\\
+      \phi & :=& \{S\mapsto\bbN,p\mapsto\cn{prime}\}\\
       \psi & := & \{n\mapsto13,\cn{ne}\mapsto\cn{p13.p}\}
                       \end{array}$};
   \draw[conservative] (arith) -- (prime);
@@ -605,3 +623,4 @@ future.
 %  LocalWords:  emphasized centering so-tg arith ool cdot tteen characterize csf npushout
 %  LocalWords:  rcl mapsto tpc12 uplus cgp cgp rp realization Flexiformal langle cgroup
 %  LocalWords:  flexiformalize realized dmesmgm14 propset neprop neprim mmtthy pne smglom
+%  LocalWords:  mechanized
