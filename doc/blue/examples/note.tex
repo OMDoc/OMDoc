@@ -11,11 +11,12 @@
 \addbibresource{kwarccrossrefs.bib}
 \addbibresource{extcrossrefs.bib}
 
-% setting up paths for tikzinput
+% Setting up tikzinput to avoid duplication, this assumes that you have
+% a local MathHub with the relevant archives on your machine (like I do). 
 \usepackage[mh]{tikzinput}
-\usepackage[mh]{smglom}
+\usepackage[mh]{smglom} % some of the images are semantic
 % if you have a different MathHub path, just write a file path.tex with 
-% a variant \defpath declaration with your path
+% a variant \defpath declaration with your path - but don't commit it!
 \IfFileExists{path.tex}{}{\defpath{MathHub}{/Users/kohlhase/localmh/MathHub}}
 \mhcurrentrepos{MiKoMH/talks} %that's where most of the tikz is for this note
 \usetikzlibrary{mmt}
@@ -63,7 +64,7 @@
   This note is part of the ongoing \omdocv2 language design~\cite{Kohlhase:old13} and
   studies an important aspect in more detail.
 \end{abstract}
-\tableofcontents\newpage
+\newpage\tableofcontents\newpage
 
 \section{Introduction}
 
