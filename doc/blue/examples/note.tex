@@ -195,7 +195,6 @@ The situation in Figure~\ref{fig:simple-object} is also simple, since the both t
 exemplar and the exemplified property naturally come from the same theory: natural numbers
 arithmetic (which we have omitted).
 
-
 \begin{wrapfigure}r{3.5cm}\centering%\vspace*{-1em}
 \begin{tikzpicture}
   \node[thy] (cont) at (0,0) {\textsf{cont}};
@@ -330,27 +329,45 @@ mention it.
 \subsection{Compiling Narrative Examples into Theory Graphs}
 
 Note that immediate examples can be ``compiled'' into a theory graph. For instance the one
-in Figure  ~\ref  {fig:simple-object} directly corresponds to the theory graph in
-Figure~\ref{fig:so-tg}
+in Figure~\ref{fig:simple-object} directly corresponds to the theory graph in
+Figure~\ref{fig:so-tg}. Background: the theory $\cn{prime}$ introduces the predicate
+$\cn{prim}$ for prime numbers based on natural number arithmetic, in this situation, we
+want to give an object-level example for the prediate $\cn{prim}$, i.e. a numer $n\in\bbN$
+that is prime. For this, we need to ``abstract'' the situation in theory $\cn{prime}$ into
+a general situation with a predicate in $\cn{propset}$, which is extended to be non-empty
+(with a witness $n$) in $\cn{neprop}$. Then we construct the push-out theory $\cn{neprim}$
+on top of Figure~\ref{fig:so-tg} that instantiates $S$ with $\bbN$ and $p$ with
+$\cn{prim}$. This is the natural source of an example view $\psi$ that instantiates $n$ to
+$13$ and $\cn{ne}$ to the primality proof for it -- see Figure~\ref{fig:simple-object} on
+the lower left.
+
+Note that this construction is fully general the theories $\cn{propset}$ and $\cn{neprop}$
+just formalize the intuition that this kind of example is concerned with showing the
+non-emptiness of a given property by exhibiting a witness and proving that the property
+holds on it.
 
 \begin{figure}[ht]\centering
-\begin{tikzpicture}[scale=2]
+\begin{tikzpicture}[xscale=1 .5, yscale=1 .9]
   \node[thy] (arith) at (-1.5,0) {$\mmtthy{NatArith}{\mathbb{N},+,*,0,1,<}{}$};
-  \node[thy] (prime) at (-1.5,1) {$\mmtthy{prime}{prim:\bbN\rightarrow \bbB}{prim(x)\Leftrightarrow \not\exists i<n,m<x.n\cdot m=x}$};
-  \node[thy] (ps) at (1,0) {$\mmtthy{propset}{S:\cn{tpye}, p:S\rightarrow \bbB}{}$};
+  \node[thy] (prime) at (-1.5,1) {$\mmtthy{prime}{\cn{prim}:\bbN\rightarrow \bbB}{\cn{prim}(x)\Leftrightarrow \not\exists i<n,m<x.n\cdot m=x}$};
+  \node[thy] (ps) at (1,0) {$\mmtthy{propset}{S:\cn{type}, p:S\rightarrow \bbB}{}$};
   \node[thy] (neprop) at (2.5,1) {$\mmtthy{neprop}{n:S}{\cn{ne}:p(n)}$};
   \node[thy] (pne) at (1,2) {$\mmtthy{neprim}{}{}$};
+  \node at (-1.9,1.9) {$\begin{array}{rcl}
+      \phi & :=& \{S\mapsto\bbN,p\mapsto\cn{prim}\}\\
+      \psi & := & \{n\mapsto13,\cn{ne}\mapsto\cn{p13.p}\}
+                      \end{array}$};
   \draw[conservative] (arith) -- (prime);
-  \draw[include] (prime) -- (pne);
-  \draw[view] (pne) to[bend left=30] node[right] {$n:=13$} (arith);
+  \draw[include] (prime) to[bend right=10] (pne);
+  \draw[view,red] (pne) --  node[above] {$\psi$} (prime);
   \draw[include] (ps) -- (neprop);
-  \draw[view] (ps) -- node[above,at start]{$\phi$}(prime);
-  \draw[view] (neprop) -- node[above]{$\phi$}(pne);
-  \npushout[.8]{ps}{pne};
+  \draw[view] (ps) -- node[above,near start]{$\phi$}(prime);
+  \draw[view] (neprop) -- node[above,near start]{$\phi$}(pne);
+  \npushout[.85]{ps}{pne};
 \end{tikzpicture}
-\caption{The Immediate Example from Figure ~\ref {fig:simple-object} as a Theory Graph}\label{fig:so-tg}
+\caption{The Immediate Example from Figure~\ref{fig:simple-object} as a Theory
+  Graph}\label{fig:so-tg}
 \end{figure}
-\ednote{describe what goes on in Fig~\ref{fig:so}}
 
 \subsection{Counterexamples in Theory Graphs}
 
@@ -583,4 +600,4 @@ future.
 %%% End:
 %  LocalWords:  emphasized centering so-tg arith ool cdot tteen characterize csf npushout
 %  LocalWords:  rcl mapsto tpc12 uplus cgp cgp rp realization Flexiformal langle cgroup
-%  LocalWords:  flexiformalize realized dmesmgm14
+%  LocalWords:  flexiformalize realized dmesmgm14 propset neprop neprim mmtthy pne
