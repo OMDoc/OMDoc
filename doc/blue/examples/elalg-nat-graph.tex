@@ -1,10 +1,10 @@
 \documentclass{standalone}
 \usepackage{tikz,stex,amstext,amssymb}
 
-\input{localpaths}
 \begin{document}
 \usetikzlibrary{shapes,arrows,mmt}
 \def\thmo#1#2{\mathsf{#1}\colon\kern-.15em{#2}}
+\def\cn#1{\mathsf{#1}}
 \providecommand\myxscale{3.9}
 \providecommand\myyscale{2.2}
 \providecommand\myfontsize{\footnotesize}
@@ -17,7 +17,7 @@
 \node[thy] (sg) at (1.1,-.7) {\begin{tabular}{l}
                              \textsf{SemiGrp}\\\hline
                              \\\hline
-                             $\scriptstyle \mathsf{assoc}: (x\circ y)\circ z=x\circ (y\circ z)$
+                             $\scriptstyle \cn{assoc}: (x\circ y)\circ z=x\circ (y\circ z)$
                            \end{tabular}};
 \node[thy] (m) at (1,.1) {\begin{tabular}{l}
                              \textsf{Monoid}\\\hline
@@ -37,15 +37,15 @@
 \node[thy] (cg) at (1.5 ,2) {\begin{tabular}{l}
                              \textsf{CGroup}\\\hline
                              \\\hline
-                            $\scriptstyle \mathsf{comm} : x\circ y=y\circ x$
+                            $\scriptstyle \cn{comm} : x\circ y=y\circ x$
                            \end{tabular}};
-\node[thy] (r) at (.4,2) {\def\mr#1#2{#1\,\mathsf{m}\kern-.1em/\kern-.2em\circ\, #2}
-                                       \def\ar#1#2{#1\,\mathsf{a}\kern-.1em/\kern-.2em\circ\, #2}
+\node[thy] (r) at (.5,2) {\def\mr#1#2{#1\,\cn{m}\kern-.1em/\kern-.2em\circ\, #2}
+                                    \def\ar#1#2{#1\,\cn{a}\kern-.1em/\kern-.2em\circ\, #2}
                             \begin{tabular}{l}
                              \textsf{Ring}\\\hline
                              \\\hline
-                            $\scriptstyle \mr{x}{(\ar{y}z)}=\ar{(\mr{x}z)}{(\mr{y}z)}$\\
-                            $\scriptstyle \ar{x}{(\mr{y}z)}=\rm{(\ar{x}z)}{(\ar{y}z)}$\\
+                            $\scriptstyle \mr{x}{(\ar{y}z)}=\ar{(\mr{x}y)}{(\mr{x}z)}$\\
+                            $\scriptstyle \ar{x}{(\mr{y}z)}=\mr{(\ar{x}y)}{(\ar{x}z)}$\\
                            \end{tabular}};
 \node[thy] (N) at (-.7,-.9) {\begin{tabular}{l}
                              \textsf{NatNums}\\\hline
@@ -64,10 +64,13 @@
                              $\scriptstyle n\cdot1=n$,\\
                              $\scriptstyle n\cdot s(m)=n\cdot m+n$
                            \end{tabular}};
-\node[thy] (ia) at (-.7,2) {\begin{tabular}{l}
+\node[thy] (ia) at (-.7,2) {
+                                    \def\pr#1{\cn{p}\kern-.1em/\kern-.2em\, #1}
+                                    \def\nr#1{\cn{n}\kern-.1em/\kern-.2em\, #1}
+\begin{tabular}{l}
                              \textsf{IntArith}\\\hline
                              $-$\\
-                             $\mathbb{Z} := \mathbb{N}\cup-\mathbb{N}$\\\hline
+                             $\mathbb{Z} := \pr{\mathbb{N}}\cup\nr{\mathbb{N}}$\\\hline
                              $\scriptstyle-0=0$
                           \end{tabular}};
 \node (phi) at (.25,-.3) {$\varphi=\left\{\begin{array}{l}
@@ -81,28 +84,31 @@
 
 \node (psip) at (.25,-1.55) {$\psi'=\left\{\begin{array}{l} 
                                            i\mapsto -\\
-                                           \mathsf{g}\mapsto\mathsf{f}
+                                           \cn{g}\mapsto\cn{f}
                                          \end{array}\right\}$};
 \node (theta) at (-.7,-1.55) {$\vartheta=\left\{\begin{array}{l}
-                                    \mathsf{m}\mapsto\mathsf{e}\\
-                                    \mathsf{a}\mapsto\mathsf{c}\end{array}\right\}$};
+                                    \cn{m}\mapsto\cn{e}\\
+                                    \cn{a}\mapsto\cn{c}\end{array}\right\}$};
 \draw[include] (N) -- (Np);                          
 \draw[include] (Np) -- (Nt);                          
-\draw[include] (Nt) -- (ia);                          
+\draw[struct] (Nt) to[bend left=10] node[left] {$\cn{p}$} (ia);                          
+\draw[struct] (Nt) to[bend right=10] node[right] {$\cn{n}$} (ia);                          
 \draw[include] (magma) -- (sg);
 \draw[include] (sg) -- (m);
 \draw[include] (g) -- (cg);
 \draw[view] (m) -- node[above] {$\thmo{e}\varphi$} (Nt);                          
 \draw[view] (m) -- node[above,near end] {$\thmo{f}\psi$} (Np);                          
 \draw[view] (cg) to[bend right=40] node[above] {$\thmo{d}{\psi'}$} (ia);                          
-\draw[include] (m) -- node[left] (mg) {$\mathsf{g}$} (g);
+\draw[include] (m) -- node[left] (mg) {$\cn{g}$} (g);
 \draw[view] (n) -- node[above] {$\thmo{c}\varphi$} (Nt);
-\draw[include] (m) --  node[right] (mn){$\mathsf{ng}$} (n);
-\draw[include] (cg) -- node[above] {$\mathsf{a}$} (r);
-\draw[include] (m) to [bend right=20] node[right, near end] {$\mathsf{m}$} (r);
+\draw[include] (m) --  node[right] (mn){$\cn{ng}$} (n);
+\draw[include] (cg) -- node[above] {$\cn{a}$} (r);
+\draw[include] (m) to [bend right=20] node[right, near end] {$\cn{m}$} (r);
 \draw[view] (r) -- node[above] {$\thmo{i}\vartheta$} (ia);
 \draw[<->,dotted] (mg) -- (mn);
 \draw[<->,dotted] (g) -- (n);
+\draw[view] (m) to[loop right] node[above,near start]{$\{x\circ y\mapsto y\circ x\}$} (m);
+\draw[view] (magma) to[loop right] node[above,near start]{$\{x\circ y\mapsto y\circ x\}$} (magma);
 \end{tikzpicture}
 \end{document}
 %%% Local Variables: 
