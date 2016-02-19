@@ -302,9 +302,13 @@ structural substitutions.
 
 For the monoids example above we will use the theory graph in Figure~\ref{fig:elal}.
 There we have two examples for monoids: natural numbers with addition and multiplication,
-represented by the views $\cn{f}$ and $\cn{e}$. The fact that $\cn{e}$ and
-$\cn{f}$ are views means that every axiom in source theory $\cn{Monoid}$ is
-provable in the respective target theories $\cn{NatPlus}$ and $\cn{NatTimes}$. 
+represented by the views $\cn{f}$ and $\cn{e}$. The fact that $\cn{e}$ and $\cn{f}$ are
+views means that every axiom in source theory $\cn{Monoid}$ is provable\footnote{In fact
+  the proofs are part of the assignments associated with the views as proof terms assigned
+  to the source axioms, which are represented as constant declarations in the Curry/Howard
+  isomorphisms -- see~\cite{RabKoh:WSMSML13} for details. We just elide them in the
+  diagrams to avoid clutter. } in the respective target theories $\cn{NatPlus}$ and
+$\cn{NatTimes}$.
 
 \begin{figure}[ht]\centering
 \begin{tabular}{|p{8.4cm}|p{5.7cm}|}\hline
