@@ -7,7 +7,7 @@
 dc.common = id.attribs & nonlocal.attribs & schemetype.attribs
 dc.comlang =dc.common & xml.lang.attrib 
 
-## scheme and type e.g. according to http://dimes.lins.fju.edu.tw/dimes/meta-ref/DC-SubElements.html#Title
+## scheme and type e.g. according to http://dimes.lins.fju.edu.tw/dimes/meta-ref/DC-SubElements.html
 schemetype.attribs = 		       
       attribute scheme {text}? &
       attribute type {text}?

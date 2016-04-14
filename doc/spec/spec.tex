@@ -15,7 +15,7 @@
 \usepackage[bottom]{footmisc}% places footnotes at page bottom
 % end Springer recommendation
 \usepackage{array,longtable,moreverb,amssymb,url,wrapfig,makeidx,wasysym,textcomp} %standard
-\usepackage[eso-foot,today]{svninfo}
+\usepackage{gitinfo}
 \usepackage[hide]{ed}     %../macros set to [hide] when publishing
 \usepackage[show,record]{errata}
 \usepackage[hyper]{../macros/acronyms}
@@ -23,9 +23,14 @@
 \usepackage{tikz}\usetikzlibrary{arrows} % new portable graphics package
 \usepackage{tabularx}
 \usepackage{macros}   %local
-\usepackage[backref=true,hyperref=auto,style=alphabetic]{biblatex}
-\bibliography{../bibs/kwarc}
-
+\usepackage[backref=true,hyperref=auto,style=alphabetic,backend=bibtex]{biblatex}
+\addbibresource{kwarcpubs}
+\addbibresource{extpubs}
+\addbibresource{kwarccrossrefs}
+\addbibresource{extcrossrefs}
+\def\GERMANY{, Germany}
+\def\USA{, USA}
+\def\June{June}
 \makeindex
 
 \usepackage[linkcolor=black, bookmarks=true, bookmarksopen=true, a4paper=true,  
@@ -42,9 +47,7 @@ citecolor=black,urlcolor=black,colorlinks=true,breaklinks=true]{hyperref}
 \begin{center}
   \begin{tabular}{|l|l|}\hline
     {\bf{Source Information}} & 
-    revision \svnInfoMaxRevision, last change {\svnInfoLongDate} 
-    \def\empty{}\ifx\svnInfoOwner\empty\else by {\svnInfoOwner}\fi\\\hline
-    \multicolumn{2}{|l|}{{\scriptsize\tt{\svnInfoHeadURL}}}\\\hline
+    revision \gitAbbrevHash, last change {\gitAuthorIsoDate}\\\hline
   \end{tabular}
 \end{center} \vspace*{.5cm}
  This work is licensed by the Creative Commons Share-Alike license
@@ -122,7 +125,6 @@ citecolor=black,urlcolor=black,colorlinks=true,breaklinks=true]{hyperref}
 \printbibliography
 {\small\printindex}
 
-\ednotemessage
 \end{document}
 
 %%% Local Variables: 

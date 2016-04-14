@@ -59,10 +59,14 @@
 Given the need to incorporate additional metadata into \omdoc, and considering the deficiencies of the metadata support in \omdoc 1.2, we developed a new framework.  The requirements were as follows:
 
 \begin{enumerate}
-\item Stay backwards-compatible with \omdoc 1.2 concerning expressivity.  That is,   continue supporting Dublin Core and Creative Commons, and the custom extensions.
-\item Expose the formal semantics of metadata vocabularies to \omdoc-based applications; additionally be compatible to semantic web applications.
-\item Incorporate a vocabulary for versioning -- particularly aiming at technical   specifications.
-\item Do not hard-code a fixed set of vocabularies into the language but stay flexible   and extensible for many applications, including future and unknown ones.
+\item Stay backwards-compatible with \omdoc 1.2 concerning expressivity.  That is,
+  continue supporting Dublin Core and Creative Commons, and the custom extensions.
+\item Expose the formal semantics of metadata vocabularies to \omdoc-based applications;
+  additionally be compatible to semantic web applications.
+\item Incorporate a vocabulary for versioning -- particularly aiming at technical
+  specifications.
+\item Do not hard-code a fixed set of vocabularies into the language but stay flexible and
+  extensible for many applications, including future and unknown ones.
 \end{enumerate}
 
 Given the fact that many existing metadata vocabularies, including
@@ -429,31 +433,31 @@ with a rights management system based on the Creative Commons Initiative.
 \begin{tabular}{|>{\tt}l|>{\tt}l|>{\tt}l|>{\tt}l|}\hline
 {\rm Element}& \multicolumn{2}{l|}{Attributes\hspace*{2.25cm}} & Content  \\\hline
              & {\rm Req.}  & {\rm Optional}     &           \\\hline\hline
- dc:creator     &  & xml:id, class, style, role    &  text \\\hline
- dc:contributor &  & xml:id, class, style, role    &  text \\hline
- dc:title       &  & xml:lang    &  \llquote{math vernacular}  \\\hline
- dc:subject     &  & xml:lang    &  \llquote{math vernacular}  \\\hline
- dc:description &  & xml:lang    &  \llquote{math vernacular}  \\\hline
- dc:publisher   &  & xml:id, class, style          &  ANY  \\\hline
- dc:date        &  & action, who &  {\twintoo{ISO}{8601}}  \\\hline
- dc:type        &  &             &  {\rm fixed:} "Dataset" {\rm or\ } "Text" \\\hline
- dc:format      &  &             &  {\rm fixed:} "application/omdoc+xml"  \\\hline
- dc:identifier  &  & scheme      &  ANY  \\\hline
- dc:source      &  &             &  ANY  \\\hline
- dc:language    &  &             &  {\twintoo{ISO}{639}} \\\hline
- dc:relation    &  &             &  ANY  \\\hline
- dc:rights      &  &             &  ANY  \\\hline\hline
+ dc:creator     &  & xml:id, class, style, role, type, scheme &  text \\\hline
+ dc:contributor &  & xml:id, class, style, role, type, scheme    &  text \\hline
+ dc:title       &  & xml:lang, type, scheme    &  \llquote{math vernacular}  \\\hline
+ dc:subject     &  & xml:lang, type, scheme    &  \llquote{math vernacular}  \\\hline
+ dc:description &  & xml:lang, type, scheme    &  \llquote{math vernacular}  \\\hline
+ dc:publisher   &  & xml:id, class, style, type, scheme          &  ANY  \\\hline
+ dc:date        &  & action, who, type, scheme &  {\twintoo{ISO}{8601}}  \\\hline
+ dc:type        &  &  type, scheme  &  {\rm fixed:} "Dataset" {\rm or\ } "Text" \\\hline
+ dc:format      &  & type, scheme            &  {\rm fixed:} "application/omdoc+xml"  \\\hline
+ dc:identifier  &  & type,scheme      &  ANY  \\\hline
+ dc:source      &  & type, scheme       &  ANY  \\\hline
+ dc:language    &  & type, scheme      &  {\twintoo{ISO}{639}} \\\hline
+ dc:relation    &  & type, scheme     &  ANY  \\\hline
+ dc:rights      &  & type, scheme      &  ANY  \\\hline\hline
  \multicolumn{4}{|l|}{for \llquote{math vernacular} see {\mysecref{mtext}}}\\\hline
 \end{tabular}
 \end{scriptsize}
 \end{myfig}
 
 
-  The descriptions in this section are adapted from~\cite{DCMI:dmt03}, and augmented for
-  the application in {\omdoc} where necessary. All these elements live in the
-  {\twintoo{Dublin Core}{namespace}} \url{http://purl.org/dc/elements/1.1/}, for which we
-  traditionally use the {\twintoo{namespace}{prefix}} {\snippetin{dc:}}.\atwin{Dublin
-    Core}{namespace}{URI}
+The descriptions in this section are adapted from~\cite{DCMI:dmt03}, and augmented for the
+application in {\omdoc} where necessary. All these elements live in the {\twintoo{Dublin
+    Core}{namespace}} \url{http://purl.org/dc/elements/1.1/}, for which we traditionally
+use the {\twintoo{namespace}{prefix}} {\snippetin{dc:}}.\atwin{Dublin
+  Core}{namespace}{URI}
 
 \begin{description}
 \item[{\element[ns-elt=dc]{title}}] The title of the element --- note that {\omdoc}
@@ -591,10 +595,12 @@ with a rights management system based on the Creative Commons Initiative.
   {\omdoc} supplies specialized elements for the Creative Commons licenses to support the
   sharing of mathematical content. We will discuss them in {\mysecref{creativecommons}}.
 \end{description}
-Note that Dublin Core also defines a {\oldelement{Coverage}{1.1}} element that
-specifies the place or time which the publication's contents addresses. This does
-not seem appropriate for the mathematical content of {\omdoc}, which is largely
-independent of time and geography.
+Note that Dublin Core also defines a {\oldelement{Coverage}{1.1}} element that specifies
+the place or time which the publication's contents addresses. This does not seem
+appropriate for the mathematical content of {\omdoc}, which is largely independent of time
+and geography.  \ednote{MK: all of them have a type and scheme attribute that can be
+  filled e.g. with \url{http://dimes.lins.fju.edu.tw/dimes/meta-ref/DC-SubElements.html}}
+
 \end{tsection}
 
 \begin{tsection}[id=dc-roles]{Roles in Dublin Core Elements}
