@@ -3,9 +3,14 @@
 # See the documentation and examples at http://www.omdoc.org
 # Copyright (c) 2015 Michael Kohlhase, released under the GNU Public License (GPL) 
 
-# we include the dublin core and MARC elements, filling them with our content types
-dc.common = id.attribs & nonlocal.attribs
-dc.comlang =dc.common & xml.lang.attrib
+## common attributes 
+dc.common = id.attribs & nonlocal.attribs & schemetype.attribs
+dc.comlang =dc.common & xml.lang.attrib 
+
+## scheme and type e.g. according to http://dimes.lins.fju.edu.tw/dimes/meta-ref/DC-SubElements.html#Title
+schemetype.attribs = 		       
+      attribute scheme {text}? &
+      attribute type {text}?
 	                    
 dublincore = grammar {include "MARCRelators.rnc" 
       include "dublincore.rnc"      
