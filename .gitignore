@@ -3,6 +3,7 @@ auto
 *.rel
 *.aux
 *.thm
-*.idx
+*.idx 
+*.ilg
 *.refs
 work.pdf
