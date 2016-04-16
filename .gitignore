@@ -7,3 +7,5 @@ auto
 *.ilg
 *.refs
 work.pdf
+*.ind
+*-blx.bib
