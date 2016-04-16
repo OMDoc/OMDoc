@@ -10,7 +10,7 @@
 \usepackage[show]{ed}     %../macros set to [hide] when publishing
 \usepackage{include}
 \input{dcmcontributors}
-\usepackage[backref=true,hyperref=auto,style=alphabetic]{biblatex}
+\usepackage[backref=true,hyperref=auto,style=alphabetic,backend=bibtex]{biblatex}
 \addbibresource{preamble.bib}
 \addbibresource{kwarcpubs.bib}
 \addbibresource{extpubs.bib}
@@ -31,7 +31,10 @@
     for Mathematical Documents\\
     \omdoc [Version 1.6 (pre-2.0)]}
   \DCMcreators{miko}
-  \DCMdate{\today}
+  \DCMdate{\today\\[1cm]
+  Revision: \gitAbbrevHash\\
+  last changed \gitAuthorIsoDate\\
+  by \gitAuthorName}
   \DCMcopyrightnotice{2009}{Michael Kohlhase}
 
   \DCMlicensenotice{This work is licensed by the Creative Commons Share-Alike license
