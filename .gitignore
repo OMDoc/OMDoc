@@ -9,3 +9,7 @@
 *.idx
 *.ilg
 auto
+*.ind
+*.thm
+*.bcf
+*-blx.bib
