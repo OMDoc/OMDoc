@@ -1,21 +1,21 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % This file is part of the LaTeX sources of the OMDoc 1.3 specification
-% Copyright (c) 2006 Michael Kohlhase
+% Copyright (c) 2016 Michael Kohlhase.
+% Source at https://github.com/KWARC/OMDoc/tree/master/doc/spec
 % This work is licensed by the Creative Commons Share-Alike license
 % see http://creativecommons.org/licenses/by-sa/2.5/ for details
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{tchapter}[id=complex-theories,short=Complex Theories]{Complex Theories (Modules
-    \CTHmodule{spec} and \DGmodule{spec})}
+\begin{tchapter}[id=complex-theories,short=Complex Theories]{Complex Theories (Module
+    \CTHmodule{spec})}
 
-  In \mysecref{theories} we have presented a notion of theory and inheritance
-  that is sufficient for simple applications like content dictionaries that informally
-  (though presumably rigorously) define the static meaning of symbols. Experience in
-  e.g. program verification has shown that this infrastructure is insufficient for
-  large-scale developments of formal specifications, where reusability of formal
-  components is the key to managing complexity. For instance, for a theory of rings we
-  cannot simply inherit the same theory of monoids as both the additive and multiplicative
-  structure.
+  In \mysecref{theories} we have presented a notion of theory and inheritance that is
+  sufficient for simple applications like content dictionaries that informally (though
+  presumably rigorously) define the static meaning of symbols. Experience in e.g. program
+  verification has shown that this infrastructure is insufficient for large-scale
+  developments of formal specifications, where reusability of formal components is the key
+  to managing complexity. For instance, for a theory of rings we cannot simply inherit the
+  same theory of monoids as both the additive and multiplicative structure.
 
   In this chapter, we will generalize the \twintoo{inheritance}{relation} from
   \mysecref{theories} to that of ``\indextoo{structure}s'', also called

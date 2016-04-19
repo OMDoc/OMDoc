@@ -1,6 +1,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % This file is part of the LaTeX sources of the OMDoc 1.3 specification
-% Copyright (c) 2006 Michael Kohlhase
+% Copyright (c) 2016 Michael Kohlhase.
+% Source at https://github.com/KWARC/OMDoc/tree/master/doc/spec
 % This work is licensed by the Creative Commons Share-Alike license
 % see http://creativecommons.org/licenses/by-sa/2.5/ for details
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -93,10 +94,10 @@ take a metadata element, and its scope is limited to this element.
     name comes from ``Commented Mathematical Property'' and was originally taken from
     {\openmath} content dictionaries\index{content dictionary} for continuity
     reasons. Note that {\xml} does note confuse the two, since they are in different
-    {\indextoo{namespace}s}.}  elements which contain the vernacular and have an optional
+    \indextoo{namespace}s.}  elements which contain the vernacular and have an optional
   \attributeshort[ns-attr=xml]{lang} attribute that specifies the language they are
   written in. Conforming with the {\xml} recommendation, we use the ISO
-  639\atwin{ISO}{639}{norm} two-letter {\twintoo{country}{code}s}
+  639\atwin{ISO}{639}{norm} two-letter \twintoo{country}{code}s
   (\snippetin{de}$\;\widehat=\;$German, \snippetin{en}$\;\widehat=\;$English,
   \snippetin{fr}$\;\widehat=\;$French, \snippetin{nl}$\;\widehat=\;$Dutch, \ldots). If
   no \attributeshort[ns-attr=xml]{lang} is given, then \attvalshort{en}{xml:lang} is
@@ -204,10 +205,10 @@ inline mathematical statements, which we will discuss in \mysecref{inline-statem
 \end{tsubsection}
 
 \begin{tsubsection}{Parallel Multilingual Markup}
-  Recall that sibling \element{CMP} elements form {\twintoo{multilingual}{group}s} of
+  Recall that sibling \element{CMP} elements form \twintoo{multilingual}{group}s of
   text fragments.  We can use the paragraph-level and phrase-level element to make the
   correspondence relation on text fragments more fine-grained: elements in sibling
-  {\element{CMP}s} that have the same \attributeshort{index} value are considered to be
+  \element{CMP}s that have the same \attributeshort{index} value are considered to be
   equivalent.  Of course, the value of an \attributeshort{index} has to be unique in the
   dominating \element{CMP} element (but not beyond). Thus the \attributeshort{index}
   attributes simplify manipulation of \indextoo{multilingual} texts, see
@@ -337,7 +338,7 @@ The remaining content of the index element specifies what is entered into variou
 indexes. For every index this phrase is registered to there is one \eldef{ide} element
 (\twintoo{index}{entry}); the respective entry is specified by name in its optional
 \attribute{index}{ide} attribute. The \element{ide} element contains a sequence of
-{\twintoo{index}{phrase}s} given in {\eldef{idp}} elements. The content of an
+\twintoo{index}{phrase}s given in {\eldef{idp}} elements. The content of an
 \element{idp} element is regular mathematical text. Since index entries are usually
 sorted, (and mathematical text is difficult to sort), they carry an attribute
 \attribute{sort-by}{idp} whose value (a sequence of Unicode characters) can be sorted
@@ -539,9 +540,9 @@ current context).
   generic text that makes up the \indextoo{narrative} and explanatory text in a
   mathematical textbook. But many text fragments in mathematical documents directly state
   properties of mathematical objects (we will call them
-  {\twintoo{mathematical}{statement}s}; see {\mychapref{statements}} for a more elaborated
-  markup infrastructure). These are usually classified as {\indextoo{definition}s},
-  {\indextoo{axiom}s}, etc.  Moreover, they are of a form that can (in principle) be
+  \twintoo{mathematical}{statement}s; see {\mychapref{statements}} for a more elaborated
+  markup infrastructure). These are usually classified as \indextoo{definition}s,
+  \indextoo{axiom}s, etc.  Moreover, they are of a form that can (in principle) be
   formalized up to the level of logical formula; in fact, mathematical vernacular is seen
   by mathematicians as a more convenient form of communication for mathematical statements
   that can ultimately be translated into a foundational logical system like axiomatic set
@@ -583,7 +584,7 @@ the text type (much like the \attribute[ns-elt=m]{definitionURL}{csymbol} attrib
 the \element[ns-elt=m]{csymbol} elements in {\cmathml}).
 
 Of course, the \attribute{type}{omtext} only allows a rough classification of the
-{\twintoo{mathematical}{statement}s} at the text level, and does not make the underlying
+\twintoo{mathematical}{statement}s at the text level, and does not make the underlying
 \twintoo{content}{structure} explicit or reveals their contribution and interaction with
 \twintoo{mathematical}{context}.  For that purpose \omdoc supplies a set of
 specialized elements, which we will discuss in \mychapref{statements}.  Thus
@@ -640,7 +641,7 @@ FMP         &  & xml:id, logic                      & --
 </omtext>
 \end{lstlisting}
 
-As mathematical statements of properties of objects often come as {\defin{sequent}s},
+As mathematical statements of properties of objects often come as \defin{sequent}s,
 i.e. as sets of conclusions drawn from a set of assumptions, \omdoc also allows the
 content of an \element{FMP} to be a (possibly empty) set of \eldef{assumption}
 elements followed by a (possibly empty) set of \eldef{conclusion} elements. The intended
