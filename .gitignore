@@ -14,3 +14,4 @@ auto
 *.bcf
 *-blx.bib
 *.refs
+doc/spec/omdoc.pdf
