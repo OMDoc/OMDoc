@@ -5,14 +5,14 @@
 % see http://creativecommons.org/licenses/by-sa/2.5/ for details
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\documentclass[envcountsame,envcountchap]{svmono} 
+\documentclass[envcountsame,envcountchap]{svmono}
 \usepackage{makeidx}         % allows index generation
 \usepackage{graphicx}        % standard LaTeX graphics tool
                              % when including figure files
 \usepackage{multicol}        % used for the two-column index
 \usepackage[bottom]{footmisc}% places footnotes at page bottom
 % end Springer recommendation
-\usepackage{array,longtable,moreverb,amssymb,url,wrapfig,makeidx,wasysym,textcomp} %standard
+\usepackage{longtable,moreverb,amssymb,url,wrapfig,makeidx,wasysym,textcomp} %standard
 \usepackage{gitinfo2}
 \usepackage[hide]{ed}     %../macros set to [hide] when publishing
 \usepackage[show,record]{errata}
@@ -29,9 +29,10 @@
 \def\GERMANY{, Germany}
 \def\USA{, USA}
 \def\June{June}
+\def\nlex#1{``\emph{#1}''}
 \makeindex
 
-\usepackage[linkcolor=black, bookmarks=true, bookmarksopen=true, a4paper=true,  
+\usepackage[linkcolor=black, bookmarks=true, bookmarksopen=true,
 citecolor=black,urlcolor=black,colorlinks=true,breaklinks=true]{hyperref}
 
 \title{An Open Markup Format\\[1ex]
@@ -42,12 +43,14 @@ citecolor=black,urlcolor=black,colorlinks=true,breaklinks=true]{hyperref}
   {\url{m.kohlhase@jacobs-university.de}}}
 \date{\today\\[1cm]\small
   This Document is the OMDoc 1.3 Specification.\\
-\begin{center}
-  \begin{tabular}{|l|l|}\hline
-    {\bf{Source Information}} & 
-    revision \gitAbbrevHash, last change {\gitAuthorIsoDate}\\\hline
-  \end{tabular}
-\end{center} \vspace*{.5cm}
+  \begin{center}
+    \begin{tabular}{|l|l|}\hline
+      \multicolumn{2}{|l|}{Version Information}\\\hline\hline
+      \textbf{Revision} &  \gitAbbrevHash\\
+      \textbf{Last Change} &  \gitAuthorIsoDate\\
+      \textbf{Author} & \gitAuthorName\\\hline
+    \end{tabular}
+  \end{center} \vspace*{.5cm}
  This work is licensed by the Creative Commons Share-Alike license
   \url{http://creativecommons.org/licenses/by-sa/2.5/}: the contents of this specification
   or fragments thereof may be copied and distributed freely, as long as they are
@@ -123,9 +126,9 @@ citecolor=black,urlcolor=black,colorlinks=true,breaklinks=true]{hyperref}
 
 \end{document}
 
-%%% Local Variables: 
+%%% Local Variables:
 %%% mode: latex
 %%% TeX-master: t
-%%% End: 
+%%% End:
 
 % LocalWords:  rnc

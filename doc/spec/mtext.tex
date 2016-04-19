@@ -425,6 +425,37 @@ modeling in {\omdoc} to the future.
 \end{oldpart}
 \end{tsection}
 
+\begin{newpart}{MK: re-read, extend, make more examples, check all with Frederik; move
+    somewhere suitable}
+\begin{tsection}[id=declarations]{Declarations and Discourse Referents}
+  In mathematics we often see phrases like \nlex{Let $S$ be a set}, or \nlex{\ldots, where
+    $f$ is a smooth function on the reals}, or \nlex{for all $\epsilon>0$, \ldots}. These
+  introduce identifiers for the use in the text and formulae (with a given scope.)
+  Traditionally, these are thought of as variables, but the concept of \defemph{discourse
+    referents} from DRT (Discourse Representation Theory~\cite{KamRey:acffodrs96}) seems
+  more suitable. 
+
+  We use \eldef{declaration} element to markup such text fragments.\ednote{what about
+    attributes? Think about this}. 
+\begin{lstlisting}
+<declaration for=''S''>
+  Let <om:OMOBJ><om:OMV name=''S''/></om:OMOBJ> be a <term>set</term>.
+</declaration>
+\end{lstlisting}
+\ednote{talk about identifiers and res}
+\begin{myfig}{rt}{Index Markup}
+  \begin{scriptsize}
+\begin{tabular}{|>{\tt}l|>{\tt}l|>{\tt}l|c|>{\tt}l|}\hline
+{\rm Element}& \multicolumn{2}{l|}{Attributes\hspace*{2.25cm}} & D & Content  \\\hline
+  declaration        & & id, role, name & -- & \llquote{math vernacular},  identifiers*, restrictions* \\\hline
+ identifiers        & &  id  & -- &x\llquote{math vernacular} \\\hline
+ restriction         & &                             & --&  \llquote{math vernacular} \\\hline
+\end{tabular}
+\end{scriptsize}
+\end{myfig}
+
+\end{tsection}
+\end{newpart}
 \begin{tsection}[id=omtext]{Text Fragments and their Rhetoric/Mathematical Roles}
 
   As we have explicated above, all mathematical documents state properties of mathematical
