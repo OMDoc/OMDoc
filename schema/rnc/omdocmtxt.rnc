@@ -54,15 +54,16 @@ term.attribs = id.attribs & role.attrib & triple.att
 term.model = inline.model
 term = element term {tref|(term.attribs & term.model)}
 
-declaration.attribs = id.attribs & role.attrib & name.attrib
-declaration.model = text & inline.class &  identifiers* & restriction* 
+forids.attrib = attribute for {xsd:IDREFS}
+declaration.attribs = id.attribs & role.attrib & forids.attrib
+declaration.model = text & inline.class &  condition* & restriction* 
 declaration= element declaration {tref|(declaration.attribs & declaration.model)}
 
-identifiers.attribs = id.attribs & attribute refs {omdocrefs}
-identifiers.model = text & inline.class &  identifiers* & restriction* 
-identifiers= element identifiers {tref|(identifiers.attribs & identifiers.model)}
+condition.attribs = id.attribs & forids.attrib
+condition.model = inline.model
+condition= element condition {tref|(condition.attribs & condition.model)}
 
-restriction.attribs = id.attribs & role.attrib & for.attrib
+restriction.attribs = id.attribs & role.attrib & forids.attrib
 restriction.model = inline.model		     	       
 restriction = element restriction {tref|(restriction.attribs & restriction.model)}
 
@@ -80,7 +81,7 @@ conclusion.model = mobj
 conclusion = element conclusion {tref|(conclusion.attribs & conclusion.model)}
  
 note.attribs = id.attribs &  for.attrib? & parallel.attribs &  attribute type {xsd:NMTOKEN}?
-note.model = inline.model
+note.model = plike.class
 note = element note {tref|(note.attribs & note.model)}
 
 # index 
