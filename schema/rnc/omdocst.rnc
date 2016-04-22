@@ -5,13 +5,12 @@
 
 default namespace omdoc = "http://omdoc.org/ns"
 
-omdoc.class &= symbol* &  axiom* &  definition* & imports* & assertion* &  type* & alternative* & example*  & theory*
+omdoc.class &= symbol* &  axiom* &  definition* & assertion* &  type* & alternative* & example*  & theory*
 
 constitutive.attribs = id.attribs &  attribute generated-from {omdocref}?
 sym.role.attrib = attribute role {"type" | "sort" | "object" |
 		                  "binder" | "attribution" | "application" | "constant" |
 		                  "semantic-attribution" | "error"}
-theory-unique  = xsd:NCName 
 scope.attrib = attribute scope {"global" | "local"}?
 symbol.attribs = scope.attrib & 
                          name.attrib & 
@@ -124,11 +123,13 @@ theory.attribs = id.attribs &
 			 attribute cdversion {xsd:nonNegativeInteger}? & 
 			 attribute cdrevision {xsd:nonNegativeInteger}? & 
 			 attribute cdstatus {"official" | "experimental" |"private" |  "obsolete"}?
-theory.model = metadata.class & omdoc.class 
+theory.model = metadata.class & omdoc.class & intheory.class
 theory = element theory {tref|(theory.attribs & theory.model)}
 
 imports.attribs = id.attribs & from.attrib & attribute conservative {"true" | "false"}?
 imports.model = metadata.class
 imports = element imports {tref|(imports.attribs & imports.model)}
+
+intheory.class = imports* 
 
 
