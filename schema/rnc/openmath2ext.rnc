@@ -70,16 +70,14 @@ OMATTR = element OMATTR { compound.attributes, OMATP, omel }
 
 OMATP = element OMATP { compound.attributes, (OMS, (omel | OMFOREIGN) )+ }
 
-# foreign constructor
+# foreign constructor, extended to allow mixing text and OM. 
 OMFOREIGN =  element OMFOREIGN {
     compound.attributes, attribute encoding {xsd:string}?,
-   (omel|notom)* }
+   Anything* }
 
-# Any elements not in the om namespace
-# (valid om is allowed as a descendant)
-notom =
-  (element * - om:* {attribute * { text }*,(omel|notom)*}
-   | text)
+Anything = (AnyElement|text)*
+AnyElement = element * {AnyAttribute,(text | AnyElement)*}
+AnyAttribute = attribute * { text }*
 
 # reference constructor
 OMR = element OMR { common.attributes,

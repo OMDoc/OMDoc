@@ -54,8 +54,12 @@ term.attribs = id.attribs & role.attrib & triple.att
 term.model = inline.model
 term = element term {tref|(term.attribs & term.model)}
 
+definiendum.attribs = id.attribs & role.attrib & triple.att
+definiendum.model = inline.model
+definiendum = element definiendum {tref|(definiendum.attribs & definiendum.model)}
+
 forids.attrib = attribute for {xsd:IDREFS}
-declaration.attribs = id.attribs & role.attrib & forids.attrib
+declaration.attribs = id.attribs & role.attrib & forids.attrib?
 declaration.model = text & inline.class &  condition* & restriction* 
 declaration= element declaration {tref|(declaration.attribs & declaration.model)}
 
@@ -121,6 +125,6 @@ fallback = element fallback {id.attribs & inline.model}
 
 # what can go into a mathematical text
 op.class = \term* & mobj* & note*  & idx*  & citation*  & oref* & 
-                 declaration* 
+                 declaration* & definiendum*
 inline.class &=op.class
 omdoc.class &= oref*

@@ -13,7 +13,7 @@ view.model = metadata.class & omdoc.class
 view = element view {tref|(view.attribs & view.model)}
 
 structure.attribs = id.attribs & from.attrib & name.attrib?
-structure.model = metadata.class
+structure.model = metadata.class & omdoc.class
 structure = element structure {tref|(structure.attribs & structure.model)}
 
 omdoc.class &= view*
