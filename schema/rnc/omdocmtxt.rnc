@@ -55,7 +55,7 @@ term.model = inline.model
 term = element term {tref|(term.attribs & term.model)}
 
 definiendum.attribs = id.attribs & role.attrib & triple.att
-definiendum.model = inline.model
+definiendum.model = inline.model & metadata.class
 definiendum = element definiendum {tref|(definiendum.attribs & definiendum.model)}
 
 forids.attrib = attribute for {xsd:IDREFS}
