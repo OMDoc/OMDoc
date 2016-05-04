@@ -59,15 +59,15 @@ definiendum.model = inline.model & metadata.class
 definiendum = element definiendum {tref|(definiendum.attribs & definiendum.model)}
 
 forids.attrib = attribute for {xsd:IDREFS}
-declaration.attribs = id.attribs & role.attrib & forids.attrib?
+declaration.attribs = id.attribs & role.attrib? & forids.attrib?
 declaration.model = text & inline.class &  condition* & restriction* 
 declaration= element declaration {tref|(declaration.attribs & declaration.model)}
 
-condition.attribs = id.attribs & forids.attrib
+condition.attribs = id.attribs & forids.attrib?
 condition.model = inline.model
 condition= element condition {tref|(condition.attribs & condition.model)}
 
-restriction.attribs = id.attribs & role.attrib & forids.attrib
+restriction.attribs = id.attribs & role.attrib & forids.attrib?
 restriction.model = inline.model		     	       
 restriction = element restriction {tref|(restriction.attribs & restriction.model)}
 
