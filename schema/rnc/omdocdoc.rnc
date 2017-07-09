@@ -34,7 +34,7 @@ group.attribs = id.attribs,
 
 ## The <omdoc> and <omgroup> elements allow frontmatter and backmatter, 
 ## which we will now  define
-frontmatter = metadata.class & tableofcontents?
+frontmatter = metadata.class & uses * & tableofcontents?
 backmatter = index? & bibliography?
 docstruct.class = omgroup*
 omdoc.class &= docstruct.class
